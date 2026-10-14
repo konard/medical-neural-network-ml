@@ -8,3 +8,10 @@
   when started by hand, MedGemma 4B or 27B on a self-hosted GPU runner, using
   `scripts/medbench-model-run.sh` with SHA-256 pinned downloads.
 - Research case study in `docs/case-studies/issue-1`.
+
+### Fixed
+
+- Pull requests no longer fail Dependency Review when the repository's
+  Dependency graph setting is off: `scripts/check-dependency-graph.sh` skips
+  the review with a warning, and a new `Dependency Graph Enabled` job fails
+  `main` and the weekly scan with the setting a maintainer has to enable.
