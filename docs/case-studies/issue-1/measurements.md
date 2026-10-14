@@ -322,7 +322,10 @@ greedy in both runs, so the reason is the CPU: different machines add
 floating-point numbers in a different order, a near tie between two tokens
 flips, and the rest of the answer follows the new token. So OCR scores need
 many items and confidence intervals, and a regression test must not expect
-one exact string from a real model.
+one exact string from a real model. A third run
+([38553921579](https://github.com/konard/medical-neural-network-ml/actions/runs/38553921579),
+353 s for the medbench step) gave run A's answers again: CER 0.0102,
+diagnosis 2/2 and X-ray 0/2.
 
 The X-ray result was checked by hand with
 [`experiments/issue1_xray_truth.py`](../../../experiments/issue1_xray_truth.py),
