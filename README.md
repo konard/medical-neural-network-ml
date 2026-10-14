@@ -16,6 +16,10 @@ A comprehensive template for AI-driven Python development with full CI/CD pipeli
 - **Changelog management**: Scriv for conflict-free changelog (like Changesets in JS)
 - **Release automation**: Automatic PyPI publishing and GitHub releases
 - **API documentation**: Sphinx + opt-in GitHub Pages deploy on push to `main`
+- **Medical model research (`medbench`)**: synthetic medical tasks, a resource
+  calculator and CPU/GPU model tests; see the
+  [issue #1 case study](docs/case-studies/issue-1/README.md) and
+  `python examples/medbench_quickstart.py`
 
 ## Quick Start
 
