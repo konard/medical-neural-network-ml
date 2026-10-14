@@ -1,0 +1,227 @@
+name: Model Tests
+
+# Runs real medical models on the synthetic tasks of issue #1.
+#
+# cpu-smoke   MedGemma 4B (4-bit) on a GitHub-hosted runner. It proves that
+#             download, serving, images and scoring work end to end; a few
+#             items take about 10-20 minutes because CPU decoding is slow.
+# gpu         MedGemma 4B or 27B on a self-hosted runner with an NVIDIA GPU
+#             and the labels `self-hosted, linux, x64, gpu`. It only runs when
+#             someone with write access starts the workflow by hand, so pull
+#             requests from forks can never reach that machine.
+#             Setup: docs/case-studies/issue-1/ci-and-gpu-runner.md.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'src/medbench/**'
+      - 'scripts/medbench-model-run.sh'
+      - 'tests/test_real_models.py'
+      - '.github/workflows/model-tests.yml'
+  workflow_dispatch:
+    inputs:
+      count:
+        description: 'Items per task'
+        type: number
+        default: 2
+      gpu:
+        description: 'Also run on the self-hosted GPU runner'
+        type: boolean
+        default: false
+      gpu-model:
+        description: 'Model for the GPU job'
+        type: choice
+        options:
+          - medgemma-27b-it
+          - medgemma-4b-it
+        default: medgemma-27b-it
+
+permissions:
+  contents: read
+
+env:
+  GIT_CONFIG_COUNT: '1'
+  GIT_CONFIG_KEY_0: init.defaultBranch
+  GIT_CONFIG_VALUE_0: main
+
+jobs:
+  cpu-smoke:
+    name: CPU smoke test (MedGemma 4B Q4_K_M)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    concurrency:
+      group: model-${{ github.workflow }}-${{ github.ref }}-cpu-smoke
+      cancel-in-progress: true
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+
+      - name: Install medbench
+        env:
+          INSTALL_BUDGET_SECONDS: 300
+        run: |
+          bash scripts/run-with-budget-warning.sh \
+            "$INSTALL_BUDGET_SECONDS" "Install medbench" \
+            bash -euo pipefail -c '
+              python -m pip install --upgrade pip
+              pip install -e ".[dev]"
+            '
+
+      - name: Restore model cache
+        uses: actions/cache@v5
+        with:
+          path: .cache/medbench
+          key: medbench-cpu-${{ hashFiles('scripts/medbench-model-run.sh') }}
+
+      - name: Download and verify model
+        env:
+          DOWNLOAD_BUDGET_SECONDS: 600
+        run: |
+          bash scripts/run-with-budget-warning.sh \
+            "$DOWNLOAD_BUDGET_SECONDS" "Download model" \
+            bash scripts/medbench-model-run.sh download
+
+      - name: Run synthetic medical tasks
+        env:
+          MEDBENCH_BUDGET_SECONDS: 1500
+          TIME_BUDGET: 1200
+          COUNT: ${{ inputs.count || 2 }}
+          TASKS: diagnosis imaging-xray ocr-prescription
+          OUT_DIR: medbench-reports
+        run: |
+          bash scripts/run-with-budget-warning.sh \
+            "$MEDBENCH_BUDGET_SECONDS" "Run medbench" \
+            bash scripts/medbench-model-run.sh run
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: medbench-cpu-reports
+          path: medbench-reports
+          if-no-files-found: ignore
+
+  gpu:
+    name: GPU tests (self-hosted)
+    if: github.event_name == 'workflow_dispatch' && inputs.gpu
+    runs-on: [self-hosted, linux, x64, gpu]
+    timeout-minutes: 120
+    concurrency:
+      group: model-${{ github.workflow }}-gpu
+      cancel-in-progress: false
+    permissions:
+      contents: read
+    env:
+      LLAMA_ARCHIVE: llama-b11609-bin-ubuntu-cuda-12.8-x64.tar.gz
+      LLAMA_SHA256: 79d13d97eeee576a9e5a5194c678fdac67cb038c37a68e77530ba7cd4df0802d
+      CUDART_ARCHIVE: cudart-llama-b11609-bin-ubuntu-cuda-12.8-x64.tar.gz
+      CUDART_SHA256: 4a99871b8b69bac3ae8ca4f6b8a965e426a17330c38af43addc2debea448acab
+      GPU_LAYERS: 999
+      GPU_MODEL: ${{ inputs.gpu-model }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+
+      - name: Show GPU
+        run: nvidia-smi
+
+      - name: Select model
+        run: |
+          case "$GPU_MODEL" in
+            medgemma-27b-it)
+              {
+                echo "MODEL_REPO=unsloth/medgemma-27b-it-GGUF"
+                echo "MODEL_REVISION=c56c561dd4fcb1b57bc64cd75cc8f728eb5befcd"
+                echo "MODEL_FILE=medgemma-27b-it-Q4_K_M.gguf"
+                echo "MODEL_SHA256=89fdb77fd378f4e4f7f1ed2bb349c8cb0784f354970736758368f9d3cc7449c3"
+                echo "MMPROJ_FILE=mmproj-F16.gguf"
+                echo "MMPROJ_SHA256=9c7733e3ced596d4e05b890ca66622fed129716c4a23e7feff66528416a5b0e0"
+              } >> "$GITHUB_ENV"
+              ;;
+            medgemma-4b-it)
+              echo "Using the script defaults (MedGemma 4B Q4_K_M)."
+              ;;
+            *)
+              echo "::error::Unknown model '$GPU_MODEL'."
+              exit 1
+              ;;
+          esac
+
+      - name: Install medbench
+        env:
+          INSTALL_BUDGET_SECONDS: 300
+        run: |
+          bash scripts/run-with-budget-warning.sh \
+            "$INSTALL_BUDGET_SECONDS" "Install medbench" \
+            bash -euo pipefail -c '
+              python -m pip install --upgrade pip
+              pip install -e ".[dev]"
+            '
+
+      - name: Download and verify model
+        env:
+          DOWNLOAD_BUDGET_SECONDS: 2400
+        run: |
+          bash scripts/run-with-budget-warning.sh \
+            "$DOWNLOAD_BUDGET_SECONDS" "Download model" \
+            bash scripts/medbench-model-run.sh download
+
+      - name: Run synthetic medical tasks
+        env:
+          MEDBENCH_BUDGET_SECONDS: 2100
+          TIME_BUDGET: 1800
+          COUNT: ${{ inputs.count || 20 }}
+          TASKS: >-
+            diagnosis ocr-prescription ocr-history
+            imaging-xray imaging-mri imaging-ultrasound
+          OUT_DIR: medbench-reports
+        run: |
+          bash scripts/run-with-budget-warning.sh \
+            "$MEDBENCH_BUDGET_SECONDS" "Run medbench" \
+            bash scripts/medbench-model-run.sh run
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: medbench-gpu-reports
+          path: medbench-reports
+          if-no-files-found: ignore
+
+  # Terminal status gate (issue #69): GitHub reports jobs killed by
+  # timeout-minutes as cancelled. Observe every other job so a timeout on main
+  # becomes a visible failure instead of a grey run, while a run that was
+  # superseded by a newer commit is recognised as expected churn.
+  pipeline-status:
+    name: Pipeline Status
+    needs:
+      - cpu-smoke
+      - gpu
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Check aggregate pipeline status
+        env:
+          NEEDS_JSON: ${{ toJSON(needs) }}
+          RUN_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+        run: bash scripts/check-pipeline-status.sh

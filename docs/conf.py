@@ -52,7 +52,7 @@ source_suffix = {
 }
 
 templates_path = ["_templates"]
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "case-studies"]
 
 html_theme = "furo"
 html_static_path: list[str] = []

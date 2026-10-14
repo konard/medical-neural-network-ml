@@ -87,13 +87,15 @@ HARDWARE: dict[str, HardwareProfile] = {
             key="dev-vm-6cpu",
             description=(
                 "Development VM used for this study: 6 AMD EPYC vCPUs (AVX2), "
-                "11 GB RAM. Efficiencies calibrated with llama-bench."
+                "11 GB RAM, but its cgroup caps the sandbox at 3.1 GB. "
+                "Efficiencies calibrated with llama-bench (4 threads, "
+                "weights in RAM: 19.4 prompt and 4.2 output tokens/s)."
             ),
-            memory_gb=11.0,
+            memory_gb=3.1,
             bandwidth_gbs=20.0,
             compute_tflops=0.48,
             decode_efficiency=0.6,
-            prefill_efficiency=0.25,
+            prefill_efficiency=0.31,
         ),
         HardwareProfile(
             key="github-ubuntu-4cpu",

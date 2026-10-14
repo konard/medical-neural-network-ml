@@ -78,13 +78,24 @@ class TestInference:
         assert not estimate.fits
         assert estimate.weights_gb > 16
 
-    def test_4b_fits_dev_machine(self) -> None:
-        """The 4-bit 4B model fits the 11 GB development VM."""
+    def test_4b_needs_more_than_the_sandbox_limit(self) -> None:
+        """The 3.1 GB cgroup of the dev VM is too small; a hosted runner is not."""
+        model = get_model("medgemma-4b-it")
+        sandbox = estimate_inference(model, HARDWARE["dev-vm-6cpu"], quant="Q4_K_M")
+        runner = estimate_inference(
+            model, HARDWARE["github-ubuntu-4cpu"], quant="Q4_K_M"
+        )
+        assert not sandbox.fits
+        assert runner.fits
+        assert runner.total_memory_gb < 5
+
+    def test_dev_vm_matches_measured_speed(self) -> None:
+        """llama-bench measured 19.4 prompt and 4.2 output tokens/s."""
         estimate = estimate_inference(
             get_model("medgemma-4b-it"), HARDWARE["dev-vm-6cpu"], quant="Q4_K_M"
         )
-        assert estimate.fits
-        assert estimate.total_memory_gb < 5
+        assert estimate.prefill_tokens_per_s == pytest.approx(19.4, rel=0.25)
+        assert estimate.decode_tokens_per_s == pytest.approx(4.2, rel=0.25)
 
     def test_gpu_is_much_faster_than_cpu(self) -> None:
         """Decoding on an H100 is over 50x faster than on a CI runner."""
