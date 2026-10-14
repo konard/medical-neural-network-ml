@@ -1,0 +1,244 @@
+"""Tests for backends, the benchmark runner and the CLI (issue #1).
+
+The OpenAI-compatible backend is tested against a tiny local HTTP server,
+so no model is needed.
+"""
+
+from __future__ import annotations
+
+import json
+import threading
+from collections.abc import Iterator, Sequence
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from pathlib import Path
+from typing import Any
+
+import pytest
+
+from medbench.backends import (
+    NaiveBayesBackend,
+    OpenAICompatibleBackend,
+    ScriptedBackend,
+    TesseractBackend,
+)
+from medbench.benchmark import (
+    DiagnosisTask,
+    ImagingTask,
+    OcrTask,
+    make_task,
+    parse_yes_no_side,
+    run_task,
+)
+from medbench.cli import main
+from medbench.hardware import ResourceBudget
+from medbench.synthetic_images import Phantom
+
+
+class _FakeServer(BaseHTTPRequestHandler):
+    requests: list[dict[str, Any]] = []  # noqa: RUF012 - shared on purpose
+
+    def do_POST(self) -> None:  # noqa: N802 - name required by BaseHTTPRequestHandler
+        body = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
+        body["auth"] = self.headers.get("Authorization")
+        self.requests.append(body)
+        reply = {
+            "choices": [{"message": {"content": "1. Influenza\n2. COVID-19"}}],
+            "usage": {"prompt_tokens": 42, "completion_tokens": 7},
+        }
+        data = json.dumps(reply).encode()
+        self.send_response(200)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(data)))
+        self.end_headers()
+        self.wfile.write(data)
+
+    def log_message(self, *args: object) -> None:
+        del args
+
+
+@pytest.fixture
+def server_url() -> Iterator[str]:
+    """Start the fake chat completions server on a free port."""
+    _FakeServer.requests.clear()
+    server = HTTPServer(("127.0.0.1", 0), _FakeServer)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    yield f"http://127.0.0.1:{server.server_address[1]}/v1"
+    server.shutdown()
+    thread.join(timeout=5)
+
+
+class TestBackends:
+    """Backend implementations."""
+
+    def test_openai_backend(self, server_url: str) -> None:
+        """Prompts and images are sent in the OpenAI format."""
+        backend = OpenAICompatibleBackend(server_url, model="medgemma", api_key="k")
+        generation = backend.generate("hello", [b"\x89PNG"], max_tokens=9)
+        assert generation.text.startswith("1. Influenza")
+        assert generation.prompt_tokens == 42
+        assert generation.completion_tokens == 7
+        sent = _FakeServer.requests[0]
+        assert sent["model"] == "medgemma"
+        assert sent["max_tokens"] == 9
+        assert sent["auth"] == "Bearer k"
+        content = sent["messages"][0]["content"]
+        assert content[0]["image_url"]["url"] == "data:image/png;base64,iVBORw=="
+        assert content[1] == {"type": "text", "text": "hello"}
+
+    def test_openai_backend_rejects_other_schemes(self) -> None:
+        """Only HTTP(S) URLs are allowed."""
+        with pytest.raises(ValueError, match="http"):
+            OpenAICompatibleBackend("file:///etc/passwd")
+
+    def test_naive_bayes_backend(self) -> None:
+        """The baseline answers diagnosis prompts only."""
+        backend = NaiveBayesBackend()
+        prompt = "A 30-year-old male patient reports: painful urination.\nList"
+        assert backend.generate(prompt).text.startswith("1. urinary tract infection")
+        assert backend.generate("What is on this image?").text == "unknown"
+
+    def test_tesseract_missing(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        """A clear error explains how to install Tesseract."""
+        monkeypatch.setenv("PATH", "")
+        with pytest.raises(FileNotFoundError, match="tesseract-ocr"):
+            TesseractBackend()
+
+
+class TestParsing:
+    """Yes/no answers about findings."""
+
+    @pytest.mark.parametrize(
+        ("text", "expected"),
+        [
+            ("Yes, in the patient's left lung.", (True, "left")),
+            ("Yes - right hemisphere", (True, "right")),
+            ("No. The lungs are clear.", (False, "none")),
+            ("There is no nodule; nothing on the left.", (False, "none")),
+            ("A cyst is present on the right half.", (True, "right")),
+            ("I am not sure.", (False, "none")),
+            ("", (False, "none")),
+        ],
+    )
+    def test_parse_yes_no_side(self, text: str, expected: tuple[bool, str]) -> None:
+        """The first answer word decides."""
+        assert parse_yes_no_side(text) == expected
+
+
+def _oracle(items: Sequence[Any]) -> ScriptedBackend:
+    """Backend that knows every answer, keyed by prompt and image."""
+    answers = {}
+    for item in items:
+        truth = item.truth
+        if isinstance(truth, Phantom):
+            text = f"Yes, {truth.side}." if truth.has_finding else "No."
+        else:
+            text = truth.text
+        answers[item.images[0]] = text
+    return ScriptedBackend(lambda _prompt, images: answers[images[0]], name="oracle")
+
+
+class TestRunner:
+    """Running tasks end to end."""
+
+    def test_diagnosis_with_baseline(self) -> None:
+        """The baseline matches the reference exactly."""
+        report = run_task(DiagnosisTask(count=30, seed=1), NaiveBayesBackend())
+        assert report.items_run == 30
+        assert report.metrics["top1"] == report.metrics["reference_top1"]
+        assert report.metrics["top5"] >= report.metrics["top1"]
+        assert report.metrics["unparsed_answers"] == 0
+
+    @pytest.mark.parametrize("modality", ["xray", "mri", "ultrasound"])
+    def test_imaging_with_oracle(self, modality: str) -> None:
+        """A perfect reader scores 1 everywhere."""
+        task = ImagingTask(modality=modality, count=4, size=32)
+        report = run_task(task, _oracle(task.items()))
+        assert report.task == f"imaging-{modality}"
+        assert report.metrics == {
+            "sensitivity": 1.0,
+            "specificity": 1.0,
+            "accuracy": 1.0,
+            "side_accuracy_when_found": 1.0,
+        }
+
+    def test_imaging_always_normal(self) -> None:
+        """A model that always says 'no' has zero sensitivity."""
+        report = run_task(
+            ImagingTask(count=4, size=32), ScriptedBackend(lambda *_: "No.")
+        )
+        assert report.metrics["sensitivity"] == 0
+        assert report.metrics["specificity"] == 1
+
+    @pytest.mark.parametrize("kind", ["prescription", "history"])
+    def test_ocr_with_oracle(self, kind: str) -> None:
+        """Perfect transcription has zero error rates."""
+        pytest.importorskip("PIL")
+        task = OcrTask(kind=kind, count=2)
+        report = run_task(task, _oracle(task.items()))
+        assert report.metrics["cer"] == 0
+        assert report.metrics["wer"] == 0
+        if kind == "prescription":
+            assert report.metrics["drug_and_strength_recall"] == 1
+
+    def test_time_budget_stops_early(self) -> None:
+        """No items run when the budget is already used up."""
+        report = run_task(
+            DiagnosisTask(count=3), NaiveBayesBackend(), ResourceBudget(max_seconds=0)
+        )
+        assert report.stopped_early
+        assert report.items_run == 0
+        assert report.metrics == {}
+        assert report.latency["total_s"] == 0
+
+    def test_report_json(self, tmp_path: Path) -> None:
+        """Reports are written as JSON with latencies."""
+        report = run_task(DiagnosisTask(count=3), NaiveBayesBackend())
+        data = json.loads(report.write(tmp_path / "r.json").read_text(encoding="utf-8"))
+        assert data["backend"] == "naive-bayes"
+        assert len(data["results"]) == 3
+        assert set(data["latency"]) == {"mean_s", "p50_s", "p95_s", "total_s"}
+
+    def test_make_task(self) -> None:
+        """Every listed task can be created; unknown names fail."""
+        assert make_task("ocr-history", 1).name == "ocr-history"
+        assert make_task("imaging-mri", 1).name == "imaging-mri"
+        with pytest.raises(KeyError, match="unknown task"):
+            make_task("ocr-xray", 1)
+
+
+class TestCli:
+    """The medbench command."""
+
+    def test_estimate(self, capsys: pytest.CaptureFixture[str]) -> None:
+        """The estimate command prints inference and fine-tuning numbers."""
+        assert main(["estimate", "--model", "medgemma-4b-it", "--finetune"]) == 0
+        data = json.loads(capsys.readouterr().out)
+        assert len(data["inference"]) >= 5
+        assert [row["method"] for row in data["finetune"]] == ["full", "lora", "qlora"]
+
+    def test_host(self, capsys: pytest.CaptureFixture[str]) -> None:
+        """The host command reports CPUs."""
+        assert main(["host"]) == 0
+        assert json.loads(capsys.readouterr().out)["cpu_count"] >= 1
+
+    def test_generate(self, tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
+        """Synthetic data is written to disk."""
+        assert main(["generate", "--out", str(tmp_path), "--count", "2"]) == 0
+        summary = json.loads(capsys.readouterr().out)
+        assert summary["images"] == 6
+        assert len(list((tmp_path / "images").glob("*.png"))) == 6
+        assert (tmp_path / "diagnosis_cases.json").exists()
+
+    def test_run_with_server(
+        self, server_url: str, tmp_path: Path, capsys: pytest.CaptureFixture[str]
+    ) -> None:
+        """The run command talks to a model server and saves the report."""
+        out = tmp_path / "report.json"
+        args = ["run", "--task", "diagnosis", "--backend", "openai"]
+        args += ["--base-url", server_url, "--count", "2", "--out", str(out)]
+        assert main(args) == 0
+        summary = json.loads(capsys.readouterr().out)
+        assert summary["items_run"] == 2
+        assert "results" not in summary
+        assert len(json.loads(out.read_text(encoding="utf-8"))["results"]) == 2
