@@ -1,0 +1,126 @@
+{
+  "inference": [
+    {
+      "model": "medgemma-4b-it",
+      "hardware": "a100-80gb",
+      "quant": "bf16",
+      "weights_gb": 8.6,
+      "kv_cache_gb": 0.107,
+      "total_memory_gb": 9.707,
+      "fits": true,
+      "prefill_tokens_per_s": 14511.628,
+      "decode_tokens_per_s": 140.508,
+      "seconds_per_request": 1.857
+    }
+  ],
+  "finetune": [
+    {
+      "method": "full",
+      "weights_gb": 8.6,
+      "trainable_params": 4300000000.0,
+      "optimizer_and_grads_gb": 60.2,
+      "activations_gb": 0.713,
+      "total_gb": 71.013
+    },
+    {
+      "method": "lora",
+      "weights_gb": 8.6,
+      "trainable_params": 29245440.0,
+      "optimizer_and_grads_gb": 0.468,
+      "activations_gb": 0.713,
+      "total_gb": 11.281
+    },
+    {
+      "method": "qlora",
+      "weights_gb": 2.22,
+      "trainable_params": 29245440.0,
+      "optimizer_and_grads_gb": 0.468,
+      "activations_gb": 0.713,
+      "total_gb": 4.901
+    }
+  ]
+}
+{
+  "inference": [
+    {
+      "model": "medgemma-27b-it",
+      "hardware": "a100-80gb",
+      "quant": "bf16",
+      "weights_gb": 54.864,
+      "kv_cache_gb": 0.39,
+      "total_memory_gb": 56.254,
+      "fits": true,
+      "prefill_tokens_per_s": 2274.716,
+      "decode_tokens_per_s": 22.141,
+      "seconds_per_request": 11.787
+    }
+  ],
+  "finetune": [
+    {
+      "method": "full",
+      "weights_gb": 54.864,
+      "trainable_params": 27432000000.0,
+      "optimizer_and_grads_gb": 384.048,
+      "activations_gb": 2.114,
+      "total_gb": 442.526
+    },
+    {
+      "method": "lora",
+      "weights_gb": 54.864,
+      "trainable_params": 111992832.0,
+      "optimizer_and_grads_gb": 1.792,
+      "activations_gb": 2.114,
+      "total_gb": 60.27
+    },
+    {
+      "method": "qlora",
+      "weights_gb": 14.162,
+      "trainable_params": 111992832.0,
+      "optimizer_and_grads_gb": 1.792,
+      "activations_gb": 2.114,
+      "total_gb": 19.568
+    }
+  ]
+}
+{
+  "inference": [
+    {
+      "model": "unimedvl",
+      "hardware": "a100-80gb",
+      "quant": "bf16",
+      "weights_gb": 29.2,
+      "kv_cache_gb": 0.044,
+      "total_memory_gb": 30.244,
+      "fits": true,
+      "prefill_tokens_per_s": 8210.526,
+      "decode_tokens_per_s": 80.254,
+      "seconds_per_request": 3.252
+    }
+  ],
+  "finetune": [
+    {
+      "method": "full",
+      "weights_gb": 29.2,
+      "trainable_params": 14600000000.0,
+      "optimizer_and_grads_gb": 204.4,
+      "activations_gb": 0.91,
+      "total_gb": 236.01
+    },
+    {
+      "method": "lora",
+      "weights_gb": 29.2,
+      "trainable_params": 33718272.0,
+      "optimizer_and_grads_gb": 0.539,
+      "activations_gb": 0.91,
+      "total_gb": 32.15
+    },
+    {
+      "method": "qlora",
+      "weights_gb": 7.537,
+      "trainable_params": 33718272.0,
+      "optimizer_and_grads_gb": 0.539,
+      "activations_gb": 0.91,
+      "total_gb": 10.487
+    }
+  ]
+}

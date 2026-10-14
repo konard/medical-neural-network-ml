@@ -1,0 +1,45 @@
+title:	Build a plan and initial tests to do research on how to teach medical neural network for processing medical data
+state:	OPEN
+author:	konard (Konstantin Diachenko)
+labels:	documentation, enhancement
+comments:	0
+assignees:	
+projects:	
+milestone:	
+issue-type:	
+parent:	
+sub-issues:	
+sub-issues-completed:	
+blocked-by:	
+blocking:	
+number:	1
+--
+We need to produce detailed plan to do research on how to teach medical neural network for processing medical data.
+
+We first start by trying existing neural networks on synthetic typical medical data processing tasks.
+
+We should use public domain or permissive basic datasets for examples of medical documents that needs typical processing. For example OCR of medical histories, handwritten prescription, reading x-ray, MRI, ultrasonic imaging and so on.
+
+Initial diagnostics (with multiple most likely options) based on symptoms and so on.
+
+We should start by checking:
+- https://huggingface.co/google/medgemma-27b-it
+- https://huggingface.co/General-Medical-AI/UniMedVL
+
+And other similar options, we should try to measure how fast CPU inference will work, and if it is too slow and cannot be run in CI/CD for testing, we should produce GPU version of all tests, that can be run in local GitHub Actions Runner.
+
+All instructions, required resources must be calculated.
+
+We also must plan on how to do research in case ready models don't fit the task and fail. How would we use fine tuning, or how we teach our own model from scratch or from the most fitting basis, but with big dataset.
+
+How should we collect dataset, how should we multiply number of data or use the same data so it will make more effect on leaning by the model and so.
+
+Every detail must be explained, all alternative methods with pros and cons for all the stages must be listed. We should use simplest possible english, so it will be easy to ready without any background at all.
+
+We should use mermaid diagrams there possible and fit. We also should explain architectures of current best available solutions, what are the differences, how they work, and how they will affect the results.
+
+We should be careful with local resources of development machine, if that is too much, we should not overload it for long with CPU intensive and other resources tasks.
+
+We need to collect data related about the issue to this repository, make sure we compile that data to `./docs/case-studies/issue-{id}` folder, and use it to do deep case study analysis (also make sure to search online for additional facts and data), list of each and all requirements from the issue, and propose possible solutions and solution plans for each requirement (we should also check known existing components/libraries, that solve similar problem or can help in solutions).
+
+Please plan and execute everything in this single pull request, you have unlimited time and context, as context auto-compacts and you can continue indefinitely, until each and every requirement fully addressed, and everything is totally done.

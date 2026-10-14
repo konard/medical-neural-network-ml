@@ -1,0 +1,357 @@
+### medgemma-4b-it on github-ubuntu-4cpu
+{
+  "inference": [
+    {
+      "model": "medgemma-4b-it",
+      "hardware": "github-ubuntu-4cpu",
+      "quant": "Q4_K_M",
+      "weights_gb": 2.628,
+      "kv_cache_gb": 0.143,
+      "total_memory_gb": 3.771,
+      "fits": true,
+      "prefill_tokens_per_s": 9.302,
+      "decode_tokens_per_s": 4.331,
+      "seconds_per_request": 184.682
+    }
+  ]
+}
+### medgemma-4b-it on dev-vm-6cpu
+{
+  "inference": [
+    {
+      "model": "medgemma-4b-it",
+      "hardware": "dev-vm-6cpu",
+      "quant": "Q4_K_M",
+      "weights_gb": 2.628,
+      "kv_cache_gb": 0.143,
+      "total_memory_gb": 3.771,
+      "fits": false,
+      "prefill_tokens_per_s": 17.302,
+      "decode_tokens_per_s": 4.331,
+      "seconds_per_request": 126.624
+    }
+  ]
+}
+### medgemma-4b-it on t4-16gb
+{
+  "inference": [
+    {
+      "model": "medgemma-4b-it",
+      "hardware": "t4-16gb",
+      "quant": "Q4_K_M",
+      "weights_gb": 2.628,
+      "kv_cache_gb": 0.143,
+      "total_memory_gb": 3.771,
+      "fits": true,
+      "prefill_tokens_per_s": 3023.256,
+      "decode_tokens_per_s": 69.29,
+      "seconds_per_request": 4.081
+    }
+  ]
+}
+### medgemma-4b-it on l4-24gb
+{
+  "inference": [
+    {
+      "model": "medgemma-4b-it",
+      "hardware": "l4-24gb",
+      "quant": "Q4_K_M",
+      "weights_gb": 2.628,
+      "kv_cache_gb": 0.143,
+      "total_memory_gb": 3.771,
+      "fits": true,
+      "prefill_tokens_per_s": 5627.907,
+      "decode_tokens_per_s": 64.959,
+      "seconds_per_request": 4.149
+    }
+  ]
+}
+### medgemma-4b-it on rtx4090-24gb
+{
+  "inference": [
+    {
+      "model": "medgemma-4b-it",
+      "hardware": "rtx4090-24gb",
+      "quant": "Q4_K_M",
+      "weights_gb": 2.628,
+      "kv_cache_gb": 0.143,
+      "total_memory_gb": 3.771,
+      "fits": true,
+      "prefill_tokens_per_s": 7674.419,
+      "decode_tokens_per_s": 218.262,
+      "seconds_per_request": 1.325
+    }
+  ]
+}
+### medgemma-4b-it on a100-80gb
+{
+  "inference": [
+    {
+      "model": "medgemma-4b-it",
+      "hardware": "a100-80gb",
+      "quant": "Q4_K_M",
+      "weights_gb": 2.628,
+      "kv_cache_gb": 0.143,
+      "total_memory_gb": 3.771,
+      "fits": true,
+      "prefill_tokens_per_s": 14511.628,
+      "decode_tokens_per_s": 441.504,
+      "seconds_per_request": 0.66
+    }
+  ]
+}
+### medgemma-4b-it on h100-80gb
+{
+  "inference": [
+    {
+      "model": "medgemma-4b-it",
+      "hardware": "h100-80gb",
+      "quant": "Q4_K_M",
+      "weights_gb": 2.628,
+      "kv_cache_gb": 0.143,
+      "total_memory_gb": 3.771,
+      "fits": true,
+      "prefill_tokens_per_s": 46000.0,
+      "decode_tokens_per_s": 725.375,
+      "seconds_per_request": 0.378
+    }
+  ]
+}
+### medgemma-27b-it on github-ubuntu-4cpu
+{
+  "inference": [
+    {
+      "model": "medgemma-27b-it",
+      "hardware": "github-ubuntu-4cpu",
+      "quant": "Q4_K_M",
+      "weights_gb": 16.768,
+      "kv_cache_gb": 0.52,
+      "total_memory_gb": 18.288,
+      "fits": false,
+      "prefill_tokens_per_s": 1.458,
+      "decode_tokens_per_s": 0.694,
+      "seconds_per_request": 938.511
+    }
+  ]
+}
+### medgemma-27b-it on dev-vm-6cpu
+{
+  "inference": [
+    {
+      "model": "medgemma-27b-it",
+      "hardware": "dev-vm-6cpu",
+      "quant": "Q4_K_M",
+      "weights_gb": 16.768,
+      "kv_cache_gb": 0.52,
+      "total_memory_gb": 18.288,
+      "fits": false,
+      "prefill_tokens_per_s": 2.712,
+      "decode_tokens_per_s": 0.694,
+      "seconds_per_request": 675.1
+    }
+  ]
+}
+### medgemma-27b-it on t4-16gb
+{
+  "inference": [
+    {
+      "model": "medgemma-27b-it",
+      "hardware": "t4-16gb",
+      "quant": "Q4_K_M",
+      "weights_gb": 16.768,
+      "kv_cache_gb": 0.52,
+      "total_memory_gb": 18.288,
+      "fits": false,
+      "prefill_tokens_per_s": 473.899,
+      "decode_tokens_per_s": 11.106,
+      "seconds_per_request": 24.803
+    }
+  ]
+}
+### medgemma-27b-it on l4-24gb
+{
+  "inference": [
+    {
+      "model": "medgemma-27b-it",
+      "hardware": "l4-24gb",
+      "quant": "Q4_K_M",
+      "weights_gb": 16.768,
+      "kv_cache_gb": 0.52,
+      "total_memory_gb": 18.288,
+      "fits": true,
+      "prefill_tokens_per_s": 882.181,
+      "decode_tokens_per_s": 10.412,
+      "seconds_per_request": 25.529
+    }
+  ]
+}
+### medgemma-27b-it on rtx4090-24gb
+{
+  "inference": [
+    {
+      "model": "medgemma-27b-it",
+      "hardware": "rtx4090-24gb",
+      "quant": "Q4_K_M",
+      "weights_gb": 16.768,
+      "kv_cache_gb": 0.52,
+      "total_memory_gb": 18.288,
+      "fits": true,
+      "prefill_tokens_per_s": 1202.975,
+      "decode_tokens_per_s": 34.984,
+      "seconds_per_request": 8.008
+    }
+  ]
+}
+### medgemma-27b-it on a100-80gb
+{
+  "inference": [
+    {
+      "model": "medgemma-27b-it",
+      "hardware": "a100-80gb",
+      "quant": "Q4_K_M",
+      "weights_gb": 16.768,
+      "kv_cache_gb": 0.52,
+      "total_memory_gb": 18.288,
+      "fits": true,
+      "prefill_tokens_per_s": 2274.716,
+      "decode_tokens_per_s": 70.766,
+      "seconds_per_request": 3.983
+    }
+  ]
+}
+### medgemma-27b-it on h100-80gb
+{
+  "inference": [
+    {
+      "model": "medgemma-27b-it",
+      "hardware": "h100-80gb",
+      "quant": "Q4_K_M",
+      "weights_gb": 16.768,
+      "kv_cache_gb": 0.52,
+      "total_memory_gb": 18.288,
+      "fits": true,
+      "prefill_tokens_per_s": 7210.557,
+      "decode_tokens_per_s": 116.266,
+      "seconds_per_request": 2.317
+    }
+  ]
+}
+### unimedvl on github-ubuntu-4cpu
+{
+  "inference": [
+    {
+      "model": "unimedvl",
+      "hardware": "github-ubuntu-4cpu",
+      "quant": "Q4_K_M",
+      "weights_gb": 8.924,
+      "kv_cache_gb": 0.118,
+      "total_memory_gb": 10.043,
+      "fits": true,
+      "prefill_tokens_per_s": 5.263,
+      "decode_tokens_per_s": 2.519,
+      "seconds_per_request": 486.109
+    }
+  ]
+}
+### unimedvl on dev-vm-6cpu
+{
+  "inference": [
+    {
+      "model": "unimedvl",
+      "hardware": "dev-vm-6cpu",
+      "quant": "Q4_K_M",
+      "weights_gb": 8.924,
+      "kv_cache_gb": 0.118,
+      "total_memory_gb": 10.043,
+      "fits": false,
+      "prefill_tokens_per_s": 9.789,
+      "decode_tokens_per_s": 2.519,
+      "seconds_per_request": 308.339
+    }
+  ]
+}
+### unimedvl on t4-16gb
+{
+  "inference": [
+    {
+      "model": "unimedvl",
+      "hardware": "t4-16gb",
+      "quant": "Q4_K_M",
+      "weights_gb": 8.924,
+      "kv_cache_gb": 0.118,
+      "total_memory_gb": 10.043,
+      "fits": true,
+      "prefill_tokens_per_s": 1710.526,
+      "decode_tokens_per_s": 40.303,
+      "seconds_per_request": 7.535
+    }
+  ]
+}
+### unimedvl on l4-24gb
+{
+  "inference": [
+    {
+      "model": "unimedvl",
+      "hardware": "l4-24gb",
+      "quant": "Q4_K_M",
+      "weights_gb": 8.924,
+      "kv_cache_gb": 0.118,
+      "total_memory_gb": 10.043,
+      "fits": true,
+      "prefill_tokens_per_s": 3184.211,
+      "decode_tokens_per_s": 37.785,
+      "seconds_per_request": 7.411
+    }
+  ]
+}
+### unimedvl on rtx4090-24gb
+{
+  "inference": [
+    {
+      "model": "unimedvl",
+      "hardware": "rtx4090-24gb",
+      "quant": "Q4_K_M",
+      "weights_gb": 8.924,
+      "kv_cache_gb": 0.118,
+      "total_memory_gb": 10.043,
+      "fits": true,
+      "prefill_tokens_per_s": 4342.105,
+      "decode_tokens_per_s": 126.956,
+      "seconds_per_request": 2.482
+    }
+  ]
+}
+### unimedvl on a100-80gb
+{
+  "inference": [
+    {
+      "model": "unimedvl",
+      "hardware": "a100-80gb",
+      "quant": "Q4_K_M",
+      "weights_gb": 8.924,
+      "kv_cache_gb": 0.118,
+      "total_memory_gb": 10.043,
+      "fits": true,
+      "prefill_tokens_per_s": 8210.526,
+      "decode_tokens_per_s": 256.809,
+      "seconds_per_request": 1.243
+    }
+  ]
+}
+### unimedvl on h100-80gb
+{
+  "inference": [
+    {
+      "model": "unimedvl",
+      "hardware": "h100-80gb",
+      "quant": "Q4_K_M",
+      "weights_gb": 8.924,
+      "kv_cache_gb": 0.118,
+      "total_memory_gb": 10.043,
+      "fits": true,
+      "prefill_tokens_per_s": 26026.316,
+      "decode_tokens_per_s": 421.927,
+      "seconds_per_request": 0.684
+    }
+  ]
+}
