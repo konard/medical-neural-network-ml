@@ -27,7 +27,7 @@ models are not good enough.
 
 1. **Testing works without real patient data.** `medbench` creates six
    synthetic tasks with exact answers and scores any model through one
-   OpenAI-compatible API. 80 unit tests cover it, and they run in seconds.
+   OpenAI-compatible API. 90 unit tests cover it, and they run in seconds.
 2. **CPU is enough for a smoke test, not for research.** MedGemma 4B in
    4-bit writes **4.2 tokens/s** on 4 CPU threads when the weights are in
    RAM. When memory is tight and the weights are mapped from disk, it drops
