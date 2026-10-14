@@ -1,0 +1,32 @@
+{
+  "task": "ocr-prescription",
+  "backend": "openai:medgemma-4b-it-Q4_K_M.gguf",
+  "items_total": 2,
+  "items_run": 2,
+  "stopped_early": false,
+  "metrics": {
+    "cer": 0.051,
+    "wer": 0.2222,
+    "drug_and_strength_recall": 0.6667
+  },
+  "latency": {
+    "mean_s": 88.7952,
+    "p50_s": 88.7952,
+    "p95_s": 89.3814,
+    "total_s": 177.5904
+  },
+  "results": [
+    {
+      "item_id": "rx-00000",
+      "output": "Patient: Drew Larsen\nDate: 2026-04-17\nRx:\n1. omeprazole 40 mg capsule QHS x 10 days\n2. amoxicillin 500 mg capsule TID x 10 days\nDr. Morgan Ivanova\n",
+      "latency_s": 89.38140747700004,
+      "completion_tokens": 65
+    },
+    {
+      "item_id": "rx-00001",
+      "output": "patient: Mika Patel\nDate: 2026-08-16\nRx:\n1. I evothyr oxin n\u00b0 25 mfg tablet TiDx 3 days\nDr. Kim Patel\n",
+      "latency_s": 88.20897383400006,
+      "completion_tokens": 50
+    }
+  ]
+}

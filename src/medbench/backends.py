@@ -150,7 +150,8 @@ class OpenAICompatibleBackend:
             model: Model name the server expects.
             api_key: Bearer token, if the server needs one.
             timeout_s: Seconds to wait for one answer.
-            temperature: Sampling temperature; 0 makes runs repeatable.
+            temperature: Sampling temperature; 0 makes runs repeatable on one
+                machine. Another CPU or GPU can still change the answer.
 
         Raises:
             ValueError: If the URL is not HTTP(S).

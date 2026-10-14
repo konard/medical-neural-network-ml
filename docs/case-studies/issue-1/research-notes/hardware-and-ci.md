@@ -30,7 +30,7 @@ The machine this research ran on has 6 CPU cores, about 11 GiB RAM and no NVIDIA
 
 - The 14 GB SSD figure is what GitHub guarantees. The real free space on the image can differ **(unverified)**. Plan around 14 GB.
 - There is also a 1-vCPU `ubuntu-slim` runner with a 15-minute job timeout [S1]. It is not useful for models.
-- GitHub does not publish the memory bandwidth or exact CPU model of hosted runners **(unverified: they are usually AMD EPYC or Intel Xeon VMs)**. That matters, because CPU decoding speed depends on bandwidth. Measured in [run 38550186566](https://github.com/konard/medical-neural-network-ml/actions/runs/38550186566): MedGemma 4B Q4_K_M wrote 7.8 tokens/s with 3 threads, which means about 22 GB/s of useful memory bandwidth ([measurements.md §9](../measurements.md#9-a-real-run-on-a-github-hosted-cpu-runner)).
+- GitHub does not publish the memory bandwidth or exact CPU model of hosted runners **(unverified: they are usually AMD EPYC or Intel Xeon VMs)**. That matters, because CPU decoding speed depends on bandwidth. Measured in [run 38550186566](https://github.com/konard/medical-neural-network-ml/actions/runs/38550186566): MedGemma 4B Q4_K_M wrote 7.8 tokens/s with 3 threads, which means about 22 GB/s of useful memory bandwidth. A second run (38552481450) wrote 11.6 tokens/s, about 32 GB/s, so runners differ ([measurements.md §9](../measurements.md#9-a-real-run-on-a-github-hosted-cpu-runner)).
 
 ### 1.2 Limits [S2]
 
@@ -290,7 +290,7 @@ Bytes read per token is about the GGUF file size. The vision tower is not used d
 | 27B BF16 | ~54.9 GB | ~0.7 t/s | ~1.3 t/s | does not fit |
 | UniMedVL BF16 (14 B, ~29.6 GB) | 29.6 GB | ~1.3 t/s | ~2.4 t/s | does not fit, and no GGUF exists |
 
-Real numbers usually land at 50-80% of the ceiling. Third-party calculators predict about 3.3 t/s for Gemma 3 27B Q4_K_M on CPU, and one report puts Mistral-Small-24B Q4_K_M at about 4 t/s on an i7-13700K with DDR5-5600 [S33]. Both agree with the table. I found no measured MedGemma-specific CPU benchmark, so we made one: on a GitHub-hosted runner MedGemma 4B Q4_K_M wrote **7.8 t/s** with 3 threads, inside the 8-16 t/s range above ([measurements.md §9](../measurements.md#9-a-real-run-on-a-github-hosted-cpu-runner)).
+Real numbers usually land at 50-80% of the ceiling. Third-party calculators predict about 3.3 t/s for Gemma 3 27B Q4_K_M on CPU, and one report puts Mistral-Small-24B Q4_K_M at about 4 t/s on an i7-13700K with DDR5-5600 [S33]. Both agree with the table. I found no measured MedGemma-specific CPU benchmark, so we made one: on a GitHub-hosted runner MedGemma 4B Q4_K_M wrote **7.8-11.6 t/s** with 3 threads (two runs), close to the 8-16 t/s range above ([measurements.md §9](../measurements.md#9-a-real-run-on-a-github-hosted-cpu-runner)).
 
 ### 3.7 What fits in GitHub-hosted CI
 
@@ -299,7 +299,7 @@ RAM needed is weights + mmproj + KV cache + runtime overhead (about 0.5-1 GB).
 - **Public repo `ubuntu-latest` (4 vCPU / 16 GB / 14 GB disk)**:
   - MedGemma 4B Q4_K_M + mmproj F16 needs 2.49 + 0.85 + 0.3 (KV at 4K, see 4.2) + ~1 = **~4.6 GB RAM**. This fits easily.
   - Download about 3.3 GB per run, or keep it in the 10 GB Actions cache.
-  - Example smoke test: 5 image prompts x (about 40 s encode/prefill + 128 tokens / ~10 t/s ≈ 13 s), about 4-5 min. Well inside the 6 h limit **(estimate)**. Measured later: 2 text + 4 image prompts took about 5 min; each image took about 66 s to read and answers came at 7.8 t/s.
+  - Example smoke test: 5 image prompts x (about 40 s encode/prefill + 128 tokens / ~10 t/s ≈ 13 s), about 4-5 min. Well inside the 6 h limit **(estimate)**. Measured later: 2 text + 4 image prompts took about 5 min; each image took 66-84 s to read and answers came at 7.8-11.6 t/s (two runs).
   - MedGemma 27B Q4_K_M needs 16.55 + 0.86 + KV + overhead, about 19 GB. That is **more than 16 GB RAM**, and the 14 GB disk cannot even hold it plus the toolchain. **Not feasible.**
   - IQ2/IQ1 quants of 27B (6.5-9.6 GB) would fit, but quality at 1-2 bpw is poor. It only works as a load test **(unverified quality)**.
 - **Private repo (2 vCPU / 8 GB)**: 4B Q4_K_M still fits (about 4.6 GB), at roughly half the speed.
@@ -460,7 +460,7 @@ A suggested default for the 6-core / 11 GiB machine used here: `systemd-run --us
 
 ## 8. Summary of recommendations
 
-1. **CPU CI (GitHub-hosted, free for public repo)**: MedGemma 4B (or 1.5-4B) Q4_K_M + mmproj-F16 from the ungated unsloth GGUF repos, run with llama.cpp. About 3.3 GB download, ~4.6 GB RAM, about 10-15 t/s decode and about 30-60 s per image on 4 vCPU **(estimate; measured later: 7.8 t/s and about 66 s per image with 3 threads)**. Keep the tests tiny (few prompts, `-n 32..128`) and cache the model with `actions/cache`.
+1. **CPU CI (GitHub-hosted, free for public repo)**: MedGemma 4B (or 1.5-4B) Q4_K_M + mmproj-F16 from the ungated unsloth GGUF repos, run with llama.cpp. About 3.3 GB download, ~4.6 GB RAM, about 10-15 t/s decode and about 30-60 s per image on 4 vCPU **(estimate; measured later: 7.8-11.6 t/s and 66-84 s per image with 3 threads)**. Keep the tests tiny (few prompts, `-n 32..128`) and cache the model with `actions/cache`.
 2. **GPU tests (self-hosted runner, label `gpu`)**: 27B int4 needs at least a 24 GB GPU. 27B bf16 needs at least an 80 GB GPU. UniMedVL bf16 needs about 32-40 GB (A100/H100 or 2x24 GB) **(estimate)**. Trigger with `workflow_dispatch` / label-gated only, use an ephemeral runner, and declare labels in `.github/actionlint.yaml`.
 3. **Hosted GPU alternative**: GitHub T4 runner at $0.052/min (Team/Enterprise only). It fits 4B bf16 and 27B only at ≤3.5 bpw.
 4. **Fine-tuning**: QLoRA 27B needs ≥22-24 GB. QLoRA 4B needs ≥6-8 GB. Full FT of 27B needs a multi-GPU node. Budget about 1 H100-hour per 10 M training tokens for 27B LoRA.

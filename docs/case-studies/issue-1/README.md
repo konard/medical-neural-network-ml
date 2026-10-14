@@ -30,18 +30,20 @@ models are not good enough.
    OpenAI-compatible API. 92 unit tests cover it, and they run in seconds.
 2. **CPU is enough for a smoke test, not for research.** On a GitHub-hosted
    runner ([run 38550186566](https://github.com/konard/medical-neural-network-ml/actions/runs/38550186566)),
-   MedGemma 4B in 4-bit writes **7.8 tokens/s**, but reading one image takes
-   **about 66 s**. A text question takes 6.5 s and an image question about
-   70 s. On the 3 GiB dev VM it writes 4.2 tokens/s, and only **0.4 tokens/s**
+   MedGemma 4B in 4-bit writes **7.8–11.6 tokens/s**, but reading one image
+   takes **66–84 s**. A text question takes about 6 s and an image question
+   70–90 s. Two hosted runners differed by up to 45%. On the 3 GiB dev VM it writes 4.2 tokens/s, and only **0.4 tokens/s**
    when the weights have to be mapped from disk. A full test set (120
-   requests) would take about 2 hours on a GitHub CPU runner, so CI runs 6
-   requests (6 minutes), and the full set runs on a GPU (about 8 minutes on
+   requests) would take about 2–2.5 hours on a GitHub CPU runner, so CI runs 6
+   requests (6–8 minutes), and the full set runs on a GPU (about 8 minutes on
    an L4 for 4B, 51 minutes for 27B).
 3. **The first real scores are a warning, not a result.** In that CI run,
    MedGemma 4B ranked both diagnosis cases right and read both handwritten
    prescriptions with 1% character errors. It got **both X-ray phantoms
-   wrong**: it missed a nodule and called a normal image abnormal. Two items
-   prove that the pipeline works, nothing more.
+   wrong**: it missed a nodule and called a normal image abnormal. A second
+   run on another runner read one prescription differently (5% errors),
+   because a different CPU can change a greedy answer. Two items prove that
+   the pipeline works, nothing more.
 4. **MedGemma 27B needs a GPU**: 18.3 GB in 4-bit, 56 GB in bf16.
    **UniMedVL** has no llama.cpp build and needs PyTorch on a 40 GB+ GPU.
    Its extra 7B of weights is for drawing images, not for better answers.

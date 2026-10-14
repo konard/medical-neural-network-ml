@@ -96,7 +96,7 @@ Resources from `medbench estimate` (raw output in
 
 | Model | Where | Memory | Speed | 120 requests (full set) |
 | --- | --- | --- | --- | --- |
-| MedGemma 4B Q4 | GitHub CPU runner | 3.8 GB | 7.8 tokens/s measured; about 66 s to read each image | about 2 hours |
+| MedGemma 4B Q4 | GitHub CPU runner | 3.8 GB | 7.8–11.6 tokens/s measured; 66–84 s to read each image | about 2–2.5 hours |
 | MedGemma 4B Q4 | L4 24 GB | 3.8 GB | 65 tokens/s | about 8 minutes |
 | MedGemma 27B Q4 | L4 24 GB | 18.3 GB | 10 tokens/s | about 51 minutes |
 | MedGemma 27B bf16 | A100 80 GB | 56.3 GB | 22 tokens/s | about 24 minutes |
@@ -116,7 +116,7 @@ Alternatives for running models:
 the speed numbers are added to [measurements.md](measurements.md).
 
 **Status:** step 1 has run. MedGemma 4B on a GitHub CPU runner got
-diagnosis 2/2, prescription OCR with 1% character errors, and X-ray 0/2
+diagnosis 2/2, prescription OCR with 1–5% character errors (two runs), and X-ray 0/2
 ([measurements.md §9](measurements.md#9-a-real-run-on-a-github-hosted-cpu-runner)).
 Steps 2 and 4 wait for a GPU runner.
 

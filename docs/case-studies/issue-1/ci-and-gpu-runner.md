@@ -26,12 +26,12 @@ flowchart LR
 ```
 
 Why the CPU job is only a smoke test: on a hosted runner MedGemma 4B Q4_K_M
-reads text at about **31 tokens/s and writes the answer at 7.8 tokens/s**
-with 3 threads, but it needs **about 66 s to read one image**
+reads text at about **25–33 tokens/s and writes the answer at 7.8–11.6
+tokens/s** with 3 threads, but it needs **66–84 s to read one image**
 ([measurements.md §9](measurements.md#9-a-real-run-on-a-github-hosted-cpu-runner)).
-So a text question takes about 6.5 s and an image question about 70 s.
-Twenty items per task over six tasks would take about 2 hours, so the hosted
-CPU job runs 2 items per task over 3 tasks (about 6 minutes). It checks that
+So a text question takes about 6 s and an image question 70–90 s.
+Twenty items per task over six tasks would take about 2–2.5 hours, so the hosted
+CPU job runs 2 items per task over 3 tasks (6–8 minutes). It checks that
 everything works; it does not measure accuracy. The 27B model does not fit on
 a hosted runner at all (about 18 GB needed, 16 GB RAM in total).
 

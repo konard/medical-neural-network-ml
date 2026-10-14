@@ -127,8 +127,8 @@ speed.** The GitHub-hosted runner has 16 GB of RAM, so there the same script
 picks `--load-mode none` (copy into RAM). That is what the `cpu-smoke` job in
 [`.github/workflows/model-tests.yml`](../../../.github/workflows/model-tests.yml)
 does. Its numbers are uploaded as the `medbench-cpu-reports` artifact,
-which contains `llama-timings.txt`. The real run on GitHub wrote
-**7.8 tokens/s**, twice as fast as this VM. See
+which contains `llama-timings.txt`. The real runs on GitHub wrote
+**7.8–11.6 tokens/s**, two to three times as fast as this VM. See
 [section 9](#9-a-real-run-on-a-github-hosted-cpu-runner).
 
 ## 5. Baseline scores without any model
@@ -203,11 +203,11 @@ UniMedVL needs 30.2 GB.
 
 ### What a CI run costs
 
-The CPU smoke test with 3 tasks × 2 items took **6 minutes** on GitHub
-(6.5 s per text request, 66–74 s per image request; section 9). It fits in
+The CPU smoke test with 3 tasks × 2 items took **6–8 minutes** on GitHub
+(about 6 s per text request, 66–89 s per image request; section 9). It fits in
 the 60-minute job limit with room to spare. The full set (6 tasks × 20 items
 = 120 requests: 20 text and 100 image requests) would take about
-20 × 6.5 s + 100 × 75 s ≈ **2 hours** on a hosted CPU runner with the 4B
+20 × 6 s + 100 × (75–90) s ≈ **2–2.5 hours** on a hosted CPU runner with the 4B
 model. That is inside GitHub's 6-hour limit, but it is slow and says little,
 because 4B misses even the simple X-ray phantoms. 27B does not fit in 16 GB at
 all. On one L4 the full set takes about 120 × 26 s ≈ **52 minutes for 27B**
@@ -263,10 +263,12 @@ so the machine stays usable.
 
 ## 9. A real run on a GitHub-hosted CPU runner
 
-The `cpu-smoke` job of the Model Tests workflow ran on a pull request commit:
-[run 38550186566](https://github.com/konard/medical-neural-network-ml/actions/runs/38550186566).
-Its artifact is saved in
-[`data/ci-cpu-smoke-38550186566/`](data/ci-cpu-smoke-38550186566/).
+The `cpu-smoke` job of the Model Tests workflow ran twice on pull request
+commits, with the same model, script and inputs:
+[run 38550186566](https://github.com/konard/medical-neural-network-ml/actions/runs/38550186566) (run A) and [run 38552481450](https://github.com/konard/medical-neural-network-ml/actions/runs/38552481450) (run B). Their
+artifacts are saved in
+[`data/ci-cpu-smoke-38550186566/`](data/ci-cpu-smoke-38550186566/) and
+[`data/ci-cpu-smoke-38552481450/`](data/ci-cpu-smoke-38552481450/).
 
 ```text
 [medbench-model-run] weights + 1 GiB need 4210 MiB; 13963 MiB free
@@ -277,32 +279,54 @@ The runner had enough free memory, so the weights were copied into RAM, and
 the server started in 4 s (66 s with mmap on the dev VM). The script leaves
 one of the 4 vCPUs free, so it used 3 threads.
 
-Speed, from [`llama-timings.txt`](data/ci-cpu-smoke-38550186566/llama-timings.txt):
+### Speed
 
-| Request | Prompt tokens | Prompt time | Answer tokens | Answer speed |
-| --- | ---: | ---: | ---: | ---: |
-| Text only (diagnosis, 3 requests) | 66–68 | 2.0–2.2 s (**30–33 tokens/s**) | 36–46 | 7.9–8.0 tokens/s |
-| One image (X-ray, prescription, 5 requests) | 288–307 | 65.8–66.7 s (**4.4–4.6 tokens/s**) | 3–65 | 7.6–7.8 tokens/s |
+From `llama-timings.txt` of each run. "Text" is the 2 diagnosis requests
+plus the text request of `tests/test_real_models.py`. "Image" is the 2 X-ray
+and 2 prescription requests plus the image request of the same test file.
 
-* **Writing the answer: 7.6–8.0 tokens/s**, about twice the dev VM (4.2 with
-  4 threads). The calculator used to say 4.3 for the runner; it now uses
-  these numbers.
-* **Reading an image costs about 56 s.** A text prompt of 300 tokens would
-  take about 10 s. The rest is the image encoder (SigLIP, 896 × 896 pixels),
-  which llama.cpp runs much less efficiently on CPU than the text model.
-  On CPU, image tasks are slow because of image reading, not answer writing.
+| Request | Prompt tokens | Prompt time, run A | Prompt time, run B | Answer speed, run A | Answer speed, run B |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Text (3 requests) | 66–68 | 2.0–2.2 s (**30–33 tokens/s**) | 2.5–2.6 s (25–27 tokens/s) | 7.9–8.0 tokens/s | 11.6 tokens/s |
+| One image (5 requests) | 288–307 | 65.8–66.7 s (**4.4–4.6 tokens/s**) | 83.6–84.5 s (3.4–3.6 tokens/s) | 7.6–7.8 tokens/s | 10.8–11.3 tokens/s |
+| Whole `Run medbench` step | | 377 s | 458 s | | |
 
-Scores (2 items per task, so they show that the pipeline works, not how good
-the model is):
+* **Writing the answer: 7.6–11.6 tokens/s**, two to three times the dev VM
+  (4.2 with 4 threads). The calculator used to say 4.3 for the runner; it
+  is now tuned to run A.
+* **Reading an image costs about 56–74 s.** A text prompt of 300 tokens
+  would take about 10–12 s. The rest is the image encoder (SigLIP,
+  896 × 896 pixels), which llama.cpp runs much less efficiently on CPU than
+  the text model. On CPU, image tasks are slow because of image reading, not
+  answer writing.
+* **Hosted runners are not all the same machine.** Run B wrote answers 45%
+  faster but read images 27% slower than run A. GitHub does not say which
+  CPU a runner gets, so timing tests in CI need a wide margin, and speed
+  comparisons between models must run on the same machine.
 
-| Task | Result | Mean time per item |
-| --- | --- | ---: |
-| diagnosis | top-1 1.0, top-5 1.0, MRR 1.0 | 6.5 s |
-| ocr-prescription | CER 0.010, WER 0.056, drug + strength recall 1.0 | 73.0 s |
-| imaging-xray | sensitivity 0.0, specificity 0.0, accuracy 0.0 | 67.9 s |
+### Scores
+
+2 items per task, so the scores show that the pipeline works, not how good
+the model is:
+
+| Task | Run A | Run B | Mean time per item, A / B |
+| --- | --- | --- | ---: |
+| diagnosis | top-1 1.0, top-5 1.0, MRR 1.0 | same | 6.5 s / 5.7 s |
+| ocr-prescription | CER 0.010, WER 0.056, drug + strength recall 1.0 | CER 0.051, WER 0.222, drug + strength recall 0.67 | 73.0 s / 88.8 s |
+| imaging-xray | sensitivity 0.0, specificity 0.0, accuracy 0.0 | same | 67.9 s / 85.4 s |
+
+**The same model gave a different answer to the same image.** For the
+second prescription, run A read "levothyroxine 25 mcg tablet TiD x 3 days"
+and run B read "I evothyr oxin n° 25 mfg tablet TiDx 3 days". Decoding is
+greedy in both runs, so the reason is the CPU: different machines add
+floating-point numbers in a different order, a near tie between two tokens
+flips, and the rest of the answer follows the new token. So OCR scores need
+many items and confidence intervals, and a regression test must not expect
+one exact string from a real model.
 
 The X-ray result was checked by hand with
-[`experiments/issue1_xray_truth.py`](../../../experiments/issue1_xray_truth.py):
+[`experiments/issue1_xray_truth.py`](../../../experiments/issue1_xray_truth.py),
+and both runs gave the same answers:
 
 | Item | Truth | Model answer | Verdict |
 | --- | --- | --- | --- |
@@ -316,5 +340,5 @@ means nothing, and why Phase 2 of the [research plan](research-plan.md) uses
 public X-rays with many items and confidence intervals.
 
 The two real-model tests in `tests/` (one text request and one image
-request) passed in 76 s. The whole step took 377 s of its 1 500 s budget, and
-the job took about 7.5 minutes including the download.
+request) passed in 76 s (run A) and 92 s (run B). The whole job took
+7.5–8.5 minutes including the download, well inside its 60-minute limit.

@@ -1,0 +1,38 @@
+{
+  "task": "diagnosis",
+  "backend": "openai:medgemma-4b-it-Q4_K_M.gguf",
+  "items_total": 2,
+  "items_run": 2,
+  "stopped_early": false,
+  "metrics": {
+    "top1": 1.0,
+    "top1_ci_low": 1.0,
+    "top1_ci_high": 1.0,
+    "top3": 1.0,
+    "top5": 1.0,
+    "mrr": 1.0,
+    "reference_top1": 1.0,
+    "reference_top5": 1.0,
+    "unparsed_answers": 0.0
+  },
+  "latency": {
+    "mean_s": 5.7307,
+    "p50_s": 5.7307,
+    "p95_s": 5.9149,
+    "total_s": 11.4614
+  },
+  "results": [
+    {
+      "item_id": "dx-0-0000",
+      "output": "1.  Allergic rhinitis\n2.  Common cold\n3.  Viral upper respiratory infection\n4.  Hay fever\n5.  Non-allergic rhinitis\n",
+      "latency_s": 5.914874187000009,
+      "completion_tokens": 39
+    },
+    {
+      "item_id": "dx-0-0001",
+      "output": "1.  Diabetes Mellitus\n2.  Hyperthyroidism\n3.  Kidney Disease\n4.  Depression\n5.  Urinary Tract Infection\n",
+      "latency_s": 5.546532066999987,
+      "completion_tokens": 36
+    }
+  ]
+}
