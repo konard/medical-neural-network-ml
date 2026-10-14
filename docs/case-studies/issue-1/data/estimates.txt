@@ -9,9 +9,9 @@
       "kv_cache_gb": 0.143,
       "total_memory_gb": 3.771,
       "fits": true,
-      "prefill_tokens_per_s": 9.302,
-      "decode_tokens_per_s": 4.331,
-      "seconds_per_request": 184.682
+      "prefill_tokens_per_s": 30.884,
+      "decode_tokens_per_s": 7.795,
+      "seconds_per_request": 114.298
     }
   ]
 }
@@ -128,9 +128,9 @@
       "kv_cache_gb": 0.52,
       "total_memory_gb": 18.288,
       "fits": false,
-      "prefill_tokens_per_s": 1.458,
-      "decode_tokens_per_s": 0.694,
-      "seconds_per_request": 938.511
+      "prefill_tokens_per_s": 4.841,
+      "decode_tokens_per_s": 1.249,
+      "seconds_per_request": 420.126
     }
   ]
 }
@@ -247,9 +247,9 @@
       "kv_cache_gb": 0.118,
       "total_memory_gb": 10.043,
       "fits": true,
-      "prefill_tokens_per_s": 5.263,
-      "decode_tokens_per_s": 2.519,
-      "seconds_per_request": 486.109
+      "prefill_tokens_per_s": 17.474,
+      "decode_tokens_per_s": 4.534,
+      "seconds_per_request": 213.825
     }
   ]
 }

@@ -65,6 +65,9 @@ class HardwareProfile:
         compute_tflops: Peak dense compute for the dtype normally used.
         decode_efficiency: Share of peak bandwidth reached while decoding.
         prefill_efficiency: Share of peak compute reached while reading prompts.
+        vision_efficiency: Share of peak compute reached by the image encoder;
+            ``None`` means the same as ``prefill_efficiency``. On CPU the
+            llama.cpp image encoder is much slower than the text model.
         is_gpu: Whether this is a GPU.
         price_per_hour: Typical rental price in USD (0 for owned hardware).
     """
@@ -76,6 +79,7 @@ class HardwareProfile:
     compute_tflops: float
     decode_efficiency: float = 0.6
     prefill_efficiency: float = 0.4
+    vision_efficiency: float | None = None
     is_gpu: bool = False
     price_per_hour: float = 0.0
 
@@ -99,12 +103,18 @@ HARDWARE: dict[str, HardwareProfile] = {
         ),
         HardwareProfile(
             key="github-ubuntu-4cpu",
-            description="GitHub-hosted ubuntu-latest runner: 4 vCPU, 16 GB RAM.",
+            description=(
+                "GitHub-hosted ubuntu-latest runner: 4 vCPU, 16 GB RAM. "
+                "Efficiencies calibrated with the cpu-smoke job of run "
+                "38550186566 (3 threads, weights in RAM: 31 prompt and 7.8 "
+                "output tokens/s, 66 s to read one 896-pixel image)."
+            ),
             memory_gb=16.0,
-            bandwidth_gbs=20.0,
+            bandwidth_gbs=36.0,
             compute_tflops=0.32,
             decode_efficiency=0.6,
-            prefill_efficiency=0.25,
+            prefill_efficiency=0.83,
+            vision_efficiency=0.19,
         ),
         HardwareProfile(
             key="desktop-ddr5-16c",
@@ -262,9 +272,12 @@ def estimate_inference(
     flops = hardware.compute_tflops * 1e12 * hardware.prefill_efficiency
     prefill = flops / (2 * model.active_params)
     vision_flops = images * 2 * model.vision_params * 4096
+    vision_efficiency = hardware.vision_efficiency
+    if vision_efficiency is None:
+        vision_efficiency = hardware.prefill_efficiency
     seconds = (
         (prompt_tokens + images * model.image_tokens) / prefill
-        + vision_flops / flops
+        + vision_flops / (hardware.compute_tflops * 1e12 * vision_efficiency)
         + output_tokens / decode
     )
     return InferenceEstimate(

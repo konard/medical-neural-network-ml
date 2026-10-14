@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
+
 import pytest
 
 from medbench.models import MODELS, get_model
@@ -96,6 +98,44 @@ class TestInference:
         )
         assert estimate.prefill_tokens_per_s == pytest.approx(19.4, rel=0.25)
         assert estimate.decode_tokens_per_s == pytest.approx(4.2, rel=0.25)
+
+    def test_github_runner_matches_measured_speed(self) -> None:
+        """CI run 38550186566: 31 prompt, 7.8 output tokens/s, 66.7 s per image.
+
+        The X-ray request had 51 text tokens, one image and a 3-token answer;
+        the diagnosis request had 66 text tokens and a 36-token answer.
+        """
+        model = get_model("medgemma-4b-it")
+        runner = HARDWARE["github-ubuntu-4cpu"]
+        xray = estimate_inference(
+            model,
+            runner,
+            quant="Q4_K_M",
+            prompt_tokens=51,
+            output_tokens=3,
+            images=1,
+        )
+        diagnosis = estimate_inference(
+            model, runner, quant="Q4_K_M", prompt_tokens=66, output_tokens=36
+        )
+        assert xray.prefill_tokens_per_s == pytest.approx(31, rel=0.1)
+        assert xray.decode_tokens_per_s == pytest.approx(7.8, rel=0.1)
+        assert xray.seconds_per_request == pytest.approx(66.7, rel=0.1)
+        assert diagnosis.seconds_per_request == pytest.approx(6.5, rel=0.1)
+
+    def test_vision_efficiency_defaults_to_prefill_efficiency(self) -> None:
+        """Profiles without their own image-encoder number reuse the prompt one."""
+        model = get_model("medgemma-4b-it")
+        runner = HARDWARE["github-ubuntu-4cpu"]
+        same = replace(runner, vision_efficiency=None)
+        explicit = replace(runner, vision_efficiency=runner.prefill_efficiency)
+        assert estimate_inference(model, same, images=1) == estimate_inference(
+            model, explicit, images=1
+        )
+        assert (
+            estimate_inference(model, runner, images=1).seconds_per_request
+            > estimate_inference(model, same, images=1).seconds_per_request
+        )
 
     def test_gpu_is_much_faster_than_cpu(self) -> None:
         """Decoding on an H100 is over 50x faster than on a CI runner."""
