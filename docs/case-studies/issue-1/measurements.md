@@ -124,11 +124,12 @@ busy for a long time.
 
 Conclusion: **this VM cannot run even the 4B vision model at a useful
 speed.** The GitHub-hosted runner has 16 GB of RAM, so there the same script
-picks `--load-mode none` (copy into RAM) and should reach the 4 tokens/s
-measured in section 2. That is what the `cpu-smoke` job in
+picks `--load-mode none` (copy into RAM). That is what the `cpu-smoke` job in
 [`.github/workflows/model-tests.yml`](../../../.github/workflows/model-tests.yml)
-checks. Its numbers are uploaded as the `medbench-cpu-reports` artifact,
-which contains `llama-timings.txt`.
+does. Its numbers are uploaded as the `medbench-cpu-reports` artifact,
+which contains `llama-timings.txt`. The real run on GitHub wrote
+**7.8 tokens/s**, twice as fast as this VM. See
+[section 9](#9-a-real-run-on-a-github-hosted-cpu-runner).
 
 ## 5. Baseline scores without any model
 
@@ -156,9 +157,13 @@ uses two simple rules:
 * **Reading the prompt** is limited by compute:
   `tokens/s ≈ FLOPS × efficiency ÷ (2 × parameters)`.
 
-The efficiency numbers for the two CPU profiles were tuned to the
-measurements in section 2. The GPU numbers use datasheet bandwidth and
-should be checked on the first GPU run.
+The efficiency numbers for the two CPU profiles were tuned to real runs:
+the dev VM to `llama-bench` in section 2, and the GitHub runner to the
+`cpu-smoke` job in [section 9](#9-a-real-run-on-a-github-hosted-cpu-runner).
+On a CPU, the llama.cpp image encoder reaches a much smaller share of peak
+compute than the text model, so a profile can set its own
+`vision_efficiency`. The GPU numbers use datasheet bandwidth and should be
+checked on the first GPU run.
 
 4-bit weights (Q4_K_M), 512 prompt tokens, 1 image, 256 answer tokens. "Fits"
 compares against the RAM or VRAM of the profile. Raw output:
@@ -166,21 +171,21 @@ compares against the RAM or VRAM of the profile. Raw output:
 
 | Model | Hardware | Memory (GB) | Fits | Prompt tok/s | Answer tok/s | Seconds per request |
 | --- | --- | ---: | :---: | ---: | ---: | ---: |
-| MedGemma 4B | GitHub CPU (4 vCPU, 16 GB) | 3.8 | yes | 9 | 4.3 | 185 |
+| MedGemma 4B | GitHub CPU (4 vCPU, 16 GB) | 3.8 | yes | 31 | 7.8 | 114 |
 | MedGemma 4B | this dev VM (3 GiB limit) | 3.8 | **no** | 17 | 4.3 | 127 |
 | MedGemma 4B | T4 16 GB | 3.8 | yes | 3 023 | 69 | 4 |
 | MedGemma 4B | L4 24 GB | 3.8 | yes | 5 628 | 65 | 4 |
 | MedGemma 4B | RTX 4090 24 GB | 3.8 | yes | 7 674 | 218 | 1.3 |
 | MedGemma 4B | A100 80 GB | 3.8 | yes | 14 512 | 442 | 0.7 |
 | MedGemma 4B | H100 80 GB | 3.8 | yes | 46 000 | 725 | 0.4 |
-| MedGemma 27B | GitHub CPU | 18.3 | **no** | 1.5 | 0.7 | 939 |
+| MedGemma 27B | GitHub CPU | 18.3 | **no** | 4.8 | 1.2 | 420 |
 | MedGemma 27B | this dev VM | 18.3 | **no** | 2.7 | 0.7 | 675 |
 | MedGemma 27B | T4 16 GB | 18.3 | **no** | 474 | 11 | 25 |
 | MedGemma 27B | L4 24 GB | 18.3 | yes | 882 | 10 | 26 |
 | MedGemma 27B | RTX 4090 24 GB | 18.3 | yes | 1 203 | 35 | 8 |
 | MedGemma 27B | A100 80 GB | 18.3 | yes | 2 275 | 71 | 4 |
 | MedGemma 27B | H100 80 GB | 18.3 | yes | 7 211 | 116 | 2 |
-| UniMedVL (14B, 7B active) | GitHub CPU | 10.0 | yes | 5 | 2.5 | 486 |
+| UniMedVL (14B, 7B active) | GitHub CPU | 10.0 | yes | 17 | 4.5 | 214 |
 | UniMedVL | this dev VM | 10.0 | **no** | 10 | 2.5 | 308 |
 | UniMedVL | T4 16 GB | 10.0 | yes | 1 711 | 40 | 8 |
 | UniMedVL | L4 24 GB | 10.0 | yes | 3 184 | 38 | 7 |
@@ -198,12 +203,16 @@ UniMedVL needs 30.2 GB.
 
 ### What a CI run costs
 
-A CPU smoke test with 3 tasks × 2 items is about 6 requests × 30–180 s, so
-5–20 minutes. It fits in the 60-minute job limit. The full set (6 tasks × 20
-items = 120 requests) would take about 6 hours on CPU with the 4B model, and
-over 30 hours with 27B. On one L4 the full set takes about 120 × 26 s ≈
-**52 minutes for 27B** and **8 minutes for 4B**. That is why the full tests run
-on the GPU job only.
+The CPU smoke test with 3 tasks × 2 items took **6 minutes** on GitHub
+(6.5 s per text request, 66–74 s per image request; section 9). It fits in
+the 60-minute job limit with room to spare. The full set (6 tasks × 20 items
+= 120 requests: 20 text and 100 image requests) would take about
+20 × 6.5 s + 100 × 75 s ≈ **2 hours** on a hosted CPU runner with the 4B
+model. That is inside GitHub's 6-hour limit, but it is slow and says little,
+because 4B misses even the simple X-ray phantoms. 27B does not fit in 16 GB at
+all. On one L4 the full set takes about 120 × 26 s ≈ **52 minutes for 27B**
+and **8 minutes for 4B**. That is why the full tests run on the GPU job
+only.
 
 ## 7. Fine-tuning memory (`medbench estimate --finetune`)
 
@@ -251,3 +260,61 @@ python -m medbench.cli estimate --model medgemma-27b-it --hardware a100-80gb \
 The probe script reads `LLAMA_DIR`, `MODEL`, `MMPROJ` and `LOG_DIR` from the
 environment; its defaults match the cache written by `download`. Run heavy commands with `nice` and a small `-n`, as above,
 so the machine stays usable.
+
+## 9. A real run on a GitHub-hosted CPU runner
+
+The `cpu-smoke` job of the Model Tests workflow ran on a pull request commit:
+[run 38550186566](https://github.com/konard/medical-neural-network-ml/actions/runs/38550186566).
+Its artifact is saved in
+[`data/ci-cpu-smoke-38550186566/`](data/ci-cpu-smoke-38550186566/).
+
+```text
+[medbench-model-run] weights + 1 GiB need 4210 MiB; 13963 MiB free
+[medbench-model-run] llama-server healthy after 4s (threads=3, gpu layers=0, load mode=none)
+```
+
+The runner had enough free memory, so the weights were copied into RAM, and
+the server started in 4 s (66 s with mmap on the dev VM). The script leaves
+one of the 4 vCPUs free, so it used 3 threads.
+
+Speed, from [`llama-timings.txt`](data/ci-cpu-smoke-38550186566/llama-timings.txt):
+
+| Request | Prompt tokens | Prompt time | Answer tokens | Answer speed |
+| --- | ---: | ---: | ---: | ---: |
+| Text only (diagnosis, 3 requests) | 66–68 | 2.0–2.2 s (**30–33 tokens/s**) | 36–46 | 7.9–8.0 tokens/s |
+| One image (X-ray, prescription, 5 requests) | 288–307 | 65.8–66.7 s (**4.4–4.6 tokens/s**) | 3–65 | 7.6–7.8 tokens/s |
+
+* **Writing the answer: 7.6–8.0 tokens/s**, about twice the dev VM (4.2 with
+  4 threads). The calculator used to say 4.3 for the runner; it now uses
+  these numbers.
+* **Reading an image costs about 56 s.** A text prompt of 300 tokens would
+  take about 10 s. The rest is the image encoder (SigLIP, 896 × 896 pixels),
+  which llama.cpp runs much less efficiently on CPU than the text model.
+  On CPU, image tasks are slow because of image reading, not answer writing.
+
+Scores (2 items per task, so they show that the pipeline works, not how good
+the model is):
+
+| Task | Result | Mean time per item |
+| --- | --- | ---: |
+| diagnosis | top-1 1.0, top-5 1.0, MRR 1.0 | 6.5 s |
+| ocr-prescription | CER 0.010, WER 0.056, drug + strength recall 1.0 | 73.0 s |
+| imaging-xray | sensitivity 0.0, specificity 0.0, accuracy 0.0 | 67.9 s |
+
+The X-ray result was checked by hand with
+[`experiments/issue1_xray_truth.py`](../../../experiments/issue1_xray_truth.py):
+
+| Item | Truth | Model answer | Verdict |
+| --- | --- | --- | --- |
+| xray-00000 | nodule in the patient's right lung | "No" | missed finding |
+| xray-00001 | no finding | "Yes, there is a round lung nodule in the patient's right lung." | false alarm |
+
+The answers were read correctly; the model was wrong on both images. The
+phantom is a few ellipses, not a real X-ray, so this does not say how
+MedGemma reads real chest films. It does show why one score from 2 items
+means nothing, and why Phase 2 of the [research plan](research-plan.md) uses
+public X-rays with many items and confidence intervals.
+
+The two real-model tests in `tests/` (one text request and one image
+request) passed in 76 s. The whole step took 377 s of its 1 500 s budget, and
+the job took about 7.5 minutes including the download.

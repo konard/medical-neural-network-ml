@@ -15,7 +15,7 @@ models are not good enough.
 | --- | --- |
 | [requirements.md](requirements.md) | Every requirement of the issue and where it is solved |
 | [research-plan.md](research-plan.md) | The plan, phase by phase, with alternatives |
-| [measurements.md](measurements.md) | What was measured on the dev machine, and the calculated resources |
+| [measurements.md](measurements.md) | What was measured on the dev machine and a GitHub runner, and the calculated resources |
 | [architectures.md](architectures.md) | How MedGemma, UniMedVL and the others work, and why it matters |
 | [if-models-fail.md](if-models-fail.md) | Fine-tuning, training from scratch or from a base, and collecting and multiplying data |
 | [ci-and-gpu-runner.md](ci-and-gpu-runner.md) | The CPU and GPU test jobs and how to set up a GPU runner |
@@ -27,25 +27,33 @@ models are not good enough.
 
 1. **Testing works without real patient data.** `medbench` creates six
    synthetic tasks with exact answers and scores any model through one
-   OpenAI-compatible API. 90 unit tests cover it, and they run in seconds.
-2. **CPU is enough for a smoke test, not for research.** MedGemma 4B in
-   4-bit writes **4.2 tokens/s** on 4 CPU threads when the weights are in
-   RAM. When memory is tight and the weights are mapped from disk, it drops
-   to **0.4 tokens/s**. A full test set (120 requests) would take about 6
-   hours on a GitHub CPU runner, so CI runs 6 requests, and the full set
-   runs on a GPU (about 8 minutes on an L4 for 4B, 51 minutes for 27B).
-3. **MedGemma 27B needs a GPU**: 18.3 GB in 4-bit, 56 GB in bf16.
+   OpenAI-compatible API. 92 unit tests cover it, and they run in seconds.
+2. **CPU is enough for a smoke test, not for research.** On a GitHub-hosted
+   runner ([run 38550186566](https://github.com/konard/medical-neural-network-ml/actions/runs/38550186566)),
+   MedGemma 4B in 4-bit writes **7.8 tokens/s**, but reading one image takes
+   **about 66 s**. A text question takes 6.5 s and an image question about
+   70 s. On the 3 GiB dev VM it writes 4.2 tokens/s, and only **0.4 tokens/s**
+   when the weights have to be mapped from disk. A full test set (120
+   requests) would take about 2 hours on a GitHub CPU runner, so CI runs 6
+   requests (6 minutes), and the full set runs on a GPU (about 8 minutes on
+   an L4 for 4B, 51 minutes for 27B).
+3. **The first real scores are a warning, not a result.** In that CI run,
+   MedGemma 4B ranked both diagnosis cases right and read both handwritten
+   prescriptions with 1% character errors. It got **both X-ray phantoms
+   wrong**: it missed a nodule and called a normal image abnormal. Two items
+   prove that the pipeline works, nothing more.
+4. **MedGemma 27B needs a GPU**: 18.3 GB in 4-bit, 56 GB in bf16.
    **UniMedVL** has no llama.cpp build and needs PyTorch on a 40 GB+ GPU.
    Its extra 7B of weights is for drawing images, not for better answers.
-4. **Most of the medical skill comes from data, not architecture.**
+5. **Most of the medical skill comes from data, not architecture.**
    MedGemma and Lingshu are ordinary Gemma 3 / Qwen2.5-VL models trained on
    medical data. So if ready models fail, fine-tuning on our own data
    (QLoRA: 4.9 GB of GPU memory for 4B, 19.6 GB for 27B) is the right next
    step. Training from scratch is not.
-5. **Handwritten prescriptions are the riskiest task.** No public
+6. **Handwritten prescriptions are the riskiest task.** No public
    benchmark exists. The plan is OCR VLM → RxNorm fuzzy match → human
    check for every uncertain dose.
-6. **Ultrasound is where general VLMs are weakest.** Use a task network
+7. **Ultrasound is where general VLMs are weakest.** Use a task network
    there.
 
 ```mermaid
