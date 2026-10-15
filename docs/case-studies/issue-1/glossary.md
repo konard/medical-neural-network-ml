@@ -4,13 +4,16 @@ Short, plain explanations of the terms used in this case study.
 
 | Term | Meaning |
 | --- | --- |
+| **Attribution** | Naming the author and license of a file, as CC BY and CC BY-SA licenses require. `medbench fetch` writes it to `ATTRIBUTION.md`. |
 | **AUROC** | One number (0.5 = guessing, 1.0 = perfect) that shows how well a model separates sick from healthy cases at all thresholds. |
 | **bf16** | A 16-bit number format. Each weight takes 2 bytes. It is the usual format for GPU inference and training. |
 | **Calibration** | Whether the model's confidence matches reality: answers given with "90% sure" should be right 90% of the time. |
 | **CER / WER** | Character / word error rate. The share of characters (or words) that OCR gets wrong. 0 is perfect. |
 | **cgroup** | A Linux limit on memory and CPU for a group of processes. Our dev VM has 12.5 GB of RAM but a 3 GiB cgroup limit. |
+| **Creative Commons (CC0, CC BY, CC BY-SA)** | Licenses that let anyone copy a file. CC0 asks nothing; CC BY asks to credit the author; CC BY-SA also asks to share changed copies under the same license. NC (non-commercial) and ND (no changes) versions are not used here. |
 | **Confidence interval (95%)** | The range where the true score most likely lies. With few test items it is wide, so two models can only be called different if their ranges do not overlap much. |
 | **Continued pre-training** | More training of a ready model on a large pile of unlabeled text or images from a new field (here: medicine). |
+| **DDXPlus** | An open (CC BY 4.0) dataset of 1.3 million patient interviews with 49 possible conditions, made by a doctor-designed expert system, so no real patient is in it. |
 | **Decode / generation speed** | How many answer tokens a model writes per second. On CPU it is limited by memory speed. |
 | **Differential diagnosis** | A ranked list of possible diseases that could explain the symptoms. |
 | **Distillation** | A small "student" model learns to copy the answers of a big "teacher" model. |
@@ -28,8 +31,9 @@ Short, plain explanations of the terms used in this case study.
 | **NaViT** | A vision encoder that keeps the image's own size and shape instead of squeezing it into a square. |
 | **OCR** | Optical character recognition: turning a picture of text into text. |
 | **Patch** | A small square of an image (for example 14×14 pixels). The vision encoder turns each patch into a vector. |
-| **Phantom** | A made-up image that imitates a real scan. Ours are drawn by code, so we know exactly where the "finding" is. |
+| **Phantom** | A made-up image that imitates a real scan. The first version of `medbench` drew them by code; they were replaced by real open images because they look nothing like real scans. |
 | **Prompt processing (prefill) speed** | How many tokens of the question a model reads per second before it starts answering. Images add hundreds of tokens, so this matters for VLMs. |
+| **Public domain** | Works with no copyright, for example old books and US government images. Anyone may use them for anything. |
 | **Quantization (Q4_K_M, nf4)** | Storing weights with fewer bits, for example about 4.9 bits per weight for Q4_K_M instead of 16. The model becomes 3–4 times smaller with a small loss of quality. |
 | **RAG** | Retrieval-augmented generation. Looking up relevant documents (guidelines, drug databases) and adding them to the prompt. |
 | **Reasoning model** | A model trained to "think" in text before giving the final answer. |
@@ -38,7 +42,8 @@ Short, plain explanations of the terms used in this case study.
 | **Self-hosted runner** | A machine you own that runs GitHub Actions jobs, for example one with a GPU. |
 | **Self-supervised learning** | Learning from unlabeled data, for example by hiding part of an image and predicting it. |
 | **Sensitivity / specificity** | Sensitivity: the share of sick cases the model finds. Specificity: the share of healthy cases it correctly calls healthy. |
-| **Synthetic data** | Data made by a program (Synthea patients, rendered prescriptions, phantoms) instead of collected from real patients. |
+| **SHA-256 pinning** | Storing the SHA-256 fingerprint of each downloaded file. If the source changes even one byte, the test refuses the file, so everyone tests on the same data. |
+| **Synthetic data** | Data made by a program (Synthea patients, rendered prescriptions, phantoms) instead of collected from real patients. Useful for training, but not used as test inputs here. |
 | **Token** | A piece of text (about ¾ of an English word) or one image vector. Models read and write tokens. |
 | **top-k accuracy** | The share of cases where the true answer is among the model's first *k* answers. |
 | **Transformer** | The neural network design behind modern language models. Its layers use *attention*, so every token can look at the others. |

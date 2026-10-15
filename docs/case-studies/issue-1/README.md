@@ -4,8 +4,9 @@ Issue: <https://github.com/konard/medical-neural-network-ml/issues/1>.
 Pull request: <https://github.com/konard/medical-neural-network-ml/pull/2>.
 
 The issue asks for a research plan and first tests. We try ready medical
-models (MedGemma, UniMedVL and others) on synthetic versions of typical
-medical tasks, measure their speed on CPU, provide GPU tests for a
+models (MedGemma, UniMedVL and others) on typical medical tasks built
+from real, openly licensed files, measure their speed on CPU, provide GPU
+tests for a
 self-hosted runner, calculate resources, and plan what to do if the ready
 models are not good enough.
 
@@ -19,31 +20,40 @@ models are not good enough.
 | [architectures.md](architectures.md) | How MedGemma, UniMedVL and the others work, and why it matters |
 | [if-models-fail.md](if-models-fail.md) | Fine-tuning, training from scratch or from a base, and collecting and multiplying data |
 | [ci-and-gpu-runner.md](ci-and-gpu-runner.md) | The CPU and GPU test jobs and how to set up a GPU runner |
+| [data-sources.md](data-sources.md) | The real test files, their licenses and authors, and what was rejected |
 | [glossary.md](glossary.md) | Plain explanations of all the terms |
 | [research-notes/](research-notes/) | Long notes with sources: [models](research-notes/models.md), [datasets](research-notes/datasets.md), [hardware and CI](research-notes/hardware-and-ci.md), [training and data](research-notes/training-and-data.md) |
 | [data/](data/) | Raw logs, benchmark tables, estimator output and the issue text |
 
 ## Main findings
 
-1. **Testing works without real patient data.** `medbench` creates six
-   synthetic tasks with exact answers and scores any model through one
-   OpenAI-compatible API. 92 unit tests cover it, and they run in seconds.
+1. **Testing works on real files without private patient data.**
+   `medbench` scores any model through one OpenAI-compatible API on seven
+   tasks. The inputs are 40 real, openly licensed files: chest X-rays,
+   brain MRI and ultrasound images from Wikimedia Commons, prescription
+   handwriting from RxHandBD, scanned case histories from Wikisource and
+   DDXPlus patient interviews. They are downloaded at test time and checked
+   by SHA-256; none is stored in the repository
+   ([data-sources.md](data-sources.md)). Unit tests run in seconds without
+   a download.
 2. **CPU is enough for a smoke test, not for research.** On a GitHub-hosted
    runner ([run 38550186566](https://github.com/konard/medical-neural-network-ml/actions/runs/38550186566)),
    MedGemma 4B in 4-bit writes **7.8–11.6 tokens/s**, but reading one image
    takes **66–84 s**. A text question takes about 6 s and an image question
    70–90 s. Two hosted runners differed by up to 45%. On the 3 GiB dev VM it writes 4.2 tokens/s, and only **0.4 tokens/s**
-   when the weights have to be mapped from disk. A full test set (120
+   when the weights have to be mapped from disk. A full test set (up to 120
    requests) would take about 2–2.5 hours on a GitHub CPU runner, so CI runs 6
    requests (6–8 minutes), and the full set runs on a GPU (about 8 minutes on
    an L4 for 4B, 51 minutes for 27B).
-3. **The first real scores are a warning, not a result.** In that CI run,
-   MedGemma 4B ranked both diagnosis cases right and read both handwritten
-   prescriptions with 1% character errors. It got **both X-ray phantoms
-   wrong**: it missed a nodule and called a normal image abnormal. A second
-   run on another runner read one prescription differently (5% errors),
-   because a different CPU can change a greedy answer. Two items prove that
-   the pipeline works, nothing more.
+3. **The first model scores are a warning, not a result.** They were
+   measured before the switch to real files, on generated inputs (a toy
+   diagnosis set, font-rendered prescriptions and drawn "phantom" X-rays).
+   MedGemma 4B ranked both diagnosis cases right, read the rendered
+   prescriptions with 1% character errors, and got **both drawn X-rays
+   wrong**. A second run on another runner read one prescription
+   differently (5% errors), because a different CPU can change a greedy
+   answer. Two items prove that the pipeline works, nothing more; the
+   real-file scores come from the CI job of this pull request.
 4. **MedGemma 27B needs a GPU**: 18.3 GB in 4-bit, 56 GB in bf16.
    **UniMedVL** has no llama.cpp build and needs PyTorch on a 40 GB+ GPU.
    Its extra 7B of weights is for drawing images, not for better answers.
@@ -60,7 +70,7 @@ models are not good enough.
 
 ```mermaid
 flowchart LR
-    S[Synthetic tasks<br/>medbench] --> R[Ready models<br/>MedGemma 4B on CPU CI<br/>27B / UniMedVL on GPU]
+    S[Real open files<br/>medbench] --> R[Ready models<br/>MedGemma 4B on CPU CI<br/>27B / UniMedVL on GPU]
     R --> P[Public datasets<br/>DDXPlus, MedMNIST,<br/>RxHandBD, VQA-RAD]
     P --> A{Good enough?}
     A -- yes --> H[Safety, calibration,<br/>monitoring]
@@ -68,29 +78,38 @@ flowchart LR
     F --> H
 ```
 
-## The synthetic test inputs
+## The real test inputs
 
-Made by [`examples/medbench_quickstart.py`](../../../examples/medbench_quickstart.py).
-The code knows the right answer for each one.
+Every image and page is a real file under an open license, downloaded when
+the tests run. Some examples (click to open the file page with its author
+and license):
 
-| Handwritten prescription | Printed medical history |
-| --- | --- |
-| ![Synthetic handwritten prescription](images/prescription-handwritten.png) | ![Synthetic printed medical history](images/history-printed.png) |
-
-| Chest X-ray phantom | Brain MRI phantom | Ultrasound phantom |
+| Task | Example file | Answer the model must give |
 | --- | --- | --- |
-| ![Chest X-ray phantom](images/phantom-xray.png) | ![Brain MRI phantom](images/phantom-mri.png) | ![Ultrasound phantom](images/phantom-ultrasound.png) |
+| `imaging-xray` | [Spontanpneumothorax links 2010](https://commons.wikimedia.org/wiki/File:Spontanpneumothorax_links_2010.jpg), Hellerhoff, CC BY-SA 3.0 | pneumothorax, left side |
+| `imaging-mri` | [Akustikus-Schwannom rechts](https://commons.wikimedia.org/wiki/File:Akustikus-Schwannon_rechts_MRT_T1KM_axial_001.jpg), Hellerhoff, CC BY-SA 3.0 | vestibular schwannoma, right side |
+| `imaging-ultrasound` | [Ultrasonography of a normal liver](https://commons.wikimedia.org/wiki/File:Ultrasonography_of_a_normal_liver.jpg), Mikael Häggström, CC0 | normal |
+| `ocr-prescription` | Word P3113 of [RxHandBD](https://data.mendeley.com/datasets/dsb5r6vskg/1), Md Masudul Islam, CC BY 4.0 | “Omeprazole” |
+| `ocr-history` | [Report on the outbreak of plague at Fremantle, p. 13](https://en.wikisource.org/wiki/Page:Report_on_the_outbreak_of_plague_at_Fremantle.djvu/13), 1903, public domain | the proofread page text |
+| `diagnosis-ddxplus` | [DDXPlus](https://figshare.com/articles/dataset/DDXPlus_Dataset_English_/22687585) test patients, CC BY 4.0 | the true condition in the top 5 |
+
+All 40 files, their licenses and the rejected sources are in
+[data-sources.md](data-sources.md). The images are linked, not copied here,
+so this page does not have to carry their licenses.
 
 ## How to reproduce
 
-Everything below except steps 4–5 runs in seconds and downloads nothing.
+Step 2 downloads the 40 real files (about 60 MB, mostly the RxHandBD
+archive and the DDXPlus test split). Steps 4–5 download a model. The rest
+runs in seconds.
 
 ```bash
 # 1. Install
 pip install -e ".[dev]"
 
-# 2. Sample images, a baseline score and a resource estimate
+# 2. Real files with ATTRIBUTION.md, a baseline score and a resource estimate
 python examples/medbench_quickstart.py /tmp/medbench-samples
+medbench sources            # every file with its license and author
 
 # 3. Any task with any backend; naive-bayes and scripted need no model
 medbench host

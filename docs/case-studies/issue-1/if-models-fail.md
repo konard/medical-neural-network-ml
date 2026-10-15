@@ -16,7 +16,7 @@ training helped.
 
 | Task | Metric (what we count) | Floor (no model) | Example target |
 | --- | --- | --- | --- |
-| Diagnosis from symptoms | top-1 / top-5 accuracy: is the true disease first / in the first 5? | top-5 = 1.00 for the Bayes reference on synthetic cases | top-5 ≥ 0.90 on real cases (DDXPlus) |
+| Diagnosis from symptoms | top-1 / top-5 accuracy: is the true disease first / in the first 5? | top-5 = 1.00 for the Bayes reference on the toy table | top-5 ≥ 0.90 on real cases (DDXPlus) |
 | OCR of histories | CER: share of wrong characters | 0.98 | CER ≤ 0.05 |
 | Handwritten prescriptions | drug + strength recall: share of drugs read with the right dose | 0.00 | ≥ 0.95, and **every** dose error goes to a human |
 | X-ray / MRI / ultrasound | sensitivity (finds sick cases) and specificity (clears healthy ones) | 0.00 / 1.00 | sensitivity ≥ 0.90 at specificity ≥ 0.80 |
@@ -91,7 +91,7 @@ flowchart LR
 | Public datasets (starter set in [research-notes/datasets.md](research-notes/datasets.md)) | Free, known baselines | Licenses are often non-commercial or "laundered" on Kaggle and HF; may not look like our clinic's data |
 | Partner clinic data | Matches the real task | Ethics approval, contracts, de-identification, months of work |
 | Federated learning (Flower, NVIDIA FLARE) | Data never leaves the hospital | Hard to debug; needs IT at every site |
-| Synthetic data (Synthea, rendered documents, phantoms, diffusion) | No privacy risk, unlimited amount | The model can learn the generator's shortcuts; never use it as the **test** set |
+| Synthetic data (Synthea, rendered documents, phantoms, diffusion) | No privacy risk, unlimited amount | The model can learn the generator's shortcuts; never use it as the **test** set (our tests use real open files, [data-sources.md](data-sources.md)) |
 | Doctors label from scratch | Best labels | Slow and expensive |
 | Weak labels from reports (NLP over radiology reports) | Cheap, large | Noisy; check a sample by hand |
 | Active learning (model picks the hardest cases for doctors) | Spends expert time where it helps most | Needs a working model first |

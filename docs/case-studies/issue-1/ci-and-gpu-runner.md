@@ -7,18 +7,20 @@ as a self-hosted runner for the full tests. Sources and the raw notes are in
 
 ## 1. Two kinds of tests
 
-There are three layers of tests. Only the last two need a real model.
+There are four layers of tests. Only the last two need a real model.
 
 | Layer | Where it runs | What it proves | Time |
 |---|---|---|---|
-| Unit tests (`pytest`) | Every pull request, hosted runner | Synthetic data, metrics, prompt parsing, resource maths, scripts | About 1 minute |
+| Unit tests (`pytest`) | Every pull request, hosted runner | Manifest and license checks, downloads (mocked), metrics, prompt parsing, resource maths, scripts | About 1 minute |
+| Real sample files (`Model Tests / real-data`) | Hosted runner; pull requests reuse a cache, the weekly run downloads again | All 40 real files download, match their SHA-256 and have an allowed license; `ATTRIBUTION.md` is uploaded | 1 to 3 minutes |
 | CPU smoke test (`Model Tests / cpu-smoke`) | Hosted `ubuntu-24.04` runner (4 vCPU, 16 GB) | Download, hash check, serving, image input and scoring work end to end with MedGemma 4B | 10 to 25 minutes |
-| GPU tests (`Model Tests / gpu`) | Self-hosted runner with labels `self-hosted, linux, x64, gpu` | All 6 tasks with more items; MedGemma 27B or 4B | 10 to 40 minutes |
+| GPU tests (`Model Tests / gpu`) | Self-hosted runner with labels `self-hosted, linux, x64, gpu` | All 7 tasks with up to 20 items each; MedGemma 27B or 4B | 10 to 40 minutes |
 
 ```mermaid
 flowchart LR
   PR[Pull request] --> UT[Unit tests<br/>every PR]
-  PR -->|"only if src/medbench, the runner script<br/>or the workflow changed"| CPU[cpu-smoke<br/>MedGemma 4B Q4 on CPU]
+  PR -->|"only if src/medbench, the runner script<br/>or the workflow changed"| RD[real-data<br/>download + SHA-256 + licenses]
+  RD --> CPU[cpu-smoke<br/>MedGemma 4B Q4 on CPU]
   Maint[Maintainer clicks<br/>Run workflow] --> CPU
   Maint -->|"input gpu = true"| GPU[gpu job<br/>self-hosted NVIDIA runner]
   CPU --> Rep[medbench-cpu-reports artifact]
@@ -30,7 +32,7 @@ reads text at about **25–33 tokens/s and writes the answer at 7.8–11.6
 tokens/s** with 3 threads, but it needs **66–84 s to read one image**
 ([measurements.md §9](measurements.md#9-a-real-run-on-a-github-hosted-cpu-runner)).
 So a text question takes about 6 s and an image question 70–90 s.
-Twenty items per task over six tasks would take about 2–2.5 hours, so the hosted
+The full set would take hours, so the hosted
 CPU job runs 2 items per task over 3 tasks (6–8 minutes). It checks that
 everything works; it does not measure accuracy. The 27B model does not fit on
 a hosted runner at all (about 18 GB needed, 16 GB RAM in total).

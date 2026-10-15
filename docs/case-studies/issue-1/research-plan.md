@@ -12,7 +12,7 @@ This is the step-by-step plan that issue #1 asks for. Each phase lists:
 
 ```mermaid
 flowchart TD
-    P0[Phase 0<br/>Synthetic tasks + test harness<br/>DONE in this PR] --> P1[Phase 1<br/>Ready models on synthetic data<br/>CPU CI: MedGemma 4B / GPU: 27B]
+    P0[Phase 0<br/>Test harness + 40 real open files<br/>DONE in this PR] --> P1[Phase 1<br/>Ready models on the test files<br/>CPU CI: MedGemma 4B / GPU: 27B]
     P1 --> P2[Phase 2<br/>Ready models on public datasets<br/>DDXPlus, MedMNIST, RxHandBD, VQA-RAD]
     P2 --> G{Targets met?}
     G -- yes --> P5[Phase 5<br/>Hardening: safety, calibration,<br/>monitoring, regulation]
@@ -25,8 +25,8 @@ flowchart TD
 
 | Phase | Typical duration | Hardware | Status |
 | --- | --- | --- | --- |
-| 0. Harness | 1–2 weeks | any laptop | **done** (`src/medbench`, 6 tasks, metrics, calculator) |
-| 1. Ready models, synthetic data | 1 week | GitHub CPU runner + one GPU with 24 GB or more | CI workflow ready; CPU job runs on every PR that touches the harness |
+| 0. Harness | 1–2 weeks | any laptop | **done** (`src/medbench`, 7 tasks on real open files, metrics, calculator) |
+| 1. Ready models, test files | 1 week | GitHub CPU runner + one GPU with 24 GB or more | CI workflow ready; CPU job runs on every PR that touches the harness |
 | 2. Ready models, public data | 2–4 weeks | one 24–80 GB GPU | planned |
 | 3. Adaptation without training | 2–4 weeks | same | planned |
 | 4. Training | 1–3 months | 1–8 GPUs with 24–80 GB | planned, only if needed |
@@ -35,24 +35,23 @@ flowchart TD
 ## Phase 0: a harness that tests any model the same way (done)
 
 **Goal:** before trying any model, be able to give it a task, read its
-answer and score it automatically, without real patient data.
+answer and score it automatically, on realistic files that anyone may
+copy, without private patient data.
 
 What exists now:
 
 | Task (`--task`) | What the model sees | What is scored | Code |
 | --- | --- | --- | --- |
-| `diagnosis` | A made-up patient: age, sex, symptoms | Ranked list of 5 diagnoses: top-1, top-3, top-5, MRR | `synthetic_cases.py` |
-| `ocr-prescription` | A rendered handwritten prescription | Character and word error rate; drug + strength recall | `synthetic_documents.py` |
-| `ocr-history` | A rendered printed medical history | Character and word error rate | same |
-| `imaging-xray` / `imaging-mri` / `imaging-ultrasound` | A phantom image with or without a bright "finding" | Is there a finding? On which side? Sensitivity, specificity | `synthetic_images.py` |
+| `diagnosis-ddxplus` | A DDXPlus patient interview (age, sex, answers to symptom questions) and the list of 49 conditions | Ranked list of 5 diagnoses: top-1, top-5, MRR, and agreement with the DDXPlus differential | `ddxplus.py` |
+| `diagnosis` | A toy text patient made from a small probability table | Same; the naive Bayes reference gives the best possible score | `synthetic_cases.py` |
+| `ocr-prescription` | A real handwritten word or dose cut from a prescription (RxHandBD) | Character and word error rate; key-term recall | `real_data.py`, `benchmark.py` |
+| `ocr-history` | A scanned page of a real printed case history (Wikisource, public domain) | Character and word error rate; key-term recall | same |
+| `imaging-xray` / `imaging-mri` / `imaging-ultrasound` | A real chest X-ray, brain MRI slice or ultrasound image (Wikimedia Commons) | Is it abnormal? Which finding and side? Sensitivity, specificity | same |
 
-| Sample input | Picture |
-| --- | --- |
-| Handwritten prescription | ![prescription](images/prescription-handwritten.png) |
-| Printed history | ![history](images/history-printed.png) |
-| Chest X-ray phantom (finding on the left) | ![xray](images/phantom-xray.png) |
-| Brain MRI phantom | ![mri](images/phantom-mri.png) |
-| Ultrasound phantom | ![ultrasound](images/phantom-ultrasound.png) |
+The files are downloaded when the tests run and checked against a pinned
+SHA-256; only the list of files is in the repository. Each file's license,
+author and expected answer, and the sources that were rejected, are in
+[data-sources.md](data-sources.md).
 
 The model talks to the harness over the OpenAI-compatible HTTP API. That
 means the same test works with llama.cpp, Ollama, vLLM, SGLang or TGI, on
@@ -62,14 +61,14 @@ Alternatives for the harness:
 
 | Option | Pros | Cons |
 | --- | --- | --- |
-| **Own small harness (chosen)** | Runs in seconds without downloads; synthetic truth is exact; fits CI | Synthetic data is easier than real data |
+| **Own small harness (chosen)** | Small (about 60 MB of real files), every file openly licensed and credited, fits CI | Only 3–10 files per task, and teaching images are clearer than everyday ones |
 | MedEvalKit / VLMEvalKit / lmms-eval | Standard public benchmarks, comparable with papers | Big downloads, GPU needed, many datasets are non-commercial |
 | Only manual testing | No code | Not repeatable, cannot run in CI |
 
 We use our harness for CI, and one of the public kits in Phase 2 to compare
 with published numbers.
 
-## Phase 1: ready models on synthetic tasks
+## Phase 1: ready models on the test files
 
 **Goal:** see whether the named models can do the tasks at all, and how
 fast they are.
@@ -78,10 +77,11 @@ Steps:
 
 1. CPU, on every PR that changes the harness: the `cpu-smoke` job in
    [`.github/workflows/model-tests.yml`](../../../.github/workflows/model-tests.yml)
-   runs **MedGemma 4B Q4_K_M** on diagnosis, X-ray and prescription OCR,
-   2 items each.
+   runs **MedGemma 4B Q4_K_M** on DDXPlus diagnosis, X-ray and prescription
+   OCR, 2 items each.
 2. GPU, started by hand: the `gpu` job runs **MedGemma 27B** (or 4B) on all
-   6 tasks, 20 items each, on a self-hosted runner. See
+   7 tasks, up to 20 items each (about 77 requests, because the OCR and
+   image tasks have only 5–10 files), on a self-hosted runner. See
    [ci-and-gpu-runner.md](ci-and-gpu-runner.md).
 3. Locally: `bash scripts/medbench-model-run.sh download && bash
    scripts/medbench-model-run.sh run`. It needs at least about 6 GB of free
@@ -92,7 +92,8 @@ Steps:
    `medbench run --backend openai --base-url ...` at it.
 
 Resources from `medbench estimate` (raw output in
-[data/estimates.txt](data/estimates.txt)). 120 requests = 6 tasks × 20 items:
+[data/estimates.txt](data/estimates.txt)). 120 requests = 6 tasks × 20 items, an upper bound for today's
+about 77 requests:
 
 | Model | Where | Memory | Speed | 120 requests (full set) |
 | --- | --- | --- | --- | --- |
@@ -122,14 +123,14 @@ Steps 2 and 4 wait for a GPU runner.
 
 ## Phase 2: ready models on public data
 
-**Goal:** check that the results hold on real (public, permissive) data,
-not only on our phantoms.
+**Goal:** check that the results hold on large public datasets, not only
+on our 40 hand-checked files.
 
 | Task | Dataset (license) | Metric |
 | --- | --- | --- |
 | Diagnosis | DDXPlus test (CC BY 4.0); MedQA | top-k against the ranked differential |
 | Prescriptions | RxHandBD (CC BY 4.0) | CER, drug + strength recall |
-| Histories | Synthea records rendered with noise (Apache-2.0); CORD (CC BY 4.0) | CER |
+| Histories | More validated Wikisource pages (public domain); CORD (CC BY 4.0) | CER |
 | X-ray | MedMNIST pneumonia/chest (CC BY 4.0); NIH ChestX-ray14 | sensitivity, specificity, AUROC |
 | MRI / CT | MSD (CC BY-SA 4.0), IXI | accuracy; Dice for masks |
 | Ultrasound | MedMNIST breast, HC18 (CC BY 4.0) | accuracy; mm error |
