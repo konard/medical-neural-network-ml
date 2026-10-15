@@ -117,6 +117,15 @@ def test_links_workflow_fails_for_every_broken_live_link() -> None:
     assert "uses: actions/checkout@v6" in link_job
     assert "uses: lycheeverse/lychee-action@v2" in lychee_step
     assert "--exclude-path docs/case-studies" in lychee_step
+    # Issue #4: a glob input that matches no file ('./**/*.html') makes lychee
+    # warn "No files found for this input source" on every run. A directory
+    # input with an extension filter checks the same files without the noise.
+    assert "--extensions md,html" in lychee_step
+    assert "--hidden" in lychee_step
+    assert "--exclude-path dev/log" in lychee_step
+    assert re.search(r"^            \.$", lychee_step, re.MULTILINE)
+    assert "'./**/*.html'" not in lychee_step
+    assert "'./**/*.md'" not in lychee_step
     assert "examples/universal-app/index.html" not in lychee_step
     assert "fail: false" in lychee_step
     assert "output: lychee/out.md" in lychee_step
