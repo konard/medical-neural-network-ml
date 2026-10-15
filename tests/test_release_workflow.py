@@ -61,6 +61,7 @@ def test_release_workflow_separates_check_and_write_concurrency() -> None:
             "    concurrency:",
             "      group: ${{ github.workflow }}-main-write",
             "      cancel-in-progress: false",
+            "      queue: max",
         )
     )
     for job_name in ("auto-release", "manual-release"):

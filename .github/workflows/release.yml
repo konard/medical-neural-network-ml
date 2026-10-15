@@ -544,9 +544,13 @@ jobs:
     outputs:
       released: ${{ steps.github_release.outputs.released }}
       version: ${{ steps.github_release.outputs.version }}
+    # queue: max keeps every waiting writer instead of only the newest one: with
+    # the default `single`, a third release cancels the one still pending
+    # (issue #4). GitHub rejects it together with cancel-in-progress: true.
     concurrency:
       group: ${{ github.workflow }}-main-write
       cancel-in-progress: false
+      queue: max
     if: |
       !cancelled() &&
       github.event_name == 'push' && github.ref == 'refs/heads/main' &&
@@ -657,9 +661,13 @@ jobs:
     outputs:
       released: ${{ steps.github_release.outputs.released }}
       version: ${{ steps.github_release.outputs.version }}
+    # queue: max keeps every waiting writer instead of only the newest one: with
+    # the default `single`, a third release cancels the one still pending
+    # (issue #4). GitHub rejects it together with cancel-in-progress: true.
     concurrency:
       group: ${{ github.workflow }}-main-write
       cancel-in-progress: false
+      queue: max
     # !cancelled() prevents the skipped detect-changes dependency from propagating
     # through lint/test/build while still propagating workflow cancellation.
     # The explicit result checks ensure release only proceeds after CI passes.

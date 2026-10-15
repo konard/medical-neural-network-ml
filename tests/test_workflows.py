@@ -14,6 +14,7 @@ from tests.workflow_helpers import (
     assert_action_pin_absent,
     assert_action_pin_count,
     concurrency_keys,
+    concurrency_mappings,
     job_step_deadline_seconds,
     job_timeout_minutes,
     read_workflow,
@@ -345,7 +346,7 @@ def test_concurrency_key_parser_reports_unsupported_keys() -> None:
             "      group: main-write",
             "      # Not a real key.",
             "      cancel-in-progress: false",
-            "      queue: max",
+            "      queue-size: 100",
             "    steps: []",
         )
     )
@@ -353,17 +354,16 @@ def test_concurrency_key_parser_reports_unsupported_keys() -> None:
     assert concurrency_keys(invalid) == [
         "group",
         "cancel-in-progress",
-        "queue",
+        "queue-size",
     ]
 
 
 def test_workflow_concurrency_blocks_use_only_supported_keys() -> None:
     """GitHub ignores unknown concurrency keys instead of rejecting them.
 
-    Regression test for issue #62: ``queue: max`` documented a queuing
-    guarantee the workflow never had. The syntax accepts only ``group`` and
-    ``cancel-in-progress``; with ``cancel-in-progress: false`` GitHub keeps the
-    running job and holds a single pending run per group.
+    Regression test for issue #62. Issue #4 corrected its premise: GitHub
+    documents ``queue`` (``single`` or ``max``) next to ``group`` and
+    ``cancel-in-progress``; only actionlint 1.7.12 does not know it yet.
     https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#concurrency
     """
     checked = 0
@@ -379,6 +379,29 @@ def test_workflow_concurrency_blocks_use_only_supported_keys() -> None:
         checked += len(keys)
 
     assert checked >= 2, f"expected concurrency blocks to be scanned, saw {checked}"
+
+
+def test_queue_max_is_never_combined_with_cancel_in_progress() -> None:
+    """GitHub rejects ``queue: max`` with ``cancel-in-progress: true``.
+
+    An expression such as ``${{ github.ref != 'refs/heads/main' }}`` can
+    evaluate to true, so queued groups must say ``false`` literally.
+    """
+    queued = 0
+
+    for path in sorted(WORKFLOWS.glob("*.y*ml")):
+        for mapping in concurrency_mappings(path.read_text(encoding="utf-8")):
+            if "queue" not in mapping:
+                continue
+            queued += 1
+            assert mapping["queue"] in {"single", "max"}, (path.name, mapping)
+            if mapping["queue"] == "max":
+                assert mapping.get("cancel-in-progress", "false") == "false", (
+                    path.name,
+                    mapping,
+                )
+
+    assert queued >= 2, f"expected the release writers to queue, saw {queued}"
 
 
 def test_workflow_lint_job_validates_every_workflow() -> None:
@@ -404,6 +427,15 @@ def test_workflow_lint_job_validates_every_workflow() -> None:
     assert pin, "actionlint image must be digest-pinned with its tag in a comment"
     assert pin.group(2) == "v1.7.12"
     assert "docker://rhysd/actionlint:1.7" not in job
+    # Issue #4: exactly one message is ignored -- the documented `queue:` key
+    # that 1.7.12 does not know -- so every other finding still fails the job.
+    args = re.search(r"^          args: (.+)$", job, re.MULTILINE)
+    assert args, "actionlint step must pass args"
+    assert shlex.split(args.group(1)) == [
+        "-color",
+        "-ignore",
+        "unexpected key .queue. for .concurrency. section",
+    ]
 
 
 def test_workflow_audit_job_runs_zizmor() -> None:

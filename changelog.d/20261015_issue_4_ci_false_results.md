@@ -23,3 +23,7 @@
 - Trigger the model tests on pull requests that change
   `tests/test_medbench_real_data.py`, `scripts/run-with-budget-warning.sh` or
   `pyproject.toml`, which the jobs run or install from.
+- Restore `queue: max` on the release writers, so a third release no longer
+  cancels the one still waiting for the `main-write` group. GitHub documents
+  `queue`; actionlint 1.7.12 does not know it yet, so only that one message is
+  ignored until rhysd/actionlint#654 ships.
