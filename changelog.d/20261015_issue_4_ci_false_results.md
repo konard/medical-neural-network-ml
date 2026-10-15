@@ -9,3 +9,6 @@
   a `./**/*.html` glob that matched no file and warned "No files found for this
   input source" on every link check. The same files are checked, and
   `dev/log` (collected CI logs) is excluded.
+- Count shell scripts (`.sh`) and JSON files (`.json`) as code in change
+  detection, so a PR that changes only a pipeline script or the medbench
+  sample manifest no longer skips lint, tests, build and the changelog check.
