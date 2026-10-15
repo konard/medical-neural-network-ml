@@ -61,6 +61,22 @@
       "notes": "Label from the file description: \"Spontanpneumothorax links (rechts im Bild) mit leichtem Mediastinalshift\". German description; 'links (rechts im Bild)' = patient's left, image right. Clean, no labels."
     },
     {
+      "sample_id": "xray-normal-1",
+      "task": "imaging-xray",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Normal_posteroanterior_%28PA%29_chest_radiograph_%28X-ray%29.jpg",
+      "sha256": "4cbbcf805291db949e4ff085ca3c7258b2823de21b2857ae684e6c91ff9a38a4",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "author": "Mikael Häggström",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Normal_posteroanterior_(PA)_chest_radiograph_(X-ray).jpg",
+      "truth": {
+        "finding": "normal",
+        "terms": [],
+        "side": "none"
+      },
+      "notes": "Label from the file description: \"It shows a normal chest without any signs of injury.\". 'Dx'/'Sin' side labels only."
+    },
+    {
       "sample_id": "xray-pneumothorax-2",
       "task": "imaging-xray",
       "url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Spontanpneumothorax_rechts_2012.jpg",
@@ -77,6 +93,22 @@
         "side": "right"
       },
       "notes": "Label from the file description: \"Spontanpneumothorax rechts (links im Bild)\". Description also mentions a small basal fluid level and a previous contralateral pneumothorax. No labels."
+    },
+    {
+      "sample_id": "xray-normal-2",
+      "task": "imaging-xray",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/83/Chest_X-ray_2346.jpg",
+      "sha256": "6ac13769db1c4c43a65d6575ea187a5d79529e89ff66a7871902cafe665a71a9",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "author": "Doctoroftcm",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Chest_X-ray_2346.jpg",
+      "truth": {
+        "finding": "normal",
+        "terms": [],
+        "side": "none"
+      },
+      "notes": "Label from the file description: \"The chest X-ray photo of a 30-years-old healthy man.\". Photograph of film with 'R' marker; height 2743 px (> 2500 target)."
     },
     {
       "sample_id": "xray-pleural-effusion-1",
@@ -97,6 +129,22 @@
         "side": "right"
       },
       "notes": "Label from the file description: \"Right sided effusion\". Small 'L' side marker and a 120 mm ruler; no arrows or diagnostic text."
+    },
+    {
+      "sample_id": "xray-normal-3",
+      "task": "imaging-xray",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Normal_AP.JPG",
+      "sha256": "7cf92b6bf6ff91191be9b80e2b39b72c02f08ce45eaefc8a81611b5c8b9d2586",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "author": "James Heilman, MD",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Normal_AP.JPG",
+      "truth": {
+        "finding": "normal",
+        "terms": [],
+        "side": "none"
+      },
+      "notes": "Label from the file description: \"Normal AP chest xray\". AP view; photo of a monitor with burned-in date/DICOM text fragments (no diagnostic text)."
     },
     {
       "sample_id": "xray-pleural-effusion-2",
@@ -163,54 +211,6 @@
       "notes": "Label from the file description: \"Adenocarcinoma of the lungs (right side) on x-ray\". Large right upper-zone mass (adenocarcinoma). Clean."
     },
     {
-      "sample_id": "xray-normal-1",
-      "task": "imaging-xray",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Normal_posteroanterior_%28PA%29_chest_radiograph_%28X-ray%29.jpg",
-      "sha256": "4cbbcf805291db949e4ff085ca3c7258b2823de21b2857ae684e6c91ff9a38a4",
-      "license": "CC0 1.0",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
-      "author": "Mikael Häggström",
-      "source_url": "https://commons.wikimedia.org/wiki/File:Normal_posteroanterior_(PA)_chest_radiograph_(X-ray).jpg",
-      "truth": {
-        "finding": "normal",
-        "terms": [],
-        "side": "none"
-      },
-      "notes": "Label from the file description: \"It shows a normal chest without any signs of injury.\". 'Dx'/'Sin' side labels only."
-    },
-    {
-      "sample_id": "xray-normal-2",
-      "task": "imaging-xray",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/8/83/Chest_X-ray_2346.jpg",
-      "sha256": "6ac13769db1c4c43a65d6575ea187a5d79529e89ff66a7871902cafe665a71a9",
-      "license": "CC0 1.0",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
-      "author": "Doctoroftcm",
-      "source_url": "https://commons.wikimedia.org/wiki/File:Chest_X-ray_2346.jpg",
-      "truth": {
-        "finding": "normal",
-        "terms": [],
-        "side": "none"
-      },
-      "notes": "Label from the file description: \"The chest X-ray photo of a 30-years-old healthy man.\". Photograph of film with 'R' marker; height 2743 px (> 2500 target)."
-    },
-    {
-      "sample_id": "xray-normal-3",
-      "task": "imaging-xray",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Normal_AP.JPG",
-      "sha256": "7cf92b6bf6ff91191be9b80e2b39b72c02f08ce45eaefc8a81611b5c8b9d2586",
-      "license": "CC BY 3.0",
-      "license_url": "https://creativecommons.org/licenses/by/3.0",
-      "author": "James Heilman, MD",
-      "source_url": "https://commons.wikimedia.org/wiki/File:Normal_AP.JPG",
-      "truth": {
-        "finding": "normal",
-        "terms": [],
-        "side": "none"
-      },
-      "notes": "Label from the file description: \"Normal AP chest xray\". AP view; photo of a monitor with burned-in date/DICOM text fragments (no diagnostic text)."
-    },
-    {
       "sample_id": "mri-vestibular-schwannoma-1",
       "task": "imaging-mri",
       "url": "https://upload.wikimedia.org/wikipedia/commons/3/37/Akustikus-Schwannon_rechts_MRT_T1KM_axial_001.jpg",
@@ -232,6 +232,22 @@
         "side": "right"
       },
       "notes": "Label from the file description: \"Schwannoma at the cerebellopontine angle on the right side of the patient (left in the image) in the MRI T1KM axial.\". Axial T1 post-contrast. Clean."
+    },
+    {
+      "sample_id": "mri-normal-1",
+      "task": "imaging-mri",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Brain-T2-axial.png",
+      "sha256": "d5c5b0ebc69b6d2f692fbcee762a2ddd0f0437bf3707b6d62a525cf31185b291",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "Sean Novak",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Brain-T2-axial.png",
+      "truth": {
+        "finding": "normal",
+        "terms": [],
+        "side": "none"
+      },
+      "notes": "Label from the file description: \"Normal axial T2-weighted MR image of the brain.\". Axial T2 at the level of the lateral ventricles. Clean."
     },
     {
       "sample_id": "mri-hemorrhagic-metastasis-1",
@@ -261,6 +277,22 @@
       "notes": "Label from the file description: \"known cerebral melanoma metastasis in the left frontal lobe. This axial T2-weighted MR ... shows a large haematoma with a fluid-fluid level\". Axial T2. An arrow-annotated version exists separately; this one is clean. Finding could also be scored as 'tumor'."
     },
     {
+      "sample_id": "mri-normal-2",
+      "task": "imaging-mri",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Normal_axial_T2-weighted_MR_image_of_the_brain.jpg",
+      "sha256": "3ceab6190d93957c6ace30db10bece675890215a08249cceaf72a3eddda4cc23",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "Novaksean",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Normal_axial_T2-weighted_MR_image_of_the_brain.jpg",
+      "truth": {
+        "finding": "normal",
+        "terms": [],
+        "side": "none"
+      },
+      "notes": "Label from the file description: \"This axial T2-weighted MR image shows a normal brain at the level of the lateral ventricles.\". Small (359x449). Same author as Brain-T2-axial.png but a different subject/slice. Clean."
+    },
+    {
       "sample_id": "mri-cerebral-infarct-1",
       "task": "imaging-mri",
       "url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/DWI_MRI_of_a_cerebral_infarction.jpg",
@@ -280,6 +312,22 @@
         "side": "right"
       },
       "notes": "Label from the file description: \"DWI of a few days old right superiofrontal cortical cerebral infarction\". Axial DWI; isolated slice by Häggström from a Hellerhoff original. Clean."
+    },
+    {
+      "sample_id": "mri-normal-3",
+      "task": "imaging-mri",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/MRI_Head_Brain_Normal.jpg",
+      "sha256": "6943c5b325e227fb34ff30e647a0d789eef6b299cc5161681b5b3b6369209290",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "Ptrump16",
+      "source_url": "https://commons.wikimedia.org/wiki/File:MRI_Head_Brain_Normal.jpg",
+      "truth": {
+        "finding": "normal",
+        "terms": [],
+        "side": "none"
+      },
+      "notes": "Label from the file description: \"MRI of the head (Brain), normal.\". Axial T2 at orbit/midbrain level. Clean."
     },
     {
       "sample_id": "mri-hemorrhagic-contusion-1",
@@ -305,54 +353,6 @@
       "notes": "Label from the file description: \"MRI-scan (T2* Haem) of a frontal intracerebral hemorrhage on the right (left image side) as a contre coup.\". Axial T2* (hemosiderin-sensitive). Clean."
     },
     {
-      "sample_id": "mri-normal-1",
-      "task": "imaging-mri",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Brain-T2-axial.png",
-      "sha256": "d5c5b0ebc69b6d2f692fbcee762a2ddd0f0437bf3707b6d62a525cf31185b291",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "author": "Sean Novak",
-      "source_url": "https://commons.wikimedia.org/wiki/File:Brain-T2-axial.png",
-      "truth": {
-        "finding": "normal",
-        "terms": [],
-        "side": "none"
-      },
-      "notes": "Label from the file description: \"Normal axial T2-weighted MR image of the brain.\". Axial T2 at the level of the lateral ventricles. Clean."
-    },
-    {
-      "sample_id": "mri-normal-2",
-      "task": "imaging-mri",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Normal_axial_T2-weighted_MR_image_of_the_brain.jpg",
-      "sha256": "3ceab6190d93957c6ace30db10bece675890215a08249cceaf72a3eddda4cc23",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "author": "Novaksean",
-      "source_url": "https://commons.wikimedia.org/wiki/File:Normal_axial_T2-weighted_MR_image_of_the_brain.jpg",
-      "truth": {
-        "finding": "normal",
-        "terms": [],
-        "side": "none"
-      },
-      "notes": "Label from the file description: \"This axial T2-weighted MR image shows a normal brain at the level of the lateral ventricles.\". Small (359x449). Same author as Brain-T2-axial.png but a different subject/slice. Clean."
-    },
-    {
-      "sample_id": "mri-normal-3",
-      "task": "imaging-mri",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/MRI_Head_Brain_Normal.jpg",
-      "sha256": "6943c5b325e227fb34ff30e647a0d789eef6b299cc5161681b5b3b6369209290",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "author": "Ptrump16",
-      "source_url": "https://commons.wikimedia.org/wiki/File:MRI_Head_Brain_Normal.jpg",
-      "truth": {
-        "finding": "normal",
-        "terms": [],
-        "side": "none"
-      },
-      "notes": "Label from the file description: \"MRI of the head (Brain), normal.\". Axial T2 at orbit/midbrain level. Clean."
-    },
-    {
       "sample_id": "us-gallstones-1",
       "task": "imaging-ultrasound",
       "url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Schallschatten_bei_Cholecystolithiasis_71W_-_US_-_001.jpg",
@@ -373,6 +373,22 @@
         "side": "none"
       },
       "notes": "Label from the file description: \"Schallschatten bei Cholecystolithiasis mit großem, mutmaßlich verkalktem Konkrement.\". Large gallbladder stone with acoustic shadow. Clean."
+    },
+    {
+      "sample_id": "us-normal-1",
+      "task": "imaging-ultrasound",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Right_kidney_seen_on_abdominal_ultrasound.jpg",
+      "sha256": "08a337271e775641b97e4da45673c19e3cb04e59f00fa2004979336506878ab3",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "Ptrump16",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Right_kidney_seen_on_abdominal_ultrasound.jpg",
+      "truth": {
+        "finding": "normal",
+        "terms": [],
+        "side": "none"
+      },
+      "notes": "Label from the file description: \"Right kidney seen on abdominal ultrasound demonstrating normal anatomy.\". Organ is the right kidney (no lesion side). Scanner parameter text and a length measurement 'L 9.34 cm'; no diagnostic text."
     },
     {
       "sample_id": "us-gallstones-2",
@@ -397,6 +413,22 @@
       "notes": "Label from the file description: \"The gallbladder contains biliary sludge, as well as gallstones, which create acoustic shadowing.\". Unannotated version (annotated .jpg/.svg exist separately). Only a body-marker pictogram. Also shows sludge."
     },
     {
+      "sample_id": "us-normal-2",
+      "task": "imaging-ultrasound",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/43/Gallbladder_and_common_bile_duct_ultrasound.jpg",
+      "sha256": "56714819624a86f26f75c88882ba18a5095126c7a0a22a4726cb5b640c8b7427",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "Ptrump16",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Gallbladder_and_common_bile_duct_ultrasound.jpg",
+      "truth": {
+        "finding": "normal",
+        "terms": [],
+        "side": "none"
+      },
+      "notes": "Label from the file description: \"Normal gallbladder and common bile duct as seen on abdominal ultrasound.\". Scanner parameter text only. Pair with the gallstone images."
+    },
+    {
       "sample_id": "us-hydronephrosis-1",
       "task": "imaging-ultrasound",
       "url": "https://upload.wikimedia.org/wikipedia/commons/2/28/Hydro.jpg",
@@ -415,6 +447,22 @@
         "side": "left"
       },
       "notes": "Label from the file description: \"a patient with left ureteral stone with hydronephrosis\". Body-marker pictogram only. Cause is a left ureteral stone (stone itself probably not in view)."
+    },
+    {
+      "sample_id": "us-normal-3",
+      "task": "imaging-ultrasound",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/55/Ultrasonography_of_a_normal_liver.jpg",
+      "sha256": "c38e255ce5b66e1af9e268ff0ee49dbd8103aebfe4e514d783582209c31ad203",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "author": "Mikael Häggström",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Ultrasonography_of_a_normal_liver.jpg",
+      "truth": {
+        "finding": "normal",
+        "terms": [],
+        "side": "none"
+      },
+      "notes": "Label from the file description: \"Abdominal ultrasonography of a normal liver of a 31-year old man.\". Sagittal, midclavicular line. Clean."
     },
     {
       "sample_id": "us-hydronephrosis-2",
@@ -498,54 +546,6 @@
         "side": "left"
       },
       "notes": "Label from the file description: \"A large left ovarian cyst (5 cm) as seen on ultrasound\". Burned-in scanner label 'SAG LT OV' (organ and side, not the finding) plus 'LOGIQ E9'. No arrows or calipers."
-    },
-    {
-      "sample_id": "us-normal-1",
-      "task": "imaging-ultrasound",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Right_kidney_seen_on_abdominal_ultrasound.jpg",
-      "sha256": "08a337271e775641b97e4da45673c19e3cb04e59f00fa2004979336506878ab3",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "author": "Ptrump16",
-      "source_url": "https://commons.wikimedia.org/wiki/File:Right_kidney_seen_on_abdominal_ultrasound.jpg",
-      "truth": {
-        "finding": "normal",
-        "terms": [],
-        "side": "none"
-      },
-      "notes": "Label from the file description: \"Right kidney seen on abdominal ultrasound demonstrating normal anatomy.\". Organ is the right kidney (no lesion side). Scanner parameter text and a length measurement 'L 9.34 cm'; no diagnostic text."
-    },
-    {
-      "sample_id": "us-normal-2",
-      "task": "imaging-ultrasound",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/4/43/Gallbladder_and_common_bile_duct_ultrasound.jpg",
-      "sha256": "56714819624a86f26f75c88882ba18a5095126c7a0a22a4726cb5b640c8b7427",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "author": "Ptrump16",
-      "source_url": "https://commons.wikimedia.org/wiki/File:Gallbladder_and_common_bile_duct_ultrasound.jpg",
-      "truth": {
-        "finding": "normal",
-        "terms": [],
-        "side": "none"
-      },
-      "notes": "Label from the file description: \"Normal gallbladder and common bile duct as seen on abdominal ultrasound.\". Scanner parameter text only. Pair with the gallstone images."
-    },
-    {
-      "sample_id": "us-normal-3",
-      "task": "imaging-ultrasound",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/5/55/Ultrasonography_of_a_normal_liver.jpg",
-      "sha256": "c38e255ce5b66e1af9e268ff0ee49dbd8103aebfe4e514d783582209c31ad203",
-      "license": "CC0 1.0",
-      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
-      "author": "Mikael Häggström",
-      "source_url": "https://commons.wikimedia.org/wiki/File:Ultrasonography_of_a_normal_liver.jpg",
-      "truth": {
-        "finding": "normal",
-        "terms": [],
-        "side": "none"
-      },
-      "notes": "Label from the file description: \"Abdominal ultrasonography of a normal liver of a 31-year old man.\". Sagittal, midclavicular line. Clean."
     },
     {
       "sample_id": "rx-word-p0007",

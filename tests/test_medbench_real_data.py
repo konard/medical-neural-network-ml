@@ -150,6 +150,12 @@ class TestManifest:
         findings = {s.truth["finding"] == "normal" for s in samples_for(task)}
         assert findings == {True, False}
 
+    @pytest.mark.parametrize("task", [t for t in TASKS if t.startswith("imaging-")])
+    def test_small_runs_see_both_classes(self, task: str) -> None:
+        """CI runs 2 items, so abnormal and normal images alternate."""
+        first = [s.truth["finding"] == "normal" for s in samples_for(task)[:2]]
+        assert first == [False, True]
+
     @pytest.mark.parametrize(
         "task", [t for t in TASKS if t.startswith(("ocr-", "imaging-"))]
     )
