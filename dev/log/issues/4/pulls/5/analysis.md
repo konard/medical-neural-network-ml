@@ -103,7 +103,8 @@ Kinds of finding used below: **E** is an error, **W** a warning, **FN** a false 
 | --- | --- |
 | `::notice::Skipping Codecov upload because CODECOV_TOKEN is not configured` | Deliberate opt-in notice with the fix in the text (template #27). |
 | `::notice::Skipping GitHub Pages deployment. To enable publishing, ...` | Deliberate opt-in notice. |
-| CodeQL `"DEPRECATED - Whether to use buildless (standalone) extraction."` and the `"Controls the level of verbosity..."` lines | A schema dump of extractor options printed by `Initialize CodeQL`, not a warning about this repository. The workflow uses `build-mode: none`. |
+| CodeQL `"DEPRECATED - Whether to use buildless (standalone) extraction."`, `"DEPRECATED: Use --build-mode none instead."` and the `"Controls the level of verbosity..."` lines | A schema dump of extractor options printed by `Initialize CodeQL`, not a warning about this repository. The workflow already uses `build-mode: none`. |
+| `::notice::Skipping Docker build because no Dockerfile is present` | Deliberate opt-in notice: Docker jobs turn on when a `Dockerfile` is added. |
 | `tar ... --warning=no-unknown-keyword` | A tar flag that *suppresses* warnings. |
 | `SKIPPED [40] tests/test_medbench_real_data.py ... set MEDBENCH_NETWORK_TESTS=1` | Network tests are opt-in in the unit test job; `model-tests.yml` runs them with downloads. |
 | `"result": "skipped"` in `Pipeline Status` | `NEEDS_JSON` of jobs that are skipped by design (release jobs on PRs). |
