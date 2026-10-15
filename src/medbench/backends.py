@@ -1,6 +1,6 @@
 """Ways to run a model: one small interface, several implementations.
 
-Every backend turns a text prompt (plus optional PNG images) into text.
+Every backend turns a text prompt (plus optional images) into text.
 
 * :class:`NaiveBayesBackend` needs nothing and answers diagnosis prompts
   with the reference Bayes ranking. It is the floor every model must beat.
@@ -39,6 +39,7 @@ __all__ = [
     "ScriptedBackend",
     "TesseractBackend",
     "TransformersBackend",
+    "image_mime",
 ]
 
 
@@ -67,7 +68,7 @@ class Backend(Protocol):
     def generate(
         self, prompt: str, images: Sequence[bytes] = (), max_tokens: int = 256
     ) -> Generation:
-        """Answer ``prompt``; ``images`` are PNG bytes."""
+        """Answer ``prompt``; ``images`` are PNG or JPEG bytes."""
         ...
 
 
@@ -124,6 +125,17 @@ class NaiveBayesBackend:
         return Generation(text, time.perf_counter() - start)
 
 
+def image_mime(data: bytes) -> str:
+    """MIME type of PNG, JPEG, GIF or WebP bytes (PNG if unknown)."""
+    if data.startswith(b"\xff\xd8"):
+        return "image/jpeg"
+    if data.startswith(b"GIF8"):
+        return "image/gif"
+    if data[:4] == b"RIFF" and data[8:12] == b"WEBP":
+        return "image/webp"
+    return "image/png"
+
+
 class OpenAICompatibleBackend:
     """Client for an OpenAI-compatible chat completions server.
 
@@ -174,7 +186,8 @@ class OpenAICompatibleBackend:
             {
                 "type": "image_url",
                 "image_url": {
-                    "url": "data:image/png;base64," + base64.b64encode(i).decode()
+                    "url": f"data:{image_mime(i)};base64,"
+                    + base64.b64encode(i).decode()
                 },
             }
             for i in images

@@ -396,6 +396,8 @@ def parse_ranked_diagnoses(
     for condition in conditions:
         for name in (condition.name, *condition.aliases):
             lookup[_normalize(name)] = condition.name
+    # Longest first, so "unstable angina" is not read as "stable angina".
+    by_length = sorted(lookup, key=len, reverse=True)
     ranked: list[str] = []
     for line in text.splitlines():
         match = _NUMBERED_LINE.match(line)
@@ -405,7 +407,7 @@ def parse_ranked_diagnoses(
         if not candidate:
             continue
         name = lookup.get(candidate) or next(
-            (canonical for alias, canonical in lookup.items() if alias in candidate),
+            (lookup[alias] for alias in by_length if alias in candidate),
             candidate,
         )
         if name not in ranked:

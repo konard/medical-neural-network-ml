@@ -1,10 +1,12 @@
-"""Command line interface: ``medbench host|estimate|generate|run``.
+"""Command line interface: ``medbench host|estimate|generate|sources|fetch|run``.
 
 Examples::
 
     medbench host
     medbench estimate --model medgemma-27b-it --hardware a100-80gb --quant bf16
     medbench generate --out data/synthetic --count 4
+    medbench sources --task imaging-xray
+    medbench fetch --out data/real
     medbench run --task diagnosis --backend naive-bayes --count 50
     medbench run --task imaging-xray --backend openai --base-url http://127.0.0.1:8080/v1
 """
@@ -28,9 +30,14 @@ from medbench.resources import (
     estimate_finetune_memory,
     estimate_inference,
 )
+from medbench.real_data import (
+    Sample,
+    attribution_lines,
+    default_cache_dir,
+    fetch,
+    load_manifest,
+)
 from medbench.synthetic_cases import generate_cases
-from medbench.synthetic_documents import generate_history, generate_prescription
-from medbench.synthetic_images import generate_phantoms, write_png
 
 __all__ = ["build_parser", "main"]
 
@@ -96,38 +103,42 @@ def _cmd_generate(args: argparse.Namespace) -> int:
     (out / "diagnosis_cases.json").write_text(
         json.dumps(cases, indent=2) + "\n", encoding="utf-8"
     )
-    documents = []
-    for index in range(args.count):
-        for document in (
-            generate_prescription(args.seed + index),
-            generate_history(args.seed + index),
-        ):
-            documents.append({"doc_id": document.doc_id, "text": document.text})
-    (out / "documents.json").write_text(
-        json.dumps(documents, indent=2) + "\n", encoding="utf-8"
-    )
-    labels = []
-    for modality in ("xray", "mri", "ultrasound"):
-        for phantom in generate_phantoms(modality, args.count, args.seed):
-            write_png(out / "images" / f"{phantom.image_id}.png", phantom.pixels)
-            labels.append(
-                {
-                    "image_id": phantom.image_id,
-                    "finding": phantom.finding,
-                    "side": phantom.side,
-                }
-            )
-    (out / "image_labels.json").write_text(
-        json.dumps(labels, indent=2) + "\n", encoding="utf-8"
-    )
+    _print({"written": str(out), "cases": len(cases)})
+    return 0
+
+
+def _selected_samples(task: str | None) -> list[Sample]:
+    return [s for s in load_manifest() if task is None or s.task == task]
+
+
+def _cmd_sources(args: argparse.Namespace) -> int:
     _print(
-        {
-            "written": str(out),
-            "cases": len(cases),
-            "documents": len(documents),
-            "images": len(labels),
-        }
+        [
+            {
+                "id": sample.sample_id,
+                "task": sample.task,
+                "license": sample.license,
+                "author": sample.author,
+                "source": sample.source_url,
+                "truth": sample.truth,
+            }
+            for sample in _selected_samples(args.task)
+        ]
     )
+    return 0
+
+
+def _cmd_fetch(args: argparse.Namespace) -> int:
+    samples = _selected_samples(args.task)
+    target: Path = args.out or default_cache_dir()
+    target.mkdir(parents=True, exist_ok=True)
+    for sample in samples:
+        fetch(sample, target)
+    credits = "".join(f"- {line}\n" for line in attribution_lines(samples))
+    (target / "ATTRIBUTION.md").write_text(
+        "# Sources and licenses\n\n" + credits, encoding="utf-8"
+    )
+    _print({"fetched": len(samples), "directory": str(target)})
     return 0
 
 
@@ -144,7 +155,7 @@ def _make_backend(args: argparse.Namespace) -> Backend:
 
 def _cmd_run(args: argparse.Namespace) -> int:
     budget = ResourceBudget(max_seconds=args.time_budget)
-    task = make_task(args.task, args.count, args.seed)
+    task = make_task(args.task, args.count, args.seed, cache_dir=args.data_dir)
     report = run_task(task, _make_backend(args), budget, max_tokens=args.max_tokens)
     if args.out:
         report.write(args.out)
@@ -176,11 +187,26 @@ def build_parser() -> argparse.ArgumentParser:
     )
     estimate.set_defaults(func=_cmd_estimate)
 
-    generate = commands.add_parser("generate", help="write synthetic test data")
+    generate = commands.add_parser("generate", help="write synthetic diagnosis cases")
     generate.add_argument("--out", type=Path, required=True)
     generate.add_argument("--count", type=int, default=10)
     generate.add_argument("--seed", type=int, default=0)
     generate.set_defaults(func=_cmd_generate)
+
+    sources = commands.add_parser(
+        "sources", help="list the real files, their licenses and answers"
+    )
+    sources.add_argument("--task", choices=TASKS)
+    sources.set_defaults(func=_cmd_sources)
+
+    fetch_cmd = commands.add_parser(
+        "fetch", help="download and verify the real files, write ATTRIBUTION.md"
+    )
+    fetch_cmd.add_argument("--task", choices=TASKS)
+    fetch_cmd.add_argument(
+        "--out", type=Path, help="directory (default: $MEDBENCH_DATA_DIR or cache)"
+    )
+    fetch_cmd.set_defaults(func=_cmd_fetch)
 
     run = commands.add_parser("run", help="score a backend on a task")
     run.add_argument("--task", choices=TASKS, required=True)
@@ -195,6 +221,11 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--time-budget", type=float, default=600.0, help="seconds")
     run.add_argument("--request-timeout", type=float, default=600.0, help="seconds")
     run.add_argument("--out", type=Path, help="write the full JSON report here")
+    run.add_argument(
+        "--data-dir",
+        type=Path,
+        help="cache for real files (default: $MEDBENCH_DATA_DIR)",
+    )
     run.set_defaults(func=_cmd_run)
     return parser
 

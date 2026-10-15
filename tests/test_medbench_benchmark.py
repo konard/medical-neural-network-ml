@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import json
 import threading
-from collections.abc import Iterator, Sequence
+from collections.abc import Iterator
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 from typing import Any
@@ -18,20 +18,17 @@ import pytest
 from medbench.backends import (
     NaiveBayesBackend,
     OpenAICompatibleBackend,
-    ScriptedBackend,
     TesseractBackend,
+    image_mime,
 )
 from medbench.benchmark import (
     DiagnosisTask,
-    ImagingTask,
-    OcrTask,
     make_task,
     parse_yes_no_side,
     run_task,
 )
 from medbench.cli import main
 from medbench.hardware import ResourceBudget
-from medbench.synthetic_images import Phantom
 
 
 class _FakeServer(BaseHTTPRequestHandler):
@@ -86,6 +83,19 @@ class TestBackends:
         assert content[0]["image_url"]["url"] == "data:image/png;base64,iVBORw=="
         assert content[1] == {"type": "text", "text": "hello"}
 
+    @pytest.mark.parametrize(
+        ("data", "mime"),
+        [
+            (b"\xff\xd8\xff\xe0rest", "image/jpeg"),
+            (b"\x89PNG\r\n\x1a\n", "image/png"),
+            (b"GIF89a", "image/gif"),
+            (b"RIFF\x00\x00\x00\x00WEBPVP8 ", "image/webp"),
+        ],
+    )
+    def test_image_mime(self, data: bytes, mime: str) -> None:
+        """Real files are sent with their own type, not always PNG."""
+        assert image_mime(data) == mime
+
     def test_openai_backend_rejects_other_schemes(self) -> None:
         """Only HTTP(S) URLs are allowed."""
         with pytest.raises(ValueError, match="http"):
@@ -118,24 +128,18 @@ class TestParsing:
             ("A cyst is present on the right half.", (True, "right")),
             ("I am not sure.", (False, "none")),
             ("", (False, "none")),
+            ("abnormal: yes; finding: effusion; side: left", (True, "left")),
+            (
+                "Abnormal: Yes; finding: right pneumothorax; side: right",
+                (True, "right"),
+            ),
+            ("abnormal: yes; finding: edema; side: bilateral", (True, "both")),
+            ("abnormal: no; finding: none; side: none", (False, "none")),
         ],
     )
     def test_parse_yes_no_side(self, text: str, expected: tuple[bool, str]) -> None:
-        """The first answer word decides."""
+        """The answer fields, or else the first answer word, decide."""
         assert parse_yes_no_side(text) == expected
-
-
-def _oracle(items: Sequence[Any]) -> ScriptedBackend:
-    """Backend that knows every answer, keyed by prompt and image."""
-    answers = {}
-    for item in items:
-        truth = item.truth
-        if isinstance(truth, Phantom):
-            text = f"Yes, {truth.side}." if truth.has_finding else "No."
-        else:
-            text = truth.text
-        answers[item.images[0]] = text
-    return ScriptedBackend(lambda _prompt, images: answers[images[0]], name="oracle")
 
 
 class TestRunner:
@@ -148,38 +152,6 @@ class TestRunner:
         assert report.metrics["top1"] == report.metrics["reference_top1"]
         assert report.metrics["top5"] >= report.metrics["top1"]
         assert report.metrics["unparsed_answers"] == 0
-
-    @pytest.mark.parametrize("modality", ["xray", "mri", "ultrasound"])
-    def test_imaging_with_oracle(self, modality: str) -> None:
-        """A perfect reader scores 1 everywhere."""
-        task = ImagingTask(modality=modality, count=4, size=32)
-        report = run_task(task, _oracle(task.items()))
-        assert report.task == f"imaging-{modality}"
-        assert report.metrics == {
-            "sensitivity": 1.0,
-            "specificity": 1.0,
-            "accuracy": 1.0,
-            "side_accuracy_when_found": 1.0,
-        }
-
-    def test_imaging_always_normal(self) -> None:
-        """A model that always says 'no' has zero sensitivity."""
-        report = run_task(
-            ImagingTask(count=4, size=32), ScriptedBackend(lambda *_: "No.")
-        )
-        assert report.metrics["sensitivity"] == 0
-        assert report.metrics["specificity"] == 1
-
-    @pytest.mark.parametrize("kind", ["prescription", "history"])
-    def test_ocr_with_oracle(self, kind: str) -> None:
-        """Perfect transcription has zero error rates."""
-        pytest.importorskip("PIL")
-        task = OcrTask(kind=kind, count=2)
-        report = run_task(task, _oracle(task.items()))
-        assert report.metrics["cer"] == 0
-        assert report.metrics["wer"] == 0
-        if kind == "prescription":
-            assert report.metrics["drug_and_strength_recall"] == 1
 
     def test_time_budget_stops_early(self) -> None:
         """No items run when the budget is already used up."""
@@ -199,10 +171,12 @@ class TestRunner:
         assert len(data["results"]) == 3
         assert set(data["latency"]) == {"mean_s", "p50_s", "p95_s", "total_s"}
 
-    def test_make_task(self) -> None:
-        """Every listed task can be created; unknown names fail."""
+    def test_make_task(self, tmp_path: Path) -> None:
+        """Every listed task can be created without a download."""
         assert make_task("ocr-history", 1).name == "ocr-history"
-        assert make_task("imaging-mri", 1).name == "imaging-mri"
+        task = make_task("imaging-mri", 1, cache_dir=tmp_path)
+        assert task.name == "imaging-mri"
+        assert not list(tmp_path.iterdir())
         with pytest.raises(KeyError, match="unknown task"):
             make_task("ocr-xray", 1)
 
@@ -223,12 +197,11 @@ class TestCli:
         assert json.loads(capsys.readouterr().out)["cpu_count"] >= 1
 
     def test_generate(self, tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
-        """Synthetic data is written to disk."""
+        """Only text diagnosis cases are generated; no fake media."""
         assert main(["generate", "--out", str(tmp_path), "--count", "2"]) == 0
         summary = json.loads(capsys.readouterr().out)
-        assert summary["images"] == 6
-        assert len(list((tmp_path / "images").glob("*.png"))) == 6
-        assert (tmp_path / "diagnosis_cases.json").exists()
+        assert summary["cases"] == 2
+        assert [p.name for p in tmp_path.iterdir()] == ["diagnosis_cases.json"]
 
     def test_run_with_server(
         self, server_url: str, tmp_path: Path, capsys: pytest.CaptureFixture[str]

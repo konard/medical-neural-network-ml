@@ -19,7 +19,7 @@ from medbench.synthetic_cases import (
     build_diagnosis_prompt,
     parse_ranked_diagnoses,
 )
-from medbench.synthetic_images import chest_xray, encode_png
+from medbench.real_data import fetch, prepare_image, samples_for
 
 BASE_URL = os.environ.get("MEDBENCH_BASE_URL", "")
 VISION = os.environ.get("MEDBENCH_VISION", "0") == "1"
@@ -61,10 +61,13 @@ def test_textbook_case_gets_a_ranked_differential(
 def test_model_answers_questions_about_an_image(
     backend: OpenAICompatibleBackend,
 ) -> None:
-    """The image reaches the model and it answers yes or no."""
-    phantom = chest_xray(seed=3, size=256, abnormal=True)
-    answer = backend.generate(
-        phantom.question, [encode_png(phantom.pixels)], max_tokens=32
+    """A real chest X-ray reaches the model and it answers yes or no."""
+    sample = samples_for("imaging-xray")[0]
+    image = prepare_image(fetch(sample).read_bytes())
+    question = (
+        "This is a real frontal chest X-ray. Is there an abnormal finding? "
+        "Answer on one line: abnormal: yes or no; finding: <name>; side: <side>."
     )
+    answer = backend.generate(question, [image], max_tokens=48)
     assert re.search(r"\b(yes|no)\b", answer.text.lower()), answer.text
     assert answer.prompt_tokens > 64, "the image was not turned into tokens"

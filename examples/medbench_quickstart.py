@@ -1,12 +1,12 @@
-"""medbench quick start (issue #1): data, a baseline score and a resource estimate.
-
-Runs in a few seconds on any laptop and downloads nothing:
+"""medbench quick start (issue #1): real data, a baseline score and a resource estimate.
 
     python examples/medbench_quickstart.py [OUT_DIR]
 
-1. Writes one synthetic sample of each kind (prescription, history, X-ray,
-   MRI, ultrasound) as PNG files. The pictures in
-   docs/case-studies/issue-1/images were made this way.
+1. Downloads the real, openly licensed X-rays, MRI and ultrasound images,
+   prescriptions and case histories listed in
+   ``src/medbench/data/real_samples.json`` into OUT_DIR, checks each SHA-256
+   and writes ``ATTRIBUTION.md`` with the author and license of every file.
+   Nothing is stored in the repository.
 2. Scores the naive Bayes reference on the diagnosis task. The patients are
    made from known probabilities, so this ranking is the best possible answer
    and a real model should come close to it.
@@ -22,39 +22,25 @@ from pathlib import Path
 from medbench.backends import NaiveBayesBackend
 from medbench.benchmark import make_task, run_task
 from medbench.models import get_model
+from medbench.real_data import attribution_lines, fetch, load_manifest
 from medbench.resources import HARDWARE, estimate_inference
-from medbench.synthetic_documents import (
-    generate_history,
-    generate_prescription,
-    render_document,
-)
-from medbench.synthetic_images import chest_xray, mri_brain, ultrasound, write_png
 
 
-def write_samples(out: Path) -> None:
-    """Write the five sample pictures used in the case study."""
-    out.mkdir(parents=True, exist_ok=True)
-    for name, make in (
-        ("xray", chest_xray),
-        ("mri", mri_brain),
-        ("ultrasound", ultrasound),
-    ):
-        phantom = make(3, size=256, abnormal=True)
-        write_png(out / f"phantom-{name}.png", phantom.pixels)
-        print(f"phantom-{name}.png: finding on the {phantom.side} side")
-    prescription = generate_prescription(7)
-    render_document(prescription, "handwritten", seed=7).save(
-        out / "prescription-handwritten.png"
-    )
-    render_document(generate_history(7), "printed").save(out / "history-printed.png")
-    print("prescription text the OCR model should return:")
-    print(prescription.text)
+def download_samples(out: Path) -> None:
+    """Fetch every real sample and credit its author."""
+    samples = load_manifest()
+    for sample in samples:
+        path = fetch(sample, out)
+        print(f"{path.name}: {sample.task}, {sample.license}, {sample.truth}")
+    lines = attribution_lines(samples)
+    credits = "# Sources and licenses\n\n" + "".join(f"- {x}\n" for x in lines)
+    (out / "ATTRIBUTION.md").write_text(credits, encoding="utf-8")
 
 
 def main() -> None:
     """Run the three steps."""
     out = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("medbench-samples")
-    write_samples(out)
+    download_samples(out)
 
     report = run_task(make_task("diagnosis", count=50), NaiveBayesBackend())
     print(

@@ -4,15 +4,23 @@ A task makes test items (prompt, images, truth) and scores answers. The
 runner feeds every item to a backend, times it, stops at the time budget and
 writes a JSON report. Three task families follow the issue:
 
-* ``diagnosis``: ranked differential diagnosis from symptoms;
-* ``ocr-prescription`` / ``ocr-history``: transcribe a rendered document;
-* ``imaging-xray`` / ``imaging-mri`` / ``imaging-ultrasound``: find a
-  synthetic finding and its side.
+* ``diagnosis``: ranked differential diagnosis from symptoms of generated
+  patients with an exact answer;
+* ``diagnosis-ddxplus``: the same on DDXPlus patients (realistic medical
+  interviews, CC BY 4.0);
+* ``ocr-prescription`` / ``ocr-history``: transcribe a real handwritten
+  prescription or a real printed case history;
+* ``imaging-xray`` / ``imaging-mri`` / ``imaging-ultrasound``: say whether
+  a real image is abnormal, name the finding and its side.
+
+The documents and images are real, openly licensed files that are
+downloaded on first use (see :mod:`medbench.real_data`). Only the
+``diagnosis`` cases are generated: they are short texts with an exact
+answer, used to check the scoring and the naive Bayes reference.
 """
 
 from __future__ import annotations
 
-import io
 import json
 import re
 import statistics
@@ -22,6 +30,11 @@ from pathlib import Path
 from typing import Any, Protocol
 
 from medbench.backends import Backend
+from medbench.ddxplus import (
+    DdxplusData,
+    build_ddxplus_prompt,
+    ddxplus_conditions,
+)
 from medbench.hardware import BudgetExceededError, ResourceBudget
 from medbench.metrics import (
     BinaryCounts,
@@ -31,22 +44,17 @@ from medbench.metrics import (
     top_k_accuracy,
     wer,
 )
+from medbench.real_data import Sample, fetch, prepare_image, samples_for
 from medbench.synthetic_cases import (
     build_diagnosis_prompt,
     generate_cases,
     parse_ranked_diagnoses,
 )
-from medbench.synthetic_documents import (
-    SyntheticDocument,
-    generate_history,
-    generate_prescription,
-    render_document,
-)
-from medbench.synthetic_images import encode_png, generate_phantoms
 
 __all__ = [
     "TASKS",
     "BenchItem",
+    "DdxplusTask",
     "DiagnosisTask",
     "ImagingTask",
     "ItemResult",
@@ -133,26 +141,111 @@ class DiagnosisTask:
         }
 
 
-_OCR_PROMPT = (
-    "Transcribe all text in this synthetic medical document exactly as written, "
-    "line by line. Output only the text."
-)
+@dataclass
+class DdxplusTask:
+    """Ranked differential diagnosis on DDXPlus test patients.
+
+    The interview answers come from :mod:`medbench.ddxplus`; the truth is
+    the patient's condition, and the expert system's own differential is
+    reported as the reference a model should approach.
+    """
+
+    count: int = 20
+    top_k: int = 5
+    cache_dir: Path | None = None
+    samples: Sequence[Sample] | None = None
+    name: str = "diagnosis-ddxplus"
+
+    def items(self) -> list[BenchItem]:
+        """One item per patient (downloads the data on first use)."""
+        data = DdxplusData.load(self.cache_dir, self.samples)
+        return [
+            BenchItem(
+                patient.patient_id,
+                build_ddxplus_prompt(patient, data.conditions, self.top_k),
+                patient,
+            )
+            for patient in data.patients(self.count)
+        ]
+
+    def score(
+        self, items: Sequence[BenchItem], results: Sequence[ItemResult]
+    ) -> dict[str, float]:
+        """Top-1/3/k and MRR against the true condition, next to DDXPlus's own."""
+        reference = [list(item.truth.differential) for item in items]
+        truths = [item.truth.pathology for item in items]
+        known = ddxplus_conditions(
+            sorted({*truths, *(n for r in reference for n in r)})
+        )
+        rankings = [parse_ranked_diagnoses(r.output, known) for r in results]
+        hits = [float(t in r[:1]) for t, r in zip(truths, rankings)]
+        low, high = bootstrap_ci(hits)
+        k = self.top_k
+        return {
+            "top1": top_k_accuracy(truths, rankings, 1),
+            "top1_ci_low": low,
+            "top1_ci_high": high,
+            "top3": top_k_accuracy(truths, rankings, 3),
+            f"top{k}": top_k_accuracy(truths, rankings, k),
+            "mrr": mean_reciprocal_rank(truths, rankings),
+            "reference_top1": top_k_accuracy(truths, reference, 1),
+            f"reference_top{k}": top_k_accuracy(truths, reference, k),
+            "unparsed_answers": float(sum(not ranking for ranking in rankings)),
+        }
 
 
-def _png_bytes(document: SyntheticDocument, style: str, seed: int) -> bytes:
-    buffer = io.BytesIO()
-    render_document(document, style=style, seed=seed).save(buffer, format="PNG")
-    return buffer.getvalue()
+def _real_items(
+    task: str,
+    samples: Sequence[Sample] | None,
+    cache_dir: Path | None,
+    count: int,
+    max_side: int = 1024,
+) -> list[tuple[Sample, bytes]]:
+    """The first ``count`` real samples of ``task`` as PNG-ready bytes."""
+    chosen = samples_for(task, samples)[:count]
+    items = []
+    for sample in chosen:
+        data = fetch(sample, cache_dir).read_bytes()
+        try:
+            data = prepare_image(data, max_side)
+        except ImportError:  # pragma: no cover - Pillow is in the dev extra
+            pass
+        items.append((sample, data))
+    return items
+
+
+_OCR_PROMPTS = {
+    "prescription": (
+        "This is one handwritten word or dose cut from a real medical "
+        "prescription. Transcribe it exactly as written. Output only the text."
+    ),
+    "history": (
+        "This is a scanned page of a real printed medical case history. "
+        "Transcribe all text exactly as written, line by line. Output only "
+        "the text."
+    ),
+}
+
+
+def _normalise(text: str) -> str:
+    """Lower case, no punctuation; keeps decimal points, ``%`` and ``/``."""
+    kept = re.sub(r"[^\w%/.]+", " ", text.lower())
+    return " ".join(re.sub(r"(?<!\d)\.|\.(?!\d)", " ", kept).split())
 
 
 @dataclass
 class OcrTask:
-    """Transcription of rendered prescriptions or histories (needs Pillow)."""
+    """Transcription of real scanned or photographed medical documents.
+
+    Files come from :mod:`medbench.real_data` and are downloaded on first
+    use; ``truth`` holds the human transcription and the key terms (drug
+    names, doses, diagnoses) a useful reader must get right.
+    """
 
     kind: str = "prescription"
-    style: str = "handwritten"
     count: int = 10
-    seed: int = 0
+    samples: Sequence[Sample] | None = None
+    cache_dir: Path | None = None
     name: str = field(init=False)
 
     def __post_init__(self) -> None:
@@ -160,46 +253,30 @@ class OcrTask:
         self.name = f"ocr-{self.kind}"
 
     def items(self) -> list[BenchItem]:
-        """One rendered document per item."""
-        make = (
-            generate_prescription if self.kind == "prescription" else generate_history
-        )
-        documents = [make(self.seed + i) for i in range(self.count)]
+        """One real document per item."""
         return [
-            BenchItem(
-                doc.doc_id,
-                _OCR_PROMPT,
-                doc,
-                (_png_bytes(doc, self.style, self.seed + i),),
+            BenchItem(sample.sample_id, _OCR_PROMPTS[self.kind], sample, (image,))
+            for sample, image in _real_items(
+                self.name, self.samples, self.cache_dir, self.count, max_side=2048
             )
-            for i, doc in enumerate(documents)
         ]
 
     def score(
         self, items: Sequence[BenchItem], results: Sequence[ItemResult]
     ) -> dict[str, float]:
-        """Mean CER/WER and, for prescriptions, the share of drugs read right."""
-        cers = [
-            cer(item.truth.text, result.output) for item, result in zip(items, results)
-        ]
-        wers = [
-            wer(item.truth.text, result.output) for item, result in zip(items, results)
-        ]
-        scores = {
-            "cer": statistics.fmean(cers) if cers else 0.0,
-            "wer": statistics.fmean(wers) if wers else 0.0,
+        """Mean CER/WER on normalised text and the share of key terms read."""
+        truths = [_normalise(item.truth.truth["text"]) for item in items]
+        outputs = [_normalise(result.output) for result in results]
+        found = total = 0
+        for item, output in zip(items, outputs):
+            for term in item.truth.truth.get("key_terms", ()):
+                total += 1
+                found += _normalise(term) in output
+        return {
+            "cer": statistics.fmean(map(cer, truths, outputs)) if truths else 0.0,
+            "wer": statistics.fmean(map(wer, truths, outputs)) if truths else 0.0,
+            "key_term_recall": found / total if total else 0.0,
         }
-        if self.kind == "prescription":
-            found = total = 0
-            for item, result in zip(items, results):
-                output = result.output.lower()
-                for entry in item.truth.fields["items"]:
-                    total += 1
-                    found += (
-                        entry["drug"] in output and entry["strength"].lower() in output
-                    )
-            scores["drug_and_strength_recall"] = found / total if total else 0.0
-        return scores
 
 
 _ANSWER = re.compile(r"\b(yes|no|present|absent|normal|not)\b", re.IGNORECASE)
@@ -209,29 +286,65 @@ def parse_yes_no_side(text: str) -> tuple[bool, str]:
     """Read a yes/no answer and a side (``left``/``right``/``none``).
 
     The first answer word decides: "Yes, in the left lung" is positive, "No
-    nodule is seen" and "There is not a lesion" are negative.
+    nodule is seen" and "There is not a lesion" are negative. A line such as
+    ``abnormal: yes; finding: effusion; side: left`` is read by its fields.
     """
     lowered = text.lower()
-    match = _ANSWER.search(lowered)
-    positive = match is not None and match.group(1) in {"yes", "present"}
+    field_match = re.search(r"abnormal\s*:\s*(yes|no)", lowered)
+    if field_match:
+        positive = field_match.group(1) == "yes"
+    else:
+        match = _ANSWER.search(lowered)
+        positive = match is not None and match.group(1) in {"yes", "present"}
     side = "none"
     if positive:
-        left, right = lowered.find("left"), lowered.find("right")
-        if left >= 0 and (right < 0 or left < right):
-            side = "left"
-        elif right >= 0:
-            side = "right"
+        side_match = re.search(r"side\s*:\s*(left|right|both|bilateral)", lowered)
+        if side_match:
+            side = {"bilateral": "both"}.get(side_match.group(1), side_match.group(1))
+        else:
+            left, right = lowered.find("left"), lowered.find("right")
+            if left >= 0 and (right < 0 or left < right):
+                side = "left"
+            elif right >= 0:
+                side = "right"
     return positive, side
+
+
+_IMAGING_PROMPT = (
+    "This is a real {what}. Is there an abnormal finding? Answer on one line "
+    "in this form: abnormal: yes or no; finding: <the main finding, or none>; "
+    "side: <left, right, both or none, as the patient's side>."
+)
+
+_MODALITY = {
+    "xray": "frontal chest X-ray",
+    "mri": "brain MRI slice",
+    "ultrasound": "ultrasound image",
+}
+
+
+def _ordered(pool: list[Sample]) -> list[Sample]:
+    """Interleave abnormal and normal samples so any prefix is balanced."""
+    abnormal = [s for s in pool if s.truth["finding"] != "normal"]
+    normal = [s for s in pool if s.truth["finding"] == "normal"]
+    mixed: list[Sample] = []
+    for index in range(max(len(abnormal), len(normal))):
+        mixed.extend(group[index] for group in (abnormal, normal) if index < len(group))
+    return mixed
 
 
 @dataclass
 class ImagingTask:
-    """Detect a synthetic finding and its side on a phantom image."""
+    """Find and name the finding on a real X-ray, MRI or ultrasound image.
+
+    Labels come from the radiologist or physician who published the image
+    (see each sample's ``source_url``). Normal images are the negatives.
+    """
 
     modality: str = "xray"
     count: int = 10
-    seed: int = 0
-    size: int = 128
+    samples: Sequence[Sample] | None = None
+    cache_dir: Path | None = None
     name: str = field(init=False)
 
     def __post_init__(self) -> None:
@@ -239,34 +352,45 @@ class ImagingTask:
         self.name = f"imaging-{self.modality}"
 
     def items(self) -> list[BenchItem]:
-        """Balanced phantoms: half with a finding."""
+        """Real images, alternating abnormal and normal."""
+        pool = list(samples_for(self.name, self.samples))
+        pairs = _real_items(self.name, _ordered(pool), self.cache_dir, self.count)
+        prompt = _IMAGING_PROMPT.format(what=_MODALITY[self.modality])
         return [
-            BenchItem(p.image_id, p.question, p, (encode_png(p.pixels),))
-            for p in generate_phantoms(self.modality, self.count, self.seed, self.size)
+            BenchItem(sample.sample_id, prompt, sample, (image,))
+            for sample, image in pairs
         ]
 
     def score(
         self, items: Sequence[BenchItem], results: Sequence[ItemResult]
     ) -> dict[str, float]:
-        """Sensitivity, specificity, accuracy and side accuracy."""
+        """Sensitivity, specificity, finding recall and side accuracy."""
         parsed = [parse_yes_no_side(result.output) for result in results]
-        truths = [item.truth.has_finding for item in items]
-        counts = BinaryCounts.from_predictions(truths, [p for p, _ in parsed])
+        truths = [item.truth.truth for item in items]
+        abnormal = [truth["finding"] != "normal" for truth in truths]
+        counts = BinaryCounts.from_predictions(abnormal, [p for p, _ in parsed])
+        named = [
+            any(term in result.output.lower() for term in truth["terms"])
+            for truth, result, sick in zip(truths, results, abnormal)
+            if sick
+        ]
         sides = [
-            side == item.truth.side
-            for item, (positive, side) in zip(items, parsed)
-            if item.truth.has_finding and positive
+            side == truth["side"]
+            for truth, (positive, side) in zip(truths, parsed)
+            if truth["side"] in {"left", "right", "both"} and positive
         ]
         return {
             "sensitivity": counts.sensitivity,
             "specificity": counts.specificity,
             "accuracy": counts.accuracy,
+            "finding_recall": sum(named) / len(named) if named else 0.0,
             "side_accuracy_when_found": sum(sides) / len(sides) if sides else 0.0,
         }
 
 
 TASKS = (
     "diagnosis",
+    "diagnosis-ddxplus",
     "ocr-prescription",
     "ocr-history",
     "imaging-xray",
@@ -275,19 +399,26 @@ TASKS = (
 )
 
 
-def make_task(name: str, count: int, seed: int = 0) -> Task:
+def make_task(
+    name: str, count: int, seed: int = 0, cache_dir: Path | None = None
+) -> Task:
     """Create a task by name (see :data:`TASKS`).
+
+    ``seed`` only changes the generated diagnosis cases; real files always
+    come in manifest order. ``cache_dir`` is where real files are kept.
 
     Raises:
         KeyError: If the name is unknown.
     """
     if name == "diagnosis":
         return DiagnosisTask(count=count, seed=seed)
+    if name == "diagnosis-ddxplus":
+        return DdxplusTask(count=count, cache_dir=cache_dir)
     if name.startswith("ocr-") and name in TASKS:
-        return OcrTask(kind=name.removeprefix("ocr-"), count=count, seed=seed)
+        return OcrTask(kind=name.removeprefix("ocr-"), count=count, cache_dir=cache_dir)
     if name.startswith("imaging-") and name in TASKS:
         return ImagingTask(
-            modality=name.removeprefix("imaging-"), count=count, seed=seed
+            modality=name.removeprefix("imaging-"), count=count, cache_dir=cache_dir
         )
     message = f"unknown task {name!r}; choose from {', '.join(TASKS)}"
     raise KeyError(message)

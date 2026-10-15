@@ -11,14 +11,14 @@ lists which changes are safe for each modality.
 from __future__ import annotations
 
 import random
-
-from medbench.synthetic_images import Phantom
+from dataclasses import dataclass, replace
 
 __all__ = [
     "OCR_CONFUSIONS",
+    "LabeledImage",
     "adjust_contrast",
     "add_gaussian_noise",
-    "augment_phantom",
+    "augment_image",
     "flip_horizontal",
     "ocr_noise",
     "safe_image_augmentations",
@@ -27,6 +27,22 @@ __all__ = [
 ]
 
 Pixels = list[list[int]]
+
+
+@dataclass(frozen=True)
+class LabeledImage:
+    """A greyscale image (rows of 0-255 values) and the labels it carries.
+
+    ``side`` is where the finding is (``left``, ``right``, ``both`` or
+    ``none``); a flip must swap it.
+    """
+
+    image_id: str
+    modality: str
+    pixels: Pixels
+    finding: str
+    side: str
+
 
 # Characters that OCR engines often confuse, and that matter in medicine:
 # "1" vs "l" turns 1 mg into l mg, "0" vs "O" changes doses.
@@ -61,17 +77,14 @@ def _clip(value: float) -> int:
     return max(0, min(255, round(value)))
 
 
-def flip_horizontal(phantom: Phantom) -> Phantom:
+def flip_horizontal(image: LabeledImage) -> LabeledImage:
     """Mirror an image and swap its left/right label to keep it truthful."""
-    swapped = {"left": "right", "right": "left"}.get(phantom.side, phantom.side)
-    return Phantom(
-        image_id=f"{phantom.image_id}-flip",
-        modality=phantom.modality,
-        pixels=[row[::-1] for row in phantom.pixels],
-        mask=[row[::-1] for row in phantom.mask],
-        finding=phantom.finding,
+    swapped = {"left": "right", "right": "left"}.get(image.side, image.side)
+    return replace(
+        image,
+        image_id=f"{image.image_id}-flip",
+        pixels=[row[::-1] for row in image.pixels],
         side=swapped,
-        question=phantom.question,
     )
 
 
@@ -115,27 +128,18 @@ def safe_image_augmentations(modality: str) -> tuple[str, ...]:
     return (*common, "flip_with_side_swap")
 
 
-def augment_phantom(phantom: Phantom, seed: int) -> Phantom:
-    """Apply a random safe augmentation chain to a phantom."""
+def augment_image(image: LabeledImage, seed: int) -> LabeledImage:
+    """Apply a random safe augmentation chain; labels stay true."""
     rng = random.Random(seed)
-    options = safe_image_augmentations(phantom.modality)
-    result = phantom
+    options = safe_image_augmentations(image.modality)
+    result = image
     if "flip_with_side_swap" in options and rng.random() < 0.5:
         result = flip_horizontal(result)
     dx, dy = rng.randint(-3, 3), rng.randint(-3, 3)
     pixels = shift(result.pixels, dx, dy)
-    mask = shift(result.mask, dx, dy)
     pixels = adjust_contrast(pixels, rng.uniform(0.85, 1.15), rng.uniform(-10, 10))
     pixels = add_gaussian_noise(pixels, rng.uniform(0, 6), seed=seed)
-    return Phantom(
-        image_id=f"{result.image_id}-aug{seed}",
-        modality=result.modality,
-        pixels=pixels,
-        mask=mask,
-        finding=result.finding,
-        side=result.side,
-        question=result.question,
-    )
+    return replace(result, image_id=f"{result.image_id}-aug{seed}", pixels=pixels)
 
 
 def ocr_noise(text: str, rate: float, seed: int = 0) -> str:

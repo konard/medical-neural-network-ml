@@ -135,6 +135,7 @@ pythonpath = ["src"]
 markers = [
     "model: needs a running model server or downloaded weights (opt-in)",
     "gpu: needs an NVIDIA GPU (self-hosted runner)",
+    "network: downloads the real sample files (opt-in, MEDBENCH_NETWORK_TESTS=1)",
 ]
 
 [tool.coverage.run]
