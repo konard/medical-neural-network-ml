@@ -12,11 +12,13 @@ import io
 import json
 import os
 import re
+import urllib.error
 import urllib.request
 import zipfile
 from collections.abc import Sequence
 from dataclasses import replace
 from pathlib import Path
+from email.message import Message
 from typing import Any
 
 import pytest
@@ -82,6 +84,24 @@ class _Opener:
         del timeout
         self.requests.append(request)
         return _Response(self.data)
+
+
+class _FailingOpener(_Opener):
+    """Answers with HTTP errors first, then serves the bytes."""
+
+    def __init__(self, data: bytes, errors: Sequence[tuple[int, dict[str, str]]]):
+        super().__init__(data)
+        self.errors = list(errors)
+
+    def __call__(self, request: urllib.request.Request, timeout: float) -> _Response:
+        if self.errors:
+            self.requests.append(request)
+            code, headers = self.errors.pop(0)
+            message = Message()
+            for name, value in headers.items():
+                message[name] = value
+            raise urllib.error.HTTPError(request.full_url, code, "no", message, None)
+        return super().__call__(request, timeout)
 
 
 class TestManifest:
@@ -188,6 +208,32 @@ class TestFetch:
         bad = replace(sample, sample_id="P3", archive_sha256="0" * 64)
         with pytest.raises(ChecksumError, match="archive"):
             fetch(bad, tmp_path / "other", opener=opener)
+
+    def test_rate_limit_waits_as_asked(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """A 429 or 503 is retried after the server's Retry-After delay."""
+        waits: list[float] = []
+        monkeypatch.setattr("medbench.real_data.time.sleep", waits.append)
+        errors = [(429, {"Retry-After": "7"}), (503, {}), (429, {"Retry-After": "900"})]
+        opener = _FailingOpener(b"ok", errors)
+        sample = _sample("r", b"ok", "imaging-xray")
+        assert fetch(sample, tmp_path, opener=opener, attempts=4).read_bytes() == b"ok"
+        assert waits == [7.0, 10.0, 120.0]
+        assert len(opener.requests) == 4
+
+    @pytest.mark.parametrize("code", [403, 404])
+    def test_permanent_errors_fail_at_once(
+        self, code: int, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """A missing or forbidden file is not asked for again."""
+        waits: list[float] = []
+        monkeypatch.setattr("medbench.real_data.time.sleep", waits.append)
+        opener = _FailingOpener(b"ok", [(code, {})])
+        with pytest.raises(urllib.error.HTTPError):
+            fetch(_sample("p", b"ok", "imaging-xray"), tmp_path, opener=opener)
+        assert waits == []
+        assert len(opener.requests) == 1
 
     def test_offline_mode(
         self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch

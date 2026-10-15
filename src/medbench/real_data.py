@@ -20,10 +20,12 @@ import json
 import os
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 import zipfile
 from collections.abc import Callable, Iterable, Sequence
 from dataclasses import dataclass, field
+from email.utils import parsedate_to_datetime
 from importlib import resources
 from pathlib import Path
 from typing import Any
@@ -150,8 +152,45 @@ def _sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+# Wikimedia's robot policy asks bots to go one request at a time and to wait
+# as long as a 429 reply's Retry-After says. CI runners share IP addresses
+# with other bots, so 429 does happen there.
+# https://wikitech.wikimedia.org/wiki/Robot_policy
+_PAUSE_SECONDS = 1.0
+_MAX_WAIT_SECONDS = 120.0
+_RETRY_STATUS = frozenset({408, 429, 500, 502, 503, 504})
+_last_request: dict[str, float] = {}
+
+
 def _open(request: urllib.request.Request, timeout: float) -> Any:
+    host = urllib.parse.urlsplit(request.full_url).netloc
+    idle = time.monotonic() - _last_request.get(host, float("-inf"))
+    if idle < _PAUSE_SECONDS:
+        time.sleep(_PAUSE_SECONDS - idle)
+    _last_request[host] = time.monotonic()
     return urllib.request.urlopen(request, timeout=timeout)  # noqa: S310
+
+
+def _retry_after(error: urllib.error.HTTPError) -> float | None:
+    value = str(error.headers.get("Retry-After", "") if error.headers else "")
+    value = value.strip()
+    if value.isdigit():
+        return float(value)
+    try:
+        moment = parsedate_to_datetime(value)
+    except (TypeError, ValueError):
+        return None
+    return max(0.0, float(moment.timestamp()) - time.time())
+
+
+def _wait_before_retry(error: Exception, attempt: int) -> float | None:
+    """Seconds to wait before the next try, or ``None`` if retrying is useless."""
+    backoff = 5.0 * 2.0 ** (attempt - 1)
+    if isinstance(error, urllib.error.HTTPError):
+        if error.code not in _RETRY_STATUS:
+            return None
+        backoff = _retry_after(error) or backoff
+    return min(backoff, _MAX_WAIT_SECONDS)
 
 
 def _download(url: str, opener: Opener, timeout: float, attempts: int) -> bytes:
@@ -160,10 +199,11 @@ def _download(url: str, opener: Opener, timeout: float, attempts: int) -> bytes:
         try:
             with opener(request, timeout) as response:
                 return bytes(response.read())
-        except (urllib.error.URLError, TimeoutError, ConnectionError):
-            if attempt == attempts:
+        except (urllib.error.URLError, TimeoutError, ConnectionError) as error:
+            wait = _wait_before_retry(error, attempt)
+            if wait is None or attempt == attempts:
                 raise
-            time.sleep(2**attempt)
+            time.sleep(wait)
     message = "attempts must be at least 1"
     raise ValueError(message)
 
@@ -207,7 +247,7 @@ def fetch(
     cache_dir: Path | None = None,
     opener: Opener = _open,
     timeout: float = 60.0,
-    attempts: int = 3,
+    attempts: int = 5,
 ) -> Path:
     """Return the local path of ``sample``, downloading it if needed.
 
