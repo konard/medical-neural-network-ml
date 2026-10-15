@@ -426,11 +426,14 @@ jobs:
           cd "$PYTHON_ROOT"
           twine check dist/*
 
+      # The default `warn` lets a build with an empty dist/ pass here and only
+      # fail later in the publish job (issue #4).
       - name: Upload artifacts
         uses: actions/upload-artifact@v7
         with:
           name: dist
           path: ${{ steps.python_layout.outputs.dist_dir }}
+          if-no-files-found: error
 
   # === CHANGELOG CHECK - only runs on PRs with code changes ===
   # Docs-only PRs (./docs folder, markdown files) don't require changelog fragments

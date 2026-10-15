@@ -235,6 +235,32 @@ def test_no_workflow_uses_a_superseded_first_party_major() -> None:
     assert not stale, f"expected {current}, found {stale}"
 
 
+def test_every_artifact_upload_fails_when_it_finds_no_files() -> None:
+    """An empty upload must fail where it happens, not in a later job.
+
+    Issue #4: the release `dist` upload used the default `warn`, so a build
+    that produced nothing passed and only the publish job failed. Uploads
+    that run under `if: always()` after a possibly failed step may keep
+    `ignore`, since the failed step already explains the missing files.
+    """
+    loose: list[str] = []
+
+    for path in sorted(WORKFLOWS.glob("*.y*ml")):
+        steps = re.split(r"\n      - ", path.read_text(encoding="utf-8"))
+        for step in steps:
+            if "uses: actions/upload-artifact@" not in step:
+                continue
+            match = re.search(r"if-no-files-found: (\w+)", step)
+            setting = match.group(1) if match else "warn"
+            if setting == "error":
+                continue
+            if setting == "ignore" and "if: always()" in step:
+                continue
+            loose.append(f"{path.name}: {step.splitlines()[0]} ({setting})")
+
+    assert not loose, f"uploads that hide a missing artifact: {loose}"
+
+
 def test_docs_workflow_deploys_pages_only_when_opted_in() -> None:
     """Fresh repositories should build docs without failing Pages deployment."""
     workflow = read_workflow("docs.yml")
