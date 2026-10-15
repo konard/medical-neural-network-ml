@@ -1,0 +1,33 @@
+{
+  "task": "imaging-xray",
+  "backend": "openai:medgemma-4b-it-Q4_K_M.gguf",
+  "items_total": 2,
+  "items_run": 2,
+  "stopped_early": false,
+  "metrics": {
+    "sensitivity": 0.0,
+    "specificity": 0.0,
+    "accuracy": 0.0,
+    "side_accuracy_when_found": 0.0
+  },
+  "latency": {
+    "mean_s": 85.3765,
+    "p50_s": 85.3765,
+    "p95_s": 86.0539,
+    "total_s": 170.7531
+  },
+  "results": [
+    {
+      "item_id": "xray-00000",
+      "output": "No\n",
+      "latency_s": 84.699108105,
+      "completion_tokens": 3
+    },
+    {
+      "item_id": "xray-00001",
+      "output": "Yes, there is a round lung nodule in the patient's right lung.\n",
+      "latency_s": 86.05394520199997,
+      "completion_tokens": 19
+    }
+  ]
+}

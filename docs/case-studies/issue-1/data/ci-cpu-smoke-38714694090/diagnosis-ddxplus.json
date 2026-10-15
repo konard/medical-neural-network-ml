@@ -1,0 +1,38 @@
+{
+  "task": "diagnosis-ddxplus",
+  "backend": "openai:medgemma-4b-it-Q4_K_M.gguf",
+  "items_total": 2,
+  "items_run": 2,
+  "stopped_early": false,
+  "metrics": {
+    "top1": 0.5,
+    "top1_ci_low": 0.0,
+    "top1_ci_high": 1.0,
+    "top3": 1.0,
+    "top5": 1.0,
+    "mrr": 0.75,
+    "reference_top1": 0.0,
+    "reference_top5": 0.5,
+    "unparsed_answers": 0.0
+  },
+  "latency": {
+    "mean_s": 23.8019,
+    "p50_s": 23.8019,
+    "p95_s": 26.2031,
+    "total_s": 47.6037
+  },
+  "results": [
+    {
+      "item_id": "ddxplus-test-0",
+      "output": "Here are 5 likely diagnoses based on the patient's answers, ranked in order of likelihood:\n\n1.  **GERD**\n2.  **Bronchitis**\n3.  **Influenza**\n4.  **Bronchospasm / acute asthma exacerbation**\n5.  **Cough**\n",
+      "latency_s": 26.203141435000006,
+      "completion_tokens": 70
+    },
+    {
+      "item_id": "ddxplus-test-1",
+      "output": "Here are 5 likely diagnoses based on the provided information:\n\n1.  Bronchiolitis\n2.  Bronchitis\n3.  Acute COPD exacerbation / infection\n4.  Acute asthma exacerbation\n5.  Acute laryngitis\n",
+      "latency_s": 21.400582800999985,
+      "completion_tokens": 54
+    }
+  ]
+}

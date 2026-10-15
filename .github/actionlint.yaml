@@ -1,0 +1,6 @@
+# actionlint configuration - https://github.com/rhysd/actionlint/blob/main/docs/config.md
+self-hosted-runner:
+  # Custom label of the self-hosted NVIDIA runner used by model-tests.yml
+  # (issue #1). Setup: docs/case-studies/issue-1/ci-and-gpu-runner.md.
+  labels:
+    - gpu

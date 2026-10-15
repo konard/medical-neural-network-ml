@@ -1,0 +1,34 @@
+{
+  "task": "imaging-xray",
+  "backend": "openai:medgemma-4b-it-Q4_K_M.gguf",
+  "items_total": 2,
+  "items_run": 2,
+  "stopped_early": false,
+  "metrics": {
+    "sensitivity": 1.0,
+    "specificity": 1.0,
+    "accuracy": 1.0,
+    "finding_recall": 1.0,
+    "side_accuracy_when_found": 1.0
+  },
+  "latency": {
+    "mean_s": 86.0054,
+    "p50_s": 86.0054,
+    "p95_s": 86.0746,
+    "total_s": 172.0108
+  },
+  "results": [
+    {
+      "item_id": "xray-pneumothorax-1",
+      "output": "abnormal: yes\nfinding: Left pneumothorax\nside: left\n",
+      "latency_s": 86.07464795500002,
+      "completion_tokens": 17
+    },
+    {
+      "item_id": "xray-normal-1",
+      "output": "abnormal: no; finding: none; side: both\n",
+      "latency_s": 85.93611006600003,
+      "completion_tokens": 14
+    }
+  ]
+}

@@ -34,6 +34,10 @@ dev = [
     "pytest-cov>=6.0.0",
     "pre-commit>=4.0.0",
     "scriv[toml]>=1.7.0",
+    "pillow>=10.1",
+]
+imaging = [
+    "pillow>=10.1",
 ]
 docs = [
     "sphinx>=7.4",
@@ -41,13 +45,16 @@ docs = [
     "myst-parser>=3.0",
 ]
 
+[project.scripts]
+medbench = "medbench.cli:main"
+
 [project.urls]
 Homepage = "https://github.com/link-foundation/python-ai-driven-development-pipeline-template"
 Repository = "https://github.com/link-foundation/python-ai-driven-development-pipeline-template"
 Issues = "https://github.com/link-foundation/python-ai-driven-development-pipeline-template/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/my_package"]
+packages = ["src/my_package", "src/medbench"]
 
 [tool.ruff]
 line-length = 88
@@ -115,11 +122,21 @@ warn_no_return = true
 strict_equality = true
 strict_concatenate = true
 
+[[tool.mypy.overrides]]
+# Heavy optional dependencies, only installed on the GPU runner.
+module = ["torch", "transformers"]
+ignore_missing_imports = true
+
 [tool.pytest.ini_options]
 minversion = "7.0"
 addopts = "-ra -q --strict-markers"
 testpaths = ["tests"]
 pythonpath = ["src"]
+markers = [
+    "model: needs a running model server or downloaded weights (opt-in)",
+    "gpu: needs an NVIDIA GPU (self-hosted runner)",
+    "network: downloads the real sample files (opt-in, MEDBENCH_NETWORK_TESTS=1)",
+]
 
 [tool.coverage.run]
 source = ["src"]

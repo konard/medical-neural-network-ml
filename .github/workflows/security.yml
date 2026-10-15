@@ -80,11 +80,41 @@ jobs:
         with:
           persist-credentials: false
 
+      # A disabled Dependency graph is a repository setting, not a defect in
+      # the pull request: warn and skip the review here; main fails below.
+      - name: Check that the dependency graph is enabled
+        id: graph
+        env:
+          DEPENDENCY_GRAPH_MODE: report
+          GITHUB_TOKEN: ${{ github.token }}
+        run: bash scripts/check-dependency-graph.sh
+
       - name: Review dependency changes
+        if: steps.graph.outputs.enabled == 'true'
         uses: actions/dependency-review-action@v5
         with:
           fail-on-severity: high
           comment-summary-in-pr: on-failure
+
+  # On main and on the weekly scan, a disabled Dependency graph fails with the
+  # setting to change, so the skipped pull request reviews do not go unnoticed.
+  dependency-graph:
+    name: Dependency Graph Enabled
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Require the dependency graph
+        env:
+          DEPENDENCY_GRAPH_MODE: require
+          GITHUB_TOKEN: ${{ github.token }}
+        run: bash scripts/check-dependency-graph.sh
 
   # Terminal status gate (issue #69): GitHub reports jobs killed by
   # timeout-minutes as cancelled. Observe every other job so a timeout on main
@@ -96,6 +126,7 @@ jobs:
       - dependency-audit
       - codeql
       - dependency-review
+      - dependency-graph
     if: always()
     runs-on: ubuntu-24.04
     timeout-minutes: 5
