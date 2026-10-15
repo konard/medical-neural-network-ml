@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run the synthetic medical benchmark against a real model (issue #1).
+# Run the medical benchmark (real openly licensed samples) against a real model (issue #1).
 #
 # Usage:
 #   bash scripts/medbench-model-run.sh download   # fetch and verify files
@@ -28,6 +28,7 @@
 #   TASKS            space-separated medbench tasks
 #   COUNT            items per task (2)
 #   MAX_TOKENS       answer length limit (96)
+#   PAGE_MAX_TOKENS  limit for ocr-history, whose pages hold ~500 words (1024)
 #   TIME_BUDGET      seconds for all tasks together (900)
 #   NICE_LEVEL       CPU priority of the server, 0-19 (10)
 #   RUN_PYTEST       1 runs tests/test_real_models.py after the tasks (1)
@@ -47,9 +48,10 @@ MMPROJ_SHA256="${MMPROJ_SHA256:-1d45f34f8c2f1427a5555f400a63715b3e0c4191341fa206
 CACHE_DIR="${CACHE_DIR:-${MEDBENCH_CACHE_DIR:-.cache/medbench}}"
 OUT_DIR="${OUT_DIR:-medbench-reports}"
 GPU_LAYERS="${GPU_LAYERS:-0}"
-TASKS="${TASKS:-diagnosis imaging-xray ocr-prescription}"
+TASKS="${TASKS:-diagnosis-ddxplus imaging-xray ocr-prescription}"
 COUNT="${COUNT:-2}"
 MAX_TOKENS="${MAX_TOKENS:-96}"
+PAGE_MAX_TOKENS="${PAGE_MAX_TOKENS:-1024}"
 TIME_BUDGET="${TIME_BUDGET:-900}"
 NICE_LEVEL="${NICE_LEVEL:-10}"
 LOAD_MODE="${LOAD_MODE:-auto}"
@@ -208,7 +210,7 @@ start_server() {
 
 run() {
   start_server
-  local started remaining task
+  local started remaining task tokens
   started=$(date +%s)
   for task in $TASKS; do
     remaining=$((TIME_BUDGET - ($(date +%s) - started)))
@@ -216,6 +218,8 @@ run() {
       log "time budget used up; skipping $task and the tasks after it"
       break
     fi
+    tokens=$MAX_TOKENS
+    [[ "$task" == ocr-history ]] && tokens=$PAGE_MAX_TOKENS
     log "task $task: $COUNT items, ${remaining}s left"
     python -m medbench.cli run \
       --task "$task" \
@@ -223,7 +227,7 @@ run() {
       --base-url "http://127.0.0.1:$PORT/v1" \
       --model-name "$MODEL_FILE" \
       --count "$COUNT" \
-      --max-tokens "$MAX_TOKENS" \
+      --max-tokens "$tokens" \
       --time-budget "$remaining" \
       --request-timeout "$remaining" \
       --out "$OUT_DIR/$task.json"
