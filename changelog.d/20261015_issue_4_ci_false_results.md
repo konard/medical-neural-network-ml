@@ -18,3 +18,8 @@
 - Run the pedantic zizmor pass with the read-only job token, so it no longer
   warns "running in offline mode by default" and runs the same online audits
   as the regular pass.
+- Fail the release build when `dist/` is empty (`if-no-files-found: error`)
+  instead of warning and letting the publish job fail later.
+- Trigger the model tests on pull requests that change
+  `tests/test_medbench_real_data.py`, `scripts/run-with-budget-warning.sh` or
+  `pyproject.toml`, which the jobs run or install from.

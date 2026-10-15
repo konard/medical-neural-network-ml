@@ -19,10 +19,14 @@ name: Model Tests
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+    # Every file the jobs below run or install from (issue #4).
     paths:
       - 'src/medbench/**'
       - 'scripts/medbench-model-run.sh'
+      - 'scripts/run-with-budget-warning.sh'
       - 'tests/test_real_models.py'
+      - 'tests/test_medbench_real_data.py'
+      - 'pyproject.toml'
       - '.github/workflows/model-tests.yml'
   schedule:
     - cron: '17 5 * * 1'
