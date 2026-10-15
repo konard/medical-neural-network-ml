@@ -15,3 +15,6 @@
 - Move every workflow to `actions/checkout@v7`, `actions/setup-python@v7` and
   `actions/cache@v6`, the current majors, and test that no workflow
   (including `model-tests.yml`) falls behind them again.
+- Run the pedantic zizmor pass with the read-only job token, so it no longer
+  warns "running in offline mode by default" and runs the same online audits
+  as the regular pass.

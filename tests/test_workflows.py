@@ -409,6 +409,13 @@ def test_workflow_audit_job_runs_zizmor() -> None:
     assert "--persona pedantic" in job
     assert "--min-severity high" in job
     assert "--min-confidence high" in job
+    # Issue #4: without a token the pedantic pass warns that it runs offline
+    # and skips the online audits the action above performs.
+    pedantic = workflow_step_block(
+        job, "Audit for pedantic-only high-severity findings"
+    )
+    assert "GH_TOKEN: ${{ github.token }}" in pedantic
+    assert "--offline" not in pedantic
     # The pedantic step owns a deadline of its own; the shared budget test
     # (test_step_deadlines_expire_before_the_job_timeout_they_sit_under) checks
     # it against the job cap.
