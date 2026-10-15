@@ -12,3 +12,6 @@
 - Count shell scripts (`.sh`) and JSON files (`.json`) as code in change
   detection, so a PR that changes only a pipeline script or the medbench
   sample manifest no longer skips lint, tests, build and the changelog check.
+- Move every workflow to `actions/checkout@v7`, `actions/setup-python@v7` and
+  `actions/cache@v6`, the current majors, and test that no workflow
+  (including `model-tests.yml`) falls behind them again.

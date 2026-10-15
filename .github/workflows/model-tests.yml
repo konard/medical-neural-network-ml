@@ -65,12 +65,12 @@ jobs:
     env:
       MEDBENCH_DATA_DIR: .cache/medbench-data
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
 
       - name: Setup Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: '3.13'
 
@@ -81,7 +81,7 @@ jobs:
 
       - name: Restore real sample cache
         if: github.event_name != 'schedule'
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: .cache/medbench-data
           key: medbench-data-${{ hashFiles('src/medbench/data/real_samples.json') }}
@@ -113,12 +113,12 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
 
       - name: Setup Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: '3.13'
 
@@ -134,13 +134,13 @@ jobs:
             '
 
       - name: Restore model cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: .cache/medbench
           key: medbench-cpu-${{ hashFiles('scripts/medbench-model-run.sh') }}
 
       - name: Restore real sample cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: .cache/medbench-data
           key: medbench-data-${{ hashFiles('src/medbench/data/real_samples.json') }}
@@ -192,12 +192,12 @@ jobs:
       GPU_LAYERS: 999
       GPU_MODEL: ${{ inputs.gpu-model }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
 
       - name: Setup Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: '3.13'
 
@@ -281,7 +281,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
 

@@ -70,8 +70,8 @@ def test_security_workflow_scans_code_actions_and_dependencies() -> None:
     assert "comment-summary-in-pr: on-failure" in dependency_job
 
     assert "timeout-minutes: 15" in audit_job
-    assert "uses: actions/checkout@v6" in audit_job
-    assert "uses: actions/setup-python@v6" in audit_job
+    assert "uses: actions/checkout@v7" in audit_job
+    assert "uses: actions/setup-python@v7" in audit_job
     assert "python scripts/audit_dependencies.py" in audit_job
     assert "if: github.event_name == 'pull_request'" not in audit_job
 
@@ -114,7 +114,7 @@ def test_links_workflow_fails_for_every_broken_live_link() -> None:
     assert "permissions:\n  contents: read" in workflow
     assert "timeout-minutes: 10" in link_job
     assert "cancel-in-progress: true" in link_job
-    assert "uses: actions/checkout@v6" in link_job
+    assert "uses: actions/checkout@v7" in link_job
     assert "uses: lycheeverse/lychee-action@v2" in lychee_step
     assert "--exclude-path docs/case-studies" in lychee_step
     # Issue #4: a glob input that matches no file ('./**/*.html') makes lychee
@@ -194,19 +194,45 @@ def test_docs_workflow_action_versions_are_current() -> None:
     """Docs workflow actions should stay aligned with the current Pages stack."""
     docs_workflow = read_workflow("docs.yml")
 
-    assert_action_pin_count(docs_workflow, "actions/checkout", "v6", 2)
-    assert_action_pin_count(docs_workflow, "actions/setup-python", "v6", 1)
+    assert_action_pin_count(docs_workflow, "actions/checkout", "v7", 2)
+    assert_action_pin_count(docs_workflow, "actions/setup-python", "v7", 1)
     assert_action_pin_count(docs_workflow, "actions/upload-artifact", "v7", 1)
     assert_action_pin_count(docs_workflow, "actions/configure-pages", "v6", 1)
     assert_action_pin_count(docs_workflow, "actions/upload-pages-artifact", "v5", 1)
     assert_action_pin_count(docs_workflow, "actions/deploy-pages", "v5", 1)
 
     assert_action_pin_absent(docs_workflow, "actions/checkout", "v4")
-    assert_action_pin_absent(docs_workflow, "actions/setup-python", "v5")
+    assert_action_pin_absent(docs_workflow, "actions/setup-python", "v6")
+    assert_action_pin_absent(docs_workflow, "actions/checkout", "v6")
     assert_action_pin_absent(docs_workflow, "actions/upload-artifact", "v4")
     assert_action_pin_absent(docs_workflow, "actions/configure-pages", "v5")
     assert_action_pin_absent(docs_workflow, "actions/upload-pages-artifact", "v3")
     assert_action_pin_absent(docs_workflow, "actions/deploy-pages", "v4")
+
+
+def test_no_workflow_uses_a_superseded_first_party_major() -> None:
+    """Every workflow, not only the template's, tracks the current majors.
+
+    Issue #4 (template issue #106): checkout and setup-python stayed on v6
+    after v7 shipped, and model-tests.yml is not covered by the per-workflow
+    version tests above.
+    """
+    current = {
+        "actions/checkout": "v7",
+        "actions/setup-python": "v7",
+        "actions/cache": "v6",
+    }
+    stale: list[str] = []
+
+    for path in sorted(WORKFLOWS.glob("*.y*ml")):
+        for action, version in re.findall(
+            r"uses:\s+(actions/(?:checkout|setup-python|cache))@(\S+)",
+            path.read_text(encoding="utf-8"),
+        ):
+            if version != current[action]:
+                stale.append(f"{path.name}: {action}@{version}")
+
+    assert not stale, f"expected {current}, found {stale}"
 
 
 def test_docs_workflow_deploys_pages_only_when_opted_in() -> None:
