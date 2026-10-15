@@ -331,9 +331,10 @@ one exact string from a real model. A third run
 353 s for the medbench step) gave run A's answers again: CER 0.0102,
 diagnosis 2/2 and X-ray 0/2.
 
-The X-ray result was checked by hand with
-[`experiments/issue1_xray_truth.py`](../../../experiments/issue1_xray_truth.py),
-and both runs gave the same answers:
+The X-ray result was checked by hand with the first version of
+[`experiments/issue1_xray_truth.py`](../../../experiments/issue1_xray_truth.py)
+(it now prints the labels of the real images), and both runs gave the same
+answers:
 
 | Item | Truth | Model answer | Verdict |
 | --- | --- | --- | --- |
@@ -343,10 +344,46 @@ and both runs gave the same answers:
 The answers were read correctly; the model was wrong on both images. The
 phantom was a few ellipses, not a real X-ray, so this does not say how
 MedGemma reads real chest films. This is one reason the drawn images were
-replaced by real, openly licensed X-rays ([data-sources.md](data-sources.md)). It does show why one score from 2 items
-means nothing, and why Phase 2 of the [research plan](research-plan.md) uses
+replaced by real, openly licensed X-rays ([data-sources.md](data-sources.md)).
+It does show why one score from 2 items means nothing, and why Phase 2 of the [research plan](research-plan.md) uses
 public X-rays with many items and confidence intervals.
 
 The two real-model tests in `tests/` (one text request and one image
 request) passed in 76 s (run A) and 92 s (run B). The whole job took
 7.5–8.5 minutes including the download, well inside its 60-minute limit.
+
+## 10. The first run on real, openly licensed files
+
+After the review of this pull request, the generated inputs were replaced by
+real files ([data-sources.md](data-sources.md)). The `cpu-smoke` job then ran
+MedGemma 4B Q4_K_M on 2 items each of DDXPlus diagnosis, chest X-ray and
+handwritten prescription words
+([run 38714694090](https://github.com/konard/medical-neural-network-ml/actions/runs/38714694090),
+reports and `ATTRIBUTION.md` in
+[`data/ci-cpu-smoke-38714694090/`](data/ci-cpu-smoke-38714694090)). The
+`real-data` job of the same run restored all 40 files from the Actions cache
+and checked their hashes, licenses and labels (40 network tests passed); the
+whole job took 27 s.
+
+| Item | Truth | Model answer | Verdict |
+| --- | --- | --- | --- |
+| `ddxplus-test-0` (49-year-old woman) | GERD | 1. GERD, 2. Bronchitis, 3. Influenza, … | right, rank 1 |
+| `ddxplus-test-1` (2-year-old boy) | Bronchitis | 1. Bronchiolitis, 2. Bronchitis, … | rank 2 |
+| `xray-pneumothorax-1` | pneumothorax, left | "abnormal: yes, finding: Left pneumothorax, side: left" | right |
+| `xray-normal-1` | normal | "abnormal: no, finding: none" | right |
+| `rx-word-p0007` | Napa | "Napa" | right |
+| `rx-word-p1126` | Dexter 60 | "depxe 60" | drug name wrong |
+
+Scores: DDXPlus top-1 0.5, top-3 1.0, MRR 0.75 (the DDXPlus expert system's
+own first guess was right on 0 of the 2); X-ray sensitivity 1.0 and
+specificity 1.0; prescription CER 0.167, WER 0.25, drug-name recall 0.5.
+
+Speed matched section 9: text prompts were read at about 27.5 tokens/s and
+answers written at 10.6–11.0 tokens/s. Each image took 83–85 s to read
+(3.5–3.8 prompt tokens/s), so one image request took about 84–86 s. The
+medbench step took 490 s and the whole job 9.5 minutes.
+
+On real files the 4B model found the pneumothorax and its side, while it
+had missed both drawn phantoms. But 2 items per task are still only a
+pipeline check: 95% confidence intervals span almost the whole 0–1 range.
+Accuracy needs the GPU job with all items per task.

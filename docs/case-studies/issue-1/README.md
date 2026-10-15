@@ -45,15 +45,17 @@ models are not good enough.
    requests) would take about 2–2.5 hours on a GitHub CPU runner, so CI runs 6
    requests (6–8 minutes), and the full set runs on a GPU (about 8 minutes on
    an L4 for 4B, 51 minutes for 27B).
-3. **The first model scores are a warning, not a result.** They were
-   measured before the switch to real files, on generated inputs (a toy
-   diagnosis set, font-rendered prescriptions and drawn "phantom" X-rays).
-   MedGemma 4B ranked both diagnosis cases right, read the rendered
-   prescriptions with 1% character errors, and got **both drawn X-rays
-   wrong**. A second run on another runner read one prescription
-   differently (5% errors), because a different CPU can change a greedy
-   answer. Two items prove that the pipeline works, nothing more; the
-   real-file scores come from the CI job of this pull request.
+3. **The first model scores are a warning, not a result.** On generated
+   inputs (a toy diagnosis set, font-rendered prescriptions and drawn
+   "phantom" X-rays) MedGemma 4B got **both drawn X-rays wrong**, and a
+   second runner read one prescription differently, because a different
+   CPU can change a greedy answer. On real files
+   ([run 38714694090](https://github.com/konard/medical-neural-network-ml/actions/runs/38714694090))
+   it found a left pneumothorax and its side, called a normal film normal,
+   put the true DDXPlus condition first for 1 of 2 patients (second for the
+   other), and read 1 of 2 handwritten drug names exactly ("depxe 60" for
+   "Dexter 60"). Two items per task prove that the pipeline works, nothing
+   more ([measurements.md §10](measurements.md#10-the-first-run-on-real-openly-licensed-files)).
 4. **MedGemma 27B needs a GPU**: 18.3 GB in 4-bit, 56 GB in bf16.
    **UniMedVL** has no llama.cpp build and needs PyTorch on a 40 GB+ GPU.
    Its extra 7B of weights is for drawing images, not for better answers.

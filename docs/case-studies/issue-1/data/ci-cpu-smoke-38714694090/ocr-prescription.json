@@ -1,0 +1,32 @@
+{
+  "task": "ocr-prescription",
+  "backend": "openai:medgemma-4b-it-Q4_K_M.gguf",
+  "items_total": 2,
+  "items_run": 2,
+  "stopped_early": false,
+  "metrics": {
+    "cer": 0.1667,
+    "wer": 0.25,
+    "key_term_recall": 0.5
+  },
+  "latency": {
+    "mean_s": 83.7412,
+    "p50_s": 83.7412,
+    "p95_s": 83.8562,
+    "total_s": 167.4823
+  },
+  "results": [
+    {
+      "item_id": "rx-word-p0007",
+      "output": "Napa\n",
+      "latency_s": 83.62613299399999,
+      "completion_tokens": 4
+    },
+    {
+      "item_id": "rx-word-p1126",
+      "output": "depxe 60\n",
+      "latency_s": 83.85617307300004,
+      "completion_tokens": 7
+    }
+  ]
+}
