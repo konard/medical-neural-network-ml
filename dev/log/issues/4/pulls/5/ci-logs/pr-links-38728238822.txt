@@ -1,0 +1,4 @@
+# Broken Link Checker, PR #5, run 38728238822 (8f67b06) -- after the fixes
+Check Links	Check links with lychee	2026-10-15T11:34:02.1680771Z   INPUT_FAIL: false
+Check Links	Check links with lychee	2026-10-15T11:34:20.0419775Z | 🔍 Total       | 52    |
+Check Links	Check links with lychee	2026-10-15T11:34:20.0423176Z | 🚫 Errors      | 0     |

@@ -1,0 +1,9 @@
+# CI/CD Pipeline, main, run 38725259374 (fd7703e) -- failing
+Release Preflight (credentials)	Probe every release credential	2026-10-15T11:08:53.8965668Z   UNKNOWN: PyPI answered 422 to the mint-token probe (no verdict on trusted publishing)
+Release Preflight (credentials)	Probe every release credential	2026-10-15T11:08:53.8970950Z   SKIP: DOCKERHUB_IMAGE is not set -- Docker publishing is disabled (the release workflow disables it with the same condition)
+Release Preflight (credentials)	Probe every release credential	2026-10-15T11:08:53.8997943Z ##[warning]release-preflight: PyPI answered 422 to the mint-token probe (no verdict on trusted publishing)
+Release Preflight (credentials)	Probe every release credential	2026-10-15T11:08:53.9012371Z ##[error]release-preflight: verified nothing (1 unknown) -- refusing to release on an unproven credential set
+Release Preflight (credentials)	Probe every release credential	2026-10-15T11:08:53.9020472Z ##[error]Process completed with exit code 1.
+Lint and Format Check	Run mypy	2026-10-15T11:09:19.0396781Z Warning: --strict-concatenate is deprecated; use --extra-checks instead
+Pipeline Status	Fail the run when a required job was cancelled or failed	2026-10-15T11:10:28.0566269Z ##[error]Failed jobs: release-preflight
+Pipeline Status	Fail the run when a required job was cancelled or failed	2026-10-15T11:10:28.0578843Z ##[error]Process completed with exit code 1.

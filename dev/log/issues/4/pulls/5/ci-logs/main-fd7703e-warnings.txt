@@ -1,0 +1,108 @@
+# Warning and error lines in the main-branch runs at fd7703e and the first PR runs
+# Format: <count> <job> | <step> | <line>. Collected with grep -iE 'warn|error|deprecat|no files'.
+=== run-38725259341.log
+      1 Audit Workflows | Audit workflow files | ##[end-action id=__zizmorcore_zizmor-action.__github_codeql-action;outcome=skipped;conclusion=skipped;duration_ms=0]
+      1 Audit Workflows | Audit for pedantic-only high-severity findings |  WARN audit: zizmor: zizmor is running in offline mode by default; some audits and auto-fixes will not
+=== run-38725259357.log
+      1 Check Links | Check links with lychee | | 🚫 Errors      | 0     |
+      1 Check Links | Check links with lychee | ##[notice]Summary report available at: https://github.com/konard/medical-neural-network-ml/actions/runs/38725259357#summary-116389390968
+      1 Check Links | Check links with lychee |   [WARN] ./**/*.html: No files found for this input source
+=== run-38725259366.log
+      1 Pipeline Status	Check aggregate pipeline status	    "result": "skipped",
+      1 Build docs | Upload build artifact |   if-no-files-found: error
+      1 Build docs | Report skipped GitHub Pages deployment | shell: /usr/bin/bash -e {0}
+      1 Build docs | Report skipped GitHub Pages deployment | env:
+      1 Build docs | Report skipped GitHub Pages deployment | echo "::notice::Skipping GitHub Pages deployment. To enable publishing, set Settings -> Pages -> Source = GitHub Actions, then add repository variable DEPLOY_
+      1 Build docs | Report skipped GitHub Pages deployment | ##[notice]Skipping GitHub Pages deployment. To enable publishing, set Settings -> Pages -> Source = GitHub Actions, then add repository variable DEPLOY_GITHUB_PAGES=t
+      1 Build docs | Report skipped GitHub Pages deployment | ##[endgroup]
+      1 Build docs | Report skipped GitHub Pages deployment |   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+      1 Build docs | Report skipped GitHub Pages deployment |   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+      1 Build docs | Report skipped GitHub Pages deployment |   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+      1 Build docs | Report skipped GitHub Pages deployment |   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+      1 Build docs | Report skipped GitHub Pages deployment |   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+      1 Build docs | Report skipped GitHub Pages deployment |   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+      1 Build docs | Report skipped GitHub Pages deployment |   GIT_CONFIG_VALUE_0: main
+      1 Build docs | Report skipped GitHub Pages deployment |   GIT_CONFIG_KEY_0: init.defaultBranch
+      1 Build docs | Report skipped GitHub Pages deployment |   GIT_CONFIG_COUNT: 1
+      1 Build docs | Build Sphinx documentation | myst v5.1.0: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=set(), disable_syntax=[], all_links_external=False, links_external_new_tab=
+=== run-38725259374.log
+      7 Pipeline Status	Fail the run when a required job was cancelled or failed	    "result": "skipped",
+      1 Validate Documentation | Check file size limit | Checking files for maximum 1000 lines (warning above 900) and 2500 lines for markdown (warning above 2250)...
+      1 Test (Python 3.13) | Run tests | tests/test_run_with_budget_warning.py .............                      [ 81%]
+      1 Test (Python 3.13) | Run tests | bash scripts/run-with-budget-warning.sh \
+      1 Test (Python 3.13) | Run tests | SKIPPED [40] tests/test_medbench_real_data.py:396: set MEDBENCH_NETWORK_TESTS=1 to download the real files
+      1 Test (Python 3.13) | Run tests | SKIPPED [1] tests/test_validate_changeset.py:373: Requires the multi-language layout
+      1 Test (Python 3.13) | Run tests | SKIPPED [1] tests/test_real_models.py:60: set MEDBENCH_VISION=1 for image models
+      1 Test (Python 3.13) | Run tests | SKIPPED [1] tests/test_real_models.py:41: set MEDBENCH_BASE_URL to run
+      1 Test (Python 3.13) | Run tests | ======================= 567 passed, 43 skipped in 39.59s =======================
+      1 Test (Python 3.13) | Report skipped Codecov upload | shell: /usr/bin/bash -e {0}
+      1 Test (Python 3.13) | Report skipped Codecov upload | env:
+      1 Test (Python 3.13) | Report skipped Codecov upload | echo "::notice::Skipping Codecov upload because CODECOV_TOKEN is not configured"
+      1 Test (Python 3.13) | Report skipped Codecov upload | ##[notice]Skipping Codecov upload because CODECOV_TOKEN is not configured
+      1 Test (Python 3.13) | Report skipped Codecov upload | ##[endgroup]
+      1 Test (Python 3.13) | Report skipped Codecov upload |   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+      1 Test (Python 3.13) | Report skipped Codecov upload |   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+      1 Test (Python 3.13) | Report skipped Codecov upload |   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+      1 Test (Python 3.13) | Report skipped Codecov upload |   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+      1 Test (Python 3.13) | Report skipped Codecov upload |   PYTHON_ROOT: .
+      1 Test (Python 3.13) | Report skipped Codecov upload |   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+      1 Test (Python 3.13) | Report skipped Codecov upload |   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+      1 Test (Python 3.13) | Report skipped Codecov upload |   GIT_CONFIG_VALUE_0: main
+      1 Test (Python 3.13) | Report skipped Codecov upload |   GIT_CONFIG_KEY_0: init.defaultBranch
+      1 Test (Python 3.13) | Report skipped Codecov upload |   GIT_CONFIG_COUNT: 1
+      1 Test (Python 3.13) | Report skipped Codecov upload |   CODECOV_TOKEN: 
+      1 Test (Python 3.13) | Install dependencies | bash scripts/run-with-budget-warning.sh \
+      1 Release Preflight (credentials) | Probe every release credential | ##[warning]release-preflight: PyPI answered 422 to the mint-token probe (no verdict on trusted publishing)
+      1 Release Preflight (credentials) | Probe every release credential | ##[error]release-preflight: verified nothing (1 unknown) -- refusing to release on an unproven credential set
+      1 Release Preflight (credentials) | Probe every release credential | ##[error]Process completed with exit code 1.
+      1 Pipeline Status | Fail the run when a required job was cancelled or failed | ##[error]Process completed with exit code 1.
+      1 Pipeline Status | Fail the run when a required job was cancelled or failed | ##[error]Failed jobs: release-preflight
+      1 Lint and Format Check | Run mypy | Warning: --strict-concatenate is deprecated; use --extra-checks instead
+      1 Lint and Format Check | Install dependencies | bash scripts/run-with-budget-warning.sh \
+      1 Lint and Format Check | Check for secrets | bash "$PYTHON_ROOT/scripts/run-with-budget-warning.sh" \
+      1 Lint and Format Check | Check file size limit | Checking files for maximum 1000 lines (warning above 900) and 2500 lines for markdown (warning above 2250)...
+      1 Build Package | Upload artifacts |   if-no-files-found: warn
+=== run-38725259420.log
+      9 CodeQL (actions) | Initialize CodeQL |                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+      6 CodeQL (python) | Initialize CodeQL |                 "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+      6 CodeQL (actions) | Initialize CodeQL |                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n 
+      4 CodeQL (python) | Initialize CodeQL |                 "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  
+      3 CodeQL (actions) | Initialize CodeQL |             "title" : "DEPRECATED - Whether to use buildless (standalone) extraction.",
+      3 CodeQL (actions) | Initialize CodeQL |             "description" : "DEPRECATED: Use `--build-mode none` instead.\nA value indicating, which type of extraction the autobuilder should perform. If 'true', then the standalon
+      3 CodeQL (actions) | Initialize CodeQL |                 "description" : "Controls the level of verbosity of the CodeQL Python extractor.\nThe supported levels are (in order of increasing verbosity):\n\n  - off\n  - errors
+      2 CodeQL (python) | Initialize CodeQL |             "title" : "DEPRECATED - Whether to use buildless (standalone) extraction.",
+      2 CodeQL (python) | Initialize CodeQL |             "description" : "DEPRECATED: Use `--build-mode none` instead.\nA value indicating, which type of extraction the autobuilder should perform. If 'true', then the standalone
+      2 CodeQL (python) | Initialize CodeQL |                 "description" : "Controls the level of verbosity of the CodeQL Python extractor.\nThe supported levels are (in order of increasing verbosity):\n\n  - off\n  - errors\
+      1 Pipeline Status | Check aggregate pipeline status | ##[error]Process completed with exit code 1.
+      1 Pipeline Status | Check aggregate pipeline status | ##[error]Failed jobs: dependency-graph
+      1 Pipeline Status	Check aggregate pipeline status	    "result": "skipped",
+      1 Dependency Graph Enabled | Require the dependency graph | ##[error]Process completed with exit code 1.
+      1 Dependency Graph Enabled | Require the dependency graph | ##[error]Dependency graph is disabled for konard/medical-neural-network-ml, so dependency review cannot run. A repository admin must enable it: https://github.com
+      1 CodeQL (python) | Initialize CodeQL | [command]tar -x --zstd --ignore-zeros --warning=no-unknown-keyword --overwrite -f - -C /opt/hostedtoolcache/CodeQL/2.27.2/x64
+      1 CodeQL (python) | Initialize CodeQL |     "suppressesMissingFileBaselineWarning": true
+      1 CodeQL (python) | Analyze | [39/45] Loaded /opt/hostedtoolcache/CodeQL/2.27.2/x64/codeql/qlpacks/codeql/python-queries/1.8.12/Diagnostics/ExtractionWarnings.qlx.
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:26] [build-stdout] [INFO] [4] Skipped built-in file /usr/lib/python3.12/csv.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:26] [build-stdout] [INFO] [2] Skipped built-in file /usr/lib/python3.12/threading.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:26] [build-stdout] [INFO] [2] Skipped built-in file /usr/lib/python3.12/importlib/metadata/__init__.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:26] [build-stdout] [INFO] [2] Skipped built-in file /usr/lib/python3.12/email/utils.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:26] [build-stdout] [INFO] [2] Skipped built-in file /usr/lib/python3.12/asyncio/__init__.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:26] [build-stdout] [INFO] [1] Skipped built-in file /usr/lib/python3.12/statistics.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:26] [build-stdout] [INFO] [1] Skipped built-in file /usr/lib/python3.12/shutil.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:26] [build-stdout] [INFO] [1] Skipped built-in file /usr/lib/python3.12/secrets.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:26] [build-stdout] [INFO] [1] Skipped built-in file /usr/lib/python3.12/json/__init__.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:26] [build-stdout] [INFO] [1] Skipped built-in file /usr/lib/python3.12/base64.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:26] [build-stdout] [INFO] [1] Skipped built-in file /usr/lib/python3.12/ast.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:25] [build-stdout] [INFO] [4] Skipped built-in file /usr/lib/python3.12/traceback.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:25] [build-stdout] [INFO] [4] Skipped built-in file /usr/lib/python3.12/stat.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:25] [build-stdout] [INFO] [4] Skipped built-in file /usr/lib/python3.12/os.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:25] [build-stdout] [INFO] [4] Skipped built-in file /usr/lib/python3.12/enum.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:25] [build-stdout] [INFO] [3] Skipped built-in file /usr/lib/python3.12/subprocess.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:25] [build-stdout] [INFO] [3] Skipped built-in file /usr/lib/python3.12/email/__init__.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:25] [build-stdout] [INFO] [3] Skipped built-in file /usr/lib/python3.12/collections/__init__.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:25] [build-stdout] [INFO] [2] Skipped built-in file /usr/lib/python3.12/urllib/__init__.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:25] [build-stdout] [INFO] [2] Skipped built-in file /usr/lib/python3.12/shlex.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:25] [build-stdout] [INFO] [2] Skipped built-in file /usr/lib/python3.12/re/__init__.py
+      1 CodeQL (python) | Analyze | [2026-10-15 11:09:25] [build-stdout] [INFO] [2] Skipped built-in file /usr/lib/python3.12/random.py
+=== run-38725538283.log
+     11 Pipeline Status	Fail the run when a required job was cancelled or failed	    "result": "skipped",
+      1 Release Preflight (credentials) | Probe every release credential | ##[warning]release-preflight: PyPI answered 422 to the mint-token probe (no verdict on trusted publishing)
