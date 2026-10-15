@@ -14,6 +14,7 @@ from tests.workflow_helpers import (
     assert_action_pin_absent,
     assert_action_pin_count,
     concurrency_keys,
+    concurrency_mappings,
     job_step_deadline_seconds,
     job_timeout_minutes,
     read_workflow,
@@ -70,8 +71,8 @@ def test_security_workflow_scans_code_actions_and_dependencies() -> None:
     assert "comment-summary-in-pr: on-failure" in dependency_job
 
     assert "timeout-minutes: 15" in audit_job
-    assert "uses: actions/checkout@v6" in audit_job
-    assert "uses: actions/setup-python@v6" in audit_job
+    assert "uses: actions/checkout@v7" in audit_job
+    assert "uses: actions/setup-python@v7" in audit_job
     assert "python scripts/audit_dependencies.py" in audit_job
     assert "if: github.event_name == 'pull_request'" not in audit_job
 
@@ -114,9 +115,18 @@ def test_links_workflow_fails_for_every_broken_live_link() -> None:
     assert "permissions:\n  contents: read" in workflow
     assert "timeout-minutes: 10" in link_job
     assert "cancel-in-progress: true" in link_job
-    assert "uses: actions/checkout@v6" in link_job
+    assert "uses: actions/checkout@v7" in link_job
     assert "uses: lycheeverse/lychee-action@v2" in lychee_step
     assert "--exclude-path docs/case-studies" in lychee_step
+    # Issue #4: a glob input that matches no file ('./**/*.html') makes lychee
+    # warn "No files found for this input source" on every run. A directory
+    # input with an extension filter checks the same files without the noise.
+    assert "--extensions md,html" in lychee_step
+    assert "--hidden" in lychee_step
+    assert "--exclude-path dev/log" in lychee_step
+    assert re.search(r"^            \.$", lychee_step, re.MULTILINE)
+    assert "'./**/*.html'" not in lychee_step
+    assert "'./**/*.md'" not in lychee_step
     assert "examples/universal-app/index.html" not in lychee_step
     assert "fail: false" in lychee_step
     assert "output: lychee/out.md" in lychee_step
@@ -185,19 +195,71 @@ def test_docs_workflow_action_versions_are_current() -> None:
     """Docs workflow actions should stay aligned with the current Pages stack."""
     docs_workflow = read_workflow("docs.yml")
 
-    assert_action_pin_count(docs_workflow, "actions/checkout", "v6", 2)
-    assert_action_pin_count(docs_workflow, "actions/setup-python", "v6", 1)
+    assert_action_pin_count(docs_workflow, "actions/checkout", "v7", 2)
+    assert_action_pin_count(docs_workflow, "actions/setup-python", "v7", 1)
     assert_action_pin_count(docs_workflow, "actions/upload-artifact", "v7", 1)
     assert_action_pin_count(docs_workflow, "actions/configure-pages", "v6", 1)
     assert_action_pin_count(docs_workflow, "actions/upload-pages-artifact", "v5", 1)
     assert_action_pin_count(docs_workflow, "actions/deploy-pages", "v5", 1)
 
     assert_action_pin_absent(docs_workflow, "actions/checkout", "v4")
-    assert_action_pin_absent(docs_workflow, "actions/setup-python", "v5")
+    assert_action_pin_absent(docs_workflow, "actions/setup-python", "v6")
+    assert_action_pin_absent(docs_workflow, "actions/checkout", "v6")
     assert_action_pin_absent(docs_workflow, "actions/upload-artifact", "v4")
     assert_action_pin_absent(docs_workflow, "actions/configure-pages", "v5")
     assert_action_pin_absent(docs_workflow, "actions/upload-pages-artifact", "v3")
     assert_action_pin_absent(docs_workflow, "actions/deploy-pages", "v4")
+
+
+def test_no_workflow_uses_a_superseded_first_party_major() -> None:
+    """Every workflow, not only the template's, tracks the current majors.
+
+    Issue #4 (template issue #106): checkout and setup-python stayed on v6
+    after v7 shipped, and model-tests.yml is not covered by the per-workflow
+    version tests above.
+    """
+    current = {
+        "actions/checkout": "v7",
+        "actions/setup-python": "v7",
+        "actions/cache": "v6",
+    }
+    stale: list[str] = []
+
+    for path in sorted(WORKFLOWS.glob("*.y*ml")):
+        for action, version in re.findall(
+            r"uses:\s+(actions/(?:checkout|setup-python|cache))@(\S+)",
+            path.read_text(encoding="utf-8"),
+        ):
+            if version != current[action]:
+                stale.append(f"{path.name}: {action}@{version}")
+
+    assert not stale, f"expected {current}, found {stale}"
+
+
+def test_every_artifact_upload_fails_when_it_finds_no_files() -> None:
+    """An empty upload must fail where it happens, not in a later job.
+
+    Issue #4: the release `dist` upload used the default `warn`, so a build
+    that produced nothing passed and only the publish job failed. Uploads
+    that run under `if: always()` after a possibly failed step may keep
+    `ignore`, since the failed step already explains the missing files.
+    """
+    loose: list[str] = []
+
+    for path in sorted(WORKFLOWS.glob("*.y*ml")):
+        steps = re.split(r"\n      - ", path.read_text(encoding="utf-8"))
+        for step in steps:
+            if "uses: actions/upload-artifact@" not in step:
+                continue
+            match = re.search(r"if-no-files-found: (\w+)", step)
+            setting = match.group(1) if match else "warn"
+            if setting == "error":
+                continue
+            if setting == "ignore" and "if: always()" in step:
+                continue
+            loose.append(f"{path.name}: {step.splitlines()[0]} ({setting})")
+
+    assert not loose, f"uploads that hide a missing artifact: {loose}"
 
 
 def test_docs_workflow_deploys_pages_only_when_opted_in() -> None:
@@ -284,7 +346,7 @@ def test_concurrency_key_parser_reports_unsupported_keys() -> None:
             "      group: main-write",
             "      # Not a real key.",
             "      cancel-in-progress: false",
-            "      queue: max",
+            "      queue-size: 100",
             "    steps: []",
         )
     )
@@ -292,17 +354,16 @@ def test_concurrency_key_parser_reports_unsupported_keys() -> None:
     assert concurrency_keys(invalid) == [
         "group",
         "cancel-in-progress",
-        "queue",
+        "queue-size",
     ]
 
 
 def test_workflow_concurrency_blocks_use_only_supported_keys() -> None:
     """GitHub ignores unknown concurrency keys instead of rejecting them.
 
-    Regression test for issue #62: ``queue: max`` documented a queuing
-    guarantee the workflow never had. The syntax accepts only ``group`` and
-    ``cancel-in-progress``; with ``cancel-in-progress: false`` GitHub keeps the
-    running job and holds a single pending run per group.
+    Regression test for issue #62. Issue #4 corrected its premise: GitHub
+    documents ``queue`` (``single`` or ``max``) next to ``group`` and
+    ``cancel-in-progress``; only actionlint 1.7.12 does not know it yet.
     https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#concurrency
     """
     checked = 0
@@ -318,6 +379,29 @@ def test_workflow_concurrency_blocks_use_only_supported_keys() -> None:
         checked += len(keys)
 
     assert checked >= 2, f"expected concurrency blocks to be scanned, saw {checked}"
+
+
+def test_queue_max_is_never_combined_with_cancel_in_progress() -> None:
+    """GitHub rejects ``queue: max`` with ``cancel-in-progress: true``.
+
+    An expression such as ``${{ github.ref != 'refs/heads/main' }}`` can
+    evaluate to true, so queued groups must say ``false`` literally.
+    """
+    queued = 0
+
+    for path in sorted(WORKFLOWS.glob("*.y*ml")):
+        for mapping in concurrency_mappings(path.read_text(encoding="utf-8")):
+            if "queue" not in mapping:
+                continue
+            queued += 1
+            assert mapping["queue"] in {"single", "max"}, (path.name, mapping)
+            if mapping["queue"] == "max":
+                assert mapping.get("cancel-in-progress", "false") == "false", (
+                    path.name,
+                    mapping,
+                )
+
+    assert queued >= 2, f"expected the release writers to queue, saw {queued}"
 
 
 def test_workflow_lint_job_validates_every_workflow() -> None:
@@ -343,6 +427,13 @@ def test_workflow_lint_job_validates_every_workflow() -> None:
     assert pin, "actionlint image must be digest-pinned with its tag in a comment"
     assert pin.group(2) == "v1.7.12"
     assert "docker://rhysd/actionlint:1.7" not in job
+    assert "-ignore" not in job
+    # Issue #4: exactly one message is ignored -- the documented `queue:` key
+    # that 1.7.12 does not know -- so every other finding still fails the job.
+    # It lives in the config file, so a plain local `actionlint` agrees with CI.
+    config = (WORKFLOWS.parent / "actionlint.yaml").read_text(encoding="utf-8")
+    ignored = re.findall(r"^      - '(.+)'$", config, re.MULTILINE)
+    assert ignored == ['unexpected key "queue" for "concurrency" section']
 
 
 def test_workflow_audit_job_runs_zizmor() -> None:
@@ -374,6 +465,13 @@ def test_workflow_audit_job_runs_zizmor() -> None:
     assert "--persona pedantic" in job
     assert "--min-severity high" in job
     assert "--min-confidence high" in job
+    # Issue #4: without a token the pedantic pass warns that it runs offline
+    # and skips the online audits the action above performs.
+    pedantic = workflow_step_block(
+        job, "Audit for pedantic-only high-severity findings"
+    )
+    assert "GH_TOKEN: ${{ github.token }}" in pedantic
+    assert "--offline" not in pedantic
     # The pedantic step owns a deadline of its own; the shared budget test
     # (test_step_deadlines_expire_before_the_job_timeout_they_sit_under) checks
     # it against the job cap.

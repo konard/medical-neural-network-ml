@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 WORKFLOWS = ROOT / ".github" / "workflows"
 
-SUPPORTED_CONCURRENCY_KEYS = frozenset({"group", "cancel-in-progress"})
+SUPPORTED_CONCURRENCY_KEYS = frozenset({"group", "cancel-in-progress", "queue"})
 
 # The share of a job's `timeout-minutes` cap that its step deadlines may claim.
 # The remainder pays for the work outside them -- checkout, Python setup, cache
@@ -117,6 +117,32 @@ def concurrency_keys(workflow: str) -> list[str]:
                 keys.append(key.group(1))
 
     return keys
+
+
+def concurrency_mappings(workflow: str) -> list[dict[str, str]]:
+    """Return each ``concurrency:`` mapping as a key -> raw value dict."""
+    lines = workflow.splitlines()
+    mappings: list[dict[str, str]] = []
+
+    for index, line in enumerate(lines):
+        header = re.match(r"^(\s*)concurrency:\s*$", line)
+        if not header:
+            continue
+
+        key_indentation = len(header.group(1)) + 2
+        mapping: dict[str, str] = {}
+        for next_line in lines[index + 1 :]:
+            if not next_line.strip() or next_line.lstrip().startswith("#"):
+                continue
+            indentation = len(next_line) - len(next_line.lstrip())
+            if indentation < key_indentation:
+                break
+            entry = re.match(r"([A-Za-z0-9_-]+):\s*(.*)$", next_line.lstrip())
+            if indentation == key_indentation and entry:
+                mapping[entry.group(1)] = entry.group(2).strip()
+        mappings.append(mapping)
+
+    return mappings
 
 
 def assert_action_pin_count(

@@ -1,0 +1,10 @@
+# Template main, CI/CD Pipeline run 38041366369 (533e0b7) -- the same preflight failure
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-10T09:26:07.6019184Z ##[warning]release-preflight: PyPI answered 422 to the mint-token probe (no verdict on trusted publishing)
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-10T09:26:07.6028529Z ##[error]release-preflight: verified nothing (1 unknown) -- refusing to release on an unproven credential set
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-10T09:26:07.6033581Z ##[error]Process completed with exit code 1.
+Pipeline Status	UNKNOWN STEP	2026-10-10T09:27:24.2846709Z ##[error]Failed jobs: release-preflight
+Pipeline Status	UNKNOWN STEP	2026-10-10T09:27:24.2859770Z ##[error]Process completed with exit code 1.
+
+# Same run: the mypy deprecation and the dist upload default
+Lint and Format Check	UNKNOWN STEP	2026-10-10T09:26:28.0878765Z Warning: --strict-concatenate is deprecated; use --extra-checks instead
+Build Package	UNKNOWN STEP	2026-10-10T09:27:16.9478809Z   if-no-files-found: warn

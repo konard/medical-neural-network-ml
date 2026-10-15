@@ -8,6 +8,7 @@ workflow that calls the script.
 from __future__ import annotations
 
 import os
+import re
 import subprocess
 from pathlib import Path
 
@@ -95,3 +96,23 @@ def test_workflow_pins_every_download() -> None:
     for name in ("LLAMA", "CUDART", "MODEL", "MMPROJ"):
         assert f"{name}_SHA256" in text
     assert "MODEL_REVISION=" in text
+
+
+def test_pull_request_paths_cover_every_file_the_jobs_run() -> None:
+    """A change to any file the model jobs execute must trigger them.
+
+    Issue #4: the real-data test, the budget wrapper and pyproject.toml (the
+    installed dependencies) were missing from the filter, so a pull request
+    that broke them stayed green without running the model tests.
+    """
+    text = WORKFLOW.read_text(encoding="utf-8")
+    trigger = text.split("\n  pull_request:\n", 1)[1].split("\n  schedule:\n", 1)[0]
+    filters = set(re.findall(r"^      - '([^']+)'$", trigger, re.MULTILINE))
+    jobs = text.split("\njobs:\n", 1)[1]
+    used = set(re.findall(r"\b((?:scripts|tests)/[\w.-]+\.(?:sh|py))\b", jobs))
+    used |= set(re.findall(r"\b(tests/[\w.-]+\.py)\b", SCRIPT_PATH.read_text()))
+    used.discard("scripts/check-pipeline-status.sh")  # status gate, not a test
+    used |= {"pyproject.toml", ".github/workflows/model-tests.yml"}
+
+    missing = sorted(path for path in used if path not in filters)
+    assert not missing, f"model-tests.yml pull_request paths miss {missing}"

@@ -1,9 +1,11 @@
 name: Workflows
 
-# GitHub Actions ignores unknown workflow keys instead of rejecting them, so a
-# typo such as `queue: max` inside a `concurrency:` block silently does nothing
-# (issue #62). actionlint validates the schema and, through shellcheck, every
-# `run:` block as well.
+# GitHub Actions ignores some unknown workflow keys instead of rejecting them,
+# so a typo inside a `concurrency:` block can silently do nothing (issue #62).
+# actionlint validates the schema and, through shellcheck, every `run:` block
+# as well. `queue:` is real syntax that actionlint does not know yet, so
+# .github/actionlint.yaml ignores that one message (issue #4):
+# https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax
 on:
   push:
     branches:
@@ -36,7 +38,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
 
@@ -81,7 +83,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
 
@@ -108,8 +110,15 @@ jobs:
       # without importing the noise. Measured: after the digest pin of the
       # actionlint image above it reports nothing, and stays silent until
       # someone reintroduces a mutable image reference (issue #75).
+      #
+      # GH_TOKEN puts this pass in online mode, like the action above (its
+      # `token` input defaults to github.token). Without it zizmor warns
+      # "running in offline mode by default" and skips the audits that query
+      # the GitHub API (issue #4). The job token is read-only.
       - name: Audit for pedantic-only high-severity findings
         timeout-minutes: 5
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           pipx run "zizmor==$ZIZMOR_VERSION" --config .github/zizmor.yml \
             --persona pedantic --min-severity high --min-confidence high \
@@ -128,7 +137,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
 

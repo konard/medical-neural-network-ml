@@ -1,0 +1,70 @@
+# lychee over docs/case-studies (excluded from CI), run locally on 2026-10-15 with lycheeverse/lychee 0.24.2
+# Summary
+
+| Status         | Count |
+|----------------|-------|
+| 🔍 Total       | 732   |
+| 🔗 Unique      | 491   |
+| ✅ Successful  | 702   |
+| ⏳ Timeouts    | 4     |
+| 🔀 Redirected  | 80    |
+| 👻 Excluded    | 0     |
+| ❓ Unknown     | 0     |
+| 🚫 Errors      | 26    |
+| ⛔ Unsupported | 0     |
+
+## Errors per input
+
+### Errors in docs/case-studies/issue-1/data/ci-cpu-smoke-38714694090/ATTRIBUTION.md
+
+* [404] <https://commons.wikimedia.org/wiki/File:Adenokarzinom_der_Lunge_im_Roentgenbild_63M_-> (at 14:100) | Rejected status code: 404 Not Found
+* [404] <https://commons.wikimedia.org/wiki/File:Mediastinalshift_nach_rechts_bei_grossem_Pleuraerguss_links_77W_-> (at 12:107) | Rejected status code: 404 Not Found
+* [404] <https://commons.wikimedia.org/wiki/File:Normal_posteroanterior_(PA)> (at 7:109) | Rejected status code: 404 Not Found
+* [404] <https://commons.wikimedia.org/wiki/File:Schallschatten_bei_Cholecystolithiasis_71W_-> (at 22:99) | Rejected status code: 404 Not Found
+
+### Errors in docs/case-studies/issue-1/research-notes/datasets.md
+
+* [403] <https://aimi.stanford.edu/shared-datasets> (at 405:68) | Rejected status code: 403 Forbidden
+* [403] <https://doi.org/10.71718/6nvz-pm34> (at 124:194) | Rejected status code: 403 Forbidden
+* [403] <https://doi.org/10.71718/6nvz-pm34> (at 405:112) | Error (cached)
+* [ERROR] <https://fki.tic.heia-fr.ch/databases/iam-handwriting-database> (at 402:14) | Error (cached)
+* [ERROR] <https://fki.tic.heia-fr.ch/databases/iam-handwriting-database> (at 99:296) | SSL certificate expired. Site needs to renew certificate
+* [403] <https://portal.dbmi.hms.harvard.edu/projects/n2c2-nlp/> (at 392:9) | Error (cached)
+* [403] <https://portal.dbmi.hms.harvard.edu/projects/n2c2-nlp/> (at 70:249) | Rejected status code: 403 Forbidden
+* [403] <https://www.nejm.org/image-challenge> (at 234:132) | Rejected status code: 403 Forbidden
+
+### Errors in docs/case-studies/issue-1/research-notes/hardware-and-ci.md
+
+* [404] <https://catalog.ngc.nvidia.com/orgs/nvidia/teams/dgxc-benchmarking/resources/llama31-405b-dgxc-benchmarking-a> (at 524:268) | Rejected status code: 404 Not Found
+* [403] <https://compute.doit.com/spot/us-east-1/p5.48xlarge> (at 515:110) | Rejected status code: 403 Forbidden
+* [403] <https://computingforgeeks.com/run-local-llm-llama-cpp/> (at 490:97) | Rejected status code: 403 Forbidden
+* [403] <https://markaicode.com/benchmarks/cuda-gemma-4-rtx-4090-tokens-per-second-benchmark/> (at 511:167) | Rejected status code: 403 Forbidden
+* [403] <https://markaicode.com/benchmarks/llamacpp-tokens-per-second-benchmark/> (at 511:93) | Rejected status code: 403 Forbidden
+* [403] <https://openbenchmarking.org/result/2606024-NE-LLAMAALLM76> (at 493:101) | Rejected status code: 403 Forbidden
+
+### Errors in docs/case-studies/issue-1/research-notes/models.md
+
+* [403] <https://openai.com/index/healthbench/> (at 884:95) | Rejected status code: 403 Forbidden
+
+### Errors in docs/case-studies/issue-1/research-notes/training-and-data.md
+
+* [ERROR] <https://dicom.nema.org/medical/dicom/current/output/chtml/part15/chapter_E.html> (at 630:68) | Network error: Connection reset by peer (os error 104)
+* [404] <https://docs.torchio.org/transforms/augmentation> (at 616:24) | Rejected status code: 404 Not Found
+* [406] <https://radiopaedia.org/articles/augmentation?lang=gb> (at 636:39) | Rejected status code: 406 Not Acceptable
+* [403] <https://ropesgray.com/en/insights/alerts/2024/12/fda-finalizes-guidance-on-predetermined-change-control-plans-for-ai-enabled-device> (at 641:198) | Rejected status code: 403 Forbidden
+* [404] <https://www.fda.gov/regulatory-information/search-fda-guidance-documents/artificial-intelligence-enabled-device-software-functions-lifecycle-management-and-marketing> (at 642:147) | Rejected status code: 404 Not Found
+* [403] <https://www.healthcareitnews.com/news/emea/world-first-study-used-ai-tool-predict-covid-patients-oxygen-needs> (at 628:228) | Rejected status code: 403 Forbidden
+* [403] <https://www.hhs.gov/hipaa/for-professionals/special-topics/de-identification/index.html> (at 629:168) | Rejected status code: 403 Forbidden
+
+## Timeouts per input
+
+### Timeouts in docs/case-studies/issue-1/research-notes/datasets.md
+
+* [TIMEOUT] <https://rrc.cvc.uab.es/?ch=13> (at 77:297) | Request timed out
+* [TIMEOUT] <https://rrc.cvc.uab.es/?ch=17> (at 78:214) | Request timed out
+* [TIMEOUT] <https://sites.wustl.edu/oasisbrains/> (at 160:387) | Request timed out
+* [TIMEOUT] <https://sites.wustl.edu/oasisbrains/> (at 415:10) | Request timed out
+
+
+Hint: Followed 80 redirects. You might want to consider replacing redirecting URLs with the resolved URLs. Use verbose mode (`-v`/`-vv`) to see redirection details.
+Hint: You can configure accepted/rejected response codes with `-a` or `--accept`

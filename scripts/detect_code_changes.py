@@ -44,7 +44,10 @@ EXCLUDED_FOLDERS = (
     "examples/",
     "experiments/",
 )
-CODE_EXTENSIONS = (".py", ".toml", ".yml", ".yaml")
+# Shell scripts run inside the pipeline and JSON carries package data and tool
+# configuration (src/medbench/data/real_samples.json, .secretlintrc.json), so a
+# change to either must not skip lint, test and build (issue #4).
+CODE_EXTENSIONS = (".py", ".sh", ".json", ".toml", ".yml", ".yaml")
 
 
 def exec_command(command: str) -> str:

@@ -44,3 +44,36 @@ def test_markdown_changes_activate_the_docs_gate(event_name: str) -> None:
         "any-code-changed": False,
         "docs-changed": True,
     }
+
+
+@pytest.mark.parametrize("event_name", ["pull_request", "push"])
+@pytest.mark.parametrize(
+    "file_path",
+    [
+        "scripts/simulate-fresh-merge.sh",
+        "scripts/preflight-credentials.sh",
+        "src/medbench/data/real_samples.json",
+        ".secretlintrc.json",
+    ],
+)
+def test_shell_and_json_changes_activate_jobs(event_name: str, file_path: str) -> None:
+    """A PR that changes only a pipeline script or package data must be checked.
+
+    Issue #4 (template issue #107): ``.sh`` was not a code extension, so a
+    script-only PR skipped lint, test and build and needed no changelog.
+    """
+    assert detect_change_types([file_path], event_name=event_name) == {
+        "any-code-changed": True,
+        "docs-changed": False,
+    }
+
+
+@pytest.mark.parametrize(
+    "file_path",
+    ["docs/case-studies/run.sh", "dev/log/issues/4/runs.json", "experiments/a.sh"],
+)
+def test_excluded_folders_win_over_code_extensions(file_path: str) -> None:
+    assert detect_change_types([file_path], event_name="push") == {
+        "any-code-changed": False,
+        "docs-changed": file_path.startswith("docs/"),
+    }

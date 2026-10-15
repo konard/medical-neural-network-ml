@@ -1,0 +1,11 @@
+# Workflows, PR #5, run 38728238810 (8f67b06) -- after the fixes
+Lint Workflows	Lint workflow files	2026-10-15T11:34:09.8855944Z with:
+Lint Workflows	Lint workflow files	2026-10-15T11:34:09.8856230Z   args: -color
+Lint Workflows	Lint workflow files	2026-10-15T11:34:09.8856512Z env:
+Lint Workflows	Lint workflow files	2026-10-15T11:34:09.8856752Z   GIT_CONFIG_COUNT: 1
+Lint Workflows	Lint workflow files	2026-10-15T11:34:09.8857030Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Lint Workflows	Lint workflow files	2026-10-15T11:34:09.8857314Z   GIT_CONFIG_VALUE_0: main
+Lint Workflows	Lint workflow files	2026-10-15T11:34:09.8857617Z   ZIZMOR_VERSION: 1.30.1
+Lint Workflows	Lint workflow files	2026-10-15T11:34:09.8857891Z ##[endgroup]
+Lint Workflows	Lint workflow files	2026-10-15T11:34:09.8941614Z ##[command]/usr/bin/docker run --name rhysdactionlintsha256b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667_7e34f7 --label ddc81d --workdir /github/workspace --rm -e "GIT_CONFIG_COUNT" -e "GIT_CONFIG_KEY_0" -e "GIT_CONFI
+Audit Workflows	Audit for pedantic-only high-severity findings	2026-10-15T11:34:13.2146187Z No findings to report. Good job! (15 ignored, 8 suppressed)

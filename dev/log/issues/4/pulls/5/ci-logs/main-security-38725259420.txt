@@ -1,0 +1,7 @@
+# Security, main, run 38725259420 (fd7703e) -- failing
+Dependency Graph Enabled	Require the dependency graph	2026-10-15T11:08:53.8042680Z ##[error]Dependency graph is disabled for konard/medical-neural-network-ml, so dependency review cannot run. A repository admin must enable it: https://github.com/konard/medical-neural-network-ml/settings/security_analysis -> Dependency graph -> Enable.
+Dependency Graph Enabled	Require the dependency graph	2026-10-15T11:08:53.8056675Z ##[error]Process completed with exit code 1.
+CodeQL (python)	Analyze	2026-10-15T11:09:51.1203937Z Interpreted metric query "Total lines of user written Python code in the database" (py/summary/lines-of-user-code) at path /home/runner/work/_temp/codeql_databases/python/results/codeql/python-queries/Summary/LinesOfUserCode.bqrs.
+CodeQL (python)	Analyze	2026-10-15T11:09:51.1206851Z Interpreted metric query "Total lines of Python code in the database" (py/summary/lines-of-code) at path /home/runner/work/_temp/codeql_databases/python/results/codeql/python-queries/Summary/LinesOfCode.bqrs.
+Pipeline Status	Check aggregate pipeline status	2026-10-15T11:10:15.4446174Z ##[error]Failed jobs: dependency-graph
+Pipeline Status	Check aggregate pipeline status	2026-10-15T11:10:15.4458836Z ##[error]Process completed with exit code 1.

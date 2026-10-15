@@ -26,6 +26,8 @@ class FakeEndpoints:
     def __init__(self) -> None:
         self.oidc_status = 200
         self.mint_status = 200
+        self.mint_body: dict[str, object] = {}
+        self.project_status = 404
         self.auth_status = 200
         self.blob_status = 202
         self.requests: list[tuple[str, str]] = []
@@ -69,6 +71,8 @@ class FakeEndpoints:
                         fake.oidc_status,
                         json.dumps({"count": 1, "value": "fake-oidc-jwt"}),
                     )
+                elif self.path.startswith("/pypi/"):
+                    self._respond(fake.project_status, json.dumps({}))
                 elif self.path.startswith("/token"):
                     if fake.auth_status == 200:
                         self._respond(200, json.dumps({"token": "registry-jwt"}))
@@ -88,7 +92,7 @@ class FakeEndpoints:
                             200, json.dumps({"token": "pypi-short-lived-token"})
                         )
                     else:
-                        self._respond(fake.mint_status, json.dumps({}))
+                        self._respond(fake.mint_status, json.dumps(fake.mint_body))
                 elif "/blobs/uploads/" in self.path:
                     headers = {}
                     if fake.blob_status == 202:
@@ -188,6 +192,112 @@ def test_pypi_refusal_fails_the_release(fake_endpoints) -> None:
     assert result.returncode == 1
     assert "FAIL: PyPI refused to mint an upload token (403)" in result.stdout
     assert "trusted-publisher mapping" in result.stdout
+
+
+def warehouse_error(code: str, description: str) -> dict[str, object]:
+    """The body Warehouse's _invalid() returns with HTTP 422."""
+    return {
+        "message": "Token request failed",
+        "errors": [{"code": code, "description": description}],
+    }
+
+
+def test_pypi_422_without_a_publisher_fails_the_release(fake_endpoints) -> None:
+    # Issue #4: PyPI answers a missing trusted publisher with 422
+    # invalid-publisher. It used to be reported as "no verdict", so main
+    # failed with "verified nothing" and no instruction.
+    fake = fake_endpoints
+    fake.mint_status = 422
+    fake.mint_body = warehouse_error(
+        "invalid-publisher",
+        "valid token, but no corresponding publisher (Publisher with matching"
+        " claims was not found)",
+    )
+    env = {
+        **pypi_only_env(fake),
+        "GITHUB_REPOSITORY": "octo/medbench",
+        "GITHUB_WORKFLOW_REF": "octo/medbench/.github/workflows/release.yml@refs/heads/main",
+        "PYPI_PROJECT": "medbench-demo",
+    }
+    result = run_script(env)
+    assert result.returncode == 1
+    assert "FAIL: PyPI refused to mint an upload token (422 invalid-publisher" in (
+        result.stdout
+    )
+    assert "UNKNOWN" not in result.stdout
+    assert (
+        "owner=octo, repository=medbench, workflow=release.yml, environment=(blank)"
+        in result.stdout
+    )
+    assert (
+        f'pending publisher for the new project "medbench-demo" at {fake.url}/manage/account/publishing/'
+        in result.stdout
+    )
+    assert "::error::release-preflight: refusing to release with 1 refused" in (
+        result.stdout
+    )
+    assert ("GET", "/pypi/medbench-demo/json") in fake.requests
+
+
+def test_pypi_422_names_the_existing_project_and_the_rename(fake_endpoints) -> None:
+    fake = fake_endpoints
+    fake.mint_status = 422
+    fake.project_status = 200
+    fake.mint_body = warehouse_error("invalid-publisher", "no corresponding publisher")
+    result = run_script({**pypi_only_env(fake), "PYPI_PROJECT": "my-package"})
+    assert result.returncode == 1
+    assert (
+        f'existing project "my-package" at {fake.url}/manage/project/my-package/settings/publishing/'
+        in result.stdout
+    )
+    assert "rename [project].name in pyproject.toml" in result.stdout
+
+
+def test_pypi_422_reads_the_project_name_from_pyproject(fake_endpoints) -> None:
+    fake = fake_endpoints
+    fake.mint_status = 422
+    fake.mint_body = warehouse_error("invalid-pending-publisher", "project exists")
+    result = run_script({**pypi_only_env(fake), "PYPI_PROJECT": ""})
+    assert result.returncode == 1
+    assert "(422 invalid-pending-publisher: project exists)" in result.stdout
+    name = next(
+        line.split('"')[1]
+        for line in (ROOT / "pyproject.toml").read_text().splitlines()
+        if line.startswith("name = ")
+    )
+    assert f"/pypi/{name}/json" in [path for _, path in fake.requests]
+
+
+@pytest.mark.parametrize(
+    "code",
+    [
+        "rate-limited",
+        "not-enabled",
+        "invalid-token",
+        "invalid-reuse-token",
+        "invalid-payload",
+    ],
+)
+def test_pypi_422_without_a_publisher_verdict_stays_unknown(
+    fake_endpoints, code: str
+) -> None:
+    fake = fake_endpoints
+    fake.mint_status = 422
+    fake.mint_body = warehouse_error(code, "try later")
+    result = run_script(pypi_only_env(fake))
+    assert result.returncode == 1
+    assert f"UNKNOWN: PyPI answered 422 {code} to the mint-token probe (try later)" in (
+        result.stdout
+    )
+    assert "FAIL" not in result.stdout
+    assert "::error::release-preflight: verified nothing (1 unknown)" in result.stdout
+
+
+def test_pypi_422_without_a_body_stays_unknown(fake_endpoints) -> None:
+    fake = fake_endpoints
+    fake.mint_status = 422
+    result = run_script(pypi_only_env(fake))
+    assert "UNKNOWN: PyPI answered 422 without an error code" in result.stdout
 
 
 def test_oidc_unreachable_is_unknown_and_never_a_release_pass(fake_endpoints) -> None:

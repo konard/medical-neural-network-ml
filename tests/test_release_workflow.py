@@ -61,6 +61,7 @@ def test_release_workflow_separates_check_and_write_concurrency() -> None:
             "    concurrency:",
             "      group: ${{ github.workflow }}-main-write",
             "      cancel-in-progress: false",
+            "      queue: max",
         )
     )
     for job_name in ("auto-release", "manual-release"):
@@ -214,15 +215,16 @@ def test_release_workflow_action_versions_are_current() -> None:
     """Release workflow actions should use the current major versions."""
     release_workflow = read_workflow("release.yml")
 
-    assert_action_pin_count(release_workflow, "actions/checkout", "v6", 13)
-    assert_action_pin_count(release_workflow, "actions/setup-python", "v6", 7)
+    assert_action_pin_count(release_workflow, "actions/checkout", "v7", 13)
+    assert_action_pin_count(release_workflow, "actions/setup-python", "v7", 7)
     assert_action_pin_count(release_workflow, "actions/upload-artifact", "v7", 2)
     assert_action_pin_count(release_workflow, "actions/download-artifact", "v8", 2)
     assert_action_pin_absent(release_workflow, "actions/download-artifact", "v7")
     assert_action_hash_pin(release_workflow, "codecov/codecov-action", 1)
     assert_action_hash_pin(release_workflow, "pypa/gh-action-pypi-publish", 2)
 
-    assert_action_pin_absent(release_workflow, "actions/setup-python", "v5")
+    assert_action_pin_absent(release_workflow, "actions/setup-python", "v6")
+    assert_action_pin_absent(release_workflow, "actions/checkout", "v6")
     assert_action_pin_absent(release_workflow, "codecov/codecov-action", "v4")
     # A mutable branch pin executes whatever that branch holds at run time.
     assert_action_pin_absent(
@@ -247,7 +249,7 @@ def test_release_workflow_sets_git_default_branch_before_checkout() -> None:
     assert "  GIT_CONFIG_VALUE_0: main" in workflow
 
     env_index = workflow.index("env:\n  GIT_CONFIG_COUNT: '1'")
-    first_checkout_index = workflow.index("uses: actions/checkout@v6")
+    first_checkout_index = workflow.index("uses: actions/checkout@v7")
     assert env_index < first_checkout_index
 
 

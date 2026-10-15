@@ -1,0 +1,2 @@
+# Workflows, main, run 38725259341 (fd7703e) -- green with a warning
+Audit Workflows	Audit for pedantic-only high-severity findings	2026-10-15T11:09:02.6090811Z  WARN audit: zizmor: zizmor is running in offline mode by default; some audits and auto-fixes will not be available. see https://docs.zizmor.sh/usage/#operating-modes for details

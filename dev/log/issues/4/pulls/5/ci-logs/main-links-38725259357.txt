@@ -1,0 +1,5 @@
+# Broken Link Checker, main, run 38725259357 (fd7703e) -- green with a warning
+Check Links	Check links with lychee	2026-10-15T11:08:55.4730125Z   INPUT_FAIL: false
+Check Links	Check links with lychee	2026-10-15T11:08:55.6997993Z   [WARN] ./**/*.html: No files found for this input source
+Check Links	Check links with lychee	2026-10-15T11:09:13.7454532Z | 🔍 Total       | 52    |
+Check Links	Check links with lychee	2026-10-15T11:09:13.7459047Z | 🚫 Errors      | 0     |

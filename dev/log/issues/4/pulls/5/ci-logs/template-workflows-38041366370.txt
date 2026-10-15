@@ -1,0 +1,2 @@
+# Template main, Workflows run 38041366370 (533e0b7) -- the pedantic zizmor pass runs offline
+Audit Workflows	UNKNOWN STEP	2026-10-10T09:26:18.2241691Z  WARN audit: zizmor: zizmor is running in offline mode by default; some audits and auto-fixes will not be available. see https://docs.zizmor.sh/usage/#operating-modes for details

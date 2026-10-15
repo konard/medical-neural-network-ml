@@ -4,3 +4,10 @@ self-hosted-runner:
   # (issue #1). Setup: docs/case-studies/issue-1/ci-and-gpu-runner.md.
   labels:
     - gpu
+paths:
+  .github/workflows/**/*.{yml,yaml}:
+    ignore:
+      # `queue:` is documented concurrency syntax (issue #4) but newer than the
+      # schema bundled with actionlint 1.7.12. Drop this once
+      # rhysd/actionlint#654 ships.
+      - 'unexpected key "queue" for "concurrency" section'

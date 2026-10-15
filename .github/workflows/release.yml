@@ -50,13 +50,13 @@ jobs:
       any-code-changed: ${{ steps.changes.outputs.any-code-changed }}
       docs-changed: ${{ steps.changes.outputs.docs-changed }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
           fetch-depth: 0
 
       - name: Setup Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: '3.13'
 
@@ -116,7 +116,7 @@ jobs:
         needs.detect-changes.outputs.any-code-changed == 'true'
       )
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
           fetch-depth: 0
@@ -128,7 +128,7 @@ jobs:
         run: bash scripts/simulate-fresh-merge.sh
 
       - name: Setup Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: '3.13'
 
@@ -219,7 +219,7 @@ jobs:
         needs.detect-changes.outputs.docs-changed == 'true'
       )
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
 
@@ -247,7 +247,7 @@ jobs:
       # upload token -- the same exchange the publish step performs.
       id-token: write
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
 
@@ -287,12 +287,12 @@ jobs:
         needs.detect-changes.outputs.any-code-changed == 'true'
       )
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
 
       - name: Setup Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: '3.13'
 
@@ -376,12 +376,12 @@ jobs:
         needs.test.result == 'success'
       )
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
 
       - name: Setup Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: '3.13'
 
@@ -426,11 +426,14 @@ jobs:
           cd "$PYTHON_ROOT"
           twine check dist/*
 
+      # The default `warn` lets a build with an empty dist/ pass here and only
+      # fail later in the publish job (issue #4).
       - name: Upload artifacts
         uses: actions/upload-artifact@v7
         with:
           name: dist
           path: ${{ steps.python_layout.outputs.dist_dir }}
+          if-no-files-found: error
 
   # === CHANGELOG CHECK - only runs on PRs with code changes ===
   # Docs-only PRs (./docs folder, markdown files) don't require changelog fragments
@@ -444,13 +447,13 @@ jobs:
     needs: [detect-changes]
     if: github.event_name == 'pull_request' && needs.detect-changes.outputs.any-code-changed == 'true'
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: "3.13"
 
@@ -499,7 +502,7 @@ jobs:
     needs: [detect-changes]
     if: github.event_name == 'pull_request' && needs.detect-changes.outputs.any-code-changed == 'true'
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
 
@@ -541,9 +544,13 @@ jobs:
     outputs:
       released: ${{ steps.github_release.outputs.released }}
       version: ${{ steps.github_release.outputs.version }}
+    # queue: max keeps every waiting writer instead of only the newest one: with
+    # the default `single`, a third release cancels the one still pending
+    # (issue #4). GitHub rejects it together with cancel-in-progress: true.
     concurrency:
       group: ${{ github.workflow }}-main-write
       cancel-in-progress: false
+      queue: max
     if: |
       !cancelled() &&
       github.event_name == 'push' && github.ref == 'refs/heads/main' &&
@@ -557,13 +564,13 @@ jobs:
       contents: write
       id-token: write
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
           fetch-depth: 0
 
       - name: Setup Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: '3.13'
 
@@ -654,9 +661,13 @@ jobs:
     outputs:
       released: ${{ steps.github_release.outputs.released }}
       version: ${{ steps.github_release.outputs.version }}
+    # queue: max keeps every waiting writer instead of only the newest one: with
+    # the default `single`, a third release cancels the one still pending
+    # (issue #4). GitHub rejects it together with cancel-in-progress: true.
     concurrency:
       group: ${{ github.workflow }}-main-write
       cancel-in-progress: false
+      queue: max
     # !cancelled() prevents the skipped detect-changes dependency from propagating
     # through lint/test/build while still propagating workflow cancellation.
     # The explicit result checks ensure release only proceeds after CI passes.
@@ -677,14 +688,14 @@ jobs:
       # .git/config: scripts/version_and_commit.py runs `git push origin main`
       # to publish the version bump, which needs the token wired into the
       # remote. Every other checkout sets persist-credentials: false.
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: true
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: '3.13'
 
@@ -818,7 +829,7 @@ jobs:
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
       RELEASE_VERSION: ${{ needs.auto-release.outputs.version || needs.manual-release.outputs.version }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
 
@@ -860,7 +871,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
 
@@ -960,7 +971,7 @@ jobs:
             changelog, docker-build, auto-release, manual-release,
             docker-publish-config, docker-publish-build, docker-publish]
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
 
