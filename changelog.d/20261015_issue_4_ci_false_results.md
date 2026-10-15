@@ -26,4 +26,4 @@
 - Restore `queue: max` on the release writers, so a third release no longer
   cancels the one still waiting for the `main-write` group. GitHub documents
   `queue`; actionlint 1.7.12 does not know it yet, so only that one message is
-  ignored until rhysd/actionlint#654 ships.
+  ignored (in `.github/actionlint.yaml`) until rhysd/actionlint#654 ships.

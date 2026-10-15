@@ -3,7 +3,8 @@ name: Workflows
 # GitHub Actions ignores some unknown workflow keys instead of rejecting them,
 # so a typo inside a `concurrency:` block can silently do nothing (issue #62).
 # actionlint validates the schema and, through shellcheck, every `run:` block
-# as well. `queue:` is real syntax that actionlint does not know yet (issue #4):
+# as well. `queue:` is real syntax that actionlint does not know yet, so
+# .github/actionlint.yaml ignores that one message (issue #4):
 # https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax
 on:
   push:
@@ -62,11 +63,7 @@ jobs:
       - name: Lint workflow files
         uses: docker://rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667 # v1.7.12
         with:
-          # `queue:` is documented concurrency syntax but newer than the schema
-          # bundled with actionlint 1.7.12. Drop the -ignore once
-          # rhysd/actionlint#654 ships. The `.` wildcards avoid nested quotes,
-          # which the docker:// args splitter would mangle.
-          args: -color -ignore "unexpected key .queue. for .concurrency. section"
+          args: -color
 
   # actionlint validates workflow schema and shell; it does not detect
   # credential persistence, template injection or unpinned actions. zizmor

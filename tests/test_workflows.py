@@ -427,15 +427,13 @@ def test_workflow_lint_job_validates_every_workflow() -> None:
     assert pin, "actionlint image must be digest-pinned with its tag in a comment"
     assert pin.group(2) == "v1.7.12"
     assert "docker://rhysd/actionlint:1.7" not in job
+    assert "-ignore" not in job
     # Issue #4: exactly one message is ignored -- the documented `queue:` key
     # that 1.7.12 does not know -- so every other finding still fails the job.
-    args = re.search(r"^          args: (.+)$", job, re.MULTILINE)
-    assert args, "actionlint step must pass args"
-    assert shlex.split(args.group(1)) == [
-        "-color",
-        "-ignore",
-        "unexpected key .queue. for .concurrency. section",
-    ]
+    # It lives in the config file, so a plain local `actionlint` agrees with CI.
+    config = (WORKFLOWS.parent / "actionlint.yaml").read_text(encoding="utf-8")
+    ignored = re.findall(r"^      - '(.+)'$", config, re.MULTILINE)
+    assert ignored == ['unexpected key "queue" for "concurrency" section']
 
 
 def test_workflow_audit_job_runs_zizmor() -> None:
