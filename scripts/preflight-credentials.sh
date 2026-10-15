@@ -80,6 +80,53 @@ json_string() {
   printf '%s' "$1" | sed -n "s/.*\"$2\" *: *\"\([^\"]*\)\".*/\1/p" | head -n 1
 }
 
+# The distribution name the publish step uploads: PYPI_PROJECT, or
+# [project].name from pyproject.toml.
+pypi_project_name() {
+  if [ -n "${PYPI_PROJECT:-}" ]; then
+    printf '%s' "$PYPI_PROJECT"
+    return 0
+  fi
+  sed -n 's/^name *= *"\([^"]*\)".*/\1/p' "${PYTHON_ROOT:-.}/pyproject.toml" 2>/dev/null | head -n 1
+}
+
+# What a maintainer has to do when PyPI has no publisher for this workflow.
+# The fields are the ones PyPI's "Add a new publisher" form asks for, filled
+# in from the run, so the fix is a copy-paste rather than a guess.
+pypi_publisher_hint() {
+  local project repo owner repository workflow project_status
+  project=$(pypi_project_name)
+  repo="${GITHUB_REPOSITORY:-<owner>/<repository>}"
+  owner="${repo%%/*}"
+  repository="${repo#*/}"
+  workflow="${GITHUB_WORKFLOW_REF:-}"
+  workflow="${workflow%%@*}"
+  workflow="${workflow##*/}"
+  workflow="${workflow:-<the workflow file that publishes>}"
+  printf 'A PyPI maintainer must add a GitHub trusted publisher with owner=%s, repository=%s, workflow=%s, environment=(blank)' \
+    "$owner" "$repository" "$workflow"
+  if [ -z "$project" ]; then
+    printf ' (no [project].name found in pyproject.toml).'
+    return 0
+  fi
+  project_status=$(curl -sS --max-time "$CURL_TIMEOUT" -o /dev/null -w '%{http_code}' \
+    -A "$CURL_USER_AGENT" "${PYPI_API}/pypi/${project}/json" 2>/dev/null)
+  case "$project_status" in
+    404)
+      printf ' as a pending publisher for the new project "%s" at %s/manage/account/publishing/.' \
+        "$project" "$PYPI_API"
+      ;;
+    200)
+      printf ' to the existing project "%s" at %s/manage/project/%s/settings/publishing/. If that project is not yours, rename [project].name in pyproject.toml first.' \
+        "$project" "$PYPI_API" "$project"
+      ;;
+    *)
+      printf ' for the project "%s": %s/manage/project/%s/settings/publishing/ if it exists, otherwise a pending publisher at %s/manage/account/publishing/.' \
+        "$project" "$PYPI_API" "$project" "$PYPI_API"
+      ;;
+  esac
+}
+
 # The publishing jobs use PyPI trusted publishing (pypa/gh-action-pypi-publish
 # with no password): GitHub mints an OIDC token for the job, and PyPI exchanges
 # it for a short-lived upload token. The exchange IS the publish credential
@@ -88,7 +135,7 @@ json_string() {
 check_pypi() {
   local request_url="${ACTIONS_ID_TOKEN_REQUEST_URL:-}"
   local request_token="${ACTIONS_ID_TOKEN_REQUEST_TOKEN:-}"
-  local response status oidc_token
+  local response status oidc_token body code description
 
   printf 'PyPI:\n'
 
@@ -134,6 +181,24 @@ check_pypi() {
       ;;
     400 | 401 | 403)
       bad "PyPI refused to mint an upload token (${status}) -- the trusted-publisher mapping for this repository/workflow is missing or does not match, and the publish step would be rejected"
+      ;;
+    422)
+      # Warehouse answers every refused exchange with 422 and an error code
+      # (warehouse/oidc/views.py). Only the publisher codes are a verdict on
+      # the trusted-publisher mapping; the rest (rate-limited, not-enabled,
+      # invalid-token, invalid-reuse-token, invalid-payload) say nothing
+      # about it, so they stay unknown.
+      body="${response%"${NEWLINE}"*}"
+      code=$(json_string "$body" code)
+      description=$(json_string "$body" description)
+      case "$code" in
+        invalid-publisher | invalid-pending-publisher)
+          bad "PyPI refused to mint an upload token (422 ${code}: ${description:-no description}) -- the publish step would be rejected the same way. $(pypi_publisher_hint)"
+          ;;
+        *)
+          unknown "PyPI answered 422 ${code:-without an error code} to the mint-token probe${description:+ (${description})} (no verdict on trusted publishing)"
+          ;;
+      esac
       ;;
     '')
       unknown 'PyPI was unreachable during the mint-token probe'
