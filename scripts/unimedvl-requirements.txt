@@ -1,0 +1,28 @@
+# Python 3.10 packages for scripts/unimedvl_server.py (issue #6).
+#
+# Copied from the pip section of codes/environment.yaml in
+# https://github.com/uni-medical/UniMedVL at commit
+# f51aa0accbd02e846e5ea20b595fb39b516dbe1f (Python 3.10.18). Only the
+# Jupyter packages are left out; the server does not use a notebook.
+# flash-attn is installed separately from a SHA-256-pinned wheel by
+# scripts/medbench-model-run.sh, because upstream adds it by hand.
+torch==2.5.1
+torchvision==0.20.1
+triton==3.1.0
+transformers==4.49.0
+accelerate==1.7.0
+safetensors==0.4.5
+tokenizers==0.21.1
+sentencepiece==0.1.99
+pillow==11.2.1
+numpy==1.24.4
+opencv-python==4.7.0.72
+einops==0.8.1
+matplotlib==3.7.0
+contourpy==1.3.2
+cycler==0.12.1
+fonttools==4.58.2
+kiwisolver==1.4.8
+packaging==25.0
+pyparsing==3.2.3
+python-dateutil==2.9.0.post0

@@ -13,10 +13,11 @@ name: Model Tests
 #             items take about 10-20 minutes because CPU decoding is slow.
 # ocr-baseline Classic Tesseract OCR on every real OCR sample, the specialist
 #             baseline the VLM OCR scores are compared with (issue #7).
-# gpu         MedGemma 4B or 27B on a self-hosted runner with an NVIDIA GPU
-#             and the labels `self-hosted, linux, x64, gpu`. It only runs when
-#             someone with write access starts the workflow by hand, so pull
-#             requests from forks can never reach that machine.
+# gpu         MedGemma 4B or 27B (llama.cpp) or UniMedVL (its own PyTorch code
+#             behind scripts/unimedvl_server.py) on a self-hosted runner with an
+#             NVIDIA GPU and the labels `self-hosted, linux, x64, gpu`. It only
+#             runs when someone with write access starts the workflow by hand,
+#             so pull requests from forks can never reach that machine.
 #             Setup: docs/case-studies/issue-1/ci-and-gpu-runner.md.
 on:
   pull_request:
@@ -26,6 +27,8 @@ on:
       - 'src/medbench/**'
       - 'scripts/medbench-model-run.sh'
       - 'scripts/run-with-budget-warning.sh'
+      - 'scripts/unimedvl_server.py'
+      - 'scripts/unimedvl-requirements.txt'
       - 'tests/test_real_models.py'
       - 'tests/test_medbench_real_data.py'
       - 'pyproject.toml'
@@ -48,6 +51,7 @@ on:
         options:
           - medgemma-27b-it
           - medgemma-4b-it
+          - unimedvl
         default: medgemma-27b-it
 
 permissions:
@@ -260,6 +264,15 @@ jobs:
         with:
           persist-credentials: false
 
+      # UniMedVL's pinned PyTorch stack needs Python 3.10 (upstream
+      # environment.yaml); medbench itself keeps running on 3.13.
+      - name: Setup Python 3.10 for UniMedVL
+        id: unimedvl-python
+        if: inputs.gpu-model == 'unimedvl'
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.10'
+
       - name: Setup Python
         uses: actions/setup-python@v7
         with:
@@ -269,6 +282,8 @@ jobs:
         run: nvidia-smi
 
       - name: Select model
+        env:
+          UNIMEDVL_PYTHON: ${{ steps.unimedvl-python.outputs.python-path }}
         run: |
           case "$GPU_MODEL" in
             medgemma-27b-it)
@@ -283,6 +298,12 @@ jobs:
               ;;
             medgemma-4b-it)
               echo "Using the script defaults (MedGemma 4B Q4_K_M)."
+              ;;
+            unimedvl)
+              {
+                echo "SERVER=unimedvl"
+                echo "UNIMEDVL_PYTHON=$UNIMEDVL_PYTHON"
+              } >> "$GITHUB_ENV"
               ;;
             *)
               echo "::error::Unknown model '$GPU_MODEL'."

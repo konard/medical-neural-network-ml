@@ -20,9 +20,11 @@ import base64
 import json
 import re
 import shutil
+import socket
 import subprocess
 import tempfile
 import time
+import urllib.error
 import urllib.request
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass
@@ -33,6 +35,7 @@ from medbench.synthetic_cases import rank_conditions
 
 __all__ = [
     "Backend",
+    "BackendError",
     "Generation",
     "NaiveBayesBackend",
     "OpenAICompatibleBackend",
@@ -58,6 +61,40 @@ class Generation:
     latency_s: float
     prompt_tokens: int | None = None
     completion_tokens: int | None = None
+
+
+class BackendError(RuntimeError):
+    """A model call failed; the run records it and goes on to the next item.
+
+    Attributes:
+        kind: ``out_of_memory`` (the server ran out of GPU or host memory),
+            ``timeout`` (no answer within the request timeout),
+            ``connection`` (the server is not reachable) or ``http`` (any
+            other error status).
+        status: HTTP status code, when there was one.
+    """
+
+    def __init__(self, kind: str, message: str, status: int | None = None):
+        """Store the failure kind and status."""
+        super().__init__(message)
+        self.kind = kind
+        self.status = status
+
+
+HTTP_INSUFFICIENT_STORAGE = 507  # scripts/unimedvl_server.py: out of memory
+
+
+def _http_error(error: urllib.error.HTTPError) -> BackendError:
+    """Classify an error answer from an OpenAI-compatible server."""
+    try:
+        text = error.read().decode(errors="replace")[:2000]
+    except OSError:
+        text = ""
+    out_of_memory = (
+        error.code == HTTP_INSUFFICIENT_STORAGE or "out of memory" in text.lower()
+    )
+    kind = "out_of_memory" if out_of_memory else "http"
+    return BackendError(kind, f"HTTP {error.code}: {text or error.reason}", error.code)
 
 
 class Backend(Protocol):
@@ -200,10 +237,21 @@ class OpenAICompatibleBackend:
             "temperature": self.temperature,
         }
 
+    def _network_error(self, error: OSError) -> BackendError:
+        reason = getattr(error, "reason", error)
+        if isinstance(reason, (TimeoutError, socket.timeout)):
+            return BackendError("timeout", f"no answer within {self.timeout_s:g} s")
+        return BackendError("connection", str(reason))
+
     def generate(
         self, prompt: str, images: Sequence[bytes] = (), max_tokens: int = 256
     ) -> Generation:
-        """Send the prompt and return the answer."""
+        """Send the prompt and return the answer.
+
+        Raises:
+            BackendError: If the server answers with an error status, runs
+                out of memory, times out or cannot be reached.
+        """
         body = json.dumps(self.build_payload(prompt, images, max_tokens)).encode()
         headers = {"Content-Type": "application/json"}
         if self.api_key:
@@ -215,8 +263,13 @@ class OpenAICompatibleBackend:
             method="POST",
         )
         start = time.perf_counter()
-        with urllib.request.urlopen(request, timeout=self.timeout_s) as response:
-            data = json.loads(response.read().decode())
+        try:
+            with urllib.request.urlopen(request, timeout=self.timeout_s) as response:
+                data = json.loads(response.read().decode())
+        except urllib.error.HTTPError as error:
+            raise _http_error(error) from error
+        except OSError as error:  # URLError, timeouts and refused connections
+            raise self._network_error(error) from error
         latency = time.perf_counter() - start
         usage = data.get("usage") or {}
         return Generation(

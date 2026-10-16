@@ -24,13 +24,14 @@ from __future__ import annotations
 import json
 import re
 import statistics
+import time
 from collections.abc import Sequence
 from contextlib import suppress
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Protocol
 
-from medbench.backends import Backend
+from medbench.backends import Backend, BackendError
 from medbench.clinical_text import (
     affirmed_mention,
     compare_doses,
@@ -98,6 +99,8 @@ class ItemResult:
 
     ``truncated`` is set when the answer used the whole ``max_tokens``
     allowance, so it may have been cut off before the model finished.
+    ``error`` is set when the backend failed (``out_of_memory: ...``,
+    ``timeout: ...``); the output is then empty and is scored as wrong.
     """
 
     item_id: str
@@ -105,6 +108,7 @@ class ItemResult:
     latency_s: float
     completion_tokens: int | None = None
     truncated: bool = False
+    error: str | None = None
 
 
 def _proportion(name: str, hits: int, total: int) -> dict[str, float]:
@@ -122,10 +126,12 @@ def answer_quality(results: Sequence[ItemResult]) -> dict[str, float]:
 
     * ``empty_rate`` - answers with no text at all;
     * ``abstention_rate`` - answers that decline or say they are unsure;
-    * ``truncation_rate`` - answers cut off at the token limit.
+    * ``truncation_rate`` - answers cut off at the token limit;
+    * ``error_rate`` - items where the backend failed (out of memory,
+      timeout, server error), so there is no answer at all.
 
     Each task adds its own ``invalid_rate``: answers its parser could not
-    read. All four count as wrong in the task's scores, never as skipped.
+    read. All of these count as wrong in the task's scores, never as skipped.
     """
     total = len(results)
     if not total:
@@ -134,6 +140,7 @@ def answer_quality(results: Sequence[ItemResult]) -> dict[str, float]:
         "empty_rate": sum(not r.output.strip() for r in results) / total,
         "abstention_rate": sum(is_abstention(r.output) for r in results) / total,
         "truncation_rate": sum(r.truncated for r in results) / total,
+        "error_rate": sum(r.error is not None for r in results) / total,
     }
 
 
@@ -616,7 +623,10 @@ def run_task(
     When the time budget runs out the remaining items are skipped and the
     report says ``stopped_early``; scores cover only the items that ran, and
     ``coverage`` says how many of the requested items that was. An answer
-    that used all ``max_tokens`` is marked ``truncated``.
+    that used all ``max_tokens`` is marked ``truncated``. A
+    :class:`~medbench.backends.BackendError` (out of memory, timeout, server
+    error) is recorded as an empty answer with ``error`` set, and the run
+    goes on with the next item.
     """
     budget = budget or ResourceBudget()
     items = task.items()
@@ -628,6 +638,7 @@ def run_task(
         except BudgetExceededError:
             stopped = True
             break
+        started = time.perf_counter()
         try:
             generation = backend.generate(
                 item.prompt, item.images, max_tokens=max_tokens
@@ -635,6 +646,14 @@ def run_task(
         except BudgetExceededError:
             stopped = True
             break
+        except BackendError as error:
+            # Keep going: one out-of-memory or slow item must not lose the
+            # rest of the run. The failure is in the report and scored wrong.
+            elapsed = time.perf_counter() - started
+            results.append(
+                ItemResult(item.item_id, "", elapsed, error=f"{error.kind}: {error}")
+            )
+            continue
         results.append(
             ItemResult(
                 item.item_id,

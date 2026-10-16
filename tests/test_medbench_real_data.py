@@ -337,6 +337,7 @@ class TestRealTasks:
             "empty_rate": 0.0,
             "abstention_rate": 0.0,
             "truncation_rate": 0.0,
+            "error_rate": 0.0,
         }
         assert {k: report.metrics[k] for k in expected} == expected
         # Four items cannot prove much: the interval stays wide.
