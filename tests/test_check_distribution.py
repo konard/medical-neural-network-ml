@@ -289,6 +289,29 @@ def test_main_reports_problems_as_annotations(project, capsys) -> None:
     assert "::error title=Distribution check::" in capsys.readouterr().out
 
 
+def test_the_install_runs_on_a_relative_dist_directory(project, monkeypatch) -> None:
+    """The Build Package job passes ``dist``; pip runs in a temporary folder."""
+    root, dist, data = project
+    write_wheel(dist, wheel_files(root))
+    write_sdist(dist, sdist_files(root))
+    monkeypatch.chdir(dist.parent)
+    monkeypatch.setattr(module.venv, "create", lambda *_args, **_kwargs: None)
+    commands = []
+
+    def stop(command: list[str], cwd: Path) -> str:
+        commands.append(command)
+        message = "stop after the first command"
+        raise module.DistributionError(message)
+
+    monkeypatch.setattr(module, "_run", stop)
+    wheel, sdist = module.find_distributions(Path("dist"), data)
+    with pytest.raises(module.DistributionError):
+        module.install_smoke_test(wheel, sdist, data)
+    installed = Path(commands[0][-1])
+    assert installed.is_absolute()
+    assert installed.is_file()
+
+
 def test_the_build_job_checks_and_installs_the_distributions() -> None:
     workflow = (ROOT / ".github" / "workflows" / "release.yml").read_text()
     build = workflow.split("\n  build:\n", 1)[1].split("\n  changelog:\n", 1)[0]

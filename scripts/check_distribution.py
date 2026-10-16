@@ -320,6 +320,9 @@ def _run(command: list[str], cwd: Path) -> str:
 
 def install_smoke_test(wheel: Path, sdist: Path, project: dict[str, Any]) -> None:
     """Install the wheel offline, run its scripts and rebuild from the sdist."""
+    # The commands run inside the temporary directory, so a relative dist/
+    # would point into it.
+    wheel, sdist = wheel.resolve(), sdist.resolve()
     with tempfile.TemporaryDirectory(prefix="medbench-dist-") as temporary:
         work = Path(temporary)
         venv.create(work / "venv", with_pip=True, clear=True)
