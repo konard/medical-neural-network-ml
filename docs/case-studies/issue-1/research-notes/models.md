@@ -221,10 +221,12 @@ MedGemma 1.5 adds features that matter for this project:
 
 ### 1.4 Memory (estimates)
 
+Arithmetic only: parameters × bytes per weight. The KV cache, runtime buffers, the vision encoder's activations and, for training, the logits are not included, and none of these sizes was measured on the GPUs named. "Fits" is therefore a hypothesis.
+
 | Model | bf16 | int8 | 4-bit |
 |---|---|---|---|
 | MedGemma 4B | about 8.6 GB (fits a 12–16 GB GPU) | about 4.5 GB | about 3 GB |
-| MedGemma 27B | about 55 GB (one 80 GB A100/H100, or 2×48 GB) | about 28 GB | about 16–17 GB (fits one 24 GB GPU at short context) |
+| MedGemma 27B | about 55 GB (one 80 GB A100/H100, or 2×48 GB) | about 28 GB | about 16–17 GB (expected to fit one 24 GB GPU at short context; not measured) |
 | MedSigLIP | under 2 GB in fp16 | — | — |
 
 Community quantizations exist, such as the unsloth GGUF and bnb-4bit builds of `medgemma-27b-it`. 128K context on the 27B adds many GB of KV cache, even with the sliding-window design.

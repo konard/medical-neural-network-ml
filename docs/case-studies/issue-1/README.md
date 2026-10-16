@@ -64,7 +64,8 @@ models are not good enough.
 5. **Most of the medical skill comes from data, not architecture.**
    MedGemma and Lingshu are ordinary Gemma 3 / Qwen2.5-VL models trained on
    medical data. So if ready models fail, fine-tuning on our own data
-   (QLoRA: 4.9 GB of GPU memory for 4B, 19.6 GB for 27B) is the right next
+   (QLoRA by formula: 6.5–13.5 GB of GPU memory for 4B and 20–28 GB for
+   27B at 512–2 048 tokens; not yet measured on a GPU) is the right next
    step. Training from scratch is not.
 6. **Handwritten prescriptions are the riskiest task.** No public
    benchmark exists. The plan is OCR VLM → RxNorm fuzzy match → human

@@ -173,8 +173,10 @@ Pros and cons are in [if-models-fail.md §2](if-models-fail.md#2-the-ladder-chea
 
 Follow the ladder in [if-models-fail.md](if-models-fail.md):
 
-1. QLoRA on MedGemma 4B: 4.9 GB of GPU memory.
-2. QLoRA on MedGemma 27B: 19.6 GB.
+1. QLoRA on MedGemma 4B: 6.5–13.5 GB of GPU memory by formula (512–2 048
+   tokens).
+2. QLoRA on MedGemma 27B: 20–28 GB by formula; 24 GB is a hypothesis to
+   measure first ([measurements.md §7](measurements.md#7-fine-tuning-memory-medbench-estimate---finetune)).
 3. GRPO on checkable answers.
 4. Distillation to 4B.
 5. Self-supervised training of the encoder for image types it handles
