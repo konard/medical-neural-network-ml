@@ -96,13 +96,14 @@ release.
 
 ## After the First Release
 
-Check by hand, once:
+Check by hand, once. These pages exist only after the release, so they are
+written as text rather than links:
 
-- <https://pypi.org/project/medical-neural-network-ml/0.1.0/> shows the
+- `https://pypi.org/project/medical-neural-network-ml/0.1.0/` shows the
   `Unlicense` license expression and both files. `pypa/gh-action-pypi-publish`
   uploads attestations by default with trusted publishing, so each file's
   details should name this repository and `release.yml`.
-- <https://github.com/konard/medical-neural-network-ml/releases/tag/v0.1.0>
+- `https://github.com/konard/medical-neural-network-ml/releases/tag/v0.1.0`
   exists and is not a draft.
 - `pip install medical-neural-network-ml==0.1.0` in a clean virtual
   environment, then `medbench sources`.
