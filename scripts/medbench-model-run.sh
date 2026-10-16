@@ -24,7 +24,7 @@
 #   MODEL_FILE       language model GGUF and MODEL_SHA256
 #   MMPROJ_FILE      vision projector GGUF and MMPROJ_SHA256 (empty: text only)
 #   LOAD_MODE        none (copy weights to RAM), mmap, or auto (pick by memory)
-#   THREADS          CPU threads (number of CPUs minus one)
+#   THREADS          CPU threads (number of CPUs minus two, at least one)
 #   GPU_LAYERS       layers to offload to the GPU (0)
 #   TASKS            space-separated medbench tasks
 #   COUNT            items per task (2)

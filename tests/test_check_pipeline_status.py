@@ -194,3 +194,30 @@ def test_github_workflow_ref_resolves_the_active_file(tmp_path: Path) -> None:
 
     assert completed.returncode == 1, completed.stdout
     assert "effective cancel-in-progress is false" in completed.stdout
+
+
+@pytest.mark.skipif(not Path("/bin/bash").exists(), reason="system Bash unavailable")
+def test_system_bash_preserves_cancellation_classification(tmp_path: Path) -> None:
+    """Use the stock macOS Bash 3.2 even when Homebrew Bash is on PATH."""
+    workflow = write_workflow(
+        tmp_path, "  build:\n    runs-on: ubuntu-24.04\n    steps: []\n"
+    )
+    env = {
+        **os.environ,
+        "NEEDS_JSON": '{"build":{"result":"cancelled"}}',
+        "RUN_SHA": "1" * 40,
+        "BRANCH_HEAD_SHA": "2" * 40,
+        "WORKFLOW_FILE": str(workflow),
+    }
+    completed = subprocess.run(
+        ["/bin/bash", str(GATE)], env=env, capture_output=True, text=True, check=False
+    )
+    assert completed.returncode == 1, completed.stderr
+    assert "Pipeline has cancelled jobs::build" in completed.stdout
+    assert "no workflow or job cancel-in-progress policy" in completed.stdout
+    env["NEEDS_JSON"] = '{"build":{"result":"success"}}'
+    completed = subprocess.run(
+        ["/bin/bash", str(GATE)], env=env, capture_output=True, text=True, check=False
+    )
+    assert completed.returncode == 0, completed.stderr
+    assert "Pipeline passed." in completed.stdout
