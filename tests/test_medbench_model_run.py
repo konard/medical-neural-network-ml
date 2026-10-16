@@ -95,9 +95,38 @@ def test_gpu_job_only_runs_when_started_by_hand() -> None:
     """Pull requests must never reach the self-hosted GPU runner."""
     text = WORKFLOW.read_text(encoding="utf-8")
     gpu_job = text.split("\n  gpu:\n", 1)[1].split("\n  pipeline-status:\n", 1)[0]
-    assert "if: github.event_name == 'workflow_dispatch' && inputs.gpu" in gpu_job
+    condition = gpu_job.split("    if: >-\n", 1)[1].split("\n    environment:", 1)[0]
+    assert " ".join(condition.split()) == (
+        "github.event_name == 'workflow_dispatch' && inputs.gpu && "
+        "github.ref == 'refs/heads/main'"
+    )
+    assert "    environment: gpu\n" in gpu_job
     assert "runs-on: [self-hosted, linux, x64, gpu]" in gpu_job
     assert "secrets." not in text
+    assert "persist-credentials: false" in gpu_job
+    assert "contents: write" not in gpu_job
+
+
+def test_gpu_job_removes_what_it_downloaded() -> None:
+    """A reused GPU host must not keep untrusted weights between runs (#10)."""
+    text = WORKFLOW.read_text(encoding="utf-8")
+    gpu_job = text.split("\n  gpu:\n", 1)[1].split("\n  pipeline-status:\n", 1)[0]
+    cleanup = gpu_job.rsplit("      - name: ", 1)[1]
+    assert cleanup.startswith("Remove downloads and reports from the GPU host")
+    assert "if: always()" in cleanup
+    assert "rm -rf .cache/medbench medbench-reports" in cleanup
+
+
+def test_only_the_gpu_job_runs_on_a_self_hosted_runner() -> None:
+    """Every other job, in every workflow, stays on GitHub-hosted runners."""
+    workflows = ROOT / ".github" / "workflows"
+    hits = [
+        (path.name, line.strip())
+        for path in sorted(workflows.glob("*.y*ml"))
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if "self-hosted" in line and line.lstrip().startswith("runs-on:")
+    ]
+    assert hits == [("model-tests.yml", "runs-on: [self-hosted, linux, x64, gpu]")]
 
 
 def test_workflow_pins_every_download() -> None:

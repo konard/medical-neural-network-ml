@@ -246,9 +246,19 @@ jobs:
           path: medbench-reports
           if-no-files-found: ignore
 
+  # Self-hosted runner policy (issue #10, docs/repository-policy.md): only a
+  # manual dispatch from main reaches the GPU host, never a pull request or a
+  # branch whose workflow file someone else could have edited. The `gpu`
+  # environment is where the maintainer adds required reviewers. Register the
+  # runner with --ephemeral on a fresh VM; the last step below also removes
+  # the downloaded weights, the model venv and the reports from the workspace
+  # in case the host is reused.
   gpu:
     name: GPU tests (self-hosted)
-    if: github.event_name == 'workflow_dispatch' && inputs.gpu
+    if: >-
+      github.event_name == 'workflow_dispatch' && inputs.gpu &&
+      github.ref == 'refs/heads/main'
+    environment: gpu
     runs-on: [self-hosted, linux, x64, gpu]
     # The case study estimates roughly 51 minutes for 27B. Reserve 90 minutes
     # for tasks, plus download/setup and time to upload partial evidence.
@@ -360,12 +370,16 @@ jobs:
           path: medbench-reports
           if-no-files-found: ignore
 
+      - name: Remove downloads and reports from the GPU host
+        if: always()
+        run: rm -rf .cache/medbench medbench-reports
+
   # Terminal status gate (issue #69): GitHub reports jobs killed by
   # timeout-minutes as cancelled. Observe every other job so a timeout on main
   # becomes a visible failure instead of a grey run, while a run that was
   # superseded by a newer commit is recognised as expected churn.
   pipeline-status:
-    name: Pipeline Status
+    name: Pipeline Status (Model Tests)
     needs:
       - real-data
       - cpu-smoke

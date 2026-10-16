@@ -963,7 +963,7 @@ jobs:
   # A job killed by timeout-minutes concludes "cancelled", not "failure".
   # Observe every other job so that state cannot silently hide a broken run.
   pipeline-status:
-    name: Pipeline Status
+    name: Pipeline Status (CI/CD)
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     if: always()

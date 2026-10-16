@@ -1,0 +1,28 @@
+{
+  "name": "main-checks",
+  "target": "branch",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "include": ["~DEFAULT_BRANCH"],
+      "exclude": []
+    }
+  },
+  "bypass_actors": [
+    {"actor_id": 15368, "actor_type": "Integration", "bypass_mode": "always"}
+  ],
+  "rules": [
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "do_not_enforce_on_create": false,
+        "strict_required_status_checks_policy": false,
+        "required_status_checks": [
+          {"context": "Pipeline Status (CI/CD)", "integration_id": 15368},
+          {"context": "Pipeline Status (Compatibility)", "integration_id": 15368},
+          {"context": "Pipeline Status (Security)", "integration_id": 15368}
+        ]
+      }
+    }
+  ]
+}

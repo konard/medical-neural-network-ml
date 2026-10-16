@@ -126,17 +126,44 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: bash scripts/check-dependency-graph.sh
 
+  # The branch rulesets in .github/rulesets/ are reviewed here but applied by
+  # a repository admin (issue #10, docs/repository-policy.md). A pull request
+  # only warns; main and the weekly scan fail with the command to run, so an
+  # unprotected or drifted default branch cannot go unnoticed. The read-only
+  # job token cannot see bypass actors, so those are compared by `apply`.
+  rulesets:
+    name: Branch Rulesets
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+
+      - name: Compare live rulesets with .github/rulesets
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/repository_rulesets.py check
+
   # Terminal status gate (issue #69): GitHub reports jobs killed by
   # timeout-minutes as cancelled. Observe every other job so a timeout on main
   # becomes a visible failure instead of a grey run, while a run that was
   # superseded by a newer commit is recognised as expected churn.
   pipeline-status:
-    name: Pipeline Status
+    name: Pipeline Status (Security)
     needs:
       - dependency-audit
       - codeql
       - dependency-review
       - dependency-graph
+      - rulesets
     if: always()
     runs-on: ubuntu-24.04
     timeout-minutes: 5

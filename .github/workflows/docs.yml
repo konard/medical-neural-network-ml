@@ -115,7 +115,7 @@ jobs:
   # becomes a visible failure instead of a grey run, while a run that was
   # superseded by a newer commit is recognised as expected churn.
   pipeline-status:
-    name: Pipeline Status
+    name: Pipeline Status (Docs)
     needs:
       - build
       - deploy

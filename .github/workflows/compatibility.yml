@@ -9,13 +9,10 @@ on:
       - 'scripts/**'
       - 'pyproject.toml'
       - '.github/workflows/compatibility.yml'
+  # No paths filter on pull requests: "Pipeline Status (Compatibility)" is a
+  # required check (.github/rulesets/main-checks.json), and a workflow that a
+  # filter skips never reports, which leaves the pull request waiting forever.
   pull_request:
-    paths:
-      - 'src/**'
-      - 'tests/**'
-      - 'scripts/**'
-      - 'pyproject.toml'
-      - '.github/workflows/compatibility.yml'
   workflow_dispatch:
 
 permissions:
@@ -71,7 +68,7 @@ jobs:
           fi
 
   pipeline-status:
-    name: Pipeline Status
+    name: Pipeline Status (Compatibility)
     needs: [test]
     if: always()
     runs-on: ubuntu-24.04
