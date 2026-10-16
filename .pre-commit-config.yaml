@@ -11,7 +11,7 @@ repos:
       - id: debug-statements
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.8.4
+    rev: v0.8.6
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
@@ -22,4 +22,7 @@ repos:
     hooks:
       - id: mypy
         additional_dependencies: [pytest, pytest-asyncio]
-        args: [--strict, --ignore-missing-imports]
+        # Match CI's package boundary. Passing staged script/test filenames
+        # checks a different surface under the package's Python 3.9 target.
+        pass_filenames: false
+        args: [--strict, --ignore-missing-imports, src/]
