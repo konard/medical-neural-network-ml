@@ -326,14 +326,22 @@ class TestRealTasks:
         }
         backend = _by_image(items, answers)
         report = run_task(task, backend)
-        assert report.metrics == {
+        expected = {
             "sensitivity": 1.0,
             "specificity": 1.0,
             "accuracy": 1.0,
             "finding_recall": 1.0,
             "side_accuracy_when_found": 1.0,
             "unparsed_answers": 0.0,
+            "invalid_rate": 0.0,
+            "empty_rate": 0.0,
+            "abstention_rate": 0.0,
+            "truncation_rate": 0.0,
         }
+        assert {k: report.metrics[k] for k in expected} == expected
+        # Four items cannot prove much: the interval stays wide.
+        assert report.metrics["accuracy_ci_low"] == pytest.approx(0.51, abs=0.01)
+        assert report.metrics["accuracy_ci_high"] == 1.0
 
     def test_imaging_wrong_finding(self, tmp_path: Path) -> None:
         """Calling everything abnormal with a wrong name is caught."""
@@ -360,7 +368,15 @@ class TestRealTasks:
             kind="prescription", count=1, samples=[sample], cache_dir=tmp_path
         )
         perfect = run_task(task, _constant("AMOXICILLIN 500 mg, three times a day."))
-        assert perfect.metrics == {"cer": 0.0, "wer": 0.0, "key_term_recall": 1.0}
+        expected = {
+            "cer": 0.0,
+            "wer": 0.0,
+            "key_term_recall": 1.0,
+            "dose_exact": 1.0,
+            "dose_unit_errors": 0.0,
+            "dose_value_errors": 0.0,
+        }
+        assert {k: perfect.metrics[k] for k in expected} == expected
         partial = run_task(task, _constant("Amoxil 500 mg three times a day"))
         assert partial.metrics["key_term_recall"] == 0.5
         assert partial.metrics["cer"] > 0
@@ -536,6 +552,47 @@ def test_unparsed_imaging_does_not_earn_normal_credit(
     assert report.metrics["specificity"] == 0
     assert report.metrics["unparsed_answers"] == 4
     assert len(report.sources) == 4
+
+
+def test_negated_finding_is_not_named(tmp_path: Path) -> None:
+    """ "No pneumothorax" on a pneumothorax image does not name the finding."""
+    samples = TestRealTasks()._imaging(tmp_path)
+    task = ImagingTask(count=4, samples=samples, cache_dir=tmp_path)
+    report = run_task(
+        task, _constant("abnormal: yes; finding: no pneumothorax, no effusion")
+    )
+    assert report.metrics["sensitivity"] == 1
+    assert report.metrics["finding_recall"] == 0
+
+
+def test_xray_prompt_does_not_claim_a_frontal_view(tmp_path: Path) -> None:
+    samples = TestRealTasks()._imaging(tmp_path)
+    prompt = ImagingTask(count=1, samples=samples, cache_dir=tmp_path).items()[0].prompt
+    assert "real chest X-ray" in prompt
+    assert "frontal" not in prompt
+
+
+def test_abstention_is_reported(tmp_path: Path) -> None:
+    samples = TestRealTasks()._imaging(tmp_path)
+    task = ImagingTask(count=4, samples=samples, cache_dir=tmp_path)
+    report = run_task(task, _constant("I am not sure."))
+    assert report.metrics["abstention_rate"] == 1
+    assert report.metrics["invalid_rate"] == 1
+    assert report.metrics["accuracy"] == 0
+
+
+def test_dose_unit_error_is_counted(tmp_path: Path) -> None:
+    image = _image_bytes()
+    sample = _sample(
+        "rx", image, "ocr-prescription", text="Digoxin 125 mcg", key_terms=["digoxin"]
+    )
+    _cached(tmp_path, [(sample, image)])
+    task = OcrTask(count=1, samples=[sample], cache_dir=tmp_path)
+    report = run_task(task, _constant("Digoxin 125 mg"))
+    assert report.metrics["key_term_recall"] == 1
+    assert report.metrics["dose_exact"] == 0
+    assert report.metrics["dose_unit_errors"] == 1
+    assert report.metrics["dose_value_errors"] == 0
 
 
 def test_wrong_dose_cannot_match_substring(tmp_path: Path) -> None:

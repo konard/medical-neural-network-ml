@@ -31,6 +31,12 @@ from pathlib import Path
 from typing import Any, Protocol
 
 from medbench.backends import Backend
+from medbench.clinical_text import (
+    affirmed_mention,
+    compare_doses,
+    is_abstention,
+    normalise_ocr,
+)
 from medbench.ddxplus import (
     DdxplusData,
     build_ddxplus_prompt,
@@ -44,6 +50,7 @@ from medbench.metrics import (
     mean_reciprocal_rank,
     top_k_accuracy,
     wer,
+    wilson_interval,
 )
 from medbench.real_data import (
     Sample,
@@ -68,6 +75,7 @@ __all__ = [
     "OcrTask",
     "Task",
     "TaskReport",
+    "answer_quality",
     "make_task",
     "parse_yes_no_side",
     "run_task",
@@ -86,12 +94,72 @@ class BenchItem:
 
 @dataclass(frozen=True)
 class ItemResult:
-    """The model's answer to one item."""
+    """The model's answer to one item.
+
+    ``truncated`` is set when the answer used the whole ``max_tokens``
+    allowance, so it may have been cut off before the model finished.
+    """
 
     item_id: str
     output: str
     latency_s: float
     completion_tokens: int | None = None
+    truncated: bool = False
+
+
+def _proportion(name: str, hits: int, total: int) -> dict[str, float]:
+    """A rate with its 95% Wilson interval as ``name``/``name_ci_low``/``_high``."""
+    low, high = wilson_interval(hits, total)
+    return {
+        name: hits / total if total else 0.0,
+        f"{name}_ci_low": low,
+        f"{name}_ci_high": high,
+    }
+
+
+def answer_quality(results: Sequence[ItemResult]) -> dict[str, float]:
+    """Rates that say how far the scores can be trusted, for any task.
+
+    * ``empty_rate`` - answers with no text at all;
+    * ``abstention_rate`` - answers that decline or say they are unsure;
+    * ``truncation_rate`` - answers cut off at the token limit.
+
+    Each task adds its own ``invalid_rate``: answers its parser could not
+    read. All four count as wrong in the task's scores, never as skipped.
+    """
+    total = len(results)
+    if not total:
+        return {}
+    return {
+        "empty_rate": sum(not r.output.strip() for r in results) / total,
+        "abstention_rate": sum(is_abstention(r.output) for r in results) / total,
+        "truncation_rate": sum(r.truncated for r in results) / total,
+    }
+
+
+def _ranking_scores(
+    truths: Sequence[str],
+    rankings: Sequence[Sequence[str]],
+    reference: Sequence[Sequence[str]],
+    top_k: int,
+) -> dict[str, float]:
+    """Top-1/3/k with Wilson intervals, MRR and the reference ranking's scores."""
+    total = len(truths)
+
+    def hits(k: int) -> int:
+        return sum(t in r[:k] for t, r in zip(truths, rankings))
+
+    unparsed = sum(not ranking for ranking in rankings)
+    return {
+        **_proportion("top1", hits(1), total),
+        "top3": top_k_accuracy(truths, rankings, 3),
+        **_proportion(f"top{top_k}", hits(top_k), total),
+        "mrr": mean_reciprocal_rank(truths, rankings),
+        "reference_top1": top_k_accuracy(truths, reference, 1),
+        f"reference_top{top_k}": top_k_accuracy(truths, reference, top_k),
+        "unparsed_answers": float(unparsed),
+        "invalid_rate": unparsed / total if total else 0.0,
+    }
 
 
 class Task(Protocol):
@@ -133,19 +201,7 @@ class DiagnosisTask:
         truths = [item.truth.diagnosis for item in items]
         rankings = [parse_ranked_diagnoses(result.output) for result in results]
         reference = [list(item.truth.reference_ranking) for item in items]
-        hits = [float(t in r[:1]) for t, r in zip(truths, rankings)]
-        low, high = bootstrap_ci(hits)
-        return {
-            "top1": top_k_accuracy(truths, rankings, 1),
-            "top1_ci_low": low,
-            "top1_ci_high": high,
-            "top3": top_k_accuracy(truths, rankings, 3),
-            f"top{self.top_k}": top_k_accuracy(truths, rankings, self.top_k),
-            "mrr": mean_reciprocal_rank(truths, rankings),
-            "reference_top1": top_k_accuracy(truths, reference, 1),
-            f"reference_top{self.top_k}": top_k_accuracy(truths, reference, self.top_k),
-            "unparsed_answers": float(sum(not ranking for ranking in rankings)),
-        }
+        return _ranking_scores(truths, rankings, reference, self.top_k)
 
 
 @dataclass
@@ -187,20 +243,7 @@ class DdxplusTask:
             self._conditions or sorted({*truths, *(n for r in reference for n in r)})
         )
         rankings = [parse_ranked_diagnoses(r.output, known) for r in results]
-        hits = [float(t in r[:1]) for t, r in zip(truths, rankings)]
-        low, high = bootstrap_ci(hits)
-        k = self.top_k
-        return {
-            "top1": top_k_accuracy(truths, rankings, 1),
-            "top1_ci_low": low,
-            "top1_ci_high": high,
-            "top3": top_k_accuracy(truths, rankings, 3),
-            f"top{k}": top_k_accuracy(truths, rankings, k),
-            "mrr": mean_reciprocal_rank(truths, rankings),
-            "reference_top1": top_k_accuracy(truths, reference, 1),
-            f"reference_top{k}": top_k_accuracy(truths, reference, k),
-            "unparsed_answers": float(sum(not ranking for ranking in rankings)),
-        }
+        return _ranking_scores(truths, rankings, reference, self.top_k)
 
 
 def _real_items(
@@ -234,12 +277,6 @@ _OCR_PROMPTS = {
 }
 
 
-def _normalise(text: str) -> str:
-    """Lower case, no punctuation; keeps decimal points, ``%`` and ``/``."""
-    kept = re.sub(r"[^\w%/.]+", " ", text.lower())
-    return " ".join(re.sub(r"(?<!\d)\.|\.(?!\d)", " ", kept).split())
-
-
 @dataclass
 class OcrTask:
     """Transcription of real scanned or photographed medical documents.
@@ -271,24 +308,54 @@ class OcrTask:
     def score(
         self, items: Sequence[BenchItem], results: Sequence[ItemResult]
     ) -> dict[str, float]:
-        """Mean CER/WER on normalised text and the share of key terms read."""
-        truths = [_normalise(item.truth.truth["text"]) for item in items]
-        outputs = [_normalise(result.output) for result in results]
+        """CER/WER on normalised text, key terms read and, for prescriptions, doses.
+
+        Text goes through :func:`medbench.clinical_text.normalise_ocr` first,
+        so case, full-width characters and ``500mg`` versus ``500 mg`` are
+        not errors. Doses are compared value and unit apart: a model that
+        reads "5 mg" as "5 mcg" has a unit error, which keyword recall hides.
+        """
+        truths = [normalise_ocr(item.truth.truth["text"]) for item in items]
+        outputs = [normalise_ocr(result.output) for result in results]
         found = total = 0
         for item, output in zip(items, outputs):
             for term in item.truth.truth.get("key_terms", ()):
                 total += 1
                 found += (
                     re.search(
-                        r"(?<!\w)" + re.escape(_normalise(term)) + r"(?!\w)", output
+                        r"(?<!\w)" + re.escape(normalise_ocr(term)) + r"(?!\w)",
+                        output,
                     )
                     is not None
                 )
-        return {
-            "cer": statistics.fmean(map(cer, truths, outputs)) if truths else 0.0,
+        cers = list(map(cer, truths, outputs))
+        cer_low, cer_high = bootstrap_ci(cers)
+        scores = {
+            "cer": statistics.fmean(cers) if cers else 0.0,
+            "cer_ci_low": cer_low,
+            "cer_ci_high": cer_high,
             "wer": statistics.fmean(map(wer, truths, outputs)) if truths else 0.0,
-            "key_term_recall": found / total if total else 0.0,
+            **_proportion("key_term_recall", found, total),
         }
+        if self.kind == "prescription":
+            doses = [
+                compare_doses(item.truth.truth["text"], result.output)
+                for item, result in zip(items, results)
+            ]
+            reference = sum(d.reference for d in doses)
+            if reference:
+                scores.update(
+                    {
+                        **_proportion(
+                            "dose_exact", sum(d.exact for d in doses), reference
+                        ),
+                        "dose_unit_errors": float(sum(d.unit_errors for d in doses)),
+                        "dose_value_errors": float(sum(d.value_errors for d in doses)),
+                        "doses_missing": float(sum(d.missing for d in doses)),
+                        "doses_extra": float(sum(d.extra for d in doses)),
+                    }
+                )
+        return scores
 
 
 _ANSWER = re.compile(r"\b(yes|no|present|absent|normal|not)\b", re.IGNORECASE)
@@ -329,7 +396,8 @@ _IMAGING_PROMPT = (
 )
 
 _MODALITY = {
-    "xray": "frontal chest X-ray",
+    # Not "frontal": the pool may hold lateral or other projections.
+    "xray": "chest X-ray",
     "mri": "brain MRI slice",
     "ultrasound": "ultrasound image",
 }
@@ -376,7 +444,12 @@ class ImagingTask:
     def score(
         self, items: Sequence[BenchItem], results: Sequence[ItemResult]
     ) -> dict[str, float]:
-        """Sensitivity, specificity, finding recall and side accuracy."""
+        """Sensitivity, specificity, finding recall and side accuracy.
+
+        Every rate has a 95% Wilson interval. A finding counts as named only
+        when one of its terms is mentioned and not negated ("no
+        pneumothorax" does not name a pneumothorax).
+        """
         parsed = [parse_yes_no_side(result.output) for result in results]
         truths = [item.truth.truth for item in items]
         abnormal = [truth["finding"] != "normal" for truth in truths]
@@ -384,11 +457,7 @@ class ImagingTask:
             bool(re.search(r"abnormal\s*:\s*(yes|no)\b", result.output, re.I))
             or (
                 _ANSWER.search(result.output) is not None
-                and not re.search(
-                    r"\b(?:unknown|uncertain|unsure)\b|\bnot sure\b",
-                    result.output,
-                    re.I,
-                )
+                and not is_abstention(result.output)
             )
             for result in results
         ]
@@ -399,7 +468,7 @@ class ImagingTask:
         ]
         counts = BinaryCounts.from_predictions(abnormal, predictions)
         named = [
-            any(term in result.output.lower() for term in truth["terms"])
+            any(affirmed_mention(result.output, term) for term in truth["terms"])
             for truth, result, sick in zip(truths, results, abnormal)
             if sick
         ]
@@ -408,13 +477,21 @@ class ImagingTask:
             for truth, (positive, side) in zip(truths, parsed)
             if truth["side"] in {"left", "right", "both"} and positive
         ]
+        positives = counts.true_positive + counts.false_negative
+        negatives = counts.true_negative + counts.false_positive
+        unparsed = sum(not ok for ok in valid)
         return {
-            "sensitivity": counts.sensitivity,
-            "specificity": counts.specificity,
-            "accuracy": counts.accuracy,
-            "finding_recall": sum(named) / len(named) if named else 0.0,
+            **_proportion("sensitivity", counts.true_positive, positives),
+            **_proportion("specificity", counts.true_negative, negatives),
+            **_proportion(
+                "accuracy",
+                counts.true_positive + counts.true_negative,
+                positives + negatives,
+            ),
+            **_proportion("finding_recall", sum(named), len(named)),
             "side_accuracy_when_found": sum(sides) / len(sides) if sides else 0.0,
-            "unparsed_answers": float(sum(not ok for ok in valid)),
+            "unparsed_answers": float(unparsed),
+            "invalid_rate": unparsed / len(valid) if valid else 0.0,
         }
 
 
@@ -459,7 +536,13 @@ def make_task(
 
 @dataclass
 class TaskReport:
-    """Scores, speed and raw answers of one backend on one task."""
+    """Scores, speed and raw answers of one backend on one task.
+
+    ``items_requested`` is the count asked for; ``items_total`` is how many
+    items the task could build (fewer when the data has fewer files) and
+    ``items_run`` how many were answered before the time budget ran out.
+    ``coverage`` is ``items_run / items_requested``.
+    """
 
     task: str
     backend: str
@@ -470,14 +553,23 @@ class TaskReport:
     latency: dict[str, float]
     results: list[ItemResult]
     sources: list[str] = field(default_factory=list)
+    items_requested: int | None = None
+
+    @property
+    def coverage(self) -> float:
+        """Share of the requested items that were answered."""
+        requested = self.items_requested or self.items_total
+        return self.items_run / requested if requested else 0.0
 
     def as_dict(self) -> dict[str, Any]:
         """Return the report as a JSON-friendly dictionary."""
         return {
             "task": self.task,
             "backend": self.backend,
+            "items_requested": self.items_requested or self.items_total,
             "items_total": self.items_total,
             "items_run": self.items_run,
+            "coverage": round(self.coverage, 4),
             "stopped_early": self.stopped_early,
             "metrics": {k: round(v, 4) for k, v in self.metrics.items()},
             "latency": {k: round(v, 4) for k, v in self.latency.items()},
@@ -514,7 +606,9 @@ def run_task(
     """Run every item of ``task`` on ``backend`` within ``budget``.
 
     When the time budget runs out the remaining items are skipped and the
-    report says ``stopped_early``; scores cover only the items that ran.
+    report says ``stopped_early``; scores cover only the items that ran, and
+    ``coverage`` says how many of the requested items that was. An answer
+    that used all ``max_tokens`` is marked ``truncated``.
     """
     budget = budget or ResourceBudget()
     items = task.items()
@@ -539,6 +633,8 @@ def run_task(
                 generation.text,
                 generation.latency_s,
                 generation.completion_tokens,
+                truncated=generation.completion_tokens is not None
+                and generation.completion_tokens >= max_tokens,
             )
         )
     done = items[: len(results)]
@@ -553,8 +649,11 @@ def run_task(
         items_total=len(items),
         items_run=len(results),
         stopped_early=stopped,
-        metrics=task.score(done, results) if results else {},
+        metrics={**task.score(done, results), **answer_quality(results)}
+        if results
+        else {},
         latency=_latency_stats([r.latency_s for r in results]),
         results=results,
         sources=attribution_lines(sources),
+        items_requested=getattr(task, "count", None),
     )

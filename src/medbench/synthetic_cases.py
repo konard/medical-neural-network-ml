@@ -374,6 +374,24 @@ def _normalize(text: str) -> str:
     return re.sub(r"[^a-z0-9 -]", "", text).strip()
 
 
+# A list line that names a diagnosis only to reject it: "Not pneumonia",
+# "Pneumonia (ruled out)", "Pneumonia - excluded".
+_REJECTED = re.compile(
+    r"^\W*(?:not|no|without|excluded:?|ruled out:?)\s"
+    r"|[(\-\u2013\u2014:,]\s*(?:ruled out|excluded|unlikely|not likely|"
+    r"not (?:the )?(?:diagnosis|this))\b",
+    re.IGNORECASE,
+)
+
+
+def _rejected(line: str) -> bool:
+    """Whether a list line names a diagnosis in order to rule it out."""
+    plain = re.sub(r"\*\*|__|`", "", line)
+    if re.search(r"(?:cannot|can't|not) be (?:ruled out|excluded)", plain, re.I):
+        return False
+    return _REJECTED.search(plain) is not None
+
+
 def parse_ranked_diagnoses(
     text: str,
     conditions: tuple[Condition, ...] = CONDITIONS,
@@ -382,7 +400,11 @@ def parse_ranked_diagnoses(
 
     Lines like ``"1. **Influenza** - fever and aches"`` become
     ``"influenza"``. Unknown diagnoses are kept as normalized text so that
-    metrics count them as misses instead of silently dropping them.
+    metrics count them as misses instead of silently dropping them. A known
+    name inside a longer line counts only as whole words ("measles" is not
+    "SLE", "parainfluenza" is not "influenza"), the longest name first
+    ("unstable angina" is not "stable angina"). Lines that rule a diagnosis
+    out ("Not pneumonia", "Pneumonia (ruled out)") are skipped.
 
     Args:
         text: Model output.
@@ -394,13 +416,17 @@ def parse_ranked_diagnoses(
     lookup: dict[str, str] = {}
     for condition in conditions:
         for name in (condition.name, *condition.aliases):
-            lookup[_normalize(name)] = condition.name
-    # Longest first, so "unstable angina" is not read as "stable angina".
-    by_length = sorted(lookup, key=len, reverse=True)
+            key = _normalize(name)
+            if key:
+                lookup[key] = condition.name
+    by_length = [
+        (re.compile(r"(?<![a-z0-9])" + re.escape(alias) + r"(?![a-z0-9])"), alias)
+        for alias in sorted(lookup, key=len, reverse=True)
+    ]
     ranked: list[str] = []
     for line in text.splitlines():
         match = _NUMBERED_LINE.match(line)
-        if not match:
+        if not match or _rejected(match.group(1)):
             continue
         candidate = _normalize(match.group(1))
         if not candidate:
@@ -408,7 +434,11 @@ def parse_ranked_diagnoses(
         matched_name = lookup.get(candidate)
         if matched_name is None:
             matched_name = next(
-                (lookup[alias] for alias in by_length if alias in candidate),
+                (
+                    lookup[alias]
+                    for pattern, alias in by_length
+                    if pattern.search(candidate)
+                ),
                 candidate,
             )
         if matched_name not in ranked:

@@ -15,7 +15,9 @@
 * :mod:`medbench.synthetic_cases` - a small text-only toy diagnosis set and
   the answer parser;
 * :mod:`medbench.augment` - label-preserving data augmentation;
-* :mod:`medbench.metrics` - scoring functions;
+* :mod:`medbench.metrics` - scoring functions and confidence intervals;
+* :mod:`medbench.clinical_text` - negation, abstention, dose/unit and OCR
+  normalisation rules used by the scores;
 * :mod:`medbench.backends` - ways to call a model;
 * :mod:`medbench.benchmark` - tasks and the benchmark runner.
 """

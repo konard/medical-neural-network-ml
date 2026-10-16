@@ -8,14 +8,17 @@ without extra libraries.
 * Yes/no findings: sensitivity, specificity and the area under the ROC curve.
 * Segmentation masks: Dice and IoU overlap.
 * Confidence quality: expected calibration error (ECE).
+* Uncertainty of a proportion: Wilson score interval.
 * Uncertainty of any mean: bootstrap confidence interval.
 """
 
 from __future__ import annotations
 
+import math
 import random
 from collections.abc import Sequence
 from dataclasses import dataclass
+from statistics import NormalDist
 
 __all__ = [
     "BinaryCounts",
@@ -29,6 +32,7 @@ __all__ = [
     "mean_reciprocal_rank",
     "top_k_accuracy",
     "wer",
+    "wilson_interval",
 ]
 
 
@@ -233,3 +237,27 @@ def bootstrap_ci(
     low = means[int((1 - confidence) / 2 * resamples)]
     high = means[min(resamples - 1, int((1 + confidence) / 2 * resamples))]
     return (low, high)
+
+
+def wilson_interval(
+    successes: int, total: int, confidence: float = 0.95
+) -> tuple[float, float]:
+    """Wilson score interval of a proportion (Wilson, 1927, JASA 22:209-212).
+
+    Unlike the bootstrap, it does not collapse to a single point when every
+    answer is right or wrong: 2 correct out of 2 gives about (0.34, 1.0), which
+    is how little two items say. ``total == 0`` returns the uninformative
+    interval (0, 1).
+    """
+    if total <= 0:
+        return (0.0, 1.0)
+    if not 0 <= successes <= total:
+        message = f"successes must be between 0 and {total}"
+        raise ValueError(message)
+    z = NormalDist().inv_cdf(0.5 + confidence / 2)
+    p = successes / total
+    denominator = 1 + z * z / total
+    centre = (p + z * z / (2 * total)) / denominator
+    half = z * math.sqrt(p * (1 - p) / total + z * z / (4 * total * total))
+    half /= denominator
+    return (max(0.0, centre - half), min(1.0, centre + half))

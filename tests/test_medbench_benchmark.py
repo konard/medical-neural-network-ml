@@ -16,6 +16,7 @@ from typing import Any
 import pytest
 
 from medbench.backends import (
+    Generation,
     NaiveBayesBackend,
     OpenAICompatibleBackend,
     TesseractBackend,
@@ -23,6 +24,7 @@ from medbench.backends import (
 )
 from medbench.benchmark import (
     DiagnosisTask,
+    ItemResult,
     make_task,
     parse_yes_no_side,
     run_task,
@@ -162,6 +164,41 @@ class TestRunner:
         assert report.items_run == 0
         assert report.metrics == {}
         assert report.latency["total_s"] == 0
+        assert report.as_dict()["items_requested"] == 3
+        assert report.coverage == 0
+
+    def test_truncation_and_coverage(self) -> None:
+        """Answers that hit max_tokens are flagged and counted."""
+
+        class Cut:
+            name = "cut"
+
+            def generate(
+                self, prompt: str, images: object = (), max_tokens: int = 256
+            ) -> Generation:
+                del prompt, images
+                return Generation("1. Influenza\n2.", 0.01, 50, max_tokens)
+
+        report = run_task(DiagnosisTask(count=4), Cut(), max_tokens=8)
+        data = report.as_dict()
+        assert all(result["truncated"] for result in data["results"])
+        assert report.metrics["truncation_rate"] == 1
+        assert report.metrics["empty_rate"] == 0
+        assert (data["items_requested"], data["coverage"]) == (4, 1.0)
+
+    def test_wilson_interval_on_top1(self) -> None:
+        """A perfect score on two items still has a wide interval."""
+        task = DiagnosisTask(count=2, seed=1)
+        items = task.items()
+        results = [
+            ItemResult(item.item_id, f"1. {item.truth.diagnosis}", 0.0)
+            for item in items
+        ]
+        scores = task.score(items, results)
+        assert scores["top1"] == 1
+        assert scores["top1_ci_low"] == pytest.approx(0.342, abs=1e-3)
+        assert scores["top1_ci_high"] == 1
+        assert scores["invalid_rate"] == 0
 
     def test_report_json(self, tmp_path: Path) -> None:
         """Reports are written as JSON with latencies."""

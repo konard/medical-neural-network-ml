@@ -30,6 +30,7 @@ from medbench.synthetic_cases import Condition
 
 __all__ = [
     "ALIASES",
+    "CONDITION_NAMES",
     "TASK",
     "DdxPatient",
     "DdxplusData",
@@ -38,6 +39,61 @@ __all__ = [
 ]
 
 TASK = "diagnosis-ddxplus"
+
+# All 49 ``cond-name-eng`` values of release_conditions.json, sorted. The
+# spelling "Larygospasm" is the dataset's own. A network test checks this list
+# against the pinned file, so parser tests can cover every choice offline.
+CONDITION_NAMES: tuple[str, ...] = (
+    "Acute COPD exacerbation / infection",
+    "Acute dystonic reactions",
+    "Acute laryngitis",
+    "Acute otitis media",
+    "Acute pulmonary edema",
+    "Acute rhinosinusitis",
+    "Allergic sinusitis",
+    "Anaphylaxis",
+    "Anemia",
+    "Atrial fibrillation",
+    "Boerhaave",
+    "Bronchiectasis",
+    "Bronchiolitis",
+    "Bronchitis",
+    "Bronchospasm / acute asthma exacerbation",
+    "Chagas",
+    "Chronic rhinosinusitis",
+    "Cluster headache",
+    "Croup",
+    "Ebola",
+    "Epiglottitis",
+    "GERD",
+    "Guillain-Barré syndrome",
+    "HIV (initial infection)",
+    "Influenza",
+    "Inguinal hernia",
+    "Larygospasm",
+    "Localized edema",
+    "Myasthenia gravis",
+    "Myocarditis",
+    "PSVT",
+    "Pancreatic neoplasm",
+    "Panic attack",
+    "Pericarditis",
+    "Pneumonia",
+    "Possible NSTEMI / STEMI",
+    "Pulmonary embolism",
+    "Pulmonary neoplasm",
+    "SLE",
+    "Sarcoidosis",
+    "Scombroid food poisoning",
+    "Spontaneous pneumothorax",
+    "Spontaneous rib fracture",
+    "Stable angina",
+    "Tuberculosis",
+    "URTI",
+    "Unstable angina",
+    "Viral pharyngitis",
+    "Whooping cough",
+)
 
 # Plain-language and abbreviation forms a model may answer with.
 ALIASES: dict[str, tuple[str, ...]] = {
