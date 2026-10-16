@@ -3,13 +3,9 @@ rules:
   unpinned-uses:
     config:
       policies:
-        # These publishers are trusted at tag granularity: their release tags
-        # are the reference this template is meant to read at a glance.
-        # Everything else must be pinned to a full commit hash.
-        actions/*: ref-pin
-        github/*: ref-pin
-        docker/*: ref-pin
-        astral-sh/*: ref-pin
-        lycheeverse/*: ref-pin
-        zizmorcore/*: ref-pin
+        # Every action, GitHub's own included, is pinned to a full commit
+        # hash with its release tag in a comment (issue #10): a tag can be
+        # moved to other code by whoever controls the repository, a commit
+        # hash cannot. Dependabot (.github/dependabot.yml) proposes the
+        # updates, hash and comment together, as reviewable pull requests.
         '*': hash-pin

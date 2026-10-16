@@ -145,36 +145,54 @@ def concurrency_mappings(workflow: str) -> list[dict[str, str]]:
     return mappings
 
 
+def action_pin_pattern(action: str, version: str) -> str:
+    """Regex for ``uses: <action>@<40-hex commit> # <version>[.minor.patch]``.
+
+    Every action is hash-pinned (issue #10); ``version`` is the release the
+    comment names, and a major like ``v7`` matches ``v7.0.1``.
+    """
+    return (
+        rf"uses:\s+{re.escape(action)}@[0-9a-f]{{40}}"
+        rf"\s+#\s+{re.escape(version)}(?:\.[0-9][^\s]*)?(?=\s|$)"
+    )
+
+
+def uses_action(text: str, action: str, version: str) -> bool:
+    """Whether ``text`` hash-pins ``action`` at the given release."""
+    return (
+        re.search(action_pin_pattern(action, version), text, re.MULTILINE) is not None
+    )
+
+
 def assert_action_pin_count(
     workflow: str, action: str, version: str, count: int
 ) -> None:
     """Assert every expected action reference is pinned to the requested version."""
-    pattern = rf"uses:\s+{re.escape(action)}@{re.escape(version)}\b"
-    assert len(re.findall(pattern, workflow)) == count
+    found = re.findall(action_pin_pattern(action, version), workflow, re.MULTILINE)
+    assert len(found) == count, f"{action} {version}: {len(found)} != {count}"
 
 
 def assert_action_pin_absent(workflow: str, action: str, version: str) -> None:
-    """Assert an outdated action reference is not used."""
-    pattern = rf"uses:\s+{re.escape(action)}@{re.escape(version)}\b"
-    assert not re.search(pattern, workflow)
+    """Assert an outdated action reference is used neither by tag nor by hash."""
+    by_tag = rf"uses:\s+{re.escape(action)}@{re.escape(version)}\b"
+    assert not re.search(by_tag, workflow)
+    assert not uses_action(workflow, action, version)
 
 
 def assert_action_hash_pin(workflow: str, action: str, count: int) -> str:
     """Assert an action is pinned to a full commit hash annotated with its tag.
 
-    zizmor's ``unpinned-uses`` audit demands a hash pin for every publisher not
-    listed in ``.github/zizmor.yml``. A bare hash is unreadable, so the pin
-    carries a ``# <tag> @ <date>`` comment that says what was pinned and when.
+    zizmor's ``unpinned-uses`` audit demands a hash pin for every action
+    (``.github/zizmor.yml``). A bare hash is unreadable, so the pin carries a
+    ``# <tag>`` comment, the form Dependabot keeps current when it bumps the
+    hash. Returns the first hash.
     """
-    pattern = (
-        rf"uses:\s+{re.escape(action)}@([0-9a-f]{{40}})"
-        r"\s+#\s+(v[0-9][^\s]*) @ (\d{4}-\d{2}-\d{2})"
-    )
-    matches = re.findall(pattern, workflow)
+    pattern = rf"uses:\s+{re.escape(action)}@([0-9a-f]{{40}})" r"\s+#\s+(v[0-9][^\s]*)$"
+    matches = re.findall(pattern, workflow, re.MULTILINE)
     assert (
         len(matches) == count
     ), f"expected {count} hash-pinned {action} reference(s), found {len(matches)}"
-    return matches[0][0]
+    return str(matches[0][0])
 
 
 def job_condition(workflow: str, job_name: str) -> str:

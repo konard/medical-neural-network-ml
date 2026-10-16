@@ -13,6 +13,7 @@ from tests.workflow_helpers import (
     ROOT,
     WORKFLOWS,
     read_workflow,
+    uses_action,
     workflow_job_block,
     workflow_run_blocks,
     workflow_step_block,
@@ -57,7 +58,7 @@ def test_zizmor_has_one_supported_version_and_checks_low_confidence() -> None:
     """The action, pedantic check and reproduction must use the same pin."""
     workflow = read_workflow("workflows.yml")
     job = workflow_job_block(workflow, "zizmor")
-    assert "uses: zizmorcore/zizmor-action@v0.6.4" in job
+    assert uses_action(job, "zizmorcore/zizmor-action", "v0.6.4")
     # Verified against v0.6.4's support/versions digest table.
     assert re.search(r"^  ZIZMOR_VERSION: ['\"]?1\.30\.1['\"]?$", workflow, re.M)
     assert "version: ${{ env.ZIZMOR_VERSION }}" in job
