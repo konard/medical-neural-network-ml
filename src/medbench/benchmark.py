@@ -217,6 +217,7 @@ class DdxplusTask:
     top_k: int = 5
     cache_dir: Path | None = None
     samples: Sequence[Sample] | None = None
+    split: str | None = None
     name: str = "diagnosis-ddxplus"
     _conditions: tuple[str, ...] = field(default=(), init=False, repr=False)
 
@@ -230,7 +231,7 @@ class DdxplusTask:
                 build_ddxplus_prompt(patient, data.conditions, self.top_k),
                 patient,
             )
-            for patient in data.patients(self.count)
+            for patient in data.patients(self.count, self.split)
         ]
 
     def score(
@@ -507,12 +508,19 @@ TASKS = (
 
 
 def make_task(
-    name: str, count: int, seed: int = 0, cache_dir: Path | None = None
+    name: str,
+    count: int,
+    seed: int = 0,
+    cache_dir: Path | None = None,
+    split: str | None = None,
 ) -> Task:
     """Create a task by name (see :data:`TASKS`).
 
     ``seed`` only changes the generated diagnosis cases; real files always
     come in manifest order. ``cache_dir`` is where real files are kept.
+    ``split`` picks the DDXPlus patient split (see
+    :meth:`medbench.ddxplus.DdxplusData.patients`); the real images and pages
+    are a small test-only set and ignore it.
 
     Raises:
         KeyError: If the name is unknown.
@@ -523,7 +531,7 @@ def make_task(
     if name == "diagnosis":
         return DiagnosisTask(count=count, seed=seed)
     if name == "diagnosis-ddxplus":
-        return DdxplusTask(count=count, cache_dir=cache_dir)
+        return DdxplusTask(count=count, cache_dir=cache_dir, split=split)
     if name.startswith("ocr-") and name in TASKS:
         return OcrTask(kind=name.removeprefix("ocr-"), count=count, cache_dir=cache_dir)
     if name.startswith("imaging-") and name in TASKS:

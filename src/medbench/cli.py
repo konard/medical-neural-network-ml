@@ -1,4 +1,4 @@
-"""Command line interface: ``medbench host|estimate|support|generate|sources|fetch|run``.
+"""Command line interface: ``medbench host|estimate|support|generate|sources|review|fetch|run``.
 
 Examples::
 
@@ -7,6 +7,7 @@ Examples::
     medbench support --model unimedvl
     medbench generate --out data/synthetic --count 4
     medbench sources --task imaging-xray
+    medbench review --task imaging-xray
     medbench fetch --out data/real
     medbench run --task diagnosis --backend naive-bayes --count 50
     medbench run --task imaging-xray --backend openai --base-url http://127.0.0.1:8080/v1
@@ -21,7 +22,12 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
-from medbench.backends import Backend, NaiveBayesBackend, OpenAICompatibleBackend
+from medbench.backends import (
+    Backend,
+    NaiveBayesBackend,
+    OpenAICompatibleBackend,
+    TesseractBackend,
+)
 from medbench.benchmark import TASKS, make_task, run_task
 from medbench.hardware import BudgetExceededError, ResourceBudget, detect_host
 from medbench.models import MODELS, get_model
@@ -42,6 +48,7 @@ from medbench.resources import (
 )
 from medbench.support import RUNTIMES, default_runtime, support_matrix, support_status
 from medbench.synthetic_cases import generate_cases
+from medbench.validity import class_balance, load_label_review, sample_size_targets
 
 __all__ = ["build_parser", "main"]
 
@@ -181,6 +188,29 @@ def _cmd_sources(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_review(args: argparse.Namespace) -> int:
+    review = load_label_review()
+    samples = [s for s in _selected_samples(args.task) if s.sample_id in review.entries]
+    _print(
+        {
+            "reviewer": review.reviewer,
+            "clinician_reviewed": review.clinician_reviewed,
+            "method": review.method,
+            "reviewed_on": review.reviewed_on,
+            "class_balance": class_balance(samples),
+            "sample_size_targets": sample_size_targets(),
+            "samples": [
+                {
+                    **review.entries[sample.sample_id].__dict__,
+                    "finding": sample.truth.get("finding"),
+                }
+                for sample in samples
+            ],
+        }
+    )
+    return 0
+
+
 def _cmd_fetch(args: argparse.Namespace) -> int:
     samples = _selected_samples(args.task)
     target: Path = args.out or default_cache_dir()
@@ -198,6 +228,8 @@ def _cmd_fetch(args: argparse.Namespace) -> int:
 def _make_backend(args: argparse.Namespace, budget: ResourceBudget) -> Backend:
     if args.backend == "naive-bayes":
         return NaiveBayesBackend()
+    if args.backend == "tesseract":
+        return TesseractBackend()
     if args.backend == "mlx":
         from medbench.mlx_backend import MlxBackend
 
@@ -217,7 +249,9 @@ def _cmd_run(args: argparse.Namespace) -> int:
     budget = ResourceBudget(
         max_seconds=args.time_budget, max_threads=4 if args.backend == "mlx" else None
     )
-    task = make_task(args.task, args.count, args.seed, cache_dir=args.data_dir)
+    task = make_task(
+        args.task, args.count, args.seed, cache_dir=args.data_dir, split=args.split
+    )
     report = run_task(
         task, _make_backend(args, budget), budget, max_tokens=args.max_tokens
     )
@@ -286,6 +320,13 @@ def build_parser() -> argparse.ArgumentParser:
     sources.add_argument("--task", choices=TASKS)
     sources.set_defaults(func=_cmd_sources)
 
+    review = commands.add_parser(
+        "review",
+        help="label review (not clinician-reviewed), balance and sample-size targets",
+    )
+    review.add_argument("--task", choices=TASKS)
+    review.set_defaults(func=_cmd_review)
+
     fetch_cmd = commands.add_parser(
         "fetch", help="download and verify the real files, write ATTRIBUTION.md"
     )
@@ -295,10 +336,20 @@ def build_parser() -> argparse.ArgumentParser:
     )
     fetch_cmd.set_defaults(func=_cmd_fetch)
 
+    _add_run_parser(commands)
+    return parser
+
+
+def _add_run_parser(
+    commands: argparse._SubParsersAction[argparse.ArgumentParser],
+) -> None:
     run = commands.add_parser("run", help="score a backend on a task")
     run.add_argument("--task", choices=TASKS, required=True)
     run.add_argument(
-        "--backend", choices=("naive-bayes", "openai", "mlx"), default="naive-bayes"
+        "--backend",
+        choices=("naive-bayes", "tesseract", "openai", "mlx"),
+        default="naive-bayes",
+        help="tesseract is the classic OCR baseline for the ocr-* tasks",
     )
     run.add_argument("--model-path", type=Path, help="local MLX-VLM snapshot")
     run.add_argument(
@@ -308,6 +359,11 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--model-name", default="default")
     run.add_argument("--count", type=int, default=10)
     run.add_argument("--seed", type=int, default=0)
+    run.add_argument(
+        "--split",
+        choices=("train", "dev", "test"),
+        help="DDXPlus patient split (tune on dev, report on test)",
+    )
     run.add_argument("--max-tokens", type=int, default=128)
     run.add_argument("--time-budget", type=float, default=600.0, help="seconds")
     run.add_argument("--request-timeout", type=float, default=600.0, help="seconds")
@@ -318,7 +374,6 @@ def build_parser() -> argparse.ArgumentParser:
         help="cache for real files (default: $MEDBENCH_DATA_DIR)",
     )
     run.set_defaults(func=_cmd_run)
-    return parser
 
 
 def main(argv: Sequence[str] | None = None) -> int:

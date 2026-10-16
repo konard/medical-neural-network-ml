@@ -29,7 +29,7 @@ from medbench.benchmark import (
     parse_yes_no_side,
     run_task,
 )
-from medbench.cli import main
+from medbench.cli import _make_backend, build_parser, main
 from medbench.hardware import ResourceBudget
 
 
@@ -115,6 +115,24 @@ class TestBackends:
         monkeypatch.setenv("PATH", "")
         with pytest.raises(FileNotFoundError, match="tesseract-ocr"):
             TesseractBackend()
+
+    def test_tesseract_baseline_from_cli(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """``--backend tesseract`` runs the binary on every image."""
+        fake = tmp_path / "tesseract"
+        fake.write_text("#!/bin/sh\necho 'Napa 500mg'\n", encoding="utf-8")
+        fake.chmod(0o755)
+        monkeypatch.setenv("PATH", str(tmp_path))
+        backend = _make_backend(
+            build_parser().parse_args(
+                ["run", "--task", "ocr-prescription", "--backend", "tesseract"]
+            ),
+            ResourceBudget(),
+        )
+        assert isinstance(backend, TesseractBackend)
+        out = backend.generate("ignored", [b"one", b"two"])
+        assert out.text == "Napa 500mg\nNapa 500mg"
 
 
 class TestParsing:

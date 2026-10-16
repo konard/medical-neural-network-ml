@@ -511,6 +511,19 @@ class TestDdxplus:
         assert "GERD; Stable angina; Unstable angina." in prompt
         assert "3 most likely" in prompt
 
+    def test_split_keeps_patients_apart(self, tmp_path: Path) -> None:
+        """A split takes only its own patients and keeps their file ids."""
+        data = DdxplusData.load(tmp_path, _ddxplus_files(tmp_path))
+        by_split = {
+            split: [p.patient_id for p in data.patients(5, split)]
+            for split in ("train", "dev", "test")
+        }
+        assert by_split == {
+            "train": ["ddxplus-test-0"],
+            "dev": ["ddxplus-test-1"],
+            "test": [],
+        }
+
     def test_scores_with_aliases(self, tmp_path: Path) -> None:
         """Aliases count, and the longest name wins."""
         task = DdxplusTask(

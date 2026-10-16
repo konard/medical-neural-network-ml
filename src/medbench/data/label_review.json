@@ -1,0 +1,356 @@
+{
+  "reviewer": "medbench maintainers (not clinicians)",
+  "clinician_reviewed": false,
+  "method": "Each label was read from the source page, compared with the image or scan by eye, and the doubts were written down. Nobody with medical training checked the images; the labels are the uploaders' or dataset authors' statements.",
+  "reviewed_on": "2026-10-16",
+  "entries": [
+    {
+      "sample_id": "xray-pneumothorax-1",
+      "view": "frontal, projection not stated",
+      "laterality": "left, patient side; the image shows it mirrored (radiological convention)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "hellerhoff",
+      "uncertainty": "German description; side read from 'links (rechts im Bild)'. Projection (PA/AP) not stated.",
+      "also_present": []
+    },
+    {
+      "sample_id": "xray-normal-1",
+      "view": "PA (stated in the file title)",
+      "laterality": "not applicable (normal)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "haggstrom",
+      "uncertainty": "'Normal' means 'without any signs of injury' in the description; not a full radiology report.",
+      "also_present": []
+    },
+    {
+      "sample_id": "xray-pneumothorax-2",
+      "view": "frontal, projection not stated",
+      "laterality": "right, patient side; the image shows it mirrored (radiological convention)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "hellerhoff",
+      "uncertainty": "Description also mentions a small basal fluid level and an earlier pneumothorax on the other side.",
+      "also_present": [
+        "small basal fluid level"
+      ]
+    },
+    {
+      "sample_id": "xray-normal-2",
+      "view": "frontal, projection not stated; photograph of a film",
+      "laterality": "not applicable (normal)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "doctoroftcm",
+      "uncertainty": "Photograph of film with glare; 'healthy man' is the uploader's statement, not a report.",
+      "also_present": []
+    },
+    {
+      "sample_id": "xray-pleural-effusion-1",
+      "view": "frontal, projection not stated",
+      "laterality": "right, patient side; the image shows it mirrored (radiological convention)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "heilman",
+      "uncertainty": "Side from the description 'Right sided effusion'; size not stated.",
+      "also_present": []
+    },
+    {
+      "sample_id": "xray-normal-3",
+      "view": "AP (not PA); photograph of a monitor",
+      "laterality": "not applicable (normal)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "heilman",
+      "uncertainty": "AP view: heart size and mediastinum look larger than on PA, so 'cardiomegaly' answers may be view artefacts.",
+      "also_present": []
+    },
+    {
+      "sample_id": "xray-pleural-effusion-2",
+      "view": "AP (not PA; 'CR ap' in the file name)",
+      "laterality": "left, patient side; the image shows it mirrored (radiological convention)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "hellerhoff",
+      "uncertainty": "Large effusion with mediastinal shift to the right; the shift is a second correct finding.",
+      "also_present": [
+        "mediastinal shift"
+      ]
+    },
+    {
+      "sample_id": "xray-lobar-pneumonia-1",
+      "view": "frontal, projection not stated",
+      "laterality": "right (middle lobe), patient side; the image shows it mirrored (radiological convention)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "haggstrom",
+      "uncertainty": "Only a 'Sin' marker; lobe from the description, not from a lateral view.",
+      "also_present": []
+    },
+    {
+      "sample_id": "xray-lung-mass-1",
+      "view": "PA ('CR pa' in the file name)",
+      "laterality": "right (upper zone), patient side; the image shows it mirrored (radiological convention)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "hellerhoff",
+      "uncertainty": "Histology (adenocarcinoma) is from the description and cannot be seen on an X-ray; only 'mass' is scorable.",
+      "also_present": []
+    },
+    {
+      "sample_id": "mri-vestibular-schwannoma-1",
+      "view": "axial T1 after contrast",
+      "laterality": "right, patient side; the image shows it mirrored (radiological convention)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "hellerhoff",
+      "uncertainty": "Side from 'right side of the patient (left in the image)'.",
+      "also_present": []
+    },
+    {
+      "sample_id": "mri-normal-1",
+      "view": "axial T2, lateral ventricles",
+      "laterality": "not applicable (normal)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "novak",
+      "uncertainty": "Single slice; 'normal' covers this slice only.",
+      "also_present": []
+    },
+    {
+      "sample_id": "mri-hemorrhagic-metastasis-1",
+      "view": "axial T2",
+      "laterality": "left frontal, patient side; the image shows it mirrored (radiological convention)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "dawes",
+      "uncertainty": "A known melanoma metastasis with a large haematoma; 'tumour' and 'haemorrhage' are both correct answers.",
+      "also_present": [
+        "tumour",
+        "haematoma with fluid-fluid level"
+      ]
+    },
+    {
+      "sample_id": "mri-normal-2",
+      "view": "axial T2, lateral ventricles",
+      "laterality": "not applicable (normal)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "novak",
+      "uncertainty": "Same uploader as mri-normal-1, described as a different subject; kept in one group because that cannot be checked.",
+      "also_present": []
+    },
+    {
+      "sample_id": "mri-cerebral-infarct-1",
+      "view": "axial DWI",
+      "laterality": "right superior frontal, patient side; the image shows it mirrored (radiological convention)",
+      "label_source": "Wikimedia Commons description of a slice isolated by Mikael Häggström from a Hellerhoff original",
+      "source_group": "hellerhoff",
+      "uncertainty": "Derived from a Hellerhoff series; grouped with the other Hellerhoff images.",
+      "also_present": []
+    },
+    {
+      "sample_id": "mri-normal-3",
+      "view": "axial T2, orbits and midbrain",
+      "laterality": "not applicable (normal)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "ptrump16",
+      "uncertainty": "Single slice; 'normal' covers this slice only.",
+      "also_present": []
+    },
+    {
+      "sample_id": "mri-hemorrhagic-contusion-1",
+      "view": "axial T2* (haem-sensitive)",
+      "laterality": "right frontal, patient side; the image shows it mirrored (radiological convention)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "hellerhoff",
+      "uncertainty": "Contre-coup contusion; 'intracerebral haemorrhage' is an equally correct answer.",
+      "also_present": [
+        "intracerebral haemorrhage"
+      ]
+    },
+    {
+      "sample_id": "us-gallstones-1",
+      "view": "gallbladder, plane not stated",
+      "laterality": "not applicable (midline organ)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "hellerhoff",
+      "uncertainty": "One large stone with a shadow; 'calcified' is the uploader's guess ('mutmaßlich').",
+      "also_present": []
+    },
+    {
+      "sample_id": "us-normal-1",
+      "view": "right kidney, plane not stated",
+      "laterality": "organ is the right kidney; no lesion side",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "ptrump16",
+      "uncertainty": "Length caliper 'L 9.34 cm' is burned in.",
+      "also_present": []
+    },
+    {
+      "sample_id": "us-gallstones-2",
+      "view": "gallbladder, plane not stated",
+      "laterality": "not applicable (midline organ)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "haggstrom",
+      "uncertainty": "Also shows biliary sludge.",
+      "also_present": [
+        "biliary sludge"
+      ]
+    },
+    {
+      "sample_id": "us-normal-2",
+      "view": "gallbladder and common bile duct",
+      "laterality": "not applicable (midline organ)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "ptrump16",
+      "uncertainty": "Scanner text only; 'normal' is the uploader's statement.",
+      "also_present": []
+    },
+    {
+      "sample_id": "us-hydronephrosis-1",
+      "view": "kidney, plane not stated",
+      "laterality": "left (from the description; not visible in the image)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "morning2k",
+      "uncertainty": "Cause is a left ureteral stone that is probably not in view; the side cannot be checked from pixels.",
+      "also_present": [
+        "ureteral stone (cause, probably not in view)"
+      ]
+    },
+    {
+      "sample_id": "us-normal-3",
+      "view": "liver, sagittal, midclavicular line",
+      "laterality": "not applicable (normal)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "haggstrom",
+      "uncertainty": "Single image; 'normal liver' is the uploader's statement.",
+      "also_present": []
+    },
+    {
+      "sample_id": "us-hydronephrosis-2",
+      "view": "kidney, plane not stated",
+      "laterality": "not stated",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "hansen-nielsen-ewertsen",
+      "uncertainty": "Pediatric patient; side not stated, so laterality is not scored.",
+      "also_present": []
+    },
+    {
+      "sample_id": "us-kidney-stone-1",
+      "view": "kidney, plane not stated",
+      "laterality": "not stated",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "hansen-nielsen-ewertsen",
+      "uncertainty": "Also shows hydronephrosis, which the task accepts as a term.",
+      "also_present": [
+        "hydronephrosis"
+      ]
+    },
+    {
+      "sample_id": "us-kidney-stone-2",
+      "view": "kidney, plane not stated",
+      "laterality": "not stated",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "hansen-nielsen-ewertsen",
+      "uncertainty": "Staghorn calculus; side not stated.",
+      "also_present": []
+    },
+    {
+      "sample_id": "us-ovarian-cyst-1",
+      "view": "sagittal left ovary ('SAG LT OV' burned in)",
+      "laterality": "left (burned-in label names the organ side)",
+      "label_source": "Wikimedia Commons uploader description, quoted in real_samples.json",
+      "source_group": "heilman",
+      "uncertainty": "Burned-in 'LT OV' gives away the organ and side but not the finding.",
+      "also_present": []
+    },
+    {
+      "sample_id": "rx-word-p0007",
+      "view": "one handwritten word crop",
+      "laterality": "not applicable",
+      "label_source": "RxHandBD Prescription_Labels.csv (the dataset authors' own label)",
+      "source_group": "rxhandbd",
+      "uncertainty": "Brand name; spelling variants are not in the label.",
+      "also_present": []
+    },
+    {
+      "sample_id": "rx-word-p1126",
+      "view": "one handwritten word crop",
+      "laterality": "not applicable",
+      "label_source": "RxHandBD Prescription_Labels.csv (the dataset authors' own label)",
+      "source_group": "rxhandbd",
+      "uncertainty": "Brand plus strength ('Dexter 60'); the strength has no unit in the label.",
+      "also_present": []
+    },
+    {
+      "sample_id": "rx-word-p3096",
+      "view": "one handwritten word crop",
+      "laterality": "not applicable",
+      "label_source": "RxHandBD Prescription_Labels.csv (the dataset authors' own label)",
+      "source_group": "rxhandbd",
+      "uncertainty": "Generic name.",
+      "also_present": []
+    },
+    {
+      "sample_id": "rx-word-p3113",
+      "view": "one handwritten word crop",
+      "laterality": "not applicable",
+      "label_source": "RxHandBD Prescription_Labels.csv (the dataset authors' own label)",
+      "source_group": "rxhandbd",
+      "uncertainty": "Generic name.",
+      "also_present": []
+    },
+    {
+      "sample_id": "rx-word-p3284",
+      "view": "one handwritten word crop",
+      "laterality": "not applicable",
+      "label_source": "RxHandBD Prescription_Labels.csv (the dataset authors' own label)",
+      "source_group": "rxhandbd",
+      "uncertainty": "Generic name.",
+      "also_present": []
+    },
+    {
+      "sample_id": "rx-word-p4623",
+      "view": "one handwritten word crop",
+      "laterality": "not applicable",
+      "label_source": "RxHandBD Prescription_Labels.csv (the dataset authors' own label)",
+      "source_group": "rxhandbd",
+      "uncertainty": "'5% dns' (dextrose in normal saline); the abbreviation is the label, not an expansion.",
+      "also_present": []
+    },
+    {
+      "sample_id": "history-blood-examination-p41",
+      "view": "printed page scan",
+      "laterality": "not applicable",
+      "label_source": "English Wikisource transcription (proofread status Validated), checked by eye",
+      "source_group": "fothergill-1907",
+      "uncertainty": "One missing degree sign corrected against the scan.",
+      "also_present": []
+    },
+    {
+      "sample_id": "history-blood-examination-p37",
+      "view": "printed page scan",
+      "laterality": "not applicable",
+      "label_source": "English Wikisource transcription (proofread status Validated), checked by eye",
+      "source_group": "fothergill-1907",
+      "uncertainty": "Contains the apothecary sign '℥'; starts with a word fragment from the previous page.",
+      "also_present": []
+    },
+    {
+      "sample_id": "history-fremantle-plague-p13",
+      "view": "printed page scan, degraded 1903 print",
+      "laterality": "not applicable",
+      "label_source": "English Wikisource transcription (proofread status Validated), checked by eye",
+      "source_group": "fremantle-1903",
+      "uncertainty": "Footer kept in the reference text; page number dropped.",
+      "also_present": []
+    },
+    {
+      "sample_id": "history-harlow-iron-bar-p8",
+      "view": "grayscale page scan",
+      "laterality": "not applicable",
+      "label_source": "English Wikisource transcription (proofread status Validated), checked by eye",
+      "source_group": "harlow-1868",
+      "uncertainty": "Two Wikisource errors corrected against the scan; line-break hyphens joined.",
+      "also_present": []
+    },
+    {
+      "sample_id": "history-alcohol-medicine-p60",
+      "view": "printed page scan with a watermark",
+      "laterality": "not applicable",
+      "label_source": "English Wikisource transcription (proofread status Validated), checked by eye",
+      "source_group": "allen-temperance",
+      "uncertainty": "Quoted hospital report inside a temperance book, not an original record; watermark not in the reference.",
+      "also_present": []
+    }
+  ]
+}

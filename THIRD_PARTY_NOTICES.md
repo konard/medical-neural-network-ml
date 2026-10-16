@@ -27,6 +27,11 @@ is in [data-sources.md](docs/case-studies/issue-1/data-sources.md).
 - Wikisource historical case histories: public-domain status recorded per
   source; jurisdiction-specific limits are discussed in the data guide.
 
+`src/medbench/data/label_review.json` is our review of those labels (view,
+side, doubts and source group). It quotes and paraphrases the uploaders' and
+dataset authors' descriptions, so the same attribution applies. It is not a
+clinical review; see [evaluation-validity.md](docs/evaluation-validity.md).
+
 `medbench fetch` creates `ATTRIBUTION.md`. Benchmark JSON reports include
 `sources` with credits for the files used. If sharing images, crops,
 transcriptions or reports containing source-derived text, preserve the

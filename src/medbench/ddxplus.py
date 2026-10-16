@@ -27,6 +27,7 @@ from typing import Any
 
 from medbench.real_data import Sample, fetch, samples_for
 from medbench.synthetic_cases import Condition
+from medbench.validity import split_of
 
 __all__ = [
     "ALIASES",
@@ -196,8 +197,15 @@ class DdxplusData:
             for question, values in answers.items()
         )
 
-    def patients(self, count: int) -> list[DdxPatient]:
-        """The first ``count`` patients of the test split, in file order."""
+    def patients(self, count: int, split: str | None = None) -> list[DdxPatient]:
+        """The first ``count`` patients of the DDXPlus test file, in file order.
+
+        With ``split`` (``"train"``, ``"dev"`` or ``"test"``) only patients
+        whose id :func:`medbench.validity.split_of` puts in that split are
+        taken, so prompts can be tuned on ``dev`` and reported on ``test``
+        without sharing a patient. Each DDXPlus row is a separate synthetic
+        patient, so the row id is the patient group.
+        """
         patients: list[DdxPatient] = []
         with (
             zipfile.ZipFile(self.patients_zip) as archive,
@@ -205,8 +213,10 @@ class DdxplusData:
         ):
             rows = csv.DictReader(io.TextIOWrapper(raw, encoding="utf-8"))
             for index, row in enumerate(rows):
-                if index >= count:
+                if len(patients) >= count:
                     break
+                if split is not None and split_of(f"ddxplus-test-{index}") != split:
+                    continue
                 initial = self.evidences[row["INITIAL_EVIDENCE"]]["question_en"]
                 differential = ast.literal_eval(row["DIFFERENTIAL_DIAGNOSIS"])
                 patients.append(

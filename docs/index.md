@@ -12,6 +12,7 @@ api
 apple-silicon
 hardware-workflows
 audit-2026-10-16
+evaluation-validity
 preview-regeneration
 ```
 

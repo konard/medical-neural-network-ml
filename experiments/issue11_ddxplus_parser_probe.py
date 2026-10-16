@@ -11,7 +11,9 @@ from medbench.synthetic_cases import parse_ranked_diagnoses
 
 KNOWN = ddxplus_conditions(CONDITION_NAMES)
 CASES = [(f"1. {name}", name) for name in CONDITION_NAMES]
-CASES += [(f"1. {alias}", name) for name, aliases in ALIASES.items() for alias in aliases]
+CASES += [
+    (f"1. {alias}", name) for name, aliases in ALIASES.items() for alias in aliases
+]
 CASES += [
     ("1. Measles", "measles"),
     ("1. Parainfluenza virus infection", "parainfluenza virus infection"),
