@@ -57,7 +57,9 @@ models are not good enough.
    "Dexter 60"). Two items per task prove that the pipeline works, nothing
    more ([measurements.md §10](measurements.md#10-the-first-run-on-real-openly-licensed-files)).
 4. **MedGemma 27B needs a GPU**: 18.3 GB in 4-bit, 56 GB in bf16.
-   **UniMedVL** has no llama.cpp build and needs PyTorch on a 40 GB+ GPU.
+   **UniMedVL** has no llama.cpp build; it runs through its own PyTorch
+   code behind `scripts/unimedvl_server.py`, probably on a 40 GB+ GPU
+   (an estimate; not measured yet).
    Its extra 7B of weights is for drawing images, not for better answers.
 5. **Most of the medical skill comes from data, not architecture.**
    MedGemma and Lingshu are ordinary Gemma 3 / Qwen2.5-VL models trained on

@@ -32,7 +32,7 @@ label does not establish that Metal model inference is available.
 | MedGemma 4B, native MLX | 18 GiB Mac with sufficient free RAM; at least ~6.5 GB reclaimable for the 70% preflight, 8 GB model ceiling | 2.995 GB checkpoint + 1.5 GB minimum buffer allowance; not run on this busy Mac |
 | MedGemma 27B Q4_K_M, llama.cpp CUDA | NVIDIA 24 GB VRAM recommended, 32 GB+ host RAM, 50 GB free disk | 16.547 GB language file + 0.858 GB projector, plus cache/buffers. GPU workflow exists, measurements outstanding |
 | MedGemma 27B bf16 | 80 GB GPU is a conservative initial target | About 55 GB weights alone. A simple arithmetic fit on 64 GB does not prove runtime capacity |
-| UniMedVL bf16 | Dedicated CUDA host; start with 40 GB+ VRAM, 64 GB+ host RAM, 80 GB free disk | About 29.2 GB weights; custom upstream environment/inference scripts, no medbench integration yet. 40 GB is an unverified lower target; 80 GB provides more headroom |
+| UniMedVL bf16 | Dedicated CUDA host; start with 40 GB+ VRAM, 64 GB+ host RAM, 80 GB free disk | About 29.2 GB weights. `scripts/unimedvl_server.py` serves the pinned upstream code (commit `f51aa0a`) and weights (revision `29918ce`) in an isolated Python 3.10 environment; not yet run on a GPU. 40 GB is an unverified lower target; 80 GB provides more headroom |
 
 All model runs must record context, image resolution, output length, batch,
 concurrency and runtime version. Doubling these can change capacity. The
@@ -47,7 +47,12 @@ runner is registered in this repository yet. Check driver
 compatibility with that CUDA release. A 16 GB T4 cannot hold the 27B Q4
 working set. Never send public pull-request code directly to a persistent
 GPU runner. CPU smoke runs three tasks; the manual GPU job includes all
-seven. The manual GPU task budget is 90 minutes, with a 95-minute outer deadline
+seven, for `medgemma-4b-it`, `medgemma-27b-it` or `unimedvl`. Every download
+and run is wrapped in `medbench monitor`, which writes
+`medbench-reports/resources-*.json` (peak GPU and host memory, free disk,
+driver and CUDA versions, wall time); the run also saves the server's cold
+start time and metrics. Out-of-memory and timed-out items are recorded with
+their error and the run continues. The manual GPU task budget is 90 minutes, with a 95-minute outer deadline
 and a three-and-a-half-hour job limit for downloads, setup and artifact upload. This
 replaces a 30-minute task budget that was shorter than the historical 27B
 estimate. Actual runtime still needs measurement; incomplete coverage fails
@@ -68,8 +73,10 @@ need hundreds of GB distributed across GPUs, plus checkpoint storage.
 MLX LoRA and CUDA bitsandbytes NF4 are different implementations. Do not infer
 Apple support from an NVIDIA QLoRA estimate. The estimator assumes linear
 speedup across GPUs and fixed utilization, so its training duration/cost is
-a planning calculation. GPU prices in the catalogue are historical examples,
-not verified rental quotes. No paid hardware was started by this audit.
+a planning calculation. GPU prices in the catalogue are on-demand list
+prices read on the date in `PRICES_CHECKED`, with their source and the
+lowest/highest price seen that day; pass your own with `--price-per-hour`.
+No paid hardware was started by this audit.
 
 Primary model sources: [MedGemma](https://huggingface.co/google/medgemma-27b-it),
 [UniMedVL runtime](https://github.com/uni-medical/UniMedVL),

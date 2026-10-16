@@ -105,6 +105,9 @@ Every report has:
 * `invalid_rate` (the parser found no answer), `abstention_rate` (the
   answer declines or says it is unsure), `empty_rate` and `truncation_rate`
   (the answer used all of `max_tokens`).
+* `error_rate`: items whose request failed (out of GPU memory, timeout,
+  server gone or an HTTP error). The item keeps its `error` text, is scored
+  as a wrong, empty answer and the run goes on with the next item.
 
 ### Ranked diagnosis parser
 

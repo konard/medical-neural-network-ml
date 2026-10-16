@@ -87,13 +87,18 @@ Steps:
    scripts/medbench-model-run.sh run`. It needs at least about 6 GB of free
    RAM. On a machine with less, it falls back to mmap and becomes 10 times
    slower ([measurements.md](measurements.md)).
-4. UniMedVL: it has no GGUF build, so run it with PyTorch on a 40 GB+ GPU
-   through `TransformersBackend` or a vLLM/SGLang server, and point
-   `medbench run --backend openai --base-url ...` at it.
+4. UniMedVL: it has no GGUF build and its Mixture-of-Transformers model is
+   not a stock Transformers or vLLM architecture, so
+   `scripts/unimedvl_server.py` wraps its own code (pinned commit and
+   weights, Python 3.10 environment) in an OpenAI-compatible server.
+   `SERVER=unimedvl bash scripts/medbench-model-run.sh download` and `run`
+   start it, or the GPU job with `gpu-model: unimedvl`. A 40 GB+ GPU is an
+   estimate, not a measured minimum.
 
 Resources from `medbench estimate` (raw output in
 [data/estimates.txt](data/estimates.txt)). 120 requests = 6 tasks × 20 items, an upper bound for today's
-about 77 requests:
+about 77 requests. Only the CPU speed was measured; the GPU rows are
+estimates until the GPU job has run:
 
 | Model | Where | Memory | Speed | 120 requests (full set) |
 | --- | --- | --- | --- | --- |
@@ -111,6 +116,7 @@ Alternatives for running models:
 | Ollama | Easiest install | Hides versions and files; harder to pin |
 | vLLM / SGLang | Fastest on GPU, many users at once | GPU only, large install |
 | Hugging Face Transformers | Every model, including UniMedVL | Slow on CPU, needs a large PyTorch install |
+| **Upstream UniMedVL code behind `scripts/unimedvl_server.py` (chosen for UniMedVL)** | The authors' own inference code, pinned commit and weights; same OpenAI-compatible API as llama-server | One request at a time; CUDA and a 29 GB checkpoint; not yet run on a GPU |
 | Cloud APIs | No hardware | Not allowed for credentialed data, costs per call, results change over time |
 
 **Done when:** both MedGemma sizes have a JSON report for every task, and

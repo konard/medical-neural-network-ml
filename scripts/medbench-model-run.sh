@@ -349,7 +349,8 @@ start_server() {
 }
 
 # Save what the server knows about itself: versions, limits, peak GPU
-# memory and speed (UniMedVL JSON) or llama.cpp's Prometheus counters.
+# memory and speed (UniMedVL JSON) or llama.cpp's Prometheus counters plus
+# its /props (context size, build, chat template).
 save_server_metrics() {
   if [[ "$SERVER" == unimedvl ]]; then
     curl --silent --fail "http://127.0.0.1:$PORT/metrics" \
@@ -357,6 +358,8 @@ save_server_metrics() {
   else
     curl --silent --fail "http://127.0.0.1:$PORT/metrics" \
       >"$OUT_DIR/llama-metrics.txt" || true
+    curl --silent --fail "http://127.0.0.1:$PORT/props" \
+      >"$OUT_DIR/llama-props.json" || true
   fi
 }
 
