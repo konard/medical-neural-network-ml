@@ -136,7 +136,10 @@ extra_checks = true
 [[tool.mypy.overrides]]
 # Optional numerical packages can have stubs for newer Python versions than
 # our runtime target. Check our typed adapter boundary without traversing them.
-module = ["torch", "transformers", "mlx.*", "mlx_vlm.*", "numpy", "numpy.*"]
+module = [
+    "torch", "transformers", "peft", "huggingface_hub", "mlx.*", "mlx_vlm.*",
+    "numpy", "numpy.*",
+]
 ignore_missing_imports = true
 follow_imports = "skip"
 follow_imports_for_stubs = true
