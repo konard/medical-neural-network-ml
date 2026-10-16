@@ -1,0 +1,54 @@
+{
+  "label": "Verify distributions",
+  "command": [
+    "python",
+    "scripts/check_distribution.py",
+    "dist",
+    "--install"
+  ],
+  "exit_code": 0,
+  "interrupted_by_signal": null,
+  "started_at": "2026-10-16T18:52:08+00:00",
+  "wall_seconds": 4.8,
+  "interval_seconds": 2.0,
+  "children_max_rss_gb": 0.065,
+  "python": "3.13.16",
+  "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+  "driver_version": null,
+  "cuda_version": null,
+  "samples": 4,
+  "host_memory": {
+    "baseline_used_gb": 1.091,
+    "total_gb": 16.766,
+    "peak_used_gb": 1.149
+  },
+  "gpus": [],
+  "disk": {
+    "path": "/home/runner/work/medical-neural-network-ml/medical-neural-network-ml",
+    "start_gb": 92.04,
+    "end_gb": 92.039,
+    "min_gb": 92.025
+  },
+  "timeline_columns": [
+    "seconds",
+    "host_used_gb"
+  ],
+  "timeline": [
+    [
+      0.0,
+      1.091
+    ],
+    [
+      2.0,
+      1.134
+    ],
+    [
+      4.0,
+      1.149
+    ],
+    [
+      4.8,
+      1.093
+    ]
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "label": "Tesseract ocr-history",
+  "command": [
+    "python",
+    "-m",
+    "medbench.cli",
+    "run",
+    "--task",
+    "ocr-history",
+    "--backend",
+    "tesseract",
+    "--count",
+    "5",
+    "--time-budget",
+    "600",
+    "--out",
+    "medbench-reports/tesseract-ocr-history.json"
+  ],
+  "exit_code": 0,
+  "interrupted_by_signal": null,
+  "started_at": "2026-10-16T18:51:20+00:00",
+  "wall_seconds": 12.2,
+  "interval_seconds": 2.0,
+  "children_max_rss_gb": 0.079,
+  "python": "3.13.16",
+  "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+  "driver_version": null,
+  "cuda_version": null,
+  "samples": 8,
+  "host_memory": {
+    "baseline_used_gb": 1.235,
+    "total_gb": 16.766,
+    "peak_used_gb": 1.238
+  },
+  "gpus": [],
+  "disk": {
+    "path": "/home/runner/work/medical-neural-network-ml/medical-neural-network-ml",
+    "start_gb": 91.655,
+    "end_gb": 91.655,
+    "min_gb": 91.652
+  },
+  "timeline_columns": [
+    "seconds",
+    "host_used_gb"
+  ],
+  "timeline": [
+    [
+      0.0,
+      1.235
+    ],
+    [
+      2.0,
+      1.238
+    ],
+    [
+      4.0,
+      1.218
+    ],
+    [
+      6.0,
+      1.198
+    ],
+    [
+      8.0,
+      1.229
+    ],
+    [
+      10.0,
+      1.18
+    ],
+    [
+      12.0,
+      1.146
+    ],
+    [
+      12.2,
+      1.096
+    ]
+  ]
+}
