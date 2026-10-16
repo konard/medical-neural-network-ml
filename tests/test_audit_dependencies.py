@@ -133,6 +133,21 @@ def test_every_accepted_advisory_has_a_reason() -> None:
     assert "GHSA-53q9-r3pm-6pq6" not in module.ACCEPTED_ADVISORIES
 
 
+def test_dependency_review_allows_only_accepted_advisories() -> None:
+    """Dependency Review skips exactly the GHSA aliases pip-audit accepts."""
+    import re
+
+    workflow = (SCRIPT_PATH.parents[1] / ".github/workflows/security.yml").read_text(
+        encoding="utf-8"
+    )
+    allowed = re.findall(r"^\s+allow-ghsas: (.+)$", workflow, re.MULTILINE)
+    assert len(allowed) == 1, allowed
+    ghsas = [item.strip() for item in allowed[0].split(",")]
+    assert ghsas == sorted(module.REVIEW_ALLOWED_GHSAS)
+    for alias in module.REVIEW_ALLOWED_GHSAS.values():
+        assert module.ACCEPTED_ADVISORIES[alias].startswith("transformers")
+
+
 def test_missing_pinned_surface_fails_the_audit(tmp_path: Path) -> None:
     import pytest
 

@@ -105,6 +105,11 @@ jobs:
         with:
           fail-on-severity: high
           comment-summary-in-pr: on-failure
+          # High-severity transformers 4.49.0 advisories of the pinned
+          # UniMedVL runtime, each accepted with its reason in
+          # scripts/audit_dependencies.py (REVIEW_ALLOWED_GHSAS); any other
+          # advisory still fails the review.
+          allow-ghsas: GHSA-29pf-2h5f-8g72, GHSA-fgcw-684q-jj6r, GHSA-x9r9-c232-4q39, GHSA-xrqw-3rrv-vx5w
 
   # On main and on the weekly scan, a disabled Dependency graph fails with the
   # setting to change, so the skipped pull request reviews do not go unnoticed.

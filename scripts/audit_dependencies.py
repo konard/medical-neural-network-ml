@@ -109,6 +109,18 @@ ACCEPTED_ADVISORIES = {
     ),
 }
 
+# Dependency Review (security.yml) names advisories by GHSA id and fails on
+# high severity. These are the high-severity aliases of the accepted
+# advisories above, so a pull request that touches the pinned file is not
+# failed for a reviewed exception; .github/workflows/security.yml allows
+# exactly these ids (tests/test_audit_dependencies.py), nothing else.
+REVIEW_ALLOWED_GHSAS = {
+    "GHSA-29pf-2h5f-8g72": "PYSEC-2026-2289",
+    "GHSA-fgcw-684q-jj6r": "PYSEC-2026-2290",
+    "GHSA-x9r9-c232-4q39": "PYSEC-2026-4174",
+    "GHSA-xrqw-3rrv-vx5w": "PYSEC-2026-3929",
+}
+
 
 def run(command: list[str], *, cwd: Path, capture: bool = False) -> str:
     """Run a command, streaming output so failures stay visible.
