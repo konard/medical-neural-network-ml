@@ -1,0 +1,88 @@
+{
+  "status": "measured",
+  "started_at": "2026-10-16T19:00:54+00:00",
+  "config": {
+    "model": "HuggingFaceTB/SmolLM2-135M",
+    "revision": "93efa2f097d58c2a74874c7e644dbc9b0cee75a2",
+    "method": "lora",
+    "batch_size": 1,
+    "seq_len": 256,
+    "image_size": 0,
+    "lora_rank": 64,
+    "lora_alpha": 128,
+    "optimizer": "torch.optim.AdamW, fp32 moments",
+    "learning_rate": 1e-05,
+    "weights_dtype": "fp32",
+    "autocast_dtype": null,
+    "gradient_checkpointing": true,
+    "steps": 3,
+    "device": "cpu",
+    "headroom": 0.1,
+    "deadline_s": 3600.0,
+    "processor_args": {},
+    "force": true
+  },
+  "versions": {
+    "python": "3.15.0",
+    "torch": "2.14.1+cpu",
+    "transformers": "5.20.1",
+    "peft": "0.21.2",
+    "accelerate": "1.15.0",
+    "bitsandbytes": null
+  },
+  "platform": "Linux-6.8.0-146-generic-x86_64-with-glibc2.39",
+  "resolved_revision": null,
+  "estimate": {
+    "method": "lora",
+    "weights_gb": 0.26903,
+    "trainable_params": 23224320.0,
+    "optimizer_and_grads_gb": 0.371589,
+    "activations_gb": 0.018874,
+    "total_gb": 2.36082,
+    "total_gb_range": [
+      1.888656,
+      3.54123
+    ],
+    "checkpoint_disk_gb": 0.32514,
+    "optimizer": "AdamW, fp32 moments",
+    "logits_gb": 0.201327
+  },
+  "device": {
+    "type": "cpu",
+    "host_available_gb": 1.711,
+    "cgroup_memory_limit_gb": 3.135369216
+  },
+  "load": {
+    "seconds": 1.4,
+    "host_peak_rss_gb": 1.201
+  },
+  "inputs": {
+    "sequence_tokens": 256,
+    "image_tokens": null
+  },
+  "train": {
+    "step_seconds": [
+      21.21,
+      5.53,
+      4.48
+    ],
+    "loss": 12.6604,
+    "host_peak_rss_gb": 1.511,
+    "host_peak_includes_load": false,
+    "trainable_params": 19537920,
+    "all_params": 154052928,
+    "weights_gb": 0.616212,
+    "gradients_gb": 0.078152,
+    "optimizer_state_gb": 0.156305
+  },
+  "checkpoint": {
+    "model_gb": 0.078214,
+    "optimizer_gb": 0.156645,
+    "total_gb": 0.234859
+  },
+  "ratios": {
+    "peak_to_estimate": 0.64,
+    "trainable_params": 0.841,
+    "checkpoint": 0.722
+  }
+}

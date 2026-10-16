@@ -51,8 +51,8 @@ Each step up costs about 10 times more data, money or time (§1).
 | Step | What changes | Pros | Cons | Real example |
 | --- | --- | --- | --- | --- |
 | 1. Prompting, RAG, tools | Nothing in the model; we change what we send it | Hours of work, no GPU for training, easy to undo | Limited by what the model already knows; long prompts are slower | Medprompt took GPT-4 to 90.2% on MedQA without training; MedRAG gave up to +18% |
-| 2. LoRA / QLoRA | Small adapter matrices, under 1% of weights | One 24 GB GPU for 27B (QLoRA, 19.6 GB); adapters are a few MB; the base stays intact | Smaller gains than full training on very new tasks | Google's MedGemma notebook: QLoRA, 1 epoch, one 40 GB GPU |
-| 3a. Full fine-tune | All weights | Biggest gains on a new task | 16 bytes per weight: 71 GB for 4B, 442 GB for 27B; risk of forgetting | Most medical models from a base |
+| 2. LoRA / QLoRA | Small adapter matrices, under 1% of weights | 27B QLoRA is 20–28 GB by formula at 512–2 048 tokens, so one 24 GB GPU only with short sequences or a chunked loss (hypothesis, not measured; [measurements.md §7](measurements.md#7-fine-tuning-memory-medbench-estimate---finetune)); adapters are a few MB; the base stays intact | Smaller gains than full training on very new tasks | Google's MedGemma notebook: QLoRA, 1 epoch, one 40 GB GPU |
+| 3a. Full fine-tune | All weights | Biggest gains on a new task | 16 bytes per weight: about 80 GB for 4B and 450 GB for 27B by formula; risk of forgetting | Most medical models from a base |
 | 3b. DPO (preferences) | All weights or LoRA | Teaches "this answer is better than that one"; no reward model | Needs pairs of answers ranked by doctors | – |
 | 3c. GRPO / RL with checkers | All weights or LoRA | Works with little data when an answer can be checked automatically (multiple choice, field extraction) | Needs a good checker; can learn to game it | MedVLM-R1: 600 samples, 55% → 78% |
 | 3d. Distillation | A small model learns from a big one | A 4B model that runs on CPU and talks like 27B | Inherits the teacher's mistakes | MedGemma's text skills came from distillation from a large teacher |

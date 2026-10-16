@@ -217,25 +217,51 @@ only.
 
 ## 7. Fine-tuning memory (`medbench estimate --finetune`)
 
-Batch 1, sequence 2 048, LoRA rank 16 on attention and MLP, gradient
-checkpointing on, AdamW. Raw output:
-[`data/finetune-estimates.txt`](data/finetune-estimates.txt).
+These are **formula outputs, not measurements**. Batch 1, LoRA rank 16 on
+attention and MLP, gradient checkpointing on, AdamW with fp32 moments, bf16
+weights (4-bit NF4 for QLoRA). Each cell is the point estimate with the
+low–high range the estimator prints. Raw output:
+[`data/finetune-estimates-20261016.txt`](data/finetune-estimates-20261016.txt)
+(the first version without the logits term is kept in
+[`data/finetune-estimates.txt`](data/finetune-estimates.txt)).
 
-| Model | Full fine-tune | LoRA (bf16 base) | QLoRA (4-bit base) | LoRA trainable parameters |
-| --- | ---: | ---: | ---: | ---: |
-| MedGemma 4B | 71.0 GB | 11.3 GB | **4.9 GB** | 29.2 M |
-| UniMedVL | 236.0 GB | 32.2 GB | 10.5 GB | 33.7 M |
-| MedGemma 27B | 442.5 GB | 60.3 GB | **19.6 GB** | 112 M |
+| Model | Sequence | Full fine-tune | LoRA (bf16 base) | QLoRA (4-bit base) | Of which fp32 logits |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| MedGemma 4B | 2 048 | 79.6 GB (64–119) | 19.9 GB (16–30) | 13.5 GB (11–20) | 8.6 GB |
+| MedGemma 4B | 512 | 72.6 GB (58–109) | 12.9 GB (10–19) | 6.5 GB (5.2–9.8) | 2.1 GB |
+| UniMedVL | 2 048 | 241 GB (193–361) | 37.1 GB (30–56) | 15.5 GB (12–23) | 5.0 GB |
+| UniMedVL | 512 | 237 GB (189–355) | 32.7 GB (26–49) | 11.1 GB (8.8–17) | 1.2 GB |
+| MedGemma 27B | 2 048 | 451 GB (361–677) | 68.9 GB (55–103) | 28.2 GB (23–42) | 8.6 GB |
+| MedGemma 27B | 512 | 443 GB (354–665) | 60.8 GB (49–91) | 20.1 GB (16–30) | 2.1 GB |
+
+LoRA trains 29.2 M (4B), 33.7 M (UniMedVL) and 112 M (27B) parameters.
 
 Plain-English reading:
 
 * **Full fine-tuning** changes every weight, so it also stores gradients and
-  optimizer state for every weight: about 16 bytes per parameter. Even 4B
-  needs a whole A100 80 GB. 27B needs a cluster.
+  optimizer state for every weight: about 16 bytes per parameter. By this
+  formula even 4B is above one 80 GB card at 2 048 tokens, and 27B needs
+  several GPUs with sharded optimizer state. Neither has been run here.
 * **LoRA** freezes the model and trains small "adapter" matrices (under 1% of
-  the weights). Memory is mostly the frozen weights.
-* **QLoRA** also stores the frozen weights in 4 bits. MedGemma 27B fits on a
-  single 24 GB card (L4 or RTX 4090), and 4B fits on almost any GPU.
+  the weights). Memory is mostly the frozen weights and, for the 262 k-token
+  Gemma 3 vocabulary, the logits.
+* **QLoRA** also stores the frozen weights in 4 bits. The earlier claim that
+  MedGemma 27B "fits on a single 24 GB card" did not count the logits: with
+  a plain loss at 2 048 tokens the formula gives 28 GB. It is only a
+  **hypothesis** that 27B QLoRA fits 24 GB with short sequences (512 tokens:
+  20 GB, range up to 30 GB) or with a chunked/fused cross-entropy (Liger
+  Kernel, Unsloth) that never holds the full logits. It needs a measured run
+  on a dedicated GPU.
+* **The logits term** is `tokens × vocabulary × 16 bytes`. On a CPU, one
+  LoRA step of SmolLM2-135M (49 152-token vocabulary) grew by 0.68–0.70 GB
+  (two runs) from 256 to 1 024 tokens while the activations formula grew by only 0.06 GB,
+  about 18–19 bytes per token and vocabulary entry. The run is in
+  [`data/training-memory-cpu-20261016/`](data/training-memory-cpu-20261016/).
+
+The measured CPU runs check the formula on small models only. MedGemma 4B
+and 27B and UniMedVL training still need dedicated GPUs, and the same
+command, [`scripts/measure_training_memory.py`](../../../scripts/measure_training_memory.py),
+records what they really use.
 
 More detail on compute and money for training is in
 [`research-notes/hardware-and-ci.md`](research-notes/hardware-and-ci.md) and

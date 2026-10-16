@@ -1,0 +1,45 @@
+{
+  "label": "Download model",
+  "command": [
+    "bash",
+    "scripts/medbench-model-run.sh",
+    "download"
+  ],
+  "exit_code": 0,
+  "interrupted_by_signal": null,
+  "started_at": "2026-10-16T18:52:10+00:00",
+  "wall_seconds": 2.4,
+  "interval_seconds": 5.0,
+  "children_max_rss_gb": 0.028,
+  "python": "3.13.16",
+  "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+  "driver_version": null,
+  "cuda_version": null,
+  "samples": 2,
+  "host_memory": {
+    "baseline_used_gb": 1.934,
+    "total_gb": 16.766,
+    "peak_used_gb": 1.934
+  },
+  "gpus": [],
+  "disk": {
+    "path": "/home/runner/work/medical-neural-network-ml/medical-neural-network-ml",
+    "start_gb": 88.406,
+    "end_gb": 88.406,
+    "min_gb": 88.406
+  },
+  "timeline_columns": [
+    "seconds",
+    "host_used_gb"
+  ],
+  "timeline": [
+    [
+      0.0,
+      1.934
+    ],
+    [
+      2.4,
+      1.886
+    ]
+  ]
+}

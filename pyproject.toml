@@ -59,6 +59,13 @@ Issues = "https://github.com/konard/medical-neural-network-ml/issues"
 [tool.hatch.build.targets.wheel]
 packages = ["src/my_package", "src/medbench"]
 
+# Hatchling would otherwise put every file Git does not ignore into the sdist
+# (CI logs, experiments, workflows). Keep it to what builds the wheel plus the
+# changelog; pyproject.toml, README.md, .gitignore and the license files are
+# always added. scripts/check_distribution.py enforces the result (issue #8).
+[tool.hatch.build.targets.sdist]
+include = ["/src", "/CHANGELOG.md"]
+
 [tool.ruff]
 line-length = 88
 target-version = "py39"
@@ -129,7 +136,10 @@ extra_checks = true
 [[tool.mypy.overrides]]
 # Optional numerical packages can have stubs for newer Python versions than
 # our runtime target. Check our typed adapter boundary without traversing them.
-module = ["torch", "transformers", "mlx.*", "mlx_vlm.*", "numpy", "numpy.*"]
+module = [
+    "torch", "transformers", "peft", "huggingface_hub", "mlx.*", "mlx_vlm.*",
+    "numpy", "numpy.*",
+]
 ignore_missing_imports = true
 follow_imports = "skip"
 follow_imports_for_stubs = true

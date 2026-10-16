@@ -1,0 +1,50 @@
+{
+  "status": "started",
+  "started_at": "2026-10-16T19:06:01+00:00",
+  "config": {
+    "model": "HuggingFaceTB/SmolLM2-135M",
+    "revision": "93efa2f097d58c2a74874c7e644dbc9b0cee75a2",
+    "method": "full",
+    "batch_size": 1,
+    "seq_len": 256,
+    "image_size": 0,
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "optimizer": "torch.optim.AdamW, fp32 moments",
+    "learning_rate": 1e-05,
+    "weights_dtype": "fp32",
+    "autocast_dtype": null,
+    "gradient_checkpointing": true,
+    "steps": 3,
+    "device": "cpu",
+    "headroom": 0.1,
+    "deadline_s": 3600.0,
+    "processor_args": {},
+    "force": true
+  },
+  "versions": {
+    "python": "3.15.0",
+    "torch": "2.14.1+cpu",
+    "transformers": "5.20.1",
+    "peft": "0.21.2",
+    "accelerate": "1.15.0",
+    "bitsandbytes": null
+  },
+  "platform": "Linux-6.8.0-146-generic-x86_64-with-glibc2.39",
+  "resolved_revision": null,
+  "estimate": {
+    "method": "full",
+    "weights_gb": 0.26903,
+    "trainable_params": 134515008.0,
+    "optimizer_and_grads_gb": 1.88321,
+    "activations_gb": 0.018874,
+    "total_gb": 3.872441,
+    "total_gb_range": [
+      3.097953,
+      5.808662
+    ],
+    "checkpoint_disk_gb": 1.88321,
+    "optimizer": "AdamW, fp32 moments",
+    "logits_gb": 0.201327
+  }
+}

@@ -376,7 +376,9 @@ Published third-party numbers vary a lot. One post claims vLLM 18.7 t/s vs Ollam
 
 ---
 
-## 5. Cloud GPU rental prices (snapshot, 2026)
+## 5. Cloud GPU rental prices (snapshot, 2026-10-14)
+
+**Dated examples, not current quotes.** The Vast.ai column was read from its live API on 2026-10-14; the other columns were read from the cited pages while this note was written (2026-10-14) and have not been re-checked. The prices `medbench estimate` uses are in `src/medbench/resources.py`, each with its source and the date in `PRICES_CHECKED` (2026-10-16). Pass `--price-per-hour` with a current quote before deciding anything.
 
 | GPU | Lambda (on-demand, 1x) [S41] | RunPod (community / secure) [S42] | Vast.ai (live API, 2026-10-14: min / median, 1x on-demand) [S43] | Hyperscalers |
 |---|---|---|---|---|
@@ -416,7 +418,7 @@ Hugging Face "model memory anatomy" for mixed-precision AdamW [S48]: weights 6 B
 | LoRA, 16-bit frozen base | ~9 GB base + adapters + activations, so ~12-20 GB | Unsloth minimum **64 GB** (27B row) [S49] | bf16 base needs no bf16-capable GPU for the weights, but compute benefits from bf16 |
 | QLoRA, 4-bit NF4 base (Dettmers et al. 2023) | ~3.5-6 GB (Unsloth: 3B → 3.5 GB, 7B → 5 GB) [S49] | Unsloth minimum **22 GB** [S49]; Unsloth Gemma 3 post: 27B "fits in under 22GB" [S9] | QLoRA paper: a 65B model on a single 48 GB GPU [S50] |
 
-So QLoRA of MedGemma 27B fits on a 24 GB card (RTX 3090/4090, L4) at short sequence lengths and batch size 1-2. 32-48 GB (RTX 5090, A6000, L40S) leaves room for longer image+text sequences. QLoRA of 4B fits on a 16 GB T4 or an 8-12 GB consumer card. Unsloth requires CUDA compute capability ≥ 7.0, so T4 and V100 are supported [S49].
+**Hypothesis, not measured here:** QLoRA of MedGemma 27B fits on a 24 GB card (RTX 3090/4090, L4) at short sequence lengths and batch size 1-2, *if* the loss does not hold the full fp32 logits. Gemma 3 has a 262 k-token vocabulary, so plain cross-entropy at 2 048 tokens adds about 8.6 GB; Unsloth's "under 22GB" uses its own chunked loss. `medbench estimate --finetune` now counts the logits (28 GB at 2 048 tokens, 20 GB at 512) (issue #9, 2026-10-16). 32-48 GB (RTX 5090, A6000, L40S) leaves room for longer image+text sequences. QLoRA of 4B fits on a 16 GB T4 or an 8-12 GB consumer card. Unsloth requires CUDA compute capability ≥ 7.0, so T4 and V100 are supported [S49].
 
 ### 6.2 Compute: FLOPs ≈ 6·N·D
 
@@ -463,7 +465,7 @@ A suggested default for the 6-core / 11 GiB machine used here: `systemd-run --us
 1. **CPU CI (GitHub-hosted, free for public repo)**: MedGemma 4B (or 1.5-4B) Q4_K_M + mmproj-F16 from the ungated unsloth GGUF repos, run with llama.cpp. About 3.3 GB download, ~4.6 GB RAM, about 10-15 t/s decode and about 30-60 s per image on 4 vCPU **(estimate; measured later: 7.8-11.6 t/s and 66-84 s per image with 3 threads)**. Keep the tests tiny (few prompts, `-n 32..128`) and cache the model with `actions/cache`.
 2. **GPU tests (self-hosted runner, label `gpu`)**: 27B int4 needs at least a 24 GB GPU. 27B bf16 needs at least an 80 GB GPU. UniMedVL bf16 needs about 32-40 GB (A100/H100 or 2x24 GB) **(estimate)**. Trigger with `workflow_dispatch` / label-gated only, use an ephemeral runner, and declare labels in `.github/actionlint.yaml`.
 3. **Hosted GPU alternative**: GitHub T4 runner at $0.052/min (Team/Enterprise only). It fits 4B bf16 and 27B only at ≤3.5 bpw.
-4. **Fine-tuning**: QLoRA 27B needs ≥22-24 GB. QLoRA 4B needs ≥6-8 GB. Full FT of 27B needs a multi-GPU node. Budget about 1 H100-hour per 10 M training tokens for 27B LoRA.
+4. **Fine-tuning** (hypotheses until a GPU run measures them): QLoRA 27B needs ≥22-24 GB with a chunked loss or short sequences, and about 28 GB by formula with a plain loss at 2 048 tokens. QLoRA 4B needs ≥6-8 GB at 512 tokens. Full FT of 27B needs a multi-GPU node. Budget about 1 H100-hour per 10 M training tokens for 27B LoRA.
 
 ---
 

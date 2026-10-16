@@ -65,7 +65,7 @@ def test_model_answers_questions_about_an_image(
     sample = samples_for("imaging-xray")[0]
     image = prepare_image(fetch(sample).read_bytes())
     question = (
-        "This is a real frontal chest X-ray. Is there an abnormal finding? "
+        "This is a real chest X-ray. Is there an abnormal finding? "
         "Answer on one line: abnormal: yes or no; finding: <name>; side: <side>."
     )
     answer = backend.generate(question, [image], max_tokens=48)

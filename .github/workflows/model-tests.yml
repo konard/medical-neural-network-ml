@@ -11,11 +11,18 @@ name: Model Tests
 # cpu-smoke   MedGemma 4B (4-bit) on a GitHub-hosted runner. It proves that
 #             download, serving, images and scoring work end to end; a few
 #             items take about 10-20 minutes because CPU decoding is slow.
-# gpu         MedGemma 4B or 27B on a self-hosted runner with an NVIDIA GPU
-#             and the labels `self-hosted, linux, x64, gpu`. It only runs when
-#             someone with write access starts the workflow by hand, so pull
-#             requests from forks can never reach that machine.
+# ocr-baseline Classic Tesseract OCR on every real OCR sample, the specialist
+#             baseline the VLM OCR scores are compared with (issue #7).
+# gpu         MedGemma 4B or 27B (llama.cpp) or UniMedVL (its own PyTorch code
+#             behind scripts/unimedvl_server.py) on a self-hosted runner with an
+#             NVIDIA GPU and the labels `self-hosted, linux, x64, gpu`. It only
+#             runs when someone with write access starts the workflow by hand,
+#             so pull requests from forks can never reach that machine.
 #             Setup: docs/case-studies/issue-1/ci-and-gpu-runner.md.
+#
+# Model downloads and runs go through `medbench monitor`, which writes
+# medbench-reports/resources-*.json: peak GPU and host memory, free disk,
+# driver and CUDA versions and wall time (issues #6 and #9).
 on:
   pull_request:
     types: [opened, synchronize, reopened]
@@ -24,6 +31,8 @@ on:
       - 'src/medbench/**'
       - 'scripts/medbench-model-run.sh'
       - 'scripts/run-with-budget-warning.sh'
+      - 'scripts/unimedvl_server.py'
+      - 'scripts/unimedvl-requirements.txt'
       - 'tests/test_real_models.py'
       - 'tests/test_medbench_real_data.py'
       - 'pyproject.toml'
@@ -46,6 +55,7 @@ on:
         options:
           - medgemma-27b-it
           - medgemma-4b-it
+          - unimedvl
         default: medgemma-27b-it
 
 permissions:
@@ -69,12 +79,12 @@ jobs:
     env:
       MEDBENCH_DATA_DIR: .cache/medbench-data
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Setup Python
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: '3.13'
 
@@ -85,7 +95,7 @@ jobs:
 
       - name: Restore real sample cache
         if: github.event_name != 'schedule'
-        uses: actions/cache@v6
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .cache/medbench-data
           key: medbench-data-${{ hashFiles('src/medbench/data/real_samples.json') }}
@@ -94,15 +104,30 @@ jobs:
         env:
           MEDBENCH_NETWORK_TESTS: '1'
         run: |
-          python -m medbench.cli fetch --out "$MEDBENCH_DATA_DIR"
-          pytest -m network tests/test_medbench_real_data.py
+          mkdir -p "$MEDBENCH_DATA_DIR"
+          python -m medbench.cli monitor --out resources/real-data-fetch.json \
+            --label "Download real samples" --interval 2 \
+            --disk "$MEDBENCH_DATA_DIR" -- \
+            python -m medbench.cli fetch --out "$MEDBENCH_DATA_DIR"
+          python -m medbench.cli monitor --out resources/real-data-verify.json \
+            --label "Verify real samples" --interval 2 -- \
+            pytest -m network tests/test_medbench_real_data.py
 
       - name: Upload attribution
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: medbench-real-data-attribution
           path: .cache/medbench-data/ATTRIBUTION.md
+          if-no-files-found: ignore
+
+      # Peak memory, disk and wall time of the step above (issue #9).
+      - name: Upload resource report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: resources-real-data
+          path: resources
           if-no-files-found: ignore
 
   cpu-smoke:
@@ -117,12 +142,12 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Setup Python
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: '3.13'
 
@@ -138,13 +163,13 @@ jobs:
             '
 
       - name: Restore model cache
-        uses: actions/cache@v6
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .cache/medbench
           key: medbench-cpu-${{ hashFiles('scripts/medbench-model-run.sh') }}
 
       - name: Restore real sample cache
-        uses: actions/cache@v6
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .cache/medbench-data
           key: medbench-data-${{ hashFiles('src/medbench/data/real_samples.json') }}
@@ -155,6 +180,8 @@ jobs:
         run: |
           bash scripts/run-with-budget-warning.sh \
             "$DOWNLOAD_BUDGET_SECONDS" "Download model" \
+            python -m medbench.cli monitor --out medbench-reports/resources-download.json \
+            --label "Download model" -- \
             bash scripts/medbench-model-run.sh download
 
       - name: Run medical tasks on real samples
@@ -168,19 +195,90 @@ jobs:
         run: |
           bash scripts/run-with-budget-warning.sh \
             "$MEDBENCH_BUDGET_SECONDS" "Run medbench" \
+            python -m medbench.cli monitor --out "$OUT_DIR/resources-run.json" \
+            --label "Run medbench" -- \
             bash scripts/medbench-model-run.sh run
 
       - name: Upload reports
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: medbench-cpu-reports
           path: medbench-reports
           if-no-files-found: ignore
 
+  ocr-baseline:
+    name: OCR baseline (Tesseract)
+    needs: real-data
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    concurrency:
+      group: model-${{ github.workflow }}-${{ github.ref }}-ocr-baseline
+      cancel-in-progress: true
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+
+      - name: Install Tesseract and medbench
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends tesseract-ocr
+          tesseract --version
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Restore real sample cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .cache/medbench-data
+          key: medbench-data-${{ hashFiles('src/medbench/data/real_samples.json') }}
+
+      - name: Score Tesseract on every real OCR sample
+        env:
+          MEDBENCH_DATA_DIR: .cache/medbench-data
+        run: |
+          mkdir -p medbench-reports
+          tesseract --version > medbench-reports/tesseract-version.txt 2>&1
+          for task in ocr-prescription ocr-history; do
+            count=$(python -m medbench.cli sources --task "$task" \
+              | python -c 'import json, sys; print(len(json.load(sys.stdin)))')
+            python -m medbench.cli monitor --interval 2 \
+              --out "medbench-reports/resources-tesseract-$task.json" \
+              --label "Tesseract $task" -- \
+              python -m medbench.cli run --task "$task" --backend tesseract \
+              --count "$count" --time-budget 600 \
+              --out "medbench-reports/tesseract-$task.json"
+          done
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: medbench-ocr-baseline-reports
+          path: medbench-reports
+          if-no-files-found: ignore
+
+  # Self-hosted runner policy (issue #10, docs/repository-policy.md): only a
+  # manual dispatch from main reaches the GPU host, never a pull request or a
+  # branch whose workflow file someone else could have edited. The `gpu`
+  # environment is where the maintainer adds required reviewers. Register the
+  # runner with --ephemeral on a fresh VM; the last step below also removes
+  # the downloaded weights, the model venv and the reports from the workspace
+  # in case the host is reused.
   gpu:
     name: GPU tests (self-hosted)
-    if: github.event_name == 'workflow_dispatch' && inputs.gpu
+    if: >-
+      github.event_name == 'workflow_dispatch' && inputs.gpu &&
+      github.ref == 'refs/heads/main'
+    environment: gpu
     runs-on: [self-hosted, linux, x64, gpu]
     # The case study estimates roughly 51 minutes for 27B. Reserve 90 minutes
     # for tasks, plus download/setup and time to upload partial evidence.
@@ -198,12 +296,21 @@ jobs:
       GPU_LAYERS: 999
       GPU_MODEL: ${{ inputs.gpu-model }}
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
+      # UniMedVL's pinned PyTorch stack needs Python 3.10 (upstream
+      # environment.yaml); medbench itself keeps running on 3.13.
+      - name: Setup Python 3.10 for UniMedVL
+        id: unimedvl-python
+        if: inputs.gpu-model == 'unimedvl'
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.10'
+
       - name: Setup Python
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: '3.13'
 
@@ -211,6 +318,8 @@ jobs:
         run: nvidia-smi
 
       - name: Select model
+        env:
+          UNIMEDVL_PYTHON: ${{ steps.unimedvl-python.outputs.python-path }}
         run: |
           case "$GPU_MODEL" in
             medgemma-27b-it)
@@ -225,6 +334,12 @@ jobs:
               ;;
             medgemma-4b-it)
               echo "Using the script defaults (MedGemma 4B Q4_K_M)."
+              ;;
+            unimedvl)
+              {
+                echo "SERVER=unimedvl"
+                echo "UNIMEDVL_PYTHON=$UNIMEDVL_PYTHON"
+              } >> "$GITHUB_ENV"
               ;;
             *)
               echo "::error::Unknown model '$GPU_MODEL'."
@@ -249,6 +364,8 @@ jobs:
         run: |
           bash scripts/run-with-budget-warning.sh \
             "$DOWNLOAD_BUDGET_SECONDS" "Download model" \
+            python -m medbench.cli monitor --out medbench-reports/resources-download.json \
+            --label "Download model" -- \
             bash scripts/medbench-model-run.sh download
 
       - name: Run medical tasks on real samples
@@ -263,31 +380,38 @@ jobs:
         run: |
           bash scripts/run-with-budget-warning.sh \
             "$MEDBENCH_BUDGET_SECONDS" "Run medbench" \
+            python -m medbench.cli monitor --out "$OUT_DIR/resources-run.json" \
+            --label "Run medbench" -- \
             bash scripts/medbench-model-run.sh run
 
       - name: Upload reports
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: medbench-gpu-reports
           path: medbench-reports
           if-no-files-found: ignore
+
+      - name: Remove downloads and reports from the GPU host
+        if: always()
+        run: rm -rf .cache/medbench medbench-reports
 
   # Terminal status gate (issue #69): GitHub reports jobs killed by
   # timeout-minutes as cancelled. Observe every other job so a timeout on main
   # becomes a visible failure instead of a grey run, while a run that was
   # superseded by a newer commit is recognised as expected churn.
   pipeline-status:
-    name: Pipeline Status
+    name: Pipeline Status (Model Tests)
     needs:
       - real-data
       - cpu-smoke
+      - ocr-baseline
       - gpu
     if: always()
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 

@@ -14,6 +14,7 @@ from tests.workflow_helpers import (
     assert_action_pin_count,
     job_condition,
     read_workflow,
+    uses_action,
     workflow_job_block,
     workflow_run_blocks,
     workflow_step_block,
@@ -215,7 +216,7 @@ def test_release_workflow_action_versions_are_current() -> None:
 
     assert_action_pin_count(release_workflow, "actions/checkout", "v7", 13)
     assert_action_pin_count(release_workflow, "actions/setup-python", "v7", 7)
-    assert_action_pin_count(release_workflow, "actions/upload-artifact", "v7", 2)
+    assert_action_pin_count(release_workflow, "actions/upload-artifact", "v7", 4)
     assert_action_pin_count(release_workflow, "actions/download-artifact", "v8", 2)
     assert_action_pin_absent(release_workflow, "actions/download-artifact", "v7")
     assert_action_hash_pin(release_workflow, "codecov/codecov-action", 1)
@@ -247,7 +248,7 @@ def test_release_workflow_sets_git_default_branch_before_checkout() -> None:
     assert "  GIT_CONFIG_VALUE_0: main" in workflow
 
     env_index = workflow.index("env:\n  GIT_CONFIG_COUNT: '1'")
-    first_checkout_index = workflow.index("uses: actions/checkout@v7")
+    first_checkout_index = workflow.index("uses: actions/checkout@")
     assert env_index < first_checkout_index
 
 
@@ -461,8 +462,8 @@ def test_release_workflow_builds_docker_images_on_pull_requests() -> None:
         "if: github.event_name == 'pull_request' && "
         "needs.detect-changes.outputs.any-code-changed == 'true'" in block
     )
-    assert "uses: docker/setup-buildx-action@v4" in block
-    assert "uses: docker/build-push-action@v7" in block
+    assert uses_action(block, "docker/setup-buildx-action", "v4")
+    assert uses_action(block, "docker/build-push-action", "v7")
     assert "push: false" in block
     assert "load: true" in block
     assert "cache-from: type=gha,scope=docker-pr-check" in block
@@ -493,9 +494,9 @@ def test_release_workflow_publishes_multi_arch_docker_images() -> None:
     assert "cache-to: type=gha,mode=max,scope=${{ matrix.platform }}" in build
     assert "push-by-digest=true" in build
     assert "name-canonical=true" in build
-    assert "uses: actions/upload-artifact@v7" in build
+    assert uses_action(build, "actions/upload-artifact", "v7")
 
-    assert "uses: actions/download-artifact@v8" in publish
+    assert uses_action(publish, "actions/download-artifact", "v8")
     assert "merge-multiple: true" in publish
     assert "docker buildx imagetools create" in publish
     assert '--tag "${IMAGE}:latest"' in publish

@@ -87,3 +87,72 @@ def test_missing_dependency_surface_fails_the_audit(tmp_path: Path) -> None:
     (tmp_path / "pyproject.toml").write_text("[project]\nname = 'x'\n")
     with pytest.raises(FileNotFoundError, match="docs/requirements.txt"):
         module.audit_dependencies(tmp_path)
+
+
+def test_pinned_runtime_is_audited_without_installing_it(monkeypatch) -> None:
+    """The UniMedVL pins (issue #6) are audited as a file, exactly as pinned.
+
+    Before, the file matched no surface and torch 2.5.1 (GHSA-53q9-r3pm-6pq6)
+    was only caught by Dependency Review.
+    """
+    commands: list[list[str]] = []
+
+    def fake_run(command, *, cwd, capture=False):
+        commands.append([str(part) for part in command])
+        return "purelib"
+
+    monkeypatch.setattr(module, "run", fake_run)
+    module.audit_dependencies(Path(__file__).resolve().parent.parent)
+
+    pinned = [
+        command
+        for command in commands
+        if "--requirement" in command and "scripts/unimedvl-requirements.txt" in command
+    ]
+    assert len(pinned) == 1, commands
+    command = pinned[0]
+    assert command[1:3] == ["-m", "pip_audit"]
+    assert "audit" in command[0]
+    assert {"--no-deps", "--disable-pip"} <= set(command)
+    ignored = [
+        command[index + 1]
+        for index, part in enumerate(command)
+        if part == "--ignore-vuln"
+    ]
+    assert ignored == sorted(module.ACCEPTED_ADVISORIES)
+
+
+def test_every_accepted_advisory_has_a_reason() -> None:
+    """An accepted advisory names its package and why it does not apply."""
+    assert module.ACCEPTED_ADVISORIES
+    for advisory, reason in module.ACCEPTED_ADVISORIES.items():
+        assert advisory.startswith(("PYSEC-", "GHSA-")), advisory
+        assert reason.split(" ", 1)[0] in {"torch", "transformers", "accelerate"}
+        assert ";" in reason or ":" in reason, reason
+    # torch.load RCE is fixed by the pin, never accepted.
+    assert "GHSA-53q9-r3pm-6pq6" not in module.ACCEPTED_ADVISORIES
+
+
+def test_dependency_review_allows_only_accepted_advisories() -> None:
+    """Dependency Review skips exactly the GHSA aliases pip-audit accepts."""
+    import re
+
+    workflow = (SCRIPT_PATH.parents[1] / ".github/workflows/security.yml").read_text(
+        encoding="utf-8"
+    )
+    allowed = re.findall(r"^\s+allow-ghsas: (.+)$", workflow, re.MULTILINE)
+    assert len(allowed) == 1, allowed
+    ghsas = [item.strip() for item in allowed[0].split(",")]
+    assert ghsas == sorted(module.REVIEW_ALLOWED_GHSAS)
+    for alias in module.REVIEW_ALLOWED_GHSAS.values():
+        assert module.ACCEPTED_ADVISORIES[alias].startswith("transformers")
+
+
+def test_missing_pinned_surface_fails_the_audit(tmp_path: Path) -> None:
+    import pytest
+
+    (tmp_path / "pyproject.toml").write_text("[project]\nname = 'x'\n")
+    (tmp_path / "docs").mkdir()
+    (tmp_path / "docs" / "requirements.txt").write_text("")
+    with pytest.raises(FileNotFoundError, match="unimedvl-requirements.txt"):
+        module.audit_dependencies(tmp_path)

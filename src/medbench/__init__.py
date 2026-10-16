@@ -5,6 +5,8 @@
 
 * :mod:`medbench.models` - the candidate models and their sizes;
 * :mod:`medbench.resources` - memory, speed and training-cost calculator;
+* :mod:`medbench.support` - which model, runtime, weight format and task
+  combinations are supported, and which of them were measured;
 * :mod:`medbench.hardware` - host detection and resource budgets;
 * :mod:`medbench.real_data` - real public domain and Creative Commons
   documents and scans, downloaded at test time and checked by SHA-256;
@@ -13,7 +15,9 @@
 * :mod:`medbench.synthetic_cases` - a small text-only toy diagnosis set and
   the answer parser;
 * :mod:`medbench.augment` - label-preserving data augmentation;
-* :mod:`medbench.metrics` - scoring functions;
+* :mod:`medbench.metrics` - scoring functions and confidence intervals;
+* :mod:`medbench.clinical_text` - negation, abstention, dose/unit and OCR
+  normalisation rules used by the scores;
 * :mod:`medbench.backends` - ways to call a model;
 * :mod:`medbench.benchmark` - tasks and the benchmark runner.
 """

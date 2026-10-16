@@ -1,0 +1,56 @@
+{
+  "label": "Tesseract ocr-prescription",
+  "command": [
+    "python",
+    "-m",
+    "medbench.cli",
+    "run",
+    "--task",
+    "ocr-prescription",
+    "--backend",
+    "tesseract",
+    "--count",
+    "6",
+    "--time-budget",
+    "600",
+    "--out",
+    "medbench-reports/tesseract-ocr-prescription.json"
+  ],
+  "exit_code": 0,
+  "interrupted_by_signal": null,
+  "started_at": "2026-10-16T18:51:19+00:00",
+  "wall_seconds": 0.5,
+  "interval_seconds": 2.0,
+  "children_max_rss_gb": 0.036,
+  "python": "3.13.16",
+  "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+  "driver_version": null,
+  "cuda_version": null,
+  "samples": 2,
+  "host_memory": {
+    "baseline_used_gb": 1.202,
+    "total_gb": 16.766,
+    "peak_used_gb": 1.235
+  },
+  "gpus": [],
+  "disk": {
+    "path": "/home/runner/work/medical-neural-network-ml/medical-neural-network-ml",
+    "start_gb": 91.655,
+    "end_gb": 91.655,
+    "min_gb": 91.655
+  },
+  "timeline_columns": [
+    "seconds",
+    "host_used_gb"
+  ],
+  "timeline": [
+    [
+      0.0,
+      1.202
+    ],
+    [
+      0.5,
+      1.235
+    ]
+  ]
+}

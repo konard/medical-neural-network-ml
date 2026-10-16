@@ -76,7 +76,7 @@ For a hard timeout on native MLX, use `scripts/medbench-mlx-run.py`.
 | M3 Pro MLX smoke | macOS, native arm64 Python 3.10+; 256 MiB allocation ceiling | Measured on this M3 Pro |
 | MedGemma 4B MLX | 18 GB unified-memory Mac can be sufficient with other apps closed; approximately 3 GB checkpoint plus runtime buffers; dynamic free-memory preflight | Backend implemented; see local evidence and limits |
 | MedGemma 27B Q4 GPU | Linux x86_64, NVIDIA 24 GB VRAM recommended, 32 GB+ host RAM and 50 GB free disk | Workflow available; GPU measurement outstanding |
-| UniMedVL bf16 | Dedicated CUDA host; at least 40 GB VRAM as an initial capacity target, 64 GB+ RAM and 80 GB free disk | Custom upstream runtime integration outstanding |
+| UniMedVL bf16 | Dedicated CUDA host; at least 40 GB VRAM as an initial capacity target, 64 GB+ RAM and 80 GB free disk | Adapter for the pinned upstream runtime implemented; GPU measurement outstanding |
 | Fine-tuning / training | Dedicated GPU; depends on optimizer, context, batch, image size and sharding | Formula estimates only; measurements outstanding |
 
 The [hardware guide](docs/hardware-workflows.md) distinguishes measured
@@ -94,7 +94,12 @@ The optional self-hosted NVIDIA job runs only on manual dispatch:
 
 ```bash
 gh workflow run model-tests.yml -f gpu=true -f gpu-model=medgemma-27b-it -f count=20
+gh workflow run model-tests.yml -f gpu=true -f gpu-model=unimedvl -f count=20
 ```
+
+Each model download and run is wrapped in `medbench monitor`, which writes
+`medbench-reports/resources-*.json` with peak GPU and host memory, free disk,
+driver and CUDA versions and wall time, also when the run fails.
 
 ## Configuration
 
@@ -128,7 +133,8 @@ Settings → Pages → Source to GitHub Actions and the repository variable
 tracking; there is no browser application in this repository.
 
 Publishing requires a PyPI trusted publisher for this repository and package
-name. See the [delivery audit](docs/audit-2026-10-16.md). CI checks publisher
+name; [Publishing to PyPI](docs/publishing.md) lists the settings a maintainer
+enters and what CI checks before and after each upload. CI checks publisher
 credentials and refuses a release when they are not configured.
 
 ## Contributing

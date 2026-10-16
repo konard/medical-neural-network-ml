@@ -142,3 +142,30 @@ def test_cgroup_budget_subtracts_current_usage(tmp_path: Path) -> None:
     host = detect_host(tmp_path, with_gpus=False)
     assert host.memory_available_gb == 1
     assert ResourceBudget().memory_limit_gb(host) == pytest.approx(0.7)
+
+
+@pytest.mark.parametrize(
+    ("directory", "usage", "stat"),
+    [
+        ("sys/fs/cgroup", "memory.current", "inactive_file 500000000\nanon 1\n"),
+        (
+            "sys/fs/cgroup/memory",
+            "memory.usage_in_bytes",
+            "cache 9\ntotal_inactive_file 500000000\n",
+        ),
+    ],
+)
+def test_reclaimable_page_cache_counts_as_free(
+    tmp_path: Path, directory: str, usage: str, stat: str
+) -> None:
+    """The kernel drops inactive file pages before it kills for memory."""
+    (tmp_path / "proc").mkdir()
+    (tmp_path / "proc/meminfo").write_text(MEMINFO)
+    cgroup = tmp_path / directory
+    cgroup.mkdir(parents=True)
+    limit = "memory.max" if directory == "sys/fs/cgroup" else "memory.limit_in_bytes"
+    (cgroup / limit).write_text("4000000000")
+    (cgroup / usage).write_text("3000000000")
+    (cgroup / "memory.stat").write_text(stat)
+    host = detect_host(tmp_path, with_gpus=False)
+    assert host.memory_available_gb == pytest.approx(1.5)

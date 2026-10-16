@@ -91,9 +91,9 @@ Safety rules built into the job:
 
 | How | Command or action |
 |---|---|
-| On a pull request | Automatic for changes under `src/medbench/**`, the runner script, `tests/test_real_models.py` or the workflow |
+| On a pull request | CPU smoke only, automatic for changes under `src/medbench/**`, the runner script, the UniMedVL server and its requirements, `tests/test_real_models.py` or the workflow |
 | By hand, CPU only | Actions → Model Tests → Run workflow (leave `gpu` off) |
-| By hand, with GPU | Actions → Model Tests → Run workflow, tick `gpu`, choose `medgemma-27b-it` or `medgemma-4b-it` |
+| By hand, with GPU | Actions → Model Tests → Run workflow, tick `gpu`, choose `medgemma-27b-it`, `medgemma-4b-it` or `unimedvl` |
 | From the terminal | `gh workflow run model-tests.yml -f gpu=true -f gpu-model=medgemma-27b-it -f count=20` |
 | On your own machine | `bash scripts/medbench-model-run.sh download && bash scripts/medbench-model-run.sh run` |
 
@@ -105,15 +105,17 @@ header of the script for the full list.
 
 The numbers below come from `medbench estimate` (this repository's resource
 calculator; decode speed is about memory bandwidth divided by model size, with
-an efficiency factor). They are estimates, not measurements.
+an efficiency factor). They are estimates, not measurements. Prices are
+the ranges `medbench estimate` prints, read on 2026-10-16 (`PRICES_CHECKED`
+in `src/medbench/resources.py`, with sources); they change often.
 
 | GPU (VRAM) | MedGemma 4B Q4 | MedGemma 27B Q4_K_M (about 18 GB) | MedGemma 27B bf16 (about 56 GB) | UniMedVL bf16 (about 30 to 40 GB) | Rent price per hour (2026) |
 |---|---|---|---|---|---|
-| T4 (16 GB) | Yes, about 69 tok/s | No (only 3-bit quants) | No | No | $0.15 to $0.55; GitHub hosted T4 $3.12 |
-| L4 (24 GB) | Yes, about 65 tok/s | Yes, about 10 tok/s | No | No | $0.3 to $0.8 |
-| RTX 4090 (24 GB) | Yes, about 218 tok/s | Yes, about 35 tok/s | No | No | $0.35 to $0.9 |
-| A100 (80 GB) | Yes | Yes, about 71 tok/s | Yes, about 22 tok/s | Yes | $1.2 to $2.8 |
-| H100 (80 GB) | Yes | Yes, about 116 tok/s | Yes | Yes | $2 to $4 (AWS about $6.9) |
+| T4 (16 GB) | Yes, about 69 tok/s | No (only 3-bit quants) | No | No | GitHub hosted T4 $3.12 |
+| L4 (24 GB) | Yes, about 65 tok/s | Yes, about 10 tok/s | No | No | $0.20 to $0.81 |
+| RTX 4090 (24 GB) | Yes, about 218 tok/s | Yes, about 35 tok/s | No | No | $0.13 to $0.89 |
+| A100 (80 GB) | Yes | Yes, about 71 tok/s | Yes, about 22 tok/s | Yes | $0.43 to $5.07 |
+| H100 (80 GB) | Yes | Yes, about 116 tok/s | Yes | Yes | $1.73 to $11.06 |
 
 Alternatives for where to run the GPU tests:
 

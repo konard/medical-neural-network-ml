@@ -1,0 +1,88 @@
+{
+  "status": "measured",
+  "started_at": "2026-10-16T19:01:43+00:00",
+  "config": {
+    "model": "HuggingFaceTB/SmolLM2-135M",
+    "revision": "93efa2f097d58c2a74874c7e644dbc9b0cee75a2",
+    "method": "lora",
+    "batch_size": 1,
+    "seq_len": 1024,
+    "image_size": 0,
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "optimizer": "torch.optim.AdamW, fp32 moments",
+    "learning_rate": 1e-05,
+    "weights_dtype": "fp32",
+    "autocast_dtype": null,
+    "gradient_checkpointing": true,
+    "steps": 3,
+    "device": "cpu",
+    "headroom": 0.1,
+    "deadline_s": 3600.0,
+    "processor_args": {},
+    "force": true
+  },
+  "versions": {
+    "python": "3.15.0",
+    "torch": "2.14.1+cpu",
+    "transformers": "5.20.1",
+    "peft": "0.21.2",
+    "accelerate": "1.15.0",
+    "bitsandbytes": null
+  },
+  "platform": "Linux-6.8.0-146-generic-x86_64-with-glibc2.39",
+  "resolved_revision": null,
+  "estimate": {
+    "method": "lora",
+    "weights_gb": 0.26903,
+    "trainable_params": 5806080.0,
+    "optimizer_and_grads_gb": 0.092897,
+    "activations_gb": 0.075497,
+    "total_gb": 2.742731,
+    "total_gb_range": [
+      2.194185,
+      4.114097
+    ],
+    "checkpoint_disk_gb": 0.081285,
+    "optimizer": "AdamW, fp32 moments",
+    "logits_gb": 0.805306
+  },
+  "device": {
+    "type": "cpu",
+    "host_available_gb": 1.712,
+    "cgroup_memory_limit_gb": 3.135369216
+  },
+  "load": {
+    "seconds": 1.3,
+    "host_peak_rss_gb": 1.202
+  },
+  "inputs": {
+    "sequence_tokens": 1024,
+    "image_tokens": null
+  },
+  "train": {
+    "step_seconds": [
+      35.07,
+      23.05,
+      20.39
+    ],
+    "loss": 12.3244,
+    "host_peak_rss_gb": 1.998,
+    "host_peak_includes_load": false,
+    "trainable_params": 4884480,
+    "all_params": 139399488,
+    "weights_gb": 0.557598,
+    "gradients_gb": 0.019538,
+    "optimizer_state_gb": 0.039078
+  },
+  "checkpoint": {
+    "model_gb": 0.019599,
+    "optimizer_gb": 0.039417,
+    "total_gb": 0.059017
+  },
+  "ratios": {
+    "peak_to_estimate": 0.728,
+    "trainable_params": 0.841,
+    "checkpoint": 0.726
+  }
+}

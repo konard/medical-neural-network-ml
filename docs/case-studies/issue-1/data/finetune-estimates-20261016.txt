@@ -1,0 +1,308 @@
+# medbench estimate --finetune, 2026-10-16, commit 165a710.
+# Formula output with the fp32 logits term (issue #9); not a measurement.
+
+$ python -m medbench.cli estimate --model medgemma-4b-it --hardware a100-80gb --quant bf16 --finetune --seq-len 2048
+{
+  "finetune": [
+    {
+      "method": "full",
+      "weights_gb": 8.6,
+      "trainable_params": 4300000000.0,
+      "optimizer_and_grads_gb": 60.2,
+      "activations_gb": 0.713,
+      "total_gb": 79.605,
+      "total_gb_range": [
+        63.684,
+        119.408
+      ],
+      "checkpoint_disk_gb": 60.2,
+      "optimizer": "AdamW, fp32 moments",
+      "logits_gb": 8.592
+    },
+    {
+      "method": "lora",
+      "weights_gb": 8.6,
+      "trainable_params": 29245440.0,
+      "optimizer_and_grads_gb": 0.468,
+      "activations_gb": 0.713,
+      "total_gb": 19.873,
+      "total_gb_range": [
+        15.898,
+        29.809
+      ],
+      "checkpoint_disk_gb": 0.409,
+      "optimizer": "AdamW, fp32 moments",
+      "logits_gb": 8.592
+    },
+    {
+      "method": "qlora",
+      "weights_gb": 2.22,
+      "trainable_params": 29245440.0,
+      "optimizer_and_grads_gb": 0.468,
+      "activations_gb": 0.713,
+      "total_gb": 13.493,
+      "total_gb_range": [
+        10.794,
+        20.239
+      ],
+      "checkpoint_disk_gb": 0.409,
+      "optimizer": "AdamW, fp32 moments",
+      "logits_gb": 8.592
+    }
+  ]
+}
+
+$ python -m medbench.cli estimate --model medgemma-4b-it --hardware a100-80gb --quant bf16 --finetune --seq-len 512
+{
+  "finetune": [
+    {
+      "method": "full",
+      "weights_gb": 8.6,
+      "trainable_params": 4300000000.0,
+      "optimizer_and_grads_gb": 60.2,
+      "activations_gb": 0.178,
+      "total_gb": 72.626,
+      "total_gb_range": [
+        58.101,
+        108.939
+      ],
+      "checkpoint_disk_gb": 60.2,
+      "optimizer": "AdamW, fp32 moments",
+      "logits_gb": 2.148
+    },
+    {
+      "method": "lora",
+      "weights_gb": 8.6,
+      "trainable_params": 29245440.0,
+      "optimizer_and_grads_gb": 0.468,
+      "activations_gb": 0.178,
+      "total_gb": 12.894,
+      "total_gb_range": [
+        10.315,
+        19.341
+      ],
+      "checkpoint_disk_gb": 0.409,
+      "optimizer": "AdamW, fp32 moments",
+      "logits_gb": 2.148
+    },
+    {
+      "method": "qlora",
+      "weights_gb": 2.22,
+      "trainable_params": 29245440.0,
+      "optimizer_and_grads_gb": 0.468,
+      "activations_gb": 0.178,
+      "total_gb": 6.514,
+      "total_gb_range": [
+        5.211,
+        9.771
+      ],
+      "checkpoint_disk_gb": 0.409,
+      "optimizer": "AdamW, fp32 moments",
+      "logits_gb": 2.148
+    }
+  ]
+}
+
+$ python -m medbench.cli estimate --model unimedvl --hardware a100-80gb --quant bf16 --finetune --seq-len 2048
+{
+  "finetune": [
+    {
+      "method": "full",
+      "weights_gb": 29.2,
+      "trainable_params": 14600000000.0,
+      "optimizer_and_grads_gb": 204.4,
+      "activations_gb": 0.91,
+      "total_gb": 240.993,
+      "total_gb_range": [
+        192.794,
+        361.489
+      ],
+      "checkpoint_disk_gb": 204.4,
+      "optimizer": "AdamW, fp32 moments",
+      "logits_gb": 4.983
+    },
+    {
+      "method": "lora",
+      "weights_gb": 29.2,
+      "trainable_params": 33718272.0,
+      "optimizer_and_grads_gb": 0.539,
+      "activations_gb": 0.91,
+      "total_gb": 37.132,
+      "total_gb_range": [
+        29.706,
+        55.699
+      ],
+      "checkpoint_disk_gb": 0.472,
+      "optimizer": "AdamW, fp32 moments",
+      "logits_gb": 4.983
+    },
+    {
+      "method": "qlora",
+      "weights_gb": 7.537,
+      "trainable_params": 33718272.0,
+      "optimizer_and_grads_gb": 0.539,
+      "activations_gb": 0.91,
+      "total_gb": 15.47,
+      "total_gb_range": [
+        12.376,
+        23.205
+      ],
+      "checkpoint_disk_gb": 0.472,
+      "optimizer": "AdamW, fp32 moments",
+      "logits_gb": 4.983
+    }
+  ]
+}
+
+$ python -m medbench.cli estimate --model unimedvl --hardware a100-80gb --quant bf16 --finetune --seq-len 512
+{
+  "finetune": [
+    {
+      "method": "full",
+      "weights_gb": 29.2,
+      "trainable_params": 14600000000.0,
+      "optimizer_and_grads_gb": 204.4,
+      "activations_gb": 0.228,
+      "total_gb": 236.573,
+      "total_gb_range": [
+        189.259,
+        354.86
+      ],
+      "checkpoint_disk_gb": 204.4,
+      "optimizer": "AdamW, fp32 moments",
+      "logits_gb": 1.246
+    },
+    {
+      "method": "lora",
+      "weights_gb": 29.2,
+      "trainable_params": 33718272.0,
+      "optimizer_and_grads_gb": 0.539,
+      "activations_gb": 0.228,
+      "total_gb": 32.713,
+      "total_gb_range": [
+        26.17,
+        49.069
+      ],
+      "checkpoint_disk_gb": 0.472,
+      "optimizer": "AdamW, fp32 moments",
+      "logits_gb": 1.246
+    },
+    {
+      "method": "qlora",
+      "weights_gb": 7.537,
+      "trainable_params": 33718272.0,
+      "optimizer_and_grads_gb": 0.539,
+      "activations_gb": 0.228,
+      "total_gb": 11.05,
+      "total_gb_range": [
+        8.84,
+        16.575
+      ],
+      "checkpoint_disk_gb": 0.472,
+      "optimizer": "AdamW, fp32 moments",
+      "logits_gb": 1.246
+    }
+  ]
+}
+
+$ python -m medbench.cli estimate --model medgemma-27b-it --hardware a100-80gb --quant bf16 --finetune --seq-len 2048
+{
+  "finetune": [
+    {
+      "method": "full",
+      "weights_gb": 54.864,
+      "trainable_params": 27432000000.0,
+      "optimizer_and_grads_gb": 384.048,
+      "activations_gb": 2.114,
+      "total_gb": 451.118,
+      "total_gb_range": [
+        360.894,
+        676.677
+      ],
+      "checkpoint_disk_gb": 384.048,
+      "optimizer": "AdamW, fp32 moments",
+      "logits_gb": 8.592
+    },
+    {
+      "method": "lora",
+      "weights_gb": 54.864,
+      "trainable_params": 111992832.0,
+      "optimizer_and_grads_gb": 1.792,
+      "activations_gb": 2.114,
+      "total_gb": 68.862,
+      "total_gb_range": [
+        55.089,
+        103.293
+      ],
+      "checkpoint_disk_gb": 1.568,
+      "optimizer": "AdamW, fp32 moments",
+      "logits_gb": 8.592
+    },
+    {
+      "method": "qlora",
+      "weights_gb": 14.162,
+      "trainable_params": 111992832.0,
+      "optimizer_and_grads_gb": 1.792,
+      "activations_gb": 2.114,
+      "total_gb": 28.16,
+      "total_gb_range": [
+        22.528,
+        42.239
+      ],
+      "checkpoint_disk_gb": 1.568,
+      "optimizer": "AdamW, fp32 moments",
+      "logits_gb": 8.592
+    }
+  ]
+}
+
+$ python -m medbench.cli estimate --model medgemma-27b-it --hardware a100-80gb --quant bf16 --finetune --seq-len 512
+{
+  "finetune": [
+    {
+      "method": "full",
+      "weights_gb": 54.864,
+      "trainable_params": 27432000000.0,
+      "optimizer_and_grads_gb": 384.048,
+      "activations_gb": 0.528,
+      "total_gb": 443.088,
+      "total_gb_range": [
+        354.471,
+        664.633
+      ],
+      "checkpoint_disk_gb": 384.048,
+      "optimizer": "AdamW, fp32 moments",
+      "logits_gb": 2.148
+    },
+    {
+      "method": "lora",
+      "weights_gb": 54.864,
+      "trainable_params": 111992832.0,
+      "optimizer_and_grads_gb": 1.792,
+      "activations_gb": 0.528,
+      "total_gb": 60.832,
+      "total_gb_range": [
+        48.666,
+        91.249
+      ],
+      "checkpoint_disk_gb": 1.568,
+      "optimizer": "AdamW, fp32 moments",
+      "logits_gb": 2.148
+    },
+    {
+      "method": "qlora",
+      "weights_gb": 14.162,
+      "trainable_params": 111992832.0,
+      "optimizer_and_grads_gb": 1.792,
+      "activations_gb": 0.528,
+      "total_gb": 20.13,
+      "total_gb_range": [
+        16.104,
+        30.195
+      ],
+      "checkpoint_disk_gb": 1.568,
+      "optimizer": "AdamW, fp32 moments",
+      "logits_gb": 2.148
+    }
+  ]
+}

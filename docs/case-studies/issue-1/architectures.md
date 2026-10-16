@@ -172,6 +172,7 @@ flowchart TD
 The real-model tests in this repository start with **MedGemma 4B** (fits
 in CPU CI) and **MedGemma 27B** (GPU runner), because the issue names
 MedGemma, and llama.cpp can run both from the same script. UniMedVL is
-measured on paper only. Running it needs the PyTorch backend
-(`TransformersBackend` in `src/medbench/backends.py`) on a 40 GB+ GPU. That
-is listed as the next step in [research-plan.md](research-plan.md).
+measured on paper only. Its own PyTorch code runs behind
+`scripts/unimedvl_server.py`, which the GPU job starts with
+`gpu-model: unimedvl`; a 40 GB+ GPU is an estimate until that job has run
+([research-plan.md](research-plan.md)).

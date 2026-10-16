@@ -18,6 +18,7 @@ from tests.workflow_helpers import (
     job_step_deadline_seconds,
     job_timeout_minutes,
     read_workflow,
+    uses_action,
     workflow_job_block,
     workflow_job_names,
     workflow_run_blocks,
@@ -58,21 +59,21 @@ def test_security_workflow_scans_code_actions_and_dependencies() -> None:
     assert "security-events: write" in codeql_job
     assert "language: [python, actions]" in codeql_job
     assert "languages: ${{ matrix.language }}" in codeql_job
-    assert "uses: github/codeql-action/init@v4" in codeql_job
-    assert "uses: github/codeql-action/autobuild@v4" in codeql_job
-    assert "uses: github/codeql-action/analyze@v4" in codeql_job
+    assert uses_action(codeql_job, "github/codeql-action/init", "v4")
+    assert uses_action(codeql_job, "github/codeql-action/autobuild", "v4")
+    assert uses_action(codeql_job, "github/codeql-action/analyze", "v4")
     assert "cancel-in-progress: true" in codeql_job
 
     assert "if: github.event_name == 'pull_request'" in dependency_job
     assert "timeout-minutes: 10" in dependency_job
     assert "pull-requests: write" in dependency_job
-    assert "uses: actions/dependency-review-action@v5" in dependency_job
+    assert uses_action(dependency_job, "actions/dependency-review-action", "v5")
     assert "fail-on-severity: high" in dependency_job
     assert "comment-summary-in-pr: on-failure" in dependency_job
 
     assert "timeout-minutes: 15" in audit_job
-    assert "uses: actions/checkout@v7" in audit_job
-    assert "uses: actions/setup-python@v7" in audit_job
+    assert uses_action(audit_job, "actions/checkout", "v7")
+    assert uses_action(audit_job, "actions/setup-python", "v7")
     assert "python scripts/audit_dependencies.py" in audit_job
     assert "if: github.event_name == 'pull_request'" not in audit_job
 
@@ -83,9 +84,22 @@ def test_security_workflow_scans_code_actions_and_dependencies() -> None:
 
 
 def test_dependency_audit_maps_every_declared_surface() -> None:
-    """Every dependency declaration in the template must be audited."""
+    """Every dependency declaration in the template must be audited.
+
+    ``*requirements*.txt`` also matches pinned runtimes such as
+    scripts/unimedvl-requirements.txt (issue #6), which ``requirements*.txt``
+    missed, so a vulnerable torch pin was only caught by Dependency Review.
+    """
     script = (ROOT / "scripts" / "audit_dependencies.py").read_text(encoding="utf-8")
-    dependency_surfaces = [ROOT / "pyproject.toml", *ROOT.rglob("requirements*.txt")]
+    dependency_surfaces = [
+        ROOT / "pyproject.toml",
+        *(
+            path
+            for path in ROOT.rglob("*requirements*.txt")
+            if not any(part.startswith(".") for part in path.relative_to(ROOT).parts)
+        ),
+    ]
+    assert ROOT / "scripts" / "unimedvl-requirements.txt" in dependency_surfaces
 
     assert dependency_surfaces
     for surface in dependency_surfaces:
@@ -115,8 +129,8 @@ def test_links_workflow_fails_for_every_broken_live_link() -> None:
     assert "permissions:\n  contents: read" in workflow
     assert "timeout-minutes: 10" in link_job
     assert "cancel-in-progress: true" in link_job
-    assert "uses: actions/checkout@v7" in link_job
-    assert "uses: lycheeverse/lychee-action@v2" in lychee_step
+    assert uses_action(link_job, "actions/checkout", "v7")
+    assert uses_action(lychee_step, "lycheeverse/lychee-action", "v2")
     assert "--exclude-path docs/case-studies" in lychee_step
     # Issue #4: a glob input that matches no file ('./**/*.html') makes lychee
     # warn "No files found for this input source" on every run. A directory
@@ -197,7 +211,7 @@ def test_docs_workflow_action_versions_are_current() -> None:
 
     assert_action_pin_count(docs_workflow, "actions/checkout", "v7", 2)
     assert_action_pin_count(docs_workflow, "actions/setup-python", "v7", 1)
-    assert_action_pin_count(docs_workflow, "actions/upload-artifact", "v7", 1)
+    assert_action_pin_count(docs_workflow, "actions/upload-artifact", "v7", 2)
     assert_action_pin_count(docs_workflow, "actions/configure-pages", "v6", 1)
     assert_action_pin_count(docs_workflow, "actions/upload-pages-artifact", "v5", 1)
     assert_action_pin_count(docs_workflow, "actions/deploy-pages", "v5", 1)
@@ -226,12 +240,14 @@ def test_no_workflow_uses_a_superseded_first_party_major() -> None:
     stale: list[str] = []
 
     for path in sorted(WORKFLOWS.glob("*.y*ml")):
+        # Hash pins (issue #10) name their release in the trailing comment.
         for action, version in re.findall(
-            r"uses:\s+(actions/(?:checkout|setup-python|cache))@(\S+)",
+            r"uses:\s+(actions/(?:checkout|setup-python|cache))@[0-9a-f]{40}"
+            r"\s+#\s+(v\d+)\S*",
             path.read_text(encoding="utf-8"),
         ):
             if version != current[action]:
-                stale.append(f"{path.name}: {action}@{version}")
+                stale.append(f"{path.name}: {action} {version}")
 
     assert not stale, f"expected {current}, found {stale}"
 
@@ -500,21 +516,42 @@ def test_zizmor_reproduction_covers_dependabot() -> None:
     ), f"local scan of {scan_path} misses {dependabot_path}, which CI audits"
 
 
-def test_zizmor_config_requires_hash_pins_by_default() -> None:
-    """Unlisted publishers must be hash-pinned; trusted ones may stay tag-pinned."""
+def test_zizmor_config_requires_hash_pins_for_every_action() -> None:
+    """No publisher is trusted at tag granularity any more (issue #10).
+
+    A tag can be moved to other code by whoever controls the action's
+    repository; a 40-character commit hash cannot. GitHub's own actions were
+    tag-pinned before and are hash-pinned now too.
+    """
     config = (ROOT / ".github" / "zizmor.yml").read_text(encoding="utf-8")
 
     assert "unpinned-uses:" in config
     policies = dict(
         re.findall(r"^\s+'?([A-Za-z0-9_*/-]+)'?:\s*((?:hash|ref)-pin)$", config, re.M)
     )
+    assert policies == {"*": "hash-pin"}
 
-    assert policies["*"] == "hash-pin"
-    for publisher in ("actions/*", "github/*", "docker/*", "zizmorcore/*"):
-        assert policies[publisher] == "ref-pin", publisher
-    # Anything that publishes releases or artifacts is deliberately absent
-    # here, so the catch-all hash-pin rule applies to it.
-    assert not any(key.startswith(("pypa/", "codecov/")) for key in policies)
+
+def test_every_action_is_hash_pinned_with_its_release_in_a_comment() -> None:
+    """``uses: owner/repo@<40 hex> # vX.Y.Z`` everywhere (issue #10).
+
+    The comment is the form Dependabot rewrites together with the hash, so it
+    keeps telling a reviewer which release the hash is.
+    """
+    references = 0
+    for path in sorted(WORKFLOWS.glob("*.y*ml")):
+        for number, line in enumerate(path.read_text().splitlines(), 1):
+            match = re.match(r"^\s*(?:- )?uses:\s+(\S+)(.*)$", line)
+            if not match or match.group(1).startswith(("./", "docker://")):
+                continue
+            references += 1
+            assert re.fullmatch(
+                r"[\w.-]+/[\w./-]+@[0-9a-f]{40}", match.group(1)
+            ), f"{path.name}:{number} is not pinned to a commit: {line.strip()}"
+            assert re.fullmatch(
+                r"\s+# v\d+\.\d+\.\d+", match.group(2)
+            ), f"{path.name}:{number} lacks a '# vX.Y.Z' comment: {line.strip()}"
+    assert references > 50
 
 
 def test_every_checkout_declares_credential_persistence() -> None:

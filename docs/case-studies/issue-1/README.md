@@ -57,12 +57,15 @@ models are not good enough.
    "Dexter 60"). Two items per task prove that the pipeline works, nothing
    more ([measurements.md §10](measurements.md#10-the-first-run-on-real-openly-licensed-files)).
 4. **MedGemma 27B needs a GPU**: 18.3 GB in 4-bit, 56 GB in bf16.
-   **UniMedVL** has no llama.cpp build and needs PyTorch on a 40 GB+ GPU.
+   **UniMedVL** has no llama.cpp build; it runs through its own PyTorch
+   code behind `scripts/unimedvl_server.py`, probably on a 40 GB+ GPU
+   (an estimate; not measured yet).
    Its extra 7B of weights is for drawing images, not for better answers.
 5. **Most of the medical skill comes from data, not architecture.**
    MedGemma and Lingshu are ordinary Gemma 3 / Qwen2.5-VL models trained on
    medical data. So if ready models fail, fine-tuning on our own data
-   (QLoRA: 4.9 GB of GPU memory for 4B, 19.6 GB for 27B) is the right next
+   (QLoRA by formula: 6.5–13.5 GB of GPU memory for 4B and 20–28 GB for
+   27B at 512–2 048 tokens; not yet measured on a GPU) is the right next
    step. Training from scratch is not.
 6. **Handwritten prescriptions are the riskiest task.** No public
    benchmark exists. The plan is OCR VLM → RxNorm fuzzy match → human

@@ -153,6 +153,20 @@ def _cgroup_memory_limit_gb(root: Path) -> float | None:
     return None
 
 
+def _cgroup_stat(path: Path) -> dict[str, int]:
+    """Parse a cgroup ``memory.stat`` file into byte counters."""
+    try:
+        lines = path.read_text(encoding="utf-8").splitlines()
+    except OSError:
+        return {}
+    stats = {}
+    for line in lines:
+        key, _, value = line.partition(" ")
+        if value.strip().isdigit():
+            stats[key] = int(value)
+    return stats
+
+
 def detect_gpus(nvidia_smi: str | None = None) -> tuple[GpuInfo, ...]:
     """List NVIDIA GPUs using ``nvidia-smi``.
 
@@ -221,16 +235,29 @@ def detect_host(root: Path = Path("/"), *, with_gpus: bool = True) -> HostInfo:
     if is_macos:
         total, available = _macos_memory()
         meminfo = {"MemTotal": total, "MemAvailable": available}
-    cgroup_limit = _cgroup_memory_limit_gb(root)
+    # macOS has no cgroups; never mix the host's Linux limits into its budget.
+    cgroup_limit = None if is_macos else _cgroup_memory_limit_gb(root)
     if cgroup_limit is not None:
-        for usage_path in (
-            root / "sys/fs/cgroup/memory.current",
-            root / "sys/fs/cgroup/memory/memory.usage_in_bytes",
+        for usage_path, stat_path, inactive_key in (
+            (
+                root / "sys/fs/cgroup/memory.current",
+                root / "sys/fs/cgroup/memory.stat",
+                "inactive_file",
+            ),
+            (
+                root / "sys/fs/cgroup/memory/memory.usage_in_bytes",
+                root / "sys/fs/cgroup/memory/memory.stat",
+                "total_inactive_file",
+            ),
         ):
             try:
                 used = int(usage_path.read_text(encoding="utf-8").strip()) / 1e9
             except (OSError, ValueError):
                 continue
+            # Usage includes the page cache. Inactive file pages are dropped
+            # before the OOM killer runs, so they count as free (the "working
+            # set" that kubelet and cAdvisor compare with the limit).
+            used -= _cgroup_stat(stat_path).get(inactive_key, 0) / 1e9
             meminfo["MemAvailable"] = min(
                 meminfo.get("MemAvailable", 0.0), max(0.0, cgroup_limit - used)
             )

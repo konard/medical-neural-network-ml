@@ -27,6 +27,11 @@ is in [data-sources.md](docs/case-studies/issue-1/data-sources.md).
 - Wikisource historical case histories: public-domain status recorded per
   source; jurisdiction-specific limits are discussed in the data guide.
 
+`src/medbench/data/label_review.json` is our review of those labels (view,
+side, doubts and source group). It quotes and paraphrases the uploaders' and
+dataset authors' descriptions, so the same attribution applies. It is not a
+clinical review; see [evaluation-validity.md](docs/evaluation-validity.md).
+
 `medbench fetch` creates `ATTRIBUTION.md`. Benchmark JSON reports include
 `sources` with credits for the files used. If sharing images, crops,
 transcriptions or reports containing source-derived text, preserve the
@@ -42,6 +47,23 @@ Google's [Health AI Developer Foundations terms](https://developers.google.com/h
 A third-party GGUF or MLX conversion does not remove those terms. Review and
 accept required terms yourself before downloading; do not put credentials or
 weights in Git.
+
+UniMedVL is Apache-2.0: the code at
+[uni-medical/UniMedVL](https://github.com/uni-medical/UniMedVL) commit
+`f51aa0a` (`LICENSE`) and the weights at
+[General-Medical-AI/UniMedVL](https://huggingface.co/General-Medical-AI/UniMedVL)
+revision `29918ce` (model card `license: apache-2.0`). Its README credits
+ByteDance's [BAGEL](https://github.com/ByteDance-Seed/Bagel) for the
+architecture; the bundled Qwen2 and SigLIP modules keep their authors'
+notices. `scripts/medbench-model-run.sh` downloads that code and those
+weights into an ignored cache at run time. Nothing from UniMedVL is vendored,
+packaged or relicensed here. `scripts/unimedvl_server.py` is our own code
+under the Unlicense and only imports UniMedVL's modules when it runs. If you
+redistribute the checkout or the weights, include the Apache-2.0 license
+text and keep the upstream copyright and attribution notices (the pinned
+commit has no `NOTICE` file). The packages pinned in
+`scripts/unimedvl-requirements.txt` and the flash-attn wheel keep their own
+licenses.
 
 MLX, MLX-VLM, llama.cpp, Transformers and other dependencies retain their own
 licenses. Installing them does not dedicate them to the public domain. We

@@ -27,6 +27,9 @@ STATUS_URL_PATTERN = re.compile(
 BULLET_URL_PATTERN = re.compile(
     r"^\s*(?:\*|-)\s+.*?(https?://[^\s|)>\]]+)", re.MULTILINE
 )
+# Lychee also lists redirects (and suggested archive URLs) as bullets; those
+# links work, so their sections are skipped.
+NOT_BROKEN_SECTIONS = ("redirects", "suggestions")
 
 
 @dataclass(frozen=True)
@@ -40,6 +43,11 @@ class ArchiveResult:
 
 def extract_broken_urls(content: str) -> list[str]:
     """Extract and deduplicate broken HTTP URLs from a lychee Markdown report."""
+    content = "".join(
+        section
+        for section in re.split(r"(?=^## )", content, flags=re.MULTILINE)
+        if not section[3:].lower().startswith(NOT_BROKEN_SECTIONS)
+    )
     urls: list[str] = []
     for pattern in (STATUS_URL_PATTERN, BULLET_URL_PATTERN):
         for match in pattern.finditer(content):

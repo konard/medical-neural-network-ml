@@ -1,0 +1,57 @@
+{
+  "status": "unsupported",
+  "started_at": "2026-10-16T18:59:18+00:00",
+  "config": {
+    "model": "HuggingFaceTB/SmolLM2-135M",
+    "revision": "93efa2f097d58c2a74874c7e644dbc9b0cee75a2",
+    "method": "qlora",
+    "batch_size": 1,
+    "seq_len": 256,
+    "image_size": 0,
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "optimizer": "torch.optim.AdamW, fp32 moments",
+    "learning_rate": 1e-05,
+    "weights_dtype": "fp32",
+    "autocast_dtype": null,
+    "gradient_checkpointing": true,
+    "steps": 3,
+    "device": "cpu",
+    "headroom": 0.1,
+    "deadline_s": 3600.0,
+    "processor_args": {},
+    "force": true
+  },
+  "versions": {
+    "python": "3.15.0",
+    "torch": "2.14.1+cpu",
+    "transformers": "5.20.1",
+    "peft": "0.21.2",
+    "accelerate": "1.15.0",
+    "bitsandbytes": null
+  },
+  "platform": "Linux-6.8.0-146-generic-x86_64-with-glibc2.39",
+  "resolved_revision": null,
+  "estimate": {
+    "method": "qlora",
+    "weights_gb": 0.069443,
+    "trainable_params": 5806080.0,
+    "optimizer_and_grads_gb": 0.092897,
+    "activations_gb": 0.018874,
+    "total_gb": 1.882542,
+    "total_gb_range": [
+      1.506033,
+      2.823812
+    ],
+    "checkpoint_disk_gb": 0.081285,
+    "optimizer": "AdamW, fp32 moments",
+    "logits_gb": 0.201327
+  },
+  "device": {
+    "type": "cpu",
+    "host_available_gb": 1.979,
+    "cgroup_memory_limit_gb": 3.135369216
+  },
+  "reason": "QLoRA here means bitsandbytes NF4, which needs a CUDA GPU; MLX quantized LoRA is a different implementation",
+  "ratios": null
+}

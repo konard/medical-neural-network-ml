@@ -12,7 +12,10 @@ api
 apple-silicon
 hardware-workflows
 audit-2026-10-16
+evaluation-validity
 preview-regeneration
+publishing
+repository-policy
 ```
 
 The [issue #1 case study](https://github.com/konard/medical-neural-network-ml/tree/main/docs/case-studies/issue-1)
