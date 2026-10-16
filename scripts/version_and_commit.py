@@ -20,9 +20,10 @@ import argparse
 import os
 import subprocess
 import sys
-import tomllib
 from enum import Enum, auto
 from pathlib import Path
+
+import tomllib
 
 
 def run_command(
@@ -62,7 +63,7 @@ def set_github_output(key: str, value: str) -> None:
     """Set GitHub Actions output variable."""
     output_file = os.environ.get("GITHUB_OUTPUT")
     if output_file:
-        with open(output_file, "a") as f:
+        with Path(output_file).open("a") as f:
             f.write(f"{key}={value}\n")
         print(f"Set output: {key}={value}")
 
@@ -78,12 +79,15 @@ def parse_version(content: str) -> str:
     try:
         document = tomllib.loads(content)
     except tomllib.TOMLDecodeError as error:
-        raise ValueError(f"pyproject.toml is not valid TOML: {error}") from error
+        msg = f"pyproject.toml is not valid TOML: {error}"
+        raise ValueError(msg) from error
     if "project" not in document or not isinstance(document["project"], dict):
-        raise ValueError("pyproject.toml has no [project] table")
+        msg = "pyproject.toml has no [project] table"
+        raise ValueError(msg)
     version = document["project"].get("version")
     if not isinstance(version, str):
-        raise ValueError("pyproject.toml has no project.version string")
+        msg = "pyproject.toml has no project.version string"
+        raise ValueError(msg)
     return version
 
 
@@ -256,14 +260,13 @@ def check_remote_changes(
             print("Local and remote versions differ, rebasing...")
             run_command(["git", "rebase", "origin/main"])
             return False, remote_version
-        else:
-            print("Versions match, assuming previous run completed successfully")
-            return True, remote_version
+        print("Versions match, assuming previous run completed successfully")
+        return True, remote_version
 
     return False, ""
 
 
-def main() -> int:
+def main() -> int:  # noqa: PLR0915 - release orchestration keeps failure order explicit
     """Main entry point."""
     parser = argparse.ArgumentParser(
         description="Version bump and commit for CI/CD",

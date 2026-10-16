@@ -1,0 +1,32 @@
+{
+  "task": "imaging-xray",
+  "backend": "mlx:mlx-smolvlm",
+  "items_total": 1,
+  "items_run": 1,
+  "stopped_early": false,
+  "metrics": {
+    "sensitivity": 0.0,
+    "specificity": 0.0,
+    "accuracy": 0.0,
+    "finding_recall": 0.0,
+    "side_accuracy_when_found": 0.0,
+    "unparsed_answers": 1.0
+  },
+  "latency": {
+    "mean_s": 2.7179,
+    "p50_s": 2.7179,
+    "p95_s": 2.7179,
+    "total_s": 2.7179
+  },
+  "results": [
+    {
+      "item_id": "xray-pneumothorax-1",
+      "output": " The patient has an abnormal finding on the side.",
+      "latency_s": 2.7178610829869285,
+      "completion_tokens": 11
+    }
+  ],
+  "sources": [
+    "xray-pneumothorax-1: Hellerhoff, CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0), via https://commons.wikimedia.org/wiki/File:Spontanpneumothorax_links_2010.jpg"
+  ]
+}

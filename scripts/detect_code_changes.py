@@ -36,6 +36,7 @@ from __future__ import annotations
 import os
 import subprocess
 import sys
+from pathlib import Path
 
 EXCLUDED_FOLDERS = (
     "changelog.d/",
@@ -71,7 +72,7 @@ def set_output(name: str, value: str) -> None:
     """Write output to GitHub Actions output file."""
     output_file = os.environ.get("GITHUB_OUTPUT")
     if output_file:
-        with open(output_file, "a") as f:
+        with Path(output_file).open("a") as f:
             f.write(f"{name}={value}\n")
     print(f"{name}={value}")
 

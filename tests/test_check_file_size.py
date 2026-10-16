@@ -8,7 +8,6 @@ from pathlib import Path
 
 import pytest
 
-
 SCRIPT_PATH = Path(__file__).resolve().parent.parent / "scripts" / "check_file_size.py"
 spec = importlib.util.spec_from_file_location("check_file_size", SCRIPT_PATH)
 module = importlib.util.module_from_spec(spec)

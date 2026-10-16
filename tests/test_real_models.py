@@ -14,12 +14,12 @@ import re
 import pytest
 
 from medbench.backends import OpenAICompatibleBackend
+from medbench.real_data import fetch, prepare_image, samples_for
 from medbench.synthetic_cases import (
     PatientCase,
     build_diagnosis_prompt,
     parse_ranked_diagnoses,
 )
-from medbench.real_data import fetch, prepare_image, samples_for
 
 BASE_URL = os.environ.get("MEDBENCH_BASE_URL", "")
 VISION = os.environ.get("MEDBENCH_VISION", "0") == "1"

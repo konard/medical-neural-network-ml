@@ -6,9 +6,9 @@ Exits with error code 1 if any files exceed the limit.
 
 from __future__ import annotations
 
+import sys
 from dataclasses import dataclass
 from enum import Enum
-import sys
 from pathlib import Path
 
 MAX_LINES = 1000

@@ -9,7 +9,8 @@
 # Every download is pinned to a SHA-256, so a changed file fails instead of
 # being run. The model is served by llama.cpp's OpenAI-compatible
 # llama-server and medbench talks to it over HTTP, so the same script works on
-# a CPU runner, a GPU runner and a laptop.
+# a Linux CPU runner or an NVIDIA GPU runner. On Apple Silicon use the
+# native MLX backend described in docs/apple-silicon.md.
 #
 # Environment (defaults run MedGemma 4B Q4_K_M on the CPU):
 #   CACHE_DIR        where downloads are kept (.cache/medbench)
@@ -56,7 +57,7 @@ TIME_BUDGET="${TIME_BUDGET:-900}"
 NICE_LEVEL="${NICE_LEVEL:-10}"
 LOAD_MODE="${LOAD_MODE:-auto}"
 PORT="${PORT:-8089}"
-THREADS="${THREADS:-$(($(nproc) > 1 ? $(nproc) - 1 : 1))}"
+THREADS="${THREADS:-$(python3 -c 'import os; print(max(1, (os.cpu_count() or 1) - 2))')}"
 
 LLAMA_DIR="$CACHE_DIR/llama-$LLAMA_VERSION-${LLAMA_SHA256:0:12}"
 MODEL_DIR="$CACHE_DIR/models/${MODEL_REVISION:0:12}"
@@ -111,6 +112,15 @@ download() {
 # Memory this process may still use, in bytes: the smaller of MemAvailable
 # and the free part of the cgroup limit (containers often cap far below RAM).
 available_bytes() {
+  if [[ ! -r /proc/meminfo ]]; then
+    python3 - "$(dirname "${BASH_SOURCE[0]}")/../src" <<'PY'
+import sys
+sys.path.insert(0, sys.argv[1])
+from medbench.hardware import detect_host
+print(int(detect_host(with_gpus=False).memory_available_gb * 1e9))
+PY
+    return
+  fi
   local available limit current
   available=$(awk '/^MemAvailable:/ {print $2 * 1024}' /proc/meminfo)
   limit=$(cat /sys/fs/cgroup/memory.max 2>/dev/null || echo max)
@@ -136,9 +146,9 @@ choose_load_mode() {
     return
   fi
   local need
-  need=$(stat --dereference --format %s "$MODEL_DIR/$MODEL_FILE")
+  need=$(python3 -c 'import os, sys; print(os.path.getsize(sys.argv[1]))' "$MODEL_DIR/$MODEL_FILE")
   if [[ -n "$MMPROJ_FILE" ]]; then
-    need=$((need + $(stat --dereference --format %s "$MODEL_DIR/$MMPROJ_FILE")))
+    need=$((need + $(python3 -c 'import os, sys; print(os.path.getsize(sys.argv[1]))' "$MODEL_DIR/$MMPROJ_FILE")))
   fi
   need=$((need + 1024 * 1024 * 1024))
   local available
@@ -216,7 +226,7 @@ run() {
     remaining=$((TIME_BUDGET - ($(date +%s) - started)))
     if ((remaining <= 0)); then
       log "time budget used up; skipping $task and the tasks after it"
-      break
+      return 1
     fi
     tokens=$MAX_TOKENS
     [[ "$task" == ocr-history ]] && tokens=$PAGE_MAX_TOKENS
@@ -245,8 +255,13 @@ run() {
 }
 
 case "${1:-}" in
-  download) download ;;
-  run) run ;;
+  download|run)
+    if [[ "$(uname -s)" != Linux || "$(uname -m)" != x86_64 ]]; then
+      log "This pinned llama.cpp build requires Linux x86_64; see docs/apple-silicon.md for MLX."
+      exit 2
+    fi
+    "${1}"
+    ;;
   preflight) choose_load_mode ;;
   *)
     echo "Usage: $0 download|run|preflight" >&2

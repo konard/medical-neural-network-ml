@@ -50,9 +50,7 @@ def test_release_workflow_separates_check_and_write_concurrency() -> None:
         "docker-build",
     ):
         block = workflow_job_block(workflow, job_name)
-        expected_group = (
-            "group: ${{ github.workflow }}-${{ github.ref }}-" f"{job_name}"
-        )
+        expected_group = "group: ${{ github.workflow }}-${{ github.ref }}-" + job_name
         assert expected_group in block
         assert "cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}" in block
 

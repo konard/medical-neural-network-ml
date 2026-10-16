@@ -113,7 +113,7 @@ class FakeEndpoints:
     image = "example/app"
 
 
-@pytest.fixture()
+@pytest.fixture
 def fake_endpoints():
     fake = FakeEndpoints()
     yield fake
@@ -135,6 +135,7 @@ def run_script(env: dict[str, str]) -> subprocess.CompletedProcess[str]:
         env=merged_env,
         capture_output=True,
         text=True,
+        check=False,
     )
 
 

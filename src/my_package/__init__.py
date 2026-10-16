@@ -7,7 +7,7 @@ from __future__ import annotations
 
 __version__ = "0.1.0"
 
-__all__ = ["add", "multiply", "delay"]
+__all__ = ["add", "delay", "multiply"]
 
 
 def add(a: int | float, b: int | float) -> int | float:

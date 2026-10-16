@@ -5,5 +5,5 @@
    :toctree: _autosummary
    :recursive:
 
-   my_package
+   medbench
 ```

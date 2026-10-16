@@ -212,3 +212,14 @@ class TestTraining:
         assert eight.wall_clock_hours == pytest.approx(one.wall_clock_hours / 8)
         assert eight.cost_usd == pytest.approx(one.cost_usd)
         assert one.as_dict()["flops"] == pytest.approx(4 * 4e9 * 1e9)
+
+
+def test_separate_vision_projector_is_included() -> None:
+    model = get_model("medgemma-4b-it")
+    estimate = estimate_inference(model, HARDWARE["m3-pro-18gb"], quant="Q4_K_M")
+    assert estimate.weights_gb == pytest.approx(3.341)
+    assert estimate.total_memory_gb > 4.3
+    large = estimate_inference(
+        get_model("medgemma-27b-it"), HARDWARE["m3-pro-18gb"], quant="Q4_K_M"
+    )
+    assert not large.fits

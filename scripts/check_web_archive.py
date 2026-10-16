@@ -21,7 +21,7 @@ REQUEST_DELAY_SECONDS = 0.5
 USER_AGENT = "broken-link-checker/1.0 (GitHub Actions CI)"
 
 STATUS_URL_PATTERN = re.compile(
-    r"\[(?:4\d\d|5\d\d|ERROR|TIMEOUT|UNKNOWN)\]\s+" r"(https?://[^\s)]+)",
+    r"\[(?:4\d\d|5\d\d|ERROR|TIMEOUT|UNKNOWN)\]\s+(https?://[^\s)]+)",
     re.IGNORECASE,
 )
 BULLET_URL_PATTERN = re.compile(
@@ -69,9 +69,7 @@ def split_recovered_urls(
 def fetch_json(url: str) -> dict[str, Any]:
     """Fetch a JSON object with a bounded Wayback Machine request."""
     request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(  # noqa: S310 - URL targets a fixed HTTPS API
-        request, timeout=REQUEST_TIMEOUT_SECONDS
-    ) as response:
+    with urllib.request.urlopen(request, timeout=REQUEST_TIMEOUT_SECONDS) as response:
         payload = json.load(response)
     if not isinstance(payload, dict):
         msg = "Wayback Machine returned a non-object JSON response"

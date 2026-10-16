@@ -215,3 +215,13 @@ class TestCli:
         assert summary["items_run"] == 2
         assert "results" not in summary
         assert len(json.loads(out.read_text(encoding="utf-8"))["results"]) == 2
+
+
+@pytest.mark.parametrize("count", ["0", "-1"])
+def test_cli_rejects_empty_benchmark(count: str) -> None:
+    assert main(["run", "--task", "diagnosis", "--count", count]) == 1
+
+
+def test_cli_incomplete_benchmark_fails(capsys: pytest.CaptureFixture[str]) -> None:
+    assert main(["run", "--task", "diagnosis", "--time-budget", "0"]) == 1
+    assert json.loads(capsys.readouterr().out)["stopped_early"]

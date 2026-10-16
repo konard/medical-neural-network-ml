@@ -1,19 +1,22 @@
-# my-package
+# Medical neural network research
 
-Welcome to the API documentation for `my-package`, generated from the
-[python-ai-driven-development-pipeline-template](https://github.com/link-foundation/python-ai-driven-development-pipeline-template).
-
-When you bootstrap a new repository from this template, replace this page with
-your own landing content and update [`docs/conf.py`](https://github.com/link-foundation/python-ai-driven-development-pipeline-template/blob/main/docs/conf.py)
-with your project name, author, and the autodoc target package.
+`medbench` evaluates medical models on real openly licensed files and
+estimates hardware requirements. Original software is public domain under
+the Unlicense; datasets and model weights keep their original terms.
 
 ```{toctree}
 :maxdepth: 2
 :caption: Contents
 
 api
+apple-silicon
+hardware-workflows
+audit-2026-10-16
 preview-regeneration
 ```
+
+The [issue #1 case study](https://github.com/konard/medical-neural-network-ml/tree/main/docs/case-studies/issue-1)
+contains the research plan, architectures, historical measurements and sources.
 
 ## Indices
 

@@ -1,0 +1,9 @@
+{
+  "cpu_count": 12,
+  "usable_cpus": 12,
+  "memory_total_gb": 19.33,
+  "memory_available_gb": 4.38,
+  "cgroup_memory_limit_gb": null,
+  "gpus": [],
+  "apple_silicon": true
+}

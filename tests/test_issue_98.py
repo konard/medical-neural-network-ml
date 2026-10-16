@@ -5,9 +5,9 @@ from __future__ import annotations
 import os
 import re
 import subprocess
-import tomllib
 
 import pytest
+import tomllib
 
 from tests.workflow_helpers import (
     ROOT,
@@ -88,7 +88,8 @@ def test_releases_can_resume_after_upload_or_tag_creation(job_name) -> None:
     """Both release paths must check artifacts, wait, smoke-test, then announce."""
     job = workflow_job_block(read_workflow("release.yml"), job_name)
     gate = workflow_step_block(job, "Check release artifacts")
-    assert "scripts/check_release.py" in gate and " check " in gate
+    assert "scripts/check_release.py" in gate
+    assert " check " in gate
     assert 'git rev-parse "$TAG"' not in gate
     publish = workflow_step_block(job, "Publish to PyPI")
     assert "skip-existing: true" in publish
@@ -115,7 +116,8 @@ def test_releases_can_resume_after_upload_or_tag_creation(job_name) -> None:
             in workflow_step_block(job, name)
         )
     wait = workflow_step_block(job, "Wait for PyPI")
-    assert "scripts/check_release.py" in wait and " wait " in wait
+    assert "scripts/check_release.py" in wait
+    assert " wait " in wait
     assert "timeout-minutes: 11" in wait
     smoke = workflow_step_block(job, "Smoke test published package")
     assert '--project-root "$PYTHON_ROOT"' in smoke
@@ -150,7 +152,8 @@ def test_lychee_throttles_github_without_accepting_failures() -> None:
     )
     config = tomllib.loads((ROOT / "lychee.toml").read_text())
     assert config["hosts"]["github.com"] == {"concurrency": 2, "request_interval": "1s"}
-    assert "accept" not in config and "exclude" not in config
+    assert "accept" not in config
+    assert "exclude" not in config
     workflow = read_workflow("links.yml")
     assert "--config lychee.toml" in workflow
     assert workflow.count("- 'lychee.toml'") == 2

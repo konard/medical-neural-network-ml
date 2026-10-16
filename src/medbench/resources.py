@@ -2,7 +2,8 @@
 
 All formulas are deliberately simple so that a reader without a machine
 learning background can check them by hand. They are explained, with worked
-examples, in ``docs/case-studies/issue-1/resources.md``.
+examples, in ``docs/case-studies/issue-1/measurements.md``. These are
+capacity estimates, not proof that a runtime supports a given model/format.
 
 * Weights take ``parameters * bits_per_weight / 8`` bytes.
 * The KV cache takes ``2 * layers * kv_heads * head_dim * bytes * tokens``.
@@ -115,6 +116,21 @@ HARDWARE: dict[str, HardwareProfile] = {
             decode_efficiency=0.6,
             prefill_efficiency=0.83,
             vision_efficiency=0.19,
+        ),
+        HardwareProfile(
+            key="m3-pro-18gb",
+            description=(
+                "Apple M3 Pro, 18 GiB shared RAM, 150 GB/s bandwidth. "
+                "Conservative 8 GB model ceiling leaves room for macOS/apps. "
+                "Compute and efficiencies are uncalibrated assumptions; "
+                "use measured MLX reports for speed."
+            ),
+            memory_gb=8.0,
+            bandwidth_gbs=150.0,
+            compute_tflops=8.0,
+            decode_efficiency=0.4,
+            prefill_efficiency=0.25,
+            is_gpu=True,
         ),
         HardwareProfile(
             key="desktop-ddr5-16c",
@@ -263,6 +279,10 @@ def estimate_inference(
     """
     context = prompt_tokens + images * model.image_tokens + output_tokens
     weights = weights_bytes(model.total_params, quant)
+    if quant in model.gguf_files:
+        # The pinned server loads a separate unquantized vision projector.
+        # Quantizing the language model does not quantize that file.
+        weights = model.gguf_files[quant] + model.gguf_files.get("mmproj-F16", 0)
     kv_cache = kv_cache_bytes(model, context)
     total = weights + kv_cache + overhead_gb * GB
 

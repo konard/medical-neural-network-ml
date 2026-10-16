@@ -24,7 +24,6 @@ import re
 import subprocess
 import sys
 from pathlib import Path
-from typing import Optional
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
@@ -42,7 +41,7 @@ def run_gh_command(args: list[str]) -> tuple[bool, str]:
     """Run a gh CLI command and return (success, output)."""
     try:
         result = subprocess.run(
-            ["gh"] + args,
+            ["gh", *args],
             capture_output=True,
             text=True,
             check=False,
@@ -62,7 +61,7 @@ def get_release_body(repository: str, release_id: str) -> tuple[bool, str]:
     return success, output.strip() if success else output
 
 
-def find_pr_for_commit(repository: str, commit_sha: str) -> Optional[str]:
+def find_pr_for_commit(repository: str, commit_sha: str) -> str | None:
     """Find the pull request that contains a specific commit."""
     if not commit_sha:
         return None
@@ -90,7 +89,7 @@ def format_release_body(
     body: str,
     version: str,
     repository: str,
-    pr_number: Optional[str],
+    pr_number: str | None,
     package_name: str,
 ) -> str:
     """Format the release body with enhanced information."""
@@ -254,11 +253,9 @@ def main() -> int:
         if update_release(args.repository, args.release_id, formatted_body):
             print("Release notes updated successfully!")
             return 0
-        else:
-            return 1
-    else:
-        print("No changes needed")
-        return 0
+        return 1
+    print("No changes needed")
+    return 0
 
 
 if __name__ == "__main__":

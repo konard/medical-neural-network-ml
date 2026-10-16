@@ -23,7 +23,7 @@ import re
 import shutil
 import subprocess
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 
@@ -128,7 +128,7 @@ def create_manual_fragment(
 ) -> int:
     """Create a changelog fragment manually without scriv."""
     # Generate filename
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
     username = get_username()
     branch = get_branch_name()
 
@@ -235,14 +235,11 @@ The fragment will be collected into CHANGELOG.md during release.
     # Use scriv if available, unless --no-scriv is specified
     if has_scriv() and not args.no_scriv:
         return create_with_scriv(args.bump_type, args.description)
-    else:
-        if not args.no_scriv:
-            print("Note: scriv not found, creating fragment manually")
-            print(
-                "Install scriv for better fragment management: pip install scriv[toml]"
-            )
-            print()
-        return create_manual_fragment(changelog_dir, args.bump_type, args.description)
+    if not args.no_scriv:
+        print("Note: scriv not found, creating fragment manually")
+        print("Install scriv for better fragment management: pip install scriv[toml]")
+        print()
+    return create_manual_fragment(changelog_dir, args.bump_type, args.description)
 
 
 if __name__ == "__main__":

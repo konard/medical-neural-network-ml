@@ -42,8 +42,8 @@ def validate_content(name: str, content: str) -> tuple[bool, str]:
     visible_content = re.sub(r"<!--.*?(?:-->|\Z)", "", content, flags=re.DOTALL)
     in_category = False
     found_category = False
-    for line in visible_content.splitlines():
-        line = line.strip()
+    for raw_line in visible_content.splitlines():
+        line = raw_line.strip()
         if line.startswith("#"):
             in_category = bool(CATEGORY_PATTERN.fullmatch(line))
             found_category |= in_category

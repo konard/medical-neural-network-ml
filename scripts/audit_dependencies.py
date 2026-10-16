@@ -13,8 +13,9 @@ from __future__ import annotations
 import subprocess
 import sys
 import tempfile
-import tomllib
 from pathlib import Path
+
+import tomllib
 
 PIP_AUDIT_VERSION = "2.10.1"
 DEPENDENCY_SURFACES = ("pyproject.toml", "docs/requirements.txt")

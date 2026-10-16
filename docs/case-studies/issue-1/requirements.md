@@ -1,5 +1,16 @@
 # Requirements of issue #1 and how each one is met
 
+> Delivery audit (2026-10-16): this table maps the original plan and partial
+> implementation; it does not establish that every proposed experiment ran.
+> MedGemma 27B measurements and the UniMedVL adapter remain [#6](https://github.com/konard/medical-neural-network-ml/issues/6).
+> Representative evaluation remains [#7](https://github.com/konard/medical-neural-network-ml/issues/7),
+> publishing setup [#8](https://github.com/konard/medical-neural-network-ml/issues/8),
+> and measured hardware/training limits [#9](https://github.com/konard/medical-neural-network-ml/issues/9).
+> See [the current audit](../../audit-2026-10-16.md) and
+> [hardware guide](../../hardware-workflows.md); historical estimates below
+> are not validated minimums. Apple Silicon now has a separate native MLX path.
+
+
 The issue text is saved in [data/issue-1.txt](data/issue-1.txt). Below,
 every sentence that asks for something is one requirement (R1–R16). Each
 row says what was done and where.

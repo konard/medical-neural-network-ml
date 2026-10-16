@@ -14,15 +14,14 @@ import math
 import os
 import sys
 import time
-import tomllib
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
+import tomllib
 from read_manifest import read_field
 from release_naming import build_release_tag, detect_python_layout
-
 
 REQUEST_TIMEOUT_SECONDS = 10
 WAIT_TIMEOUT_SECONDS = 600
@@ -39,7 +38,7 @@ class NoRedirects(HTTPRedirectHandler):
 
     def redirect_request(self, req, fp, code, msg, headers, newurl):
         """Return no redirected request, including one that might carry a token."""
-        return None
+        del req, fp, code, msg, headers, newurl
 
 
 def request_json(

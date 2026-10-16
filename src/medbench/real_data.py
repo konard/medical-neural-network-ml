@@ -131,7 +131,12 @@ def _manifest_text() -> str:
 def load_manifest(path: Path | None = None) -> list[Sample]:
     """Read the samples manifest (the packaged one by default)."""
     text = path.read_text(encoding="utf-8") if path else _manifest_text()
-    return [Sample(**entry) for entry in json.loads(text)["samples"]]
+    samples = [Sample(**entry) for entry in json.loads(text)["samples"]]
+    for sample in samples:
+        if sample.license not in ALLOWED_LICENSES:
+            msg = f"Unsupported license for {sample.sample_id}: {sample.license}"
+            raise ValueError(msg)
+    return samples
 
 
 def samples_for(task: str, samples: Iterable[Sample] | None = None) -> list[Sample]:
@@ -168,7 +173,7 @@ def _open(request: urllib.request.Request, timeout: float) -> Any:
     if idle < _PAUSE_SECONDS:
         time.sleep(_PAUSE_SECONDS - idle)
     _last_request[host] = time.monotonic()
-    return urllib.request.urlopen(request, timeout=timeout)  # noqa: S310
+    return urllib.request.urlopen(request, timeout=timeout)
 
 
 def _retry_after(error: urllib.error.HTTPError) -> float | None:
@@ -189,7 +194,13 @@ def _wait_before_retry(error: Exception, attempt: int) -> float | None:
     if isinstance(error, urllib.error.HTTPError):
         if error.code not in _RETRY_STATUS:
             return None
-        backoff = _retry_after(error) or backoff
+        retry_after = _retry_after(error)
+        if retry_after is not None:
+            # Do not retry earlier than the source permits. Fail this run if
+            # the server asks us to wait longer than our per-retry budget.
+            if retry_after > _MAX_WAIT_SECONDS:
+                return None
+            backoff = retry_after
     return min(backoff, _MAX_WAIT_SECONDS)
 
 
@@ -199,7 +210,7 @@ def _download(url: str, opener: Opener, timeout: float, attempts: int) -> bytes:
         try:
             with opener(request, timeout) as response:
                 return bytes(response.read())
-        except (urllib.error.URLError, TimeoutError, ConnectionError) as error:
+        except (urllib.error.URLError, TimeoutError, ConnectionError) as error:  # noqa: PERF203 - each network attempt needs its own retry handling
             wait = _wait_before_retry(error, attempt)
             if wait is None or attempt == attempts:
                 raise
@@ -281,7 +292,7 @@ def prepare_image(data: bytes, max_side: int = 1024) -> bytes:
     Vision models resize inputs anyway (MedGemma to 896x896), so sending a
     4000-pixel photo only costs bandwidth and memory.
     """
-    from PIL import Image  # noqa: PLC0415 - optional dependency
+    from PIL import Image
 
     with Image.open(io.BytesIO(data)) as image:
         image.load()

@@ -18,7 +18,6 @@ import tempfile
 from pathlib import Path
 from unittest.mock import patch
 
-
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
@@ -99,6 +98,7 @@ def main() -> None:
         elapsed[0] += seconds
 
     def request(*args, **kwargs):
+        del args, kwargs
         return (200 if elapsed[0] >= 240 else 404), {}
 
     with (

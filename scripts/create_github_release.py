@@ -36,7 +36,6 @@ from release_naming import (  # noqa: E402
     normalize_version,
 )
 
-
 MAX_RELEASE_NOTES_BYTES = 60_000
 ENCODING = "utf-8"
 

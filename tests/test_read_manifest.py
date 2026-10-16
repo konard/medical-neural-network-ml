@@ -11,7 +11,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-
 SCRIPT_PATH = Path(__file__).resolve().parent.parent / "scripts" / "read_manifest.py"
 spec = importlib.util.spec_from_file_location("read_manifest", SCRIPT_PATH)
 module = importlib.util.module_from_spec(spec)
@@ -26,6 +25,7 @@ def run_script(tmp_path: Path, manifest: str, *args: str) -> tuple[int, str, str
         [sys.executable, str(SCRIPT_PATH), str(manifest_path), *args],
         capture_output=True,
         text=True,
+        check=False,
     )
     return proc.returncode, proc.stdout, proc.stderr
 
@@ -76,6 +76,7 @@ def test_output_flag_writes_github_output(tmp_path: Path) -> None:
         capture_output=True,
         text=True,
         env={"GITHUB_OUTPUT": str(output_file), "PATH": "/usr/bin:/bin"},
+        check=False,
     )
     assert proc.returncode == 0, proc.stderr
     assert output_file.read_text() == "current_version=9.9.9\n"

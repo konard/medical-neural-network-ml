@@ -16,8 +16,8 @@ from dataclasses import dataclass, replace
 __all__ = [
     "OCR_CONFUSIONS",
     "LabeledImage",
-    "adjust_contrast",
     "add_gaussian_noise",
+    "adjust_contrast",
     "augment_image",
     "flip_horizontal",
     "ocr_noise",

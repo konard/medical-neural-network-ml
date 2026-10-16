@@ -175,7 +175,7 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
     """Do not forward an API credential to a redirect target."""
 
     def redirect_request(self, req, fp, code, msg, headers, newurl):
-        return None
+        del req, fp, code, msg, headers, newurl
 
 
 def default_fetch(
@@ -187,9 +187,7 @@ def default_fetch(
         url, method="HEAD", headers={"User-Agent": user_agent}
     )
     try:
-        with urllib.request.urlopen(  # noqa: S310 - URL comes from the lychee report
-            request, timeout=timeout
-        ) as response:
+        with urllib.request.urlopen(request, timeout=timeout) as response:
             status = response.status
     except urllib.error.HTTPError as error:
         status = error.code
@@ -258,7 +256,7 @@ def recheck_unanswered(
                         url, user_agent, min(REQUEST_TIMEOUT_SECONDS, remaining)
                     )
                 )
-            except Exception:  # noqa: BLE001 - no answer this round, whatever the cause
+            except Exception:
                 if os.environ.get("RECHECK_VERBOSE") == "true":
                     print(f"Re-check: {url}: transport failure")
                 still_pending.append(url)
@@ -378,6 +376,6 @@ if __name__ == "__main__":
     # mask itself as a verdict: exit 0 in every case.
     try:
         sys.exit(main())
-    except Exception as error:  # noqa: BLE001 - no crash may raise the gate
+    except Exception as error:
         print(f"Re-check crashed (treating as no recovery): {error}")
         sys.exit(0)

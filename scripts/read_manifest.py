@@ -21,8 +21,9 @@ from __future__ import annotations
 import argparse
 import os
 import sys
-import tomllib
 from pathlib import Path
+
+import tomllib
 
 
 def read_field(document: dict[str, object], field: str) -> str:

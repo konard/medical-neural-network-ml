@@ -5,9 +5,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Optional, Union
 from urllib.parse import quote
-
 
 LANGUAGE = "Python"
 MULTI_LANGUAGE_TAG_PREFIX = "py_v"
@@ -25,7 +23,7 @@ class PythonLayout:
 
 
 def detect_python_layout(
-    repository_root: Optional[Union[str, Path]] = None,
+    repository_root: str | Path | None = None,
 ) -> PythonLayout:
     """Detect whether Python files live at the repo root or under python/."""
     root = Path.cwd() if repository_root is None else Path(repository_root)

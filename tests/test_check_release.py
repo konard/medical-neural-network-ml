@@ -21,7 +21,8 @@ def module():
         spec = importlib.util.spec_from_file_location(
             "check_release", scripts / "check_release.py"
         )
-        assert spec and spec.loader
+        assert spec
+        assert spec.loader
         loaded = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(loaded)
         yield loaded
@@ -31,7 +32,7 @@ def module():
 
 @pytest.mark.parametrize("subdirectory", [".", "python"])
 @pytest.mark.parametrize(
-    "pypi_exists,github_exists",
+    ("pypi_exists", "github_exists"),
     [(False, False), (True, False), (False, True), (True, True)],
 )
 def test_release_decision_uses_both_artifacts(
@@ -63,7 +64,7 @@ def test_release_decision_uses_both_artifacts(
 
 
 @pytest.mark.parametrize(
-    "status,expected",
+    ("status", "expected"),
     [(200, True), (404, False), (403, None), (429, None), (503, None)],
 )
 def test_registry_probe_does_not_treat_outages_as_absence(
@@ -86,7 +87,7 @@ def test_registry_probe_does_not_treat_outages_as_absence(
 
 
 @pytest.mark.parametrize(
-    "status,draft,expected",
+    ("status", "draft", "expected"),
     [
         (200, False, True),
         (200, True, False),
@@ -187,7 +188,7 @@ def test_wait_caps_requests_and_delays_to_remaining_budget(module, monkeypatch) 
 
 
 @pytest.mark.parametrize(
-    "timeout,interval",
+    ("timeout", "interval"),
     [(0, 15), (600, 0), (-1, 15), (float("inf"), 15), (600, float("nan"))],
 )
 def test_wait_rejects_unbounded_or_invalid_settings(module, timeout, interval) -> None:

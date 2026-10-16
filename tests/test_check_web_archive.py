@@ -6,7 +6,6 @@ import importlib.util
 import sys
 from pathlib import Path
 
-
 SCRIPT_PATH = (
     Path(__file__).resolve().parent.parent / "scripts" / "check_web_archive.py"
 )
@@ -56,7 +55,8 @@ def test_check_wayback_machine_treats_api_errors_as_unavailable(monkeypatch) -> 
     """A Wayback outage must not incorrectly approve a broken documentation URL."""
 
     def fail(_url: str) -> dict[str, object]:
-        raise OSError("temporary outage")
+        msg = "temporary outage"
+        raise OSError(msg)
 
     monkeypatch.setattr(module, "fetch_json", fail)
 
@@ -100,7 +100,8 @@ def test_main_treats_a_recheck_recovered_url_as_not_broken(
     monkeypatch.delenv("GITHUB_OUTPUT", raising=False)
 
     def explode(url: str) -> dict[str, object]:
-        raise AssertionError(f"healthy URL {url} must not reach the Wayback Machine")
+        msg = f"healthy URL {url} must not reach the Wayback Machine"
+        raise AssertionError(msg)
 
     monkeypatch.setattr(module, "fetch_json", explode)
 

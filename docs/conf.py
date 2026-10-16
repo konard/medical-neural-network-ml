@@ -1,8 +1,4 @@
-"""Sphinx configuration for the python-ai-driven-development-pipeline-template docs.
-
-Edit ``project``, ``author``, and the autodoc target package when bootstrapping
-a new repository from this template.
-"""
+"""Sphinx configuration for the medical research tools."""
 
 from __future__ import annotations
 
@@ -14,11 +10,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "src"))
 
-project = "my-package"
-author = "Your Name"
+project = "medical-neural-network-ml"
+author = "Konard"
 
 try:
-    release = metadata.version("my-package")
+    release = metadata.version("medical-neural-network-ml")
 except metadata.PackageNotFoundError:
     release = "0.0.0"
 version = release
@@ -41,6 +37,7 @@ autodoc_default_options = {
 }
 napoleon_google_docstring = True
 napoleon_numpy_docstring = False
+napoleon_use_ivar = True
 
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),

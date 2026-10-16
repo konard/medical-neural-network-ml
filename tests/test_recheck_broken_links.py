@@ -140,9 +140,13 @@ def test_extracts_the_flags_when_the_workflow_sets_them() -> None:
 def test_accept_list_honours_ranges_singles_and_stray_spaces() -> None:
     accepted = module.parse_accept_ranges(" 100..=103 , 200..=299, 429 ")
 
-    assert accepted(100) and accepted(103) and accepted(200)
-    assert accepted(299) and accepted(429)
-    assert not accepted(104) and not accepted(404)
+    assert accepted(100)
+    assert accepted(103)
+    assert accepted(200)
+    assert accepted(299)
+    assert accepted(429)
+    assert not accepted(104)
+    assert not accepted(404)
 
 
 def test_recovers_a_url_that_answers_accepted() -> None:
@@ -195,7 +199,8 @@ def test_retries_a_url_that_never_answers_and_takes_a_later_success() -> None:
         nonlocal calls
         calls += 1
         if calls < 3:
-            raise OSError("ECONNRESET")
+            msg = "ECONNRESET"
+            raise OSError(msg)
         return 204
 
     result = module.recheck_unanswered(
@@ -213,7 +218,8 @@ def test_retries_a_url_that_never_answers_and_takes_a_later_success() -> None:
 
 def test_gives_up_without_an_answer_once_the_budget_expires() -> None:
     def fetch(_url: str, _user_agent: str) -> int:
-        raise OSError("ECONNRESET")
+        msg = "ECONNRESET"
+        raise OSError(msg)
 
     result = module.recheck_unanswered(
         ["https://a.example/x"],
@@ -306,6 +312,7 @@ def run_script(env: dict[str, str]) -> subprocess.CompletedProcess[str]:
         capture_output=True,
         text=True,
         timeout=120,
+        check=False,
     )
 
 

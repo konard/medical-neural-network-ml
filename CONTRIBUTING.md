@@ -1,4 +1,4 @@
-# Contributing to python-ai-driven-development-pipeline-template
+# Contributing to medical-neural-network-ml
 
 Thank you for your interest in contributing! This document provides guidelines and instructions for contributing to this project.
 
@@ -7,8 +7,8 @@ Thank you for your interest in contributing! This document provides guidelines a
 1. **Fork and clone the repository**
 
    ```bash
-   git clone https://github.com/YOUR-USERNAME/python-ai-driven-development-pipeline-template.git
-   cd python-ai-driven-development-pipeline-template
+   git clone https://github.com/YOUR-USERNAME/medical-neural-network-ml.git
+   cd medical-neural-network-ml
    ```
 
 2. **Create a virtual environment**
@@ -239,7 +239,7 @@ Fragments are automatically collected into CHANGELOG.md during the release proce
 │   └── *.md              # Individual changelog fragments
 ├── examples/             # Usage examples
 ├── scripts/              # Utility scripts
-├── src/my_package/       # Source code
+├── src/medbench/         # Research tools and benchmark code
 │   ├── __init__.py       # Package entry point
 │   └── py.typed          # Type marker file
 ├── tests/                # Test files
@@ -275,3 +275,10 @@ Releases are managed through GitHub releases and PyPI publishing is handled via 
 - Show empathy towards other community members
 
 Thank you for contributing!
+
+## Licensing contributions
+
+Original contributions are dedicated to the public domain under the Unlicense.
+Do not copy third-party code, datasets or model weights into the source tree
+without recording their separate terms in THIRD_PARTY_NOTICES.md. Keep real
+test media in ignored caches and retain attribution when sharing reports.

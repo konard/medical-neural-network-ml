@@ -1,3 +1,5 @@
+extend = "pyproject.toml"
+
 # Ruff configuration
 # This file provides additional settings beyond pyproject.toml
 

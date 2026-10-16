@@ -15,6 +15,7 @@ def run_script(*args: str, cwd: Path) -> subprocess.CompletedProcess[str]:
         cwd=cwd,
         capture_output=True,
         text=True,
+        check=False,
     )
 
 

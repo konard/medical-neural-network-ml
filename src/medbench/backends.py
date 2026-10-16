@@ -208,14 +208,14 @@ class OpenAICompatibleBackend:
         headers = {"Content-Type": "application/json"}
         if self.api_key:
             headers["Authorization"] = f"Bearer {self.api_key}"
-        request = urllib.request.Request(  # noqa: S310 - scheme checked in __init__
+        request = urllib.request.Request(
             f"{self.base_url}/chat/completions",
             data=body,
             headers=headers,
             method="POST",
         )
         start = time.perf_counter()
-        with urllib.request.urlopen(request, timeout=self.timeout_s) as response:  # noqa: S310
+        with urllib.request.urlopen(request, timeout=self.timeout_s) as response:
             data = json.loads(response.read().decode())
         latency = time.perf_counter() - start
         usage = data.get("usage") or {}
@@ -262,7 +262,7 @@ class TesseractBackend:
             for index, image in enumerate(images):
                 path = Path(tmp) / f"page{index}.png"
                 path.write_bytes(image)
-                result = subprocess.run(  # noqa: S603
+                result = subprocess.run(
                     [self.binary, str(path), "-", "-l", self.language],
                     capture_output=True,
                     check=True,
@@ -290,8 +290,8 @@ class TransformersBackend:  # pragma: no cover - needs torch and a model downloa
             device_map: Where to place the weights (``"auto"`` uses GPUs).
             dtype: Weight dtype name in ``torch``.
         """
-        import torch  # noqa: PLC0415 - optional heavy dependency
-        from transformers import (  # noqa: PLC0415
+        import torch
+        from transformers import (
             AutoModelForImageTextToText,
             AutoProcessor,
         )
@@ -307,9 +307,9 @@ class TransformersBackend:  # pragma: no cover - needs torch and a model downloa
         self, prompt: str, images: Sequence[bytes] = (), max_tokens: int = 256
     ) -> Generation:
         """Generate greedily with the model's chat template."""
-        import io  # noqa: PLC0415
+        import io
 
-        from PIL import Image  # noqa: PLC0415
+        from PIL import Image
 
         content: list[dict[str, Any]] = [
             {"type": "image", "image": Image.open(io.BytesIO(i)).convert("RGB")}

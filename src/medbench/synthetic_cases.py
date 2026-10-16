@@ -298,7 +298,7 @@ def rank_conditions(
     peak = max(log_scores)
     weights = [math.exp(score - peak) for score in log_scores]
     total = sum(weights)
-    ranked = sorted(
+    return sorted(
         (
             (condition.name, weight / total)
             for condition, weight in zip(conditions, weights)
@@ -306,7 +306,6 @@ def rank_conditions(
         key=lambda item: item[1],
         reverse=True,
     )
-    return ranked
 
 
 def generate_cases(
@@ -371,7 +370,7 @@ _NUMBERED_LINE = re.compile(r"^\s*(?:\d+[.)]|[-*•])\s*(.+?)\s*$")
 
 def _normalize(text: str) -> str:
     text = re.sub(r"\*\*|__|`", "", text.lower())
-    text = re.split(r"\s+[-–—:(]\s*|\s*\(", text, maxsplit=1)[0]
+    text = re.split(r"\s+[-\u2013\u2014:(]\s*|\s*\(", text, maxsplit=1)[0]
     return re.sub(r"[^a-z0-9 -]", "", text).strip()
 
 

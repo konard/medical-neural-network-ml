@@ -22,20 +22,20 @@ from pathlib import Path
 
 from medbench.backends import Backend, NaiveBayesBackend, OpenAICompatibleBackend
 from medbench.benchmark import TASKS, make_task, run_task
-from medbench.hardware import ResourceBudget, detect_host
+from medbench.hardware import BudgetExceededError, ResourceBudget, detect_host
 from medbench.models import MODELS, get_model
-from medbench.resources import (
-    BITS_PER_WEIGHT,
-    HARDWARE,
-    estimate_finetune_memory,
-    estimate_inference,
-)
 from medbench.real_data import (
     Sample,
     attribution_lines,
     default_cache_dir,
     fetch,
     load_manifest,
+)
+from medbench.resources import (
+    BITS_PER_WEIGHT,
+    HARDWARE,
+    estimate_finetune_memory,
+    estimate_inference,
 )
 from medbench.synthetic_cases import generate_cases
 
@@ -142,9 +142,16 @@ def _cmd_fetch(args: argparse.Namespace) -> int:
     return 0
 
 
-def _make_backend(args: argparse.Namespace) -> Backend:
+def _make_backend(args: argparse.Namespace, budget: ResourceBudget) -> Backend:
     if args.backend == "naive-bayes":
         return NaiveBayesBackend()
+    if args.backend == "mlx":
+        from medbench.mlx_backend import MlxBackend
+
+        if args.model_path is None:
+            msg = "--backend mlx requires --model-path to a local snapshot"
+            raise ValueError(msg)
+        return MlxBackend(args.model_path, budget, args.memory_limit_gb)
     return OpenAICompatibleBackend(
         args.base_url,
         model=args.model_name,
@@ -154,15 +161,19 @@ def _make_backend(args: argparse.Namespace) -> Backend:
 
 
 def _cmd_run(args: argparse.Namespace) -> int:
-    budget = ResourceBudget(max_seconds=args.time_budget)
+    budget = ResourceBudget(
+        max_seconds=args.time_budget, max_threads=4 if args.backend == "mlx" else None
+    )
     task = make_task(args.task, args.count, args.seed, cache_dir=args.data_dir)
-    report = run_task(task, _make_backend(args), budget, max_tokens=args.max_tokens)
+    report = run_task(
+        task, _make_backend(args, budget), budget, max_tokens=args.max_tokens
+    )
     if args.out:
         report.write(args.out)
     summary = report.as_dict()
     summary.pop("results")
     _print(summary)
-    return 0
+    return int(report.stopped_early or report.items_run == 0)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -211,7 +222,11 @@ def build_parser() -> argparse.ArgumentParser:
     run = commands.add_parser("run", help="score a backend on a task")
     run.add_argument("--task", choices=TASKS, required=True)
     run.add_argument(
-        "--backend", choices=("naive-bayes", "openai"), default="naive-bayes"
+        "--backend", choices=("naive-bayes", "openai", "mlx"), default="naive-bayes"
+    )
+    run.add_argument("--model-path", type=Path, help="local MLX-VLM snapshot")
+    run.add_argument(
+        "--memory-limit-gb", type=float, default=8.0, help="MLX ceiling in decimal GB"
     )
     run.add_argument("--base-url", default="http://127.0.0.1:8080/v1")
     run.add_argument("--model-name", default="default")
@@ -233,7 +248,11 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: Sequence[str] | None = None) -> int:
     """Run the command line interface and return the exit code."""
     args = build_parser().parse_args(argv)
-    return int(args.func(args))
+    try:
+        return int(args.func(args))
+    except (BudgetExceededError, ValueError, FileNotFoundError) as error:
+        sys.stderr.write(f"medbench: {error}\n")
+        return 1
 
 
 if __name__ == "__main__":  # pragma: no cover

@@ -25,6 +25,7 @@ import json
 import re
 import statistics
 from collections.abc import Sequence
+from contextlib import suppress
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Protocol
@@ -44,7 +45,13 @@ from medbench.metrics import (
     top_k_accuracy,
     wer,
 )
-from medbench.real_data import Sample, fetch, prepare_image, samples_for
+from medbench.real_data import (
+    Sample,
+    attribution_lines,
+    fetch,
+    prepare_image,
+    samples_for,
+)
 from medbench.synthetic_cases import (
     build_diagnosis_prompt,
     generate_cases,
@@ -155,10 +162,12 @@ class DdxplusTask:
     cache_dir: Path | None = None
     samples: Sequence[Sample] | None = None
     name: str = "diagnosis-ddxplus"
+    _conditions: tuple[str, ...] = field(default=(), init=False, repr=False)
 
     def items(self) -> list[BenchItem]:
         """One item per patient (downloads the data on first use)."""
         data = DdxplusData.load(self.cache_dir, self.samples)
+        self._conditions = tuple(data.conditions)
         return [
             BenchItem(
                 patient.patient_id,
@@ -175,7 +184,7 @@ class DdxplusTask:
         reference = [list(item.truth.differential) for item in items]
         truths = [item.truth.pathology for item in items]
         known = ddxplus_conditions(
-            sorted({*truths, *(n for r in reference for n in r)})
+            self._conditions or sorted({*truths, *(n for r in reference for n in r)})
         )
         rankings = [parse_ranked_diagnoses(r.output, known) for r in results]
         hits = [float(t in r[:1]) for t, r in zip(truths, rankings)]
@@ -206,10 +215,8 @@ def _real_items(
     items = []
     for sample in chosen:
         data = fetch(sample, cache_dir).read_bytes()
-        try:
+        with suppress(ImportError):
             data = prepare_image(data, max_side)
-        except ImportError:  # pragma: no cover - Pillow is in the dev extra
-            pass
         items.append((sample, data))
     return items
 
@@ -271,7 +278,12 @@ class OcrTask:
         for item, output in zip(items, outputs):
             for term in item.truth.truth.get("key_terms", ()):
                 total += 1
-                found += _normalise(term) in output
+                found += (
+                    re.search(
+                        r"(?<!\w)" + re.escape(_normalise(term)) + r"(?!\w)", output
+                    )
+                    is not None
+                )
         return {
             "cer": statistics.fmean(map(cer, truths, outputs)) if truths else 0.0,
             "wer": statistics.fmean(map(wer, truths, outputs)) if truths else 0.0,
@@ -368,7 +380,24 @@ class ImagingTask:
         parsed = [parse_yes_no_side(result.output) for result in results]
         truths = [item.truth.truth for item in items]
         abnormal = [truth["finding"] != "normal" for truth in truths]
-        counts = BinaryCounts.from_predictions(abnormal, [p for p, _ in parsed])
+        valid = [
+            bool(re.search(r"abnormal\s*:\s*(yes|no)\b", result.output, re.I))
+            or (
+                _ANSWER.search(result.output) is not None
+                and not re.search(
+                    r"\b(?:unknown|uncertain|unsure)\b|\bnot sure\b",
+                    result.output,
+                    re.I,
+                )
+            )
+            for result in results
+        ]
+        # Unparsed answers are errors for both classes. Otherwise an empty
+        # answer earns a true negative on every normal image.
+        predictions = [
+            p if ok else not truth for (p, _), ok, truth in zip(parsed, valid, abnormal)
+        ]
+        counts = BinaryCounts.from_predictions(abnormal, predictions)
         named = [
             any(term in result.output.lower() for term in truth["terms"])
             for truth, result, sick in zip(truths, results, abnormal)
@@ -385,6 +414,7 @@ class ImagingTask:
             "accuracy": counts.accuracy,
             "finding_recall": sum(named) / len(named) if named else 0.0,
             "side_accuracy_when_found": sum(sides) / len(sides) if sides else 0.0,
+            "unparsed_answers": float(sum(not ok for ok in valid)),
         }
 
 
@@ -410,6 +440,9 @@ def make_task(
     Raises:
         KeyError: If the name is unknown.
     """
+    if count <= 0:
+        msg = "count must be positive"
+        raise ValueError(msg)
     if name == "diagnosis":
         return DiagnosisTask(count=count, seed=seed)
     if name == "diagnosis-ddxplus":
@@ -436,6 +469,7 @@ class TaskReport:
     metrics: dict[str, float]
     latency: dict[str, float]
     results: list[ItemResult]
+    sources: list[str] = field(default_factory=list)
 
     def as_dict(self) -> dict[str, Any]:
         """Return the report as a JSON-friendly dictionary."""
@@ -448,6 +482,7 @@ class TaskReport:
             "metrics": {k: round(v, 4) for k, v in self.metrics.items()},
             "latency": {k: round(v, 4) for k, v in self.latency.items()},
             "results": [r.__dict__ for r in self.results],
+            "sources": self.sources,
         }
 
     def write(self, path: Path) -> Path:
@@ -491,7 +526,13 @@ def run_task(
         except BudgetExceededError:
             stopped = True
             break
-        generation = backend.generate(item.prompt, item.images, max_tokens=max_tokens)
+        try:
+            generation = backend.generate(
+                item.prompt, item.images, max_tokens=max_tokens
+            )
+        except BudgetExceededError:
+            stopped = True
+            break
         results.append(
             ItemResult(
                 item.item_id,
@@ -501,6 +542,11 @@ def run_task(
             )
         )
     done = items[: len(results)]
+    if budget.remaining_seconds() <= 0:
+        stopped = True
+    sources = [item.truth for item in done if isinstance(item.truth, Sample)]
+    if isinstance(task, DdxplusTask) and done:
+        sources = list(samples_for(task.name, task.samples))
     return TaskReport(
         task=task.name,
         backend=backend.name,
@@ -510,4 +556,5 @@ def run_task(
         metrics=task.score(done, results) if results else {},
         latency=_latency_stats([r.latency_s for r in results]),
         results=results,
+        sources=attribution_lines(sources),
     )

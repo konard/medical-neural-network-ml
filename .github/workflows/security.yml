@@ -17,12 +17,22 @@ env:
 
 jobs:
   dependency-audit:
-    name: Audit Resolved Python Dependencies
-    runs-on: ubuntu-24.04
+    name: Audit dependencies (${{ matrix.runner }})
+    runs-on: ${{ matrix.runner }}
     timeout-minutes: 15
     concurrency:
-      group: check-${{ github.workflow }}-${{ github.ref }}-dependency-audit
+      group: check-${{ github.workflow }}-${{ github.ref }}-dependency-audit-${{ matrix.runner }}
       cancel-in-progress: true
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-24.04
+            python: '3.13'
+          # Linux environment markers omit MLX; audit its resolved graph on
+          # native arm64 macOS as well.
+          - runner: macos-15
+            python: '3.12'
     steps:
       - uses: actions/checkout@v7
         with:
@@ -31,7 +41,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v7
         with:
-          python-version: '3.13'
+          python-version: ${{ matrix.python }}
 
       - name: Audit pyproject.toml and docs/requirements.txt
         run: python scripts/audit_dependencies.py

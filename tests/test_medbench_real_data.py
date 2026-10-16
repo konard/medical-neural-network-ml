@@ -17,8 +17,8 @@ import urllib.request
 import zipfile
 from collections.abc import Sequence
 from dataclasses import replace
-from pathlib import Path
 from email.message import Message
+from pathlib import Path
 from typing import Any
 
 import pytest
@@ -221,12 +221,24 @@ class TestFetch:
         """A 429 or 503 is retried after the server's Retry-After delay."""
         waits: list[float] = []
         monkeypatch.setattr("medbench.real_data.time.sleep", waits.append)
-        errors = [(429, {"Retry-After": "7"}), (503, {}), (429, {"Retry-After": "900"})]
+        errors = [(429, {"Retry-After": "7"}), (503, {})]
         opener = _FailingOpener(b"ok", errors)
         sample = _sample("r", b"ok", "imaging-xray")
         assert fetch(sample, tmp_path, opener=opener, attempts=4).read_bytes() == b"ok"
-        assert waits == [7.0, 10.0, 120.0]
-        assert len(opener.requests) == 4
+        assert waits == [7.0, 10.0]
+        assert len(opener.requests) == 3
+
+    def test_long_retry_after_fails_without_an_early_retry(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """A short CI budget must not cause requests before the server allows."""
+        waits: list[float] = []
+        monkeypatch.setattr("medbench.real_data.time.sleep", waits.append)
+        opener = _FailingOpener(b"ok", [(429, {"Retry-After": "900"})])
+        with pytest.raises(urllib.error.HTTPError):
+            fetch(_sample("r", b"ok", "imaging-xray"), tmp_path, opener=opener)
+        assert waits == []
+        assert len(opener.requests) == 1
 
     @pytest.mark.parametrize("code", [403, 404])
     def test_permanent_errors_fail_at_once(
@@ -320,6 +332,7 @@ class TestRealTasks:
             "accuracy": 1.0,
             "finding_recall": 1.0,
             "side_accuracy_when_found": 1.0,
+            "unparsed_answers": 0.0,
         }
 
     def test_imaging_wrong_finding(self, tmp_path: Path) -> None:
@@ -501,3 +514,46 @@ class TestDdxplus:
         assert report.metrics["reference_top1"] == 0.5
         assert report.metrics["reference_top5"] == 1.0
         assert report.metrics["unparsed_answers"] == 0
+
+
+def test_ddxplus_wrong_candidate_is_not_dropped(tmp_path: Path) -> None:
+    """A condition absent from this patient's reference must keep its rank."""
+    task = DdxplusTask(count=1, cache_dir=tmp_path, samples=_ddxplus_files(tmp_path))
+    report = run_task(task, _constant("1. Unstable angina\n2. GERD"))
+    assert report.metrics["top1"] == 0
+    assert report.metrics["mrr"] == 0.5
+    assert len(report.sources) == 3
+
+
+@pytest.mark.parametrize("output", ["", "unknown", "I am not sure."])
+def test_unparsed_imaging_does_not_earn_normal_credit(
+    tmp_path: Path, output: str
+) -> None:
+    samples = TestRealTasks()._imaging(tmp_path)
+    task = ImagingTask(count=4, samples=samples, cache_dir=tmp_path)
+    report = run_task(task, _constant(output))
+    assert report.metrics["accuracy"] == 0
+    assert report.metrics["specificity"] == 0
+    assert report.metrics["unparsed_answers"] == 4
+    assert len(report.sources) == 4
+
+
+def test_wrong_dose_cannot_match_substring(tmp_path: Path) -> None:
+    image = _image_bytes()
+    sample = _sample(
+        "rx", image, "ocr-prescription", text="Amoxicillin 500 mg", key_terms=["500 mg"]
+    )
+    _cached(tmp_path, [(sample, image)])
+    task = OcrTask(count=1, samples=[sample], cache_dir=tmp_path)
+    report = run_task(task, _constant("Amoxicillin 1500 mg"))
+    assert report.metrics["key_term_recall"] == 0
+
+
+def test_manifest_rejects_restrictive_license(tmp_path: Path) -> None:
+    manifest = tmp_path / "samples.json"
+    sample = _sample("restricted", b"x", "imaging-xray")
+    manifest.write_text(
+        json.dumps({"samples": [{**sample.__dict__, "license": "CC BY-NC 4.0"}]})
+    )
+    with pytest.raises(ValueError, match="Unsupported license"):
+        load_manifest(manifest)

@@ -47,9 +47,10 @@ def test_backoff_sleeps_between_rounds(monkeypatch) -> None:
 
 def test_final_failure_prevents_releasing_gate(tmp_path: Path) -> None:
     # The final URL must still block the gate if every transient URL recovers.
-    from tests.test_recheck_broken_links import _head_handler
-    from http.server import ThreadingHTTPServer
     import threading
+    from http.server import ThreadingHTTPServer
+
+    from tests.test_recheck_broken_links import _head_handler
 
     server = ThreadingHTTPServer(("127.0.0.1", 0), _head_handler({}))
     thread = threading.Thread(target=server.serve_forever, daemon=True)
@@ -78,7 +79,7 @@ def test_final_failure_prevents_releasing_gate(tmp_path: Path) -> None:
 
 
 @pytest.mark.parametrize(
-    "marker,detail,status,retryable",
+    ("marker", "detail", "status", "retryable"),
     [
         ("503", "Error (cached)", 503, True),
         ("429", "Too Many Requests", 429, True),
@@ -97,7 +98,7 @@ def test_report_classification(marker, detail, status, retryable) -> None:
 
 
 @pytest.mark.parametrize(
-    "url,expected",
+    ("url", "expected"),
     [
         (
             "https://github.com/o/r/blob/main/a%20b.py#L1",
@@ -129,8 +130,8 @@ def test_contents_url_mapping(url, expected) -> None:
 @pytest.mark.parametrize("api_status", [200, 302, 403, 404, 429, 503])
 @pytest.mark.parametrize("token", ["test-only-token", ""])
 def test_api_fallback_only_recovers_success(monkeypatch, api_status, token) -> None:
-    from unittest.mock import MagicMock
     import urllib.error
+    from unittest.mock import MagicMock
 
     monkeypatch.setenv("GITHUB_TOKEN", token)
     page = "https://github.com/o/r/blob/main/a.py"
@@ -155,7 +156,7 @@ def test_api_fallback_only_recovers_success(monkeypatch, api_status, token) -> N
 
 
 @pytest.mark.parametrize(
-    "url,status",
+    ("url", "status"),
     [
         ("https://github.com/o/r/blob/main/a", 404),
         ("https://example.com/o/r/blob/main/a", 503),

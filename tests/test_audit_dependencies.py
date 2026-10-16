@@ -7,7 +7,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-
 SCRIPT_PATH = (
     Path(__file__).resolve().parent.parent / "scripts" / "audit_dependencies.py"
 )
@@ -32,7 +31,8 @@ def test_run_streams_output_when_the_command_fails(capfd) -> None:
     except subprocess.CalledProcessError:
         pass
     else:
-        raise AssertionError("run() should propagate a non-zero exit")
+        msg = "run() should propagate a non-zero exit"
+        raise AssertionError(msg)
 
     assert "advisory table" in capfd.readouterr().out
 

@@ -67,7 +67,7 @@ def test_detect_gpus_with_fake_nvidia_smi(tmp_path: Path) -> None:
     script.write_text("#!/bin/sh\necho 'NVIDIA L4, 23034, 22000'\n", encoding="utf-8")
     script.chmod(script.stat().st_mode | stat.S_IEXEC)
     gpus = detect_gpus(str(script))
-    assert gpus == (GpuInfo("NVIDIA L4", 23034 / 1024, 22000 / 1024),)
+    assert gpus == (GpuInfo("NVIDIA L4", 23034 * 1024**2 / 1e9, 22000 * 1024**2 / 1e9),)
 
 
 def test_detect_gpus_failure(tmp_path: Path) -> None:
@@ -103,3 +103,42 @@ def test_deadline() -> None:
     with pytest.raises(BudgetExceededError, match="time budget"):
         ResourceBudget(max_seconds=0).check_deadline()
     assert ResourceBudget(max_seconds=100).remaining_seconds() > 99
+
+
+def test_macos_memory_excludes_compressed_and_overlapping_pages() -> None:
+    """Only disjoint, reclaimable page counters contribute to the budget."""
+    from medbench.hardware import parse_vm_stat
+
+    vm_stat = """Mach Virtual Memory Statistics: (page size of 16384 bytes)
+Pages free: 100.
+Pages inactive: 200.
+Pages speculative: 50.
+Pages purgeable: 10000.
+Pages occupied by compressor: 10000.
+"""
+    assert parse_vm_stat(vm_stat) == pytest.approx(350 * 16384 / 1e9)
+    assert parse_vm_stat("unavailable") == 0
+
+
+def test_native_macos_host_uses_memory_counters(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr("medbench.hardware.platform.system", lambda: "Darwin")
+    monkeypatch.setattr("medbench.hardware.platform.machine", lambda: "arm64")
+    monkeypatch.setattr("medbench.hardware._macos_memory", lambda: (19.33, 4.0))
+    host = detect_host(with_gpus=False)
+    assert host.apple_silicon
+    assert host.memory_total_gb == 19.33
+    assert ResourceBudget().memory_limit_gb(host) == pytest.approx(2.8)
+
+
+def test_cgroup_budget_subtracts_current_usage(tmp_path: Path) -> None:
+    (tmp_path / "proc").mkdir()
+    (tmp_path / "proc/meminfo").write_text(MEMINFO)
+    cgroup = tmp_path / "sys/fs/cgroup"
+    cgroup.mkdir(parents=True)
+    (cgroup / "memory.max").write_text("4000000000")
+    (cgroup / "memory.current").write_text("3000000000")
+    host = detect_host(tmp_path, with_gpus=False)
+    assert host.memory_available_gb == 1
+    assert ResourceBudget().memory_limit_gb(host) == pytest.approx(0.7)

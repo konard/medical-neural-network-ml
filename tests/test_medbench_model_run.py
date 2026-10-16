@@ -25,6 +25,7 @@ def run_script(*args: str, **env: str) -> subprocess.CompletedProcess[str]:
         text=True,
         env={**os.environ, **env},
         timeout=60,
+        check=False,
     )
 
 

@@ -14,7 +14,7 @@ Examples:
 import argparse
 import re
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 
@@ -23,7 +23,8 @@ def get_current_version(pyproject_path: Path) -> str:
     content = pyproject_path.read_text()
     match = re.search(r'^version\s*=\s*["\']([^"\']+)["\']', content, re.MULTILINE)
     if not match:
-        raise ValueError("Could not find version in pyproject.toml")
+        msg = "Could not find version in pyproject.toml"
+        raise ValueError(msg)
     return match.group(1)
 
 
@@ -31,18 +32,19 @@ def bump_version(current: str, bump_type: str) -> str:
     """Bump version according to semantic versioning."""
     parts = current.split(".")
     if len(parts) != 3:
-        raise ValueError(f"Invalid version format: {current}")
+        msg = f"Invalid version format: {current}"
+        raise ValueError(msg)
 
     major, minor, patch = map(int, parts)
 
     if bump_type == "major":
         return f"{major + 1}.0.0"
-    elif bump_type == "minor":
+    if bump_type == "minor":
         return f"{major}.{minor + 1}.0"
-    elif bump_type == "patch":
+    if bump_type == "patch":
         return f"{major}.{minor}.{patch + 1}"
-    else:
-        raise ValueError(f"Invalid bump type: {bump_type}")
+    msg = f"Invalid bump type: {bump_type}"
+    raise ValueError(msg)
 
 
 def update_pyproject(pyproject_path: Path, old_version: str, new_version: str) -> None:
@@ -54,9 +56,8 @@ def update_pyproject(pyproject_path: Path, old_version: str, new_version: str) -
     )
 
     if content == new_content:
-        raise ValueError(
-            f"Failed to update version from {old_version} to {new_version}"
-        )
+        msg = f"Failed to update version from {old_version} to {new_version}"
+        raise ValueError(msg)
 
     pyproject_path.write_text(new_content)
     print(f"✓ Updated pyproject.toml: {old_version} → {new_version}")
@@ -71,7 +72,7 @@ def update_changelog(
         return
 
     content = changelog_path.read_text()
-    today = datetime.now().strftime("%Y-%m-%d")
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     # Create new entry
     bump_type_title = bump_type.capitalize()
