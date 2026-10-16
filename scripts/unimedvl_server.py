@@ -13,7 +13,7 @@ The server is our own code and stays under the Unlicense. It imports the
 upstream checkout at run time and does not copy it. The checkout and the
 weights keep their Apache-2.0 terms (see THIRD_PARTY_NOTICES.md).
 
-Run it with the Python of the upstream environment (Python 3.10, torch 2.5.1,
+Run it with the Python of the upstream environment (Python 3.10, torch 2.6.0,
 transformers 4.49.0, accelerate 1.7.0 and flash-attn; see
 ``scripts/medbench-model-run.sh``), from the root of a checkout at
 :data:`CODE_COMMIT`::
@@ -318,6 +318,10 @@ class UniMedVLEngine:  # pragma: no cover - needs a GPU and the 29 GB checkpoint
         started = time.perf_counter()
         os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
         os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "max_split_size_mb:512")
+        # Everything is loaded from the verified local folder; offline mode
+        # stops transformers from fetching Hub code a config might name.
+        os.environ["HF_HUB_OFFLINE"] = "1"
+        os.environ["TRANSFORMERS_OFFLINE"] = "1"
         # build_transform() opens codes/data/default.yaml relative to the
         # working directory, and the packages live in codes/.
         os.chdir(code_dir)

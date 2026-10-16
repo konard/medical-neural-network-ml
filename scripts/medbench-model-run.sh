@@ -90,10 +90,10 @@ UNIMEDVL_FILES=(
   "merges.txt 599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
 )
 # Upstream imports flash_attn_varlen_func; this prebuilt wheel matches the
-# pinned torch 2.5.1 (CUDA 12, old C++ ABI like the PyPI torch wheels).
-FLASH_ATTN_WHEEL="flash_attn-2.7.4.post1+cu12torch2.5cxx11abiFALSE-cp310-cp310-linux_x86_64.whl"
+# pinned torch 2.6.0 (CUDA 12, old C++ ABI like the PyPI torch wheels).
+FLASH_ATTN_WHEEL="flash_attn-2.7.4.post1+cu12torch2.6cxx11abiFALSE-cp310-cp310-linux_x86_64.whl"
 FLASH_ATTN_URL="https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.4.post1/${FLASH_ATTN_WHEEL//+/%2B}"
-FLASH_ATTN_SHA256="b267f80a08e516292cdd748056a2178a45b8abedf7fca123292eb17c21c8c87c"
+FLASH_ATTN_SHA256="ffe17686fa1a0f288de9eae7c32af209d32a27b037ef28614f042b377af5b15a"
 UNIMEDVL_PYTHON="${UNIMEDVL_PYTHON:-python3.10}"
 UNIMEDVL_VENV="${UNIMEDVL_VENV:-$CACHE_DIR/unimedvl-venv}"
 UNIMEDVL_ENGINE="${UNIMEDVL_ENGINE:-unimedvl}"
@@ -263,8 +263,12 @@ launch_unimedvl() {
     python="${UNIMEDVL_ECHO_PYTHON:-python3}"
   fi
   # -I: the checkout's folder is not put on sys.path implicitly; the server
-  # adds codes/ itself, after changing into the checkout.
-  (cd "$code_dir" && exec "$python" -I "$SCRIPT_DIR/unimedvl_server.py" \
+  # adds codes/ itself, after changing into the checkout. Offline mode: the
+  # weights and configs are already verified on disk, so transformers must
+  # never fetch code or files from the Hub (see the accepted advisories in
+  # scripts/audit_dependencies.py).
+  (cd "$code_dir" && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \
+    exec "$python" -I "$SCRIPT_DIR/unimedvl_server.py" \
     --engine "$UNIMEDVL_ENGINE" \
     --code-dir "$code_dir" \
     --model-dir "$UNIMEDVL_MODEL_DIR" \

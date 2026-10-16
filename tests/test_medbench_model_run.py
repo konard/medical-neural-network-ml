@@ -241,5 +241,8 @@ def test_unimedvl_pins() -> None:
     pins = [line for line in requirements.splitlines() if line and line[0] != "#"]
     assert pins
     assert all("==" in line for line in pins)
-    assert "torch==2.5.1" in pins
+    # 2.6.0 is the first torch without GHSA-53q9-r3pm-6pq6 (torch.load RCE);
+    # the flash-attn wheel has to be built for the same torch.
+    assert "torch==2.6.0" in pins
+    assert "cu12torch2.6" in script
     assert "transformers==4.49.0" in pins

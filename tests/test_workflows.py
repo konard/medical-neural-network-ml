@@ -83,9 +83,22 @@ def test_security_workflow_scans_code_actions_and_dependencies() -> None:
 
 
 def test_dependency_audit_maps_every_declared_surface() -> None:
-    """Every dependency declaration in the template must be audited."""
+    """Every dependency declaration in the template must be audited.
+
+    ``*requirements*.txt`` also matches pinned runtimes such as
+    scripts/unimedvl-requirements.txt (issue #6), which ``requirements*.txt``
+    missed, so a vulnerable torch pin was only caught by Dependency Review.
+    """
     script = (ROOT / "scripts" / "audit_dependencies.py").read_text(encoding="utf-8")
-    dependency_surfaces = [ROOT / "pyproject.toml", *ROOT.rglob("requirements*.txt")]
+    dependency_surfaces = [
+        ROOT / "pyproject.toml",
+        *(
+            path
+            for path in ROOT.rglob("*requirements*.txt")
+            if not any(part.startswith(".") for part in path.relative_to(ROOT).parts)
+        ),
+    ]
+    assert ROOT / "scripts" / "unimedvl-requirements.txt" in dependency_surfaces
 
     assert dependency_surfaces
     for surface in dependency_surfaces:
