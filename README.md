@@ -133,7 +133,8 @@ Settings → Pages → Source to GitHub Actions and the repository variable
 tracking; there is no browser application in this repository.
 
 Publishing requires a PyPI trusted publisher for this repository and package
-name. See the [delivery audit](docs/audit-2026-10-16.md). CI checks publisher
+name; [Publishing to PyPI](docs/publishing.md) lists the settings a maintainer
+enters and what CI checks before and after each upload. CI checks publisher
 credentials and refuses a release when they are not configured.
 
 ## Contributing

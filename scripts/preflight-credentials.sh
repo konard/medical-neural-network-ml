@@ -125,6 +125,9 @@ pypi_publisher_hint() {
         "$project" "$PYPI_API" "$project" "$PYPI_API"
       ;;
   esac
+  if [ -f "${PYTHON_ROOT:-.}/docs/publishing.md" ]; then
+    printf ' Steps and the first release: docs/publishing.md.'
+  fi
 }
 
 # The publishing jobs use PyPI trusted publishing (pypa/gh-action-pypi-publish

@@ -298,3 +298,29 @@ def test_the_build_job_checks_and_installs_the_distributions() -> None:
     assert manual.index("check_distribution.py dist --install") < manual.index(
         "Publish to PyPI"
     )
+
+
+def test_the_publishing_guide_matches_the_release_workflow() -> None:
+    """The publisher a maintainer registers must match what PyPI will see.
+
+    PyPI compares the OIDC token's repository, workflow file and environment
+    with the publisher; a GitHub environment on a publishing job, or a
+    renamed workflow or project, would make the documented settings wrong.
+    """
+    guide = (ROOT / "docs" / "publishing.md").read_text()
+    data = module.load_project(ROOT)
+    owner, repository = data["urls"]["Repository"].split("/")[-2:]
+    for field, value in [
+        ("PyPI Project Name", data["name"]),
+        ("Owner", owner),
+        ("Repository name", repository),
+        ("Workflow name", "release.yml"),
+    ]:
+        assert f"| {field} | `{value}` |" in guide
+    assert "| Environment name | *(blank)* |" in guide
+    workflow = (ROOT / ".github" / "workflows" / "release.yml").read_text()
+    assert "\n    environment:" not in workflow
+    publish_steps = workflow.split("pypa/gh-action-pypi-publish@")[1:]
+    assert len(publish_steps) == 2
+    for step in publish_steps:
+        assert "password" not in step.split("\n      - name:", 1)[0]

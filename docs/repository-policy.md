@@ -177,7 +177,9 @@ exchange, so:
 That failure is intentional and must not be turned into a pass: no
 `continue-on-error`, no skipped preflight, no bypass for it. It turns green
 when a maintainer registers the publisher (owner `konard`, repository
-`medical-neural-network-ml`, workflow `release.yml`, environment blank).
+`medical-neural-network-ml`, workflow `release.yml`, environment blank);
+"Publishing to PyPI" (`docs/publishing.md`) has the steps and the first
+release.
 
 ## Applying the Rulesets
 
