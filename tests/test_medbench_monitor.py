@@ -7,6 +7,7 @@ so the GPU path is tested without a GPU.
 from __future__ import annotations
 
 import json
+import os
 import signal
 import subprocess
 import sys
@@ -206,7 +207,9 @@ def test_sigterm_stops_the_command_and_still_writes_the_report(
             "sh",
             "-c",
             script,
-        ]
+        ],
+        # Keep the CI job's own step summary free of this test's row.
+        env={k: v for k, v in os.environ.items() if k != "GITHUB_STEP_SUMMARY"},
     )
     time.sleep(1.5)  # Python start-up, first sample, the shell's trap
     monitor.send_signal(signal.SIGTERM)

@@ -341,7 +341,18 @@ jobs:
           cd "$PYTHON_ROOT"
           bash scripts/run-with-budget-warning.sh \
             "$TEST_BUDGET_SECONDS" "Run tests" \
+            python -m medbench.cli monitor --out resources/test.json \
+            --label "Test (Python 3.13)" --interval 2 -- \
             pytest tests/ -v --cov=src --cov-report=xml --cov-report=term
+
+      # Peak memory, disk and wall time of the step above (issue #9).
+      - name: Upload resource report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: resources-test
+          path: ${{ steps.python_layout.outputs.root }}/resources
+          if-no-files-found: ignore
 
       - name: Report skipped Codecov upload
         if: env.CODECOV_TOKEN == ''
@@ -431,7 +442,18 @@ jobs:
       - name: Verify distributions
         run: |
           cd "$PYTHON_ROOT"
-          python scripts/check_distribution.py dist --install
+          PYTHONPATH=src python -m medbench.cli monitor \
+            --out resources/build.json --label "Verify distributions" --interval 2 -- \
+            python scripts/check_distribution.py dist --install
+
+      # Peak memory, disk and wall time of the step above (issue #9).
+      - name: Upload resource report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: resources-build
+          path: ${{ steps.python_layout.outputs.root }}/resources
+          if-no-files-found: ignore
 
       # The default `warn` lets a build with an empty dist/ pass here and only
       # fail later in the publish job (issue #4).

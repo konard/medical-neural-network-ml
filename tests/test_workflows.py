@@ -211,7 +211,7 @@ def test_docs_workflow_action_versions_are_current() -> None:
 
     assert_action_pin_count(docs_workflow, "actions/checkout", "v7", 2)
     assert_action_pin_count(docs_workflow, "actions/setup-python", "v7", 1)
-    assert_action_pin_count(docs_workflow, "actions/upload-artifact", "v7", 1)
+    assert_action_pin_count(docs_workflow, "actions/upload-artifact", "v7", 2)
     assert_action_pin_count(docs_workflow, "actions/configure-pages", "v6", 1)
     assert_action_pin_count(docs_workflow, "actions/upload-pages-artifact", "v5", 1)
     assert_action_pin_count(docs_workflow, "actions/deploy-pages", "v5", 1)

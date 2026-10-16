@@ -104,8 +104,14 @@ jobs:
         env:
           MEDBENCH_NETWORK_TESTS: '1'
         run: |
-          python -m medbench.cli fetch --out "$MEDBENCH_DATA_DIR"
-          pytest -m network tests/test_medbench_real_data.py
+          mkdir -p "$MEDBENCH_DATA_DIR"
+          python -m medbench.cli monitor --out resources/real-data-fetch.json \
+            --label "Download real samples" --interval 2 \
+            --disk "$MEDBENCH_DATA_DIR" -- \
+            python -m medbench.cli fetch --out "$MEDBENCH_DATA_DIR"
+          python -m medbench.cli monitor --out resources/real-data-verify.json \
+            --label "Verify real samples" --interval 2 -- \
+            pytest -m network tests/test_medbench_real_data.py
 
       - name: Upload attribution
         if: always()
@@ -113,6 +119,15 @@ jobs:
         with:
           name: medbench-real-data-attribution
           path: .cache/medbench-data/ATTRIBUTION.md
+          if-no-files-found: ignore
+
+      # Peak memory, disk and wall time of the step above (issue #9).
+      - name: Upload resource report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: resources-real-data
+          path: resources
           if-no-files-found: ignore
 
   cpu-smoke:
@@ -165,7 +180,8 @@ jobs:
         run: |
           bash scripts/run-with-budget-warning.sh \
             "$DOWNLOAD_BUDGET_SECONDS" "Download model" \
-            python -m medbench.cli monitor --out medbench-reports/resources-download.json -- \
+            python -m medbench.cli monitor --out medbench-reports/resources-download.json \
+            --label "Download model" -- \
             bash scripts/medbench-model-run.sh download
 
       - name: Run medical tasks on real samples
@@ -179,7 +195,8 @@ jobs:
         run: |
           bash scripts/run-with-budget-warning.sh \
             "$MEDBENCH_BUDGET_SECONDS" "Run medbench" \
-            python -m medbench.cli monitor --out "$OUT_DIR/resources-run.json" -- \
+            python -m medbench.cli monitor --out "$OUT_DIR/resources-run.json" \
+            --label "Run medbench" -- \
             bash scripts/medbench-model-run.sh run
 
       - name: Upload reports
@@ -233,7 +250,10 @@ jobs:
           for task in ocr-prescription ocr-history; do
             count=$(python -m medbench.cli sources --task "$task" \
               | python -c 'import json, sys; print(len(json.load(sys.stdin)))')
-            python -m medbench.cli run --task "$task" --backend tesseract \
+            python -m medbench.cli monitor --interval 2 \
+              --out "medbench-reports/resources-tesseract-$task.json" \
+              --label "Tesseract $task" -- \
+              python -m medbench.cli run --task "$task" --backend tesseract \
               --count "$count" --time-budget 600 \
               --out "medbench-reports/tesseract-$task.json"
           done
@@ -344,7 +364,8 @@ jobs:
         run: |
           bash scripts/run-with-budget-warning.sh \
             "$DOWNLOAD_BUDGET_SECONDS" "Download model" \
-            python -m medbench.cli monitor --out medbench-reports/resources-download.json -- \
+            python -m medbench.cli monitor --out medbench-reports/resources-download.json \
+            --label "Download model" -- \
             bash scripts/medbench-model-run.sh download
 
       - name: Run medical tasks on real samples
@@ -359,7 +380,8 @@ jobs:
         run: |
           bash scripts/run-with-budget-warning.sh \
             "$MEDBENCH_BUDGET_SECONDS" "Run medbench" \
-            python -m medbench.cli monitor --out "$OUT_DIR/resources-run.json" -- \
+            python -m medbench.cli monitor --out "$OUT_DIR/resources-run.json" \
+            --label "Run medbench" -- \
             bash scripts/medbench-model-run.sh run
 
       - name: Upload reports

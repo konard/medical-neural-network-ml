@@ -43,8 +43,25 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
 
+      # medbench is not installed here; its monitor needs only the stdlib.
       - name: Audit pyproject.toml and docs/requirements.txt
-        run: python scripts/audit_dependencies.py
+        env:
+          PYTHONPATH: src
+          RUNNER_LABEL: ${{ matrix.runner }}
+        run: |
+          python -m medbench.cli monitor --interval 2 \
+            --out "resources/dependency-audit-$RUNNER_LABEL.json" \
+            --label "Dependency audit ($RUNNER_LABEL)" -- \
+            python scripts/audit_dependencies.py
+
+      # Peak memory, disk and wall time of the step above (issue #9).
+      - name: Upload resource report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: resources-dependency-audit-${{ matrix.runner }}
+          path: resources
+          if-no-files-found: ignore
 
   codeql:
     name: CodeQL (${{ matrix.language }})

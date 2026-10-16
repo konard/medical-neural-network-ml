@@ -216,7 +216,7 @@ def test_release_workflow_action_versions_are_current() -> None:
 
     assert_action_pin_count(release_workflow, "actions/checkout", "v7", 13)
     assert_action_pin_count(release_workflow, "actions/setup-python", "v7", 7)
-    assert_action_pin_count(release_workflow, "actions/upload-artifact", "v7", 2)
+    assert_action_pin_count(release_workflow, "actions/upload-artifact", "v7", 4)
     assert_action_pin_count(release_workflow, "actions/download-artifact", "v8", 2)
     assert_action_pin_absent(release_workflow, "actions/download-artifact", "v7")
     assert_action_hash_pin(release_workflow, "codecov/codecov-action", 1)
