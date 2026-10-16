@@ -31,6 +31,29 @@ def test_extract_broken_urls_supports_lychee_markdown_and_deduplicates() -> None
     ]
 
 
+def test_extract_broken_urls_skips_redirects_and_suggestions() -> None:
+    """Redirected links work; only the errors section is broken (run 38949270174)."""
+    report = """
+## Errors per input
+
+### Errors in ./docs/publishing.md
+
+* [404] <https://example.com/missing> (at 105:4) | Rejected status code: 404
+
+## Redirects per input
+
+### Redirects in ./CONTRIBUTING.md
+
+* https://example.org/ --[302]--> https://example.org/en/latest/
+
+## Suggestions per input
+
+* https://example.net/gone --> http://web.archive.org/web/2024/https://example.net/gone
+"""
+
+    assert module.extract_broken_urls(report) == ["https://example.com/missing"]
+
+
 def test_check_wayback_machine_returns_available_https_snapshot(monkeypatch) -> None:
     """An available snapshot should be normalized to an HTTPS archive URL."""
     payload = {
