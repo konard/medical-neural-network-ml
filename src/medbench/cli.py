@@ -97,6 +97,8 @@ def _cmd_estimate(args: argparse.Namespace) -> int:
             prompt_tokens=args.prompt_tokens,
             output_tokens=args.output_tokens,
             images=args.images,
+            allocated_context=args.ctx_size,
+            concurrency=args.parallel,
         )
         rows.append(_rounded(estimate.as_dict()))
     result: dict[str, object] = {
@@ -118,7 +120,12 @@ def _cmd_estimate(args: argparse.Namespace) -> int:
         result["finetune"] = [
             _rounded(
                 estimate_finetune_memory(
-                    model, method, _HIDDEN_SIZE[model.key]
+                    model,
+                    method,
+                    _HIDDEN_SIZE[model.key],
+                    batch_size=args.batch_size,
+                    seq_len=args.seq_len,
+                    lora_rank=args.lora_rank,
                 ).as_dict()
             )
             for method in ("full", "lora", "qlora")
@@ -133,8 +140,10 @@ def _cmd_estimate(args: argparse.Namespace) -> int:
                         model.total_params,
                         args.train_tokens,
                         HARDWARE[key],
+                        gpus=args.gpus,
                         method=method,
                         price_per_hour=args.price_per_hour,
+                        scaling_efficiency=args.scaling_efficiency,
                     ).as_dict()
                 ),
             }
@@ -291,6 +300,15 @@ def build_parser() -> argparse.ArgumentParser:
     estimate.add_argument("--output-tokens", type=int, default=256)
     estimate.add_argument("--images", type=int, default=0)
     estimate.add_argument(
+        "--ctx-size",
+        type=int,
+        help="context the runtime reserves up front (llama-server --ctx-size); "
+        "default: only the tokens used",
+    )
+    estimate.add_argument(
+        "--parallel", type=int, default=1, help="requests decoded together"
+    )
+    estimate.add_argument(
         "--runtime",
         choices=sorted(RUNTIMES),
         help="runtime to check support for (default: implied by --quant)",
@@ -298,6 +316,9 @@ def build_parser() -> argparse.ArgumentParser:
     estimate.add_argument(
         "--finetune", action="store_true", help="add fine-tuning memory"
     )
+    estimate.add_argument("--batch-size", type=int, default=1, help="fine-tuning")
+    estimate.add_argument("--seq-len", type=int, default=2048, help="fine-tuning")
+    estimate.add_argument("--lora-rank", type=int, default=16, help="fine-tuning")
     estimate.add_argument(
         "--train-tokens",
         type=float,
@@ -307,6 +328,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--price-per-hour",
         type=float,
         help="your own USD per GPU-hour instead of the dated example prices",
+    )
+    estimate.add_argument("--gpus", type=int, default=1, help="GPUs per training job")
+    estimate.add_argument(
+        "--scaling-efficiency",
+        type=float,
+        help="measured share of linear multi-GPU speed-up (default: a range)",
     )
     estimate.set_defaults(func=_cmd_estimate)
 

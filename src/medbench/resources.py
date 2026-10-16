@@ -31,6 +31,7 @@ __all__ = [
     "HARDWARE",
     "MEMORY_RANGE",
     "PRICES_CHECKED",
+    "SCALING_EFFICIENCY",
     "FineTuneEstimate",
     "HardwareProfile",
     "InferenceEstimate",
@@ -69,6 +70,13 @@ BITS_PER_WEIGHT: dict[str, float] = {
 # activations. They are hypotheses to be replaced by measured peaks.
 MEMORY_RANGE = (0.9, 1.3)
 FINETUNE_RANGE = (0.8, 1.5)
+
+# Share of linear speed-up kept per added GPU when one job is spread over
+# several GPUs of one node (point, low, high). Gradient all-reduce, sharded
+# optimizer gathers (ZeRO/FSDP) and stragglers cost the rest. A hypothesis
+# until a multi-GPU run of this repository measures it; across nodes without
+# InfiniBand it can be much lower.
+SCALING_EFFICIENCY = (0.8, 0.6, 0.95)
 
 # Date the rental prices and their sources below were read.
 PRICES_CHECKED = "2026-10-16"
@@ -334,6 +342,9 @@ class InferenceEstimate:
     capacity: str = ""
     decode_tokens_per_s_range: tuple[float, float] = (0.0, 0.0)
     seconds_per_request_range: tuple[float, float] = (0.0, 0.0)
+    kv_cache_tokens: int = 0
+    concurrency: int = 1
+    aggregate_decode_tokens_per_s: float = 0.0
 
     def as_dict(self) -> dict[str, object]:
         """Return the estimate as a JSON-friendly dictionary."""
@@ -348,8 +359,17 @@ def estimate_inference(
     output_tokens: int = 256,
     images: int = 0,
     overhead_gb: float = 1.0,
+    allocated_context: int | None = None,
+    concurrency: int = 1,
 ) -> InferenceEstimate:
     """Estimate memory use and speed of one request.
+
+    By default the KV cache holds exactly the tokens a request uses. Runtimes
+    that reserve the cache up front need ``allocated_context`` instead:
+    ``llama-server --ctx-size 4096 --parallel 1`` (the pinned runner) keeps
+    room for 4096 tokens however short the prompt is, and with ``--parallel
+    N`` shares those tokens between ``N`` slots. vLLM reserves a fixed share
+    of GPU memory, which this estimate does not model.
 
     Args:
         model: Model specification.
@@ -359,6 +379,12 @@ def estimate_inference(
         output_tokens: Tokens to generate.
         images: Number of images in the prompt.
         overhead_gb: Runtime buffers, activations and framework overhead.
+        allocated_context: Context tokens the runtime reserves for all slots
+            together (``--ctx-size``), or ``None`` for the tokens used.
+        concurrency: Requests decoded together (``--parallel``). Each one
+            keeps its own KV cache; one decode step reads the weights once
+            for all of them, so ``aggregate_decode_tokens_per_s`` is an upper
+            bound that ignores the compute limit of large batches.
 
     Returns:
         The estimate. ``fits`` compares only the point estimate with the
@@ -367,18 +393,25 @@ def estimate_inference(
         not, and ``"uncertain"`` in between. Neither says that a runtime can
         load the model (see :mod:`medbench.support`).
     """
+    if concurrency < 1:
+        message = "concurrency must be at least 1"
+        raise ValueError(message)
     context = prompt_tokens + images * model.image_tokens + output_tokens
+    per_slot = context
+    if allocated_context is not None:
+        per_slot = max(context, allocated_context // concurrency)
     weights = weights_bytes(model.total_params, quant)
     if quant in model.gguf_files:
         # The pinned server loads a separate unquantized vision projector.
         # Quantizing the language model does not quantize that file.
         weights = model.gguf_files[quant] + model.gguf_files.get("mmproj-F16", 0)
-    kv_cache = kv_cache_bytes(model, context)
+    kv_cache = kv_cache_bytes(model, per_slot) * concurrency
+    used_kv = kv_cache_bytes(model, context) * concurrency
     total = weights + kv_cache + overhead_gb * GB
 
     active_bytes = weights_bytes(model.active_params, quant)
     bandwidth = hardware.bandwidth_gbs * GB * hardware.decode_efficiency
-    decode = bandwidth / (active_bytes + kv_cache)
+    decode = bandwidth / (active_bytes + used_kv)
     flops = hardware.compute_tflops * 1e12 * hardware.prefill_efficiency
     prefill = flops / (2 * model.active_params)
     vision_flops = images * 2 * model.vision_params * 4096
@@ -413,6 +446,9 @@ def estimate_inference(
         capacity=capacity,
         decode_tokens_per_s_range=(decode * slow, decode * fast),
         seconds_per_request_range=(seconds / fast, seconds / slow),
+        kv_cache_tokens=per_slot * concurrency,
+        concurrency=concurrency,
+        aggregate_decode_tokens_per_s=decode * concurrency,
     )
 
 
@@ -519,6 +555,9 @@ class TrainingEstimate:
     cost_usd: float
     cost_usd_range: tuple[float, float] = (0.0, 0.0)
     price_source: str = ""
+    gpus: int = 1
+    scaling_efficiency: float = 1.0
+    wall_clock_hours_range: tuple[float, float] = (0.0, 0.0)
 
     def as_dict(self) -> dict[str, object]:
         """Return the estimate as a JSON-friendly dictionary."""
@@ -533,6 +572,7 @@ def estimate_training(
     mfu: float = 0.35,
     method: str = "full",
     price_per_hour: float | None = None,
+    scaling_efficiency: float | None = None,
 ) -> TrainingEstimate:
     """Estimate compute, time and money for training.
 
@@ -544,18 +584,29 @@ def estimate_training(
         tokens: Training tokens ``D`` (epochs times dataset tokens).
         hardware: GPU type.
         gpus: Number of GPUs.
-        mfu: Model FLOPs utilization, the share of peak *dense* compute
-            achieved. Multi-GPU runs lose more to communication; lower it.
+        mfu: Model FLOPs utilization of one GPU, the share of peak *dense*
+            compute achieved. Sparse tensor-core FLOPS do not apply.
         method: ``"full"`` or ``"lora"``.
         price_per_hour: Your own price; default: ``hardware.price_per_hour``.
+        scaling_efficiency: Share of linear speed-up kept with ``gpus`` GPUs;
+            default: 1 for one GPU, :data:`SCALING_EFFICIENCY` otherwise.
 
     Returns:
-        The estimate.
+        The estimate. ``gpu_hours`` and the cost count every GPU for the
+        whole wall-clock time, so they grow when scaling is imperfect. The
+        ranges combine the price range with the scaling-efficiency range.
     """
     factor = 6 if method == "full" else 4
     flops = factor * params * tokens
     per_gpu = hardware.compute_tflops * 1e12 * mfu
-    gpu_hours = flops / per_gpu / 3600
+    ideal_hours = flops / per_gpu / 3600
+    if scaling_efficiency is not None:
+        efficiency = low_eff = high_eff = scaling_efficiency
+    elif gpus == 1:
+        efficiency = low_eff = high_eff = 1.0
+    else:
+        efficiency, low_eff, high_eff = SCALING_EFFICIENCY
+    gpu_hours = ideal_hours / efficiency
     if price_per_hour is None:
         price = hardware.price_per_hour
         low, high = hardware.price_range
@@ -568,6 +619,12 @@ def estimate_training(
         gpu_hours=gpu_hours,
         wall_clock_hours=gpu_hours / gpus,
         cost_usd=gpu_hours * price,
-        cost_usd_range=(gpu_hours * low, gpu_hours * high),
+        cost_usd_range=(ideal_hours / high_eff * low, ideal_hours / low_eff * high),
         price_source=source,
+        gpus=gpus,
+        scaling_efficiency=efficiency,
+        wall_clock_hours_range=(
+            ideal_hours / high_eff / gpus,
+            ideal_hours / low_eff / gpus,
+        ),
     )

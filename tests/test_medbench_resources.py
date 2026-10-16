@@ -9,6 +9,7 @@ import pytest
 from medbench.models import MODELS, get_model
 from medbench.resources import (
     HARDWARE,
+    SCALING_EFFICIENCY,
     estimate_finetune_memory,
     estimate_inference,
     estimate_training,
@@ -154,6 +155,38 @@ class TestInference:
         assert with_image.seconds_per_request > text_only.seconds_per_request
         assert with_image.kv_cache_gb > text_only.kv_cache_gb
 
+    def test_preallocated_context_reserves_the_whole_kv_cache(self) -> None:
+        """llama-server --ctx-size 4096 reserves 4096 tokens, not the 768 used."""
+        model = get_model("qwen2.5-vl-7b")
+        hardware = HARDWARE["l4-24gb"]
+        used = estimate_inference(model, hardware)
+        reserved = estimate_inference(model, hardware, allocated_context=4096)
+        assert used.kv_cache_tokens == 512 + 256
+        assert reserved.kv_cache_tokens == 4096
+        assert reserved.kv_cache_gb == pytest.approx(used.kv_cache_gb * 4096 / 768)
+        # Decoding reads only the filled part of the cache.
+        assert reserved.decode_tokens_per_s == used.decode_tokens_per_s
+        longer = estimate_inference(
+            model, hardware, prompt_tokens=8000, allocated_context=4096
+        )
+        assert longer.kv_cache_tokens == 8256
+
+    def test_parallel_requests_each_keep_a_cache(self) -> None:
+        """Four slots need four caches; together they decode faster."""
+        model = get_model("qwen2.5-vl-7b")
+        hardware = HARDWARE["a100-80gb"]
+        one = estimate_inference(model, hardware)
+        four = estimate_inference(model, hardware, concurrency=4)
+        assert four.kv_cache_gb == pytest.approx(4 * one.kv_cache_gb)
+        assert four.decode_tokens_per_s < one.decode_tokens_per_s
+        assert four.aggregate_decode_tokens_per_s > 3 * one.decode_tokens_per_s
+        shared = estimate_inference(
+            model, hardware, allocated_context=4096, concurrency=4
+        )
+        assert shared.kv_cache_tokens == 4096
+        with pytest.raises(ValueError, match="concurrency"):
+            estimate_inference(model, hardware, concurrency=0)
+
     def test_moe_decodes_with_active_parameters(self) -> None:
         """UniMedVL reads only one 7B expert per token."""
         model = get_model("unimedvl")
@@ -215,15 +248,32 @@ class TestTraining:
         assert estimate.cost_usd_range == (estimate.cost_usd, estimate.cost_usd)
         assert estimate.price_source == "user-supplied"
 
-    def test_more_gpus_shorten_wall_clock(self) -> None:
-        """Eight GPUs finish eight times sooner for the same cost."""
+    def test_more_gpus_shorten_wall_clock_but_cost_more(self) -> None:
+        """Eight GPUs finish sooner, but communication makes them cost more."""
         one = estimate_training(4e9, 1e9, HARDWARE["a100-80gb"], gpus=1, method="lora")
         eight = estimate_training(
             4e9, 1e9, HARDWARE["a100-80gb"], gpus=8, method="lora"
         )
-        assert eight.wall_clock_hours == pytest.approx(one.wall_clock_hours / 8)
-        assert eight.cost_usd == pytest.approx(one.cost_usd)
+        assert one.scaling_efficiency == 1.0
+        assert one.wall_clock_hours_range == (one.wall_clock_hours,) * 2
+        assert eight.scaling_efficiency == SCALING_EFFICIENCY[0]
+        assert eight.wall_clock_hours == pytest.approx(one.wall_clock_hours / 8 / 0.8)
+        assert eight.cost_usd == pytest.approx(one.cost_usd / 0.8)
+        fastest, slowest = eight.wall_clock_hours_range
+        assert fastest == pytest.approx(one.wall_clock_hours / 8 / 0.95)
+        assert slowest == pytest.approx(one.wall_clock_hours / 8 / 0.6)
+        assert eight.cost_usd_range[1] > one.cost_usd_range[1]
         assert one.as_dict()["flops"] == pytest.approx(4 * 4e9 * 1e9)
+
+    def test_measured_scaling_efficiency_replaces_the_hypothesis(self) -> None:
+        """Linear scaling is only assumed when the caller says so."""
+        one = estimate_training(4e9, 1e9, HARDWARE["a100-80gb"], gpus=1)
+        linear = estimate_training(
+            4e9, 1e9, HARDWARE["a100-80gb"], gpus=8, scaling_efficiency=1.0
+        )
+        assert linear.wall_clock_hours == pytest.approx(one.wall_clock_hours / 8)
+        assert linear.cost_usd == pytest.approx(one.cost_usd)
+        assert linear.wall_clock_hours_range == (linear.wall_clock_hours,) * 2
 
 
 def test_separate_vision_projector_is_included() -> None:
