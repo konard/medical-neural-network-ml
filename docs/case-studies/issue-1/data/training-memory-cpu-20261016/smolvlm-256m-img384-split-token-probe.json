@@ -1,0 +1,61 @@
+{
+  "status": "refused",
+  "started_at": "2026-10-16T19:03:16+00:00",
+  "config": {
+    "model": "HuggingFaceTB/SmolVLM-256M-Instruct",
+    "revision": "7e3e67edbbed1bf9888184d9df282b700a323964",
+    "method": "lora",
+    "batch_size": 1,
+    "seq_len": 64,
+    "image_size": 384,
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "optimizer": "torch.optim.AdamW, fp32 moments",
+    "learning_rate": 1e-05,
+    "weights_dtype": "fp32",
+    "autocast_dtype": null,
+    "gradient_checkpointing": true,
+    "steps": 3,
+    "device": "cpu",
+    "headroom": 0.1,
+    "deadline_s": 3600.0,
+    "processor_args": {},
+    "force": true
+  },
+  "versions": {
+    "python": "3.15.0",
+    "torch": "2.14.1+cpu",
+    "transformers": "5.20.1",
+    "peft": "0.21.2",
+    "accelerate": "1.15.0",
+    "bitsandbytes": null
+  },
+  "platform": "Linux-6.8.0-146-generic-x86_64-with-glibc2.39",
+  "resolved_revision": null,
+  "estimate": {
+    "method": "lora",
+    "weights_gb": 0.51297,
+    "trainable_params": 5806080.0,
+    "optimizer_and_grads_gb": 0.092897,
+    "activations_gb": 0.004719,
+    "total_gb": 2.161048,
+    "total_gb_range": [
+      1.728839,
+      3.241573
+    ],
+    "checkpoint_disk_gb": 0.081285,
+    "optimizer": "AdamW, fp32 moments",
+    "logits_gb": 0.050463
+  },
+  "device": {
+    "type": "cpu",
+    "host_available_gb": 2.073,
+    "cgroup_memory_limit_gb": 3.135369216
+  },
+  "load": {
+    "seconds": 3.3,
+    "host_peak_rss_gb": 1.97
+  },
+  "reason": "--seq-len 64 is shorter than the 1137 tokens of one image prompt (1088 of them image tokens)",
+  "ratios": null
+}

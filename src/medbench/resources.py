@@ -82,8 +82,8 @@ SCALING_EFFICIENCY = (0.8, 0.6, 0.95)
 # Bytes per token and vocabulary entry for the output logits during a training
 # step: transformers upcasts the logits to fp32 for the cross-entropy, and the
 # log-softmax and the gradients of both are alive at the backward pass, about
-# four fp32 copies. SmolLM2-135M on CPU grew 0.72 GB from 256 to 1024 tokens
-# (19 bytes per entry, docs/case-studies/issue-1/data/training-memory-cpu-
+# four fp32 copies. SmolLM2-135M on CPU grew 0.68-0.70 GB from 256 to 1024 tokens
+# (18-19 bytes per entry, docs/case-studies/issue-1/data/training-memory-cpu-
 # 20261016). Chunked or fused cross-entropy (Liger kernel, Unsloth) avoids most
 # of it; pass ``vocab_size=0`` to model those.
 LOGITS_BYTES = 16
