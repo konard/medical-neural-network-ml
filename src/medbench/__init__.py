@@ -5,6 +5,8 @@
 
 * :mod:`medbench.models` - the candidate models and their sizes;
 * :mod:`medbench.resources` - memory, speed and training-cost calculator;
+* :mod:`medbench.support` - which model, runtime, weight format and task
+  combinations are supported, and which of them were measured;
 * :mod:`medbench.hardware` - host detection and resource budgets;
 * :mod:`medbench.real_data` - real public domain and Creative Commons
   documents and scans, downloaded at test time and checked by SHA-256;

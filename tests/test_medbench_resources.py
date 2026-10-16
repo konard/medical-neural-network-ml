@@ -201,7 +201,19 @@ class TestTraining:
         estimate = estimate_training(1e9, 20e9, HARDWARE["h100-80gb"], mfu=0.5)
         assert estimate.flops == pytest.approx(1.2e20)
         assert estimate.gpu_hours == pytest.approx(1.2e20 / (989e12 * 0.5) / 3600)
-        assert estimate.cost_usd == pytest.approx(estimate.gpu_hours * 2.5)
+        assert estimate.cost_usd == pytest.approx(estimate.gpu_hours * 3.99)
+        low, high = estimate.cost_usd_range
+        assert low < estimate.cost_usd < high
+        assert "checked 2026-10-16" in estimate.price_source
+
+    def test_user_supplied_price(self) -> None:
+        """A price passed by the user replaces the dated example."""
+        estimate = estimate_training(
+            1e9, 20e9, HARDWARE["h100-80gb"], price_per_hour=2.0
+        )
+        assert estimate.cost_usd == pytest.approx(estimate.gpu_hours * 2.0)
+        assert estimate.cost_usd_range == (estimate.cost_usd, estimate.cost_usd)
+        assert estimate.price_source == "user-supplied"
 
     def test_more_gpus_shorten_wall_clock(self) -> None:
         """Eight GPUs finish eight times sooner for the same cost."""
@@ -223,3 +235,62 @@ def test_separate_vision_projector_is_included() -> None:
         get_model("medgemma-27b-it"), HARDWARE["m3-pro-18gb"], quant="Q4_K_M"
     )
     assert not large.fits
+
+
+class TestCalibration:
+    """Issue #9: estimates carry sources, dense compute and ranges."""
+
+    def test_every_rented_gpu_has_a_dated_price_source(self) -> None:
+        for profile in HARDWARE.values():
+            if profile.price_per_hour:
+                low, high = profile.price_range
+                assert low <= profile.price_per_hour <= high, profile.key
+                assert profile.price_source != "owned hardware", profile.key
+                assert profile.spec_source, profile.key
+
+    def test_compute_is_dense_not_sparse(self) -> None:
+        """Sheets quote 2:4 sparsity; the calculator must use half of it."""
+        for profile in HARDWARE.values():
+            if profile.sparse_tflops is not None:
+                assert profile.compute_tflops == pytest.approx(
+                    profile.sparse_tflops / 2, rel=0.01
+                ), profile.key
+
+    def test_memory_range_brackets_point_estimate(self) -> None:
+        estimate = estimate_inference(
+            get_model("medgemma-27b-it"), HARDWARE["rtx4090-24gb"], quant="Q4_K_M"
+        )
+        low, high = estimate.total_memory_gb_range
+        assert low < estimate.total_memory_gb < high
+        slow, fast = estimate.decode_tokens_per_s_range
+        assert slow < estimate.decode_tokens_per_s < fast
+        quick, long = estimate.seconds_per_request_range
+        assert quick < estimate.seconds_per_request < long
+
+    @pytest.mark.parametrize(
+        ("model", "hardware", "quant", "capacity"),
+        [
+            ("medgemma-4b-it", "a100-80gb", "Q4_K_M", "fits"),
+            ("medgemma-27b-it", "m3-pro-18gb", "Q4_K_M", "does-not-fit"),
+            # 18.5 GB point estimate on a 24 GB card: the high end does not fit.
+            ("medgemma-27b-it", "rtx4090-24gb", "Q4_K_M", "uncertain"),
+        ],
+    )
+    def test_capacity_uses_the_range(
+        self, model: str, hardware: str, quant: str, capacity: str
+    ) -> None:
+        estimate = estimate_inference(
+            get_model(model), HARDWARE[hardware], quant=quant, images=1
+        )
+        assert estimate.capacity == capacity
+
+    def test_finetune_reports_range_and_checkpoint_disk(self) -> None:
+        model = get_model("medgemma-27b-it")
+        full = estimate_finetune_memory(model, "full", 5376)
+        qlora = estimate_finetune_memory(model, "qlora", 5376)
+        low, high = qlora.total_gb_range
+        assert low < qlora.total_gb < high
+        assert full.checkpoint_disk_gb == pytest.approx(27.432e9 * 14 / 1e9)
+        assert qlora.checkpoint_disk_gb == pytest.approx(
+            qlora.trainable_params * 14 / 1e9
+        )

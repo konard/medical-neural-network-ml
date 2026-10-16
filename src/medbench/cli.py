@@ -1,9 +1,10 @@
-"""Command line interface: ``medbench host|estimate|generate|sources|fetch|run``.
+"""Command line interface: ``medbench host|estimate|support|generate|sources|fetch|run``.
 
 Examples::
 
     medbench host
     medbench estimate --model medgemma-27b-it --hardware a100-80gb --quant bf16
+    medbench support --model unimedvl
     medbench generate --out data/synthetic --count 4
     medbench sources --task imaging-xray
     medbench fetch --out data/real
@@ -34,9 +35,12 @@ from medbench.real_data import (
 from medbench.resources import (
     BITS_PER_WEIGHT,
     HARDWARE,
+    PRICES_CHECKED,
     estimate_finetune_memory,
     estimate_inference,
+    estimate_training,
 )
+from medbench.support import RUNTIMES, default_runtime, support_matrix, support_status
 from medbench.synthetic_cases import generate_cases
 
 __all__ = ["build_parser", "main"]
@@ -60,8 +64,20 @@ def _cmd_host(_: argparse.Namespace) -> int:
     return 0
 
 
+def _rounded(row: dict[str, object]) -> dict[str, object]:
+    def value(item: object) -> object:
+        if isinstance(item, float):
+            return round(item, 3)
+        if isinstance(item, tuple):
+            return [value(part) for part in item]
+        return item
+
+    return {key: value(item) for key, item in row.items()}
+
+
 def _cmd_estimate(args: argparse.Namespace) -> int:
     model = get_model(args.model)
+    runtime = args.runtime or default_runtime(model.key, args.quant)
     hardware_keys = [args.hardware] if args.hardware else sorted(HARDWARE)
     rows = []
     for key in hardware_keys:
@@ -73,26 +89,63 @@ def _cmd_estimate(args: argparse.Namespace) -> int:
             output_tokens=args.output_tokens,
             images=args.images,
         )
-        rows.append(
-            {
-                k: round(v, 3) if isinstance(v, float) else v
-                for k, v in estimate.as_dict().items()
-            }
-        )
-    result: dict[str, object] = {"inference": rows}
+        rows.append(_rounded(estimate.as_dict()))
+    result: dict[str, object] = {
+        "support": [
+            {"task": status.task, "status": status.status, "reason": status.reason}
+            for status in (
+                support_status(model.key, runtime, args.quant, task) for task in TASKS
+            )
+        ],
+        "runtime": runtime,
+        "note": (
+            "fits/capacity compare estimated bytes with device memory only; "
+            "'support' says whether a pinned runtime path exists and was "
+            "measured. Ranges are hypotheses until measured."
+        ),
+        "inference": rows,
+    }
     if args.finetune:
         result["finetune"] = [
-            {
-                k: round(v, 3) if isinstance(v, float) else v
-                for k, v in estimate_finetune_memory(
+            _rounded(
+                estimate_finetune_memory(
                     model, method, _HIDDEN_SIZE[model.key]
-                )
-                .as_dict()
-                .items()
-            }
+                ).as_dict()
+            )
             for method in ("full", "lora", "qlora")
         ]
+    if args.train_tokens:
+        result["training"] = [
+            {
+                "hardware": key,
+                "method": method,
+                **_rounded(
+                    estimate_training(
+                        model.total_params,
+                        args.train_tokens,
+                        HARDWARE[key],
+                        method=method,
+                        price_per_hour=args.price_per_hour,
+                    ).as_dict()
+                ),
+            }
+            for key in hardware_keys
+            if HARDWARE[key].is_gpu
+            for method in ("full", "lora")
+        ]
+        result["prices_checked"] = PRICES_CHECKED
     _print(result)
+    return 0
+
+
+def _cmd_support(args: argparse.Namespace) -> int:
+    models = (args.model,) if args.model else None
+    rows = [
+        status.as_dict()
+        for status in support_matrix(models)
+        if args.runtime is None or status.runtime == args.runtime
+    ]
+    _print(rows)
     return 0
 
 
@@ -194,9 +247,32 @@ def build_parser() -> argparse.ArgumentParser:
     estimate.add_argument("--output-tokens", type=int, default=256)
     estimate.add_argument("--images", type=int, default=0)
     estimate.add_argument(
+        "--runtime",
+        choices=sorted(RUNTIMES),
+        help="runtime to check support for (default: implied by --quant)",
+    )
+    estimate.add_argument(
         "--finetune", action="store_true", help="add fine-tuning memory"
     )
+    estimate.add_argument(
+        "--train-tokens",
+        type=float,
+        help="add training time and cost for this many tokens (GPUs only)",
+    )
+    estimate.add_argument(
+        "--price-per-hour",
+        type=float,
+        help="your own USD per GPU-hour instead of the dated example prices",
+    )
     estimate.set_defaults(func=_cmd_estimate)
+
+    support = commands.add_parser(
+        "support",
+        help="model x runtime x weight format x task support matrix",
+    )
+    support.add_argument("--model", choices=sorted(MODELS))
+    support.add_argument("--runtime", choices=sorted(RUNTIMES))
+    support.set_defaults(func=_cmd_support)
 
     generate = commands.add_parser("generate", help="write synthetic diagnosis cases")
     generate.add_argument("--out", type=Path, required=True)
