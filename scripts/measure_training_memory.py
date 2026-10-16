@@ -51,7 +51,7 @@ import struct
 import sys
 import tempfile
 import time
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -93,6 +93,9 @@ class TrainingConfig:
     device: str = "auto"
     headroom: float = 0.1
     deadline_s: float = 3600.0
+    # Image processor settings such as SmolVLM's ``do_image_splitting``: the
+    # image token count follows them, not the input image size.
+    processor_args: dict[str, Any] = field(default_factory=dict)
 
 
 class MeasurementStopped(Exception):  # noqa: N818 - a status, not a bug
@@ -288,6 +291,7 @@ def _inputs(
         text=[prompt] * config.batch_size,
         images=[[image]] * config.batch_size,
         return_tensors="pt",
+        **config.processor_args,
     )
     ids = batch["input_ids"]
     missing = config.seq_len - ids.shape[1]
@@ -619,6 +623,13 @@ def parse_args(argv: list[str] | None) -> tuple[TrainingConfig, Path, bool]:
     parser.add_argument(
         "--image-size", type=int, default=0, help="square image side, 0 = text"
     )
+    parser.add_argument(
+        "--processor-arg",
+        action="append",
+        default=[],
+        metavar="KEY=JSON",
+        help="image processor setting, e.g. do_image_splitting=false",
+    )
     parser.add_argument("--lora-rank", type=int, default=16)
     parser.add_argument("--steps", type=int, default=3)
     parser.add_argument(
@@ -651,8 +662,18 @@ def parse_args(argv: list[str] | None) -> tuple[TrainingConfig, Path, bool]:
         device=args.device,
         headroom=args.headroom,
         deadline_s=args.deadline,
+        processor_args=dict(_processor_arg(item) for item in args.processor_arg),
     )
     return config, args.out, args.force
+
+
+def _processor_arg(item: str) -> tuple[str, Any]:
+    """Split ``KEY=VALUE``; the value is JSON when it parses, else a string."""
+    key, _, raw = item.partition("=")
+    try:
+        return key, json.loads(raw)
+    except json.JSONDecodeError:
+        return key, raw
 
 
 def main(argv: list[str] | None = None) -> int:

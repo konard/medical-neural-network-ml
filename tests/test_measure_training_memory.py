@@ -200,6 +200,10 @@ def test_full_fine_tuning_defaults_to_fp32_master_weights(tmp_path: Path) -> Non
             "--lora-rank",
             "8",
             "--force",
+            "--processor-arg",
+            "do_image_splitting=false",
+            "--processor-arg",
+            "resample=bicubic",
             "--out",
             str(out),
         ]
@@ -209,6 +213,7 @@ def test_full_fine_tuning_defaults_to_fp32_master_weights(tmp_path: Path) -> Non
     assert full.autocast_dtype == "bf16"
     assert lora.weights_dtype == "bf16"
     assert lora.lora_alpha == 16
+    assert lora.processor_args == {"do_image_splitting": False, "resample": "bicubic"}
     assert force
 
 
