@@ -19,6 +19,10 @@ name: Model Tests
 #             runs when someone with write access starts the workflow by hand,
 #             so pull requests from forks can never reach that machine.
 #             Setup: docs/case-studies/issue-1/ci-and-gpu-runner.md.
+#
+# Model downloads and runs go through `medbench monitor`, which writes
+# medbench-reports/resources-*.json: peak GPU and host memory, free disk,
+# driver and CUDA versions and wall time (issues #6 and #9).
 on:
   pull_request:
     types: [opened, synchronize, reopened]
@@ -161,6 +165,7 @@ jobs:
         run: |
           bash scripts/run-with-budget-warning.sh \
             "$DOWNLOAD_BUDGET_SECONDS" "Download model" \
+            python -m medbench.cli monitor --out medbench-reports/resources-download.json -- \
             bash scripts/medbench-model-run.sh download
 
       - name: Run medical tasks on real samples
@@ -174,6 +179,7 @@ jobs:
         run: |
           bash scripts/run-with-budget-warning.sh \
             "$MEDBENCH_BUDGET_SECONDS" "Run medbench" \
+            python -m medbench.cli monitor --out "$OUT_DIR/resources-run.json" -- \
             bash scripts/medbench-model-run.sh run
 
       - name: Upload reports
@@ -328,6 +334,7 @@ jobs:
         run: |
           bash scripts/run-with-budget-warning.sh \
             "$DOWNLOAD_BUDGET_SECONDS" "Download model" \
+            python -m medbench.cli monitor --out medbench-reports/resources-download.json -- \
             bash scripts/medbench-model-run.sh download
 
       - name: Run medical tasks on real samples
@@ -342,6 +349,7 @@ jobs:
         run: |
           bash scripts/run-with-budget-warning.sh \
             "$MEDBENCH_BUDGET_SECONDS" "Run medbench" \
+            python -m medbench.cli monitor --out "$OUT_DIR/resources-run.json" -- \
             bash scripts/medbench-model-run.sh run
 
       - name: Upload reports

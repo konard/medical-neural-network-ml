@@ -1,4 +1,4 @@
-"""Command line interface: ``medbench host|estimate|support|generate|sources|review|fetch|run``.
+"""Command line interface: ``medbench host|estimate|support|...|run|monitor``.
 
 Examples::
 
@@ -11,6 +11,7 @@ Examples::
     medbench fetch --out data/real
     medbench run --task diagnosis --backend naive-bayes --count 50
     medbench run --task imaging-xray --backend openai --base-url http://127.0.0.1:8080/v1
+    medbench monitor --out resources.json -- bash scripts/medbench-model-run.sh run
 """
 
 from __future__ import annotations
@@ -31,6 +32,7 @@ from medbench.backends import (
 from medbench.benchmark import TASKS, make_task, run_task
 from medbench.hardware import BudgetExceededError, ResourceBudget, detect_host
 from medbench.models import MODELS, get_model
+from medbench.monitor import run_monitored
 from medbench.real_data import (
     Sample,
     attribution_lines,
@@ -263,6 +265,14 @@ def _cmd_run(args: argparse.Namespace) -> int:
     return int(report.stopped_early or report.items_run == 0)
 
 
+def _cmd_monitor(args: argparse.Namespace) -> int:
+    command = args.cmd[1:] if args.cmd[:1] == ["--"] else args.cmd
+    if not command:
+        msg = "monitor needs a command after --"
+        raise ValueError(msg)
+    return run_monitored(command, args.out, interval_s=args.interval, disk=args.disk)
+
+
 def build_parser() -> argparse.ArgumentParser:
     """Create the argument parser."""
     parser = argparse.ArgumentParser(
@@ -337,6 +347,18 @@ def build_parser() -> argparse.ArgumentParser:
     fetch_cmd.set_defaults(func=_cmd_fetch)
 
     _add_run_parser(commands)
+
+    monitor = commands.add_parser(
+        "monitor",
+        help="run a command and record peak GPU/host memory, disk and wall time",
+    )
+    monitor.add_argument("--out", type=Path, required=True, help="JSON report")
+    monitor.add_argument("--interval", type=float, default=5.0, help="seconds")
+    monitor.add_argument(
+        "--disk", type=Path, default=Path(), help="track free space here"
+    )
+    monitor.add_argument("cmd", nargs=argparse.REMAINDER, help="-- command ...")
+    monitor.set_defaults(func=_cmd_monitor)
     return parser
 
 
