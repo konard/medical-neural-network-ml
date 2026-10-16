@@ -279,7 +279,15 @@ def _cmd_monitor(args: argparse.Namespace) -> int:
     if not command:
         msg = "monitor needs a command after --"
         raise ValueError(msg)
-    return run_monitored(command, args.out, interval_s=args.interval, disk=args.disk)
+    summary = os.environ.get("GITHUB_STEP_SUMMARY")
+    return run_monitored(
+        command,
+        args.out,
+        interval_s=args.interval,
+        disk=args.disk,
+        label=args.label,
+        summary=Path(summary) if summary else None,
+    )
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -374,7 +382,13 @@ def build_parser() -> argparse.ArgumentParser:
     fetch_cmd.set_defaults(func=_cmd_fetch)
 
     _add_run_parser(commands)
+    _add_monitor_parser(commands)
+    return parser
 
+
+def _add_monitor_parser(
+    commands: argparse._SubParsersAction[argparse.ArgumentParser],
+) -> None:
     monitor = commands.add_parser(
         "monitor",
         help="run a command and record peak GPU/host memory, disk and wall time",
@@ -384,9 +398,11 @@ def build_parser() -> argparse.ArgumentParser:
     monitor.add_argument(
         "--disk", type=Path, default=Path(), help="track free space here"
     )
+    monitor.add_argument(
+        "--label", help="step name for the report and $GITHUB_STEP_SUMMARY"
+    )
     monitor.add_argument("cmd", nargs=argparse.REMAINDER, help="-- command ...")
     monitor.set_defaults(func=_cmd_monitor)
-    return parser
 
 
 def _add_run_parser(

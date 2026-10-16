@@ -15,6 +15,7 @@ from pathlib import Path
 
 import pytest
 
+from medbench import hardware
 from medbench.cli import main
 from medbench.monitor import (
     ResourceMonitor,
@@ -22,6 +23,7 @@ from medbench.monitor import (
     nvidia_versions,
     query_gpus,
     run_monitored,
+    summary_markdown,
 )
 
 pytestmark = pytest.mark.skipif(
@@ -91,6 +93,27 @@ def test_host_memory(meminfo: Path, tmp_path: Path) -> None:
     assert host_memory_used_gb(tmp_path / "absent") is None
 
 
+def test_macos_host_memory_comes_from_vm_stat(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """GitHub's macOS runners have no /proc/meminfo (issue #9)."""
+    monkeypatch.setattr(sys, "platform", "darwin")
+    monkeypatch.setattr(hardware, "_macos_memory", lambda: (16.0, 6.5))
+    monitor = ResourceMonitor(meminfo=tmp_path / "absent", disk=tmp_path)
+
+    monitor.sample(0.0)
+
+    assert monitor.as_dict()["host_memory"] == {
+        "baseline_used_gb": 9.5,
+        "total_gb": 16.0,
+        "peak_used_gb": 9.5,
+    }
+    monkeypatch.setattr(hardware, "_macos_memory", lambda: (0.0, 0.0))
+    monitor = ResourceMonitor(meminfo=tmp_path / "absent", disk=tmp_path)
+    monitor.sample(0.0)
+    assert monitor.as_dict()["host_memory"] == {}
+
+
 def test_monitor_keeps_peaks(nvidia_smi: str, meminfo: Path, tmp_path: Path) -> None:
     monitor = ResourceMonitor(nvidia_smi=nvidia_smi, meminfo=meminfo, disk=tmp_path)
     for second in range(3):
@@ -132,12 +155,34 @@ def test_run_passes_the_exit_code_through(
     assert report["children_max_rss_gb"] > 0
 
 
-def test_cli(tmp_path: Path) -> None:
+def test_cli(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     out = tmp_path / "r.json"
+    summary = tmp_path / "summary.md"
+    monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(summary))
     args = ["monitor", "--out", str(out), "--interval", "0.05"]
-    assert main([*args, "--", sys.executable, "-c", "pass"]) == 0
-    assert json.loads(out.read_text(encoding="utf-8"))["exit_code"] == 0
+    assert main([*args, "--label", "docs", "--", sys.executable, "-c", "pass"]) == 0
+    report = json.loads(out.read_text(encoding="utf-8"))
+    assert (report["exit_code"], report["label"]) == (0, "docs")
+    lines = summary.read_text(encoding="utf-8").splitlines()
+    assert lines[0].startswith("| Step | Wall s | Host used GB, peak |")
+    assert lines[2].startswith("| docs | 0 |")
+    assert lines[2].endswith("| 0 |")
     assert main(args) == 1
+
+
+def test_summary_row_marks_missing_counters() -> None:
+    report = {
+        "wall_seconds": 61.4,
+        "exit_code": 1,
+        "children_max_rss_gb": None,
+        "host_memory": {"peak_used_gb": 3.256, "baseline_used_gb": 1.5},
+        "gpus": [{"peak_used_mib": 20480.0}],
+        "disk": {"min_gb": None},
+    }
+
+    row = summary_markdown(report, "gpu").splitlines()[2]
+
+    assert row == "| gpu | 61 | 3.26 (baseline 1.50) | - | 20480 | - | 1 |"
 
 
 def test_sigterm_stops_the_command_and_still_writes_the_report(

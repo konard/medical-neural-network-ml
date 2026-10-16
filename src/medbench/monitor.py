@@ -3,7 +3,7 @@
 Issues #6 and #9 ask for measured numbers instead of estimates: peak GPU and
 host memory, free disk, driver and CUDA versions and the wall time of every
 model run. :func:`run_monitored` starts a command, samples ``nvidia-smi`` and
-``/proc/meminfo`` while it runs and writes one JSON report, also when the
+``/proc/meminfo`` (``sysctl``/``vm_stat`` on macOS) while it runs and writes one JSON report, also when the
 command fails or is interrupted. Only the standard library is used, so the
 monitor works before any model stack is installed.
 
@@ -12,7 +12,8 @@ Example::
     medbench monitor --out resources.json -- bash scripts/medbench-model-run.sh run
 
 Limits: host memory is the whole machine's used memory (``MemTotal`` minus
-``MemAvailable``), so other processes count too; the baseline before the
+``MemAvailable``, or macOS total minus free, inactive and speculative pages),
+so other processes count too; the baseline before the
 command started is recorded to subtract them. ``children_max_rss_gb`` is the
 largest single finished child process, not the sum of all of them. GPU
 memory is sampled, so a spike shorter than ``interval`` can be missed.
@@ -33,7 +34,9 @@ from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from types import FrameType
+from typing import Any
 
+from medbench import hardware
 from medbench.hardware import parse_meminfo
 
 __all__ = [
@@ -137,6 +140,14 @@ def host_memory_used_gb(meminfo: Path) -> tuple[float, float] | None:
     return values["MemTotal"] - values["MemAvailable"], values["MemTotal"]
 
 
+def macos_memory_used_gb() -> tuple[float, float] | None:
+    """Return ``(used, total)`` from ``sysctl``/``vm_stat`` on macOS, or ``None``."""
+    total, available = hardware._macos_memory()
+    if total <= 0:
+        return None
+    return total - available, total
+
+
 def _free_gb(path: Path) -> float | None:
     try:
         return shutil.disk_usage(path).free / 1e9
@@ -177,6 +188,8 @@ class ResourceMonitor:
         """Take one sample of every GPU, host memory and free disk."""
         self.samples += 1
         memory = host_memory_used_gb(self.meminfo)
+        if memory is None and sys.platform == "darwin":
+            memory = macos_memory_used_gb()
         if memory is not None:
             used, total = memory
             self.host.setdefault("baseline_used_gb", used)
@@ -246,6 +259,32 @@ def _stop(process: subprocess.Popen[bytes]) -> int:
     return process.wait()
 
 
+def summary_markdown(report: dict[str, Any], label: str) -> str:
+    """Return a one-row Markdown table of a report's peaks for a CI summary."""
+    host = report.get("host_memory") or {}
+    gpus = report.get("gpus") or []
+    gpu = ", ".join(f"{g['peak_used_mib']:.0f}" for g in gpus) or "-"
+    peak, baseline = host.get("peak_used_gb"), host.get("baseline_used_gb")
+    host_text = "-" if peak is None else f"{peak:.2f} (baseline {baseline:.2f})"
+    rss = report.get("children_max_rss_gb")
+    disk_min = (report.get("disk") or {}).get("min_gb")
+    cells = [
+        label,
+        f"{report['wall_seconds']:.0f}",
+        host_text,
+        "-" if rss is None else f"{rss:.2f}",
+        gpu,
+        "-" if disk_min is None else f"{disk_min:.1f}",
+        str(report["exit_code"]),
+    ]
+    return (
+        "| Step | Wall s | Host used GB, peak | Largest child RSS GB "
+        "| GPU peak MiB | Min free disk GB | Exit |\n"
+        "|---|---:|---:|---:|---:|---:|---:|\n"
+        f"| {' | '.join(cells)} |\n"
+    )
+
+
 def run_monitored(
     command: Sequence[str],
     out: Path,
@@ -254,6 +293,8 @@ def run_monitored(
     disk: Path = Path(),
     nvidia_smi: str | None = None,
     meminfo: Path = Path("/proc/meminfo"),
+    label: str | None = None,
+    summary: Path | None = None,
 ) -> int:
     """Run ``command``, sample its resource use and write ``out`` as JSON.
 
@@ -264,6 +305,9 @@ def run_monitored(
         disk: Directory whose free space is tracked (model caches live here).
         nvidia_smi: ``nvidia-smi`` path; found on ``PATH`` when omitted.
         meminfo: Host memory source.
+        label: Step name stored in the report; defaults to ``out``'s stem.
+        summary: File to append a Markdown row to, such as
+            ``$GITHUB_STEP_SUMMARY``.
 
     Returns:
         The command's exit code (``128 + signal`` when the monitor was
@@ -292,7 +336,8 @@ def run_monitored(
         signal.signal(signal.SIGTERM, previous)
     wall = time.monotonic() - start
     monitor.sample(wall)
-    report = {
+    report: dict[str, Any] = {
+        "label": label or out.stem,
         "command": list(command),
         "exit_code": exit_code,
         "interrupted_by_signal": interrupted,
@@ -307,4 +352,7 @@ def run_monitored(
     }
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    if summary is not None:
+        with summary.open("a", encoding="utf-8") as handle:
+            handle.write(summary_markdown(report, report["label"]))
     return exit_code
