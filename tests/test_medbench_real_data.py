@@ -519,9 +519,9 @@ class TestDdxplus:
 def test_ddxplus_wrong_candidate_is_not_dropped(tmp_path: Path) -> None:
     """A condition absent from this patient's reference must keep its rank."""
     task = DdxplusTask(count=1, cache_dir=tmp_path, samples=_ddxplus_files(tmp_path))
-    report = run_task(task, _constant("1. Unstable angina\n2. GERD"))
+    report = run_task(task, _constant("1. Unstable angina\n2. Stable angina\n3. GERD"))
     assert report.metrics["top1"] == 0
-    assert report.metrics["mrr"] == 0.5
+    assert report.metrics["mrr"] == pytest.approx(1 / 3)
     assert len(report.sources) == 3
 
 

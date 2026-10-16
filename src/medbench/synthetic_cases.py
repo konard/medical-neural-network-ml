@@ -405,10 +405,12 @@ def parse_ranked_diagnoses(
         candidate = _normalize(match.group(1))
         if not candidate:
             continue
-        name = lookup.get(candidate) or next(
-            (lookup[alias] for alias in by_length if alias in candidate),
-            candidate,
-        )
-        if name not in ranked:
-            ranked.append(name)
+        matched_name = lookup.get(candidate)
+        if matched_name is None:
+            matched_name = next(
+                (lookup[alias] for alias in by_length if alias in candidate),
+                candidate,
+            )
+        if matched_name not in ranked:
+            ranked.append(matched_name)
     return ranked
