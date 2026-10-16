@@ -221,7 +221,8 @@ def detect_host(root: Path = Path("/"), *, with_gpus: bool = True) -> HostInfo:
     if is_macos:
         total, available = _macos_memory()
         meminfo = {"MemTotal": total, "MemAvailable": available}
-    cgroup_limit = _cgroup_memory_limit_gb(root)
+    # macOS has no cgroups; never mix the host's Linux limits into its budget.
+    cgroup_limit = None if is_macos else _cgroup_memory_limit_gb(root)
     if cgroup_limit is not None:
         for usage_path in (
             root / "sys/fs/cgroup/memory.current",
