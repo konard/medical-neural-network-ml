@@ -182,7 +182,9 @@ jobs:
     name: GPU tests (self-hosted)
     if: github.event_name == 'workflow_dispatch' && inputs.gpu
     runs-on: [self-hosted, linux, x64, gpu]
-    timeout-minutes: 120
+    # The case study estimates roughly 51 minutes for 27B. Reserve 90 minutes
+    # for tasks, plus download/setup and time to upload partial evidence.
+    timeout-minutes: 180
     concurrency:
       group: model-${{ github.workflow }}-gpu
       cancel-in-progress: false
@@ -251,8 +253,8 @@ jobs:
 
       - name: Run medical tasks on real samples
         env:
-          MEDBENCH_BUDGET_SECONDS: 2100
-          TIME_BUDGET: 1800
+          MEDBENCH_BUDGET_SECONDS: 5700
+          TIME_BUDGET: 5400
           COUNT: ${{ inputs.count || 20 }}
           TASKS: >-
             diagnosis diagnosis-ddxplus ocr-prescription ocr-history

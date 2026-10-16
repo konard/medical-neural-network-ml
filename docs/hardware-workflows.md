@@ -47,8 +47,11 @@ runner is registered in this repository yet. Check driver
 compatibility with that CUDA release. A 16 GB T4 cannot hold the 27B Q4
 working set. Never send public pull-request code directly to a persistent
 GPU runner. CPU smoke runs three tasks; the manual GPU job includes all
-seven. The configured 30-minute GPU task budget may be too short for larger
-models; incomplete coverage now fails explicitly instead of silently passing.
+seven. The manual GPU task budget is 90 minutes, with a 95-minute outer deadline
+and a three-hour job limit for downloads, setup and artifact upload. This
+replaces a 30-minute task budget that was shorter than the historical 27B
+estimate. Actual runtime still needs measurement; incomplete coverage fails
+explicitly instead of silently passing.
 [Run and measure both large models](https://github.com/konard/medical-neural-network-ml/issues/6).
 
 ## Fine-tuning and training
