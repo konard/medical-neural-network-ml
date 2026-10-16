@@ -184,7 +184,7 @@ jobs:
     runs-on: [self-hosted, linux, x64, gpu]
     # The case study estimates roughly 51 minutes for 27B. Reserve 90 minutes
     # for tasks, plus download/setup and time to upload partial evidence.
-    timeout-minutes: 180
+    timeout-minutes: 210
     concurrency:
       group: model-${{ github.workflow }}-gpu
       cancel-in-progress: false
