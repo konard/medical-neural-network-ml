@@ -53,6 +53,19 @@ def test_parameters_are_counted_from_the_header_alone(tmp_path: Path) -> None:
     assert module.safetensors_parameters(path) == 12 + 5 + 8
 
 
+@pytest.mark.skipif(
+    not Path("/proc/self/clear_refs").exists(), reason="needs Linux /proc"
+)
+def test_the_host_peak_restarts_after_loading() -> None:
+    block = bytearray(64 * 10**6)
+    block[::4096] = b"x" * len(block[::4096])
+    with_block = module.host_peak_rss_gb()
+    del block
+
+    assert module.reset_host_peak()
+    assert module.host_peak_rss_gb() < with_block - 0.03
+
+
 def test_preflight_keeps_the_headroom_free() -> None:
     assert module.preflight(8.0, 10.0, 0.1) is None
     reason = module.preflight(9.5, 10.0, 0.1)
@@ -248,6 +261,7 @@ def test_cpu_lora_run_measures_a_tiny_model(tmp_path: Path) -> None:
     assert len(report["train"]["step_seconds"]) == 2
     assert 0 < report["train"]["trainable_params"] < report["train"]["all_params"]
     assert report["train"]["optimizer_state_gb"] > 0
+    assert report["train"]["host_peak_includes_load"] is not module.reset_host_peak()
     assert report["checkpoint"]["total_gb"] > 0
     assert report["ratios"]["trainable_params"] > 0
 

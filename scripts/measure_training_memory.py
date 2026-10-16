@@ -11,7 +11,8 @@ versions. It measures:
 - the model-loading peak (host RSS and, on CUDA, allocated and reserved
   memory);
 - the training peak over all steps, and the allocator's share of it
-  (reserved minus allocated);
+  (reserved minus allocated). On Linux the host peak is restarted after
+  loading; elsewhere ``host_peak_includes_load`` says it was not;
 - gradient and optimizer-state bytes;
 - the image tokens the processor actually inserted;
 - the disk size of a resumable checkpoint (trainable weights plus optimizer
@@ -123,6 +124,20 @@ def host_peak_rss_gb() -> float:
         pass
     peak = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
     return peak / GB if sys.platform == "darwin" else peak * 1024 / GB
+
+
+def reset_host_peak() -> bool:
+    """Restart the peak resident memory at the current value (Linux only).
+
+    Without this the training peak could never be lower than the loading
+    peak. Returns False where ``/proc/self/clear_refs`` is not writable, such
+    as on macOS, so the report can say that the peak includes loading.
+    """
+    try:
+        Path("/proc/self/clear_refs").write_text("5")
+    except OSError:
+        return False
+    return True
 
 
 def host_memory() -> dict[str, float | None]:
@@ -427,6 +442,7 @@ def measure(config: TrainingConfig, report: dict[str, Any]) -> None:
     batch = {key: value.to(device) for key, value in batch.items()}
     if device == "cuda":
         torch.cuda.reset_peak_memory_stats()
+    peak_reset = reset_host_peak()
     step_seconds, gradients = [], 0
     autocast = config.autocast_dtype
     for _ in range(config.steps):
@@ -452,6 +468,7 @@ def measure(config: TrainingConfig, report: dict[str, Any]) -> None:
         "step_seconds": step_seconds,
         "loss": round(float(loss.detach()), 4),
         "host_peak_rss_gb": round(host_peak_rss_gb(), 3),
+        "host_peak_includes_load": not peak_reset,
         "trainable_params": trainable_params,
         "all_params": sum(p.numel() for p in model.parameters()),
         "weights_gb": gigabytes(tensor_bytes(model.parameters())),
