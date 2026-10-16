@@ -426,6 +426,13 @@ jobs:
           cd "$PYTHON_ROOT"
           twine check dist/*
 
+      # License expression and files, manifest, console scripts, an offline
+      # install that runs `medbench`, and a rebuild from the sdist (issue #8).
+      - name: Verify distributions
+        run: |
+          cd "$PYTHON_ROOT"
+          python scripts/check_distribution.py dist --install
+
       # The default `warn` lets a build with an empty dist/ pass here and only
       # fail later in the publish job (issue #4).
       - name: Upload artifacts
@@ -765,6 +772,14 @@ jobs:
         run: |
           cd "$PYTHON_ROOT"
           twine check dist/*
+
+      # This job publishes its own build, so it is verified like the artifact
+      # of the Build Package job before anything reaches PyPI (issue #8).
+      - name: Verify distributions
+        if: steps.version_check.outputs.should_release == 'true'
+        run: |
+          cd "$PYTHON_ROOT"
+          python scripts/check_distribution.py dist --install
 
       - name: Publish to PyPI
         if: steps.version_check.outputs.should_release == 'true'
