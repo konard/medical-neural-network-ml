@@ -29,6 +29,7 @@ __all__ = [
     "BITS_PER_WEIGHT",
     "FINETUNE_RANGE",
     "HARDWARE",
+    "LOGITS_BYTES",
     "MEMORY_RANGE",
     "PRICES_CHECKED",
     "SCALING_EFFICIENCY",
@@ -77,6 +78,15 @@ FINETUNE_RANGE = (0.8, 1.5)
 # until a multi-GPU run of this repository measures it; across nodes without
 # InfiniBand it can be much lower.
 SCALING_EFFICIENCY = (0.8, 0.6, 0.95)
+
+# Bytes per token and vocabulary entry for the output logits during a training
+# step: transformers upcasts the logits to fp32 for the cross-entropy, and the
+# log-softmax and the gradients of both are alive at the backward pass, about
+# four fp32 copies. SmolLM2-135M on CPU grew 0.72 GB from 256 to 1024 tokens
+# (19 bytes per entry, docs/case-studies/issue-1/data/training-memory-cpu-
+# 20261016). Chunked or fused cross-entropy (Liger kernel, Unsloth) avoids most
+# of it; pass ``vocab_size=0`` to model those.
+LOGITS_BYTES = 16
 
 # Date the rental prices and their sources below were read.
 PRICES_CHECKED = "2026-10-16"
@@ -465,6 +475,7 @@ class FineTuneEstimate:
     total_gb_range: tuple[float, float] = (0.0, 0.0)
     checkpoint_disk_gb: float = 0.0
     optimizer: str = "AdamW, fp32 moments"
+    logits_gb: float = 0.0
 
     def as_dict(self) -> dict[str, object]:
         """Return the estimate as a JSON-friendly dictionary."""
@@ -489,6 +500,7 @@ def estimate_finetune_memory(
     seq_len: int = 2048,
     lora_rank: int = 16,
     gradient_checkpointing: bool = True,
+    vocab_size: int = 0,
 ) -> FineTuneEstimate:
     """Estimate GPU memory for full fine-tuning, LoRA or QLoRA.
 
@@ -505,6 +517,9 @@ def estimate_finetune_memory(
         seq_len: Tokens per sequence.
         lora_rank: LoRA rank.
         gradient_checkpointing: Recompute activations instead of storing them.
+        vocab_size: Output vocabulary; its fp32 logits and their gradients
+            (:data:`LOGITS_BYTES` per entry) dominate the activations of
+            large-vocabulary models such as Gemma 3. ``0`` leaves them out.
 
     Returns:
         The estimate.
@@ -529,7 +544,8 @@ def estimate_finetune_memory(
     # transformer layer stores roughly 34 values per hidden unit and token.
     per_layer = 2 * hidden_size * tokens * (1 if gradient_checkpointing else 34)
     activations = per_layer * layers + 34 * 2 * hidden_size * tokens
-    total = weights + optimizer + activations + 1.5 * GB
+    logits = tokens * vocab_size * LOGITS_BYTES
+    total = weights + optimizer + activations + logits + 1.5 * GB
     # A resumable checkpoint stores the trainable weights in bf16 plus fp32
     # master weights and both Adam moments (2 + 4 + 8 bytes per parameter).
     checkpoint = trainable * 14
@@ -542,6 +558,7 @@ def estimate_finetune_memory(
         total_gb=total / GB,
         total_gb_range=(total / GB * FINETUNE_RANGE[0], total / GB * FINETUNE_RANGE[1]),
         checkpoint_disk_gb=checkpoint / GB,
+        logits_gb=logits / GB,
     )
 
 

@@ -9,6 +9,7 @@ import pytest
 from medbench.models import MODELS, get_model
 from medbench.resources import (
     HARDWARE,
+    LOGITS_BYTES,
     SCALING_EFFICIENCY,
     estimate_finetune_memory,
     estimate_inference,
@@ -200,7 +201,7 @@ class TestFineTune:
     """Fine-tuning memory."""
 
     def test_methods_are_ordered(self) -> None:
-        """Full > LoRA > QLoRA, and QLoRA 27B fits a 24 GB card."""
+        """Full > LoRA > QLoRA; QLoRA 27B fits 24 GB without full logits."""
         model = get_model("medgemma-27b-it")
         full = estimate_finetune_memory(model, "full", hidden_size=5376)
         lora = estimate_finetune_memory(model, "lora", hidden_size=5376)
@@ -219,6 +220,23 @@ class TestFineTune:
         )
         assert stored.activations_gb > 10 * saved.activations_gb
         assert saved.as_dict()["method"] == "lora"
+
+    def test_large_vocabularies_add_fp32_logits(self) -> None:
+        """Gemma 3's 262k vocabulary costs GBs per step (issue #9).
+
+        QLoRA on 27B fits 24 GB only while the logits are small or chunked.
+        """
+        model = get_model("medgemma-27b-it")
+        chunked = estimate_finetune_memory(model, "qlora", 5376)
+        full = estimate_finetune_memory(model, "qlora", 5376, vocab_size=262208)
+        short = estimate_finetune_memory(
+            model, "qlora", 5376, seq_len=512, vocab_size=262208
+        )
+        assert chunked.logits_gb == 0
+        assert full.logits_gb == pytest.approx(2048 * 262208 * LOGITS_BYTES / 1e9)
+        assert full.total_gb - chunked.total_gb == pytest.approx(full.logits_gb)
+        assert chunked.total_gb < 24 < full.total_gb
+        assert short.total_gb < 24
 
     def test_unknown_method(self) -> None:
         """Only full, lora and qlora are supported."""

@@ -205,14 +205,16 @@ def estimate(config: TrainingConfig, model_config: Any, params: float) -> Any:
     from medbench.resources import estimate_finetune_memory
 
     spec = model_spec(model_config, config.model, params, config.image_size > 0)
+    text = text_config(model_config)
     return estimate_finetune_memory(
         spec,
         config.method,
-        text_config(model_config).hidden_size,
+        text.hidden_size,
         batch_size=config.batch_size,
         seq_len=config.seq_len,
         lora_rank=config.lora_rank,
         gradient_checkpointing=config.gradient_checkpointing,
+        vocab_size=getattr(text, "vocab_size", 0),
     )
 
 

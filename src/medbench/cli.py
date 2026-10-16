@@ -63,6 +63,16 @@ _HIDDEN_SIZE = {
     "qwen2.5-vl-7b": 3584,
 }
 
+# Output vocabulary of the language model (config.json ``vocab_size``), for
+# the fp32 logits of a training step.
+_VOCAB_SIZE = {
+    "medgemma-4b-it": 262208,
+    "medgemma-27b-it": 262208,
+    "medgemma-27b-text-it": 262144,
+    "unimedvl": 152064,
+    "qwen2.5-vl-7b": 152064,
+}
+
 
 def _print(data: object) -> None:
     sys.stdout.write(json.dumps(data, indent=2) + "\n")
@@ -126,6 +136,7 @@ def _cmd_estimate(args: argparse.Namespace) -> int:
                     batch_size=args.batch_size,
                     seq_len=args.seq_len,
                     lora_rank=args.lora_rank,
+                    vocab_size=_VOCAB_SIZE[model.key],
                 ).as_dict()
             )
             for method in ("full", "lora", "qlora")

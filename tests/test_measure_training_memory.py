@@ -76,6 +76,7 @@ def test_the_estimate_uses_the_config_of_the_measured_model() -> None:
     # 30 layers x 7 projections x 2 matrices x 576 x rank 8 x 1.5.
     assert estimate.trainable_params == pytest.approx(30 * 7 * 2 * 576 * 8 * 1.5)
     assert estimate.total_gb_range[0] < estimate.total_gb < estimate.total_gb_range[1]
+    assert estimate.logits_gb == pytest.approx(256 * 49152 * 16 / 1e9)
 
 
 def test_multimodal_configs_are_sized_by_their_language_model() -> None:
