@@ -26,6 +26,10 @@
 # experiments/issue19_unimedvl_cpu_smoke.py runs upstream's chat() on the CPU
 # with a tiny random model and generates the same tokens on these pins as on
 # the previous ones (torch 2.6.0, transformers 4.49.0, numpy 1.24.4).
+# opencv-python 5: upstream calls OpenCV only in motion_blur_opencv (a training
+# augmentation nothing calls); OpenCV 5 interpolates float images exactly
+# where 4.x rounded to 1/32 pixel, so its blur differs by at most one grey
+# level off the axes (experiments/issue19_unimedvl_opencv_probe.py).
 # The advisories left in torch and transformers are accepted one by one, with
 # the reason they do not apply, in scripts/audit_dependencies.py.
 torch==2.8.0
