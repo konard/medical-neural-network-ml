@@ -49,6 +49,10 @@ updates:
       - /docs
     exclude-paths:
       - scripts/unimedvl-requirements.*
+    # Raise each floor to the new release (the default only widens a range
+    # that already admits it), so the dev extra's ruff and mypy move with the
+    # hook revisions and every floor stays the latest release.
+    versioning-strategy: increase
     patterns:
       - '*'
     multi-ecosystem-group: python

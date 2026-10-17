@@ -74,6 +74,20 @@ def test_dependabot_moves_python_and_its_hooks_together() -> None:
         assert "schedule" not in block, ecosystem
 
 
+def test_dependabot_raises_the_pip_floors_with_the_hooks() -> None:
+    """A new ruff or mypy moves the hook rev and the dev extra's floor at once.
+
+    By default Dependabot treats this package as a library and only widens a
+    range that already admits the new release: ``ruff>=0.17.1,<0.18`` stays
+    put for 0.17.2 while the hook goes to v0.17.2, and the "same version"
+    tests fail in the group's own pull request. ``increase`` raises the floor
+    to the new release, which also keeps every floor at the latest
+    (issue #19).
+    """
+    pip = dependabot_entries()["pip"]
+    assert "    versioning-strategy: increase\n" in pip
+
+
 def test_dependabot_leaves_the_coupled_unimedvl_pins_alone() -> None:
     """torch must move with the hash-pinned flash-attn wheel, not on its own.
 
