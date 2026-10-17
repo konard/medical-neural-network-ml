@@ -20,8 +20,8 @@ commit status can satisfy them):
 
 | Check | Workflow | Covers |
 |---|---|---|
-| `Pipeline Status (CI/CD)` | `release.yml` | lint, format, secret scan, docs validation, Python 3.13 tests, build, changelog fragment, Docker build, release preflight (report mode) |
-| `Pipeline Status (Compatibility)` | `compatibility.yml` | runtime tests on Python 3.9 (Linux), full suite on Python 3.12 (macOS arm64) |
+| `Pipeline Status (CI/CD)` | `release.yml` | lint, format, secret scan, docs validation, Python 3.15 tests, build, changelog fragment, Docker build, release preflight (report mode) |
+| `Pipeline Status (Compatibility)` | `compatibility.yml` | full suite on Python 3.11–3.14 (Linux) and Python 3.15 (macOS arm64) |
 | `Pipeline Status (Security)` | `security.yml` | `pip-audit` of every dependency surface, CodeQL (Python and Actions), Dependency Review, Dependency graph, branch rulesets |
 
 A gate observes every other job of its workflow with `if: always()`, so a
@@ -118,16 +118,23 @@ fail.
 Every `uses:` names a full commit hash with the release in a comment
 (`actions/checkout@3d3c42e… # v7.0.1`); zizmor's `hash-pin` policy enforces
 it, and its `ref-version-mismatch` audit checks that the comment matches the
-hash. `.github/dependabot.yml` opens weekly, grouped update pull requests
-for actions and for the Python dependencies in `pyproject.toml` and
-`docs/requirements.txt`, after a seven-day cooldown. Those pull requests run
-the same required checks and need the same review: read the release notes,
-check that the runner image and Python versions are still supported, and
-let `pip-audit` and Dependency Review run.
+hash. `.github/dependabot.yml` opens weekly update pull requests after a
+seven-day cooldown: one grouped pull request for the actions, and one for
+the Python dependencies in `pyproject.toml` and `docs/requirements.txt`
+together with the `.pre-commit-config.yaml` hooks (a multi-ecosystem group,
+because the hooks pin the same ruff, mypy and pillow as the `dev` extra).
+Those pull requests run the same required checks and need the same review:
+read the release notes, check that the runner image and Python versions are
+still supported, and let `pip-audit` and Dependency Review run.
+`pre-commit run check-dependabot` validates the file against its schema.
 
-`scripts/unimedvl-requirements.txt` is not updated by Dependabot: its torch
-pin has to match the hash-pinned flash-attn wheel. `pip-audit` still checks
-it on every run (`scripts/audit_dependencies.py`).
+`scripts/unimedvl-requirements.in` and its lock
+`scripts/unimedvl-requirements.txt` are excluded from Dependabot
+(`exclude-paths`): the torch pin has to match the hash-pinned flash-attn
+wheel and upstream UniMedVL's code, so they are updated by hand with
+`uv pip compile` (the command is in the `.in` header) and checked with
+`experiments/issue19_unimedvl_cpu_smoke.py`. `pip-audit` still checks the
+lock on every run (`scripts/audit_dependencies.py`).
 
 GitHub can also reject any workflow that uses an action by tag
 (Settings → Actions → General → "Require actions to be pinned to a full-length

@@ -30,3 +30,11 @@ repos:
         # checks a different surface under the package's Python target.
         pass_filenames: false
         args: [--strict, --ignore-missing-imports, src/]
+
+  # Dependabot only reports a broken .github/dependabot.yml in its own logs,
+  # so check the file (and the workflows) against SchemaStore before commit.
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.38.2
+    hooks:
+      - id: check-dependabot
+      - id: check-github-workflows
