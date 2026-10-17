@@ -85,7 +85,9 @@ def top_k_accuracy(
     """Share of cases whose true answer is among the first ``k`` guesses."""
     if not truths:
         return 0.0
-    hits = sum(truth in ranking[:k] for truth, ranking in zip(truths, rankings))
+    hits = sum(
+        truth in ranking[:k] for truth, ranking in zip(truths, rankings, strict=True)
+    )
     return hits / len(truths)
 
 
@@ -96,7 +98,7 @@ def mean_reciprocal_rank(
     if not truths:
         return 0.0
     total = 0.0
-    for truth, ranking in zip(truths, rankings):
+    for truth, ranking in zip(truths, rankings, strict=True):
         if truth in ranking:
             total += 1 / (list(ranking).index(truth) + 1)
     return total / len(truths)
@@ -116,7 +118,7 @@ class BinaryCounts:
         cls, truths: Sequence[bool], predictions: Sequence[bool]
     ) -> BinaryCounts:
         """Count agreements between truths and predictions."""
-        pairs = list(zip(truths, predictions))
+        pairs = list(zip(truths, predictions, strict=True))
         return cls(
             true_positive=sum(t and p for t, p in pairs),
             false_positive=sum((not t) and p for t, p in pairs),
@@ -153,8 +155,8 @@ def auroc(truths: Sequence[bool], scores: Sequence[float]) -> float:
 
     Ties count as one half. Returns 0.5 when one of the classes is missing.
     """
-    positives = [s for t, s in zip(truths, scores) if t]
-    negatives = [s for t, s in zip(truths, scores) if not t]
+    positives = [s for t, s in zip(truths, scores, strict=True) if t]
+    negatives = [s for t, s in zip(truths, scores, strict=True) if not t]
     if not positives or not negatives:
         return 0.5
     wins = 0.0
@@ -168,8 +170,8 @@ def _overlap(
     a: Sequence[Sequence[int]], b: Sequence[Sequence[int]]
 ) -> tuple[int, int, int]:
     inter = size_a = size_b = 0
-    for row_a, row_b in zip(a, b):
-        for x, y in zip(row_a, row_b):
+    for row_a, row_b in zip(a, b, strict=True):
+        for x, y in zip(row_a, row_b, strict=True):
             inter += bool(x and y)
             size_a += bool(x)
             size_b += bool(y)
@@ -206,13 +208,15 @@ def expected_calibration_error(
     totals = [0] * bins
     confidence_sums = [0.0] * bins
     correct_sums = [0] * bins
-    for confidence, is_correct in zip(confidences, correct):
+    for confidence, is_correct in zip(confidences, correct, strict=True):
         index = min(bins - 1, int(confidence * bins))
         totals[index] += 1
         confidence_sums[index] += confidence
         correct_sums[index] += bool(is_correct)
     error = 0.0
-    for total, conf_sum, corr_sum in zip(totals, confidence_sums, correct_sums):
+    for total, conf_sum, corr_sum in zip(
+        totals, confidence_sums, correct_sums, strict=True
+    ):
         if total:
             error += total / len(confidences) * abs(conf_sum / total - corr_sum / total)
     return error
@@ -260,4 +264,8 @@ def wilson_interval(
     centre = (p + z * z / (2 * total)) / denominator
     half = z * math.sqrt(p * (1 - p) / total + z * z / (4 * total * total))
     half /= denominator
-    return (max(0.0, centre - half), min(1.0, centre + half))
+    # All right (or all wrong) puts a bound exactly on 1 (or 0), which the
+    # closed form only reaches up to rounding, so set those bounds directly.
+    low = 0.0 if successes == 0 else max(0.0, centre - half)
+    high = 1.0 if successes == total else min(1.0, centre + half)
+    return (low, high)

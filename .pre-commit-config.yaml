@@ -1,6 +1,8 @@
+# Captured CI logs and case-study data are evidence; keep them byte-for-byte.
+exclude: ^(dev/log/|docs/case-studies/.+/data/)
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -11,18 +13,28 @@ repos:
       - id: debug-statements
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.8.6
+    rev: v0.17.1
     hooks:
-      - id: ruff
+      - id: ruff-check
         args: [--fix, --exit-non-zero-on-fix]
       - id: ruff-format
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.13.0
+    rev: v2.4.0
     hooks:
       - id: mypy
-        additional_dependencies: [pytest, pytest-asyncio]
+        # src/ imports pillow (lazily); CI's mypy sees its types through the
+        # dev extra, so the hook installs the same version (issue #19).
+        additional_dependencies: [pillow==13.0.0]
         # Match CI's package boundary. Passing staged script/test filenames
-        # checks a different surface under the package's Python 3.9 target.
+        # checks a different surface under the package's Python target.
         pass_filenames: false
         args: [--strict, --ignore-missing-imports, src/]
+
+  # Dependabot only reports a broken .github/dependabot.yml in its own logs,
+  # so check the file (and the workflows) against SchemaStore before commit.
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.38.2
+    hooks:
+      - id: check-dependabot
+      - id: check-github-workflows

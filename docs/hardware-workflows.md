@@ -10,8 +10,8 @@ UniMedVL, any GPU training) have not been run, so their rows remain targets.
 
 | Workflow | Compute and storage | Other requirements |
 | --- | --- | --- |
-| `release.yml`: lint, tests, package build | Ubuntu x86_64 CPU, 4 vCPU / 16 GB RAM / 14 GB runner disk; no model weights | Python 3.13; registry access for dependencies |
-| `compatibility.yml` | Runtime tests on Ubuntu/Python 3.9; full suite on arm64 `macos-15`/Python 3.12 | No model or dataset downloads; loopback HTTP for fake-server tests |
+| `release.yml`: lint, tests, package build | Ubuntu x86_64 CPU, 4 vCPU / 16 GB RAM / 14 GB runner disk; no model weights | Python 3.15; registry access for dependencies |
+| `compatibility.yml` | Full suite on `ubuntu-26.04`/Python 3.11–3.14 and on arm64 `macos-26`/Python 3.15 | No model or dataset downloads; loopback HTTP for fake-server tests |
 | `security.yml` | Linux CodeQL, dependency graph/review; resolved-dependency audits on Linux and arm64 macOS | Mac audit includes MLX dependencies that Linux environment markers omit; allow several GB of temporary disk for two isolated environments |
 | `workflows.yml` | Ubuntu CPU; Docker for the pinned actionlint image, zizmor CLI | Read-only GitHub token for online audits |
 | `links.yml` | Ubuntu CPU; network-bound | Live source access, retries, rate limits; a broken live link still fails even when an archive exists |
@@ -56,7 +56,7 @@ label does not establish that Metal model inference is available.
 | MedGemma 4B, native MLX | 18 GiB Mac with sufficient free RAM; at least ~6.5 GB reclaimable for the 70% preflight, 8 GB model ceiling | 2.995 GB checkpoint + 1.5 GB minimum buffer allowance; not run on this busy Mac |
 | MedGemma 27B Q4_K_M, llama.cpp CUDA | NVIDIA 24 GB VRAM recommended, 32 GB+ host RAM, 50 GB free disk | 16.547 GB language file + 0.858 GB projector, plus cache/buffers. GPU workflow exists, measurements outstanding |
 | MedGemma 27B bf16 | 80 GB GPU is a conservative initial target | About 55 GB weights alone. A simple arithmetic fit on 64 GB does not prove runtime capacity |
-| UniMedVL bf16 | Dedicated CUDA host; start with 40 GB+ VRAM, 64 GB+ host RAM, 80 GB free disk | About 29.2 GB weights. `scripts/unimedvl_server.py` serves the pinned upstream code (commit `f51aa0a`) and weights (revision `29918ce`) in an isolated Python 3.10 environment; not yet run on a GPU. 40 GB is an unverified lower target; 80 GB provides more headroom |
+| UniMedVL bf16 | Dedicated CUDA host; start with 40 GB+ VRAM, 64 GB+ host RAM, 80 GB free disk | About 29.2 GB weights. `scripts/unimedvl_server.py` serves the pinned upstream code (commit `f51aa0a`) and weights (revision `29918ce`) in an isolated Python 3.13 environment; not yet run on a GPU. 40 GB is an unverified lower target; 80 GB provides more headroom |
 
 All model runs must record context, image resolution, output length, batch,
 concurrency and runtime version. Doubling these can change capacity. The

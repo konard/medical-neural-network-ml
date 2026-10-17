@@ -5,6 +5,8 @@ Tests for the my_package module.
 
 from __future__ import annotations
 
+import time
+
 import pytest
 
 from my_package import add, delay, multiply
@@ -56,8 +58,6 @@ class TestDelay:
     @pytest.mark.asyncio
     async def test_delay(self) -> None:
         """Test async delay function."""
-        import time
-
         start = time.time()
         await delay(0.1)
         elapsed = time.time() - start

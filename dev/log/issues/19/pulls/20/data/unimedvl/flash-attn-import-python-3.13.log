@@ -1,0 +1,4 @@
+python 3.13.16
+torch 2.8.0+cu128 12.8 abi True
+flash_attn 2.8.3.post2 /tmp/unimedgpu313/venv/lib/python3.13/site-packages/flash_attn_2_cuda.cpython-313-x86_64-linux-gnu.so
+exit 0

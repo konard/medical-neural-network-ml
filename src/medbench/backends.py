@@ -267,7 +267,9 @@ class OpenAICompatibleBackend:
             with urllib.request.urlopen(request, timeout=self.timeout_s) as response:
                 data = json.loads(response.read().decode())
         except urllib.error.HTTPError as error:
-            raise _http_error(error) from error
+            failure = _http_error(error)
+            error.close()  # an error answer holds its connection until closed
+            raise failure from error
         except OSError as error:  # URLError, timeouts and refused connections
             raise self._network_error(error) from error
         latency = time.perf_counter() - start

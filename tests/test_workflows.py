@@ -104,9 +104,9 @@ def test_dependency_audit_maps_every_declared_surface() -> None:
     assert dependency_surfaces
     for surface in dependency_surfaces:
         relative_surface = surface.relative_to(ROOT).as_posix()
-        assert (
-            relative_surface in script
-        ), f"Dependency surface {relative_surface!r} has no audit mapping"
+        assert relative_surface in script, (
+            f"Dependency surface {relative_surface!r} has no audit mapping"
+        )
 
 
 def test_links_workflow_fails_for_every_broken_live_link() -> None:
@@ -332,9 +332,9 @@ def test_step_deadlines_expire_before_the_job_timeout_they_sit_under() -> None:
                 continue
 
             cap_minutes = job_timeout_minutes(block)
-            assert (
-                cap_minutes is not None
-            ), f"{path.name}: job `{job_name}` budgets a step but declares no cap"
+            assert cap_minutes is not None, (
+                f"{path.name}: job `{job_name}` budgets a step but declares no cap"
+            )
             checked += len(deadlines)
 
             cap_seconds = cap_minutes * 60
@@ -453,6 +453,26 @@ def test_workflow_lint_job_validates_every_workflow() -> None:
     assert ignored == ['unexpected key "queue" for "concurrency" section']
 
 
+def test_actionlint_extra_runner_labels_are_in_use() -> None:
+    """Hosted labels added for an outdated actionlint must still be needed.
+
+    actionlint 1.7.12 does not know ``ubuntu-26.04`` (rhysd/actionlint#682),
+    so .github/actionlint.yaml lists it next to the self-hosted ``gpu`` label
+    (issue #19). A label listed there but used by no workflow is a stale
+    workaround that would hide a typo in a future ``runs-on``.
+    """
+    config = (WORKFLOWS.parent / "actionlint.yaml").read_text(encoding="utf-8")
+    section = config.split("self-hosted-runner:", 1)[1].split("\npaths:", 1)[0]
+    labels = re.findall(r"^    - (\S+)$", section, re.MULTILINE)
+    workflows = "\n".join(
+        path.read_text(encoding="utf-8") for path in WORKFLOWS.glob("*.y*ml")
+    )
+
+    assert labels[0] == "gpu"
+    for label in labels:
+        assert re.search(rf"\b{re.escape(label)}\b(?!-)", workflows), label
+
+
 def test_workflow_audit_job_runs_zizmor() -> None:
     """zizmor has to run in CI next to actionlint, or its findings never surface.
 
@@ -511,9 +531,9 @@ def test_zizmor_reproduction_covers_dependabot() -> None:
     scan_path = PurePosixPath(arguments[-1])
     dependabot_path = PurePosixPath(".github/dependabot.yml")
 
-    assert (
-        scan_path in dependabot_path.parents
-    ), f"local scan of {scan_path} misses {dependabot_path}, which CI audits"
+    assert scan_path in dependabot_path.parents, (
+        f"local scan of {scan_path} misses {dependabot_path}, which CI audits"
+    )
 
 
 def test_zizmor_config_requires_hash_pins_for_every_action() -> None:
@@ -545,12 +565,12 @@ def test_every_action_is_hash_pinned_with_its_release_in_a_comment() -> None:
             if not match or match.group(1).startswith(("./", "docker://")):
                 continue
             references += 1
-            assert re.fullmatch(
-                r"[\w.-]+/[\w./-]+@[0-9a-f]{40}", match.group(1)
-            ), f"{path.name}:{number} is not pinned to a commit: {line.strip()}"
-            assert re.fullmatch(
-                r"\s+# v\d+\.\d+\.\d+", match.group(2)
-            ), f"{path.name}:{number} lacks a '# vX.Y.Z' comment: {line.strip()}"
+            assert re.fullmatch(r"[\w.-]+/[\w./-]+@[0-9a-f]{40}", match.group(1)), (
+                f"{path.name}:{number} is not pinned to a commit: {line.strip()}"
+            )
+            assert re.fullmatch(r"\s+# v\d+\.\d+\.\d+", match.group(2)), (
+                f"{path.name}:{number} lacks a '# vX.Y.Z' comment: {line.strip()}"
+            )
     assert references > 50
 
 
@@ -571,18 +591,18 @@ def test_every_checkout_declares_credential_persistence() -> None:
                 continue
             checkouts += 1
             step = "\n".join(lines[index : index + 6])
-            assert (
-                "persist-credentials:" in step
-            ), f"{path.name}:{index + 1} checkout does not set persist-credentials"
+            assert "persist-credentials:" in step, (
+                f"{path.name}:{index + 1} checkout does not set persist-credentials"
+            )
             if "persist-credentials: true" in step:
                 persisting.append(f"{path.name}:{index + 1}")
 
     assert checkouts > 0, "no checkout steps were inspected"
     # Only the job that pushes the version bump commit needs the token wired
     # into the remote; every other checkout only reads the tree.
-    assert (
-        len(persisting) == 1
-    ), f"only the pushing checkout may persist credentials, saw {persisting}"
+    assert len(persisting) == 1, (
+        f"only the pushing checkout may persist credentials, saw {persisting}"
+    )
     manual_release = workflow_job_block(read_workflow("release.yml"), "manual-release")
     assert "persist-credentials: true" in manual_release
 

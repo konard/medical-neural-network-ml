@@ -53,7 +53,7 @@ import sys
 import tempfile
 import time
 from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -578,7 +578,7 @@ def run(config: TrainingConfig, out: Path, *, force: bool = False) -> int:
     """Measure ``config``, write ``out`` and return the exit code."""
     report: dict[str, Any] = {
         "status": "started",
-        "started_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "started_at": datetime.now(UTC).isoformat(timespec="seconds"),
         "config": {**asdict(config), "force": force},
         "versions": versions(),
         "platform": platform.platform(),

@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling>=1.32.4"]
 build-backend = "hatchling.build"
 
 [project]
@@ -9,7 +9,7 @@ description = "Medical model benchmarks, resource estimates and research tools"
 readme = "README.md"
 license = "Unlicense"
 license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 authors = [
     {name = "Konard"},
 ]
@@ -18,34 +18,36 @@ classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "ruff>=0.8.0,<0.9",
-    "mypy>=1.13.0,<2.0",
-    "pytest>=8.3.0",
-    "pytest-asyncio>=0.24.0",
-    "pytest-cov>=6.0.0",
-    "pre-commit>=4.0.0",
-    "scriv[toml]>=1.7.0",
-    "pillow>=10.1",
+    "ruff>=0.17.1,<0.18",
+    "mypy>=2.4.0",
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+    "pytest-cov>=7.1.0",
+    "pre-commit>=4.7.0",
+    "scriv[toml]>=1.8.0",
+    "pillow>=13.0.0",
 ]
 imaging = [
-    "pillow>=10.1",
+    "pillow>=13.0.0",
 ]
 mlx = [
-    "mlx-vlm==0.7.8; sys_platform == 'darwin' and platform_machine == 'arm64' and python_version >= '3.10'",
+    "mlx-vlm==0.7.8; sys_platform == 'darwin' and platform_machine == 'arm64'",
 ]
+# Sphinx 9.1 needs Python 3.12 or newer, so this extra does too (issue #19);
+# docs.yml builds on 3.15.
 docs = [
-    "sphinx>=7.4",
-    "furo>=2024.8.6",
-    "myst-parser>=3.0",
+    "sphinx>=9.1.0",
+    "furo>=2025.12.19",
+    "myst-parser>=5.1.0",
 ]
 
 [project.scripts]
@@ -68,7 +70,10 @@ include = ["/src", "/CHANGELOG.md"]
 
 [tool.ruff]
 line-length = 88
-target-version = "py39"
+target-version = "py311"
+# ruff 0.16+ also formats Python blocks in Markdown. Captured CI logs and
+# case-study data are evidence, as in .pre-commit-config.yaml's exclude.
+extend-exclude = ["dev/log", "docs/case-studies/**/data"]
 
 [tool.ruff.lint]
 select = [
@@ -97,16 +102,24 @@ select = [
     "ERA",    # eradicate
     "PL",     # pylint
     "PERF",   # perflint
+    "NPY",    # NumPy 2 API (NPY201 is the migration guide's own check)
     "RUF",    # ruff-specific rules
 ]
 ignore = [
     "E501",   # line too long (handled by formatter)
     "PLR0913", # too many arguments
+    "PLR0917", # too many positional arguments (same policy as PLR0913)
     "PLR2004", # magic value comparison
     "ISC001", # conflicts with the formatter's implicit string concatenation
 ]
 
 [tool.ruff.lint.per-file-ignores]
+# Optional heavy dependencies (torch, transformers, mlx, PIL, accelerate,
+# huggingface_hub) and Unix-only modules are imported inside the function that
+# needs them, so the package and the scripts import without those extras.
+"{src/medbench/backends.py,src/medbench/cli.py,src/medbench/mlx_backend.py,src/medbench/monitor.py,src/medbench/real_data.py,scripts/measure_training_memory.py,scripts/medbench-mlx-run.py,scripts/unimedvl_server.py,experiments/issue19_unimedvl_cpu_smoke.py}" = [
+    "PLC0415", # import-outside-top-level
+]
 "tests/**/*.py" = [
     "S101",    # allow assert in tests
     "ARG",     # allow unused arguments in tests
@@ -120,7 +133,7 @@ line-ending = "lf"
 skip-magic-trailing-comma = false
 
 [tool.mypy]
-python_version = "3.9"
+python_version = "3.11"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
@@ -137,18 +150,22 @@ extra_checks = true
 # Optional numerical packages can have stubs for newer Python versions than
 # our runtime target. Check our typed adapter boundary without traversing them.
 module = [
-    "torch", "transformers", "peft", "huggingface_hub", "mlx.*", "mlx_vlm.*",
-    "numpy", "numpy.*",
+    "torch", "transformers", "mlx.*", "mlx_vlm.*", "numpy", "numpy.*",
 ]
 ignore_missing_imports = true
 follow_imports = "skip"
 follow_imports_for_stubs = true
 
-[tool.pytest.ini_options]
-minversion = "7.0"
-addopts = "-ra -q --strict-markers"
+# pytest 9's native TOML table. `strict` turns on every strictness option
+# (unknown config keys, unregistered markers, non-strict xfail, duplicate
+# parametrize ids), including ones added in later releases.
+[tool.pytest]
+minversion = "9.1"
+addopts = ["-ra", "-q"]
+strict = true
 testpaths = ["tests"]
 pythonpath = ["src"]
+asyncio_default_fixture_loop_scope = "function"
 markers = [
     "model: needs a running model server or downloaded weights (opt-in)",
     "gpu: needs an NVIDIA GPU (self-hosted runner)",
@@ -158,6 +175,9 @@ markers = [
 [tool.coverage.run]
 source = ["src"]
 branch = true
+# pytest-cov 7 dropped its own subprocess measurement; this replaces it, so
+# `python -m medbench.cli` started by the tests counts too.
+patch = ["subprocess"]
 
 [tool.coverage.report]
 exclude_lines = [

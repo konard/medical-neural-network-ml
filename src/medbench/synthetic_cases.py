@@ -301,7 +301,7 @@ def rank_conditions(
     return sorted(
         (
             (condition.name, weight / total)
-            for condition, weight in zip(conditions, weights)
+            for condition, weight in zip(conditions, weights, strict=True)
         ),
         key=lambda item: item[1],
         reverse=True,

@@ -28,9 +28,9 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable
 
 BUDGET_SECONDS_DEFAULT = 240
 INITIAL_WAIT_MS_DEFAULT = 2000

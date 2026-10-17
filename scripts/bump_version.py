@@ -14,7 +14,7 @@ Examples:
 import argparse
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 
@@ -72,7 +72,7 @@ def update_changelog(
         return
 
     content = changelog_path.read_text()
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    today = datetime.now(UTC).strftime("%Y-%m-%d")
 
     # Create new entry
     bump_type_title = bump_type.capitalize()

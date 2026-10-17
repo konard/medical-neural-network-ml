@@ -1,10 +1,14 @@
 """Regression coverage for runner pins and transient link checking."""
 
+import threading
+import urllib.error
+from http.server import ThreadingHTTPServer
 from pathlib import Path
+from unittest.mock import MagicMock
 
 import pytest
 
-from tests.test_recheck_broken_links import module, run_script
+from tests.test_recheck_broken_links import _head_handler, module, run_script
 from tests.workflow_helpers import WORKFLOWS
 
 
@@ -47,11 +51,6 @@ def test_backoff_sleeps_between_rounds(monkeypatch) -> None:
 
 def test_final_failure_prevents_releasing_gate(tmp_path: Path) -> None:
     # The final URL must still block the gate if every transient URL recovers.
-    import threading
-    from http.server import ThreadingHTTPServer
-
-    from tests.test_recheck_broken_links import _head_handler
-
     server = ThreadingHTTPServer(("127.0.0.1", 0), _head_handler({}))
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
@@ -130,9 +129,6 @@ def test_contents_url_mapping(url, expected) -> None:
 @pytest.mark.parametrize("api_status", [200, 302, 403, 404, 429, 503])
 @pytest.mark.parametrize("token", ["test-only-token", ""])
 def test_api_fallback_only_recovers_success(monkeypatch, api_status, token) -> None:
-    import urllib.error
-    from unittest.mock import MagicMock
-
     monkeypatch.setenv("GITHUB_TOKEN", token)
     page = "https://github.com/o/r/blob/main/a.py"
 
@@ -163,8 +159,6 @@ def test_api_fallback_only_recovers_success(monkeypatch, api_status, token) -> N
     ],
 )
 def test_no_api_for_final_status_or_other_host(monkeypatch, url, status) -> None:
-    from unittest.mock import MagicMock
-
     response = MagicMock()
     response.__enter__.return_value.status = status
     monkeypatch.setattr(
@@ -276,8 +270,6 @@ def test_conflicting_final_entry_is_not_recovered(tmp_path, monkeypatch) -> None
     ],
 )
 def test_api_failure_retains_original_transient_status(monkeypatch, error) -> None:
-    from unittest.mock import MagicMock
-
     response = MagicMock()
     response.__enter__.return_value.status = 503
     monkeypatch.setattr(

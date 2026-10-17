@@ -1,0 +1,39 @@
+# Local checks at 478b632, Python 3.15.0
+$ ruff check --no-cache .
+All checks passed!
+exit 0
+$ ruff format --check --no-cache .
+176 files already formatted
+exit 0
+$ mypy src/
+Success: no issues found in 18 source files
+exit 0
+$ python scripts/check_file_size.py
+
+Checking files for maximum 1000 lines (warning above 900) and 2500 lines for markdown (warning above 2250)...
+
+✓ All files are within the hard line limit
+
+exit 0
+$ sphinx-build -W -b html docs <tmp> -q
+exit 0
+$ pre-commit run --all-files
+trim trailing whitespace.................................................Passed
+fix end of files.........................................................Failed
+- hook id: end-of-file-fixer
+- exit code: 1
+- files were modified by this hook
+
+Fixing .gitkeep
+
+check yaml...............................................................Passed
+check for added large files..............................................Passed
+check for merge conflicts................................................Passed
+check toml...............................................................Passed
+debug statements (python)................................................Passed
+ruff check...............................................................Passed
+ruff format..............................................................Passed
+mypy.....................................................................Passed
+Validate Dependabot Config (v2)..........................................Passed
+Validate GitHub Workflows................................................Passed
+exit 1 (the only change is to .gitkeep, which the solver harness's 'Initial commit with task details' (3096994) added without a final newline; it is not on main and not part of this change, so it was restored with git checkout)

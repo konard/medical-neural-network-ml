@@ -5,6 +5,8 @@ Replace this with your actual implementation.
 
 from __future__ import annotations
 
+import asyncio
+
 __version__ = "0.1.0"
 
 __all__ = ["add", "delay", "multiply"]
@@ -42,6 +44,4 @@ async def delay(seconds: float) -> None:
     Args:
         seconds: Seconds to wait
     """
-    import asyncio
-
     await asyncio.sleep(seconds)

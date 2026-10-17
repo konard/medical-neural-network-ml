@@ -35,15 +35,22 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        # Every Python minor in pyproject.toml's classifiers runs the full
+        # suite, starting at the requires-python floor: 3.11-3.14 on Linux
+        # here and 3.15 on Linux in release.yml. arm64 macOS runs 3.15, the
+        # newest Python with MLX wheels; setup-python has no macOS build of
+        # a 3.12 security release after 3.12.10 (issue #19).
         include:
-          # The package still promises 3.9; pipeline scripts use tomllib and
-          # require 3.11+, so this entry tests the runtime package only.
-          - python: '3.9'
-            runner: ubuntu-24.04
-            scope: runtime
+          - python: '3.11'
+            runner: ubuntu-26.04
           - python: '3.12'
-            runner: macos-15
-            scope: full
+            runner: ubuntu-26.04
+          - python: '3.13'
+            runner: ubuntu-26.04
+          - python: '3.14'
+            runner: ubuntu-26.04
+          - python: '3.15'
+            runner: macos-26
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -55,28 +62,22 @@ jobs:
         run: python -m pip install -e '.[dev]'
       - name: Run compatibility tests without model downloads
         env:
-          TEST_SCOPE: ${{ matrix.scope }}
           TEST_BUDGET_SECONDS: 600
-          RUNNER_LABEL: ${{ matrix.runner }}
+          RUN_LABEL: ${{ matrix.runner }}-py${{ matrix.python }}
         run: |
-          monitor=(python -m medbench.cli monitor --interval 2
-            --out "resources/compatibility-$RUNNER_LABEL.json"
-            --label "Compatibility ($RUNNER_LABEL)" --)
-          if [ "$TEST_SCOPE" = runtime ]; then
-            bash scripts/run-with-budget-warning.sh "$TEST_BUDGET_SECONDS" \
-              "Runtime compatibility" "${monitor[@]}" \
-              python -m pytest tests/test_medbench*.py tests/test_my_package.py
-          else
-            bash scripts/run-with-budget-warning.sh "$TEST_BUDGET_SECONDS" \
-              "Mac compatibility" "${monitor[@]}" python -m pytest
-          fi
+          bash scripts/run-with-budget-warning.sh "$TEST_BUDGET_SECONDS" \
+            "Compatibility ($RUN_LABEL)" \
+            python -m medbench.cli monitor --interval 2 \
+            --out "resources/compatibility-$RUN_LABEL.json" \
+            --label "Compatibility ($RUN_LABEL)" -- \
+            python -m pytest
 
       # Peak memory, disk and wall time of the step above (issue #9).
       - name: Upload resource report
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: resources-compatibility-${{ matrix.runner }}
+          name: resources-compatibility-${{ matrix.runner }}-py${{ matrix.python }}
           path: resources
           if-no-files-found: ignore
 
@@ -84,7 +85,7 @@ jobs:
     name: Pipeline Status (Compatibility)
     needs: [test]
     if: always()
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

@@ -10,6 +10,7 @@ from pathlib import Path
 
 import pytest
 
+from scripts import validate_changeset
 from scripts.validate_changeset import validate_fragment_content
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -349,8 +350,6 @@ def test_failed_diff_is_not_treated_as_empty(
     project: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     """Git failures after ref verification still make the gate fail closed."""
-    from scripts import validate_changeset
-
     original_run_git = validate_changeset.run_git
 
     def fail_comparison(root: Path, *args: str, verbose: bool = False) -> str:

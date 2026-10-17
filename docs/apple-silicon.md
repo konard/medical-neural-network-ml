@@ -1,7 +1,7 @@
 # Testing on Apple Silicon with MLX
 
 MLX is Apple's array framework; MLX-VLM runs vision-language models on its
-Metal GPU backend. Use native arm64 Python 3.10+ in a virtual environment.
+Metal GPU backend. Use native arm64 Python 3.11+ in a virtual environment.
 The audit used Python 3.12, macOS 15.7.7, an M3 Pro with 12 CPU / 18 GPU
 cores and 18 GiB unified memory. The CPU, GPU, macOS and applications share
 that memory. The Neural Engine is not used by this backend.

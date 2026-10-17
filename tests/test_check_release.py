@@ -270,7 +270,7 @@ def test_wait_and_redirect_handling_with_real_local_http(module, monkeypatch) ->
     paths = []
 
     class Handler(BaseHTTPRequestHandler):
-        def do_GET(self):  # noqa: N802
+        def do_GET(self):
             paths.append(self.path)
             if self.path == "/redirect":
                 self.send_response(302)

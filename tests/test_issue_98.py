@@ -5,9 +5,9 @@ from __future__ import annotations
 import os
 import re
 import subprocess
+import tomllib
 
 import pytest
-import tomllib
 
 from tests.workflow_helpers import (
     ROOT,
@@ -58,9 +58,9 @@ def test_zizmor_has_one_supported_version_and_checks_low_confidence() -> None:
     """The action, pedantic check and reproduction must use the same pin."""
     workflow = read_workflow("workflows.yml")
     job = workflow_job_block(workflow, "zizmor")
-    assert uses_action(job, "zizmorcore/zizmor-action", "v0.6.4")
-    # Verified against v0.6.4's support/versions digest table.
-    assert re.search(r"^  ZIZMOR_VERSION: ['\"]?1\.30\.1['\"]?$", workflow, re.M)
+    assert uses_action(job, "zizmorcore/zizmor-action", "v0.7.1")
+    # Verified against v0.7.1's support/locks/zizmor-1.31.1.txt.
+    assert re.search(r"^  ZIZMOR_VERSION: ['\"]?1\.31\.1['\"]?$", workflow, re.M)
     assert "version: ${{ env.ZIZMOR_VERSION }}" in job
     assert workflow.count('pipx run "zizmor==$ZIZMOR_VERSION"') == 2
     assert "min-confidence: low" in job

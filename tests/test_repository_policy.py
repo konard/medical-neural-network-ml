@@ -41,26 +41,66 @@ def dependabot_entries() -> dict[str, str]:
 def test_dependabot_updates_actions_and_python_with_a_cooldown() -> None:
     """Hash pins only stay current if something proposes the new hashes."""
     entries = dependabot_entries()
-    assert set(entries) == {"github-actions", "pip"}
+    assert set(entries) == {"github-actions", "pip", "pre-commit"}
     for ecosystem, block in entries.items():
         assert re.search(r"^      default-days: 7$", block, re.M), ecosystem
-        assert "interval: weekly" in block, ecosystem
+    assert "interval: weekly" in entries["github-actions"]
     assert "directory: /\n" in entries["github-actions"]
+    assert "directory: /\n" in entries["pre-commit"]
     pip = entries["pip"]
     assert "      - /\n" in pip
     assert "      - /docs\n" in pip
 
 
+def test_dependabot_moves_python_and_its_hooks_together() -> None:
+    """pip and pre-commit share one weekly pull request (issue #19).
+
+    The hooks pin the dev extra's ruff, mypy and pillow
+    (tests/test_project_metadata.py), so separate pull requests would each
+    fail the tests. A multi-ecosystem group needs ``patterns`` on every
+    member and keeps ``commit-message`` and the schedule at group level.
+    """
+    text = DEPENDABOT.read_text(encoding="utf-8")
+    group = text.split("\nupdates:\n", 1)[0]
+    assert re.search(r"^multi-ecosystem-groups:\n  python:\n", group, re.M)
+    assert "interval: weekly" in group
+    assert "prefix: deps" in group
+    entries = dependabot_entries()
+    for ecosystem in ("pip", "pre-commit"):
+        block = entries[ecosystem]
+        assert "multi-ecosystem-group: python\n" in block, ecosystem
+        assert "    patterns:\n      - '*'\n" in block, ecosystem
+        assert "commit-message" not in block, ecosystem
+        assert "schedule" not in block, ecosystem
+
+
+def test_dependabot_raises_the_pip_floors_with_the_hooks() -> None:
+    """A new ruff or mypy moves the hook rev and the dev extra's floor at once.
+
+    By default Dependabot treats this package as a library and only widens a
+    range that already admits the new release: ``ruff>=0.17.1,<0.18`` stays
+    put for 0.17.2 while the hook goes to v0.17.2, and the "same version"
+    tests fail in the group's own pull request. ``increase`` raises the floor
+    to the new release, which also keeps every floor at the latest
+    (issue #19).
+    """
+    pip = dependabot_entries()["pip"]
+    assert "    versioning-strategy: increase\n" in pip
+
+
 def test_dependabot_leaves_the_coupled_unimedvl_pins_alone() -> None:
     """torch must move with the hash-pinned flash-attn wheel, not on its own.
 
-    The file is still audited (scripts/audit_dependencies.py), and a change
-    under scripts/ would need a changelog fragment Dependabot cannot write.
+    Dependabot's pip ecosystem scans every requirements file under ``/``, so
+    the UniMedVL files are excluded by path (it opened #13, #15, #16 and #17
+    against them before issue #19). The file is still audited
+    (scripts/audit_dependencies.py).
     """
     pip = dependabot_entries()["pip"]
-    assert "/scripts" not in pip
-    text = DEPENDABOT.read_text(encoding="utf-8")
-    assert "scripts/unimedvl-requirements.txt" in text
+    (pattern,) = re.findall(r"^    exclude-paths:\n      - (\S+)$", pip, re.M)
+    scripts = ROOT / "scripts"
+    excluded = {path.name for path in scripts.glob(pattern.removeprefix("scripts/"))}
+    assert excluded == {"unimedvl-requirements.in", "unimedvl-requirements.txt"}
     audit = (ROOT / "scripts" / "audit_dependencies.py").read_text(encoding="utf-8")
     assert '"scripts/unimedvl-requirements.txt"' in audit
 

@@ -1,0 +1,28 @@
+{
+  "versions": {
+    "torch": "2.8.0+cpu",
+    "torchvision": "0.23.0+cpu",
+    "transformers": "5.20.1",
+    "tokenizers": "0.23.3",
+    "accelerate": "1.15.0",
+    "safetensors": "0.8.0",
+    "numpy": "2.2.6",
+    "pillow": "12.3.0",
+    "opencv-python": "4.14.0.94"
+  },
+  "token_ids": [
+    151644,
+    90019,
+    81044,
+    81044,
+    81044,
+    81044,
+    81044,
+    81044,
+    81044,
+    81044,
+    81044,
+    81044
+  ],
+  "text": " Weston entrenched entrenched entrenched entrenched entrenched entrenched entrenched entrenched entrenched entrenched"
+}

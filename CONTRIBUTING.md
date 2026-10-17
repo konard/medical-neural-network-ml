@@ -78,7 +78,7 @@ Thank you for your interest in contributing! This document provides guidelines a
    make sure Sphinx still renders without warnings:
 
    ```bash
-   pip install -e ".[docs]"
+   pip install -e ".[docs]"  # Python 3.12+ (Sphinx 9.1 dropped 3.11)
    sphinx-build -W --keep-going -b html docs _site
    ```
 

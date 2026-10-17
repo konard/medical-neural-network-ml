@@ -23,10 +23,6 @@ module = importlib.util.module_from_spec(spec)  # type: ignore[arg-type]
 sys.modules[spec.name] = module  # type: ignore[union-attr]
 spec.loader.exec_module(module)  # type: ignore[union-attr]
 
-pytestmark = pytest.mark.skipif(
-    sys.version_info < (3, 11), reason="the script reads pyproject.toml (tomllib)"
-)
-
 PYPROJECT = """\
 [project]
 name = "demo-dist"
@@ -282,7 +278,7 @@ def test_links_in_the_sdist_are_reported(project) -> None:
 
 
 def test_main_reports_problems_as_annotations(project, capsys) -> None:
-    root, dist, data = project
+    root, dist, _data = project
     write_wheel(dist, wheel_files(root, METADATA.replace("Unlicense", "MIT")))
     write_sdist(dist, sdist_files(root))
     assert module.main([str(dist), "--root", str(root)]) == 1

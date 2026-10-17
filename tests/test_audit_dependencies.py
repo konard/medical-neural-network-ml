@@ -3,9 +3,12 @@
 from __future__ import annotations
 
 import importlib.util
+import re
 import subprocess
 import sys
 from pathlib import Path
+
+import pytest
 
 SCRIPT_PATH = (
     Path(__file__).resolve().parent.parent / "scripts" / "audit_dependencies.py"
@@ -82,10 +85,8 @@ def test_target_venv_is_created_without_pip(monkeypatch) -> None:
 
 
 def test_missing_dependency_surface_fails_the_audit(tmp_path: Path) -> None:
-    import pytest
-
     (tmp_path / "pyproject.toml").write_text("[project]\nname = 'x'\n")
-    with pytest.raises(FileNotFoundError, match="docs/requirements.txt"):
+    with pytest.raises(FileNotFoundError, match=re.escape("docs/requirements.txt")):
         module.audit_dependencies(tmp_path)
 
 
@@ -129,14 +130,12 @@ def test_every_accepted_advisory_has_a_reason() -> None:
         assert advisory.startswith(("PYSEC-", "GHSA-")), advisory
         assert reason.split(" ", 1)[0] in {"torch", "transformers", "accelerate"}
         assert ";" in reason or ":" in reason, reason
-    # torch.load RCE is fixed by the pin, never accepted.
+    # torch.load RCE (fixed since torch 2.6) is never accepted.
     assert "GHSA-53q9-r3pm-6pq6" not in module.ACCEPTED_ADVISORIES
 
 
 def test_dependency_review_allows_only_accepted_advisories() -> None:
     """Dependency Review skips exactly the GHSA aliases pip-audit accepts."""
-    import re
-
     workflow = (SCRIPT_PATH.parents[1] / ".github/workflows/security.yml").read_text(
         encoding="utf-8"
     )
@@ -149,10 +148,8 @@ def test_dependency_review_allows_only_accepted_advisories() -> None:
 
 
 def test_missing_pinned_surface_fails_the_audit(tmp_path: Path) -> None:
-    import pytest
-
     (tmp_path / "pyproject.toml").write_text("[project]\nname = 'x'\n")
     (tmp_path / "docs").mkdir()
     (tmp_path / "docs" / "requirements.txt").write_text("")
-    with pytest.raises(FileNotFoundError, match="unimedvl-requirements.txt"):
+    with pytest.raises(FileNotFoundError, match=re.escape("unimedvl-requirements.txt")):
         module.audit_dependencies(tmp_path)

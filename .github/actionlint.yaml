@@ -4,6 +4,12 @@ self-hosted-runner:
   # (issue #1). Setup: docs/case-studies/issue-1/ci-and-gpu-runner.md.
   labels:
     - gpu
+    # GitHub-hosted images that actionlint 1.7.12 (the latest release; no
+    # commits upstream since 2026-04) does not know yet. Listed here only so
+    # the runner-label check accepts them; drop both once a release contains
+    # rhysd/actionlint#682 (open PRs #683, #723, #743) -- issue #19.
+    - ubuntu-26.04
+    - ubuntu-26.04-arm
 paths:
   .github/workflows/**/*.{yml,yaml}:
     ignore:

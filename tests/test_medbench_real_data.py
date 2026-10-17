@@ -92,6 +92,7 @@ class _FailingOpener(_Opener):
     def __init__(self, data: bytes, errors: Sequence[tuple[int, dict[str, str]]]):
         super().__init__(data)
         self.errors = list(errors)
+        self.raised: list[urllib.error.HTTPError] = []
 
     def __call__(self, request: urllib.request.Request, timeout: float) -> _Response:
         if self.errors:
@@ -100,7 +101,9 @@ class _FailingOpener(_Opener):
             message = Message()
             for name, value in headers.items():
                 message[name] = value
-            raise urllib.error.HTTPError(request.full_url, code, "no", message, None)
+            error = urllib.error.HTTPError(request.full_url, code, "no", message, None)
+            self.raised.append(error)
+            raise error
         return super().__call__(request, timeout)
 
 
@@ -228,6 +231,17 @@ class TestFetch:
         assert waits == [7.0, 10.0]
         assert len(opener.requests) == 3
 
+    def test_error_answers_are_closed(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """An error answer holds its connection until it is closed (issue #19)."""
+        monkeypatch.setattr("medbench.real_data.time.sleep", lambda _seconds: None)
+        opener = _FailingOpener(b"ok", [(503, {}), (404, {})])
+        with pytest.raises(urllib.error.HTTPError):
+            fetch(_sample("r", b"ok", "imaging-xray"), tmp_path, opener=opener)
+        assert len(opener.raised) == 2
+        assert all(error.fp.closed for error in opener.raised)
+
     def test_long_retry_after_fails_without_an_early_retry(
         self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
     ) -> None:
@@ -273,9 +287,11 @@ class TestFetch:
         sample = _sample("e", b"x", "imaging-xray")
         lines = attribution_lines([sample, sample])
         assert lines == [
-            "e: Test Author, CC0 1.0 "
-            "(https://creativecommons.org/publicdomain/zero/1.0/), "
-            "via https://example.org/e"
+            (
+                "e: Test Author, CC0 1.0 "
+                "(https://creativecommons.org/publicdomain/zero/1.0/), "
+                "via https://example.org/e"
+            )
         ]
 
 
@@ -471,10 +487,14 @@ def _ddxplus_files(tmp_path: Path) -> list[Sample]:
     }
     rows = [
         "AGE,DIFFERENTIAL_DIAGNOSIS,SEX,PATHOLOGY,EVIDENCES,INITIAL_EVIDENCE",
-        "49,\"[['GERD', 0.6], ['Stable angina', 0.4]]\",F,GERD,"
-        "\"['E_55_@_V_29', 'E_55_@_V_123', 'E_56_@_6']\",E_55",
-        "61,\"[['Stable angina', 0.5], ['Unstable angina', 0.5]]\",M,"
-        "Unstable angina,\"['E_91', 'E_56_@_0']\",E_91",
+        (
+            "49,\"[['GERD', 0.6], ['Stable angina', 0.4]]\",F,GERD,"
+            "\"['E_55_@_V_29', 'E_55_@_V_123', 'E_56_@_6']\",E_55"
+        ),
+        (
+            "61,\"[['Stable angina', 0.5], ['Unstable angina', 0.5]]\",M,"
+            "Unstable angina,\"['E_91', 'E_56_@_0']\",E_91"
+        ),
     ]
     archive = io.BytesIO()
     with zipfile.ZipFile(archive, "w") as handle:

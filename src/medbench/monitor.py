@@ -31,7 +31,7 @@ import sys
 import time
 from collections.abc import Sequence
 from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from types import FrameType
 from typing import Any
@@ -315,7 +315,7 @@ def run_monitored(
     """
     binary = nvidia_smi or shutil.which("nvidia-smi")
     monitor = ResourceMonitor(nvidia_smi=binary, meminfo=meminfo, disk=disk)
-    started_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    started_at = datetime.now(UTC).isoformat(timespec="seconds")
     start = time.monotonic()
     monitor.sample(0.0)
     previous = signal.signal(signal.SIGTERM, _raise_interrupted)

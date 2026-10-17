@@ -40,15 +40,15 @@
 #                    1800 for UniMedVL, which reads 29 GB of bf16 weights)
 #
 # UniMedVL only (SERVER=unimedvl):
-#   UNIMEDVL_PYTHON      Python 3.10 used to create the model's own venv (python3.10)
+#   UNIMEDVL_PYTHON      Python 3.13 used to create the model's own venv (python3.13)
 #   UNIMEDVL_VENV        that venv ($CACHE_DIR/unimedvl-venv)
 #   UNIMEDVL_ENGINE      unimedvl, or echo to test the plumbing without a GPU
 #   UNIMEDVL_MAX_GPU_MEMORY  weights allowed on GPU 0, the rest stays on the CPU (40GiB)
 set -euo pipefail
 
-LLAMA_VERSION="${LLAMA_VERSION:-b11609}"
+LLAMA_VERSION="${LLAMA_VERSION:-b11707}"
 LLAMA_ARCHIVE="${LLAMA_ARCHIVE:-llama-${LLAMA_VERSION}-bin-ubuntu-x64.tar.gz}"
-LLAMA_SHA256="${LLAMA_SHA256:-f95cbb27dd6e377f2ce30f5cfd7ec987af3259c025fc7c98fff62927a16ff528}"
+LLAMA_SHA256="${LLAMA_SHA256:-88879871f765c3dec22260046e10a76e2ed38de5bdf4a7f68049245a8f4056c8}"
 CUDART_ARCHIVE="${CUDART_ARCHIVE:-}"
 CUDART_SHA256="${CUDART_SHA256:-}"
 MODEL_REPO="${MODEL_REPO:-unsloth/medgemma-4b-it-GGUF}"
@@ -90,11 +90,12 @@ UNIMEDVL_FILES=(
   "merges.txt 599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
 )
 # Upstream imports flash_attn_varlen_func; this prebuilt wheel matches the
-# pinned torch 2.6.0 (CUDA 12, old C++ ABI like the PyPI torch wheels).
-FLASH_ATTN_WHEEL="flash_attn-2.7.4.post1+cu12torch2.6cxx11abiFALSE-cp310-cp310-linux_x86_64.whl"
-FLASH_ATTN_URL="https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.4.post1/${FLASH_ATTN_WHEEL//+/%2B}"
-FLASH_ATTN_SHA256="ffe17686fa1a0f288de9eae7c32af209d32a27b037ef28614f042b377af5b15a"
-UNIMEDVL_PYTHON="${UNIMEDVL_PYTHON:-python3.10}"
+# pinned torch 2.8.0 (CUDA 12, the C++11 ABI that PyPI torch wheels use
+# since 2.7, and CPython 3.13 like UNIMEDVL_PYTHON). v2.8.3.post2 also fixes GHSA-7g5w-pq96-8c5w (issue #19).
+FLASH_ATTN_WHEEL="flash_attn-2.8.3.post2+cu12torch2.8cxx11abiTRUE-cp313-cp313-linux_x86_64.whl"
+FLASH_ATTN_URL="https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post2/${FLASH_ATTN_WHEEL//+/%2B}"
+FLASH_ATTN_SHA256="9d5bcc61b3251b0a9a9ccea6dc75fd002e0fcaaf2edc48df7d981bb114f5b4c7"
+UNIMEDVL_PYTHON="${UNIMEDVL_PYTHON:-python3.13}"
 UNIMEDVL_VENV="${UNIMEDVL_VENV:-$CACHE_DIR/unimedvl-venv}"
 UNIMEDVL_ENGINE="${UNIMEDVL_ENGINE:-unimedvl}"
 UNIMEDVL_MAX_GPU_MEMORY="${UNIMEDVL_MAX_GPU_MEMORY:-40GiB}"
@@ -161,7 +162,7 @@ download_llama() {
 }
 
 # Upstream code at a fixed commit, its weights by SHA-256, and a separate
-# Python 3.10 venv with upstream's pinned packages (medbench itself does not
+# Python 3.13 venv with upstream's pinned packages (medbench itself does not
 # import torch). Nothing from the checkout runs until the server starts.
 download_unimedvl() {
   local hub="https://huggingface.co/$UNIMEDVL_MODEL_REPO/resolve/$UNIMEDVL_MODEL_REVISION"

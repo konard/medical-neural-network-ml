@@ -37,16 +37,12 @@ import subprocess
 import sys
 import tarfile
 import tempfile
+import tomllib
 import venv
 import zipfile
 from email.parser import Parser
 from pathlib import Path, PurePosixPath
 from typing import Any
-
-try:
-    import tomllib
-except ModuleNotFoundError:  # pragma: no cover - the build job runs 3.13.
-    tomllib = None  # type: ignore[assignment]
 
 ROOT = Path(__file__).resolve().parents[1]
 MINIMUM_METADATA_VERSION = (2, 4)
@@ -90,9 +86,6 @@ def normalize(name: str) -> str:
 
 def load_project(root: Path = ROOT) -> dict[str, Any]:
     """Return ``[project]`` plus the wheel package list from pyproject.toml."""
-    if tomllib is None:  # pragma: no cover - Python < 3.11.
-        message = "check_distribution.py needs Python 3.11+ (tomllib)"
-        raise DistributionError(message)
     data = tomllib.loads((root / "pyproject.toml").read_text(encoding="utf-8"))
     project = dict(data["project"])
     wheel = data["tool"]["hatch"]["build"]["targets"]["wheel"]
@@ -339,8 +332,10 @@ def install_smoke_test(wheel: Path, sdist: Path, project: dict[str, Any]) -> Non
                 python,
                 "-I",
                 "-c",
-                "import importlib.metadata as m; d = m.metadata("
-                f"{project['name']!r}); print(d['License-Expression'])",
+                (
+                    "import importlib.metadata as m; d = m.metadata("
+                    f"{project['name']!r}); print(d['License-Expression'])"
+                ),
             ],
             work,
         ).strip()

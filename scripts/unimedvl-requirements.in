@@ -1,0 +1,58 @@
+# Python 3.13 packages for scripts/unimedvl_server.py (issue #6).
+#
+# Based on the pip section of codes/environment.yaml in
+# https://github.com/uni-medical/UniMedVL at commit
+# f51aa0accbd02e846e5ea20b595fb39b516dbe1f. Only the Jupyter packages are
+# left out; the server does not use a notebook. Upstream uses Python 3.10.18;
+# 3.10 reaches end of life in October 2026, so this runs on 3.13, the newest
+# Python that torch 2.8.0, triton 3.4.0 and the flash-attn wheel are built for
+# (issue #19).
+# flash-attn is installed separately from a SHA-256-pinned wheel by
+# scripts/medbench-model-run.sh, because upstream adds it by hand.
+#
+# scripts/unimedvl-requirements.txt is the full lock compiled from this file
+# (every transitive package pinned); after editing a pin here, regenerate it:
+#
+#   uv pip compile scripts/unimedvl-requirements.in \
+#     -o scripts/unimedvl-requirements.txt --python-version 3.13 \
+#     --python-platform x86_64-manylinux_2_28 --annotation-style line \
+#     --custom-compile-command "see scripts/unimedvl-requirements.in"
+#
+# Every package is at its newest release (issue #19), except:
+#   torch 2.8.0 (torchvision 0.23.0, triton 3.4.0 follow it): the newest torch
+#     with a prebuilt flash-attn wheel (v2.8.3.post2 ships cu12torch2.4-2.8);
+#     torch 2.9+ would need flash-attn built from source on the GPU host.
+#   transformers 4.57.6, the last 4.x: upstream's Qwen2 and SigLIP copies
+#     import 4.x internals; on 5.x, building the model fails with
+#     KeyError: 'default' (ROPE_INIT_FUNCTIONS) and, patched past that,
+#     generates different tokens. tokenizers 0.22.2 is the newest it accepts.
+# experiments/issue19_unimedvl_cpu_smoke.py runs upstream's chat() on the CPU
+# with a tiny random model and generates the same tokens on these pins under
+# Python 3.13 as on the previous ones under Python 3.10 (torch 2.6.0,
+# transformers 4.49.0, numpy 1.24.4).
+# opencv-python 5: upstream calls OpenCV only in motion_blur_opencv (a training
+# augmentation nothing calls); OpenCV 5 interpolates float images exactly
+# where 4.x rounded to 1/32 pixel, so its blur differs by at most one grey
+# level off the axes (experiments/issue19_unimedvl_opencv_probe.py).
+# The advisories left in torch and transformers are accepted one by one, with
+# the reason they do not apply, in scripts/audit_dependencies.py.
+torch==2.8.0
+torchvision==0.23.0
+triton==3.4.0
+transformers==4.57.6
+accelerate==1.15.0
+safetensors==0.8.0
+tokenizers==0.22.2
+sentencepiece==0.2.2
+pillow==13.0.0
+numpy==2.5.4
+opencv-python==5.0.0.93
+einops==0.8.2
+matplotlib==3.11.2
+contourpy==1.4.0
+cycler==0.12.1
+fonttools==4.67.0
+kiwisolver==1.5.1
+packaging==26.3
+pyparsing==3.3.3
+python-dateutil==2.9.0.post0

@@ -9,6 +9,7 @@ the rules -- report every failure, unknown is never a pass, probe with a write
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -64,7 +65,7 @@ class FakeEndpoints:
                 if body:
                     self.wfile.write(body.encode())
 
-            def do_GET(self) -> None:  # noqa: N802
+            def do_GET(self) -> None:
                 fake._log("GET", self.path)
                 if self.path.startswith("/oidc"):
                     self._respond(
@@ -81,7 +82,7 @@ class FakeEndpoints:
                 else:
                     self._respond(404)
 
-            def do_POST(self) -> None:  # noqa: N802
+            def do_POST(self) -> None:
                 fake._log("POST", self.path)
                 length = int(self.headers.get("Content-Length") or 0)
                 if length:
@@ -103,7 +104,7 @@ class FakeEndpoints:
                 else:
                     self._respond(404)
 
-            def do_DELETE(self) -> None:  # noqa: N802
+            def do_DELETE(self) -> None:
                 fake._log("DELETE", self.path)
                 fake.deleted.append(self.path)
                 self._respond(204)
@@ -121,8 +122,6 @@ def fake_endpoints():
 
 
 def run_script(env: dict[str, str]) -> subprocess.CompletedProcess[str]:
-    import os
-
     merged_env = {
         **os.environ,
         "PREFLIGHT_MODE": "release",

@@ -1,0 +1,12 @@
+$ uv pip compile req.in --python-version 3.11   # req.in: sphinx>=9.1.0
+uv 0.13.1 (x86_64-unknown-linux-gnu)
+error: No solution found when resolving dependencies
+  cause: Because the requested Python version (>=3.11) does not satisfy Python>=3.12 and sphinx==9.1.0 depends on Python>=3.12, we can conclude that sphinx==9.1.0 cannot be used.
+         And because only sphinx<=9.1.0 is available and you require sphinx>=9.1.0, we can conclude that your requirements are unsatisfiable.
+
+hint: The `--python-version` value (>=3.11) includes Python versions that are not supported by your dependencies (e.g., sphinx==9.1.0 only supports >=3.12). Consider using a higher `--python-version` value.
+exit 1
+
+$ ... --python-version 3.12
+sphinx==9.1.0
+exit 0

@@ -13,8 +13,8 @@ The server is our own code and stays under the Unlicense. It imports the
 upstream checkout at run time and does not copy it. The checkout and the
 weights keep their Apache-2.0 terms (see THIRD_PARTY_NOTICES.md).
 
-Run it with the Python of the upstream environment (Python 3.10, torch 2.6.0,
-transformers 4.49.0, accelerate 1.7.0 and flash-attn; see
+Run it with the Python of the upstream environment (Python 3.13, torch 2.8.0,
+transformers 4.57.6, accelerate 1.15.0 and flash-attn; see
 ``scripts/medbench-model-run.sh``), from the root of a checkout at
 :data:`CODE_COMMIT`::
 
@@ -501,7 +501,7 @@ class ChatHandler(BaseHTTPRequestHandler):
     def _error(self, status: int, kind: str, message: str) -> None:
         self._send(status, {"error": {"type": kind, "message": message}})
 
-    def do_GET(self) -> None:  # noqa: N802 - http.server's name
+    def do_GET(self) -> None:
         """Health, model list and metrics."""
         if self.path == "/health":
             self._send(200, {"status": "ok"})
@@ -512,7 +512,7 @@ class ChatHandler(BaseHTTPRequestHandler):
         else:
             self._error(404, "not_found", f"no route {self.path}")
 
-    def do_POST(self) -> None:  # noqa: N802 - http.server's name
+    def do_POST(self) -> None:
         """Answer one chat completion."""
         if self.path != "/v1/chat/completions":
             self._error(404, "not_found", f"no route {self.path}")

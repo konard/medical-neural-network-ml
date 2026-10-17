@@ -154,7 +154,7 @@ def _ranking_scores(
     total = len(truths)
 
     def hits(k: int) -> int:
-        return sum(t in r[:k] for t, r in zip(truths, rankings))
+        return sum(t in r[:k] for t, r in zip(truths, rankings, strict=True))
 
     unparsed = sum(not ranking for ranking in rankings)
     return {
@@ -326,7 +326,7 @@ class OcrTask:
         truths = [normalise_ocr(item.truth.truth["text"]) for item in items]
         outputs = [normalise_ocr(result.output) for result in results]
         found = total = 0
-        for item, output in zip(items, outputs):
+        for item, output in zip(items, outputs, strict=True):
             for term in item.truth.truth.get("key_terms", ()):
                 total += 1
                 found += (
@@ -348,7 +348,7 @@ class OcrTask:
         if self.kind == "prescription":
             doses = [
                 compare_doses(item.truth.truth["text"], result.output)
-                for item, result in zip(items, results)
+                for item, result in zip(items, results, strict=True)
             ]
             reference = sum(d.reference for d in doses)
             if reference:
@@ -472,17 +472,18 @@ class ImagingTask:
         # Unparsed answers are errors for both classes. Otherwise an empty
         # answer earns a true negative on every normal image.
         predictions = [
-            p if ok else not truth for (p, _), ok, truth in zip(parsed, valid, abnormal)
+            p if ok else not truth
+            for (p, _), ok, truth in zip(parsed, valid, abnormal, strict=True)
         ]
         counts = BinaryCounts.from_predictions(abnormal, predictions)
         named = [
             any(affirmed_mention(result.output, term) for term in truth["terms"])
-            for truth, result, sick in zip(truths, results, abnormal)
+            for truth, result, sick in zip(truths, results, abnormal, strict=True)
             if sick
         ]
         sides = [
             side == truth["side"]
-            for truth, (positive, side) in zip(truths, parsed)
+            for truth, (positive, side) in zip(truths, parsed, strict=True)
             if truth["side"] in {"left", "right", "both"} and positive
         ]
         positives = counts.true_positive + counts.false_negative
