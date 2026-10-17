@@ -7,6 +7,10 @@ known limits, so that any change in scoring is visible in review.
 
 from __future__ import annotations
 
+import math
+from statistics import NormalDist
+from unittest import mock
+
 import pytest
 
 from medbench.clinical_text import (
@@ -114,6 +118,29 @@ def test_normalise_ocr() -> None:
 )
 def test_wilson_interval(successes: int, total: int, low: float, high: float) -> None:
     assert wilson_interval(successes, total) == pytest.approx((low, high), abs=1e-4)
+
+
+@pytest.mark.parametrize("ulps", [-1, 0, 1])
+def test_wilson_interval_reaches_its_bounds_exactly(ulps: int) -> None:
+    """All right gives an upper bound of exactly 1, all wrong a lower of 0.
+
+    The closed form only gets there up to rounding: macOS 26 with Python 3.15
+    returned 0.9999999999999999 for 4 out of 4 (issue #19), as this host does
+    when z is one ulp lower, so z is nudged both ways here.
+    """
+    original = NormalDist.inv_cdf
+
+    def nudged(self: NormalDist, p: float) -> float:
+        z = original(self, p)
+        for _ in range(abs(ulps)):
+            z = math.nextafter(z, math.copysign(math.inf, ulps))
+        return z
+
+    with mock.patch.object(NormalDist, "inv_cdf", nudged):
+        for total in range(1, 101):
+            for confidence in (0.8, 0.9, 0.95, 0.99):
+                assert wilson_interval(total, total, confidence)[1] == 1.0
+                assert wilson_interval(0, total, confidence)[0] == 0.0
 
 
 def test_wilson_interval_rejects_impossible_counts() -> None:

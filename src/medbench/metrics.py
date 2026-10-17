@@ -264,4 +264,8 @@ def wilson_interval(
     centre = (p + z * z / (2 * total)) / denominator
     half = z * math.sqrt(p * (1 - p) / total + z * z / (4 * total * total))
     half /= denominator
-    return (max(0.0, centre - half), min(1.0, centre + half))
+    # All right (or all wrong) puts a bound exactly on 1 (or 0), which the
+    # closed form only reaches up to rounding, so set those bounds directly.
+    low = 0.0 if successes == 0 else max(0.0, centre - half)
+    high = 1.0 if successes == total else min(1.0, centre + half)
+    return (low, high)

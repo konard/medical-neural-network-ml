@@ -9,3 +9,7 @@
 - Code changes required by the new ruff rules: strict `zip()` and `datetime.UTC`.
 - UniMedVL runtime (`scripts/unimedvl-requirements.txt`): torch 2.6.0 → 2.8.0, transformers 4.49.0 → 4.57.6, accelerate 1.7.0 → 1.15.0, numpy 1.24.4 → 2.2.6, opencv-python 4.8 → 5.0 and every other package at its newest release for Python 3.10. The file is now a full lock compiled with `uv pip compile` from the new `scripts/unimedvl-requirements.in`, which records why torch and transformers stop where they do. The flash-attn wheel is v2.8.3.post2 (cu12torch2.8, C++11 ABI), which fixes GHSA-7g5w-pq96-8c5w. Thirty-three of the 47 accepted torch, transformers and accelerate advisories no longer apply and are removed from `scripts/audit_dependencies.py`.
 - Dependabot now opens one weekly pull request for the Python packages and the pre-commit hooks together, because the hooks pin the same ruff, mypy and pillow as the `dev` extra. It no longer opens pull requests for the UniMedVL lock. A new `check-jsonschema` pre-commit hook validates `.github/dependabot.yml` and the workflows.
+
+### Fixed
+
+- `wilson_interval` now returns an upper bound of exactly 1 when every answer is right, and a lower bound of exactly 0 when every answer is wrong. The closed form reached these bounds only up to rounding: on the new macOS 26 runner with Python 3.15 it returned 0.9999999999999999 for 4 out of 4.
