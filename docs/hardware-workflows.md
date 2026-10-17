@@ -10,8 +10,8 @@ UniMedVL, any GPU training) have not been run, so their rows remain targets.
 
 | Workflow | Compute and storage | Other requirements |
 | --- | --- | --- |
-| `release.yml`: lint, tests, package build | Ubuntu x86_64 CPU, 4 vCPU / 16 GB RAM / 14 GB runner disk; no model weights | Python 3.13; registry access for dependencies |
-| `compatibility.yml` | Runtime tests on Ubuntu/Python 3.9; full suite on arm64 `macos-15`/Python 3.12 | No model or dataset downloads; loopback HTTP for fake-server tests |
+| `release.yml`: lint, tests, package build | Ubuntu x86_64 CPU, 4 vCPU / 16 GB RAM / 14 GB runner disk; no model weights | Python 3.15; registry access for dependencies |
+| `compatibility.yml` | Full suite on `ubuntu-26.04`/Python 3.11–3.14 and on arm64 `macos-26`/Python 3.15 | No model or dataset downloads; loopback HTTP for fake-server tests |
 | `security.yml` | Linux CodeQL, dependency graph/review; resolved-dependency audits on Linux and arm64 macOS | Mac audit includes MLX dependencies that Linux environment markers omit; allow several GB of temporary disk for two isolated environments |
 | `workflows.yml` | Ubuntu CPU; Docker for the pinned actionlint image, zizmor CLI | Read-only GitHub token for online audits |
 | `links.yml` | Ubuntu CPU; network-bound | Live source access, retries, rate limits; a broken live link still fails even when an archive exists |

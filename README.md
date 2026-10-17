@@ -70,10 +70,10 @@ For a hard timeout on native MLX, use `scripts/medbench-mlx-run.py`.
 
 | Workflow | Hardware and resources | Validation |
 | --- | --- | --- |
-| Unit tests, lint, types, package/docs build | CPU, Python 3.9+; use Python 3.12 on this Mac; no model | Local and hosted CI |
+| Unit tests, lint, types, package/docs build | CPU, Python 3.11+ (the `docs` extra needs 3.12+, as Sphinx 9.1 does); no model | Local and hosted CI |
 | Real sample verification | CPU, network, about 60 MB of data | Hash and license checks; no inference |
 | MedGemma 4B CPU smoke | Linux x86_64, hosted 4 vCPU / 16 GB RAM; allow 8 GB free disk for archives, extraction and weights | Measured on GitHub CPU runners |
-| M3 Pro MLX smoke | macOS, native arm64 Python 3.10+; 256 MiB allocation ceiling | Measured on this M3 Pro |
+| M3 Pro MLX smoke | macOS, native arm64 Python 3.11+; 256 MiB allocation ceiling | Measured on this M3 Pro |
 | MedGemma 4B MLX | 18 GB unified-memory Mac can be sufficient with other apps closed; approximately 3 GB checkpoint plus runtime buffers; dynamic free-memory preflight | Backend implemented; see local evidence and limits |
 | MedGemma 27B Q4 GPU | Linux x86_64, NVIDIA 24 GB VRAM recommended, 32 GB+ host RAM and 50 GB free disk | Workflow available; GPU measurement outstanding |
 | UniMedVL bf16 | Dedicated CUDA host; at least 40 GB VRAM as an initial capacity target, 64 GB+ RAM and 80 GB free disk | Adapter for the pinned upstream runtime implemented; GPU measurement outstanding |
