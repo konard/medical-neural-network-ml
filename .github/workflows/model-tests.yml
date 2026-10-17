@@ -69,7 +69,7 @@ env:
 jobs:
   real-data:
     name: Real sample files
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
     concurrency:
       group: model-${{ github.workflow }}-${{ github.ref }}-real-data
@@ -86,7 +86,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: '3.13'
+          python-version: '3.15'
 
       - name: Install medbench
         run: |
@@ -134,7 +134,7 @@ jobs:
     name: CPU smoke test (MedGemma 4B Q4_K_M)
     if: github.event_name != 'schedule'
     needs: real-data
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 60
     concurrency:
       group: model-${{ github.workflow }}-${{ github.ref }}-cpu-smoke
@@ -149,7 +149,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: '3.13'
+          python-version: '3.15'
 
       - name: Install medbench
         env:
@@ -210,7 +210,7 @@ jobs:
   ocr-baseline:
     name: OCR baseline (Tesseract)
     needs: real-data
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
     concurrency:
       group: model-${{ github.workflow }}-${{ github.ref }}-ocr-baseline
@@ -225,7 +225,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: '3.13'
+          python-version: '3.15'
 
       - name: Install Tesseract and medbench
         run: |
@@ -289,10 +289,10 @@ jobs:
     permissions:
       contents: read
     env:
-      LLAMA_ARCHIVE: llama-b11609-bin-ubuntu-cuda-12.8-x64.tar.gz
-      LLAMA_SHA256: 79d13d97eeee576a9e5a5194c678fdac67cb038c37a68e77530ba7cd4df0802d
-      CUDART_ARCHIVE: cudart-llama-b11609-bin-ubuntu-cuda-12.8-x64.tar.gz
-      CUDART_SHA256: 4a99871b8b69bac3ae8ca4f6b8a965e426a17330c38af43addc2debea448acab
+      LLAMA_ARCHIVE: llama-b11707-bin-ubuntu-cuda-12.8-x64.tar.gz
+      LLAMA_SHA256: 208d228a2e752b91ebb15717f9116915a1704f2af644ee278d4b4d7911199e6a
+      CUDART_ARCHIVE: cudart-llama-b11707-bin-ubuntu-cuda-12.8-x64.tar.gz
+      CUDART_SHA256: a0698562c748ea4ffcf2631f13ca1429c3b794e67272066053c21c607ade5ebf
       GPU_LAYERS: 999
       GPU_MODEL: ${{ inputs.gpu-model }}
     steps:
@@ -301,7 +301,7 @@ jobs:
           persist-credentials: false
 
       # UniMedVL's pinned PyTorch stack needs Python 3.10 (upstream
-      # environment.yaml); medbench itself keeps running on 3.13.
+      # environment.yaml); medbench itself runs on 3.15.
       - name: Setup Python 3.10 for UniMedVL
         id: unimedvl-python
         if: inputs.gpu-model == 'unimedvl'
@@ -312,7 +312,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: '3.13'
+          python-version: '3.15'
 
       - name: Show GPU
         run: nvidia-smi
@@ -408,7 +408,7 @@ jobs:
       - ocr-baseline
       - gpu
     if: always()
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
