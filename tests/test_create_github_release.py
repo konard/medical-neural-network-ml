@@ -29,7 +29,7 @@ def test_create_release_keeps_an_already_published_release(monkeypatch) -> None:
     """Repairing a missing PyPI version must not recreate its GitHub release."""
     commands = []
     monkeypatch.setattr(module, "get_github_release", lambda *args: {"draft": False})
-    monkeypatch.setattr(module, "run_command", lambda cmd: commands.append(cmd))
+    monkeypatch.setattr(module, "run_command", commands.append)
     module.create_release("1.2.3", "owner/repo", "Release notes")
     assert commands == []
 
@@ -38,7 +38,7 @@ def test_create_release_publishes_an_existing_draft(monkeypatch) -> None:
     """A draft is repaired by editing it instead of creating a duplicate tag."""
     commands = []
     monkeypatch.setattr(module, "get_github_release", lambda *args: {"draft": True})
-    monkeypatch.setattr(module, "run_command", lambda cmd: commands.append(cmd))
+    monkeypatch.setattr(module, "run_command", commands.append)
     module.create_release("1.2.3", "owner/repo", "Release notes")
     assert commands[0][:4] == ["gh", "release", "edit", "v1.2.3"]
     assert "--draft=false" in commands[0]

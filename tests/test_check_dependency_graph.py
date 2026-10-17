@@ -35,7 +35,7 @@ class FakeApi:
             def log_message(self, *args: object) -> None:
                 pass
 
-            def do_GET(self) -> None:  # noqa: N802 - http.server API
+            def do_GET(self) -> None:
                 fake.paths.append(self.path)
                 fake.auth.append(self.headers.get("Authorization", ""))
                 body = b"{}"

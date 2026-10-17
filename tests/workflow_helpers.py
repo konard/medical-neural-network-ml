@@ -189,9 +189,9 @@ def assert_action_hash_pin(workflow: str, action: str, count: int) -> str:
     """
     pattern = rf"uses:\s+{re.escape(action)}@([0-9a-f]{{40}})" r"\s+#\s+(v[0-9][^\s]*)$"
     matches = re.findall(pattern, workflow, re.MULTILINE)
-    assert (
-        len(matches) == count
-    ), f"expected {count} hash-pinned {action} reference(s), found {len(matches)}"
+    assert len(matches) == count, (
+        f"expected {count} hash-pinned {action} reference(s), found {len(matches)}"
+    )
     return str(matches[0][0])
 
 

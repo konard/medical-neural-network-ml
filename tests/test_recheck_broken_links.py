@@ -9,6 +9,7 @@ carrying a non-transient status code stays final.
 from __future__ import annotations
 
 import importlib.util
+import os
 import subprocess
 import sys
 import threading
@@ -291,7 +292,7 @@ def _head_handler(seen: dict[str, object], status: int = 200):
         def log_message(self, *args) -> None:
             pass
 
-        def do_HEAD(self) -> None:  # noqa: N802
+        def do_HEAD(self) -> None:
             seen["command"] = self.command
             seen["user_agent"] = self.headers.get("User-Agent")
             self.send_response(status)
@@ -302,8 +303,6 @@ def _head_handler(seen: dict[str, object], status: int = 200):
 
 
 def run_script(env: dict[str, str]) -> subprocess.CompletedProcess[str]:
-    import os
-
     merged_env = {**os.environ, **env}
     return subprocess.run(
         [sys.executable, str(SCRIPT_PATH)],
@@ -325,7 +324,7 @@ def test_recheck_step_recovers_only_healthy_urls_and_never_reasks_a_404(
         def log_message(self, *args) -> None:
             pass
 
-        def do_HEAD(self) -> None:  # noqa: N802
+        def do_HEAD(self) -> None:
             requests.append(self.path)
             self.send_response(200 if self.path == "/healthy" else 404)
             self.send_header("Content-Length", "0")

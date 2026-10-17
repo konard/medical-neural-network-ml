@@ -15,6 +15,7 @@ from medbench.hardware import (
     detect_gpus,
     detect_host,
     parse_meminfo,
+    parse_vm_stat,
 )
 
 MEMINFO = """MemTotal:       12247552 kB
@@ -107,8 +108,6 @@ def test_deadline() -> None:
 
 def test_macos_memory_excludes_compressed_and_overlapping_pages() -> None:
     """Only disjoint, reclaimable page counters contribute to the budget."""
-    from medbench.hardware import parse_vm_stat
-
     vm_stat = """Mach Virtual Memory Statistics: (page size of 16384 bytes)
 Pages free: 100.
 Pages inactive: 200.

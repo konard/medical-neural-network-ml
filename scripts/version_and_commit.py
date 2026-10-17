@@ -20,10 +20,9 @@ import argparse
 import os
 import subprocess
 import sys
+import tomllib
 from enum import Enum, auto
 from pathlib import Path
-
-import tomllib
 
 
 def run_command(

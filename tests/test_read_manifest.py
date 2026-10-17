@@ -55,7 +55,7 @@ def test_missing_field_fails_loudly(tmp_path: Path) -> None:
 
 
 def test_non_string_field_fails_loudly(tmp_path: Path) -> None:
-    code, out, err = run_script(tmp_path, "[project]\nversion = 3\n")
+    code, _out, err = run_script(tmp_path, "[project]\nversion = 3\n")
     assert code == 1
     assert "is not a string" in err
 

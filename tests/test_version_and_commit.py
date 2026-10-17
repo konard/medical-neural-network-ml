@@ -36,7 +36,7 @@ version = "2.3.4"
 
 
 def test_parse_version_fails_loudly_when_project_version_is_missing() -> None:
-    with pytest.raises(ValueError, match="no project.version"):
+    with pytest.raises(ValueError, match=r"no project\.version"):
         module.parse_version("[project]\nname = 'example'\n")
 
 

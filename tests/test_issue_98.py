@@ -5,9 +5,9 @@ from __future__ import annotations
 import os
 import re
 import subprocess
+import tomllib
 
 import pytest
-import tomllib
 
 from tests.workflow_helpers import (
     ROOT,

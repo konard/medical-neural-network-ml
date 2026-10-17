@@ -23,7 +23,7 @@ import re
 import shutil
 import subprocess
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 
@@ -128,7 +128,7 @@ def create_manual_fragment(
 ) -> int:
     """Create a changelog fragment manually without scriv."""
     # Generate filename
-    timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    timestamp = datetime.now(UTC).strftime("%Y%m%d_%H%M%S")
     username = get_username()
     branch = get_branch_name()
 

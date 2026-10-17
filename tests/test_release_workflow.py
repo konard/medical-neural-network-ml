@@ -393,9 +393,9 @@ def test_release_preflight_gates_every_publishing_job() -> None:
     ):
         job = workflow_job_block(workflow, job_name)
         assert "release-preflight" in job, f"{job_name} must need release-preflight"
-        assert (
-            "needs.release-preflight.result == 'success'" in job
-        ), f"{job_name} must gate on the preflight verdict, not just greenness"
+        assert "needs.release-preflight.result == 'success'" in job, (
+            f"{job_name} must gate on the preflight verdict, not just greenness"
+        )
 
 
 def test_validate_docs_gates_on_docs_changes() -> None:

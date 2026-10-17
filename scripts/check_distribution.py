@@ -339,8 +339,10 @@ def install_smoke_test(wheel: Path, sdist: Path, project: dict[str, Any]) -> Non
                 python,
                 "-I",
                 "-c",
-                "import importlib.metadata as m; d = m.metadata("
-                f"{project['name']!r}); print(d['License-Expression'])",
+                (
+                    "import importlib.metadata as m; d = m.metadata("
+                    f"{project['name']!r}); print(d['License-Expression'])"
+                ),
             ],
             work,
         ).strip()

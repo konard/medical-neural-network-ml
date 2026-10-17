@@ -19,7 +19,7 @@ import secrets
 import subprocess
 import sys
 from pathlib import Path
-from typing import Optional, TextIO
+from typing import TextIO
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
@@ -40,7 +40,7 @@ MAX_RELEASE_NOTES_BYTES = 60_000
 ENCODING = "utf-8"
 
 
-def print_untrusted(text: str, file: Optional[TextIO] = None) -> None:
+def print_untrusted(text: str, file: TextIO | None = None) -> None:
     """Print text while disabling GitHub runner command interpretation."""
     stream = sys.stdout if file is None else file
     if not os.environ.get("GITHUB_ACTIONS"):

@@ -36,7 +36,7 @@ from medbench.hardware import ResourceBudget
 class _FakeServer(BaseHTTPRequestHandler):
     requests: list[dict[str, Any]] = []  # noqa: RUF012 - shared on purpose
 
-    def do_POST(self) -> None:  # noqa: N802 - name required by BaseHTTPRequestHandler
+    def do_POST(self) -> None:
         body = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
         body["auth"] = self.headers.get("Authorization")
         self.requests.append(body)

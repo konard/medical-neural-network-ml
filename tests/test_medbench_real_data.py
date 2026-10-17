@@ -273,9 +273,11 @@ class TestFetch:
         sample = _sample("e", b"x", "imaging-xray")
         lines = attribution_lines([sample, sample])
         assert lines == [
-            "e: Test Author, CC0 1.0 "
-            "(https://creativecommons.org/publicdomain/zero/1.0/), "
-            "via https://example.org/e"
+            (
+                "e: Test Author, CC0 1.0 "
+                "(https://creativecommons.org/publicdomain/zero/1.0/), "
+                "via https://example.org/e"
+            )
         ]
 
 
@@ -471,10 +473,14 @@ def _ddxplus_files(tmp_path: Path) -> list[Sample]:
     }
     rows = [
         "AGE,DIFFERENTIAL_DIAGNOSIS,SEX,PATHOLOGY,EVIDENCES,INITIAL_EVIDENCE",
-        "49,\"[['GERD', 0.6], ['Stable angina', 0.4]]\",F,GERD,"
-        "\"['E_55_@_V_29', 'E_55_@_V_123', 'E_56_@_6']\",E_55",
-        "61,\"[['Stable angina', 0.5], ['Unstable angina', 0.5]]\",M,"
-        "Unstable angina,\"['E_91', 'E_56_@_0']\",E_91",
+        (
+            "49,\"[['GERD', 0.6], ['Stable angina', 0.4]]\",F,GERD,"
+            "\"['E_55_@_V_29', 'E_55_@_V_123', 'E_56_@_6']\",E_55"
+        ),
+        (
+            "61,\"[['Stable angina', 0.5], ['Unstable angina', 0.5]]\",M,"
+            "Unstable angina,\"['E_91', 'E_56_@_0']\",E_91"
+        ),
     ]
     archive = io.BytesIO()
     with zipfile.ZipFile(archive, "w") as handle:

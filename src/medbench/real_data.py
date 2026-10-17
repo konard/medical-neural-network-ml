@@ -210,7 +210,7 @@ def _download(url: str, opener: Opener, timeout: float, attempts: int) -> bytes:
         try:
             with opener(request, timeout) as response:
                 return bytes(response.read())
-        except (urllib.error.URLError, TimeoutError, ConnectionError) as error:  # noqa: PERF203 - each network attempt needs its own retry handling
+        except (urllib.error.URLError, TimeoutError, ConnectionError) as error:
             wait = _wait_before_retry(error, attempt)
             if wait is None or attempt == attempts:
                 raise

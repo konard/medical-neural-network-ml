@@ -44,8 +44,10 @@ def read_values(workflow: Path, *jobs: str) -> dict[str, str]:
         ("concurrency:\n      group: build", "false"),
         ("concurrency: build", "false"),
         (
-            "concurrency:\n      group: build\n"
-            "      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}",
+            (
+                "concurrency:\n      group: build\n"
+                "      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}"
+            ),
             "unknown",
         ),
         ("", "none"),
@@ -145,12 +147,14 @@ def test_supersede_only_excuses_jobs_that_cancel_in_progress(tmp_path: Path) -> 
     "jobs",
     [
         "  build:\n    runs-on: ubuntu-24.04\n    steps: []\n",
-        "  build:\n"
-        "    concurrency:\n"
-        "      group: build\n"
-        "      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}\n"
-        "    runs-on: ubuntu-24.04\n"
-        "    steps: []\n",
+        (
+            "  build:\n"
+            "    concurrency:\n"
+            "      group: build\n"
+            "      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}\n"
+            "    runs-on: ubuntu-24.04\n"
+            "    steps: []\n"
+        ),
     ],
 )
 def test_absent_or_dynamic_concurrency_fails_closed(tmp_path: Path, jobs: str) -> None:

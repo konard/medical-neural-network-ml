@@ -501,7 +501,7 @@ class ChatHandler(BaseHTTPRequestHandler):
     def _error(self, status: int, kind: str, message: str) -> None:
         self._send(status, {"error": {"type": kind, "message": message}})
 
-    def do_GET(self) -> None:  # noqa: N802 - http.server's name
+    def do_GET(self) -> None:
         """Health, model list and metrics."""
         if self.path == "/health":
             self._send(200, {"status": "ok"})
@@ -512,7 +512,7 @@ class ChatHandler(BaseHTTPRequestHandler):
         else:
             self._error(404, "not_found", f"no route {self.path}")
 
-    def do_POST(self) -> None:  # noqa: N802 - http.server's name
+    def do_POST(self) -> None:
         """Answer one chat completion."""
         if self.path != "/v1/chat/completions":
             self._error(404, "not_found", f"no route {self.path}")
