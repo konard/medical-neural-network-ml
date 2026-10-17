@@ -453,6 +453,26 @@ def test_workflow_lint_job_validates_every_workflow() -> None:
     assert ignored == ['unexpected key "queue" for "concurrency" section']
 
 
+def test_actionlint_extra_runner_labels_are_in_use() -> None:
+    """Hosted labels added for an outdated actionlint must still be needed.
+
+    actionlint 1.7.12 does not know ``ubuntu-26.04`` (rhysd/actionlint#682),
+    so .github/actionlint.yaml lists it next to the self-hosted ``gpu`` label
+    (issue #19). A label listed there but used by no workflow is a stale
+    workaround that would hide a typo in a future ``runs-on``.
+    """
+    config = (WORKFLOWS.parent / "actionlint.yaml").read_text(encoding="utf-8")
+    section = config.split("self-hosted-runner:", 1)[1].split("\npaths:", 1)[0]
+    labels = re.findall(r"^    - (\S+)$", section, re.MULTILINE)
+    workflows = "\n".join(
+        path.read_text(encoding="utf-8") for path in WORKFLOWS.glob("*.y*ml")
+    )
+
+    assert labels[0] == "gpu"
+    for label in labels:
+        assert re.search(rf"\b{re.escape(label)}\b(?!-)", workflows), label
+
+
 def test_workflow_audit_job_runs_zizmor() -> None:
     """zizmor has to run in CI next to actionlint, or its findings never surface.
 

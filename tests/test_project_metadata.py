@@ -103,3 +103,34 @@ def test_docs_requirements_match_the_docs_extra() -> None:
     from_extra = sorted(PYPROJECT["project"]["optional-dependencies"]["docs"])
 
     assert from_file == from_extra
+
+
+def test_every_advertised_python_runs_in_ci() -> None:
+    """Each classifier minor is a Python that some CI job runs the suite on.
+
+    compatibility.yml covers the older minors and the Mac, release.yml the
+    newest (issue #19), so a classifier is never a claim nothing checks.
+    """
+    workflows = ROOT / ".github" / "workflows"
+    tested = set(
+        re.findall(
+            r"^ +- python: '(3\.\d+)'$",
+            (workflows / "compatibility.yml").read_text(encoding="utf-8"),
+            re.MULTILINE,
+        )
+    )
+    tested |= set(
+        re.findall(
+            r"^ +python-version: '(3\.\d+)'$",
+            (workflows / "release.yml").read_text(encoding="utf-8"),
+            re.MULTILINE,
+        )
+    )
+    prefix = "Programming Language :: Python :: "
+    advertised = {
+        classifier.removeprefix(prefix)
+        for classifier in PYPROJECT["project"]["classifiers"]
+        if re.fullmatch(rf"{re.escape(prefix)}3\.\d+", classifier)
+    }
+
+    assert advertised == tested

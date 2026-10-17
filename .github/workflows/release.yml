@@ -40,7 +40,7 @@ jobs:
   # === DETECT CHANGES - determines which jobs should run ===
   detect-changes:
     name: Detect Changes
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-detect-changes
@@ -58,7 +58,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: '3.13'
+          python-version: '3.15'
 
       - name: Detect Python layout
         id: python_layout
@@ -102,7 +102,7 @@ jobs:
   # See: https://github.com/link-assistant/hive-mind/pull/1024 for why this dependency was removed
   lint:
     name: Lint and Format Check
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 20
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-lint
@@ -130,7 +130,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: '3.13'
+          python-version: '3.15'
 
       - name: Detect Python layout
         id: python_layout
@@ -205,7 +205,7 @@ jobs:
   # link to, and enforces the markdown size budget.
   validate-docs:
     name: Validate Documentation
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-validate-docs
@@ -239,7 +239,7 @@ jobs:
   # gate on `result == 'success'` rather than on the run being green.
   release-preflight:
     name: Release Preflight (credentials)
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       contents: read
@@ -270,8 +270,8 @@ jobs:
   # === TEST ===
   # Test on latest Python version only
   test:
-    name: Test (Python 3.13)
-    runs-on: ubuntu-24.04
+    name: Test (Python 3.15)
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-test
@@ -294,7 +294,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: '3.13'
+          python-version: '3.15'
 
       - name: Detect Python layout
         id: python_layout
@@ -342,7 +342,7 @@ jobs:
           bash scripts/run-with-budget-warning.sh \
             "$TEST_BUDGET_SECONDS" "Run tests" \
             python -m medbench.cli monitor --out resources/test.json \
-            --label "Test (Python 3.13)" --interval 2 -- \
+            --label "Test (Python 3.15)" --interval 2 -- \
             pytest tests/ -v --cov=src --cov-report=xml --cov-report=term
 
       # Peak memory, disk and wall time of the step above (issue #9).
@@ -360,7 +360,7 @@ jobs:
 
       - name: Upload coverage to Codecov
         if: env.CODECOV_TOKEN != ''
-        uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
+        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
         with:
           files: ${{ steps.python_layout.outputs.root }}/coverage.xml
           token: ${{ env.CODECOV_TOKEN }}
@@ -371,7 +371,7 @@ jobs:
   # Build package after required checks pass for detected code changes or dispatches.
   build:
     name: Build Package
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 20
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-build
@@ -394,7 +394,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: '3.13'
+          python-version: '3.15'
 
       - name: Detect Python layout
         id: python_layout
@@ -468,7 +468,7 @@ jobs:
   # Docs-only PRs (./docs folder, markdown files) don't require changelog fragments
   changelog:
     name: Changelog Fragment Check
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-changelog
@@ -484,7 +484,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: "3.13"
+          python-version: "3.15"
 
       - name: Detect Python layout
         id: python_layout
@@ -523,7 +523,7 @@ jobs:
   # Skip cleanly when a generated repository does not include a Dockerfile.
   docker-build:
     name: Docker Image Build Check
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 60
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-docker-build
@@ -587,7 +587,7 @@ jobs:
       needs.test.result == 'success' &&
       needs.build.result == 'success' &&
       needs.release-preflight.result == 'success'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
     permissions:
       contents: write
@@ -601,7 +601,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: '3.13'
+          python-version: '3.15'
 
       - name: Detect Python layout
         id: python_layout
@@ -707,7 +707,7 @@ jobs:
       needs.test.result == 'success' &&
       needs.build.result == 'success' &&
       needs.release-preflight.result == 'success'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
     permissions:
       contents: write
@@ -726,7 +726,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: '3.13'
+          python-version: '3.15'
 
       - name: Detect Python layout
         id: python_layout
@@ -852,7 +852,7 @@ jobs:
         needs.auto-release.outputs.released == 'true' ||
         needs.manual-release.outputs.released == 'true'
       )
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       contents: read
@@ -901,9 +901,9 @@ jobs:
       matrix:
         include:
           - platform: linux/amd64
-            runner: ubuntu-24.04
+            runner: ubuntu-26.04
           - platform: linux/arm64
-            runner: ubuntu-24.04-arm
+            runner: ubuntu-26.04-arm
     runs-on: ${{ matrix.runner }}
     permissions:
       contents: read
@@ -953,7 +953,7 @@ jobs:
     if: |
       needs.release-preflight.result == 'success' &&
       needs.docker-publish-build.result == 'success'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
     permissions:
       contents: read
@@ -1001,7 +1001,7 @@ jobs:
   # Observe every other job so that state cannot silently hide a broken run.
   pipeline-status:
     name: Pipeline Status (CI/CD)
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     if: always()
     needs: [detect-changes, validate-docs, release-preflight, lint, test, build,

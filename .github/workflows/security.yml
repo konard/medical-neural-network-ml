@@ -27,12 +27,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - runner: ubuntu-24.04
-            python: '3.13'
+          - runner: ubuntu-26.04
+            python: '3.15'
           # Linux environment markers omit MLX; audit its resolved graph on
           # native arm64 macOS as well.
-          - runner: macos-15
-            python: '3.12'
+          - runner: macos-26
+            python: '3.15'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -65,7 +65,7 @@ jobs:
 
   codeql:
     name: CodeQL (${{ matrix.language }})
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
     concurrency:
       group: check-${{ github.workflow }}-${{ github.ref }}-codeql-${{ matrix.language }}
@@ -97,7 +97,7 @@ jobs:
   dependency-review:
     name: Dependency Review
     if: github.event_name == 'pull_request'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     permissions:
       contents: read
@@ -133,7 +133,7 @@ jobs:
   dependency-graph:
     name: Dependency Graph Enabled
     if: github.event_name != 'pull_request'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       contents: read
@@ -155,7 +155,7 @@ jobs:
   # job token cannot see bypass actors, so those are compared by `apply`.
   rulesets:
     name: Branch Rulesets
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     permissions:
       contents: read
@@ -167,7 +167,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: '3.13'
+          python-version: '3.15'
 
       - name: Compare live rulesets with .github/rulesets
         env:
@@ -187,7 +187,7 @@ jobs:
       - dependency-graph
       - rulesets
     if: always()
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
