@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run upstream UniMedVL's ``Bagel.chat`` on the CPU with a tiny random model (#19).
 
-scripts/unimedvl-requirements.txt pins the Python 3.10 stack for the real
+scripts/unimedvl-requirements.txt pins the Python 3.13 stack for the real
 29 GB model, which needs a CUDA GPU and flash-attn. To check that a new set of
 pins still runs upstream's code without a GPU, this script:
 

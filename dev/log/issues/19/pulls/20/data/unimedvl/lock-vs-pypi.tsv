@@ -1,11 +1,11 @@
 accelerate	1.15.0	1.15.0	1.15.0	latest
 certifi	2026.7.22	2026.7.22	2026.7.22	latest
 charset-normalizer	3.5.2	3.5.2	3.5.2	latest
-contourpy	1.3.2	1.4.0	1.3.2	latest for Python 3.10.18
+contourpy	1.4.0	1.4.0	1.4.0	latest
 cycler	0.12.1	0.12.1	0.12.1	latest
 einops	0.8.2	0.8.2	0.8.2	latest
-filelock	4.1.0	4.2.0	4.1.0	latest for Python 3.10.18
-fonttools	4.65.0	4.67.0	4.65.0	latest for Python 3.10.18
+filelock	4.2.0	4.2.0	4.2.0	latest
+fonttools	4.67.0	4.67.0	4.67.0	latest
 fsspec	2026.9.0	2026.9.0	2026.9.0	latest
 hf-xet	1.7.0	1.7.0	1.7.0	latest
 huggingface-hub	0.36.2	2.2.0	2.2.0	BEHIND
@@ -13,10 +13,10 @@ idna	3.20	3.20	3.20	latest
 jinja2	3.1.6	3.1.6	3.1.6	latest
 kiwisolver	1.5.1	1.5.1	1.5.1	latest
 markupsafe	3.0.4	3.0.4	3.0.4	latest
-matplotlib	3.10.9	3.11.2	3.10.9	latest for Python 3.10.18
+matplotlib	3.11.2	3.11.2	3.11.2	latest
 mpmath	1.3.0	1.4.1	1.4.1	BEHIND
-networkx	3.4.2	3.7	3.4.2	latest for Python 3.10.18
-numpy	2.2.6	2.5.4	2.2.6	latest for Python 3.10.18
+networkx	3.7	3.7	3.7	latest
+numpy	2.5.4	2.5.4	2.5.4	latest
 nvidia-cublas-cu12	12.8.4.1	12.9.2.10	12.9.2.10	BEHIND
 nvidia-cuda-cupti-cu12	12.8.90	12.9.79	12.9.79	BEHIND
 nvidia-cuda-nvrtc-cu12	12.8.93	12.9.86	12.9.86	BEHIND
@@ -33,7 +33,7 @@ nvidia-nvjitlink-cu12	12.8.93	12.9.86	12.9.86	BEHIND
 nvidia-nvtx-cu12	12.8.90	12.9.79	12.9.79	BEHIND
 opencv-python	5.0.0.93	5.0.0.93	5.0.0.93	latest
 packaging	26.3	26.3	26.3	latest
-pillow	12.3.0	13.0.0	12.3.0	latest for Python 3.10.18
+pillow	13.0.0	13.0.0	13.0.0	latest
 psutil	7.2.2	7.2.2	7.2.2	latest
 pyparsing	3.3.3	3.3.3	3.3.3	latest
 python-dateutil	2.9.0.post0	2.9.0.post0	2.9.0.post0	latest

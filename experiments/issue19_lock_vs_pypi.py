@@ -4,7 +4,7 @@ For each ``name==version`` line, print the newest release on PyPI and the
 newest release whose ``Requires-Python`` admits the target Python, so a pin
 that is behind can be told apart from one that is held by the interpreter.
 
-    python -I experiments/issue19_lock_vs_pypi.py scripts/unimedvl-requirements.txt 3.10
+    python -I experiments/issue19_lock_vs_pypi.py scripts/unimedvl-requirements.txt 3.13
 """
 
 from __future__ import annotations

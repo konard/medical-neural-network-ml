@@ -1,0 +1,28 @@
+{
+  "versions": {
+    "torch": "2.8.0+cpu",
+    "torchvision": "0.23.0+cpu",
+    "transformers": "4.57.6",
+    "tokenizers": "0.22.2",
+    "accelerate": "1.15.0",
+    "safetensors": "0.8.0",
+    "numpy": "2.5.4",
+    "pillow": "13.0.0",
+    "opencv-python": "5.0.0.93"
+  },
+  "token_ids": [
+    151644,
+    129845,
+    141527,
+    81044,
+    81044,
+    81044,
+    81044,
+    81044,
+    81044,
+    27075,
+    80286,
+    143669
+  ],
+  "text": "\uac80 \ud604\uc2e4 entrenched entrenched entrenched entrenched entrenched entrenched adjustmentdense mi\u0119dzynarodow"
+}

@@ -13,7 +13,7 @@ The server is our own code and stays under the Unlicense. It imports the
 upstream checkout at run time and does not copy it. The checkout and the
 weights keep their Apache-2.0 terms (see THIRD_PARTY_NOTICES.md).
 
-Run it with the Python of the upstream environment (Python 3.10, torch 2.8.0,
+Run it with the Python of the upstream environment (Python 3.13, torch 2.8.0,
 transformers 4.57.6, accelerate 1.15.0 and flash-attn; see
 ``scripts/medbench-model-run.sh``), from the root of a checkout at
 :data:`CODE_COMMIT`::

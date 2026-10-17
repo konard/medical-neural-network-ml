@@ -276,6 +276,30 @@ def test_unimedvl_pins() -> None:
     assert pins["transformers"] == "4.57.6"
 
 
+def test_unimedvl_python_matches_everywhere() -> None:
+    """The venv, the CI job, the lock and the flash-attn wheel use one Python."""
+    script = SCRIPT_PATH.read_text()
+    wheel = re.search(r'FLASH_ATTN_WHEEL="[^"]*-cp(\d)(\d+)-cp\d+-', script)
+    default = re.search(
+        r'UNIMEDVL_PYTHON="\$\{UNIMEDVL_PYTHON:-python([\d.]+)\}"', script
+    )
+    job = re.search(
+        r"Setup Python ([\d.]+) for UniMedVL.*?python-version: '([\d.]+)'",
+        WORKFLOW.read_text(),
+        re.DOTALL,
+    )
+    source = (ROOT / "scripts" / "unimedvl-requirements.in").read_text()
+    compiled = re.search(r"--python-version ([\d.]+)", source)
+    assert wheel
+    assert default
+    assert job
+    assert compiled
+    python = f"{wheel[1]}.{wheel[2]}"
+    assert default[1] == job[1] == job[2] == compiled[1] == python
+    # 3.10 reaches end of life in October 2026 (issue #19).
+    assert python == "3.13"
+
+
 def unimedvl_pins(name: str) -> dict[str, str]:
     """Map each package in a UniMedVL requirements file to its exact pin."""
     pins: dict[str, str] = {}
