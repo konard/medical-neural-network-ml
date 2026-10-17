@@ -130,7 +130,7 @@ def test_every_accepted_advisory_has_a_reason() -> None:
         assert advisory.startswith(("PYSEC-", "GHSA-")), advisory
         assert reason.split(" ", 1)[0] in {"torch", "transformers", "accelerate"}
         assert ";" in reason or ":" in reason, reason
-    # torch.load RCE is fixed by the pin, never accepted.
+    # torch.load RCE (fixed since torch 2.6) is never accepted.
     assert "GHSA-53q9-r3pm-6pq6" not in module.ACCEPTED_ADVISORIES
 
 

@@ -122,7 +122,7 @@ jobs:
         with:
           fail-on-severity: high
           comment-summary-in-pr: on-failure
-          # High-severity transformers 4.49.0 advisories of the pinned
+          # High-severity transformers 4.57.6 advisories of the pinned
           # UniMedVL runtime, each accepted with its reason in
           # scripts/audit_dependencies.py (REVIEW_ALLOWED_GHSAS); any other
           # advisory still fails the review.

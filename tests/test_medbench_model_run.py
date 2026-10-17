@@ -266,12 +266,38 @@ def test_unimedvl_pins() -> None:
         "tokenizer.json",
     }
     assert re.search(r'FLASH_ATTN_SHA256="[0-9a-f]{64}"', script)
-    requirements = (ROOT / "scripts" / "unimedvl-requirements.txt").read_text()
-    pins = [line for line in requirements.splitlines() if line and line[0] != "#"]
-    assert pins
-    assert all("==" in line for line in pins)
-    # 2.6.0 is the first torch without GHSA-53q9-r3pm-6pq6 (torch.load RCE);
-    # the flash-attn wheel has to be built for the same torch.
-    assert "torch==2.6.0" in pins
-    assert "cu12torch2.6" in script
-    assert "transformers==4.49.0" in pins
+    pins = unimedvl_pins("unimedvl-requirements.txt")
+    # The newest torch with a prebuilt flash-attn wheel (issue #19); the wheel
+    # has to be built for the same torch, and for the C++11 ABI that PyPI
+    # torch wheels use since 2.7.
+    assert pins["torch"] == "2.8.0"
+    assert "cu12torch2.8cxx11abiTRUE" in script
+    # The last 4.x: upstream's code fails on transformers 5 (issue #19).
+    assert pins["transformers"] == "4.57.6"
+
+
+def unimedvl_pins(name: str) -> dict[str, str]:
+    """Map each package in a UniMedVL requirements file to its exact pin."""
+    pins: dict[str, str] = {}
+    for line in (ROOT / "scripts" / name).read_text().splitlines():
+        requirement = line.split("#", 1)[0].strip()
+        if requirement:
+            package, _, pinned = requirement.partition("==")
+            assert pinned, line
+            pins[package.strip().lower()] = pinned.strip()
+    return pins
+
+
+def test_unimedvl_lock_matches_its_input() -> None:
+    """The .txt lock pins every package of the .in exactly as the .in does.
+
+    The lock is compiled from the .in (with uv pip compile, see its header),
+    so it also pins every transitive package; an edit to one file without the
+    other would install something nobody reviewed.
+    """
+    wanted = unimedvl_pins("unimedvl-requirements.in")
+    locked = unimedvl_pins("unimedvl-requirements.txt")
+    assert wanted
+    assert {name: locked.get(name) for name in wanted} == wanted
+    # Everything torch, transformers and accelerate import is locked too.
+    assert {"huggingface-hub", "filelock", "nvidia-cudnn-cu12"} <= set(locked)

@@ -90,10 +90,11 @@ UNIMEDVL_FILES=(
   "merges.txt 599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
 )
 # Upstream imports flash_attn_varlen_func; this prebuilt wheel matches the
-# pinned torch 2.6.0 (CUDA 12, old C++ ABI like the PyPI torch wheels).
-FLASH_ATTN_WHEEL="flash_attn-2.7.4.post1+cu12torch2.6cxx11abiFALSE-cp310-cp310-linux_x86_64.whl"
-FLASH_ATTN_URL="https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.4.post1/${FLASH_ATTN_WHEEL//+/%2B}"
-FLASH_ATTN_SHA256="ffe17686fa1a0f288de9eae7c32af209d32a27b037ef28614f042b377af5b15a"
+# pinned torch 2.8.0 (CUDA 12, and the C++11 ABI that PyPI torch wheels use
+# since 2.7). v2.8.3.post2 also fixes GHSA-7g5w-pq96-8c5w (issue #19).
+FLASH_ATTN_WHEEL="flash_attn-2.8.3.post2+cu12torch2.8cxx11abiTRUE-cp310-cp310-linux_x86_64.whl"
+FLASH_ATTN_URL="https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post2/${FLASH_ATTN_WHEEL//+/%2B}"
+FLASH_ATTN_SHA256="203608ec486ec866a64b5debe1ad554b73d70632ee0f939c0b2e017057ecf23f"
 UNIMEDVL_PYTHON="${UNIMEDVL_PYTHON:-python3.10}"
 UNIMEDVL_VENV="${UNIMEDVL_VENV:-$CACHE_DIR/unimedvl-venv}"
 UNIMEDVL_ENGINE="${UNIMEDVL_ENGINE:-unimedvl}"

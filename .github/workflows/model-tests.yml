@@ -32,6 +32,7 @@ on:
       - 'scripts/medbench-model-run.sh'
       - 'scripts/run-with-budget-warning.sh'
       - 'scripts/unimedvl_server.py'
+      - 'scripts/unimedvl-requirements.in'
       - 'scripts/unimedvl-requirements.txt'
       - 'tests/test_real_models.py'
       - 'tests/test_medbench_real_data.py'

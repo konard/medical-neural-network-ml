@@ -111,7 +111,7 @@ ignore = [
 # Optional heavy dependencies (torch, transformers, mlx, PIL, accelerate,
 # huggingface_hub) and Unix-only modules are imported inside the function that
 # needs them, so the package and the scripts import without those extras.
-"{src/medbench/backends.py,src/medbench/cli.py,src/medbench/mlx_backend.py,src/medbench/monitor.py,src/medbench/real_data.py,scripts/measure_training_memory.py,scripts/medbench-mlx-run.py,scripts/unimedvl_server.py}" = [
+"{src/medbench/backends.py,src/medbench/cli.py,src/medbench/mlx_backend.py,src/medbench/monitor.py,src/medbench/real_data.py,scripts/measure_training_memory.py,scripts/medbench-mlx-run.py,scripts/unimedvl_server.py,experiments/issue19_unimedvl_cpu_smoke.py}" = [
     "PLC0415", # import-outside-top-level
 ]
 "tests/**/*.py" = [
