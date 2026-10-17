@@ -222,6 +222,24 @@ were dropped.
   -W always::ResourceWarning` and prints no warning
   ([data/verification/](data/verification/)).
 
+## F15. Dependabot would fail its own grouped pull request
+
+- **Symptom.** None yet; found by reviewing the diff. On `main`, Dependabot
+  never raised a floor that still admitted the new release: `pytest>=8.3.0`
+  stayed while pytest 9 existed, and #14 only widened mypy's cap
+  (`>=1.13.0,<2.0` to `>=1.13.0,<3.0`). With ruff 0.17.2 the weekly group
+  would move the hook to `v0.17.2` but leave `ruff>=0.17.1,<0.18`, and
+  `tests/test_project_metadata.py` (hook rev == dev extra floor) would fail in
+  that pull request. mypy `>=2.4.0` behaves the same.
+- **Root cause.** Without `versioning-strategy`, Dependabot uses `auto`:
+  "For libraries, widen the allowed version requirements to include both the
+  new and old versions, when possible" ([options reference](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/dependabot-options-reference)).
+- **Fix.** `versioning-strategy: increase` on the pip entry: "Always increase
+  the minimum version requirement to match the new version". This also keeps
+  every floor at the latest release, as this pull request left them.
+- **Test.** `test_dependabot_raises_the_pip_floors_with_the_hooks` failed
+  before the change. `check-dependabot` (check-jsonschema) accepts the file.
+
 ## Ruled out
 
 - **llama.cpp "latest release".** `v0.7.0` is a packaging tag whose

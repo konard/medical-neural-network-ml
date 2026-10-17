@@ -98,7 +98,7 @@ All checks were run locally on the final code commit, then in CI.
 
 | Check | Result | Evidence |
 | --- | --- | --- |
-| pytest on Python 3.15.0 and 3.11.17, run as `python -W error::DeprecationWarning -W always::ResourceWarning` with the same flags passed to pytest | 947 passed, 45 skipped (opt-in network, model and GPU tests), no warnings | [data/verification/pytest-py315.log](data/verification/pytest-py315.log), [pytest-py311.log](data/verification/pytest-py311.log) |
+| pytest on Python 3.15.0 and 3.11.17, run as `python -W error::DeprecationWarning -W always::ResourceWarning` with the same flags passed to pytest | 948 passed, 45 skipped (opt-in network, model and GPU tests), no warnings | [data/verification/pytest-py315.log](data/verification/pytest-py315.log), [pytest-py311.log](data/verification/pytest-py311.log) |
 | ruff check, ruff format, mypy, file-size check, `sphinx-build -W`, pre-commit | All clean | [data/verification/checks.log](data/verification/checks.log) |
 | UniMedVL on the new lock (CPU, tiny random model) | Same token ids as on main's pins | [analysis.md F2](analysis.md#f2-python-310-held-seven-unimedvl-packages-behind) |
 | `pip-audit` on the UniMedVL lock | No known vulnerabilities, 17 accepted with reasons | [data/unimedvl/pip-audit-lock.log](data/unimedvl/pip-audit-lock.log) |

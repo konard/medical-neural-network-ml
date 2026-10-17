@@ -1,4 +1,4 @@
-# Local checks at ef9fd7d, Python 3.15.0
+# Local checks at 478b632, Python 3.15.0
 $ ruff check --no-cache .
 All checks passed!
 exit 0
@@ -9,6 +9,9 @@ $ mypy src/
 Success: no issues found in 18 source files
 exit 0
 $ python scripts/check_file_size.py
+
+Checking files for maximum 1000 lines (warning above 900) and 2500 lines for markdown (warning above 2250)...
+
 ✓ All files are within the hard line limit
 
 exit 0
