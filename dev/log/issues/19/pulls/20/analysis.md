@@ -135,11 +135,103 @@ were dropped.
   `check-jsonschema` hook validates `dependabot.yml`, since Dependabot reports
   a broken file only in its own logs.
 
+## F10. A pytest-asyncio warning that pytest's `-W` never sees
+
+- **Symptom.** `pytest -W error::DeprecationWarning` passes, but
+  `python -W error::DeprecationWarning -m pytest` stops with an
+  INTERNALERROR: `PytestDeprecationWarning: The configuration option
+  "asyncio_default_fixture_loop_scope" is unset.`
+- **Root cause.** pytest-asyncio 1.x raises the warning while it reads the
+  configuration (`pytest_asyncio/plugin.py`, in `pytest_configure`). That happens before
+  pytest's own `-W` filters are installed, so only Python's filters see it.
+- **Fix (e6c8f79).** Set `asyncio_default_fixture_loop_scope = "function"`,
+  which is the value the plugin will default to.
+- **Test.** `test_pytest_starts_without_deprecation_warnings` runs pytest
+  under `python -W error::DeprecationWarning`. It failed before the fix.
+
+## F11. pytest-cov 7 stopped measuring subprocesses
+
+- **Symptom.** None is visible. `tests/test_medbench_monitor.py` runs
+  `python -m medbench.cli monitor` in a subprocess, and under pytest-cov 7
+  those lines were no longer counted.
+- **Root cause.** pytest-cov 7.0 removed its `.pth` hook. Its changelog
+  points to coverage's own `[run] patch = ["subprocess"]` (coverage 7.10+).
+- **Fix (e6c8f79).** Add `patch = ["subprocess"]`. Measured with
+  [experiments/issue19_subprocess_coverage.py](../../../../../experiments/issue19_subprocess_coverage.py):
+  `monitor.py` goes from 88.5% to 94.3% and the total from 38.6% to 39.1%
+  in that test file
+  ([before](data/coverage/before-patch-subprocess.json),
+  [after](data/coverage/after-patch-subprocess.json)). `sigterm = true`
+  added nothing on top, so it was left out.
+- **Test.** `test_coverage_follows_python_subprocesses`.
+
+## F12. Sphinx 9.1 needs Python 3.12
+
+- **Symptom.** `pip install '.[docs]'` cannot resolve on Python 3.11, which
+  the package still supports. CI did not notice, because the docs build runs
+  on 3.15.
+- **Root cause.** Sphinx 9.1.0 declares `requires_python >= 3.12`. uv
+  explains it: "sphinx==9.1.0 depends on Python>=3.12"
+  ([data/sphinx-9.1-python-floor.log](data/sphinx-9.1-python-floor.log)).
+- **Decision (e6c8f79).** Keep one Sphinx version, 9.1.0 (principle 6). The
+  `docs` extra is for building the documentation, not for using the
+  package. A 3.11-only `sphinx<9.1` marker would create a second Sphinx that
+  CI never builds with. The requirement is documented next to the extra in
+  `pyproject.toml`, in README.md and in CONTRIBUTING.md.
+
+## F13. ruff 0.16 formats Python inside Markdown
+
+- **Symptom.** `ruff format --check .` in CI started checking Markdown,
+  including captured CI logs and case-study data under `dev/log/` and
+  `docs/case-studies/*/data/`: 198 files without the exclude, 176 with
+  it. pre-commit excludes these, so the two disagreed about what counts as
+  source.
+- **Root cause.** ruff 0.16 formats Python code blocks in Markdown by
+  default, and the `ruff-format` hook now has
+  `types_or: [python, pyi, jupyter, markdown]`.
+- **Fix (e6c8f79).** `extend-exclude` in `[tool.ruff]` mirrors
+  pre-commit's `exclude`.
+- **Test.** `test_ruff_format_skips_the_evidence_pre_commit_skips` asks ruff
+  (with `--force-exclude`) to format every Markdown file that pre-commit's
+  `exclude` matches. ruff must skip them all.
+
+## F14. Unclosed HTTP error answers on Python 3.12+
+
+- **Symptom.** With `-W always::ResourceWarning` on CI's Python 3.15:
+  `ResourceWarning: Implicitly cleaning up <HTTPError 507: ...>` (and 500
+  and 400), plus an unclosed socket. Python 3.11 is silent.
+- **Root cause.** An `urllib.error.HTTPError` is also the open response,
+  and it holds the connection until it is closed. Python 3.12+ warns when
+  one is garbage-collected while still open. Three places dropped one:
+  - `OpenAICompatibleBackend.generate` read the body to classify the error
+    but never closed it.
+  - The retry loop in `real_data._download` used only the status and
+    headers.
+  - `test_bad_request_is_400_without_running_the_model` left its own error
+    open.
+
+  Separately, the `server_url` fixture in
+  `tests/test_medbench_benchmark.py` shut its server down without
+  `server_close()`.
+- **Fix (ef9fd7d).** Close the error once it has been read, following the
+  existing `error.close()` in `scripts/check_release.py`, and close the test
+  server's socket.
+- **Test.** `test_openai_backend_closes_error_answers` and
+  `test_error_answers_are_closed` failed before the fix. The full suite now
+  runs on 3.15 and 3.11 with `-W error::DeprecationWarning
+  -W always::ResourceWarning` and prints no warning
+  ([data/verification/](data/verification/)).
+
 ## Ruled out
 
 - **llama.cpp "latest release".** `v0.7.0` is a packaging tag whose
   `nightly-tag.txt` says b11669, older than the pinned b11707 (the newest
   `bNNNNN` release on 2026-10-17).
+- **`test_sigterm_stops_the_command_and_still_writes_the_report` failure
+  under `PYTHONTRACEMALLOC=5`.** tracemalloc slows Python's start-up past
+  the test's 1.5 s grace period, so SIGTERM arrives before the handler is
+  installed. Without tracemalloc the test passes on 3.11 and 3.15, so it is
+  not a regression.
 - **CodeQL "sha differs".** The newest release is the CLI tag
   `codeql-bundle-v2.27.2`; the action tag v4.39.0 dereferences to the pinned
   commit.

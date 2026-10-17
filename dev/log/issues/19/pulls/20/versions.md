@@ -18,16 +18,16 @@ now the newest release, so a fresh install and CI resolve the same tree.
 | --- | --- | --- | --- | --- | --- |
 | Python (`requires-python`) | pyproject | `>=3.9` | `>=3.11` | 3.15 | 3.9 and 3.10 are end of life; tested on 3.11-3.15 |
 | hatchling | build-system | unpinned | `>=1.32.4` | 1.32.4 | |
-| ruff | dev | `>=0.8.0,<0.9` | `>=0.17.1,<0.18` | 0.17.1 | Upper bound kept on purpose (it admits the current release): ruff adds rules in minor releases, and `tests/test_project_metadata.py` keeps the pre-commit hook on the same version |
+| ruff | dev | `>=0.8.0,<0.9` | `>=0.17.1,<0.18` | 0.17.1 | `NPY` rules enabled; Markdown evidence excluded from formatting ([F13](analysis.md#f13-ruff-016-formats-python-inside-markdown)). Upper bound kept on purpose (it admits the current release): ruff adds rules in minor releases, and `tests/test_project_metadata.py` keeps the pre-commit hook on the same version |
 | mypy | dev | `>=1.13.0,<2.0` | `>=2.4.0` | 2.4.0 | Major crossed; upper bound dropped |
-| pytest | dev | `>=8.3.0` | `>=9.1.1` | 9.1.1 | Major crossed; `minversion = "9.1"` |
-| pytest-asyncio | dev | `>=0.24.0` | `>=1.4.0` | 1.4.0 | Major crossed |
-| pytest-cov | dev | `>=6.0.0` | `>=7.1.0` | 7.1.0 | Major crossed |
+| pytest | dev | `>=8.3.0` | `>=9.1.1` | 9.1.1 | Major crossed; config moved to the native `[tool.pytest]` table with `strict = true` and `minversion = "9.1"` |
+| pytest-asyncio | dev | `>=0.24.0` | `>=1.4.0` | 1.4.0 | Major crossed; `asyncio_default_fixture_loop_scope` set ([F10](analysis.md#f10-a-pytest-asyncio-warning-that-pytests--w-never-sees)) |
+| pytest-cov | dev | `>=6.0.0` | `>=7.1.0` | 7.1.0 | Major crossed; subprocesses measured through coverage's `patch = ["subprocess"]` ([F11](analysis.md#f11-pytest-cov-7-stopped-measuring-subprocesses)) |
 | pre-commit | dev | `>=4.0.0` | `>=4.7.0` | 4.7.0 | |
 | scriv[toml] | dev | `>=1.7.0` | `>=1.8.0` | 1.8.0 | |
 | pillow | dev, imaging | `>=10.1` | `>=13.0.0` | 13.0.0 | Three majors crossed |
 | mlx-vlm | mlx | `==0.7.8` (`python_version >= '3.10'`) | `==0.7.8` | 0.7.8 | Marker dropped: the floor is now 3.11 |
-| sphinx | docs, docs/requirements.txt | `>=7.4` | `>=9.1.0` | 9.1.0 | Two majors crossed |
+| sphinx | docs, docs/requirements.txt | `>=7.4` | `>=9.1.0` | 9.1.0 | Two majors crossed; the docs extra now needs Python 3.12+ ([F12](analysis.md#f12-sphinx-91-needs-python-312)) |
 | furo | docs, docs/requirements.txt | `>=2024.8.6` | `>=2025.12.19` | 2025.12.19 | |
 | myst-parser | docs, docs/requirements.txt | `>=3.0` | `>=5.1.0` | 5.1.0 | Two majors crossed |
 

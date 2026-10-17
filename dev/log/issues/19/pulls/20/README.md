@@ -8,9 +8,9 @@
 | [issue.md](issue.md) | Snapshot of the issue text |
 | [requirements.md](requirements.md) | Every requirement, its status and evidence, what could not be done, assumptions |
 | [versions.md](versions.md) | Per-ecosystem tables: version on `main`, on this branch, latest on the registry, reason when not latest |
-| [analysis.md](analysis.md) | Findings F1-F9: symptom, root cause, fix commit, test; what was ruled out |
+| [analysis.md](analysis.md) | Findings F1-F14: symptom, root cause, fix commit, test; what was ruled out |
 | [research.md](research.md) | Sources read, the migration notes for each major version, best practices applied, tools considered, upstream reports |
-| [data/](data/) | Registry lookups, action SHA checks, the Dependabot alert evaluation, UniMedVL smoke-test, OpenCV and audit output |
+| [data/](data/) | Registry lookups, action SHA checks, the Dependabot alert evaluation, UniMedVL smoke-test, OpenCV, numpy and audit output, coverage measurements, local verification logs |
 | [ci-logs/](ci-logs/) | Log excerpt of the one CI failure the update caused (F1) |
 
 ## Outcome
@@ -31,6 +31,10 @@
 - **Bugs the update exposed and fixed.**
   - `wilson_interval` missed its exact bounds (F1).
   - The flash-attn wheel had the wrong C++ ABI for the new torch (F5).
+  - HTTP error answers were left open, which Python 3.12+ reports (F14).
+- **Changes the new majors needed.** A pytest-asyncio start-up warning
+  (F10), subprocess coverage lost in pytest-cov 7 (F11), Sphinx 9.1's
+  Python 3.12 floor (F12) and ruff formatting Markdown (F13).
 - **Advisories.** The Dependabot alerts open on `main` drop from 25 to 8. The
   8 are in the two held pins, and each is accepted with a reason. `pip-audit`
   reports nothing else (F7).

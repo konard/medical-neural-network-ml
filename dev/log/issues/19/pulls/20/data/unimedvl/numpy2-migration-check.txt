@@ -1,0 +1,10 @@
+# numpy 2 migration check of upstream UniMedVL code (issue #19)
+# Source tree: uni-medical/UniMedVL at f51aa0accbd02e846e5ea20b595fb39b516dbe1f (29 .py files, 32 lines using numpy)
+# Guide: https://numpy.org/doc/stable/numpy_2_0_migration_guide.html (recommends ruff NPY201)
+$ ruff check --isolated --select NPY201 <UniMedVL checkout>
+ruff 0.17.1
+All checks passed!
+$ grep -rn "copy=False\|np\.core\|__array__\|newbyteorder\|\.ptp(" <UniMedVL checkout> --include=*.py
+(no matches)
+$ ruff check --select NPY201 .   # this repository
+All checks passed!

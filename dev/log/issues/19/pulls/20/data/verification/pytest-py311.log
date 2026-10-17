@@ -1,0 +1,21 @@
+$ git rev-parse --short HEAD: ef9fd7d
+$ python -W error::DeprecationWarning -W always::ResourceWarning -m pytest -p no:cacheprovider -o addopts=-ra -W error::DeprecationWarning -W always::ResourceWarning tests/
+Python 3.11.17
+============================= test session starts ==============================
+platform linux -- Python 3.11.17, pytest-9.1.1, pluggy-1.7.0
+rootdir: /tmp/gh-issue-solver-1792225464198
+configfile: pyproject.toml
+plugins: platformdirs-4.13.3, cov-7.1.0, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 992 items
+
+...                                                                      [ 31%]
+......................................................................s  [ 41%]
+.......................................................................s [ 57%]
+sssssssssssssssssssssssssssssssssssssss.............                     [ 63%]
+                                                                         [ 73%]
+..............................s.                                         [ 96%]
+
+=========================== short test summary info ============================
+================== 947 passed, 45 skipped in 87.23s (0:01:27) ==================
+exit 0
