@@ -6,9 +6,12 @@ so no model is needed.
 
 from __future__ import annotations
 
+import io
 import json
 import threading
+import urllib.error
 from collections.abc import Iterator
+from email.message import Message
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 from typing import Any
@@ -16,6 +19,7 @@ from typing import Any
 import pytest
 
 from medbench.backends import (
+    BackendError,
     Generation,
     NaiveBayesBackend,
     OpenAICompatibleBackend,
@@ -64,6 +68,7 @@ def server_url() -> Iterator[str]:
     thread.start()
     yield f"http://127.0.0.1:{server.server_address[1]}/v1"
     server.shutdown()
+    server.server_close()
     thread.join(timeout=5)
 
 
@@ -84,6 +89,23 @@ class TestBackends:
         content = sent["messages"][0]["content"]
         assert content[0]["image_url"]["url"] == "data:image/png;base64,iVBORw=="
         assert content[1] == {"type": "text", "text": "hello"}
+
+    def test_openai_backend_closes_error_answers(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """The error answer is read, classified and closed (issue #19)."""
+        body = io.BytesIO(b"CUDA out of memory")
+        error = urllib.error.HTTPError("http://x/v1", 500, "error", Message(), body)
+
+        def urlopen(*_args: object, **_kwargs: object) -> None:
+            raise error
+
+        monkeypatch.setattr("medbench.backends.urllib.request.urlopen", urlopen)
+        backend = OpenAICompatibleBackend("http://127.0.0.1:1/v1")
+        with pytest.raises(BackendError) as caught:
+            backend.generate("hello")
+        assert caught.value.kind == "out_of_memory"
+        assert body.closed
 
     @pytest.mark.parametrize(
         ("data", "mime"),

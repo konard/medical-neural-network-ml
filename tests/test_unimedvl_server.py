@@ -235,6 +235,7 @@ class TestServer:
             )
             with pytest.raises(urllib.error.HTTPError) as caught:
                 urllib.request.urlopen(request, timeout=10)
+            caught.value.close()
             assert caught.value.code == 400
         assert engine.requests == []
 

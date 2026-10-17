@@ -92,6 +92,7 @@ class _FailingOpener(_Opener):
     def __init__(self, data: bytes, errors: Sequence[tuple[int, dict[str, str]]]):
         super().__init__(data)
         self.errors = list(errors)
+        self.raised: list[urllib.error.HTTPError] = []
 
     def __call__(self, request: urllib.request.Request, timeout: float) -> _Response:
         if self.errors:
@@ -100,7 +101,9 @@ class _FailingOpener(_Opener):
             message = Message()
             for name, value in headers.items():
                 message[name] = value
-            raise urllib.error.HTTPError(request.full_url, code, "no", message, None)
+            error = urllib.error.HTTPError(request.full_url, code, "no", message, None)
+            self.raised.append(error)
+            raise error
         return super().__call__(request, timeout)
 
 
@@ -227,6 +230,17 @@ class TestFetch:
         assert fetch(sample, tmp_path, opener=opener, attempts=4).read_bytes() == b"ok"
         assert waits == [7.0, 10.0]
         assert len(opener.requests) == 3
+
+    def test_error_answers_are_closed(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """An error answer holds its connection until it is closed (issue #19)."""
+        monkeypatch.setattr("medbench.real_data.time.sleep", lambda _seconds: None)
+        opener = _FailingOpener(b"ok", [(503, {}), (404, {})])
+        with pytest.raises(urllib.error.HTTPError):
+            fetch(_sample("r", b"ok", "imaging-xray"), tmp_path, opener=opener)
+        assert len(opener.raised) == 2
+        assert all(error.fp.closed for error in opener.raised)
 
     def test_long_retry_after_fails_without_an_early_retry(
         self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch

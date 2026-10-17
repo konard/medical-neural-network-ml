@@ -17,3 +17,4 @@
 ### Fixed
 
 - `wilson_interval` now returns an upper bound of exactly 1 when every answer is right, and a lower bound of exactly 0 when every answer is wrong. The closed form reached these bounds only up to rounding: on the new macOS 26 runner with Python 3.15 it returned 0.9999999999999999 for 4 out of 4.
+- The OpenAI-compatible backend and the sample downloader now close an HTTP error answer after reading it. Unclosed, it kept its connection open until garbage collection, and Python 3.12+ reports that as a `ResourceWarning`.
