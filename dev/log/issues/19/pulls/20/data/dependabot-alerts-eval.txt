@@ -1,0 +1,29 @@
+# Dependabot alerts open on main (2026-10-17), evaluated against this branch's scripts/unimedvl-requirements.txt
+# columns: status GHSA severity package vulnerable-range first-patched
+# fixed = the new pin is outside the vulnerable range; STILL = accepted in scripts/audit_dependencies.py with a reason
+STILL GHSA-x9r9-c232-4q39 high transformers >= 4.49.0, <= 5.8.1 none
+fixed GHSA-4j2p-28q2-5m79 medium accelerate <= 1.14.0 none
+STILL GHSA-xrqw-3rrv-vx5w high transformers < 5.10.0 5.10.0
+STILL GHSA-rrmf-rvhw-rf47 low torch <= 2.12.1 2.13.0
+STILL GHSA-fgcw-684q-jj6r high transformers < 5.5.0 5.5.0
+STILL GHSA-29pf-2h5f-8g72 high transformers < 5.3.0 5.3.0
+STILL GHSA-qfhq-4f3w-5fph low torch < 2.10.0 2.10.0
+STILL GHSA-vgrw-7cvw-pwgx medium torch < 2.9.1 2.9.1
+fixed GHSA-x3gm-94wq-g975 low torch <= 2.6.0 none
+fixed GHSA-f4hp-rmr7-r7v8 medium torch <= 2.6.0 none
+fixed GHSA-c678-jfcj-6jmf low torch <= 2.6.0 none
+STILL GHSA-69w3-r845-3855 medium transformers < 5.0.0rc3 5.0.0rc3
+fixed GHSA-4w7r-h757-3r74 medium transformers < 4.53.0 4.53.0
+fixed GHSA-rcv9-qm8p-9p6j medium transformers < 4.53.0 4.53.0
+fixed GHSA-59p9-h35m-wg4g medium transformers < 4.53.0 4.53.0
+fixed GHSA-9356-575x-2w9m medium transformers < 4.53.0 4.53.0
+fixed GHSA-37mw-44qp-f5jm medium transformers <= 4.51.3 4.52.1
+fixed GHSA-phhr-52qp-3mj4 low transformers < 4.52.1 4.52.1
+fixed GHSA-jjph-296x-mrcr medium transformers < 4.51.0 4.51.0
+fixed GHSA-q2wp-rjmx-x6x9 medium transformers < 4.51.0 4.51.0
+fixed GHSA-489j-g2vx-39wf medium transformers >= 4.49.0, < 4.51.0 4.51.0
+fixed GHSA-887c-mr87-cxwp medium torch <= 2.7.1 2.8.0
+fixed GHSA-3749-ghw9-m3mg low torch < 2.7.1-rc1 2.7.1-rc1
+fixed GHSA-qq3j-4f4f-9583 medium transformers < 4.50.0 4.50.0
+fixed GHSA-fpwr-67px-3qhx medium transformers < 4.50.0 4.50.0
+fixed 17 still 8
