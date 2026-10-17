@@ -122,7 +122,7 @@ ruff format --check .
 mypy src/
 python scripts/check_file_size.py
 bash scripts/check-required-docs.sh
-pip install -e '.[docs]'
+pip install -e '.[docs]'  # Python 3.12+ (Sphinx 9.1 dropped 3.11)
 sphinx-build -W --keep-going -b html docs _site
 ```
 

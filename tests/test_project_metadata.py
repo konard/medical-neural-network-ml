@@ -10,6 +10,8 @@ two different linters (issue #19), so these tests keep each pair in step.
 from __future__ import annotations
 
 import re
+import subprocess
+import sys
 import tomllib
 from pathlib import Path
 
@@ -134,3 +136,72 @@ def test_every_advertised_python_runs_in_ci() -> None:
     }
 
     assert advertised == tested
+
+
+def test_pytest_starts_without_deprecation_warnings() -> None:
+    """Plugins warn about their settings before pytest's own ``-W`` applies.
+
+    pytest-asyncio 1.x warns at start-up while
+    ``asyncio_default_fixture_loop_scope`` is unset, and ``-W`` given to pytest
+    never sees it (issue #19). Python's own ``-W error`` does.
+    """
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-W",
+            "error::DeprecationWarning",
+            "-m",
+            "pytest",
+            "-p",
+            "no:cacheprovider",
+            "--collect-only",
+            "tests/test_my_package.py",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode == 0, result.stdout + result.stderr
+
+
+def test_coverage_follows_python_subprocesses() -> None:
+    """pytest-cov 7 no longer measures subprocesses; coverage's patch does.
+
+    tests/test_medbench_monitor.py runs ``python -m medbench.cli`` in a
+    subprocess. Without the patch, what that process runs counts as uncovered
+    (experiments/issue19_subprocess_coverage.py, issue #19).
+    """
+    assert "subprocess" in PYPROJECT["tool"]["coverage"]["run"].get("patch", [])
+
+
+def test_ruff_format_skips_the_evidence_pre_commit_skips() -> None:
+    """ruff 0.16+ formats Markdown too; captured evidence stays byte-for-byte."""
+    config = (ROOT / ".pre-commit-config.yaml").read_text(encoding="utf-8")
+    exclude = re.search(r"^exclude: (.+)$", config, re.MULTILINE)
+    assert exclude
+    evidence = [
+        path
+        for path in map(str, ROOT.rglob("*.md"))
+        if re.match(exclude[1], Path(path).relative_to(ROOT).as_posix())
+    ]
+    assert evidence
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "ruff",
+            "format",
+            "--check",
+            "--force-exclude",
+            *evidence,
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert "No Python files found" in result.stderr, result.stdout

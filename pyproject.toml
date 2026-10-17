@@ -42,6 +42,8 @@ imaging = [
 mlx = [
     "mlx-vlm==0.7.8; sys_platform == 'darwin' and platform_machine == 'arm64'",
 ]
+# Sphinx 9.1 needs Python 3.12 or newer, so this extra does too (issue #19);
+# docs.yml builds on 3.15.
 docs = [
     "sphinx>=9.1.0",
     "furo>=2025.12.19",
@@ -69,6 +71,9 @@ include = ["/src", "/CHANGELOG.md"]
 [tool.ruff]
 line-length = 88
 target-version = "py311"
+# ruff 0.16+ also formats Python blocks in Markdown. Captured CI logs and
+# case-study data are evidence, as in .pre-commit-config.yaml's exclude.
+extend-exclude = ["dev/log", "docs/case-studies/**/data"]
 
 [tool.ruff.lint]
 select = [
@@ -97,6 +102,7 @@ select = [
     "ERA",    # eradicate
     "PL",     # pylint
     "PERF",   # perflint
+    "NPY",    # NumPy 2 API (NPY201 is the migration guide's own check)
     "RUF",    # ruff-specific rules
 ]
 ignore = [
@@ -150,11 +156,16 @@ ignore_missing_imports = true
 follow_imports = "skip"
 follow_imports_for_stubs = true
 
-[tool.pytest.ini_options]
+# pytest 9's native TOML table. `strict` turns on every strictness option
+# (unknown config keys, unregistered markers, non-strict xfail, duplicate
+# parametrize ids), including ones added in later releases.
+[tool.pytest]
 minversion = "9.1"
-addopts = "-ra -q --strict-markers"
+addopts = ["-ra", "-q"]
+strict = true
 testpaths = ["tests"]
 pythonpath = ["src"]
+asyncio_default_fixture_loop_scope = "function"
 markers = [
     "model: needs a running model server or downloaded weights (opt-in)",
     "gpu: needs an NVIDIA GPU (self-hosted runner)",
@@ -164,6 +175,9 @@ markers = [
 [tool.coverage.run]
 source = ["src"]
 branch = true
+# pytest-cov 7 dropped its own subprocess measurement; this replaces it, so
+# `python -m medbench.cli` started by the tests counts too.
+patch = ["subprocess"]
 
 [tool.coverage.report]
 exclude_lines = [
