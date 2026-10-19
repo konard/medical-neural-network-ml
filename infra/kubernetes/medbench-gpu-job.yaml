@@ -1,0 +1,112 @@
+# One GPU test run as a Kubernetes Job (issue #23).
+#
+# Placeholders look like @{name}; render the file with
+#   python -m scripts.cloud_gpu job-manifest --model medgemma-27b-it ...
+# which fills them and prints plain YAML for `kubectl apply -f -`, so a
+# GitLab job or a person with a kubeconfig can use it without the rest of the
+# orchestrator. The pod has no copy of the repository and no credentials:
+#   1. the orchestrator streams the commit under test into /work/repo with
+#      `kubectl exec ... tar -x`, adds optional overrides in /work/run.env
+#      and creates /work/ready;
+#   2. the pod runs scripts/gpu-host-run.sh and writes /work/exit-code;
+#   3. the orchestrator copies /work/reports out and creates /work/collected,
+#      or the pod gives up waiting after @{collect_seconds} seconds.
+# The pod's exit code is the exit code of the model run.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "@{name}"
+  namespace: "@{namespace}"
+  labels:
+    app.kubernetes.io/name: medbench-gpu
+    app.kubernetes.io/managed-by: medbench-cloud-gpu
+    medbench/run-id: "@{run_id}"
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: @{deadline_seconds}
+  ttlSecondsAfterFinished: 3600
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: medbench-gpu
+        medbench/run-id: "@{run_id}"
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      terminationGracePeriodSeconds: 30
+      # GKE and the NVIDIA device plugin taint GPU nodes with nvidia.com/gpu,
+      # infra/terraform/azure/k8s with sku=gpu.
+      tolerations:
+        - key: nvidia.com/gpu
+          operator: Exists
+          effect: NoSchedule
+        - key: sku
+          operator: Equal
+          value: gpu
+          effect: NoSchedule
+      containers:
+        - name: medbench
+          # CUDA 13.4 base image: the llama.cpp build brings its own CUDA
+          # runtime; the driver comes from the node.
+          image: nvidia/cuda:13.4.1-base-ubuntu24.04@sha256:3eb2d952d9cff2d7a4e42a1cedc19cfa610a7f72c3b8428811731dcea5a175fd
+          workingDir: /work
+          command: [bash, -c]
+          args:
+            - |
+              set -eu
+              export DEBIAN_FRONTEND=noninteractive
+              apt-get update -qq
+              apt-get install -qq --yes --no-install-recommends \
+                ca-certificates curl git libgomp1 tar >/dev/null
+              echo "medbench: waiting for the repository in /work/repo"
+              until [ -f /work/ready ]; do sleep 2; done
+              # Optional KEY=VALUE overrides the orchestrator uploads next to
+              # the repository (for example UNIMEDVL_ENGINE=echo).
+              if [ -f /work/run.env ]; then set -a; . /work/run.env; set +a; fi
+              cd /work/repo
+              status=0
+              bash scripts/gpu-host-run.sh || status=$?
+              echo "$status" > /work/exit-code
+              echo "medbench: run finished with $status, waiting for collection"
+              waited=0
+              until [ -f /work/collected ] || [ "$waited" -ge "$COLLECT_SECONDS" ]; do
+                sleep 2
+                waited=$((waited + 2))
+              done
+              exit "$status"
+          env:
+            - name: GPU_MODEL
+              value: "@{gpu_model}"
+            - name: COUNT
+              value: "@{count}"
+            - name: TASKS
+              value: "@{tasks}"
+            - name: TIME_BUDGET
+              value: "@{time_budget}"
+            - name: STEPS
+              value: "@{steps}"
+            - name: REQUIRE_GPU
+              value: "@{require_gpu}"
+            - name: MEDBENCH_COMMIT
+              value: "@{commit}"
+            - name: OUT_DIR
+              value: /work/reports
+            - name: CACHE_DIR
+              value: /work/cache
+            - name: COLLECT_SECONDS
+              value: "@{collect_seconds}"
+          resources:
+            requests:
+              cpu: "@{cpu}"
+              memory: "@{memory}"
+              ephemeral-storage: "@{disk}"
+            limits:
+              nvidia.com/gpu: "@{gpu_count}"
+              ephemeral-storage: "@{disk}"
+          volumeMounts:
+            - name: work
+              mountPath: /work
+      volumes:
+        - name: work
+          emptyDir:
+            sizeLimit: "@{disk}"

@@ -1,0 +1,32 @@
+{
+  "retrieved": "2026-10-19",
+  "release": "https://github.com/actions/runner/releases/tag/v2.338.0",
+  "published_at": "2026-10-06T13:55:11Z",
+  "assets": {
+    "actions-runner-linux-x64-2.338.0.tar.gz": "sha256:af4b794c1bc41d73d40535e3fe092a39f9679cd8d965954c2aca25a05ca41d32",
+    "actions-runner-linux-arm64-2.338.0.tar.gz": "sha256:628b4a7258487b80c1d3c221095a7ded349f5ae0175fd3dfab708d07428f041b"
+  },
+  "container_image": {
+    "reference": "ghcr.io/actions/actions-runner:2.338.0",
+    "index_digest": "sha256:4ffadc0002b2581327e06101fc8c06cd189232baf79fe561fac9caeb76f5e807"
+  },
+  "jit_config_from_environment": {
+    "source": "https://github.com/actions/runner/blob/v2.338.0/src/Runner.Listener/CommandSettings.cs#L110-L140",
+    "finding": "Every variable named ACTIONS_RUNNER_INPUT_<ARG> is read as the command-line argument <arg> and then removed from the environment, so ACTIONS_RUNNER_INPUT_JITCONFIG replaces `./run.sh --jitconfig <config>` without putting the secret into argv."
+  },
+  "arc_chart": {
+    "release": "gha-runner-scale-set-0.15.0",
+    "published_at": "2026-10-01T11:30:26Z"
+  },
+  "k3s": {
+    "version": "v1.37.1+k3s1",
+    "k3s_amd64_sha256": "92b94582eb7b34a8cf532e6006842b9ed215a6783cf56a3dd6271fd35243b2c0",
+    "install_sh_sha256_at_tag": "ed01f89fd977bf20ac1516bbebf8370bf3ddbaa55dac8aba610956a4c78cc00b",
+    "source": "https://github.com/k3s-io/k3s/releases/download/v1.37.1%2Bk3s1/sha256sum-amd64.txt"
+  },
+  "nvidia_container_toolkit": {
+    "apt_repository": "https://nvidia.github.io/libnvidia-container/stable/deb/amd64/Packages",
+    "versions_seen": ["1.19.1-1", "1.20.0-1", "1.20.1-1"],
+    "signing_key_fingerprint": "C95B321B61E88C1809C4F759DDCAE044F796ECB0"
+  }
+}

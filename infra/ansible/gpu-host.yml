@@ -1,0 +1,73 @@
+---
+# Prepare an Ubuntu 24.04 GPU host we keep, for example a Hetzner GEX server
+# rented by the month (issue #23): the NVIDIA R580 server driver with the open
+# kernel modules (Blackwell GPUs need them) and the NVIDIA Container Toolkit.
+# scripts/gpu-host-bootstrap.sh does the same for temporary hosts;
+# tests/test_cloud_gpu_infra.py keeps the versions of both in step.
+- name: Prepare an NVIDIA GPU host
+  hosts: gpu_hosts
+  become: true
+  vars:
+    nvidia_driver_branch: "580"
+    nvidia_container_toolkit_version: "1.20.1-1"
+    nvidia_container_toolkit_key_fingerprint: C95B321B61E88C1809C4F759DDCAE044F796ECB0
+  tasks:
+    - name: Enable the restricted component, which holds the driver
+      ansible.builtin.command: add-apt-repository --yes restricted
+      register: restricted
+      changed_when: "'already enabled' not in restricted.stdout"
+
+    - name: Install the NVIDIA server driver with open kernel modules
+      ansible.builtin.apt:
+        name:
+          - "nvidia-driver-{{ nvidia_driver_branch }}-server-open"
+          - "nvidia-utils-{{ nvidia_driver_branch }}-server"
+        update_cache: true
+        install_recommends: false
+      register: driver
+
+    - name: Reboot into the new driver
+      ansible.builtin.reboot:
+        reboot_timeout: 1200
+      when: driver.changed # noqa: no-handler
+
+    - name: Check the driver
+      ansible.builtin.command: nvidia-smi --query-gpu=name,driver_version --format=csv,noheader
+      register: smi
+      changed_when: false
+
+    - name: Show the GPU
+      ansible.builtin.debug:
+        var: smi.stdout_lines
+
+    - name: Add the NVIDIA Container Toolkit signing key
+      ansible.builtin.get_url:
+        url: https://nvidia.github.io/libnvidia-container/gpgkey
+        dest: /usr/share/keyrings/nvidia-container-toolkit.asc
+        mode: "0644"
+
+    - name: Check the fingerprint of the signing key
+      ansible.builtin.shell: >-
+        set -o pipefail &&
+        gpg --show-keys --with-colons /usr/share/keyrings/nvidia-container-toolkit.asc
+        | grep -q '^fpr:::::::::{{ nvidia_container_toolkit_key_fingerprint }}:'
+      args:
+        executable: /bin/bash
+      changed_when: false
+
+    - name: Add the NVIDIA Container Toolkit repository
+      ansible.builtin.apt_repository:
+        repo: >-
+          deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit.asc]
+          https://nvidia.github.io/libnvidia-container/stable/deb/$(ARCH) /
+        filename: nvidia-container-toolkit
+
+    - name: Install the NVIDIA Container Toolkit
+      ansible.builtin.apt:
+        name:
+          - "nvidia-container-toolkit={{ nvidia_container_toolkit_version }}"
+          - "nvidia-container-toolkit-base={{ nvidia_container_toolkit_version }}"
+          - "libnvidia-container-tools={{ nvidia_container_toolkit_version }}"
+          - "libnvidia-container1={{ nvidia_container_toolkit_version }}"
+        update_cache: true
+        install_recommends: false

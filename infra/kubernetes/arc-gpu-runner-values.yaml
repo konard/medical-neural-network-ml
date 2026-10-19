@@ -1,0 +1,52 @@
+# Actions Runner Controller (ARC) runner scale set for GPU jobs (issue #23).
+#
+# For a GPU Kubernetes cluster that stays up (for example the k3s of
+# scripts/gpu-host-bootstrap.sh on a rented Hetzner GEX server): ARC starts
+# one ephemeral runner pod per queued job and removes it afterwards, and
+# scales to zero in between. Install the controller once, then this set:
+#
+#   helm install arc --namespace arc-systems --create-namespace \
+#     oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller \
+#     --version 0.15.0
+#   kubectl create namespace arc-runners
+#   kubectl -n arc-runners create secret generic medbench-arc-github \
+#     --from-literal=github_token="$CLOUD_GPU_RUNNER_TOKEN"
+#   helm install medbench-gpu --namespace arc-runners \
+#     oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set \
+#     --version 0.15.0 --values infra/kubernetes/arc-gpu-runner-values.yaml
+#
+# Jobs then use `runs-on: medbench-gpu`. The token is a fine-grained personal
+# access token for this repository with "Administration: read and write"
+# (docs/cloud-gpu.md); a GitHub App would also work for an organisation-owned
+# repository. tests/test_cloud_gpu_infra.py renders this file with helm when
+# helm is installed.
+githubConfigUrl: https://github.com/konard/medical-neural-network-ml
+githubConfigSecret: medbench-arc-github
+runnerScaleSetName: medbench-gpu
+minRunners: 0
+maxRunners: 1
+# The controller installed above as release `arc` in arc-systems.
+controllerServiceAccount:
+  namespace: arc-systems
+  name: arc-gha-rs-controller
+template:
+  spec:
+    tolerations:
+      - key: nvidia.com/gpu
+        operator: Exists
+        effect: NoSchedule
+      - key: sku
+        operator: Equal
+        value: gpu
+        effect: NoSchedule
+    containers:
+      - name: runner
+        image: ghcr.io/actions/actions-runner:2.338.0@sha256:4ffadc0002b2581327e06101fc8c06cd189232baf79fe561fac9caeb76f5e807
+        command: ["/home/runner/run.sh"]
+        env:
+          # The NVIDIA runtime mounts nvidia-smi and the driver libraries.
+          - name: NVIDIA_DRIVER_CAPABILITIES
+            value: compute,utility
+        resources:
+          limits:
+            nvidia.com/gpu: 1

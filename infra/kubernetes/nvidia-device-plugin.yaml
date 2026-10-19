@@ -1,7 +1,8 @@
 # NVIDIA device plugin (issue #23): advertises nvidia.com/gpu on GPU nodes
-# whose image has the driver but no plugin (EKS AL2023 NVIDIA AMI, k3s).
+# whose image has the driver but no plugin (EKS AL2023 NVIDIA AMI, AKS, the
+# k3s of scripts/gpu-host-bootstrap.sh).
 # Upstream: https://github.com/NVIDIA/k8s-device-plugin/blob/v0.20.1/deployments/static/nvidia-device-plugin.yml
-# Changed here: the image is pinned by digest. `python -m medbench.cloud`
+# Changed here: the image is pinned by digest. `python -m scripts.cloud_gpu`
 # applies this file when the Terraform module says the nodes need it.
 apiVersion: apps/v1
 kind: DaemonSet
