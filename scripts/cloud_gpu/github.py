@@ -41,10 +41,10 @@ def request(
     path: str,
     body: dict[str, Any] | None = None,
     *,
-    api: str = API,
+    api: str | None = None,
 ) -> Any:
     """Call the REST API and return the decoded JSON (None for 204)."""
-    url = f"{api}{path}"
+    url = f"{api or API}{path}"
     if not url.startswith("https://") and not url.startswith("http://127.0.0.1"):
         message = f"refusing a non-HTTPS GitHub API URL: {url}"
         raise GitHubError(message)

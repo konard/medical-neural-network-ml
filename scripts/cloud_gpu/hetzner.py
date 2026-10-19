@@ -53,10 +53,10 @@ def request(
     path: str,
     form: list[tuple[str, str]] | None = None,
     *,
-    api: str = API,
+    api: str | None = None,
 ) -> Any:
     """Call the Robot API with a form body and return the decoded JSON."""
-    url = f"{api}{path}"
+    url = f"{api or API}{path}"
     if not url.startswith("https://") and not url.startswith("http://127.0.0.1"):
         message = f"refusing a non-HTTPS Robot URL: {url}"
         raise RobotError(0, message)
