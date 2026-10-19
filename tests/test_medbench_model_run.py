@@ -347,9 +347,10 @@ def test_unimedvl_pins() -> None:
     assert "FLASH_ATTN" not in script
     pins = unimedvl_pins("unimedvl-requirements.txt")
     assert "flash-attn" not in pins
-    # The shim needs torch.nn.attention.varlen (torch 2.10+), and
+    # The shim passes scale, window_size and enable_gqa to
+    # torch.nn.attention.varlen.varlen_attn (torch 2.12+), and
     # restore_default_rope exists for transformers 5.
-    assert Version(pins["torch"]) >= Version("2.10")
+    assert Version(pins["torch"]) >= Version("2.12")
     assert Version(pins["transformers"]).major >= 5
 
 
