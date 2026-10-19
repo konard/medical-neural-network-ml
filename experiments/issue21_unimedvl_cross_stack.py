@@ -108,12 +108,18 @@ def save(model_dir: Path, weights: Path) -> None:
 
 def load(model_dir: Path, weights: Path):
     import torch
-    from accelerate import dispatch_model, init_empty_weights, load_checkpoint_and_dispatch
+    from accelerate import (
+        dispatch_model,
+        init_empty_weights,
+        load_checkpoint_and_dispatch,
+    )
     from modeling.unimedvl import Bagel, Qwen2ForCausalLM, SiglipVisionModel
 
     llm_config, vit_config, config = configs(model_dir)
     with init_empty_weights():
-        model = Bagel(Qwen2ForCausalLM(llm_config), SiglipVisionModel(vit_config), config)
+        model = Bagel(
+            Qwen2ForCausalLM(llm_config), SiglipVisionModel(vit_config), config
+        )
         model.vit_model.vision_model.embeddings.convert_conv2d_to_linear(
             vit_config, meta=True
         )
@@ -191,13 +197,22 @@ def compare(first: Path, second: Path) -> dict[str, object]:
     steps = min(len(a["step_logits"]), len(b["step_logits"]))
     worst = []
     for index in range(steps):
-        diffs = [abs(x - y) for x, y in zip(a["step_logits"][index], b["step_logits"][index])]
+        diffs = [
+            abs(x - y)
+            for x, y in zip(
+                a["step_logits"][index], b["step_logits"][index], strict=True
+            )
+        ]
         worst.append(max(diffs))
-    inv = max(
-        abs(x - y)
-        for left, right in zip(a["inv_freq"], b["inv_freq"])
-        for x, y in zip(left, right)
-    ) if a["inv_freq"] else math.nan
+    inv = (
+        max(
+            abs(x - y)
+            for left, right in zip(a["inv_freq"], b["inv_freq"], strict=True)
+            for x, y in zip(left, right, strict=True)
+        )
+        if a["inv_freq"]
+        else math.nan
+    )
     return {
         "a": a["versions"],
         "b": b["versions"],

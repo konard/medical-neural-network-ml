@@ -15,11 +15,13 @@ import re
 import socket
 import subprocess
 import sys
+import tomllib
 import urllib.error
 import urllib.request
 from pathlib import Path
 
 import pytest
+from packaging.version import Version
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT_PATH = ROOT / "scripts" / "medbench-model-run.sh"
@@ -254,7 +256,12 @@ def test_unknown_server_is_rejected(tmp_path: Path) -> None:
 
 
 def test_unimedvl_pins() -> None:
-    """Code commit, weight hashes and the flash-attn wheel hash are fixed."""
+    """Code commit and weight hashes are fixed; no flash-attn wheel is needed.
+
+    Package versions are not asserted here: Dependabot updates the lock, and
+    tests/test_unimedvl_upstream.py checks that upstream's code still runs
+    and generates the same tokens on it (issue #21).
+    """
     script = SCRIPT_PATH.read_text()
     assert 'UNIMEDVL_CODE_COMMIT="f51aa0accbd02e846e5ea20b595fb39b516dbe1f"' in script
     assert re.search(r'UNIMEDVL_MODEL_REVISION="[0-9a-f]{40}"', script)
@@ -265,39 +272,53 @@ def test_unimedvl_pins() -> None:
         "vit_config.json",
         "tokenizer.json",
     }
-    assert re.search(r'FLASH_ATTN_SHA256="[0-9a-f]{64}"', script)
+    # flash-attn wheels stop at torch 2.8; unimedvl_server.py provides
+    # flash_attn_varlen_func on torch's own varlen_attn instead (issue #21).
+    assert "FLASH_ATTN" not in script
     pins = unimedvl_pins("unimedvl-requirements.txt")
-    # The newest torch with a prebuilt flash-attn wheel (issue #19); the wheel
-    # has to be built for the same torch, and for the C++11 ABI that PyPI
-    # torch wheels use since 2.7.
-    assert pins["torch"] == "2.8.0"
-    assert "cu12torch2.8cxx11abiTRUE" in script
-    # The last 4.x: upstream's code fails on transformers 5 (issue #19).
-    assert pins["transformers"] == "4.57.6"
+    assert "flash-attn" not in pins
+    # The shim needs torch.nn.attention.varlen (torch 2.10+), and
+    # restore_default_rope exists for transformers 5.
+    assert Version(pins["torch"]) >= Version("2.10")
+    assert Version(pins["transformers"]).major >= 5
 
 
 def test_unimedvl_python_matches_everywhere() -> None:
-    """The venv, the CI job, the lock and the flash-attn wheel use one Python."""
+    """The venv, the CI jobs and the lock use one Python."""
     script = SCRIPT_PATH.read_text()
-    wheel = re.search(r'FLASH_ATTN_WHEEL="[^"]*-cp(\d)(\d+)-cp\d+-', script)
     default = re.search(
         r'UNIMEDVL_PYTHON="\$\{UNIMEDVL_PYTHON:-python([\d.]+)\}"', script
     )
-    job = re.search(
+    jobs = re.findall(
         r"Setup Python ([\d.]+) for UniMedVL.*?python-version: '([\d.]+)'",
         WORKFLOW.read_text(),
         re.DOTALL,
     )
     source = (ROOT / "scripts" / "unimedvl-requirements.in").read_text()
-    compiled = re.search(r"--python-version ([\d.]+)", source)
-    assert wheel
+    lock = (ROOT / "scripts" / "unimedvl-requirements.txt").read_text()
+    compiled = re.findall(r"--python-version ([\d.]+)", source + lock)
     assert default
-    assert job
-    assert compiled
-    python = f"{wheel[1]}.{wheel[2]}"
-    assert default[1] == job[1] == job[2] == compiled[1] == python
-    # 3.10 reaches end of life in October 2026 (issue #19).
-    assert python == "3.13"
+    assert len(jobs) == 2  # the GPU job and the unimedvl-cpu job
+    assert len(compiled) == 2  # the .in's instructions and the lock's header
+    versions = {default[1], *compiled, *(version for job in jobs for version in job)}
+    assert len(versions) == 1, versions
+    # The flash-attn wheels held this at 3.13 (issue #19); without them the
+    # newest Python that torch publishes wheels for is used (issue #21).
+    assert Version(versions.pop()) >= Version("3.14")
+
+
+def test_unimedvl_cpu_job_runs_the_upstream_tests() -> None:
+    """The unimedvl-cpu job tests the shims and upstream's code on CPU torch."""
+    text = WORKFLOW.read_text(encoding="utf-8")
+    job = text.split("\n  unimedvl-cpu:\n", 1)[1].split("\n  # Self-hosted", 1)[0]
+    assert "UNIMEDVL_DEVICE: cpu" in job
+    assert "tests/test_unimedvl_attention.py tests/test_unimedvl_upstream.py" in job
+    assert "unimedvl-cpu" in text.split("\n  pipeline-status:\n", 1)[1]
+    # Its pytest is installed at pyproject.toml's dev floors.
+    project = tomllib.loads((ROOT / "pyproject.toml").read_text())
+    dev = project["project"]["optional-dependencies"]["dev"]
+    for requirement in re.findall(r'"(pytest(?:-asyncio)?>=[\d.]+)"', job):
+        assert requirement in dev
 
 
 def unimedvl_pins(name: str) -> dict[str, str]:
@@ -324,4 +345,5 @@ def test_unimedvl_lock_matches_its_input() -> None:
     assert wanted
     assert {name: locked.get(name) for name in wanted} == wanted
     # Everything torch, transformers and accelerate import is locked too.
-    assert {"huggingface-hub", "filelock", "nvidia-cudnn-cu12"} <= set(locked)
+    assert {"huggingface-hub", "filelock"} <= set(locked)
+    assert any(name.startswith("nvidia-cudnn-cu") for name in locked)

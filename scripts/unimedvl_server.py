@@ -13,10 +13,11 @@ The server is our own code and stays under the Unlicense. It imports the
 upstream checkout at run time and does not copy it. The checkout and the
 weights keep their Apache-2.0 terms (see THIRD_PARTY_NOTICES.md).
 
-Run it with the Python of the upstream environment (Python 3.13, torch 2.8.0,
-transformers 4.57.6, accelerate 1.15.0 and flash-attn; see
-``scripts/medbench-model-run.sh``), from the root of a checkout at
-:data:`CODE_COMMIT`::
+Run it with the Python of the upstream environment (Python 3.14, torch 2.14.1,
+transformers 5.20.1 and accelerate 1.15.0; see ``scripts/medbench-model-run.sh``),
+from the root of a checkout at :data:`CODE_COMMIT`. Upstream was written for
+transformers 4.x and flash-attn; :func:`prepare_upstream_imports` covers both
+(issue #21)::
 
     cd UniMedVL && python -I /path/to/unimedvl_server.py \\
         --code-dir . --model-dir /path/to/checkpoint --port 8089
@@ -51,6 +52,7 @@ import base64
 import binascii
 import gc
 import io
+import itertools
 import json
 import os
 import platform
@@ -247,6 +249,151 @@ def peak_host_rss_bytes() -> int:
     return peak if sys.platform == "darwin" else peak * 1024
 
 
+def flash_attn_varlen_func(
+    q: Any,
+    k: Any,
+    v: Any,
+    cu_seqlens_q: Any,
+    cu_seqlens_k: Any,
+    max_seqlen_q: Any,
+    max_seqlen_k: Any,
+    dropout_p: float = 0.0,
+    softmax_scale: float | None = None,
+    causal: bool = False,
+    **unsupported: Any,
+) -> Any:
+    """``flash_attn.flash_attn_varlen_func`` on torch's own kernels (issue #21).
+
+    Upstream's SigLIP and Qwen2 layers call flash-attn with packed
+    ``(total_tokens, heads, head_dim)`` tensors, cumulative sequence lengths
+    and ``causal``, and nothing else. flash-attn publishes wheels only up to
+    torch 2.8 and Python 3.13, so the upstream environment used to be held
+    there. torch 2.10+ ships the same FlashAttention-2 kernel as
+    ``torch.nn.attention.varlen.varlen_attn``, which runs on CUDA. On other
+    devices ``varlen_attn`` raises ``NotImplementedError``, so each sequence
+    goes through ``scaled_dot_product_attention`` instead.
+
+    Causal masks are aligned to the bottom-right corner, as in flash-attn 2.1+
+    and ``varlen_attn``: with a KV cache, query ``i`` of ``n`` sees every key up
+    to ``len(keys) - n + i``.
+    """
+    if dropout_p:
+        message = "attention dropout is not supported (UniMedVL runs inference)"
+        raise ValueError(message)
+    if unsupported:
+        message = f"unsupported flash_attn_varlen_func arguments: {sorted(unsupported)}"
+        raise TypeError(message)
+    import torch
+    from torch.nn.functional import scaled_dot_product_attention
+
+    gqa = q.shape[1] != k.shape[1]
+    if q.is_cuda:
+        from torch.nn.attention.varlen import varlen_attn
+
+        return varlen_attn(
+            q,
+            k,
+            v,
+            cu_seqlens_q,
+            cu_seqlens_k,
+            int(max_seqlen_q),
+            int(max_seqlen_k),
+            scale=softmax_scale,
+            # varlen_attn compares with ==, so this must be a tuple.
+            window_size=(-1, 0) if causal else (-1, -1),
+            enable_gqa=gqa,
+        )
+    starts_q = [int(i) for i in cu_seqlens_q.tolist()]
+    starts_k = [int(i) for i in cu_seqlens_k.tolist()]
+    outputs = []
+    for (q0, q1), (k0, k1) in zip(
+        itertools.pairwise(starts_q), itertools.pairwise(starts_k), strict=True
+    ):
+        mask = None
+        if causal:
+            rows = torch.arange(q1 - q0, device=q.device).unsqueeze(1)
+            cols = torch.arange(k1 - k0, device=q.device).unsqueeze(0)
+            mask = cols <= rows + (k1 - k0) - (q1 - q0)
+        attended = scaled_dot_product_attention(
+            q[q0:q1].transpose(0, 1),
+            k[k0:k1].transpose(0, 1),
+            v[k0:k1].transpose(0, 1),
+            attn_mask=mask,
+            scale=softmax_scale,
+            enable_gqa=gqa,
+        )
+        outputs.append(attended.transpose(0, 1))
+    return torch.cat(outputs)
+
+
+def install_flash_attn_shim() -> None:
+    """Serve upstream's ``from flash_attn import flash_attn_varlen_func``.
+
+    transformers looks for flash-attn with ``find_spec()`` and the installed
+    distribution's version. The module below has a spec but no distribution,
+    so transformers keeps its own attention, as without flash-attn, while
+    upstream's import gets :func:`flash_attn_varlen_func`.
+    """
+    import importlib.machinery
+    import types
+
+    module = types.ModuleType("flash_attn")
+    module.__spec__ = importlib.machinery.ModuleSpec("flash_attn", None)
+    module.flash_attn_varlen_func = flash_attn_varlen_func  # type: ignore[attr-defined]
+    sys.modules["flash_attn"] = module
+
+
+def restore_default_rope() -> bool:
+    """Put back the transformers 4.x ``"default"`` RoPE initialiser if missing.
+
+    transformers 5 removed ``ROPE_INIT_FUNCTIONS["default"]`` (models now
+    compute it themselves from ``config.rope_parameters``), but upstream's
+    Qwen2 copy still looks it up when ``rope_scaling`` is unset and fails with
+    ``KeyError: 'default'``. This is the 4.57.6 function, unchanged in effect.
+    Returns whether anything was added.
+    """
+    import torch
+    from transformers import modeling_rope_utils
+
+    if "default" in modeling_rope_utils.ROPE_INIT_FUNCTIONS:
+        return False
+
+    def default_rope_parameters(
+        config: Any, device: Any = None, seq_len: int | None = None, **_kwargs: Any
+    ) -> tuple[Any, float]:
+        del seq_len  # unused by plain RoPE, as in transformers 4.x
+        head_dim = getattr(config, "head_dim", None) or (
+            config.hidden_size // config.num_attention_heads
+        )
+        dim = int(head_dim * getattr(config, "partial_rotary_factor", 1.0))
+        exponents = torch.arange(0, dim, 2, dtype=torch.int64).to(
+            device=device, dtype=torch.float
+        )
+        return 1.0 / (config.rope_theta ** (exponents / dim)), 1.0
+
+    modeling_rope_utils.ROPE_INIT_FUNCTIONS["default"] = default_rope_parameters
+    return True
+
+
+def prepare_upstream_imports() -> None:
+    """Make upstream's modules importable on torch 2.14 and transformers 5.
+
+    Call before importing anything from upstream's ``codes/``.
+    """
+    import warnings
+
+    install_flash_attn_shim()
+    restore_default_rope()
+    # Upstream's Qwen2Config still calls rope_config_validation(). transformers
+    # 5 keeps it as a deprecated wrapper that still validates (through
+    # validate_rope()), so only the warning about upstream's call is dropped.
+    warnings.filterwarnings(
+        "ignore",
+        message="`rope_config_validation` is deprecated",
+        category=FutureWarning,
+    )
+
+
 class EchoEngine:
     """Stand-in model that repeats the first prompt line (no GPU needed)."""
 
@@ -320,12 +467,12 @@ class UniMedVLEngine:  # pragma: no cover - needs a GPU and the 29 GB checkpoint
         os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "max_split_size_mb:512")
         # Everything is loaded from the verified local folder; offline mode
         # stops transformers from fetching Hub code a config might name.
-        os.environ["HF_HUB_OFFLINE"] = "1"
-        os.environ["TRANSFORMERS_OFFLINE"] = "1"
+        os.environ.update(HF_HUB_OFFLINE="1", TRANSFORMERS_OFFLINE="1")
         # build_transform() opens codes/data/default.yaml relative to the
         # working directory, and the packages live in codes/.
         os.chdir(code_dir)
         sys.path.insert(0, str(code_dir / "codes"))
+        prepare_upstream_imports()
 
         import torch
         from accelerate import (
@@ -350,7 +497,7 @@ class UniMedVLEngine:  # pragma: no cover - needs a GPU and the 29 GB checkpoint
         self.pil_img2rgb = pil_img2rgb
         torch.manual_seed(seed)
         if not torch.cuda.is_available():
-            message = "UniMedVL needs a CUDA GPU (upstream uses flash-attn)"
+            message = "UniMedVL needs a CUDA GPU (29 GB of bf16 weights)"
             raise RuntimeError(message)
 
         llm_config = Qwen2Config.from_json_file(str(model_dir / "llm_config.json"))
@@ -459,7 +606,7 @@ class UniMedVLEngine:  # pragma: no cover - needs a GPU and the 29 GB checkpoint
             "model": {"repo": MODEL_REPO, "revision": MODEL_REVISION},
             "python": platform.python_version(),
             "packages": _package_versions(
-                ("torch", "transformers", "accelerate", "flash_attn", "safetensors")
+                ("torch", "transformers", "accelerate", "safetensors")
             ),
             "cuda_runtime": self.torch.version.cuda,
             "gpu": cuda.get_device_name(device),
