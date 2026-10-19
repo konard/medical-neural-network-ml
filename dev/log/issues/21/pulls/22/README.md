@@ -8,10 +8,10 @@
 | [issue.md](issue.md) | Snapshot of the issue text |
 | [requirements.md](requirements.md) | Every requirement, its status and evidence, what could not be done, assumptions |
 | [versions.md](versions.md) | Per-ecosystem tables: version on `main`, on this branch, latest on the registry, reason when not latest |
-| [analysis.md](analysis.md) | Findings F1-F15: symptom, root cause, fix commit, test; what was ruled out |
+| [analysis.md](analysis.md) | Findings F1-F16: symptom, root cause, fix commit, test; what was ruled out |
 | [research.md](research.md) | Sources read, the major versions crossed, new features adopted, verification, upstream reports, best practices, tools considered |
 | [data/](data/) | Registry lookups, action SHA checks, Dependabot alerts, torch and sympy metadata, flash-attn assets, the cross-stack comparison, llama.cpp checks, mlx-vlm's API, the Dependabot replays, and local verification logs |
-| [ci-logs/](ci-logs/) | Logs of the failing Dependabot pull requests (#13, #14, #16), of the two failures on this branch (F10, F11), and of the main-only checks (F14) |
+| [ci-logs/](ci-logs/) | Logs of the failing Dependabot pull requests (#13, #14, #16), of the failures on this branch (F10, F11, F16), and of the main-only checks (F14) |
 
 ## Outcome
 
@@ -34,7 +34,9 @@
 - **What held the lock back, removed.** torch's own `varlen_attn` replaces
   the flash-attn wheel (F2), and one transformers 4.x RoPE helper is put back
   for upstream's code (F3). Upstream's `chat()` now runs on the lock in CI on
-  the CPU and matches golden tokens and logits.
+  the CPU and matches golden tokens and logits. That job failed until the test
+  fixture stopped resolving the model directory relative to upstream's code
+  (F16).
 - **Dependabot updates the lock.** A `uv` entry for `/scripts` replaces the
   hand-updated lock (F7). Packages released together with torch or
   transformers are named in the `.in` without a version, so a grouped

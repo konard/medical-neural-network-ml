@@ -314,6 +314,26 @@ Commit ids are on branch `issue-21-f7500eb08675`.
   - The CUDA backend resolves its runtime
     ([data/llama-b11738-check.txt](data/llama-b11738-check.txt)).
 
+## F16. The CPU job looked for the model under upstream's code directory
+
+- **Symptom.** "UniMedVL upstream code (CPU)" failed on every push of this
+  branch, from 853e944 to e0dd165. `test_chat_generates_the_golden_tokens`
+  raised `FileNotFoundError` for
+  `<workspace>/.cache/medbench/unimedvl-code-f51aa0accbd0/.cache/medbench/models/unimedvl-29918cef3ce9/llm_config.json`.
+  The other 9 tests passed
+  ([ci-logs/unimedvl-cpu-39295111728.log](ci-logs/unimedvl-cpu-39295111728.log)).
+- **Root cause.** The job exports `UNIMEDVL_CODE_DIR` and
+  `UNIMEDVL_MODEL_DIR` relative to the repository root. The `upstream`
+  fixture runs `monkeypatch.chdir(code_dir)`, because upstream's code reads
+  its files relative to its own directory, and only then resolves the model
+  directory. That puts the model under the code directory. The local runs
+  passed because they used absolute paths. With relative paths, the same
+  failure happens locally.
+- **Fix (e947cbd).** The fixture resolves both directories before the
+  `chdir`. Locally, with the paths relative to the repository root as CI
+  passes them: 10 passed, 1 skipped (the CUDA test).
+- **Test.** The CPU job itself. It is green on the commits after e947cbd.
+
 ## Ruled out
 
 - **Building flash-attn from source** for torch 2.14 and Python 3.14. It

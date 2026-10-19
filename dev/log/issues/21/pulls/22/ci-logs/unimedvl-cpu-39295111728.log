@@ -1,0 +1,103 @@
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	﻿2026-10-19T17:34:16.1606140Z ##[group]Run python=.cache/medbench/unimedvl-venv/bin/python
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:16.1606706Z ^[[36;1mpython=.cache/medbench/unimedvl-venv/bin/python^[[0m
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:16.1607222Z ^[[36;1m"$python" -m pip install --quiet "pytest>=9.1.1" "pytest-asyncio>=1.4.0"^[[0m
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:16.1607691Z ^[[36;1mUNIMEDVL_CODE_DIR=$(echo .cache/medbench/unimedvl-code-*)^[[0m
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:16.1608159Z ^[[36;1mUNIMEDVL_MODEL_DIR=$(echo .cache/medbench/models/unimedvl-*)^[[0m
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:16.1608575Z ^[[36;1mexport UNIMEDVL_CODE_DIR UNIMEDVL_MODEL_DIR^[[0m
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:16.1609126Z ^[[36;1m"$python" -m pytest -v \^[[0m
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:16.1609586Z ^[[36;1m  tests/test_unimedvl_attention.py tests/test_unimedvl_upstream.py^[[0m
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:16.1648263Z shell: /usr/bin/bash -e {0}
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:16.1648752Z env:
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:16.1649187Z   GIT_CONFIG_COUNT: 1
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:16.1649515Z   GIT_CONFIG_KEY_0: init.defaultBranch
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:16.1649834Z   GIT_CONFIG_VALUE_0: main
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:16.1650178Z   pythonLocation: /opt/hostedtoolcache/Python/3.14.8/x64
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:16.1650757Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.14.8/x64/lib/pkgconfig
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:16.1651222Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.8/x64
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:16.1651692Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.8/x64
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:16.1652073Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.8/x64
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:16.1652496Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.14.8/x64/lib
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:16.1652862Z ##[endgroup]
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:18.7799652Z ============================= test session starts ==============================
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:18.7800437Z platform linux -- Python 3.14.8, pytest-9.1.1, pluggy-1.7.0
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:18.7801342Z rootdir: <workspace>
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:18.7802010Z configfile: pyproject.toml
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:18.7802447Z plugins: asyncio-1.4.0, anyio-4.15.1
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:18.7803323Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:18.7804170Z collected 11 items
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:18.7804422Z 
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:20.9312929Z tests/test_unimedvl_attention.py .......s..                              [ 90%]
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2826067Z tests/test_unimedvl_upstream.py F                                        [100%]
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2827017Z 
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2827299Z =================================== FAILURES ===================================
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2828280Z ____________________ test_chat_generates_the_golden_tokens _____________________
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2828856Z 
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2830313Z upstream = (PosixPath('<workspace>/.cache/medbench/unimedvl-code-f51aa0...ml/medical-neural-network-ml/.cache/medbench/unimedvl-code-f51aa0accbd0/.cache/medbench/models/unimedvl-29918cef3ce9'))
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2831752Z 
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2832171Z     @pytest.mark.filterwarnings("ignore:.*CUDA is not available.*")
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2832953Z     def test_chat_generates_the_golden_tokens(upstream: tuple[Path, Path]) -> None:
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2833585Z >       tokens, best_logits = generate(*upstream)
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2834107Z                               ^^^^^^^^^^^^^^^^^^^
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2834408Z 
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2834861Z <workspace>/tests/test_unimedvl_upstream.py:199: 
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2835643Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2836653Z <workspace>/tests/test_unimedvl_upstream.py:154: in generate
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2837602Z     model = tiny_bagel(model_dir)
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2838135Z             ^^^^^^^^^^^^^^^^^^^^^
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2839115Z <workspace>/tests/test_unimedvl_upstream.py:91: in tiny_bagel
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2840509Z     llm_config = Qwen2Config.from_json_file(str(model_dir / "llm_config.json"))
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2841278Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2842596Z <workspace>/.cache/medbench/unimedvl-venv/lib/python3.14/site-packages/transformers/configuration_utils.py:1111: in from_json_file
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2843879Z     config_dict = cls._dict_from_json_file(json_file)
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2844454Z                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2845029Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2845515Z 
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2846040Z cls = <class 'modeling.unimedvl.qwen2_navit.Qwen2Config'>
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2847295Z json_file = '<workspace>/.cache/medbench/unimedvl-code-f51aa0accbd0/.cache/medbench/models/unimedvl-29918cef3ce9/llm_config.json'
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2848381Z 
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2848935Z     @classmethod
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2849405Z     def _dict_from_json_file(cls, json_file: str | os.PathLike):
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2850121Z >       with open(json_file, encoding="utf-8") as reader:
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2850681Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2851972Z E       FileNotFoundError: [Errno 2] No such file or directory: '<workspace>/.cache/medbench/unimedvl-code-f51aa0accbd0/.cache/medbench/models/unimedvl-29918cef3ce9/llm_config.json'
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2853201Z 
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2854155Z <workspace>/.cache/medbench/unimedvl-venv/lib/python3.14/site-packages/transformers/configuration_utils.py:1116: FileNotFoundError
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2855172Z =========================== short test summary info ============================
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2855863Z SKIPPED [1] tests/test_unimedvl_attention.py:146: needs a CUDA GPU
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2857457Z FAILED tests/test_unimedvl_upstream.py::test_chat_generates_the_golden_tokens - FileNotFoundError: [Errno 2] No such file or directory: '<workspace>/.cache/medbench/unimedvl-code-f51aa0accbd0/.cache/medbench/models/unimedvl-29918cef3ce9/llm_config.json'
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.2859405Z ==================== 1 failed, 9 passed, 1 skipped in 4.19s ====================
+UniMedVL upstream code (CPU)	Test the shims and upstream's code	2026-10-19T17:34:22.9877963Z ##[error]Process completed with exit code 1.
+Pipeline Status (Model Tests)	Check aggregate pipeline status	﻿2026-10-19T17:41:12.7176302Z ##[group]Run bash scripts/check-pipeline-status.sh
+Pipeline Status (Model Tests)	Check aggregate pipeline status	2026-10-19T17:41:12.7176831Z ^[[36;1mbash scripts/check-pipeline-status.sh^[[0m
+Pipeline Status (Model Tests)	Check aggregate pipeline status	2026-10-19T17:41:12.7319555Z shell: /usr/bin/bash -e {0}
+Pipeline Status (Model Tests)	Check aggregate pipeline status	2026-10-19T17:41:12.7319925Z env:
+Pipeline Status (Model Tests)	Check aggregate pipeline status	2026-10-19T17:41:12.7320181Z   GIT_CONFIG_COUNT: 1
+Pipeline Status (Model Tests)	Check aggregate pipeline status	2026-10-19T17:41:12.7320481Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Pipeline Status (Model Tests)	Check aggregate pipeline status	2026-10-19T17:41:12.7321015Z   GIT_CONFIG_VALUE_0: main
+Pipeline Status (Model Tests)	Check aggregate pipeline status	2026-10-19T17:41:12.7321989Z   NEEDS_JSON: {
+Pipeline Status (Model Tests)	Check aggregate pipeline status	  "real-data": {
+Pipeline Status (Model Tests)	Check aggregate pipeline status	    "result": "success",
+Pipeline Status (Model Tests)	Check aggregate pipeline status	    "outputs": {}
+Pipeline Status (Model Tests)	Check aggregate pipeline status	  },
+Pipeline Status (Model Tests)	Check aggregate pipeline status	  "cpu-smoke": {
+Pipeline Status (Model Tests)	Check aggregate pipeline status	    "result": "success",
+Pipeline Status (Model Tests)	Check aggregate pipeline status	    "outputs": {}
+Pipeline Status (Model Tests)	Check aggregate pipeline status	  },
+Pipeline Status (Model Tests)	Check aggregate pipeline status	  "ocr-baseline": {
+Pipeline Status (Model Tests)	Check aggregate pipeline status	    "result": "success",
+Pipeline Status (Model Tests)	Check aggregate pipeline status	    "outputs": {}
+Pipeline Status (Model Tests)	Check aggregate pipeline status	  },
+Pipeline Status (Model Tests)	Check aggregate pipeline status	  "unimedvl-cpu": {
+Pipeline Status (Model Tests)	Check aggregate pipeline status	    "result": "failure",
+Pipeline Status (Model Tests)	Check aggregate pipeline status	    "outputs": {}
+Pipeline Status (Model Tests)	Check aggregate pipeline status	  },
+Pipeline Status (Model Tests)	Check aggregate pipeline status	  "gpu": {
+Pipeline Status (Model Tests)	Check aggregate pipeline status	    "result": "skipped",
+Pipeline Status (Model Tests)	Check aggregate pipeline status	    "outputs": {}
+Pipeline Status (Model Tests)	Check aggregate pipeline status	  }
+Pipeline Status (Model Tests)	Check aggregate pipeline status	}
+Pipeline Status (Model Tests)	Check aggregate pipeline status	2026-10-19T17:41:12.7323080Z   RUN_SHA: 09bba63d11681b97e88e1e499036e1d1a34ab4f8
+Pipeline Status (Model Tests)	Check aggregate pipeline status	2026-10-19T17:41:12.7323472Z   BRANCH_NAME: issue-21-f7500eb08675
+Pipeline Status (Model Tests)	Check aggregate pipeline status	2026-10-19T17:41:12.7323796Z ##[endgroup]
+Pipeline Status (Model Tests)	Check aggregate pipeline status	2026-10-19T17:41:12.7795211Z ##[error]Failed jobs: unimedvl-cpu
+Pipeline Status (Model Tests)	Check aggregate pipeline status	2026-10-19T17:41:12.7803365Z ##[error]Process completed with exit code 1.
