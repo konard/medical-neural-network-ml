@@ -40,7 +40,7 @@ imaging = [
     "pillow>=13.0.0",
 ]
 mlx = [
-    "mlx-vlm==0.7.8; sys_platform == 'darwin' and platform_machine == 'arm64'",
+    "mlx-vlm==0.7.9; sys_platform == 'darwin' and platform_machine == 'arm64'",
 ]
 # Sphinx 9.1 needs Python 3.12 or newer, so this extra does too (issue #19);
 # docs.yml builds on 3.15.

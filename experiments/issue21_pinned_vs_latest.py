@@ -18,7 +18,7 @@ import urllib.request
 from pathlib import Path
 
 LINE = re.compile(
-    r"^\s*([A-Za-z0-9][A-Za-z0-9._-]*)(?:\[[^]]*\])?\s*(==|>=)\s*([^\s;#,]+)"
+    r"""^\s*([A-Za-z0-9][A-Za-z0-9._-]*)(?:\[[^]]*\])?\s*(==|>=)\s*([^\s;#,"']+)"""
 )
 
 
