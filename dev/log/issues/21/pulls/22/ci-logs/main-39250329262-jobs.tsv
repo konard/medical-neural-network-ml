@@ -1,0 +1,8 @@
+Branch Rulesets	failure
+Audit dependencies (ubuntu-26.04)	success
+CodeQL (actions)	success
+Dependency Graph Enabled	success
+CodeQL (python)	success
+Audit dependencies (macos-26)	success
+Dependency Review	skipped
+Pipeline Status (Security)	failure
