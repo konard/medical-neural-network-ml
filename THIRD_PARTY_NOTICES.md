@@ -62,8 +62,9 @@ under the Unlicense and only imports UniMedVL's modules when it runs. If you
 redistribute the checkout or the weights, include the Apache-2.0 license
 text and keep the upstream copyright and attribution notices (the pinned
 commit has no `NOTICE` file). The packages pinned in
-`scripts/unimedvl-requirements.txt` and the flash-attn wheel keep their own
-licenses.
+`scripts/unimedvl-requirements.txt` keep their own licenses. No flash-attn
+code is installed: `scripts/unimedvl_server.py` answers upstream's flash-attn
+import with its own function on top of PyTorch's attention.
 
 MLX, MLX-VLM, llama.cpp, Transformers and other dependencies retain their own
 licenses. Installing them does not dedicate them to the public domain. We

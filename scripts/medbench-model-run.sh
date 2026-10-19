@@ -49,9 +49,9 @@
 #   UNIMEDVL_MAX_GPU_MEMORY  weights allowed on GPU 0, the rest stays on the CPU (40GiB)
 set -euo pipefail
 
-LLAMA_VERSION="${LLAMA_VERSION:-b11707}"
+LLAMA_VERSION="${LLAMA_VERSION:-b11734}"
 LLAMA_ARCHIVE="${LLAMA_ARCHIVE:-llama-${LLAMA_VERSION}-bin-ubuntu-x64.tar.gz}"
-LLAMA_SHA256="${LLAMA_SHA256:-88879871f765c3dec22260046e10a76e2ed38de5bdf4a7f68049245a8f4056c8}"
+LLAMA_SHA256="${LLAMA_SHA256:-5d20cbcde04ef743b96e91b6173663b1925077a13fa86d0d98e69a5a5b59a16a}"
 CUDART_ARCHIVE="${CUDART_ARCHIVE:-}"
 CUDART_SHA256="${CUDART_SHA256:-}"
 MODEL_REPO="${MODEL_REPO:-unsloth/medgemma-4b-it-GGUF}"
@@ -139,7 +139,9 @@ fetch() {
 unpack() {
   local archive="$1"
   mkdir -p "$LLAMA_DIR"
-  # Release archives keep the binaries in one top-level folder.
+  # Release archives keep the binaries in one top-level folder. The CUDA
+  # runtime has to land beside libggml-cuda.so, whose RUNPATH is $ORIGIN, or
+  # the CUDA backend does not load and llama-server runs on the CPU.
   tar --extract --gzip --file "$archive" --directory "$LLAMA_DIR" \
     --strip-components 1 --no-same-owner
 }
@@ -153,8 +155,7 @@ download_llama() {
   fi
   if [[ -n "$CUDART_ARCHIVE" ]]; then
     fetch "$release/$CUDART_ARCHIVE" "$CACHE_DIR/$CUDART_ARCHIVE" "$CUDART_SHA256"
-    tar --extract --gzip --file "$CACHE_DIR/$CUDART_ARCHIVE" \
-      --directory "$LLAMA_DIR" --no-same-owner
+    unpack "$CACHE_DIR/$CUDART_ARCHIVE"
   fi
   fetch "$hub/$MODEL_FILE" "$MODEL_DIR/$MODEL_FILE" "$MODEL_SHA256"
   if [[ -n "$MMPROJ_FILE" ]]; then

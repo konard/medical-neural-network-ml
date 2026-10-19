@@ -66,9 +66,9 @@ capacity, not runtime support. UniMedVL GGUF/NF4 combinations are theoretical
 until a compatible implementation is demonstrated.
 
 The manual self-hosted job uses labels `[self-hosted, linux, x64, gpu]`,
-CUDA 12.8 llama.cpp binaries and a pinned runtime archive. No self-hosted
-runner is registered in this repository yet. Check driver
-compatibility with that CUDA release. A 16 GB T4 cannot hold the 27B Q4
+CUDA 13.4 llama.cpp binaries and a pinned runtime archive. No self-hosted
+runner is registered in this repository yet. It needs an R580 or newer
+driver and a Turing or newer GPU (CUDA 13, also used by UniMedVL's torch). A 16 GB T4 cannot hold the 27B Q4
 working set. Never send public pull-request code directly to a persistent
 GPU runner. CPU smoke runs three tasks; the manual GPU job includes all
 seven, for `medgemma-4b-it`, `medgemma-27b-it` or `unimedvl`. Every download

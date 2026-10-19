@@ -8,6 +8,7 @@ server start, the deadline and the cleanup on exit.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import platform
@@ -137,6 +138,74 @@ def test_workflow_pins_every_download() -> None:
     for name in ("LLAMA", "CUDART", "MODEL", "MMPROJ"):
         assert f"{name}_SHA256" in text
     assert "MODEL_REVISION=" in text
+
+
+def tar_folder(tmp_path: Path, folder: str, files: dict[str, str]) -> Path:
+    """A release-style .tar.gz that keeps ``files`` in one top-level folder."""
+    source = tmp_path / "src" / folder
+    source.mkdir(parents=True)
+    for name, content in files.items():
+        (source / name).write_text(content)
+        (source / name).chmod(0o755)
+    archive = tmp_path / f"{folder}.tar.gz"
+    subprocess.run(
+        ["tar", "--create", "--gzip", "--file", str(archive), folder],
+        cwd=source.parent,
+        check=True,
+    )
+    return archive
+
+
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def test_cuda_runtime_lands_next_to_the_cuda_backend(tmp_path: Path) -> None:
+    """llama.cpp's libggml-cuda.so finds libcudart only in its own folder.
+
+    Both release archives keep their files in one top-level folder, and the
+    CUDA backend's RUNPATH is ``$ORIGIN``. Unpacked without
+    ``--strip-components 1`` the runtime went to a subfolder, the backend
+    did not load and llama-server ran on the CPU (issue #21).
+    """
+    llama = tar_folder(
+        tmp_path,
+        "llama-b1-bin-ubuntu-cuda-13.4-x64",
+        {"llama-server": "#!/bin/sh\n", "libggml-cuda.so": ""},
+    )
+    cudart = tar_folder(
+        tmp_path,
+        "cudart-llama-b1-bin-ubuntu-cuda-13.4-x64",
+        {"libcudart.so.13": "", "libcublas.so.13": ""},
+    )
+    cache = tmp_path / "cache"
+    cache.mkdir()
+    for archive in (llama, cudart):
+        (cache / archive.name).write_bytes(archive.read_bytes())
+    model_dir = cache / "models" / REVISION[:12]
+    model_dir.mkdir(parents=True)
+    (model_dir / "model.gguf").write_text("gguf")
+    result = run_script(
+        "download",
+        CACHE_DIR=str(cache),
+        LLAMA_VERSION="b1",
+        LLAMA_ARCHIVE=llama.name,
+        LLAMA_SHA256=sha256(llama),
+        CUDART_ARCHIVE=cudart.name,
+        CUDART_SHA256=sha256(cudart),
+        MODEL_REVISION=REVISION,
+        MODEL_FILE="model.gguf",
+        MODEL_SHA256=sha256(model_dir / "model.gguf"),
+        MMPROJ_FILE="",
+    )
+    assert result.returncode == 0, result.stderr
+    llama_dir = cache / f"llama-b1-{sha256(llama)[:12]}"
+    assert sorted(path.name for path in llama_dir.iterdir()) == [
+        "libcublas.so.13",
+        "libcudart.so.13",
+        "libggml-cuda.so",
+        "llama-server",
+    ]
 
 
 def test_pull_request_paths_cover_every_file_the_jobs_run() -> None:
