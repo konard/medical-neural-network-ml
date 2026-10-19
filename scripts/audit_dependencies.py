@@ -9,8 +9,8 @@ application cannot fix and which masks advisories in real dependencies.
 
 Fully pinned requirement files that are not installed with the package (the
 UniMedVL GPU runtime of issue #6) are audited as files with ``--no-deps``.
-Their known advisories that have no compatible fix are accepted one by one in
-:data:`ACCEPTED_ADVISORIES` with the reason they do not apply; any advisory
+A known advisory without a compatible fix can be accepted in
+:data:`ACCEPTED_ADVISORIES` with the reason it does not apply; any advisory
 not listed there fails the audit.
 """
 
@@ -26,54 +26,19 @@ PIP_AUDIT_VERSION = "2.10.1"
 DEPENDENCY_SURFACES = ("pyproject.toml", "docs/requirements.txt")
 PINNED_SURFACES = ("scripts/unimedvl-requirements.txt",)
 
-# Why each advisory of the pinned UniMedVL runtime is accepted. torch stays
-# at the newest release with a prebuilt flash-attn wheel and transformers at
-# the last 4.x, which upstream's code (it imports 4.x internals) still runs
-# on; see scripts/unimedvl-requirements.in.
-_TORCH_OP = (
-    "torch 2.8.0: crash or wrong result in an operator, profiler, "
-    "torch.compile or torch.jit path that UniMedVL inference does not call"
-)
-_TORCH_LOAD = (
-    "torch 2.8.0: pickle/pt2 loading; the adapter loads only a SHA-256-pinned "
-    "safetensors file and never calls torch.load"
-)
-_HF_REPO = (
-    "transformers 4.57.6: needs an attacker-controlled model repository; "
-    "weights and configs are SHA-256-pinned, loaded from a local folder and "
-    "the server runs with HF_HUB_OFFLINE=1"
-)
-ACCEPTED_ADVISORIES = {
-    "PYSEC-2025-193": _TORCH_OP,  # rnn.unpack_sequence
-    "PYSEC-2025-194": _TORCH_OP,  # torch.jit.script
-    "PYSEC-2025-195": _TORCH_OP,  # lstm_cell
-    "PYSEC-2025-203": _TORCH_OP,  # linalg.lu
-    "PYSEC-2025-204": _TORCH_OP,  # rot90 with randn_like
-    "PYSEC-2025-206": _TORCH_OP,  # nan_to_num().long()
-    "PYSEC-2026-139": _TORCH_LOAD,  # pt2 loading
-    "PYSEC-2026-2286": _TORCH_LOAD,  # weights_only unpickler
-    "PYSEC-2025-217": (
-        "transformers 4.57.6: code execution in the X-CLIP checkpoint-conversion "
-        "script, which the adapter never imports"
-    ),
-    "PYSEC-2026-2288": "transformers 4.57.6: Trainer RNG state; no training",
-    "PYSEC-2026-2289": _HF_REPO,  # _attn_implementation from config.json
-    "PYSEC-2026-2290": _HF_REPO,  # LightGlue model loading
-    "PYSEC-2026-4174": _HF_REPO,  # custom_generate download
-    "PYSEC-2026-3929": "transformers 4.57.6: save_pretrained; nothing is saved",
-}
+# Why each advisory of the pinned UniMedVL runtime is accepted, keyed by id.
+# Empty since issue #21 moved the runtime to torch 2.14.1 and transformers
+# 5.20.1, which fixed the 14 torch 2.8.0 and transformers 4.57.6 advisories
+# accepted before. An advisory without a compatible fix goes here with the
+# package and the reason it does not apply (tests/test_audit_dependencies.py).
+ACCEPTED_ADVISORIES: dict[str, str] = {}
 
 # Dependency Review (security.yml) names advisories by GHSA id and fails on
-# high severity. These are the high-severity aliases of the accepted
-# advisories above, so a pull request that touches the pinned file is not
-# failed for a reviewed exception; .github/workflows/security.yml allows
-# exactly these ids (tests/test_audit_dependencies.py), nothing else.
-REVIEW_ALLOWED_GHSAS = {
-    "GHSA-29pf-2h5f-8g72": "PYSEC-2026-2289",
-    "GHSA-fgcw-684q-jj6r": "PYSEC-2026-2290",
-    "GHSA-x9r9-c232-4q39": "PYSEC-2026-4174",
-    "GHSA-xrqw-3rrv-vx5w": "PYSEC-2026-3929",
-}
+# high severity. A high-severity GHSA alias of an accepted advisory goes here,
+# mapped to its accepted id, and into the ``allow-ghsas`` input of
+# .github/workflows/security.yml, which must list exactly these ids
+# (tests/test_audit_dependencies.py). None are needed today.
+REVIEW_ALLOWED_GHSAS: dict[str, str] = {}
 
 
 def run(command: list[str], *, cwd: Path, capture: bool = False) -> str:
