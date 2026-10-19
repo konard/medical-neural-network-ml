@@ -30,6 +30,10 @@ repos:
         # checks a different surface under the package's Python target.
         pass_filenames: false
         args: [--strict, --ignore-missing-imports, src/]
+      - id: mypy
+        name: mypy (scripts/cloud_gpu)
+        pass_filenames: false
+        args: [--strict, -p, scripts.cloud_gpu]
 
   # Dependabot only reports a broken .github/dependabot.yml in its own logs,
   # so check the file (and the workflows) against SchemaStore before commit.

@@ -12,13 +12,21 @@ provider "google" {
   })
 }
 
+locals {
+  reaper_description = "medbench-cloud-gpu run-id=${var.run_id} expires-at=${var.expires_at}"
+}
+
+# Networks, subnets and firewall rules take no labels, so the description
+# carries the expiry the reaper reads (scripts/cloud_gpu/reaper.py).
 resource "google_compute_network" "this" {
   name                    = var.name
+  description             = local.reaper_description
   auto_create_subnetworks = false
 }
 
 resource "google_compute_subnetwork" "this" {
   name          = var.name
+  description   = local.reaper_description
   network       = google_compute_network.this.id
   ip_cidr_range = "10.42.1.0/24"
 }
@@ -26,7 +34,7 @@ resource "google_compute_subnetwork" "this" {
 resource "google_compute_firewall" "ssh" {
   name          = "${var.name}-ssh"
   network       = google_compute_network.this.id
-  description   = "SSH from the orchestrator only"
+  description   = "SSH from the orchestrator only; ${local.reaper_description}"
   direction     = "INGRESS"
   source_ranges = var.allowed_ssh_cidrs
   target_tags   = [var.name]

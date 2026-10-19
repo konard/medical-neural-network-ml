@@ -26,7 +26,7 @@ variable "kubernetes_version" {
 }
 
 variable "instance_type" {
-  description = "GPU node type: g6.xlarge (1x L4 24 GB) fits MedGemma 27B Q4, g6e.xlarge (1x L40S 48 GB) fits UniMedVL."
+  description = "GPU node type: g6.xlarge (1x L4 24 GB, 16 GiB RAM) fits MedGemma 4B, g6.2xlarge (32 GiB RAM) MedGemma 27B Q4, g6e.2xlarge (1x L40S 48 GB, 64 GiB RAM) UniMedVL."
   type        = string
   default     = "g6.xlarge"
 }

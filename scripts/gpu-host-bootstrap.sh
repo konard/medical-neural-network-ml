@@ -9,6 +9,7 @@
 # the same steps as playbooks for hosts we keep.
 #
 # Usage (as root):
+#   bash scripts/gpu-host-bootstrap.sh base      # tools gpu-host-run.sh uses
 #   bash scripts/gpu-host-bootstrap.sh driver    # exit 3: reboot, run again
 #   bash scripts/gpu-host-bootstrap.sh toolkit   # NVIDIA Container Toolkit
 #   bash scripts/gpu-host-bootstrap.sh k3s       # one-node k3s with GPU
@@ -37,6 +38,13 @@ log() {
 
 apt_install() {
   DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends "$@"
+}
+
+# What scripts/gpu-host-run.sh and the llama.cpp build need besides the
+# driver; the cloud VMs get the same from infra/terraform/cloud-init.
+install_base() {
+  apt-get update
+  apt_install ca-certificates curl git libgomp1 python3 tar
 }
 
 driver_ok() {
@@ -141,11 +149,12 @@ main() {
     return 1
   fi
   case "${1:-}" in
+    base) install_base ;;
     driver) install_driver ;;
     toolkit) install_toolkit ;;
     k3s) install_k3s ;;
     *)
-      log "usage: gpu-host-bootstrap.sh driver|toolkit|k3s"
+      log "usage: gpu-host-bootstrap.sh base|driver|toolkit|k3s"
       return 2
       ;;
   esac

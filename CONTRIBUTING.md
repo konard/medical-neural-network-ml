@@ -56,12 +56,13 @@ Thank you for your interest in contributing! This document provides guidelines a
 
    # Type check
    mypy src/
+   mypy --strict -p scripts.cloud_gpu
 
    # Check file sizes
    python scripts/check_file_size.py
 
    # Run all checks together
-   ruff check . && ruff format --check . && mypy src/ && python scripts/check_file_size.py
+   ruff check . && ruff format --check . && mypy src/ && mypy --strict -p scripts.cloud_gpu && python scripts/check_file_size.py
    ```
 
 4. **Run tests**

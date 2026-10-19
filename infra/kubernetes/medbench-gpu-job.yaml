@@ -1,6 +1,6 @@
 # One GPU test run as a Kubernetes Job (issue #23).
 #
-# Placeholders look like @{name}; render the file with
+# Placeholders look like @{...} (a lowercase key in braces); render it with
 #   python -m scripts.cloud_gpu job-manifest --model medgemma-27b-it ...
 # which fills them and prints plain YAML for `kubectl apply -f -`, so a
 # GitLab job or a person with a kubeconfig can use it without the rest of the
