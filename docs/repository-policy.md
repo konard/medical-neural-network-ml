@@ -138,8 +138,13 @@ provides upstream's flash-attn and transformers 4.x imports from the
 installed packages. That pull request runs the `unimedvl-cpu` job of
 `model-tests.yml`, which runs upstream UniMedVL's `chat()` on the new lock
 (`tests/test_unimedvl_upstream.py`, `tests/test_unimedvl_attention.py`).
-To recompile by hand, run the command in the `.in` header from `scripts/`,
-where Dependabot runs it. `pip-audit` checks the lock on every run
+torchvision, triton and tokenizers are named in the `.in` without a
+version. They are released together with torch or transformers, and
+Dependabot updates a group's members one at a time
+(dependabot/dependabot-core#16390), so pinning both sides would stop both
+moving. The lock pins them, and a torch or transformers update carries them
+along. To recompile by hand, run the command in the `.in` header from
+`scripts/`, where Dependabot runs it. `pip-audit` checks the lock on every run
 (`scripts/audit_dependencies.py`).
 
 GitHub can also reject any workflow that uses an action by tag

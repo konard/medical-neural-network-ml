@@ -23,6 +23,8 @@
 # pins torch or transformers: scripts/unimedvl_server.py serves upstream's
 # flash-attn and transformers 4.x imports from the installed packages. pip
 # excludes the two files, or it would open a second pull request for them.
+# uv updates a group's members one at a time (dependabot-core#16390), so the
+# .in names packages released with torch or transformers without a version.
 version: 2
 multi-ecosystem-groups:
   python:

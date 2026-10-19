@@ -36,13 +36,21 @@
 # augmentation nothing calls); OpenCV 5 interpolates float images exactly
 # where 4.x rounded to 1/32 pixel, so its blur differs by at most one grey
 # level off the axes (experiments/issue19_unimedvl_opencv_probe.py).
+# torchvision and triton are released with torch, and tokenizers with
+# transformers: each release of the parent needs its own release of these
+# (torchvision 0.29.0 requires torch==2.14.0, torch 2.14.1 triton~=3.8.0,
+# transformers 5.20.1 tokenizers<0.24). Dependabot updates the members of a
+# group one at a time (dependabot/dependabot-core#16390), so if both were
+# pinned here neither could ever move. They are named without a version: the
+# lock pins them, and Dependabot's update of torch or transformers carries
+# them along (experiments/issue21_dependabot_lockstep.sh).
 torch==2.14.1
-torchvision==0.29.1
-triton==3.8.0
+torchvision
+triton
 transformers==5.20.1
 accelerate==1.15.0
 safetensors==0.8.0
-tokenizers==0.23.3
+tokenizers
 sentencepiece==0.2.2
 pillow==13.0.0
 numpy==2.5.4

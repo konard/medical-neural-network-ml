@@ -392,15 +392,24 @@ def test_unimedvl_cpu_job_runs_the_upstream_tests() -> None:
         assert requirement in dev
 
 
+# Released with torch (torchvision, triton) or transformers (tokenizers), so
+# the .in names them without a version (dependabot/dependabot-core#16390).
+UNIMEDVL_CARRIED = {"torchvision", "triton", "tokenizers"}
+
+
 def unimedvl_pins(name: str) -> dict[str, str]:
-    """Map each package in a UniMedVL requirements file to its exact pin."""
+    """Map each package in a UniMedVL requirements file to its exact pin.
+
+    Only the .in's packages released with their parent have no pin ("").
+    """
     pins: dict[str, str] = {}
     for line in (ROOT / "scripts" / name).read_text().splitlines():
         requirement = line.split("#", 1)[0].strip()
         if requirement:
             package, _, pinned = requirement.partition("==")
-            assert pinned, line
-            pins[package.strip().lower()] = pinned.strip()
+            package = package.strip().lower()
+            assert pinned or package in UNIMEDVL_CARRIED, line
+            pins[package] = pinned.strip()
     return pins
 
 
@@ -409,12 +418,20 @@ def test_unimedvl_lock_matches_its_input() -> None:
 
     The lock is compiled from the .in (with uv pip compile, see its header),
     so it also pins every transitive package; an edit to one file without the
-    other would install something nobody reviewed.
+    other would install something nobody reviewed. torchvision, triton and
+    tokenizers are named in the .in without a version: Dependabot updates a
+    group's members one at a time, so pinning them beside torch and
+    transformers would stop all of them moving
+    (experiments/issue21_dependabot_lockstep.sh).
     """
     wanted = unimedvl_pins("unimedvl-requirements.in")
     locked = unimedvl_pins("unimedvl-requirements.txt")
     assert wanted
-    assert {name: locked.get(name) for name in wanted} == wanted
+    carried = {name for name, pinned in wanted.items() if not pinned}
+    assert carried == UNIMEDVL_CARRIED
+    assert all(locked.get(name) for name in carried)
+    pinned = {name: pinned for name, pinned in wanted.items() if pinned}
+    assert {name: locked.get(name) for name in pinned} == pinned
     # Everything torch, transformers and accelerate import is locked too.
     assert {"huggingface-hub", "filelock"} <= set(locked)
     assert any(name.startswith("nvidia-cudnn-cu") for name in locked)
