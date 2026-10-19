@@ -9,10 +9,12 @@
 #
 # scripts/unimedvl-requirements.txt is the full lock compiled from this file
 # (every transitive package pinned). Dependabot's uv ecosystem keeps both
-# files up to date (.github/dependabot.yml); to regenerate by hand:
+# files up to date (.github/dependabot.yml). It compiles from scripts/ and
+# keeps only --python-version, so compile from scripts/ by hand too, or every
+# "# via -r" line changes in its next pull request:
 #
-#   uv pip compile scripts/unimedvl-requirements.in \
-#     -o scripts/unimedvl-requirements.txt --python-version 3.14 \
+#   cd scripts && uv pip compile unimedvl-requirements.in \
+#     -o unimedvl-requirements.txt --python-version 3.14 \
 #     --python-platform x86_64-manylinux_2_28
 #
 # Every package is at its newest release (issue #21). Upstream was written for

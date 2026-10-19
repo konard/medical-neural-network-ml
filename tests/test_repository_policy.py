@@ -41,12 +41,13 @@ def dependabot_entries() -> dict[str, str]:
 def test_dependabot_updates_actions_and_python_with_a_cooldown() -> None:
     """Hash pins only stay current if something proposes the new hashes."""
     entries = dependabot_entries()
-    assert set(entries) == {"github-actions", "pip", "pre-commit"}
+    assert set(entries) == {"github-actions", "pip", "pre-commit", "uv"}
     for ecosystem, block in entries.items():
         assert re.search(r"^      default-days: 7$", block, re.M), ecosystem
     assert "interval: weekly" in entries["github-actions"]
     assert "directory: /\n" in entries["github-actions"]
     assert "directory: /\n" in entries["pre-commit"]
+    assert "directory: /scripts\n" in entries["uv"]
     pip = entries["pip"]
     assert "      - /\n" in pip
     assert "      - /docs\n" in pip
@@ -88,21 +89,50 @@ def test_dependabot_raises_the_pip_floors_with_the_hooks() -> None:
     assert "    versioning-strategy: increase\n" in pip
 
 
-def test_dependabot_leaves_the_coupled_unimedvl_pins_alone() -> None:
-    """torch must move with the hash-pinned flash-attn wheel, not on its own.
+def test_dependabot_updates_the_unimedvl_lock_with_uv() -> None:
+    """The UniMedVL lock moves in its own uv pull request (issue #21).
 
-    Dependabot's pip ecosystem scans every requirements file under ``/``, so
-    the UniMedVL files are excluded by path (it opened #13, #15, #16 and #17
-    against them before issue #19). The file is still audited
-    (scripts/audit_dependencies.py).
+    Until issue #21 torch had to match a hash-pinned flash-attn wheel, so
+    the files were left out; now nothing else pins torch or transformers.
+    Dependabot's pip ecosystem scans every requirements file under ``/``
+    (it opened #13, #15, #16 and #17 against these), so pip still excludes
+    them and only uv updates them. uv's pull request stays out of the
+    ``python`` group: with pyproject.toml beside it the lock would count as
+    a scripts/ source change and need a changelog fragment, which
+    Dependabot cannot write.
     """
-    pip = dependabot_entries()["pip"]
+    entries = dependabot_entries()
+    pip = entries["pip"]
     (pattern,) = re.findall(r"^    exclude-paths:\n      - (\S+)$", pip, re.M)
     scripts = ROOT / "scripts"
     excluded = {path.name for path in scripts.glob(pattern.removeprefix("scripts/"))}
     assert excluded == {"unimedvl-requirements.in", "unimedvl-requirements.txt"}
+    uv = entries["uv"]
+    assert "multi-ecosystem-group" not in uv
+    assert "      interval: weekly\n" in uv
+    assert "      prefix: deps\n" in uv
     audit = (ROOT / "scripts" / "audit_dependencies.py").read_text(encoding="utf-8")
     assert '"scripts/unimedvl-requirements.txt"' in audit
+
+
+def test_unimedvl_lock_is_compiled_where_dependabot_compiles_it() -> None:
+    """Dependabot runs ``uv pip compile`` in /scripts, the uv entry's directory.
+
+    uv writes the input path into every ``# via -r`` line, so a lock compiled
+    from the repository root would change on every line in Dependabot's next
+    pull request. Dependabot keeps only ``--python-version`` from the header,
+    which the lock has.
+    """
+    lock = (ROOT / "scripts" / "unimedvl-requirements.txt").read_text()
+    header = [line for line in lock.splitlines() if line.startswith("#    uv ")]
+    assert len(header) == 1
+    assert re.fullmatch(
+        r"#    uv pip compile unimedvl-requirements\.in -o unimedvl-requirements\.txt"
+        r" --python-version [\d.]+ --python-platform x86_64-manylinux_2_28",
+        header[0],
+    ), header
+    inputs = set(re.findall(r"-r (\S+)", lock))
+    assert inputs == {"unimedvl-requirements.in"}
 
 
 def test_every_workflow_action_can_be_updated_by_dependabot() -> None:

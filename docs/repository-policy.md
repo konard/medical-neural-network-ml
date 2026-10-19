@@ -129,12 +129,18 @@ still supported, and let `pip-audit` and Dependency Review run.
 `pre-commit run check-dependabot` validates the file against its schema.
 
 `scripts/unimedvl-requirements.in` and its lock
-`scripts/unimedvl-requirements.txt` are excluded from Dependabot
-(`exclude-paths`): the torch pin has to match the hash-pinned flash-attn
-wheel and upstream UniMedVL's code, so they are updated by hand with
-`uv pip compile` (the command is in the `.in` header) and checked with
-`experiments/issue19_unimedvl_cpu_smoke.py`. `pip-audit` still checks the
-lock on every run (`scripts/audit_dependencies.py`).
+`scripts/unimedvl-requirements.txt` get their own weekly pull request from
+Dependabot's `uv` ecosystem (`directory: /scripts`), which reruns
+`uv pip compile` with the lock's `--python-version`; the `pip` ecosystem
+excludes them (`exclude-paths`) so they are not proposed twice. Nothing else
+pins torch or transformers since issue #21: `scripts/unimedvl_server.py`
+provides upstream's flash-attn and transformers 4.x imports from the
+installed packages. That pull request runs the `unimedvl-cpu` job of
+`model-tests.yml`, which runs upstream UniMedVL's `chat()` on the new lock
+(`tests/test_unimedvl_upstream.py`, `tests/test_unimedvl_attention.py`).
+To recompile by hand, run the command in the `.in` header from `scripts/`,
+where Dependabot runs it. `pip-audit` checks the lock on every run
+(`scripts/audit_dependencies.py`).
 
 GitHub can also reject any workflow that uses an action by tag
 (Settings → Actions → General → "Require actions to be pinned to a full-length
