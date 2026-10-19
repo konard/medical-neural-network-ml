@@ -185,13 +185,16 @@ def generate(code_dir: Path, model_dir: Path) -> tuple[list[int], list[float]]:
 
 @pytest.fixture
 def upstream(monkeypatch: pytest.MonkeyPatch) -> tuple[Path, Path]:
+    # Both are resolved before the chdir: CI passes them relative to the
+    # repository root.
     code_dir = Path(str(CODE_DIR)).resolve()
+    model_dir = Path(str(MODEL_DIR)).resolve()
     monkeypatch.setenv("HF_HUB_OFFLINE", "1")
     monkeypatch.setenv("TRANSFORMERS_OFFLINE", "1")
     monkeypatch.chdir(code_dir)
     monkeypatch.syspath_prepend(str(code_dir / "codes"))
     load_server_module().prepare_upstream_imports()
-    return code_dir, Path(str(MODEL_DIR)).resolve()
+    return code_dir, model_dir
 
 
 @pytest.mark.filterwarnings("ignore:.*CUDA is not available.*")
