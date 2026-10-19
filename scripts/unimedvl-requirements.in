@@ -17,7 +17,10 @@
 #     -o unimedvl-requirements.txt --python-version 3.14 \
 #     --python-platform x86_64-manylinux_2_28
 #
-# Every package is at its newest release (issue #21). Upstream was written for
+# Every package is at its newest release (issue #21), except those a newer
+# release of their parent would move: torch 2.14.1 pins cuda-toolkit 13.0.3
+# (which pins the nvidia-* CUDA 13.0 libraries), cuDNN, cuSPARSELt, NCCL and
+# NVSHMEM exactly, and sympy 1.14.0 needs mpmath<1.4. Upstream was written for
 # transformers 4.x and flash-attn; scripts/unimedvl_server.py
 # (prepare_upstream_imports) puts back the one transformers 4.x RoPE helper
 # upstream's Qwen2 copy looks up and serves flash_attn_varlen_func from torch's
