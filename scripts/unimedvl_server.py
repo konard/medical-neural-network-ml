@@ -272,8 +272,8 @@ def flash_attn_varlen_func(
     ``torch.nn.attention.varlen.varlen_attn`` (since 2.10; the ``scale``,
     ``window_size`` and ``enable_gqa`` arguments used here since 2.12), which
     runs on CUDA. On other devices ``varlen_attn`` raises
-    ``NotImplementedError``, so each sequence goes through
-    ``scaled_dot_product_attention`` instead.
+    ``NotImplementedError`` (reported as pytorch/pytorch#201457), so each
+    sequence goes through ``scaled_dot_product_attention`` instead.
 
     Causal masks are aligned to the bottom-right corner, as in flash-attn 2.1+
     and ``varlen_attn``: with a KV cache, query ``i`` of ``n`` sees every key up

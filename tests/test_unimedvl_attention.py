@@ -132,8 +132,9 @@ def test_dropout_and_unknown_arguments_are_refused() -> None:
 
 
 def test_varlen_attn_still_has_no_cpu_kernel() -> None:
-    """Why the CPU path exists. If this fails, torch gained a CPU kernel and
-    flash_attn_varlen_func can call varlen_attn on every device."""
+    """Why the CPU path exists (pytorch/pytorch#201457). If this fails, torch
+    gained a CPU kernel and flash_attn_varlen_func can call varlen_attn on
+    every device."""
     from torch.nn.attention.varlen import varlen_attn
 
     lengths = [3]
