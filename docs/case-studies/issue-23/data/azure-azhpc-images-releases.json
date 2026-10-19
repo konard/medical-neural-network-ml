@@ -1,0 +1,164 @@
+{
+  "source": "https://api.github.com/repos/Azure/azhpc-images/releases?per_page=100 (https://github.com/Azure/azhpc-images/releases)",
+  "retrieved": "2026-10-19",
+  "note": "Trimmed: only tag/name/date and the kernel, GPU driver, CUDA and marketplace URN lines of each release body; newest NVIDIA-relevant releases only.",
+  "data": [
+    {
+      "tag_name": "ubuntu-hpc-gb200-2404-20260930",
+      "name": "Ubuntu 24.04 HPC GB300 - 20260930",
+      "published_at": "2026-10-09T04:55:57Z",
+      "lines": [
+        "- Kernel 7.0.0-1008-azure\r",
+        "- NVIDIA Driver 580.167.08\r",
+        "- CUDA 13.0.88\r",
+        "microsoft-dsvm:ubuntu-hpc:2404-gb:24.04.2026093001\r"
+      ]
+    },
+    {
+      "tag_name": "ubuntu-hpc-gb200-2404-20260911",
+      "name": "Ubuntu 24.04 HPC GB300 - 20260911",
+      "published_at": "2026-09-22T06:55:04Z",
+      "lines": [
+        "- Kernel 7.0.0-1008-azure\r",
+        "- NVIDIA Driver 580.167.08\r",
+        "- CUDA 13.0.88\r",
+        "microsoft-dsvm:ubuntu-hpc:2404-gb:24.04.2026091101\r"
+      ]
+    },
+    {
+      "tag_name": "ubuntu-hpc-gb200-2404-20260901",
+      "name": "Ubuntu 24.04 HPC GB200 - 20260901",
+      "published_at": "2026-09-22T06:43:40Z",
+      "lines": [
+        "- Kernel 6.8.0-1039-azure-nvidia\r",
+        "- NVIDIA Driver 580.167.08\r",
+        "- CUDA 13.0.88\r",
+        "microsoft-dsvm:ubuntu-hpc:2404-gb:24.04.2026090101\r"
+      ]
+    },
+    {
+      "tag_name": "ubuntu-hpc-2026092501",
+      "name": "Ubuntu 24.04 HPC A100+ - 2026092501",
+      "published_at": "2026-09-25T22:41:32Z",
+      "lines": [
+        "- Kernel 6.8.0-1067-azure\r",
+        "- NVIDIA Driver 580.178.04\r",
+        "- CUDA 13.0.88\r",
+        "microsoft-dsvm:ubuntu-hpc:2404:24.04.2026092501\r"
+      ]
+    },
+    {
+      "tag_name": "ubuntu-hpc-2026092201",
+      "name": "Ubuntu 24.04 HPC V100 - 2026092201",
+      "published_at": "2026-09-23T19:49:12Z",
+      "lines": [
+        "- Kernel 6.8.0-1067-azure\r",
+        "- NVIDIA Driver 580.178.04\r",
+        "- CUDA 12.9.86\r",
+        "microsoft-dsvm:ubuntu-hpc:2404-v100:24.04.2026092201\r"
+      ]
+    },
+    {
+      "tag_name": "ubuntu-hpc-ncv6-2026082001",
+      "name": "Ubuntu 24.04 HPC NCv6 - 2026082001",
+      "published_at": "2026-08-25T01:22:11Z",
+      "lines": [
+        "- Kernel 6.8.0-1064-azure\r",
+        "- NVIDIA GRID Driver 595.91.07\r",
+        "- CUDA 13.2.86\r",
+        "azure-hpc:ubuntu-hpc-test:2404-rtx:24.04.2026082001\r",
+        "- **This is a preview image.** There are no backwards compatibility guarantees between versions.\r"
+      ]
+    },
+    {
+      "tag_name": "ubuntu-hpc-2026082101",
+      "name": "Ubuntu 24.04 HPC A100+ - 2026082101",
+      "published_at": "2026-08-25T01:21:53Z",
+      "lines": [
+        "- Kernel 6.8.0-1064-azure\r",
+        "- NVIDIA Driver 580.178.04\r",
+        "- CUDA 13.0.88\r",
+        "microsoft-dsvm:ubuntu-hpc:2404:24.04.2026082101\r"
+      ]
+    },
+    {
+      "tag_name": "ubuntu-hpc-2026082001",
+      "name": "Ubuntu 24.04 HPC V100 - 2026082001",
+      "published_at": "2026-08-21T16:58:26Z",
+      "lines": [
+        "- Kernel 6.8.0-1064-azure\r",
+        "- NVIDIA Driver 580.178.04\r",
+        "- CUDA 12.9.86\r",
+        "microsoft-dsvm:ubuntu-hpc:2404-v100:24.04.2026082001\r"
+      ]
+    },
+    {
+      "tag_name": "ubuntu-hpc-ncv6-2026072401",
+      "name": "Ubuntu 24.04 HPC NCv6 - 2026072401",
+      "published_at": "2026-08-06T17:57:29Z",
+      "lines": [
+        "- Kernel 6.8.0-1062-azure\r",
+        "- NVIDIA GRID Driver 595.58.03\r",
+        "- CUDA 13.2.86\r",
+        "azure-hpc:ubuntu-hpc-test:2404-rtx:24.04.2026072401\r",
+        "- **This is a preview image.** There are no backwards compatibility guarantees between versions.\r"
+      ]
+    },
+    {
+      "tag_name": "ubuntu-hpc-2026072901",
+      "name": "Ubuntu 24.04 HPC A100+ - 2026072901",
+      "published_at": "2026-08-06T18:00:57Z",
+      "lines": [
+        "- Kernel 6.8.0-1062-azure\r",
+        "- NVIDIA Driver 580.173.02\r",
+        "- CUDA 13.0.88\r",
+        "microsoft-dsvm:ubuntu-hpc:2404:24.04.2026072901\r"
+      ]
+    },
+    {
+      "tag_name": "ubuntu-hpc-2026072001",
+      "name": "Ubuntu 24.04 HPC V100 - 2026072001",
+      "published_at": "2026-07-27T16:37:39Z",
+      "lines": [
+        "- Kernel 6.8.0-1062-azure\r",
+        "- NVIDIA Driver 580.173.02\r",
+        "- CUDA 12.9.86\r",
+        "microsoft-dsvm:ubuntu-hpc:2404-v100:24.04.2026072001\r"
+      ]
+    },
+    {
+      "tag_name": "ubuntu-hpc-2026070301",
+      "name": "Ubuntu 24.04 HPC V100 - 2026070301",
+      "published_at": "2026-07-09T19:10:37Z",
+      "lines": [
+        "- Kernel 6.8.0-1059-azure\r",
+        "- NVIDIA Driver 580.167.08\r",
+        "- CUDA 12.9.86\r",
+        "microsoft-dsvm:ubuntu-hpc:2404-v100:24.04.2026070301\r"
+      ]
+    },
+    {
+      "tag_name": "ubuntu-hpc-2026070201",
+      "name": "Ubuntu 24.04 HPC A100+ - 2026070201",
+      "published_at": "2026-07-25T07:36:33Z",
+      "lines": [
+        "- Kernel 6.8.0-1059-azure\r",
+        "- NVIDIA Driver 580.167.08\r",
+        "- CUDA 13.0.88\r",
+        "microsoft-dsvm:ubuntu-hpc:2404:24.04.2026070201\r"
+      ]
+    },
+    {
+      "tag_name": "ubuntu-hpc-ncv6-2026070201",
+      "name": "Ubuntu 24.04 HPC NCv6 - 2026070201",
+      "published_at": "2026-07-25T07:43:23Z",
+      "lines": [
+        "- Kernel 6.8.0-1059-azure\r",
+        "- NVIDIA GRID Driver 595.58.03\r",
+        "- CUDA 13.2.78\r",
+        "azure-hpc:ubuntu-hpc-test:2404-rtx:24.04.2026070201\r",
+        "- **This is a preview image.** There are no backwards compatibility guarantees between versions.\r"
+      ]
+    }
+  ]
+}

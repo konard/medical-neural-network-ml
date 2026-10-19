@@ -1,0 +1,24 @@
+{
+  "source": [
+    "https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/",
+    "https://docs.cloud.google.com/kubernetes-engine/docs/how-to/gpus",
+    "https://learn.microsoft.com/en-us/azure/aks/use-nvidia-gpu",
+    "https://docs.aws.amazon.com/eks/latest/userguide/auto-accelerated.html",
+    "https://docs.k3s.io/advanced#nvidia-container-runtime-support"
+  ],
+  "retrieved": "2026-10-19",
+  "data": {
+    "gpu_request": {
+      "resource": "nvidia.com/gpu",
+      "rule": "GPUs only in limits; requests optional but must equal limits; requests without limits not allowed",
+      "snippet": "resources: {limits: {nvidia.com/gpu: 1}}"
+    },
+    "taints": {
+      "GKE": {"taint": "nvidia.com/gpu=present:NoSchedule", "automatic": true, "condition": "only if cluster has at least one non-GPU node pool", "toleration": "added automatically by ExtendedResourceToleration admission controller", "node_label": "cloud.google.com/gke-accelerator=<type e.g. nvidia-tesla-t4>", "driver": "gpu-driver-version=default|latest|disabled"},
+      "AKS": {"taint": "sku=gpu:NoSchedule", "automatic": false, "note": "documented convention via --node-taints at node pool creation; AKS-managed GPU node pools install driver+device plugin+DCGM exporter; --gpu-driver none to skip driver (replaces retired --skip-gpu-driver-install tag, retired 2025-08-14)", "min_size": "Standard_NC4as_T4_v3"},
+      "EKS_Auto_Mode": {"taint": "nvidia.com/gpu:NoSchedule (no value)", "automatic": false, "note": "set in user's Karpenter NodePool example; Auto Mode ships NVIDIA drivers and device plugin (not visible as DaemonSet); pod toleration operator Exists"},
+      "EKS_managed_node_groups": {"taint": "none documented by default", "verified": false}
+    },
+    "k3s": {"auto_detect": "K3s adds nvidia/nvidia-cdi/nvidia-experimental runtimes to containerd if found in PATH at start", "runtimeclass": "runtimeClassName: nvidia in pod spec, or --default-runtime", "device_plugin": "used together with NVIDIA device plugin; example requests nvidia.com/gpu: 1"}
+  }
+}

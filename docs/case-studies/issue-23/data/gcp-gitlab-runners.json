@@ -1,0 +1,25 @@
+{"source": ["https://gitlab.com/api/v4/projects/gitlab-org%2Ffleeting%2Fplugins%2Fgooglecloud/releases", "https://gitlab.com/gitlab-org/fleeting/plugins/googlecloud/-/raw/main/README.md", "https://docs.gitlab.com/runner/fleet_scaling/fleeting/", "https://docs.gitlab.com/ci/runners/hosted_runners/gpu_enabled/", "https://docs.gitlab.com/ci/pipelines/compute_minutes/", "https://about.gitlab.com/pricing/"],
+ "retrieved": "2026-10-19",
+ "data": {
+  "fleeting_plugin_googlecloud": {
+   "project": "gitlab-org/fleeting/plugins/googlecloud",
+   "note": "gitlab-org/fleeting/plugins/googlecompute returns 404 Project Not Found; the official name is googlecloud",
+   "config_toml": "[runners.autoscaler] plugin = \"googlecloud:latest\"",
+   "releases": [{"tag": "v1.3.0", "released_at": "2026-09-10T16:46:50Z"}, {"tag": "v1.2.0", "released_at": "2026-01-06T11:52:56Z"}, {"tag": "v1.1.1", "released_at": "2025-10-03T13:29:16Z"}, {"tag": "v1.1.0", "released_at": "2025-08-12T14:49:43Z"}, {"tag": "v1.0.0", "released_at": "2024-06-19T16:42:43Z"}],
+   "backend": "zonal or regional managed instance group (stateless), autoscaling config deleted, min instances 0, failure action 'No action' recommended",
+   "required_iam": {"roles": ["iam.serviceAccountUser"], "permissions": ["compute.instanceGroupManagers.get", "compute.instanceGroupManagers.update", "compute.instances.get", "compute.instances.setMetadata"], "suspend_resume_extra": ["compute.instances.list", "compute.instances.setLabels", "compute.instances.start", "compute.instances.stop"]},
+   "spot_note": "preempted spot instances are removed (not restarted) when failure action is 'No action'; instances with local SSD cannot be suspended"
+  },
+  "gitlab_hosted_gpu_runner": {
+   "tier": "Premium, Ultimate",
+   "tag": "saas-linux-medium-amd64-gpu-standard",
+   "vcpu": 4, "memory": "15 GB", "storage": "50 GB", "gpu": "1 NVIDIA Tesla T4 (or similar)", "gpu_memory": "16 GB",
+   "image_policy": "bring your own image with GPU driver/CUDA (example nvcr.io/nvidia/cuda:12.1.1-base-ubuntu22.04)",
+   "cloud_provider_on_page": "not stated on the GPU page (GCP not verified there)",
+   "cost_factor": 7,
+   "compute_minutes_formula": "job duration / 60 * cost factor",
+   "extra_minutes_price": "$10 per 1,000 minutes, one time payment, valid 12 months",
+   "derived_cost_per_wallclock_hour_usd": 4.20,
+   "monthly_included_minutes": {"Free": 400, "Premium": 10000, "Ultimate": 50000}
+  }
+ }}

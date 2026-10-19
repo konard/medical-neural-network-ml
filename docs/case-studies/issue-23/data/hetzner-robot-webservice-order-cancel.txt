@@ -1,0 +1,32 @@
+Source: https://robot.hetzner.com/doc/webservice/en.html
+Retrieved: 2026-10-19
+Excerpts (verbatim or near-verbatim) relevant to ordering/cancelling dedicated servers:
+
+Base URL: https://robot-ws.your-server.de  (HTTPS only, HTTP Basic Auth with Robot webservice user)
+Auth error: "401 - Unauthorized ... the IP from which you attempt to access will be blocked for 10 minutes after 3 failed login attempts."
+Rate limit: "403 - Forbidden", code RATE_LIMIT_EXCEEDED (max_request, interval).
+
+Server ordering - Activation: "To use the Robot webservice for ordering servers, please activate this function in your
+Robot administrative interface first via "Administration; Settings; Web Service Settings; Ordering"."
+"As of 28 March 2022, the listed prices no longer include the "Primary IPv4" addon. By default, we deploy servers as
+IPv6-only servers without an IPv4 address." -> select addon "primary_ipv4" to get IPv4.
+
+GET  /order/server/product            list currently offered standard server products (incl. price, price_setup, hourly, orderable_addons, location)
+GET  /order/server/product/{id}
+GET  /order/server/transaction        / GET /order/server/transaction/{id}
+POST /order/server/transaction        product_id, authorized_key[] | password, location, dist, lang, comment, addon[], test
+     - "test": order is not processed when true; a "comment" makes the order processed manually
+     - limit: 20 requests per day (documented); returns 201 with transaction status "in process" -> "ready" (or "cancelled")
+     - 412 PRECONDITION_FAILED "Order cannot be accepted. Please place your order via the web frontend for further details."
+GET  /order/server_market/product (+/{id})       Server Auction products
+POST /order/server_market/transaction            product_id = auction server id (same params as above)
+/order/server_addon/...                          addon ordering
+
+Cancellation:
+GET    /server/{server-number}/cancellation   -> earliest_cancellation_date, cancelled, reservation_possible, reserved, cancellation_reason[]
+POST   /server/{server-number}/cancellation   cancellation_date = "yyyy-MM-dd" or "now" to cancel immediately;
+       cancellation_reason (optional); reserve_location ('true'/'false') mandatory if reservation_possible=true. Limit 200 req/h.
+DELETE /server/{server-number}/cancellation   withdraw cancellation
+
+Not verified: whether GEX GPU products appear in GET /order/server/product (requires credentials; unauthenticated call returned 401).
+The doc text contains no mention of GPU/GEX.

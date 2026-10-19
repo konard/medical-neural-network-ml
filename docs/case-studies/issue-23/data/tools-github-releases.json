@@ -1,0 +1,33 @@
+{
+  "source": [
+    "https://api.github.com/repos/{repo}/releases/latest",
+    "https://api.github.com/repos/{repo} (license.spdx_id)",
+    "https://gitlab.com/api/v4/projects/{project}/releases",
+    "https://pypi.org/pypi/{package}/json"
+  ],
+  "retrieved": "2026-10-19",
+  "data": [
+    {"repo": "actions/actions-runner-controller", "tag": "gha-runner-scale-set-0.15.0", "published_at": "2026-10-01T11:30:26Z", "license": "Apache-2.0"},
+    {"repo": "actions/runner", "tag": "v2.338.0", "published_at": "2026-10-06T13:55:11Z", "license": "MIT"},
+    {"repo": "github-aws-runners/terraform-aws-github-runner", "tag": "v7.11.0", "published_at": "2026-08-17T07:18:55Z", "license": "MIT"},
+    {"repo": "machulav/ec2-github-runner", "tag": "v2.6.1", "published_at": "2026-04-10T12:26:52Z", "license": "MIT"},
+    {"repo": "runs-on/runs-on", "tag": "v3.5.0", "published_at": "2026-10-14T09:34:26Z", "license": "MIT (repo SPDX; commercial use needs paid license per runs-on.com/pricing)"},
+    {"repo": "Cyclenerd/hcloud-github-runner", "tag": "v1.4.1", "published_at": "2026-06-11T20:47:29Z", "license": "Apache-2.0"},
+    {"repo": "testflows/TestFlows-GitHub-Hetzner-Runners", "tag": "1.10.260921.1182403", "published_at": "2026-09-21T18:26:06Z", "license": "Apache-2.0 (LICENSE file / PyPI; GitHub SPDX shows NOASSERTION)"},
+    {"repo": "skypilot-org/skypilot", "tag": "v0.14.0", "published_at": "2026-10-05T23:56:33Z", "license": "Apache-2.0"},
+    {"repo": "dstackai/dstack", "tag": "0.22.4", "published_at": "2026-10-15T15:03:26Z", "license": "MPL-2.0"},
+    {"repo": "pulumi/pulumi", "tag": "v3.270.0", "published_at": "2026-10-16T20:28:10Z", "license": "Apache-2.0"},
+    {"repo": "NVIDIA/k8s-device-plugin", "tag": "v0.20.1", "published_at": "2026-09-22T20:00:53Z", "license": "Apache-2.0"},
+    {"repo": "NVIDIA/gpu-operator", "tag": "v26.7.2", "published_at": "2026-10-14T20:54:42Z", "license": "Apache-2.0"},
+    {"repo": "k3s-io/k3s", "tag": "v1.37.1+k3s1", "published_at": "2026-09-30T16:10:38Z", "license": "Apache-2.0"},
+    {"repo": "vitobotta/hetzner-k3s", "tag": "v2.6.0", "published_at": "2026-06-24T12:44:14Z", "license": "MIT"},
+    {"repo": "kube-hetzner/terraform-hcloud-kube-hetzner", "tag": "v3.2.1", "published_at": "2026-09-09T15:39:47Z", "license": "MIT"},
+    {"repo": "huggingface/huggingface_hub", "tag": "v2.2.0", "published_at": "2026-10-08T14:54:20Z", "license": "Apache-2.0"},
+    {"repo": "gitlab.com/gitlab-org/gitlab-runner", "tag": "v19.5.0", "published_at": "2026-10-15T07:58:05Z", "license": "MIT"},
+    {"repo": "gitlab.com/gitlab-org/fleeting/plugins/aws", "tag": "v1.3.0", "published_at": "2026-07-22T13:02:48Z", "license": "MIT"},
+    {"repo": "gitlab.com/gitlab-org/fleeting/plugins/googlecloud", "tag": "v1.3.0", "published_at": "2026-09-10T16:46:50Z", "license": "MIT"},
+    {"repo": "gitlab.com/gitlab-org/fleeting/plugins/azure", "tag": "v1.2.0", "published_at": "2026-01-06T11:50:38Z", "license": "MIT"},
+    {"repo": "gitlab.com/hetznercloud/fleeting-plugin-hetzner", "tag": "v1.4.6", "published_at": "2026-09-16T11:33:30Z", "license": "MIT"},
+    {"repo": "pypi:hcloud (hcloud-python)", "tag": "2.27.0", "published_at": "2026-10-05T13:28:20Z", "license": "MIT"}
+  ]
+}

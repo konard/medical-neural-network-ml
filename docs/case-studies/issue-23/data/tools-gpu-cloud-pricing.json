@@ -1,0 +1,16 @@
+{
+  "source": ["https://modal.com/pricing", "https://www.runpod.io/pricing", "https://lambda.ai/pricing", "https://www.hetzner.com/dedicated-rootserver/matrix-gpu/", "https://www.hetzner.com/dedicated-rootserver/gex45/"],
+  "retrieved": "2026-10-19",
+  "data": {
+    "modal_usd_per_hour_derived_from_per_second": {"T4": 0.59, "L4": 0.80, "A10": 1.10, "L40S": 1.95, "A100-40GB": 2.10, "A100-80GB": 2.50, "H100": 3.95, "H200": 4.54, "B200": 6.25, "note": "per-second list prices x3600; Starter plan $30/month free credits"},
+    "runpod_usd_per_hour": {"L4-24GB": {"community": 0.44, "secure": 0.59}, "RTX4090-24GB": {"community": 0.34, "secure": 0.89}, "A40-48GB": {"community": 0.35, "secure": 0.59}, "RTXA6000-48GB": {"community": 0.33, "secure": 0.59}, "L40S-48GB": {"community": 0.79, "secure": 1.09}, "A100-PCIe-80GB": {"community": 1.19, "secure": 1.79}, "A100-SXM-80GB": {"community": 1.39, "secure": 1.79}, "H100-PCIe-80GB": {"community": 1.99, "secure": 2.89}, "H100-SXM-80GB": {"community": 2.69, "secure": 3.99}},
+    "lambda_usd_per_gpu_hour_1x": {"A10-24GB": 1.29, "A6000-48GB": 1.09, "A100-40GB": 1.99, "GH200-96GB": 2.29, "H100-PCIe-80GB": 3.29, "H100-SXM-80GB": 4.29, "B200-180GB": 6.99, "L4": "not offered", "A100-80GB": "only 8x at 2.79/GPU-h"},
+    "hetzner_dedicated_gpu": {
+      "note": "dedicated (bare-metal) servers, not Hetzner Cloud; Hetzner Cloud lists no GPU server types; prices not rendered in fetched page text (unverified)",
+      "GEX45": {"gpu": "RTX PRO 4000 Blackwell SFF", "vram_gb": 24, "cpu": "Intel Core i5-13500", "ram": "64 GB DDR4", "location": "HEL1", "min_contract": "No minimum contract term", "price_eur_month": "214.00 net per third-party wz-it.com, unverified"},
+      "GEX63": {"gpu": "RTX PRO 6000 Blackwell Max-Q", "vram_gb": 96, "location": "HEL1"},
+      "GEX131": {"gpu": "RTX PRO 6000 Blackwell Max-Q", "vram_gb": 96, "location": "NBG1/FSN1", "price_eur_month": "from 889.00 per whtop.com listing, unverified"},
+      "discontinued": ["GEX44 (RTX 4000 SFF Ada 20GB)", "GEX130 (RTX 6000 Ada 48GB)"]
+    }
+  }
+}

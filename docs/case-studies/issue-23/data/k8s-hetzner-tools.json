@@ -1,0 +1,16 @@
+{
+  "source": [
+    "https://api.github.com/repos/vitobotta/hetzner-k3s/releases/latest",
+    "https://api.github.com/repos/kube-hetzner/terraform-hcloud-kube-hetzner/releases/latest",
+    "https://github.com/kube-hetzner/terraform-hcloud-kube-hetzner/blob/master/docs/add-robot-server.md",
+    "https://api.github.com/repos/k3s-io/k3s/releases/latest",
+    "https://www.hetzner.com/cloud/"
+  ],
+  "retrieved": "2026-10-19",
+  "data": {
+    "hetzner-k3s": {"tag": "v2.6.0", "published_at": "2026-06-24T12:44:14Z", "license": "MIT", "gpu_or_dedicated_in_readme": false},
+    "kube-hetzner": {"tag": "v3.2.1", "published_at": "2026-09-09T15:39:47Z", "license": "MIT", "dedicated_robot_server_integration": "documented (docs/add-robot-server.md)"},
+    "k3s": {"tag": "v1.37.1+k3s1", "published_at": "2026-09-30T16:10:38Z"},
+    "hetzner_cloud_gpu_types": "none listed on hetzner.com/cloud; GPUs only as dedicated GEX servers"
+  }
+}

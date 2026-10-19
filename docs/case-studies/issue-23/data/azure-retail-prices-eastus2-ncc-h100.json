@@ -1,0 +1,66 @@
+{
+  "source": "https://prices.azure.com/api/retail/prices?$filter=serviceName eq 'Virtual Machines' and armRegionName eq 'eastus2' and priceType eq 'Consumption' and armSkuName eq 'Standard_NCC40ads_H100_v5'",
+  "retrieved": "2026-10-19",
+  "data": [
+    {
+      "armSkuName": "Standard_NCC40ads_H100_v5",
+      "armRegionName": "eastus2",
+      "meterName": "NCC40adsH100v5",
+      "productName": "Virtual Machines NCCadsv5 Srs Win",
+      "retailPrice": 8.82,
+      "currencyCode": "USD",
+      "unitOfMeasure": "1 Hour",
+      "effectiveStartDate": "2024-12-01T00:00:00Z"
+    },
+    {
+      "armSkuName": "Standard_NCC40ads_H100_v5",
+      "armRegionName": "eastus2",
+      "meterName": "NCC40adsH100v5 Spot",
+      "productName": "Virtual Machines NCCadsv5 Srs Win",
+      "retailPrice": 1.629936,
+      "currencyCode": "USD",
+      "unitOfMeasure": "1 Hour",
+      "effectiveStartDate": "2026-08-01T00:00:00Z"
+    },
+    {
+      "armSkuName": "Standard_NCC40ads_H100_v5",
+      "armRegionName": "eastus2",
+      "meterName": "NCC40adsH100v5 Low Priority",
+      "productName": "Virtual Machines NCCadsv5 Srs Win",
+      "retailPrice": 3.528,
+      "currencyCode": "USD",
+      "unitOfMeasure": "1 Hour",
+      "effectiveStartDate": "2024-08-01T00:00:00Z"
+    },
+    {
+      "armSkuName": "Standard_NCC40ads_H100_v5",
+      "armRegionName": "eastus2",
+      "meterName": "NCC40adsH100v5 Spot",
+      "productName": "Virtual Machines NCCadsv5 Srs",
+      "retailPrice": 1.289904,
+      "currencyCode": "USD",
+      "unitOfMeasure": "1 Hour",
+      "effectiveStartDate": "2026-08-01T00:00:00Z"
+    },
+    {
+      "armSkuName": "Standard_NCC40ads_H100_v5",
+      "armRegionName": "eastus2",
+      "meterName": "NCC40adsH100v5",
+      "productName": "Virtual Machines NCCadsv5 Srs",
+      "retailPrice": 6.98,
+      "currencyCode": "USD",
+      "unitOfMeasure": "1 Hour",
+      "effectiveStartDate": "2024-12-01T00:00:00Z"
+    },
+    {
+      "armSkuName": "Standard_NCC40ads_H100_v5",
+      "armRegionName": "eastus2",
+      "meterName": "NCC40adsH100v5 Low Priority",
+      "productName": "Virtual Machines NCCadsv5 Srs",
+      "retailPrice": 1.396,
+      "currencyCode": "USD",
+      "unitOfMeasure": "1 Hour",
+      "effectiveStartDate": "2024-08-01T00:00:00Z"
+    }
+  ]
+}

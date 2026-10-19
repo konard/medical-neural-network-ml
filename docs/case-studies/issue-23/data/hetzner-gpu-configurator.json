@@ -1,0 +1,277 @@
+{
+ "source": "https://www.hetzner.com/dedicated-rootserver/{gex45,gex63,gex131}/configurator/getServerConfig/ and https://www.hetzner.com/_resources/app/data/app/live_data_upfront.json",
+ "retrieved": "2026-10-19",
+ "data": {
+  "configurator": {
+   "GEX45": {
+    "variants": [
+     {
+      "product_id": "ROBOT_1768",
+      "name": "GEX45-1",
+      "hardware": [
+       {
+        "Type": "RAM",
+        "Amount": 1,
+        "Size": 64,
+        "SizeUnit": "GB",
+        "Generation": "DDR4",
+        "ECCType": "None",
+        "DriveType": null
+       },
+       {
+        "Type": "Drive",
+        "Amount": 2,
+        "Size": 512,
+        "SizeUnit": "GB",
+        "Generation": "None",
+        "ECCType": null,
+        "DriveType": "NVMe"
+       }
+      ],
+      "configurator_locations": [
+       "HEL1"
+      ]
+     }
+    ],
+    "processing": {
+     "CPU": {
+      "Name": "Intel® Core™ i5-13500",
+      "Feature": "incl. Hyper-Threading Technology"
+     },
+     "GPU": {
+      "Name": "NVIDIA RTX PRO™ 4000 Blackwell SFF Edition",
+      "Feature": "770 KI-TOPS"
+     }
+    },
+    "network": [
+     "1 Gbit Uplink unlimited"
+    ],
+    "os": [
+     "Rescue System",
+     "CentOS Stream 9",
+     "CentOS Stream 10",
+     "openSUSE 16",
+     "AlmaLinux 9.7",
+     "AlmaLinux 10",
+     "Rocky Linux 9.7",
+     "Rocky Linux 10",
+     "Arch Linux",
+     "Debian 11.11",
+     "Debian 12.14",
+     "Debian 13",
+     "Ubuntu 22.04 LTS",
+     "Ubuntu 22.04 LTS",
+     "Ubuntu 24.04 LTS",
+     "Ubuntu 26.04 LTS"
+    ]
+   },
+   "GEX63": {
+    "variants": [
+     {
+      "product_id": "ROBOT_1767",
+      "name": "GEX63-1",
+      "hardware": [
+       {
+        "Type": "RAM",
+        "Amount": 1,
+        "Size": 128,
+        "SizeUnit": "GB",
+        "Generation": "DDR5",
+        "ECCType": "None",
+        "DriveType": null
+       },
+       {
+        "Type": "Drive",
+        "Amount": 2,
+        "Size": 1.92,
+        "SizeUnit": "TB",
+        "Generation": "Gen4",
+        "ECCType": null,
+        "DriveType": "NVMe"
+       }
+      ],
+      "configurator_locations": [
+       "HEL1"
+      ]
+     }
+    ],
+    "processing": {
+     "CPU": {
+      "Name": "Intel® Core™ Ultra 7 265",
+      "Feature": null
+     },
+     "GPU": {
+      "Name": "NVIDIA RTX PRO™ 6000 Blackwell Max-Q ",
+      "Feature": "3511 KI-TOPS"
+     }
+    },
+    "network": [
+     "1 Gbit Uplink unlimited"
+    ],
+    "os": [
+     "Rescue System",
+     "AlmaLinux 8.10",
+     "AlmaLinux 9.7",
+     "AlmaLinux 10",
+     "Arch Linux",
+     "CentOS Stream 9",
+     "CentOS Stream 10",
+     "Debian 11.11",
+     "Debian 12.14",
+     "Debian 13",
+     "openSUSE 16",
+     "Rocky Linux 8.10",
+     "Rocky Linux 9.7",
+     "Rocky Linux 10",
+     "Ubuntu 22.04 LTS",
+     "Ubuntu 22.04 LTS",
+     "Ubuntu 24.04 LTS",
+     "Ubuntu 26.04 LTS"
+    ]
+   },
+   "GEX131": {
+    "variants": [
+     {
+      "product_id": "ROBOT_1747",
+      "name": "GEX131-1",
+      "hardware": [
+       {
+        "Type": "RAM",
+        "Amount": 1,
+        "Size": 256,
+        "SizeUnit": "GB",
+        "Generation": "DDR5",
+        "ECCType": "ECC reg.",
+        "DriveType": null
+       },
+       {
+        "Type": "Drive",
+        "Amount": 2,
+        "Size": 960,
+        "SizeUnit": "GB",
+        "Generation": "None",
+        "ECCType": null,
+        "DriveType": "NVMe"
+       }
+      ],
+      "configurator_locations": [
+       "HEL1",
+       "FSN1"
+      ]
+     },
+     {
+      "product_id": "ROBOT_1748",
+      "name": "GEX131-2",
+      "hardware": [
+       {
+        "Type": "RAM",
+        "Amount": 1,
+        "Size": 512,
+        "SizeUnit": "GB",
+        "Generation": "DDR5",
+        "ECCType": "ECC reg.",
+        "DriveType": null
+       },
+       {
+        "Type": "Drive",
+        "Amount": 2,
+        "Size": 1.92,
+        "SizeUnit": "TB",
+        "Generation": "None",
+        "ECCType": null,
+        "DriveType": "NVMe"
+       }
+      ],
+      "configurator_locations": [
+       "HEL1",
+       "FSN1"
+      ]
+     },
+     {
+      "product_id": "ROBOT_1749",
+      "name": "GEX131-3",
+      "hardware": [
+       {
+        "Type": "RAM",
+        "Amount": 1,
+        "Size": 768,
+        "SizeUnit": "GB",
+        "Generation": "DDR5",
+        "ECCType": "ECC reg.",
+        "DriveType": null
+       },
+       {
+        "Type": "Drive",
+        "Amount": 4,
+        "Size": 3.84,
+        "SizeUnit": "TB",
+        "Generation": "None",
+        "ECCType": null,
+        "DriveType": "NVMe"
+       }
+      ],
+      "configurator_locations": [
+       "HEL1",
+       "FSN1"
+      ]
+     }
+    ],
+    "processing": {
+     "CPU": {
+      "Name": "Intel® Xeon® Gold 5412U",
+      "Feature": "incl. Hyper-Threading Technology"
+     },
+     "GPU": {
+      "Name": "NVIDIA RTX PRO™ 6000 Blackwell Max-Q ",
+      "Feature": "3511 KI-TOPS"
+     }
+    },
+    "network": [
+     "1 Gbit Uplink unlimited",
+     "10 Gbit Uplink"
+    ],
+    "os": [
+     "Rescue System",
+     "AlmaLinux 8.10",
+     "AlmaLinux 9.7",
+     "AlmaLinux 10",
+     "Arch Linux",
+     "CentOS Stream 9",
+     "CentOS Stream 10",
+     "Debian 11.11",
+     "Debian 12.14",
+     "Debian 13",
+     "openSUSE 16",
+     "Rocky Linux 8.10",
+     "Rocky Linux 9.7",
+     "Rocky Linux 10",
+     "Ubuntu 22.04 LTS",
+     "Ubuntu 22.04 LTS",
+     "Ubuntu 24.04 LTS",
+     "Ubuntu 26.04 LTS"
+    ]
+   }
+  },
+  "live_availability_by_config_id": {
+   "1768": [
+    "HEL1"
+   ],
+   "1767": [
+    "HEL1"
+   ],
+   "1747": [
+    "HEL1"
+   ],
+   "1748": [
+    "FSN1",
+    "HEL1",
+    "NBG1"
+   ],
+   "1749": [
+    "HEL1",
+    "NBG1"
+   ]
+  },
+  "note": "live_data_upfront.json maps config ids (ROBOT_<id>) to locations currently shown as orderable on the website"
+ }
+}

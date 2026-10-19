@@ -1,0 +1,471 @@
+{
+ "source": "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json",
+ "retrieved": "2026-10-19",
+ "note": "On-demand Linux, shared tenancy, USD/hour, us-east-1. Trimmed to NVIDIA GPU families. p5e/p6e-gb200 absent from on-demand file (Capacity Blocks / reserved only).",
+ "manifest": {
+  "serviceId": "ec2",
+  "accessType": "publish",
+  "hawkFilePublicationDate": "2026-10-15T19:13:16Z",
+  "ETLIngestionTriggerDate": "2026-10-15T19:13:16Z",
+  "currencyCode": "USD",
+  "source": "ec2-ondemand-without-sec-sel"
+ },
+ "data": [
+  {
+   "Instance Type": "g4dn.xlarge",
+   "price": "0.5260000000",
+   "vCPU": "4",
+   "Memory": "16 GiB",
+   "Storage": "125 GB NVMe SSD",
+   "Network Performance": "Up to 25 Gigabit"
+  },
+  {
+   "Instance Type": "g4dn.2xlarge",
+   "price": "0.7520000000",
+   "vCPU": "8",
+   "Memory": "32 GiB",
+   "Storage": "225 GB NVMe SSD",
+   "Network Performance": "Up to 25 Gigabit"
+  },
+  {
+   "Instance Type": "g4dn.4xlarge",
+   "price": "1.2040000000",
+   "vCPU": "16",
+   "Memory": "64 GiB",
+   "Storage": "225 GB NVMe SSD",
+   "Network Performance": "Up to 25 Gigabit"
+  },
+  {
+   "Instance Type": "g4dn.8xlarge",
+   "price": "2.1760000000",
+   "vCPU": "32",
+   "Memory": "128 GiB",
+   "Storage": "900 GB NVMe SSD",
+   "Network Performance": "50 Gigabit"
+  },
+  {
+   "Instance Type": "g4dn.12xlarge",
+   "price": "3.9120000000",
+   "vCPU": "48",
+   "Memory": "192 GiB",
+   "Storage": "900 GB NVMe SSD",
+   "Network Performance": "50 Gigabit"
+  },
+  {
+   "Instance Type": "g4dn.16xlarge",
+   "price": "4.3520000000",
+   "vCPU": "64",
+   "Memory": "256 GiB",
+   "Storage": "900 GB NVMe SSD",
+   "Network Performance": "50 Gigabit"
+  },
+  {
+   "Instance Type": "g4dn.metal",
+   "price": "7.8240000000",
+   "vCPU": "96",
+   "Memory": "384 GiB",
+   "Storage": "2 x 900 GB NVMe SSD",
+   "Network Performance": "100 Gigabit"
+  },
+  {
+   "Instance Type": "g5.xlarge",
+   "price": "1.0060000000",
+   "vCPU": "4",
+   "Memory": "16 GiB",
+   "Storage": "1 x 250 GB NVMe SSD",
+   "Network Performance": "Up to 10 Gigabit"
+  },
+  {
+   "Instance Type": "g5.2xlarge",
+   "price": "1.2120000000",
+   "vCPU": "8",
+   "Memory": "32 GiB",
+   "Storage": "1 x 450 GB NVMe SSD",
+   "Network Performance": "Up to 10 Gigabit"
+  },
+  {
+   "Instance Type": "g5.4xlarge",
+   "price": "1.6240000000",
+   "vCPU": "16",
+   "Memory": "64 GiB",
+   "Storage": "1 x 600 GB NVMe SSD",
+   "Network Performance": "Up to 25 Gigabit"
+  },
+  {
+   "Instance Type": "g5.8xlarge",
+   "price": "2.4480000000",
+   "vCPU": "32",
+   "Memory": "128 GiB",
+   "Storage": "1 x 900 GB NVMe SSD",
+   "Network Performance": "25 Gigabit"
+  },
+  {
+   "Instance Type": "g5.16xlarge",
+   "price": "4.0960000000",
+   "vCPU": "64",
+   "Memory": "256 GiB",
+   "Storage": "1 x 1900 GB NVMe SSD",
+   "Network Performance": "25 Gigabit"
+  },
+  {
+   "Instance Type": "g5.12xlarge",
+   "price": "5.6720000000",
+   "vCPU": "48",
+   "Memory": "192 GiB",
+   "Storage": "1 x 3800 GB NVMe SSD",
+   "Network Performance": "40 Gigabit"
+  },
+  {
+   "Instance Type": "g5.24xlarge",
+   "price": "8.1440000000",
+   "vCPU": "96",
+   "Memory": "384 GiB",
+   "Storage": "1 x 3800 GB NVMe SSD",
+   "Network Performance": "50 Gigabit"
+  },
+  {
+   "Instance Type": "g5.48xlarge",
+   "price": "16.2880000000",
+   "vCPU": "192",
+   "Memory": "768 GiB",
+   "Storage": "2 x 3800 GB NVMe SSD",
+   "Network Performance": "100 Gigabit"
+  },
+  {
+   "Instance Type": "g6.xlarge",
+   "price": "0.8048000000",
+   "vCPU": "4",
+   "Memory": "16 GiB",
+   "Storage": "1 x 250 GB NVMe SSD",
+   "Network Performance": "Up to 10 Gigabit"
+  },
+  {
+   "Instance Type": "g6.2xlarge",
+   "price": "0.9776000000",
+   "vCPU": "8",
+   "Memory": "32 GiB",
+   "Storage": "1 x 450 GB NVMe SSD",
+   "Network Performance": "Up to 10 Gigabit"
+  },
+  {
+   "Instance Type": "g6.4xlarge",
+   "price": "1.3232000000",
+   "vCPU": "16",
+   "Memory": "64 GiB",
+   "Storage": "1 x 600 GB NVMe SSD",
+   "Network Performance": "Up to 25 Gigabit"
+  },
+  {
+   "Instance Type": "g6.8xlarge",
+   "price": "2.0144000000",
+   "vCPU": "32",
+   "Memory": "128 GiB",
+   "Storage": "2 x 450 GB NVMe SSD",
+   "Network Performance": "25 Gigabit"
+  },
+  {
+   "Instance Type": "g6.16xlarge",
+   "price": "3.3968000000",
+   "vCPU": "64",
+   "Memory": "256 GiB",
+   "Storage": "2 x 940 GB NVMe SSD",
+   "Network Performance": "25 Gigabit"
+  },
+  {
+   "Instance Type": "g6.12xlarge",
+   "price": "4.6016000000",
+   "vCPU": "48",
+   "Memory": "192 GiB",
+   "Storage": "4 X 940 GB NVMe SSD",
+   "Network Performance": "40 Gigabit"
+  },
+  {
+   "Instance Type": "g6.24xlarge",
+   "price": "6.6752000000",
+   "vCPU": "96",
+   "Memory": "384 GiB",
+   "Storage": "4 X 940 GB NVMe SSD",
+   "Network Performance": "50 Gigabit"
+  },
+  {
+   "Instance Type": "g6.48xlarge",
+   "price": "13.3504000000",
+   "vCPU": "192",
+   "Memory": "768 GiB",
+   "Storage": "8 x 940 NVMe SSD",
+   "Network Performance": "100 Gigabit"
+  },
+  {
+   "Instance Type": "g6e.xlarge",
+   "price": "1.8610000000",
+   "vCPU": "4",
+   "Memory": "32 GiB",
+   "Storage": "1 x 250 GB NVMe SSD",
+   "Network Performance": "Up to 20 Gigabit"
+  },
+  {
+   "Instance Type": "g6e.2xlarge",
+   "price": "2.2420800000",
+   "vCPU": "8",
+   "Memory": "64 GiB",
+   "Storage": "1 x 450 GB NVMe SSD",
+   "Network Performance": "Up to 20 Gigabit"
+  },
+  {
+   "Instance Type": "g6e.4xlarge",
+   "price": "3.0042400000",
+   "vCPU": "16",
+   "Memory": "128 GiB",
+   "Storage": "1 x 600 GB NVMe SSD",
+   "Network Performance": "20 Gigabit"
+  },
+  {
+   "Instance Type": "g6e.8xlarge",
+   "price": "4.5285600000",
+   "vCPU": "32",
+   "Memory": "256 GiB",
+   "Storage": "1 x 900 GB NVMe SSD",
+   "Network Performance": "25 Gigabit"
+  },
+  {
+   "Instance Type": "g6e.16xlarge",
+   "price": "7.5771900000",
+   "vCPU": "64",
+   "Memory": "512 GiB",
+   "Storage": "1 x 1900 GB NVMe SSD",
+   "Network Performance": "35 Gigabit"
+  },
+  {
+   "Instance Type": "g6e.12xlarge",
+   "price": "10.4926400000",
+   "vCPU": "48",
+   "Memory": "384 GiB",
+   "Storage": "2 x 1900 GB NVMe SSD",
+   "Network Performance": "100 Gigabit"
+  },
+  {
+   "Instance Type": "g6e.24xlarge",
+   "price": "15.0655900000",
+   "vCPU": "96",
+   "Memory": "768 GiB",
+   "Storage": "2 x 1900 GB NVMe SSD",
+   "Network Performance": "200 Gigabit"
+  },
+  {
+   "Instance Type": "g6e.48xlarge",
+   "price": "30.1311800000",
+   "vCPU": "192",
+   "Memory": "1536 GiB",
+   "Storage": "4 x 1900 GB NVMe SSD",
+   "Network Performance": "400 Gigabit"
+  },
+  {
+   "Instance Type": "g6f.large",
+   "price": "0.2020000000",
+   "vCPU": "2",
+   "Memory": "8 GiB",
+   "Storage": "1 x 100 NVMe SSD",
+   "Network Performance": "Up to 10 Gigabit"
+  },
+  {
+   "Instance Type": "g6f.xlarge",
+   "price": "0.2375000000",
+   "vCPU": "4",
+   "Memory": "16 GiB",
+   "Storage": "1 x 100 NVMe SSD",
+   "Network Performance": "Up to 10 Gigabit"
+  },
+  {
+   "Instance Type": "g6f.2xlarge",
+   "price": "0.4750000000",
+   "vCPU": "8",
+   "Memory": "32 GiB",
+   "Storage": "1 x 200 NVMe SSD",
+   "Network Performance": "Up to 10 Gigabit"
+  },
+  {
+   "Instance Type": "g6f.4xlarge",
+   "price": "0.9500000000",
+   "vCPU": "16",
+   "Memory": "64 GiB",
+   "Storage": "1 x 450 NVMe SSD",
+   "Network Performance": "Up to 25 Gigabit"
+  },
+  {
+   "Instance Type": "g7.2xlarge",
+   "price": "2.5200000000",
+   "vCPU": "8",
+   "Memory": "32.0 GiB",
+   "Storage": "1x440 GB NVMe SSD",
+   "Network Performance": "Up to 60 Gigabit"
+  },
+  {
+   "Instance Type": "g7.4xlarge",
+   "price": "3.0420800000",
+   "vCPU": "16",
+   "Memory": "64.0 GiB",
+   "Storage": "1x875 GB NVMe SSD",
+   "Network Performance": "Up to 100 Gigabit"
+  },
+  {
+   "Instance Type": "g7.8xlarge",
+   "price": "4.0862400000",
+   "vCPU": "32",
+   "Memory": "128.0 GiB",
+   "Storage": "1x930 GB NVMe SSD",
+   "Network Performance": "100 Gigabit"
+  },
+  {
+   "Instance Type": "g7.12xlarge",
+   "price": "7.1283200000",
+   "vCPU": "48",
+   "Memory": "192.0 GiB",
+   "Storage": "1x1900 GB NVMe SSD",
+   "Network Performance": "175 Gigabit"
+  },
+  {
+   "Instance Type": "g7.24xlarge",
+   "price": "14.2566400000",
+   "vCPU": "96",
+   "Memory": "384.0 GiB",
+   "Storage": "1x3800 GB NVMe SSD",
+   "Network Performance": "350 Gigabit"
+  },
+  {
+   "Instance Type": "g7.48xlarge",
+   "price": "28.5132800000",
+   "vCPU": "192",
+   "Memory": "768.0 GiB",
+   "Storage": "2x3800 GB NVMe SSD",
+   "Network Performance": "700 Gigabit"
+  },
+  {
+   "Instance Type": "g7e.2xlarge",
+   "price": "3.3631200000",
+   "vCPU": "8",
+   "Memory": "64 GiB",
+   "Storage": "1 x 1900 NVMe SSD",
+   "Network Performance": "50 Gigabit"
+  },
+  {
+   "Instance Type": "g7e.4xlarge",
+   "price": "3.9981600000",
+   "vCPU": "16",
+   "Memory": "128 GiB",
+   "Storage": "1 x 1900 NVMe SSD",
+   "Network Performance": "50 Gigabit"
+  },
+  {
+   "Instance Type": "g7e.8xlarge",
+   "price": "5.2682400000",
+   "vCPU": "32",
+   "Memory": "256 GiB",
+   "Storage": "1 x 1900 NVMe SSD",
+   "Network Performance": "100 Gigabit"
+  },
+  {
+   "Instance Type": "g7e.12xlarge",
+   "price": "8.2860800000",
+   "vCPU": "48",
+   "Memory": "512 GiB",
+   "Storage": "1 x 3800 NVMe SSD",
+   "Network Performance": "400 Gigabit"
+  },
+  {
+   "Instance Type": "g7e.24xlarge",
+   "price": "16.5721600000",
+   "vCPU": "96",
+   "Memory": "1024 GiB",
+   "Storage": "2 x 3800 NVMe SSD",
+   "Network Performance": "800 Gigabit"
+  },
+  {
+   "Instance Type": "g7e.48xlarge",
+   "price": "33.1443200000",
+   "vCPU": "192",
+   "Memory": "2048 GiB",
+   "Storage": "4 x 3800 NVMe SSD",
+   "Network Performance": "1600 Gigabit"
+  },
+  {
+   "Instance Type": "gr6.4xlarge",
+   "price": "1.5392000000",
+   "vCPU": "16",
+   "Memory": "128 GiB",
+   "Storage": "1 x 600 GB NVMe SSD",
+   "Network Performance": "Up to 25 Gigabit"
+  },
+  {
+   "Instance Type": "gr6.8xlarge",
+   "price": "2.4464000000",
+   "vCPU": "32",
+   "Memory": "256 GiB",
+   "Storage": "2 x 450 GB NVMe SSD",
+   "Network Performance": "25 Gigabit"
+  },
+  {
+   "Instance Type": "gr6f.4xlarge",
+   "price": "1.0660000000",
+   "vCPU": "16",
+   "Memory": "128 GiB",
+   "Storage": "1 x 450 NVMe SSD",
+   "Network Performance": "Up to 25 Gigabit"
+  },
+  {
+   "Instance Type": "p4d.24xlarge",
+   "price": "21.9576420000",
+   "vCPU": "96",
+   "Memory": "1152 GiB",
+   "Storage": "8 x 1000 SSD",
+   "Network Performance": "400 Gigabit"
+  },
+  {
+   "Instance Type": "p4de.24xlarge",
+   "price": "27.4470500000",
+   "vCPU": "96",
+   "Memory": "1152 GiB",
+   "Storage": "8 x 1000 SSD",
+   "Network Performance": "400 Gigabit"
+  },
+  {
+   "Instance Type": "p5.4xlarge",
+   "price": "6.8800000000",
+   "vCPU": "16",
+   "Memory": "256 GiB",
+   "Storage": "1 x 3840 GB SSD",
+   "Network Performance": "100 Gigabit"
+  },
+  {
+   "Instance Type": "p5.48xlarge",
+   "price": "55.0400000000",
+   "vCPU": "192",
+   "Memory": "2048 GiB",
+   "Storage": "8 x 3840 GB SSD",
+   "Network Performance": "3200 Gigabit"
+  },
+  {
+   "Instance Type": "p5en.48xlarge",
+   "price": "63.2960000000",
+   "vCPU": "192",
+   "Memory": "2048 GiB",
+   "Storage": "8 x 3840 NVMe SSD",
+   "Network Performance": "3200 Gigabit"
+  },
+  {
+   "Instance Type": "p6-b200.48xlarge",
+   "price": "113.9328000000",
+   "vCPU": "192",
+   "Memory": "2048 GiB",
+   "Storage": "8 x 3840 NVMe SSD",
+   "Network Performance": "3200 Gigabit"
+  },
+  {
+   "Instance Type": "p6-b300.48xlarge",
+   "price": "142.4160000000",
+   "vCPU": "192",
+   "Memory": "4096 GiB",
+   "Storage": "8 x 3840 NVMe SSD",
+   "Network Performance": "6400 Gigabit"
+  }
+ ]
+}

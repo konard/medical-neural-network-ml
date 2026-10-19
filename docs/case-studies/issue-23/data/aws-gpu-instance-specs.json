@@ -1,0 +1,657 @@
+{
+ "source": "https://docs.aws.amazon.com/ec2/latest/instancetypes/ac.html",
+ "retrieved": "2026-10-19",
+ "note": "Performance specifications table, NVIDIA rows only",
+ "data": [
+  {
+   "instance_type": "g4dn.xlarge",
+   "memory_gib": "16.00",
+   "processor": "Intel Xeon P-8259L",
+   "vcpus": "4",
+   "cores": "2",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA T4 GPU",
+   "accelerator_memory": "16 GiB (1 x 16 GiB)"
+  },
+  {
+   "instance_type": "g4dn.2xlarge",
+   "memory_gib": "32.00",
+   "processor": "Intel Xeon P-8259L",
+   "vcpus": "8",
+   "cores": "4",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA T4 GPU",
+   "accelerator_memory": "16 GiB (1 x 16 GiB)"
+  },
+  {
+   "instance_type": "g4dn.4xlarge",
+   "memory_gib": "64.00",
+   "processor": "Intel Xeon P-8259L",
+   "vcpus": "16",
+   "cores": "8",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA T4 GPU",
+   "accelerator_memory": "16 GiB (1 x 16 GiB)"
+  },
+  {
+   "instance_type": "g4dn.8xlarge",
+   "memory_gib": "128.00",
+   "processor": "Intel Xeon P-8259L",
+   "vcpus": "32",
+   "cores": "16",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA T4 GPU",
+   "accelerator_memory": "16 GiB (1 x 16 GiB)"
+  },
+  {
+   "instance_type": "g4dn.12xlarge",
+   "memory_gib": "192.00",
+   "processor": "Intel Xeon P-8259L",
+   "vcpus": "48",
+   "cores": "24",
+   "threads_per_core": "2",
+   "accelerators": "4 x NVIDIA T4 GPU",
+   "accelerator_memory": "64 GiB (4 x 16 GiB)"
+  },
+  {
+   "instance_type": "g4dn.16xlarge",
+   "memory_gib": "256.00",
+   "processor": "Intel Xeon P-8259L",
+   "vcpus": "64",
+   "cores": "32",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA T4 GPU",
+   "accelerator_memory": "16 GiB (1 x 16 GiB)"
+  },
+  {
+   "instance_type": "g4dn.metal",
+   "memory_gib": "384.00",
+   "processor": "Intel Xeon P-8259L",
+   "vcpus": "96",
+   "cores": "48",
+   "threads_per_core": "2",
+   "accelerators": "8 x NVIDIA T4 GPU",
+   "accelerator_memory": "128 GiB (8 x 16 GiB)"
+  },
+  {
+   "instance_type": "g5.xlarge",
+   "memory_gib": "16.00",
+   "processor": "2nd Gen AMD EPYC 7R32",
+   "vcpus": "4",
+   "cores": "2",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA A10G GPU",
+   "accelerator_memory": "22 GiB (1 x 22 GiB)"
+  },
+  {
+   "instance_type": "g5.2xlarge",
+   "memory_gib": "32.00",
+   "processor": "2nd Gen AMD EPYC 7R32",
+   "vcpus": "8",
+   "cores": "4",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA A10G GPU",
+   "accelerator_memory": "22 GiB (1 x 22 GiB)"
+  },
+  {
+   "instance_type": "g5.4xlarge",
+   "memory_gib": "64.00",
+   "processor": "2nd Gen AMD EPYC 7R32",
+   "vcpus": "16",
+   "cores": "8",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA A10G GPU",
+   "accelerator_memory": "22 GiB (1 x 22 GiB)"
+  },
+  {
+   "instance_type": "g5.8xlarge",
+   "memory_gib": "128.00",
+   "processor": "2nd Gen AMD EPYC 7R32",
+   "vcpus": "32",
+   "cores": "16",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA A10G GPU",
+   "accelerator_memory": "22 GiB (1 x 22 GiB)"
+  },
+  {
+   "instance_type": "g5.12xlarge",
+   "memory_gib": "192.00",
+   "processor": "2nd Gen AMD EPYC 7R32",
+   "vcpus": "48",
+   "cores": "24",
+   "threads_per_core": "2",
+   "accelerators": "4 x NVIDIA A10G GPU",
+   "accelerator_memory": "89 GiB (4 x 22 GiB)"
+  },
+  {
+   "instance_type": "g5.16xlarge",
+   "memory_gib": "256.00",
+   "processor": "2nd Gen AMD EPYC 7R32",
+   "vcpus": "64",
+   "cores": "32",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA A10G GPU",
+   "accelerator_memory": "22 GiB (1 x 22 GiB)"
+  },
+  {
+   "instance_type": "g5.24xlarge",
+   "memory_gib": "384.00",
+   "processor": "2nd Gen AMD EPYC 7R32",
+   "vcpus": "96",
+   "cores": "48",
+   "threads_per_core": "2",
+   "accelerators": "4 x NVIDIA A10G GPU",
+   "accelerator_memory": "89 GiB (4 x 22 GiB)"
+  },
+  {
+   "instance_type": "g5.48xlarge",
+   "memory_gib": "768.00",
+   "processor": "2nd Gen AMD EPYC 7R32",
+   "vcpus": "192",
+   "cores": "96",
+   "threads_per_core": "2",
+   "accelerators": "8 x NVIDIA A10G GPU",
+   "accelerator_memory": "178 GiB (8 x 22 GiB)"
+  },
+  {
+   "instance_type": "g5g.xlarge",
+   "memory_gib": "8.00",
+   "processor": "AWS Graviton2 Processor",
+   "vcpus": "4",
+   "cores": "4",
+   "threads_per_core": "1",
+   "accelerators": "1 x NVIDIA T4g GPU",
+   "accelerator_memory": "16 GiB (1 x 16 GiB)"
+  },
+  {
+   "instance_type": "g5g.2xlarge",
+   "memory_gib": "16.00",
+   "processor": "AWS Graviton2 Processor",
+   "vcpus": "8",
+   "cores": "8",
+   "threads_per_core": "1",
+   "accelerators": "1 x NVIDIA T4g GPU",
+   "accelerator_memory": "16 GiB (1 x 16 GiB)"
+  },
+  {
+   "instance_type": "g5g.4xlarge",
+   "memory_gib": "32.00",
+   "processor": "AWS Graviton2 Processor",
+   "vcpus": "16",
+   "cores": "16",
+   "threads_per_core": "1",
+   "accelerators": "1 x NVIDIA T4g GPU",
+   "accelerator_memory": "16 GiB (1 x 16 GiB)"
+  },
+  {
+   "instance_type": "g5g.8xlarge",
+   "memory_gib": "64.00",
+   "processor": "AWS Graviton2 Processor",
+   "vcpus": "32",
+   "cores": "32",
+   "threads_per_core": "1",
+   "accelerators": "1 x NVIDIA T4g GPU",
+   "accelerator_memory": "16 GiB (1 x 16 GiB)"
+  },
+  {
+   "instance_type": "g5g.16xlarge",
+   "memory_gib": "128.00",
+   "processor": "AWS Graviton2 Processor",
+   "vcpus": "64",
+   "cores": "64",
+   "threads_per_core": "1",
+   "accelerators": "2 x NVIDIA T4g GPU",
+   "accelerator_memory": "32 GiB (2 x 16 GiB)"
+  },
+  {
+   "instance_type": "g5g.metal",
+   "memory_gib": "128.00",
+   "processor": "AWS Graviton2 Processor",
+   "vcpus": "64",
+   "cores": "64",
+   "threads_per_core": "1",
+   "accelerators": "2 x NVIDIA T4g GPU",
+   "accelerator_memory": "32 GiB (2 x 16 GiB)"
+  },
+  {
+   "instance_type": "g6.xlarge",
+   "memory_gib": "16.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "4",
+   "cores": "2",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA L4 GPU",
+   "accelerator_memory": "22 GiB (1 x 22 GiB)"
+  },
+  {
+   "instance_type": "g6.2xlarge",
+   "memory_gib": "32.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "8",
+   "cores": "4",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA L4 GPU",
+   "accelerator_memory": "22 GiB (1 x 22 GiB)"
+  },
+  {
+   "instance_type": "g6.4xlarge",
+   "memory_gib": "64.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "16",
+   "cores": "8",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA L4 GPU",
+   "accelerator_memory": "22 GiB (1 x 22 GiB)"
+  },
+  {
+   "instance_type": "g6.8xlarge",
+   "memory_gib": "128.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "32",
+   "cores": "16",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA L4 GPU",
+   "accelerator_memory": "22 GiB (1 x 22 GiB)"
+  },
+  {
+   "instance_type": "g6.12xlarge",
+   "memory_gib": "192.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "48",
+   "cores": "24",
+   "threads_per_core": "2",
+   "accelerators": "4 x NVIDIA L4 GPU",
+   "accelerator_memory": "89 GiB (4 x 22 GiB)"
+  },
+  {
+   "instance_type": "g6.16xlarge",
+   "memory_gib": "256.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "64",
+   "cores": "32",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA L4 GPU",
+   "accelerator_memory": "22 GiB (1 x 22 GiB)"
+  },
+  {
+   "instance_type": "g6.24xlarge",
+   "memory_gib": "384.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "96",
+   "cores": "48",
+   "threads_per_core": "2",
+   "accelerators": "4 x NVIDIA L4 GPU",
+   "accelerator_memory": "89 GiB (4 x 22 GiB)"
+  },
+  {
+   "instance_type": "g6.48xlarge",
+   "memory_gib": "768.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "192",
+   "cores": "96",
+   "threads_per_core": "2",
+   "accelerators": "8 x NVIDIA L4 GPU",
+   "accelerator_memory": "178 GiB (8 x 22 GiB)"
+  },
+  {
+   "instance_type": "g6e.xlarge",
+   "memory_gib": "32.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "4",
+   "cores": "2",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA L40S GPU",
+   "accelerator_memory": "44 GiB (1 x 44 GiB)"
+  },
+  {
+   "instance_type": "g6e.2xlarge",
+   "memory_gib": "64.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "8",
+   "cores": "4",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA L40S GPU",
+   "accelerator_memory": "44 GiB (1 x 44 GiB)"
+  },
+  {
+   "instance_type": "g6e.4xlarge",
+   "memory_gib": "128.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "16",
+   "cores": "8",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA L40S GPU",
+   "accelerator_memory": "44 GiB (1 x 44 GiB)"
+  },
+  {
+   "instance_type": "g6e.8xlarge",
+   "memory_gib": "256.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "32",
+   "cores": "16",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA L40S GPU",
+   "accelerator_memory": "44 GiB (1 x 44 GiB)"
+  },
+  {
+   "instance_type": "g6e.12xlarge",
+   "memory_gib": "384.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "48",
+   "cores": "24",
+   "threads_per_core": "2",
+   "accelerators": "4 x NVIDIA L40S GPU",
+   "accelerator_memory": "178 GiB (4 x 44 GiB)"
+  },
+  {
+   "instance_type": "g6e.16xlarge",
+   "memory_gib": "512.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "64",
+   "cores": "32",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA L40S GPU",
+   "accelerator_memory": "44 GiB (1 x 44 GiB)"
+  },
+  {
+   "instance_type": "g6e.24xlarge",
+   "memory_gib": "768.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "96",
+   "cores": "48",
+   "threads_per_core": "2",
+   "accelerators": "4 x NVIDIA L40S GPU",
+   "accelerator_memory": "178 GiB (4 x 44 GiB)"
+  },
+  {
+   "instance_type": "g6e.48xlarge",
+   "memory_gib": "1536.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "192",
+   "cores": "96",
+   "threads_per_core": "2",
+   "accelerators": "8 x NVIDIA L40S GPU",
+   "accelerator_memory": "357 GiB (8 x 44 GiB)"
+  },
+  {
+   "instance_type": "g6f.large",
+   "memory_gib": "8.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "2",
+   "cores": "1",
+   "threads_per_core": "2",
+   "accelerators": "0.125 x NVIDIA L4 GPU",
+   "accelerator_memory": "2.79 GiB"
+  },
+  {
+   "instance_type": "g6f.xlarge",
+   "memory_gib": "16.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "4",
+   "cores": "2",
+   "threads_per_core": "2",
+   "accelerators": "0.125 x NVIDIA L4 GPU",
+   "accelerator_memory": "2.79 GiB"
+  },
+  {
+   "instance_type": "g6f.2xlarge",
+   "memory_gib": "32.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "8",
+   "cores": "4",
+   "threads_per_core": "2",
+   "accelerators": "0.25 x NVIDIA L4 GPU",
+   "accelerator_memory": "5.59 GiB"
+  },
+  {
+   "instance_type": "g6f.4xlarge",
+   "memory_gib": "64.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "16",
+   "cores": "8",
+   "threads_per_core": "2",
+   "accelerators": "0.5 x NVIDIA L4 GPU",
+   "accelerator_memory": "11.18 GiB"
+  },
+  {
+   "instance_type": "gr6.4xlarge",
+   "memory_gib": "128.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "16",
+   "cores": "8",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA L4 GPU",
+   "accelerator_memory": "22 GiB (1 x 22 GiB)"
+  },
+  {
+   "instance_type": "gr6.8xlarge",
+   "memory_gib": "256.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "32",
+   "cores": "16",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA L4 GPU",
+   "accelerator_memory": "22 GiB (1 x 22 GiB)"
+  },
+  {
+   "instance_type": "gr6f.4xlarge",
+   "memory_gib": "128.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "16",
+   "cores": "8",
+   "threads_per_core": "2",
+   "accelerators": "0.5 x NVIDIA L4 GPU",
+   "accelerator_memory": "11.18 GiB"
+  },
+  {
+   "instance_type": "g7.2xlarge",
+   "memory_gib": "32.00",
+   "processor": "Intel Xeon Granite Rapids",
+   "vcpus": "8",
+   "cores": "8",
+   "threads_per_core": "1",
+   "accelerators": "1 x NVIDIA RTX PRO 4500 GPU",
+   "accelerator_memory": "32 GiB (1 x 32 GiB)"
+  },
+  {
+   "instance_type": "g7.4xlarge",
+   "memory_gib": "64.00",
+   "processor": "Intel Xeon Granite Rapids",
+   "vcpus": "16",
+   "cores": "16",
+   "threads_per_core": "1",
+   "accelerators": "1 x NVIDIA RTX PRO 4500 GPU",
+   "accelerator_memory": "32 GiB (1 x 32 GiB)"
+  },
+  {
+   "instance_type": "g7.8xlarge",
+   "memory_gib": "128.00",
+   "processor": "Intel Xeon Granite Rapids",
+   "vcpus": "32",
+   "cores": "32",
+   "threads_per_core": "1",
+   "accelerators": "1 x NVIDIA RTX PRO 4500 GPU",
+   "accelerator_memory": "32 GiB (1 x 32 GiB)"
+  },
+  {
+   "instance_type": "g7.12xlarge",
+   "memory_gib": "192.00",
+   "processor": "Intel Xeon Granite Rapids",
+   "vcpus": "48",
+   "cores": "48",
+   "threads_per_core": "1",
+   "accelerators": "2 x NVIDIA RTX PRO 4500 GPU",
+   "accelerator_memory": "64 GiB (2 x 32 GiB)"
+  },
+  {
+   "instance_type": "g7.24xlarge",
+   "memory_gib": "384.00",
+   "processor": "Intel Xeon Granite Rapids",
+   "vcpus": "96",
+   "cores": "96",
+   "threads_per_core": "1",
+   "accelerators": "4 x NVIDIA RTX PRO 4500 GPU",
+   "accelerator_memory": "128 GiB (4 x 32 GiB)"
+  },
+  {
+   "instance_type": "g7.48xlarge",
+   "memory_gib": "768.00",
+   "processor": "Intel Xeon Granite Rapids",
+   "vcpus": "192",
+   "cores": "192",
+   "threads_per_core": "1",
+   "accelerators": "8 x NVIDIA RTX PRO 4500 GPU",
+   "accelerator_memory": "256 GiB (8 x 32 GiB)"
+  },
+  {
+   "instance_type": "g7e.2xlarge",
+   "memory_gib": "64.00",
+   "processor": "Intel Xeon Emerald Rapids",
+   "vcpus": "8",
+   "cores": "4",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA RTX PRO Server 6000 GPU",
+   "accelerator_memory": "96 GiB (1 x 96 GiB)"
+  },
+  {
+   "instance_type": "g7e.4xlarge",
+   "memory_gib": "128.00",
+   "processor": "Intel Xeon Emerald Rapids",
+   "vcpus": "16",
+   "cores": "8",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA RTX PRO Server 6000 GPU",
+   "accelerator_memory": "96 GiB (1 x 96 GiB)"
+  },
+  {
+   "instance_type": "g7e.8xlarge",
+   "memory_gib": "256.00",
+   "processor": "Intel Xeon Emerald Rapids",
+   "vcpus": "32",
+   "cores": "16",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA RTX PRO Server 6000 GPU",
+   "accelerator_memory": "96 GiB (1 x 96 GiB)"
+  },
+  {
+   "instance_type": "g7e.12xlarge",
+   "memory_gib": "512.00",
+   "processor": "Intel Xeon Emerald Rapids",
+   "vcpus": "48",
+   "cores": "24",
+   "threads_per_core": "2",
+   "accelerators": "2 x NVIDIA RTX PRO Server 6000 GPU",
+   "accelerator_memory": "192 GiB (2 x 96 GiB)"
+  },
+  {
+   "instance_type": "g7e.24xlarge",
+   "memory_gib": "1024.00",
+   "processor": "Intel Xeon Emerald Rapids",
+   "vcpus": "96",
+   "cores": "48",
+   "threads_per_core": "2",
+   "accelerators": "4 x NVIDIA RTX PRO Server 6000 GPU",
+   "accelerator_memory": "384 GiB (4 x 96 GiB)"
+  },
+  {
+   "instance_type": "g7e.48xlarge",
+   "memory_gib": "2048.00",
+   "processor": "Intel Xeon Emerald Rapids",
+   "vcpus": "192",
+   "cores": "96",
+   "threads_per_core": "2",
+   "accelerators": "8 x NVIDIA RTX PRO Server 6000 GPU",
+   "accelerator_memory": "768 GiB (8 x 96 GiB)"
+  },
+  {
+   "instance_type": "p4d.24xlarge",
+   "memory_gib": "1152.00",
+   "processor": "Intel Xeon Platinum 8275CL",
+   "vcpus": "96",
+   "cores": "48",
+   "threads_per_core": "2",
+   "accelerators": "8 x NVIDIA A100 GPU",
+   "accelerator_memory": "320 GiB (8 x 40 GiB)"
+  },
+  {
+   "instance_type": "p4de.24xlarge",
+   "memory_gib": "1152.00",
+   "processor": "Intel Xeon Platinum 8275CL",
+   "vcpus": "96",
+   "cores": "48",
+   "threads_per_core": "2",
+   "accelerators": "8 x NVIDIA A100 GPU",
+   "accelerator_memory": "640 GiB (8 x 80 GiB)"
+  },
+  {
+   "instance_type": "p5.4xlarge",
+   "memory_gib": "256.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "16",
+   "cores": "8",
+   "threads_per_core": "2",
+   "accelerators": "1 x NVIDIA H100 GPU",
+   "accelerator_memory": "80 GiB (1 x 80 GiB)"
+  },
+  {
+   "instance_type": "p5.48xlarge",
+   "memory_gib": "2048.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "192",
+   "cores": "96",
+   "threads_per_core": "2",
+   "accelerators": "8 x NVIDIA H100 GPU",
+   "accelerator_memory": "640 GiB (8 x 80 GiB)"
+  },
+  {
+   "instance_type": "p5e.48xlarge",
+   "memory_gib": "2048.00",
+   "processor": "AMD EPYC 7R13",
+   "vcpus": "192",
+   "cores": "96",
+   "threads_per_core": "2",
+   "accelerators": "8 x NVIDIA H200 GPU",
+   "accelerator_memory": "1128 GiB (8 x 141 GiB)"
+  },
+  {
+   "instance_type": "p5en.48xlarge",
+   "memory_gib": "2048.00",
+   "processor": "Intel Xeon Sapphire Rapids",
+   "vcpus": "192",
+   "cores": "96",
+   "threads_per_core": "2",
+   "accelerators": "8 x NVIDIA H200 GPU",
+   "accelerator_memory": "1128 GiB (8 x 141 GiB)"
+  },
+  {
+   "instance_type": "p6-b200.48xlarge",
+   "memory_gib": "2048.00",
+   "processor": "Intel Xeon Emerald Rapids",
+   "vcpus": "192",
+   "cores": "96",
+   "threads_per_core": "2",
+   "accelerators": "8 x NVIDIA B200 GPU",
+   "accelerator_memory": "1432 GiB (8 x 179 GiB)"
+  },
+  {
+   "instance_type": "p6-b300.48xlarge",
+   "memory_gib": "4096.00",
+   "processor": "Intel Xeon Emerald Rapids",
+   "vcpus": "192",
+   "cores": "96",
+   "threads_per_core": "2",
+   "accelerators": "8 x NVIDIA B300 GPU",
+   "accelerator_memory": "2148 GiB (8 x 268 GiB)"
+  },
+  {
+   "instance_type": "p6e-gb200.36xlarge",
+   "memory_gib": "960.00",
+   "processor": "Nvidia Grace CPU",
+   "vcpus": "144",
+   "cores": "144",
+   "threads_per_core": "1",
+   "accelerators": "4 x NVIDIA B200 GPU",
+   "accelerator_memory": "740 GiB (4 x 185 GiB)"
+  }
+ ]
+}

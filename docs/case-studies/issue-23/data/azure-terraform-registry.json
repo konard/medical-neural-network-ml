@@ -1,0 +1,27 @@
+{
+ "source": [
+  "https://registry.terraform.io/v1/providers/hashicorp/azurerm",
+  "https://registry.terraform.io/v1/providers/azure/azapi"
+ ],
+ "retrieved": "2026-10-19",
+ "data": [
+  {
+   "namespace": "hashicorp",
+   "name": "azurerm",
+   "version": "5.10.0",
+   "tag": "v5.10.0",
+   "published_at": "2026-10-15T15:41:20Z",
+   "source": "https://github.com/hashicorp/terraform-provider-azurerm",
+   "downloads": 2064992124
+  },
+  {
+   "namespace": "Azure",
+   "name": "azapi",
+   "version": "2.13.0",
+   "tag": "v2.13.0",
+   "published_at": "2026-09-28T08:14:56.427406Z",
+   "source": "https://github.com/Azure/terraform-provider-azapi",
+   "downloads": 310202657
+  }
+ ]
+}

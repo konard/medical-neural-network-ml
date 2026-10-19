@@ -1,0 +1,11 @@
+{"source": "multiple (see per-item url)", "retrieved": "2026-10-19", "data": [
+ {"tool": "hashicorp/aws Terraform provider", "version": "6.69.1", "published": "2026-10-15", "url": "https://registry.terraform.io/v1/providers/hashicorp/aws"},
+ {"tool": "aws-actions/configure-aws-credentials", "version": "v6.3.0", "published": "2026-09-15", "url": "https://github.com/aws-actions/configure-aws-credentials/releases"},
+ {"tool": "karpenter-provider-aws", "version": "v1.14.2", "published": "2026-10-19", "url": "https://github.com/aws/karpenter-provider-aws/releases/tag/v1.14.2"},
+ {"tool": "NVIDIA k8s-device-plugin", "version": "v0.20.1", "published": "2026-09-22", "url": "https://github.com/NVIDIA/k8s-device-plugin/releases"},
+ {"tool": "amazon-eks-ami", "version": "v20261012", "published": "2026-10-14", "url": "https://github.com/awslabs/amazon-eks-ami/releases/tag/v20261012"},
+ {"tool": "Bottlerocket", "version": "v1.67.0", "published": "2026-10-13", "url": "https://github.com/bottlerocket-os/bottlerocket/releases"},
+ {"tool": "GitLab fleeting-plugin-aws", "version": "v1.3.0", "published": "2026-07-22", "url": "https://gitlab.com/gitlab-org/fleeting/plugins/aws/-/releases/v1.3.0"},
+ {"tool": "DLAMI Base OSS Nvidia Driver GPU (Ubuntu 24.04)", "version": "20261006", "url": "https://docs.aws.amazon.com/dlami/latest/devguide/aws-deep-learning-ami-gpubaseoss-ul2404-2026-10-08.html"},
+ {"tool": "DLAMI Base OSS Nvidia Driver GPU (AL2023)", "version": "20261009", "url": "https://docs.aws.amazon.com/dlami/latest/devguide/aws-deep-learning-ami-gpubaseoss-al2023-2026-10-12.html"}
+]}

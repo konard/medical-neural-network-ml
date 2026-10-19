@@ -1,0 +1,24 @@
+Sources:
+ https://docs.hetzner.com/robot/dedicated-server/server-lines/gpu-server/ (Last change 2026-10-06)
+ https://www.hetzner.com/dedicated-rootserver/matrix-gpu/
+ https://www.hetzner.com/pressroom/hetzner-expands-its-gpu-portfolio-with-the-gex45/
+ https://docs.hetzner.com/robot/dedicated-server/operating-systems/installimage/ (Last change 2020-05-18)
+ https://community.hetzner.com/tutorials/gpu-mig (2026-05-28)
+Retrieved: 2026-10-19
+
+GPU docs page:
+- "GEX server types are configured with fixed hardware ... You cannot order additional hardware; instead, you must upgrade to a
+  different server model to obtain more drives or RAM." Network cards, LAN ports, uplinks and other add-ons still orderable.
+- Upgrade table lists EX51-SSD-GPU, GEX44, GEX45, GEX63 (no RAM/drive upgrades), GEX130 (RAM upgrades), GEX131.
+- 10 Gbit uplink - for GEX130, GEX131 (traffic limits above 20 TB apply).
+
+Current matrix (2026-10-19):
+- GEX45  : Intel Core i5-13500, 64 GB DDR4, 2x512 GB NVMe, NVIDIA RTX PRO 4000 Blackwell SFF 24 GB GDDR7 ECC; HEL1
+- GEX63  : Intel Core Ultra 7 265, 128 GB DDR5, 2x1.92 TB NVMe DC, NVIDIA RTX PRO 6000 Blackwell Max-Q 96 GB GDDR7 ECC; HEL1
+- GEX131 : Intel Xeon Gold 5412U, 256/512/768 GB DDR5 ECC, NVIDIA RTX PRO 6000 Blackwell Max-Q 96 GB; HEL1/FSN1 (variants also NBG1)
+- GEX44 (RTX 4000 SFF Ada 20 GB) and GEX130 (RTX 6000 Ada 48 GB) no longer in matrix; /gex44/ redirects to /gex45/.
+
+OS: configurator offers Ubuntu 22.04/24.04/26.04 LTS, Debian 11/12/13, AlmaLinux, Rocky, CentOS Stream, Arch, openSUSE 16, Rescue.
+installimage: "You can run installimage directly from the Rescue System on your server."
+Hetzner community tutorial (MIG, Ubuntu 24.04): CUDA local repo cuda-repo-ubuntu2404-13-2-local_13.2.1-595.58.03,
+  apt-get install cuda-toolkit-13-2 ; apt-get install nvidia-open ; reboot.

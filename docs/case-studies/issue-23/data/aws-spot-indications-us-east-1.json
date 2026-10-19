@@ -1,0 +1,73 @@
+{
+ "sources": {
+  "spot_advisor": "https://spot-bid-advisor.s3.amazonaws.com/spot-advisor-data.json (Last-Modified: Fri, 20 Mar 2026 23:38:55 GMT; backs https://aws.amazon.com/ec2/spot/instance-advisor/)",
+  "vantage_spot_headline": "https://instances.vantage.sh/aws/ec2/<type> (headline 'Spot' USD/h; statistic and region not stated on page)"
+ },
+ "retrieved": "2026-10-19",
+ "note": "Region us-east-1, Linux. https://website.spot.ec2.aws.a2z.com/spot.js (Spot pricing page feed) was Last-Modified 2024-05-13 and is stale; not used.",
+ "data": {
+  "spot_advisor_us_east_1_linux": {
+   "g4dn.xlarge": {
+    "interruption_frequency": "10-15%",
+    "savings_vs_on_demand_pct": 60
+   },
+   "g5.xlarge": {
+    "interruption_frequency": ">20%",
+    "savings_vs_on_demand_pct": 56
+   },
+   "g6.xlarge": {
+    "interruption_frequency": ">20%",
+    "savings_vs_on_demand_pct": 49
+   },
+   "g6e.xlarge": {
+    "interruption_frequency": ">20%",
+    "savings_vs_on_demand_pct": 50
+   },
+   "g6e.2xlarge": {
+    "interruption_frequency": "5-10%",
+    "savings_vs_on_demand_pct": 54
+   },
+   "g7.2xlarge": null,
+   "g7e.2xlarge": {
+    "interruption_frequency": "15-20%",
+    "savings_vs_on_demand_pct": 68
+   },
+   "gr6.4xlarge": {
+    "interruption_frequency": ">20%",
+    "savings_vs_on_demand_pct": 41
+   },
+   "p4d.24xlarge": {
+    "interruption_frequency": "15-20%",
+    "savings_vs_on_demand_pct": 56
+   },
+   "p4de.24xlarge": {
+    "interruption_frequency": "15-20%",
+    "savings_vs_on_demand_pct": 37
+   },
+   "p5.4xlarge": {
+    "interruption_frequency": "<5%",
+    "savings_vs_on_demand_pct": 9
+   },
+   "p5.48xlarge": {
+    "interruption_frequency": "<5%",
+    "savings_vs_on_demand_pct": 57
+   },
+   "p5en.48xlarge": {
+    "interruption_frequency": "<5%",
+    "savings_vs_on_demand_pct": 67
+   },
+   "p6-b200.48xlarge": {
+    "interruption_frequency": "10-15%",
+    "savings_vs_on_demand_pct": 79
+   }
+  },
+  "vantage_spot_usd_per_hour": {
+   "g6.xlarge": "0.645",
+   "g5.xlarge": "0.491",
+   "g6e.xlarge": "1.696",
+   "p5.4xlarge": "4.428",
+   "g7e.2xlarge": "2.664",
+   "g4dn.xlarge": "0.329"
+  }
+ }
+}

@@ -1,0 +1,26 @@
+# Google Compute Engine GPU prices, region us-central1 (Iowa), USD per hour
+# Retrieved: 2026-10-19
+# Sources:
+#   On-demand / Spot / DWS Flex-start (accelerator-optimized): https://cloud.google.com/products/compute/pricing/accelerator-optimized
+#   GPU attachment (N1 + T4 etc.):                             https://cloud.google.com/products/compute/pricing/accelerator-optimized#gpu-attachment-pricing
+#   Spot prices (incl. a3-highgpu-1g, T4 spot):                https://cloud.google.com/spot-vms/pricing
+#   N1 machine type price:                                     https://cloud.google.com/products/compute/pricing/general-purpose
+# (old URLs https://cloud.google.com/compute/gpus-pricing and /compute/vm-instance-pricing now 301-redirect to /products/compute/pricing)
+# Region: static HTML of each page renders the default region selector "Iowa (us-central1)".
+# A2/A3/G2/G4 prices INCLUDE the GPU (bundled in machine type). N1 price excludes GPU; add attachment price.
+#
+# machine_type      gpu                     gpu_mem  vCPU  RAM      on_demand      spot           dws_flex_start
+g2-standard-4       1x L4                   24GB     4     16GiB    0.706832276    0.423016       N/A
+g2-standard-8       1x L4                   24GB     8     32GiB    0.853624312    0.510832       N/A
+g4-standard-12      1/4x RTX PRO 6000       24GB     12    45GiB    1.29376        0.4782         0.64688
+g4-standard-24      1/2x RTX PRO 6000       48GB     24    90GiB    2.58752        0.9564         1.29376
+g4-standard-48      1x RTX PRO 6000         96GB     48    180GiB   4.49993        1.6635         2.2500
+a2-highgpu-1g       1x A100 40GB            40GB     12    85GiB    3.673385       2.20401        2.0000
+a2-ultragpu-1g      1x A100 80GB            80GB     12    170GiB   5.06879789     3.039953288    2.4000
+a3-highgpu-1g       1x H100 80GB            80GB     26    234GiB   (not listed;   6.273932575    (not listed)
+                                                                     Spot/Flex-start only)
+n1-standard-4       (none)                  -        4     15GiB    0.189999       0.09767        -
+GPU attach nvidia-tesla-t4 (per GPU)        16GB     -     -        0.35           0.2085         -
+n1-standard-4 + 1x T4 (computed sum)        16GB     4     15GiB    0.539999       0.30617        -
+# Other pre-Turing N1 attachments (NOT usable with CUDA 13): P4 0.60 (spot 0.2463), P100 1.46 (spot 0.6079), V100 2.48 (spot 1.3962)
+# Spot: "Spot prices are variable and can change up to once every day ... discounts of up to 91%"

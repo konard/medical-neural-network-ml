@@ -1,0 +1,402 @@
+{
+  "source": "https://prices.azure.com/api/retail/prices (same eastus filter as azure-retail-prices-eastus.json)",
+  "retrieved": "2026-10-19",
+  "note": "Linux on-demand (non-Spot, non-Low-Priority) USD/hour for every NC/ND/NV/NG SKU listed in eastus. Presence in price list does NOT imply the SKU is still orderable (e.g. NCv3, NC_Promo, NV_Promo, NDv2 are retired).",
+  "data": [
+    {
+      "armSkuName": "Standard_NV4as_v4",
+      "productName": "Virtual Machines NVasv4 Series",
+      "retailPrice": 0.233
+    },
+    {
+      "armSkuName": "Standard_NV4ads_V710_v5",
+      "productName": "Virtual Machines NVadsV710v5 Series",
+      "retailPrice": 0.333
+    },
+    {
+      "armSkuName": "Standard_NC6_Promo",
+      "productName": "Virtual Machines NC Promo Series",
+      "retailPrice": 0.396
+    },
+    {
+      "armSkuName": "Standard_NV6ads_A10_v5",
+      "productName": "Virtual Machines NVadsA10v5 Series",
+      "retailPrice": 0.454
+    },
+    {
+      "armSkuName": "Standard_NV8as_v4",
+      "productName": "Virtual Machines NVasv4 Series",
+      "retailPrice": 0.466
+    },
+    {
+      "armSkuName": "Standard_NC4as_T4_v3",
+      "productName": "Virtual Machines NCasT4 v3 Series",
+      "retailPrice": 0.526
+    },
+    {
+      "armSkuName": "Standard_NC8lds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCldsxlRTX6kv6",
+      "retailPrice": 0.55
+    },
+    {
+      "armSkuName": "Standard_NV8ads_V710_v5",
+      "productName": "Virtual Machines NVadsV710v5 Series",
+      "retailPrice": 0.667
+    },
+    {
+      "armSkuName": "Standard_NV6_Promo",
+      "productName": "Virtual Machines NV Promo Series",
+      "retailPrice": 0.684
+    },
+    {
+      "armSkuName": "Standard_NC8as_T4_v3",
+      "productName": "Virtual Machines NCasT4 v3 Series",
+      "retailPrice": 0.752
+    },
+    {
+      "armSkuName": "Standard_NC12_Promo",
+      "productName": "Virtual Machines NC Promo Series",
+      "retailPrice": 0.792
+    },
+    {
+      "armSkuName": "Standard_NV12ads_A10_v5",
+      "productName": "Virtual Machines NVadsA10v5 Series",
+      "retailPrice": 0.908
+    },
+    {
+      "armSkuName": "Standard_NV16as_v4",
+      "productName": "Virtual Machines NVasv4 Series",
+      "retailPrice": 0.932
+    },
+    {
+      "armSkuName": "Standard_NV12ads_V710_v5",
+      "productName": "Virtual Machines NVadsV710v5 Series",
+      "retailPrice": 1.0
+    },
+    {
+      "armSkuName": "Standard_NC16lds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCldsxlRTX6kv6",
+      "retailPrice": 1.13
+    },
+    {
+      "armSkuName": "Standard_NC24lds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCldsxlRTX6kv6",
+      "retailPrice": 1.13
+    },
+    {
+      "armSkuName": "Standard_NV12s_v3",
+      "productName": "Virtual Machines NVSv3 Series",
+      "retailPrice": 1.14
+    },
+    {
+      "armSkuName": "Standard_NC16as_T4_v3",
+      "productName": "Virtual Machines NCasT4 v3 Series",
+      "retailPrice": 1.204
+    },
+    {
+      "armSkuName": "Standard_NC32lds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCldsxlRTX6kv6",
+      "retailPrice": 1.243
+    },
+    {
+      "armSkuName": "Standard_NC36lds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCldsxlRTX6kv6",
+      "retailPrice": 1.243
+    },
+    {
+      "armSkuName": "Standard_NV12_Promo",
+      "productName": "Virtual Machines NV Promo Series",
+      "retailPrice": 1.368
+    },
+    {
+      "armSkuName": "Standard_NC32ds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCdsxlRTX6kv6",
+      "retailPrice": 1.442
+    },
+    {
+      "armSkuName": "Standard_NC36ds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCdsxlRTX6kv6",
+      "retailPrice": 1.442
+    },
+    {
+      "armSkuName": "Standard_NC24_Promo",
+      "productName": "Virtual Machines NC Promo Series",
+      "retailPrice": 1.584
+    },
+    {
+      "armSkuName": "Standard_NV18ads_A10_v5",
+      "productName": "Virtual Machines NVadsA10v5 Series",
+      "retailPrice": 1.6
+    },
+    {
+      "armSkuName": "Standard_NC24r_Promo",
+      "productName": "Virtual Machines NC Promo Series",
+      "retailPrice": 1.742
+    },
+    {
+      "armSkuName": "Standard_NV32as_v4",
+      "productName": "Virtual Machines NVasv4 Series",
+      "retailPrice": 1.864
+    },
+    {
+      "armSkuName": "Standard_NV24ads_V710_v5",
+      "productName": "Virtual Machines NVadsV710v5 Series",
+      "retailPrice": 2.0
+    },
+    {
+      "armSkuName": "Standard_NV24s_v3",
+      "productName": "Virtual Machines NVSv3 Series",
+      "retailPrice": 2.28
+    },
+    {
+      "armSkuName": "Standard_NV28adms_V710_v5",
+      "productName": "Virtual Machines NVadsV710v5 Series",
+      "retailPrice": 2.4
+    },
+    {
+      "armSkuName": "Standard_NC64lds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCldsxlRTX6kv6",
+      "retailPrice": 2.44
+    },
+    {
+      "armSkuName": "Standard_NC72lds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCldsxlRTX6kv6",
+      "retailPrice": 2.44
+    },
+    {
+      "armSkuName": "Standard_NV24_Promo",
+      "productName": "Virtual Machines NV Promo Series",
+      "retailPrice": 2.736
+    },
+    {
+      "armSkuName": "Standard_NC64ds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCdsxlRTX6kv6",
+      "retailPrice": 2.83
+    },
+    {
+      "armSkuName": "Standard_NC72ds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCdsxlRTX6kv6",
+      "retailPrice": 2.83
+    },
+    {
+      "armSkuName": "Standard_NC6s_v3",
+      "productName": "Virtual Machines NCSv3 Series",
+      "retailPrice": 3.06
+    },
+    {
+      "armSkuName": "Standard_NV36ads_A10_v5",
+      "productName": "Virtual Machines NVadsA10v5 Series",
+      "retailPrice": 3.2
+    },
+    {
+      "armSkuName": "Standard_NC24ads_A100_v4",
+      "productName": "NCads A100 v4 Series Linux",
+      "retailPrice": 3.673
+    },
+    {
+      "armSkuName": "Standard_NC64as_T4_v3",
+      "productName": "Virtual Machines NCasT4 v3 Series",
+      "retailPrice": 4.352
+    },
+    {
+      "armSkuName": "Standard_NV36adms_A10_v5",
+      "productName": "Virtual Machines NVadsA10v5 Series",
+      "retailPrice": 4.52
+    },
+    {
+      "armSkuName": "Standard_NV48s_v3",
+      "productName": "Virtual Machines NVSv3 Series",
+      "retailPrice": 4.56
+    },
+    {
+      "armSkuName": "Standard_NC128lds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCldsxlRTX6kv6",
+      "retailPrice": 5.5
+    },
+    {
+      "armSkuName": "Standard_NC132lds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCldsxlRTX6kv6",
+      "retailPrice": 5.5
+    },
+    {
+      "armSkuName": "Standard_NC144lds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCldsxlRTX6kv6",
+      "retailPrice": 5.5
+    },
+    {
+      "armSkuName": "Standard_NC12s_v3",
+      "productName": "Virtual Machines NCSv3 Series",
+      "retailPrice": 6.12
+    },
+    {
+      "armSkuName": "Standard_NC128ds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCdsxlRTX6kv6",
+      "retailPrice": 6.38
+    },
+    {
+      "armSkuName": "Standard_NC132ds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCdsxlRTX6kv6",
+      "retailPrice": 6.38
+    },
+    {
+      "armSkuName": "Standard_NC144ds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCdsxlRTX6kv6",
+      "retailPrice": 6.38
+    },
+    {
+      "armSkuName": "Standard_NV72ads_A10_v5",
+      "productName": "Virtual Machines NVadsA10v5 Series",
+      "retailPrice": 6.52
+    },
+    {
+      "armSkuName": "Standard_NC40ads_H100_v5",
+      "productName": "Virtual Machines NCadsH100v5 Series",
+      "retailPrice": 6.98
+    },
+    {
+      "armSkuName": "Standard_NC48ads_A100_v4",
+      "productName": "NCads A100 v4 Series Linux",
+      "retailPrice": 7.346
+    },
+    {
+      "armSkuName": "Standard_NC256lds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCldsxlRTX6kv6",
+      "retailPrice": 11.0
+    },
+    {
+      "armSkuName": "Standard_NC264lds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCldsxlRTX6kv6",
+      "retailPrice": 11.0
+    },
+    {
+      "armSkuName": "Standard_NC288ds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCdsxlRTX6kv6",
+      "retailPrice": 11.0
+    },
+    {
+      "armSkuName": "Standard_NC288lds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCldsxlRTX6kv6",
+      "retailPrice": 11.0
+    },
+    {
+      "armSkuName": "Standard_NC24s_v3",
+      "productName": "Virtual Machines NCSv3 Series",
+      "retailPrice": 12.24
+    },
+    {
+      "armSkuName": "Standard_ND40s_v2",
+      "productName": "Virtual Machines NDSv2 Series",
+      "retailPrice": 12.24
+    },
+    {
+      "armSkuName": "Standard_NC256ds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCdsxlRTX6kv6",
+      "retailPrice": 12.76
+    },
+    {
+      "armSkuName": "Standard_NC264ds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCdsxlRTX6kv6",
+      "retailPrice": 12.76
+    },
+    {
+      "armSkuName": "Standard_NC24rs_v3",
+      "productName": "Virtual Machines NCSv3 Series",
+      "retailPrice": 13.46
+    },
+    {
+      "armSkuName": "Standard_NC80adis_H100_v5",
+      "productName": "Virtual Machines NCadsH100v5 Series",
+      "retailPrice": 13.96
+    },
+    {
+      "armSkuName": "Standard_NC320lds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCldsxlRTX6kv6",
+      "retailPrice": 14.3
+    },
+    {
+      "armSkuName": "Standard_NC324lds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCldsxlRTX6kv6",
+      "retailPrice": 14.3
+    },
+    {
+      "armSkuName": "Standard_NC336lds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCldsxlRTX6kv6",
+      "retailPrice": 14.3
+    },
+    {
+      "armSkuName": "Standard_NC96ads_A100_v4",
+      "productName": "NCads A100 v4 Series Linux",
+      "retailPrice": 14.692
+    },
+    {
+      "armSkuName": "Standard_NC320ds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCdsxlRTX6kv6",
+      "retailPrice": 16.588
+    },
+    {
+      "armSkuName": "Standard_NC324ds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCdsxlRTX6kv6",
+      "retailPrice": 16.588
+    },
+    {
+      "armSkuName": "Standard_NC336ds_xl_RTXPRO6000BSE_v6",
+      "productName": "Virtual Machines NCdsxlRTX6kv6",
+      "retailPrice": 16.59
+    },
+    {
+      "armSkuName": "Standard_ND40rs_v2",
+      "productName": "Virtual Machines NDrSv2 Series",
+      "retailPrice": 22.032
+    },
+    {
+      "armSkuName": "Standard_ND96asr_A100_v4",
+      "productName": "Virtual Machines NDasr A100 v4 Series",
+      "retailPrice": 27.197
+    },
+    {
+      "armSkuName": "Standard_ND96asr_v4",
+      "productName": "Virtual Machines NDasr A100 v4 Series",
+      "retailPrice": 27.197
+    },
+    {
+      "armSkuName": "Standard_ND96ams_A100_v4",
+      "productName": "Virtual Machines NDamsr A100 v4 Series Linux",
+      "retailPrice": 32.77
+    },
+    {
+      "armSkuName": "Standard_ND96amsr_A100_v4",
+      "productName": "Virtual Machines NDamsr A100 v4 Series Linux",
+      "retailPrice": 32.77
+    },
+    {
+      "armSkuName": "Standard_ND96is_H100_v5",
+      "productName": "Virtual Machines NDsr H100 v5 Series",
+      "retailPrice": 88.488
+    },
+    {
+      "armSkuName": "Standard_ND96is_flex_H100_v5",
+      "productName": "Virtual Machines NDsfH100v5 Series",
+      "retailPrice": 88.488
+    },
+    {
+      "armSkuName": "Standard_ND96is_noIB_H100_v5",
+      "productName": "Virtual Machines NDsH100v5 Series",
+      "retailPrice": 88.488
+    },
+    {
+      "armSkuName": "Standard_ND96isr_H100_v5",
+      "productName": "Virtual Machines NDsr H100 v5 Series",
+      "retailPrice": 98.32
+    },
+    {
+      "armSkuName": "Standard_ND96isrf_H100_v5",
+      "productName": "Virtual Machines NDsrf H100 v5 Series",
+      "retailPrice": 98.32
+    },
+    {
+      "armSkuName": "Standard_ND128isr_NDR_GB200_v6",
+      "productName": "Virtual Machines NDsrGB200NDRv6 Series",
+      "retailPrice": 108.16
+    }
+  ]
+}
