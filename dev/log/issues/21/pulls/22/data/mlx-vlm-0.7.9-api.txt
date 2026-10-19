@@ -1,0 +1,88 @@
+# mlx-vlm 0.7.9 wheel, read as text (not imported) on 2026-10-19
+# bc6e4575369fb2470a8b84c97729a5da8b141ecf9625f9a3a028d41b9c8d3054  mlx_vlm-0.7.9-py3-none-any.whl
+
+## mlx_vlm/__init__.py exports
+from .generate import (
+    AudioGenerationResult,
+    BatchResponse,
+    BatchStats,
+    GenerationResult,
+    PromptCacheState,
+    batch_generate,
+    generate,
+    generate_audio,
+    save_audio,
+    stream_generate,
+)
+from .prompt_utils import apply_chat_template, get_message_json
+from .utils import load, prepare_inputs, process_image
+from .version import __version__
+
+## utils.py load
+def load(
+    path_or_hf_repo: str,
+    adapter_path: Optional[str] = None,
+    lazy: bool = False,
+    revision: Optional[str] = None,
+    strict: bool = True,
+    **kwargs,
+) -> Tuple[nn.Module, ProcessorMixin]:
+
+## prompt_utils.py apply_chat_template
+def apply_chat_template(
+    processor,
+    config: Union[Dict[str, Any], Any],
+    prompt: Union[str, Dict[str, Any], List[Any]],
+    add_generation_prompt: bool = True,
+    return_messages: bool = False,
+    num_images: int = 0,
+    num_audios: int = 0,
+    **kwargs,
+) -> Union[List[Dict[str, Any]], str, Any]:
+
+## generate/dispatch.py stream_generate
+def stream_generate(
+    model: nn.Module,
+    processor: ProcessorLike | PreTrainedTokenizer,
+    prompt: str,
+    image: Union[str, List[str], None] = None,
+    audio: Union[str, List[str], None] = None,
+    video: Union[str, List[str], None] = None,
+    **kwargs: Unpack[GenerateKwargs],
+) -> Generator[GenerationResult, None, None]:
+
+## generate/types.py GenerateKwargs (fields MlxBackend passes)
+21:    max_tokens: int
+22:    temperature: float | None
+45:    prefill_step_size: int | None
+
+## generate/common.py resolve_sampling_defaults
+def resolve_sampling_defaults(
+    config,
+    *,
+    temperature: Optional[float] = None,
+    top_p: Optional[float] = None,
+    top_k: Optional[int] = None,
+):
+    """Resolve explicit values, then checkpoint defaults, then library defaults.
+
+    ``do_sample=False`` makes the checkpoint's default temperature greedy;
+    an explicit temperature (or a caller-supplied sampler) still takes precedence.
+    Missing and null checkpoint fields both use the library defaults.
+    """
+
+    def config_value(name, default):
+        value = getattr(config, name, None)
+        return default if value is None else value
+
+    if temperature is None:
+        temperature = (
+            0.0
+            if config_value("do_sample", None) is False
+            else config_value("temperature", DEFAULT_TEMPERATURE)
+        )
+    return (
+        temperature,
+        config_value("top_p", DEFAULT_TOP_P) if top_p is None else top_p,
+        config_value("top_k", DEFAULT_TOP_K) if top_k is None else top_k,
+    )

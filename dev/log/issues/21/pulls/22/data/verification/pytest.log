@@ -21,4 +21,4 @@ SKIPPED [40] tests/test_medbench_real_data.py:442: set MEDBENCH_NETWORK_TESTS=1 
 SKIPPED [1] tests/test_real_models.py:41: set MEDBENCH_BASE_URL to run
 SKIPPED [1] tests/test_real_models.py:60: set MEDBENCH_VISION=1 for image models
 SKIPPED [1] tests/test_validate_changeset.py:372: Requires the multi-language layout
-951 passed, 47 skipped in 90.74s (0:01:30)
+951 passed, 47 skipped in 87.50s (0:01:27)
