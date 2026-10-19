@@ -1,0 +1,5 @@
+.......s.................s....                                           [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_unimedvl_attention.py:146: needs a CUDA GPU
+SKIPPED [1] tests/test_measure_training_memory.py:235: could not import 'peft': No module named 'peft'
+28 passed, 2 skipped in 29.88s

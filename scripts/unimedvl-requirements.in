@@ -1,48 +1,56 @@
-# Python 3.13 packages for scripts/unimedvl_server.py (issue #6).
+# Python 3.14 packages for scripts/unimedvl_server.py (issues #6, #21).
 #
 # Based on the pip section of codes/environment.yaml in
 # https://github.com/uni-medical/UniMedVL at commit
 # f51aa0accbd02e846e5ea20b595fb39b516dbe1f. Only the Jupyter packages are
 # left out; the server does not use a notebook. Upstream uses Python 3.10.18;
-# 3.10 reaches end of life in October 2026, so this runs on 3.13, the newest
-# Python that torch 2.8.0, triton 3.4.0 and the flash-attn wheel are built for
-# (issue #19).
-# flash-attn is installed separately from a SHA-256-pinned wheel by
-# scripts/medbench-model-run.sh, because upstream adds it by hand.
+# this runs on 3.14, the newest Python that torch 2.14.1 and triton 3.8.0
+# publish wheels for (no cp315 yet).
 #
 # scripts/unimedvl-requirements.txt is the full lock compiled from this file
-# (every transitive package pinned); after editing a pin here, regenerate it:
+# (every transitive package pinned). Dependabot's uv ecosystem keeps both
+# files up to date (.github/dependabot.yml). It compiles from scripts/ and
+# keeps only --python-version, so compile from scripts/ by hand too, or every
+# "# via -r" line changes in its next pull request:
 #
-#   uv pip compile scripts/unimedvl-requirements.in \
-#     -o scripts/unimedvl-requirements.txt --python-version 3.13 \
-#     --python-platform x86_64-manylinux_2_28 --annotation-style line \
-#     --custom-compile-command "see scripts/unimedvl-requirements.in"
+#   cd scripts && uv pip compile unimedvl-requirements.in \
+#     -o unimedvl-requirements.txt --python-version 3.14 \
+#     --python-platform x86_64-manylinux_2_28
 #
-# Every package is at its newest release (issue #19), except:
-#   torch 2.8.0 (torchvision 0.23.0, triton 3.4.0 follow it): the newest torch
-#     with a prebuilt flash-attn wheel (v2.8.3.post2 ships cu12torch2.4-2.8);
-#     torch 2.9+ would need flash-attn built from source on the GPU host.
-#   transformers 4.57.6, the last 4.x: upstream's Qwen2 and SigLIP copies
-#     import 4.x internals; on 5.x, building the model fails with
-#     KeyError: 'default' (ROPE_INIT_FUNCTIONS) and, patched past that,
-#     generates different tokens. tokenizers 0.22.2 is the newest it accepts.
-# experiments/issue19_unimedvl_cpu_smoke.py runs upstream's chat() on the CPU
-# with a tiny random model and generates the same tokens on these pins under
-# Python 3.13 as on the previous ones under Python 3.10 (torch 2.6.0,
-# transformers 4.49.0, numpy 1.24.4).
+# Every package is at its newest release (issue #21), except those a newer
+# release of their parent would move: torch 2.14.1 pins cuda-toolkit 13.0.3
+# (which pins the nvidia-* CUDA 13.0 libraries), cuDNN, cuSPARSELt, NCCL and
+# NVSHMEM exactly, and sympy 1.14.0 needs mpmath<1.4. Upstream was written for
+# transformers 4.x and flash-attn; scripts/unimedvl_server.py
+# (prepare_upstream_imports) puts back the one transformers 4.x RoPE helper
+# upstream's Qwen2 copy looks up and serves flash_attn_varlen_func from torch's
+# own varlen_attn, so neither transformers nor torch is held back any more and
+# no flash-attn wheel is installed (flash-attn 2.8.3.post2 ships wheels only
+# for torch <= 2.8 and Python <= 3.13).
+# tests/test_unimedvl_upstream.py runs upstream's chat() on the CPU with a tiny
+# model on this lock in CI (model-tests.yml, unimedvl-cpu), and
+# experiments/issue21_unimedvl_cross_stack.py shows that torch 2.14.1 with
+# transformers 5.20.1 gives the same logits as torch 2.8.0 with transformers
+# 4.57.6 on the same weights.
 # opencv-python 5: upstream calls OpenCV only in motion_blur_opencv (a training
 # augmentation nothing calls); OpenCV 5 interpolates float images exactly
 # where 4.x rounded to 1/32 pixel, so its blur differs by at most one grey
 # level off the axes (experiments/issue19_unimedvl_opencv_probe.py).
-# The advisories left in torch and transformers are accepted one by one, with
-# the reason they do not apply, in scripts/audit_dependencies.py.
-torch==2.8.0
-torchvision==0.23.0
-triton==3.4.0
-transformers==4.57.6
+# torchvision and triton are released with torch, and tokenizers with
+# transformers: each release of the parent needs its own release of these
+# (torchvision 0.29.0 requires torch==2.14.0, torch 2.14.1 triton~=3.8.0,
+# transformers 5.20.1 tokenizers<0.24). Dependabot updates the members of a
+# group one at a time (dependabot/dependabot-core#16390), so if both were
+# pinned here neither could ever move. They are named without a version: the
+# lock pins them, and Dependabot's update of torch or transformers carries
+# them along (experiments/issue21_dependabot_lockstep.sh).
+torch==2.14.1
+torchvision
+triton
+transformers==5.20.1
 accelerate==1.15.0
 safetensors==0.8.0
-tokenizers==0.22.2
+tokenizers
 sentencepiece==0.2.2
 pillow==13.0.0
 numpy==2.5.4

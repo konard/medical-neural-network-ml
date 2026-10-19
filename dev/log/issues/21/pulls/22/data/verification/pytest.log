@@ -1,0 +1,24 @@
+........................................................................ [  7%]
+........................................................................ [ 14%]
+........................................................................ [ 21%]
+................s....................................................... [ 28%]
+........................................................................ [ 36%]
+.....................................................s.................. [ 43%]
+........................................................................ [ 50%]
+.......................................................................s [ 57%]
+sssssssssssssssssssssssssssssssssssssss................................. [ 65%]
+........................................................................ [ 72%]
+.......................................................ss............... [ 79%]
+........................................................................ [ 86%]
+........................................................................ [ 93%]
+...................s........................................             [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_unimedvl_attention.py:18: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests/test_unimedvl_upstream.py:35: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests/test_measure_training_memory.py:234: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests/test_medbench_ddxplus_parser.py:88: set MEDBENCH_NETWORK_TESTS=1 to download the real files
+SKIPPED [40] tests/test_medbench_real_data.py:442: set MEDBENCH_NETWORK_TESTS=1 to download the real files
+SKIPPED [1] tests/test_real_models.py:41: set MEDBENCH_BASE_URL to run
+SKIPPED [1] tests/test_real_models.py:60: set MEDBENCH_VISION=1 for image models
+SKIPPED [1] tests/test_validate_changeset.py:372: Requires the multi-language layout
+951 passed, 47 skipped in 87.50s (0:01:27)

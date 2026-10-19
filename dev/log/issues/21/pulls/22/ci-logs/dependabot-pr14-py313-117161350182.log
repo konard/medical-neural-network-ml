@@ -1,0 +1,559 @@
+Test (Python 3.13)	UNKNOWN STEP	﻿2026-10-16T19:42:23.4398610Z Current runner version: '2.337.0'
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4469541Z ##[group]Runner Image Provisioner
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4471190Z Hosted Compute Agent
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4472141Z Version: 20261012.601
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4473182Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4474545Z Build Date: 2026-10-12T17:48:21Z
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4475748Z Worker ID: {d0482bd3-48a0-400f-a04c-1ae9d1d69427}
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4477373Z Region: eastus
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4478433Z Cloud: Azure
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4479379Z ##[endgroup]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4482180Z ##[group]Operating System
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4483273Z Ubuntu
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4484333Z 24.04.5
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4485265Z LTS
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4486431Z ##[endgroup]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4487597Z ##[group]Runner Image
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4488667Z Image: ubuntu-24.04
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4489766Z Version: 20261012.334.1
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4491990Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4494808Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4496950Z ##[endgroup]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4499064Z ##[group]GITHUB_TOKEN Permissions
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4502116Z Contents: read
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4503213Z Metadata: read
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4504220Z ##[endgroup]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4507433Z Secret source: Dependabot
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4509303Z Cache mode: write
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.4510804Z Prepare workflow directory
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.5267434Z Prepare all required actions
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.5341833Z Getting action download info
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.7341524Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.8502095Z Download action repository 'actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97' (SHA:5fda3b95a4ea91299a34e894583c3862153e4b97)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:23.9726422Z Download action repository 'actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.1365679Z Download action repository 'codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f' (SHA:fb8b3582c8e4def4969c97caa2f19720cb33a72f)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.3354694Z Getting action download info
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.3974107Z Download action repository 'actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd' (SHA:ed597411d8f924073f98dfc5c65a23a2325f34cd)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.5528388Z Complete job name: Test (Python 3.13)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6304560Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6305649Z with:
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6306385Z   persist-credentials: false
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6307000Z   repository: konard/medical-neural-network-ml
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6311115Z   token: ***
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6311559Z   ssh-strict: true
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6311997Z   ssh-user: git
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6312440Z   clean: true
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6312888Z   sparse-checkout-cone-mode: true
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6313421Z   fetch-depth: 1
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6313857Z   fetch-tags: false
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6314301Z   show-progress: true
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6314748Z   lfs: false
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6315163Z   submodules: false
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6315609Z   set-safe-directory: true
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6316285Z   allow-unsafe-pr-checkout: false
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6317106Z env:
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6317578Z   GIT_CONFIG_COUNT: 1
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6318085Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6318685Z   GIT_CONFIG_VALUE_0: main
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6319170Z   CODECOV_TOKEN: 
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.6319603Z ##[endgroup]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7365411Z Syncing repository: konard/medical-neural-network-ml
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7370442Z ##[group]Getting Git version info
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7371516Z Working directory is '/home/runner/work/medical-neural-network-ml/medical-neural-network-ml'
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7373455Z [command]/usr/bin/git version
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7460962Z git version 2.55.0
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7486844Z ##[endgroup]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7498582Z Temporarily overriding HOME='/home/runner/work/_temp/fb0e306e-81dd-4693-86db-d5c8d4730b52' before making global git config changes
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7501015Z Adding repository directory to the temporary git global config as a safe directory
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7505318Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7554242Z Deleting the contents of '/home/runner/work/medical-neural-network-ml/medical-neural-network-ml'
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7559308Z ##[group]Determining repository object format
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7560794Z ##[endgroup]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7562143Z ##[group]Initializing the repository
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7565368Z [command]/usr/bin/git init /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7689206Z Initialized empty Git repository in /home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7708844Z [command]/usr/bin/git remote add origin https://github.com/konard/medical-neural-network-ml
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7762096Z ##[endgroup]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7763399Z ##[group]Disabling automatic garbage collection
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7766224Z [command]/usr/bin/git config --local gc.auto 0
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7803697Z ##[endgroup]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7804907Z ##[group]Setting up auth
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7805824Z Removing SSH command configuration
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7810648Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.7847669Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.8259131Z Removing HTTP extra header
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.8264634Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.8300502Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.8524981Z Removing includeIf entries pointing to credentials config files
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.8526295Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.8559327Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.8810873Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-c55f9ba5-d7c4-40d2-92d8-f34d55ad91d8.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.8852407Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path /home/runner/work/_temp/git-credentials-c55f9ba5-d7c4-40d2-92d8-f34d55ad91d8.config
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.8888591Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-c55f9ba5-d7c4-40d2-92d8-f34d55ad91d8.config
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.8927701Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-c55f9ba5-d7c4-40d2-92d8-f34d55ad91d8.config
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.8962167Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-c55f9ba5-d7c4-40d2-92d8-f34d55ad91d8.config
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.8993437Z ##[endgroup]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.8994357Z ##[group]Fetching the repository
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:24.9002542Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +ffe9b761b0912c9945f5634fa5451b664245ad64:refs/remotes/pull/14/merge
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2098765Z From https://github.com/konard/medical-neural-network-ml
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2100421Z  * [new ref]         ffe9b761b0912c9945f5634fa5451b664245ad64 -> pull/14/merge
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2104462Z ##[endgroup]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2105786Z ##[group]Determining the checkout info
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2107651Z ##[endgroup]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2110236Z [command]/usr/bin/git sparse-checkout disable
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2166130Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2201068Z ##[group]Checking out the ref
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2205071Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/14/merge
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2434780Z Note: switching to 'refs/remotes/pull/14/merge'.
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2436258Z 
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2437467Z You are in 'detached HEAD' state. You can look around, make experimental
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2440395Z changes and commit them, and you can discard any commits you make in this
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2443259Z state without impacting any branches by switching back to a branch.
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2444402Z 
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2445109Z If you want to create a new branch to retain commits you create, you may
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2447563Z do so (now or later) by using -c with the switch command. Example:
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2448611Z 
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2449058Z   git switch -c <new-branch-name>
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2449753Z 
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2450362Z Or undo this operation with:
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2451316Z 
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2451869Z   git switch -
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2452611Z 
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2453667Z Turn off this advice by setting config variable advice.detachedHead to false
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2455052Z 
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2457288Z HEAD is now at ffe9b76 Merge 2203371202155950bde4f64ee48ca0f10c423c01 into cc8e90b446a174cf5fff743313e441cda4a432ef
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2462452Z ##[endgroup]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2497183Z [command]/usr/bin/git log -1 --format=%H
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2526897Z ffe9b761b0912c9945f5634fa5451b664245ad64
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2542656Z ##[group]Removing auth
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2544211Z Removing SSH command configuration
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2546696Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2585239Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2807955Z Removing HTTP extra header
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2811623Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.2849313Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.3072589Z Removing includeIf entries pointing to credentials config files
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.3075607Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.3106660Z includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.3110924Z includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.3114141Z includeif.gitdir:/github/workspace/.git.path
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.3115938Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.3121362Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.3141471Z /home/runner/work/_temp/git-credentials-c55f9ba5-d7c4-40d2-92d8-f34d55ad91d8.config
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.3152984Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-c55f9ba5\-d7c4\-40d2\-92d8\-f34d55ad91d8\.config
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.3197870Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.3228696Z /home/runner/work/_temp/git-credentials-c55f9ba5-d7c4-40d2-92d8-f34d55ad91d8.config
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.3241832Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-c55f9ba5\-d7c4\-40d2\-92d8\-f34d55ad91d8\.config
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.3299839Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.3332682Z /github/runner_temp/git-credentials-c55f9ba5-d7c4-40d2-92d8-f34d55ad91d8.config
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.3345074Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-c55f9ba5\-d7c4\-40d2\-92d8\-f34d55ad91d8\.config
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.3519627Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.3546592Z /github/runner_temp/git-credentials-c55f9ba5-d7c4-40d2-92d8-f34d55ad91d8.config
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.3619422Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-c55f9ba5\-d7c4\-40d2\-92d8\-f34d55ad91d8\.config
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.3938752Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.4227265Z Removing credentials config '/home/runner/work/_temp/git-credentials-c55f9ba5-d7c4-40d2-92d8-f34d55ad91d8.config'
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.4229556Z ##[endgroup]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.4505328Z ##[group]Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.4505887Z with:
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.4506359Z   python-version: 3.13
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.4506666Z   check-latest: false
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.4509328Z   token: ***
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.4509601Z   update-environment: true
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.4509913Z   allow-prereleases: false
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.4510205Z   freethreaded: false
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.4510470Z env:
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.4510702Z   GIT_CONFIG_COUNT: 1
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.4511045Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.4511377Z   GIT_CONFIG_VALUE_0: main
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.4511664Z   CODECOV_TOKEN: 
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.4511921Z ##[endgroup]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.5717327Z ##[group]Installed versions
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.5806047Z Successfully set up CPython (3.13.16)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.5807101Z ##[endgroup]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6003478Z ##[group]Run if [ -f pyproject.toml ]; then
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6004001Z ^[[36;1mif [ -f pyproject.toml ]; then^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6004352Z ^[[36;1m  PYTHON_ROOT="."^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6004653Z ^[[36;1m  MULTI_LANGUAGE="false"^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6005009Z ^[[36;1m  echo "root=." >> "$GITHUB_OUTPUT"^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6005421Z ^[[36;1m  echo "multi_language=false" >> "$GITHUB_OUTPUT"^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6005844Z ^[[36;1melif [ -f python/pyproject.toml ]; then^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6006554Z ^[[36;1m  PYTHON_ROOT="python"^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6006871Z ^[[36;1m  MULTI_LANGUAGE="true"^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6007207Z ^[[36;1m  echo "root=python" >> "$GITHUB_OUTPUT"^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6007609Z ^[[36;1m  echo "multi_language=true" >> "$GITHUB_OUTPUT"^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6007979Z ^[[36;1melse^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6008409Z ^[[36;1m  echo "::error::Could not find pyproject.toml at repo root or python/pyproject.toml"^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6008930Z ^[[36;1m  exit 1^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6009171Z ^[[36;1mfi^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6009397Z ^[[36;1m^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6009647Z ^[[36;1mif [ "$PYTHON_ROOT" = "." ]; then^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6010006Z ^[[36;1m  echo "dist_dir=dist" >> "$GITHUB_OUTPUT"^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6010541Z ^[[36;1melse^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6010857Z ^[[36;1m  echo "dist_dir=$PYTHON_ROOT/dist" >> "$GITHUB_OUTPUT"^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6011231Z ^[[36;1mfi^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6011538Z ^[[36;1mecho "PYTHON_ROOT=$PYTHON_ROOT" >> "$GITHUB_ENV"^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6012062Z ^[[36;1mecho "Detected Python layout: root=$PYTHON_ROOT, multi_language=$MULTI_LANGUAGE"^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6358948Z shell: /usr/bin/bash -e {0}
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6359317Z env:
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6359581Z   GIT_CONFIG_COUNT: 1
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6359883Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6360222Z   GIT_CONFIG_VALUE_0: main
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6360506Z   CODECOV_TOKEN: 
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6360880Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6361436Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6361947Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6362442Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6362917Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6363384Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6363779Z ##[endgroup]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6478523Z Detected Python layout: root=., multi_language=false
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6542659Z ##[group]Run cd "$PYTHON_ROOT"
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6543044Z ^[[36;1mcd "$PYTHON_ROOT"^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6543408Z ^[[36;1mbash scripts/run-with-budget-warning.sh \^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6543848Z ^[[36;1m  "$INSTALL_BUDGET_SECONDS" "Install dependencies" \^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6544259Z ^[[36;1m  bash -euo pipefail -c '^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6544612Z ^[[36;1m    python -m pip install --upgrade pip^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6544972Z ^[[36;1m    pip install -e ".[dev]"^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6545267Z ^[[36;1m  '^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6609853Z shell: /usr/bin/bash -e {0}
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6610186Z env:
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6610445Z   GIT_CONFIG_COUNT: 1
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6610743Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6611070Z   GIT_CONFIG_VALUE_0: main
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6611350Z   CODECOV_TOKEN: 
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6611686Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6612223Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6612714Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6613158Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6613596Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6614059Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6614450Z   PYTHON_ROOT: .
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6614717Z   INSTALL_BUDGET_SECONDS: 300
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:25.6615008Z ##[endgroup]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:28.7520359Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.13.16/x64/lib/python3.13/site-packages (26.2.1)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:28.7523053Z Obtaining file:///home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:28.7524540Z   Installing build dependencies: started
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:29.7692920Z   Installing build dependencies: finished with status 'done'
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:29.7694793Z   Checking if build backend supports build_editable: started
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:29.7695784Z   Checking if build backend supports build_editable: finished with status 'done'
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:29.7696861Z   Getting requirements to build editable: started
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:30.7875444Z   Getting requirements to build editable: finished with status 'done'
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:30.7876786Z   Installing backend dependencies: started
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:30.7877726Z   Installing backend dependencies: finished with status 'done'
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:30.7878226Z   Preparing editable metadata (pyproject.toml): started
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:30.7878690Z   Preparing editable metadata (pyproject.toml): finished with status 'done'
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:31.8043853Z Collecting mypy<3.0,>=1.13.0 (from medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:31.8045320Z   Downloading mypy-2.4.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:31.8046936Z Collecting pillow>=10.1 (from medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:31.8047597Z   Downloading pillow-12.3.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:32.8217646Z Collecting pre-commit>=4.0.0 (from medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:32.8218364Z   Downloading pre_commit-4.7.0-py2.py3-none-any.whl.metadata (1.2 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:32.8218895Z Collecting pytest-asyncio>=0.24.0 (from medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:32.8219407Z   Downloading pytest_asyncio-1.4.0-py3-none-any.whl.metadata (4.1 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:32.8219880Z Collecting pytest-cov>=6.0.0 (from medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:32.8220327Z   Downloading pytest_cov-7.1.0-py3-none-any.whl.metadata (32 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:32.8220779Z Collecting pytest>=8.3.0 (from medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:32.8221207Z   Downloading pytest-9.1.1-py3-none-any.whl.metadata (7.6 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:32.8221635Z Collecting ruff<0.9,>=0.8.0 (from medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:32.8222446Z   Downloading ruff-0.8.6-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (25 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:32.8223224Z Collecting scriv>=1.7.0 (from scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:32.8223744Z   Downloading scriv-1.8.0-py3-none-any.whl.metadata (26 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8410449Z Collecting typing_extensions>=4.6.0 (from mypy<3.0,>=1.13.0->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8411411Z   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8412056Z Collecting mypy_extensions>=1.0.0 (from mypy<3.0,>=1.13.0->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8412654Z   Downloading mypy_extensions-1.1.0-py3-none-any.whl.metadata (1.1 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8413182Z Collecting pathspec>=1.0.0 (from mypy<3.0,>=1.13.0->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8413699Z   Using cached pathspec-1.1.1-py3-none-any.whl.metadata (14 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8414205Z Collecting librt>=0.16.0 (from mypy<3.0,>=1.13.0->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8414892Z   Downloading librt-0.16.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (1.3 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8415610Z Collecting ast-serialize<1.0.0,>=0.11.2 (from mypy<3.0,>=1.13.0->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8416629Z   Downloading ast_serialize-0.13.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.4 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8417271Z Collecting cfgv>=2.0.0 (from pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8417749Z   Downloading cfgv-3.5.0-py2.py3-none-any.whl.metadata (8.9 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8418408Z Collecting identify>=1.0.0 (from pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8418918Z   Downloading identify-2.6.20-py2.py3-none-any.whl.metadata (4.4 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8419414Z Collecting nodeenv>=0.11.1 (from pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8419916Z   Downloading nodeenv-1.11.0-py2.py3-none-any.whl.metadata (40 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8420398Z Collecting pyyaml>=5.1 (from pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8421076Z   Downloading pyyaml-6.0.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8421768Z Collecting virtualenv>=20.10.0 (from pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8422287Z   Downloading virtualenv-21.14.8-py3-none-any.whl.metadata (4.1 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8422783Z Collecting iniconfig>=1.0.1 (from pytest>=8.3.0->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8423570Z   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8424047Z Collecting packaging>=22 (from pytest>=8.3.0->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8424532Z   Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8425006Z Collecting pluggy<2,>=1.5 (from pytest>=8.3.0->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8425488Z   Using cached pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8426186Z Collecting pygments>=2.7.2 (from pytest>=8.3.0->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:33.8426858Z   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8599088Z Collecting coverage>=7.10.6 (from coverage[toml]>=7.10.6->pytest-cov>=6.0.0->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8600161Z   Downloading coverage-7.16.2-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (8.2 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8601145Z Collecting attrs (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8601703Z   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8602257Z Collecting click (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8603042Z   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8603612Z Collecting click-log (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8604191Z   Downloading click_log-0.4.0-py2.py3-none-any.whl.metadata (1.2 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8604761Z Collecting jinja2>=2.7 (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8605308Z   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8605866Z Collecting markdown-it-py (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8606842Z   Downloading markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8607434Z Collecting requests (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8608007Z   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8608615Z Collecting MarkupSafe>=2.0 (from jinja2>=2.7->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8609423Z   Downloading markupsafe-3.0.4-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8610214Z Collecting distlib<1,>=0.4.3 (from virtualenv>=20.10.0->pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8610775Z   Downloading distlib-0.4.4-py2.py3-none-any.whl.metadata (5.3 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8611340Z Collecting filelock<5,>=3.24.2 (from virtualenv>=20.10.0->pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8611896Z   Downloading filelock-4.2.0-py3-none-any.whl.metadata (2.0 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8612456Z Collecting platformdirs<5,>=4.4 (from virtualenv>=20.10.0->pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8613555Z   Downloading platformdirs-4.13.3-py3-none-any.whl.metadata (5.5 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8614286Z Collecting python-discovery>=1.6.1 (from virtualenv>=20.10.0->pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8615959Z   Downloading python_discovery-1.6.3-py3-none-any.whl.metadata (5.1 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8617204Z Collecting mdurl~=0.1 (from markdown-it-py->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8619182Z   Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8620400Z Collecting charset_normalizer<4,>=2 (from requests->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8622703Z   Downloading charset_normalizer-3.5.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8623732Z Collecting idna<4,>=2.5 (from requests->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8624324Z   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8624914Z Collecting urllib3<3,>=1.26 (from requests->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8625517Z   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8626530Z Collecting certifi>=2023.5.7 (from requests->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8627196Z   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:34.8627807Z Downloading mypy-2.4.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (15.5 MB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8770928Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 15.5/15.5 MB 73.6 MB/s  0:00:00
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8772035Z Downloading ast_serialize-0.13.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.3 MB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8773503Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 247.4 MB/s  0:00:00
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8774053Z Downloading ruff-0.8.6-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (11.3 MB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8774679Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.3/11.3 MB 100.6 MB/s  0:00:00
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8775260Z Downloading librt-0.16.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (531 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8775921Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 531.7/531.7 kB 105.1 MB/s  0:00:00
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8777027Z Downloading mypy_extensions-1.1.0-py3-none-any.whl (5.0 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8777722Z Using cached pathspec-1.1.1-py3-none-any.whl (57 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8778618Z Downloading pillow-12.3.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.9 MB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8779668Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.9/6.9 MB 167.5 MB/s  0:00:00
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8780353Z Downloading pre_commit-4.7.0-py2.py3-none-any.whl (226 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8780955Z Downloading cfgv-3.5.0-py2.py3-none-any.whl (7.4 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8781323Z Downloading identify-2.6.20-py2.py3-none-any.whl (99 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8781696Z Downloading nodeenv-1.11.0-py2.py3-none-any.whl (34 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8782046Z Downloading pytest-9.1.1-py3-none-any.whl (386 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8782404Z Using cached pluggy-1.7.0-py3-none-any.whl (27 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8782830Z Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8783477Z Using cached packaging-26.3-py3-none-any.whl (129 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8784129Z Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8784994Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 228.7 MB/s  0:00:00
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8785846Z Downloading pytest_asyncio-1.4.0-py3-none-any.whl (16 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8786816Z Downloading pytest_cov-7.1.0-py3-none-any.whl (22 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8787851Z Downloading coverage-7.16.2-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (257 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8789311Z Downloading pyyaml-6.0.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (801 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8790594Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 801.6/801.6 kB 173.2 MB/s  0:00:00
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8791288Z Downloading scriv-1.8.0-py3-none-any.whl (39 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8791917Z Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8792955Z Downloading markupsafe-3.0.4-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (23 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8793833Z Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8794490Z Downloading virtualenv-21.14.8-py3-none-any.whl (5.5 MB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8794999Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.5/5.5 MB 281.4 MB/s  0:00:00
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8795612Z Downloading distlib-0.4.4-py2.py3-none-any.whl (472 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8796508Z Downloading filelock-4.2.0-py3-none-any.whl (135 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8797212Z Downloading platformdirs-4.13.3-py3-none-any.whl (32 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8797937Z Downloading python_discovery-1.6.3-py3-none-any.whl (39 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8798626Z Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8799341Z Downloading click-8.5.0-py3-none-any.whl (125 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8800001Z Downloading click_log-0.4.0-py2.py3-none-any.whl (4.3 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8800710Z Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8801636Z Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8802443Z Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8803549Z Downloading charset_normalizer-3.5.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (254 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8804624Z Downloading idna-3.20-py3-none-any.whl (69 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8805238Z Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8806324Z Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8807219Z Building wheels for collected packages: medical-neural-network-ml
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8808140Z   Building editable for medical-neural-network-ml (pyproject.toml): started
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8809237Z   Building editable for medical-neural-network-ml (pyproject.toml): finished with status 'done'
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8811149Z   Created wheel for medical-neural-network-ml: filename=medical_neural_network_ml-0.1.0-py3-none-any.whl size=8626 sha256=230d52f980a91d5ac051e22f7230ec905b9a1744bddcfb6b922b4415d4266a4d
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8813060Z   Stored in directory: /tmp/pip-ephem-wheel-cache-qw9gy79i/wheels/d5/c2/16/696d09018de46192f69c32b8ffc88f6111e050b2d341498211
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8813749Z Successfully built medical-neural-network-ml
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:35.8815589Z Installing collected packages: distlib, urllib3, typing_extensions, ruff, pyyaml, pygments, pluggy, platformdirs, pillow, pathspec, packaging, nodeenv, mypy_extensions, medical-neural-network-ml, mdurl, MarkupSafe, librt, iniconfig, idna, identify, filelock, coverage, click, charset_normalizer, cfgv, certifi, attrs, ast-serialize, requests, python-discovery, pytest, mypy, markdown-it-py, jinja2, click-log, virtualenv, scriv, pytest-cov, pytest-asyncio, pre-commit
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9529420Z 
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9532139Z Successfully installed MarkupSafe-3.0.4 ast-serialize-0.13.0 attrs-26.1.0 certifi-2026.7.22 cfgv-3.5.0 charset_normalizer-3.5.2 click-8.5.0 click-log-0.4.0 coverage-7.16.2 distlib-0.4.4 filelock-4.2.0 identify-2.6.20 idna-3.20 iniconfig-2.3.1 jinja2-3.1.6 librt-0.16.0 markdown-it-py-4.2.0 mdurl-0.1.2 medical-neural-network-ml-0.1.0 mypy-2.4.0 mypy_extensions-1.1.0 nodeenv-1.11.0 packaging-26.3 pathspec-1.1.1 pillow-12.3.0 platformdirs-4.13.3 pluggy-1.7.0 pre-commit-4.7.0 pygments-2.21.0 pytest-9.1.1 pytest-asyncio-1.4.0 pytest-cov-7.1.0 python-discovery-1.6.3 pyyaml-6.0.3 requests-2.34.2 ruff-0.8.6 scriv-1.8.0 typing_extensions-4.16.0 urllib3-2.8.0 virtualenv-21.14.8
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9566638Z Install dependencies took 15s of its 300s execution budget.
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9627863Z ##[group]Run cd "$PYTHON_ROOT"
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9628205Z ^[[36;1mcd "$PYTHON_ROOT"^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9628498Z ^[[36;1mbash scripts/run-with-budget-warning.sh \^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9628846Z ^[[36;1m  "$TEST_BUDGET_SECONDS" "Run tests" \^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9629232Z ^[[36;1m  python -m medbench.cli monitor --out resources/test.json \^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9629659Z ^[[36;1m  --label "Test (Python 3.13)" --interval 2 -- \^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9630089Z ^[[36;1m  pytest tests/ -v --cov=src --cov-report=xml --cov-report=term^[[0m
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9696952Z shell: /usr/bin/bash -e {0}
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9697195Z env:
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9697383Z   GIT_CONFIG_COUNT: 1
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9697617Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9697879Z   GIT_CONFIG_VALUE_0: main
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9698095Z   CODECOV_TOKEN: 
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9698364Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9698831Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9699263Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9699640Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9700017Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9700396Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9700713Z   PYTHON_ROOT: .
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9700919Z   TEST_BUDGET_SECONDS: 900
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:40.9701153Z ##[endgroup]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:45.0689343Z ============================= test session starts ==============================
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:45.0689874Z platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.7.0
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:45.0690392Z rootdir: /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:45.0690925Z configfile: pyproject.toml
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:45.0691305Z plugins: asyncio-1.4.0, platformdirs-4.13.3, cov-7.1.0
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:45.0691963Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:45.0692526Z collected 975 items
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:45.0692656Z 
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:45.0692872Z tests/test_audit_dependencies.py ........                                [  0%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:49.1404024Z tests/test_check_dependency_graph.py ........                            [  1%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:50.1576458Z tests/test_check_distribution.py ....................                    [  3%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:50.1577067Z tests/test_check_file_size.py ........                                   [  4%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:50.1577596Z tests/test_check_pipeline_status.py ............                         [  5%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:50.1578072Z tests/test_check_release.py ......................................       [  9%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:50.1578550Z tests/test_check_required_docs.py .....                                  [ 10%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:50.1579034Z tests/test_check_web_archive.py .......                                  [ 10%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:50.1579514Z tests/test_create_github_release.py ..................                   [ 12%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:50.1580001Z tests/test_detect_code_changes.py ...........................            [ 15%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:51.1745580Z tests/test_issue_91.py ..............................................    [ 20%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:51.1746916Z tests/test_issue_98.py .....................                             [ 22%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:51.1747822Z tests/test_measure_training_memory.py ..............s....                [ 24%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:52.1925512Z tests/test_medbench_benchmark.py .................................       [ 27%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:52.1926699Z tests/test_medbench_clinical_text.py ................................... [ 31%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:52.1927472Z                                                                          [ 31%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:53.2103847Z tests/test_medbench_ddxplus_parser.py .................................. [ 34%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:53.2104767Z ......................................................................s  [ 42%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:53.2105736Z tests/test_medbench_hardware.py .............                            [ 43%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:53.2106996Z tests/test_medbench_metrics.py ........                                  [ 44%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:53.2107532Z tests/test_medbench_mlx.py ....                                          [ 44%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:57.2772203Z tests/test_medbench_model_run.py .............                           [ 45%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:59.3121215Z tests/test_medbench_monitor.py .........                                 [ 46%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:59.3122374Z tests/test_medbench_real_data.py ....................................... [ 50%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:42:59.3123108Z ......................................................................ss [ 58%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:00.3316860Z ssssssssssssssssssssssssssssssssssssss.............                      [ 63%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:00.3317670Z tests/test_medbench_resources.py .................................       [ 66%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:00.3318242Z tests/test_medbench_support.py ...................                       [ 68%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:00.3318875Z tests/test_medbench_synthetic.py .............                           [ 70%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:00.3319383Z tests/test_medbench_validity.py ........................................ [ 74%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:00.3319804Z                                                                          [ 74%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:00.3320208Z tests/test_my_package.py .........                                       [ 75%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:09.4879578Z tests/test_preflight_credentials.py ..................                   [ 77%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:09.4880196Z tests/test_preview_regeneration_docs.py ..                               [ 77%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:09.4880718Z tests/test_project_metadata.py F                                         [ 77%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:09.4881329Z tests/test_read_manifest.py ....                                         [ 77%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:09.4881859Z tests/test_real_models.py ss                                             [ 77%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:11.5227391Z tests/test_recheck_broken_links.py ...................                   [ 79%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:12.5406429Z tests/test_release_workflow.py ...........................               [ 82%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:12.5407581Z tests/test_repository_policy.py ....................                     [ 84%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:27.7910294Z tests/test_run_with_budget_warning.py .............                      [ 86%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:27.7911236Z tests/test_simulate_fresh_merge.py ....                                  [ 86%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:27.7912107Z tests/test_smoke_test_published_package.py ....                          [ 86%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:27.7912953Z tests/test_unimedvl_server.py ...................                        [ 88%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:31.8639543Z tests/test_validate_changeset.py ....................................... [ 92%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:32.8825194Z ..............................s.                                         [ 96%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9190732Z tests/test_version_and_commit.py ................                        [ 97%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9191588Z tests/test_workflows.py ......................                           [100%]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9192083Z 
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9192293Z =================================== FAILURES ===================================
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9193017Z ____________ test_mypy_dependency_supports_configured_python_target ____________
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9193545Z 
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9193885Z     def test_mypy_dependency_supports_configured_python_target() -> None:
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9194793Z         """The dev extra must not install mypy versions that reject Python 3.9."""
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9195512Z         mypy = dev_requirement("mypy")
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9195940Z     
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9196543Z         assert "1.13.0" in mypy.specifier
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9197395Z >       assert "2.0" not in mypy.specifier
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9198103Z E       AssertionError: assert '2.0' not in <SpecifierSet('<3.0,>=1.13.0')>
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9199007Z E        +  where <SpecifierSet('<3.0,>=1.13.0')> = <Requirement('mypy<3.0,>=1.13.0')>.specifier
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9199573Z 
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9199797Z tests/test_project_metadata.py:26: AssertionError
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9200421Z ================================ tests coverage ================================
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9201184Z _______________ coverage: platform linux, python 3.13.16-final-0 _______________
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9201991Z 
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9202241Z Name                              Stmts   Miss Branch BrPart  Cover
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9202885Z -------------------------------------------------------------------
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9203597Z src/medbench/__init__.py              3      0      0      0   100%
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9204362Z src/medbench/augment.py              57      0     12      0   100%
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9205166Z src/medbench/backends.py            130      3     18      0    98%
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9205959Z src/medbench/benchmark.py           249      6     42      4    97%
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9207000Z src/medbench/cli.py                 188      5     24      1    96%
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9207741Z src/medbench/clinical_text.py        82      0     16      0   100%
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9208519Z src/medbench/ddxplus.py              74      0     12      0   100%
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9209282Z src/medbench/hardware.py            147     10     34      2    93%
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9210055Z src/medbench/metrics.py             129      0     44      0   100%
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9210807Z src/medbench/mlx_backend.py          74     10     20      5    84%
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9211579Z src/medbench/models.py               35      0      0      0   100%
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9212329Z src/medbench/monitor.py             183     18     26      4    89%
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9213152Z src/medbench/real_data.py           152     13     34      2    90%
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9213992Z src/medbench/resources.py           162      0     26      0   100%
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9214745Z src/medbench/support.py              78      1     32      1    98%
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9215504Z src/medbench/synthetic_cases.py      92      2     26      3    96%
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9219853Z src/medbench/validity.py             86      1     24      2    97%
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9220616Z src/my_package/__init__.py           10      0      0      0   100%
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9221308Z -------------------------------------------------------------------
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9221955Z TOTAL                              1931     69    390     24    96%
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9222532Z Coverage XML written to file coverage.xml
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9223147Z =========================== short test summary info ============================
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9224505Z SKIPPED [1] tests/test_measure_training_memory.py:234: could not import 'torch': No module named 'torch'
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9226357Z SKIPPED [1] tests/test_medbench_ddxplus_parser.py:88: set MEDBENCH_NETWORK_TESTS=1 to download the real files
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9227936Z SKIPPED [40] tests/test_medbench_real_data.py:426: set MEDBENCH_NETWORK_TESTS=1 to download the real files
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9229131Z SKIPPED [1] tests/test_real_models.py:41: set MEDBENCH_BASE_URL to run
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9230222Z SKIPPED [1] tests/test_real_models.py:60: set MEDBENCH_VISION=1 for image models
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9231406Z SKIPPED [1] tests/test_validate_changeset.py:373: Requires the multi-language layout
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9233215Z FAILED tests/test_project_metadata.py::test_mypy_dependency_supports_configured_python_target - AssertionError: assert '2.0' not in <SpecifierSet('<3.0,>=1.13.0')>
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9234886Z  +  where <SpecifierSet('<3.0,>=1.13.0')> = <Requirement('mypy<3.0,>=1.13.0')>.specifier
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:34.9235893Z ================== 1 failed, 929 passed, 45 skipped in 52.67s ==================
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9329309Z Run tests took 55s of its 900s execution budget.
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9359921Z ##[error]Process completed with exit code 1.
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9492130Z ##[group]Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9492558Z with:
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9492758Z   name: resources-test
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9492977Z   path: ./resources
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9493188Z   if-no-files-found: ignore
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9493423Z   compression-level: 6
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9493634Z   overwrite: false
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9493846Z   include-hidden-files: false
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9494271Z   archive: true
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9494461Z env:
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9494641Z   GIT_CONFIG_COUNT: 1
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9494863Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9495142Z   GIT_CONFIG_VALUE_0: main
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9495366Z   CODECOV_TOKEN: 
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9495636Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9496324Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9496805Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9497186Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9497576Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9497960Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9498281Z   PYTHON_ROOT: .
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:35.9498482Z ##[endgroup]
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.0953939Z With the provided path, there will be 1 file uploaded
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.0960797Z Artifact name is valid!
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.0962450Z Root directory input is valid!
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.3012734Z Uploading artifact: resources-test.zip
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.3067065Z Beginning upload of artifact content to blob storage
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.3779669Z Uploaded bytes 738
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.3919087Z Finished uploading artifact content to blob storage!
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.3920152Z SHA256 digest of uploaded artifact is 99a0e05467410e63109d2e82addce9ae57fe734c98cada86bce473cd2efa55d2
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.3920914Z Finalizing artifact upload
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.6233403Z Artifact resources-test successfully finalized. Artifact ID 12070384802
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.6234747Z Artifact resources-test has been successfully uploaded! Final size is 738 bytes. Artifact ID is 12070384802
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.6238621Z Artifact download URL: https://github.com/konard/medical-neural-network-ml/actions/runs/38956645281/artifacts/12070384802
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.6437396Z Post job cleanup.
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.7292029Z [command]/usr/bin/git version
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.7343628Z git version 2.55.0
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.7389152Z Temporarily overriding HOME='/home/runner/work/_temp/d6832601-05e6-427b-a9a5-7eb030227721' before making global git config changes
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.7390449Z Adding repository directory to the temporary git global config as a safe directory
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.7391916Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.7418684Z Removing SSH command configuration
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.7424915Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.7461001Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.7711929Z Removing HTTP extra header
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.7719234Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.7755643Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.8006470Z Removing includeIf entries pointing to credentials config files
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.8016184Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.8053619Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Test (Python 3.13)	UNKNOWN STEP	2026-10-16T19:43:36.8456725Z Cleaning up orphan processes

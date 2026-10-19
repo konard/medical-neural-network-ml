@@ -13,6 +13,10 @@ name: Model Tests
 #             items take about 10-20 minutes because CPU decoding is slow.
 # ocr-baseline Classic Tesseract OCR on every real OCR sample, the specialist
 #             baseline the VLM OCR scores are compared with (issue #7).
+# unimedvl-cpu UniMedVL's upstream code on the locked packages with CPU torch:
+#             the flash-attn and RoPE shims of scripts/unimedvl_server.py and a
+#             tiny model built from the real configs (issue #21), so an update
+#             of the lock that breaks upstream's code fails on the pull request.
 # gpu         MedGemma 4B or 27B (llama.cpp) or UniMedVL (its own PyTorch code
 #             behind scripts/unimedvl_server.py) on a self-hosted runner with an
 #             NVIDIA GPU and the labels `self-hosted, linux, x64, gpu`. It only
@@ -36,6 +40,8 @@ on:
       - 'scripts/unimedvl-requirements.txt'
       - 'tests/test_real_models.py'
       - 'tests/test_medbench_real_data.py'
+      - 'tests/test_unimedvl_attention.py'
+      - 'tests/test_unimedvl_upstream.py'
       - 'pyproject.toml'
       - '.github/workflows/model-tests.yml'
   schedule:
@@ -267,6 +273,48 @@ jobs:
           path: medbench-reports
           if-no-files-found: ignore
 
+  unimedvl-cpu:
+    name: UniMedVL upstream code (CPU)
+    runs-on: ubuntu-26.04
+    timeout-minutes: 30
+    concurrency:
+      group: model-${{ github.workflow }}-${{ github.ref }}-unimedvl-cpu
+      cancel-in-progress: true
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # The same Python as the GPU job's UniMedVL venv.
+      - name: Setup Python 3.14 for UniMedVL
+        id: unimedvl-python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.14'
+
+      # Upstream's code, the configs and the tokenizer (no weights), and the
+      # lock with torch and torchvision from PyTorch's CPU index.
+      - name: Download UniMedVL code and install the locked packages
+        env:
+          SERVER: unimedvl
+          UNIMEDVL_DEVICE: cpu
+          UNIMEDVL_PYTHON: ${{ steps.unimedvl-python.outputs.python-path }}
+        run: bash scripts/medbench-model-run.sh download
+
+      # pytest and pytest-asyncio at pyproject.toml's dev floors; the rest of
+      # the dev extra would change the locked packages.
+      - name: Test the shims and upstream's code
+        run: |
+          python=.cache/medbench/unimedvl-venv/bin/python
+          "$python" -m pip install --quiet "pytest>=9.1.1" "pytest-asyncio>=1.4.0"
+          UNIMEDVL_CODE_DIR=$(echo .cache/medbench/unimedvl-code-*)
+          UNIMEDVL_MODEL_DIR=$(echo .cache/medbench/models/unimedvl-*)
+          export UNIMEDVL_CODE_DIR UNIMEDVL_MODEL_DIR
+          "$python" -m pytest -v \
+            tests/test_unimedvl_attention.py tests/test_unimedvl_upstream.py
+
   # Self-hosted runner policy (issue #10, docs/repository-policy.md): only a
   # manual dispatch from main reaches the GPU host, never a pull request or a
   # branch whose workflow file someone else could have edited. The `gpu`
@@ -290,10 +338,10 @@ jobs:
     permissions:
       contents: read
     env:
-      LLAMA_ARCHIVE: llama-b11707-bin-ubuntu-cuda-12.8-x64.tar.gz
-      LLAMA_SHA256: 208d228a2e752b91ebb15717f9116915a1704f2af644ee278d4b4d7911199e6a
-      CUDART_ARCHIVE: cudart-llama-b11707-bin-ubuntu-cuda-12.8-x64.tar.gz
-      CUDART_SHA256: a0698562c748ea4ffcf2631f13ca1429c3b794e67272066053c21c607ade5ebf
+      LLAMA_ARCHIVE: llama-b11738-bin-ubuntu-cuda-13.4-x64.tar.gz
+      LLAMA_SHA256: c48881ae73dface588b8470e3acb308d06365af91303799ed8bf010e8de6b681
+      CUDART_ARCHIVE: cudart-llama-b11738-bin-ubuntu-cuda-13.4-x64.tar.gz
+      CUDART_SHA256: d60c7698166bfcbc9516c5d053321d8ac850a2c0316d3c009260dfd11c905330
       GPU_LAYERS: 999
       GPU_MODEL: ${{ inputs.gpu-model }}
     steps:
@@ -301,14 +349,15 @@ jobs:
         with:
           persist-credentials: false
 
-      # UniMedVL's pinned PyTorch stack runs on Python 3.13 at the newest
-      # (scripts/unimedvl-requirements.in); medbench itself runs on 3.15.
-      - name: Setup Python 3.13 for UniMedVL
+      # UniMedVL's locked PyTorch stack runs on Python 3.14, the newest torch
+      # publishes wheels for (scripts/unimedvl-requirements.in); medbench
+      # itself runs on 3.15.
+      - name: Setup Python 3.14 for UniMedVL
         id: unimedvl-python
         if: inputs.gpu-model == 'unimedvl'
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: '3.13'
+          python-version: '3.14'
 
       - name: Setup Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
@@ -407,6 +456,7 @@ jobs:
       - real-data
       - cpu-smoke
       - ocr-baseline
+      - unimedvl-cpu
       - gpu
     if: always()
     runs-on: ubuntu-26.04

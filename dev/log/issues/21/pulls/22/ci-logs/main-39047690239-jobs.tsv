@@ -1,0 +1,14 @@
+Release Preflight (credentials)	failure
+Detect Changes	success
+Test (Python 3.15)	success
+Lint and Format Check	success
+Validate Documentation	success
+Docker Image Build Check	skipped
+Changelog Fragment Check	skipped
+Build Package	success
+Manual Release	skipped
+Auto Release	skipped
+Pipeline Status (CI/CD)	failure
+Configure Docker Hub Publish	skipped
+Build Docker Image (${{ matrix.platform }})	skipped
+Publish Multi-Architecture Docker Image	skipped

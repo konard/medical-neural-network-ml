@@ -40,15 +40,18 @@
 #                    1800 for UniMedVL, which reads 29 GB of bf16 weights)
 #
 # UniMedVL only (SERVER=unimedvl):
-#   UNIMEDVL_PYTHON      Python 3.13 used to create the model's own venv (python3.13)
+#   UNIMEDVL_PYTHON      Python 3.14 used to create the model's own venv (python3.14)
 #   UNIMEDVL_VENV        that venv ($CACHE_DIR/unimedvl-venv)
+#   UNIMEDVL_DEVICE      cuda, or cpu to download only the configs and tokenizer
+#                        and install the CPU build of torch, for
+#                        tests/test_unimedvl_upstream.py (cuda)
 #   UNIMEDVL_ENGINE      unimedvl, or echo to test the plumbing without a GPU
 #   UNIMEDVL_MAX_GPU_MEMORY  weights allowed on GPU 0, the rest stays on the CPU (40GiB)
 set -euo pipefail
 
-LLAMA_VERSION="${LLAMA_VERSION:-b11707}"
+LLAMA_VERSION="${LLAMA_VERSION:-b11738}"
 LLAMA_ARCHIVE="${LLAMA_ARCHIVE:-llama-${LLAMA_VERSION}-bin-ubuntu-x64.tar.gz}"
-LLAMA_SHA256="${LLAMA_SHA256:-88879871f765c3dec22260046e10a76e2ed38de5bdf4a7f68049245a8f4056c8}"
+LLAMA_SHA256="${LLAMA_SHA256:-4d4101b8a51eace7fee64f6dbaec8e536221567ef6d8b99563345cbab7b4f2a8}"
 CUDART_ARCHIVE="${CUDART_ARCHIVE:-}"
 CUDART_SHA256="${CUDART_SHA256:-}"
 MODEL_REPO="${MODEL_REPO:-unsloth/medgemma-4b-it-GGUF}"
@@ -89,13 +92,11 @@ UNIMEDVL_FILES=(
   "vocab.json ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
   "merges.txt 599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
 )
-# Upstream imports flash_attn_varlen_func; this prebuilt wheel matches the
-# pinned torch 2.8.0 (CUDA 12, the C++11 ABI that PyPI torch wheels use
-# since 2.7, and CPython 3.13 like UNIMEDVL_PYTHON). v2.8.3.post2 also fixes GHSA-7g5w-pq96-8c5w (issue #19).
-FLASH_ATTN_WHEEL="flash_attn-2.8.3.post2+cu12torch2.8cxx11abiTRUE-cp313-cp313-linux_x86_64.whl"
-FLASH_ATTN_URL="https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post2/${FLASH_ATTN_WHEEL//+/%2B}"
-FLASH_ATTN_SHA256="9d5bcc61b3251b0a9a9ccea6dc75fd002e0fcaaf2edc48df7d981bb114f5b4c7"
-UNIMEDVL_PYTHON="${UNIMEDVL_PYTHON:-python3.13}"
+# Upstream imports flash_attn_varlen_func, which unimedvl_server.py provides
+# on top of torch's own varlen_attn, so no flash-attn wheel is needed and torch
+# is not held at the newest release flash-attn has a wheel for (issue #21).
+UNIMEDVL_PYTHON="${UNIMEDVL_PYTHON:-python3.14}"
+UNIMEDVL_DEVICE="${UNIMEDVL_DEVICE:-cuda}"
 UNIMEDVL_VENV="${UNIMEDVL_VENV:-$CACHE_DIR/unimedvl-venv}"
 UNIMEDVL_ENGINE="${UNIMEDVL_ENGINE:-unimedvl}"
 UNIMEDVL_MAX_GPU_MEMORY="${UNIMEDVL_MAX_GPU_MEMORY:-40GiB}"
@@ -138,7 +139,9 @@ fetch() {
 unpack() {
   local archive="$1"
   mkdir -p "$LLAMA_DIR"
-  # Release archives keep the binaries in one top-level folder.
+  # Release archives keep the binaries in one top-level folder. The CUDA
+  # runtime has to land beside libggml-cuda.so, whose RUNPATH is $ORIGIN, or
+  # the CUDA backend does not load and llama-server runs on the CPU.
   tar --extract --gzip --file "$archive" --directory "$LLAMA_DIR" \
     --strip-components 1 --no-same-owner
 }
@@ -152,8 +155,7 @@ download_llama() {
   fi
   if [[ -n "$CUDART_ARCHIVE" ]]; then
     fetch "$release/$CUDART_ARCHIVE" "$CACHE_DIR/$CUDART_ARCHIVE" "$CUDART_SHA256"
-    tar --extract --gzip --file "$CACHE_DIR/$CUDART_ARCHIVE" \
-      --directory "$LLAMA_DIR" --no-same-owner
+    unpack "$CACHE_DIR/$CUDART_ARCHIVE"
   fi
   fetch "$hub/$MODEL_FILE" "$MODEL_DIR/$MODEL_FILE" "$MODEL_SHA256"
   if [[ -n "$MMPROJ_FILE" ]]; then
@@ -162,7 +164,7 @@ download_llama() {
 }
 
 # Upstream code at a fixed commit, its weights by SHA-256, and a separate
-# Python 3.13 venv with upstream's pinned packages (medbench itself does not
+# Python 3.14 venv with upstream's pinned packages (medbench itself does not
 # import torch). Nothing from the checkout runs until the server starts.
 download_unimedvl() {
   local hub="https://huggingface.co/$UNIMEDVL_MODEL_REPO/resolve/$UNIMEDVL_MODEL_REVISION"
@@ -181,17 +183,37 @@ download_unimedvl() {
   log "verified UniMedVL code at $UNIMEDVL_CODE_COMMIT"
   for entry in "${UNIMEDVL_FILES[@]}"; do
     read -r name sha <<<"$entry"
+    # The CPU tests build a tiny model from the configs; they never read the
+    # 29 GB of weights.
+    if [[ "$UNIMEDVL_DEVICE" == cpu && "$name" == *.safetensors ]]; then
+      continue
+    fi
     fetch "$hub/$name" "$UNIMEDVL_MODEL_DIR/$name" "$sha"
   done
-  fetch "$FLASH_ATTN_URL" "$CACHE_DIR/$FLASH_ATTN_WHEEL" "$FLASH_ATTN_SHA256"
   if [[ ! -x "$UNIMEDVL_VENV/bin/python" ]]; then
     "$UNIMEDVL_PYTHON" -m venv "$UNIMEDVL_VENV"
   fi
-  "$UNIMEDVL_VENV/bin/python" -m pip install --quiet --upgrade pip
-  "$UNIMEDVL_VENV/bin/python" -m pip install --quiet \
-    -r "$SCRIPT_DIR/unimedvl-requirements.txt"
-  "$UNIMEDVL_VENV/bin/python" -m pip install --quiet --no-deps \
-    "$CACHE_DIR/$FLASH_ATTN_WHEEL"
+  install_unimedvl_packages "$UNIMEDVL_VENV/bin/python" "$SCRIPT_DIR/unimedvl-requirements.txt"
+}
+
+# install_unimedvl_packages PYTHON LOCK: every package exactly as locked. For
+# UNIMEDVL_DEVICE=cpu the same torch and torchvision releases come from
+# PyTorch's CPU index instead, without the CUDA libraries and triton that only
+# the CUDA build needs; `pip check` then proves the set is still complete.
+install_unimedvl_packages() {
+  local python="$1" lock="$2" cpu_lock="$CACHE_DIR/unimedvl-requirements-cpu.txt"
+  local -a torch_pins
+  "$python" -m pip install --quiet --upgrade pip
+  if [[ "$UNIMEDVL_DEVICE" == cuda ]]; then
+    "$python" -m pip install --quiet -r "$lock"
+    return
+  fi
+  mapfile -t torch_pins < <(grep -E '^(torch|torchvision)==' "$lock")
+  grep -vE '^(torch|torchvision|triton|nvidia-[a-z0-9-]+|cuda-[a-z-]+)==' "$lock" >"$cpu_lock"
+  "$python" -m pip install --quiet --no-deps \
+    --index-url https://download.pytorch.org/whl/cpu "${torch_pins[@]}"
+  "$python" -m pip install --quiet --no-deps -r "$cpu_lock"
+  "$python" -m pip check
 }
 
 # Memory this process may still use, in bytes: the smaller of MemAvailable
@@ -409,6 +431,10 @@ run() {
 }
 
 download() {
+  if [[ "$UNIMEDVL_DEVICE" != cuda && "$UNIMEDVL_DEVICE" != cpu ]]; then
+    log "unknown UNIMEDVL_DEVICE '$UNIMEDVL_DEVICE' (cuda or cpu)"
+    exit 2
+  fi
   if [[ "$SERVER" == unimedvl ]]; then
     download_unimedvl
   else

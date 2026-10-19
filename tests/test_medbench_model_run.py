@@ -8,6 +8,7 @@ server start, the deadline and the cleanup on exit.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import platform
@@ -15,16 +16,24 @@ import re
 import socket
 import subprocess
 import sys
+import tomllib
 import urllib.error
 import urllib.request
 from pathlib import Path
 
 import pytest
+from packaging.version import Version
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT_PATH = ROOT / "scripts" / "medbench-model-run.sh"
 WORKFLOW = ROOT / ".github" / "workflows" / "model-tests.yml"
 REVISION = "fa17ea2647ef236db91adfe1465a61ab6562cf2c"
+
+
+linux_x86_64 = pytest.mark.skipif(
+    platform.system() != "Linux" or platform.machine() != "x86_64",
+    reason="the run script only runs on Linux x86_64",
+)
 
 
 def run_script(*args: str, **env: str) -> subprocess.CompletedProcess[str]:
@@ -137,6 +146,75 @@ def test_workflow_pins_every_download() -> None:
     assert "MODEL_REVISION=" in text
 
 
+def tar_folder(tmp_path: Path, folder: str, files: dict[str, str]) -> Path:
+    """A release-style .tar.gz that keeps ``files`` in one top-level folder."""
+    source = tmp_path / "src" / folder
+    source.mkdir(parents=True)
+    for name, content in files.items():
+        (source / name).write_text(content)
+        (source / name).chmod(0o755)
+    archive = tmp_path / f"{folder}.tar.gz"
+    subprocess.run(
+        ["tar", "--create", "--gzip", "--file", str(archive), folder],
+        cwd=source.parent,
+        check=True,
+    )
+    return archive
+
+
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+@linux_x86_64
+def test_cuda_runtime_lands_next_to_the_cuda_backend(tmp_path: Path) -> None:
+    """llama.cpp's libggml-cuda.so finds libcudart only in its own folder.
+
+    Both release archives keep their files in one top-level folder, and the
+    CUDA backend's RUNPATH is ``$ORIGIN``. Unpacked without
+    ``--strip-components 1`` the runtime went to a subfolder, the backend
+    did not load and llama-server ran on the CPU (issue #21).
+    """
+    llama = tar_folder(
+        tmp_path,
+        "llama-b1-bin-ubuntu-cuda-13.4-x64",
+        {"llama-server": "#!/bin/sh\n", "libggml-cuda.so": ""},
+    )
+    cudart = tar_folder(
+        tmp_path,
+        "cudart-llama-b1-bin-ubuntu-cuda-13.4-x64",
+        {"libcudart.so.13": "", "libcublas.so.13": ""},
+    )
+    cache = tmp_path / "cache"
+    cache.mkdir()
+    for archive in (llama, cudart):
+        (cache / archive.name).write_bytes(archive.read_bytes())
+    model_dir = cache / "models" / REVISION[:12]
+    model_dir.mkdir(parents=True)
+    (model_dir / "model.gguf").write_text("gguf")
+    result = run_script(
+        "download",
+        CACHE_DIR=str(cache),
+        LLAMA_VERSION="b1",
+        LLAMA_ARCHIVE=llama.name,
+        LLAMA_SHA256=sha256(llama),
+        CUDART_ARCHIVE=cudart.name,
+        CUDART_SHA256=sha256(cudart),
+        MODEL_REVISION=REVISION,
+        MODEL_FILE="model.gguf",
+        MODEL_SHA256=sha256(model_dir / "model.gguf"),
+        MMPROJ_FILE="",
+    )
+    assert result.returncode == 0, result.stderr
+    llama_dir = cache / f"llama-b1-{sha256(llama)[:12]}"
+    assert sorted(path.name for path in llama_dir.iterdir()) == [
+        "libcublas.so.13",
+        "libcudart.so.13",
+        "libggml-cuda.so",
+        "llama-server",
+    ]
+
+
 def test_pull_request_paths_cover_every_file_the_jobs_run() -> None:
     """A change to any file the model jobs execute must trigger them.
 
@@ -161,12 +239,6 @@ def test_pull_request_paths_cover_every_file_the_jobs_run() -> None:
 
     missing = sorted(path for path in used if path not in filters)
     assert not missing, f"model-tests.yml pull_request paths miss {missing}"
-
-
-linux_x86_64 = pytest.mark.skipif(
-    platform.system() != "Linux" or platform.machine() != "x86_64",
-    reason="the run script only runs on Linux x86_64",
-)
 
 
 def free_port() -> int:
@@ -254,7 +326,12 @@ def test_unknown_server_is_rejected(tmp_path: Path) -> None:
 
 
 def test_unimedvl_pins() -> None:
-    """Code commit, weight hashes and the flash-attn wheel hash are fixed."""
+    """Code commit and weight hashes are fixed; no flash-attn wheel is needed.
+
+    Package versions are not asserted here: Dependabot updates the lock, and
+    tests/test_unimedvl_upstream.py checks that upstream's code still runs
+    and generates the same tokens on it (issue #21).
+    """
     script = SCRIPT_PATH.read_text()
     assert 'UNIMEDVL_CODE_COMMIT="f51aa0accbd02e846e5ea20b595fb39b516dbe1f"' in script
     assert re.search(r'UNIMEDVL_MODEL_REVISION="[0-9a-f]{40}"', script)
@@ -265,50 +342,74 @@ def test_unimedvl_pins() -> None:
         "vit_config.json",
         "tokenizer.json",
     }
-    assert re.search(r'FLASH_ATTN_SHA256="[0-9a-f]{64}"', script)
+    # flash-attn wheels stop at torch 2.8; unimedvl_server.py provides
+    # flash_attn_varlen_func on torch's own varlen_attn instead (issue #21).
+    assert "FLASH_ATTN" not in script
     pins = unimedvl_pins("unimedvl-requirements.txt")
-    # The newest torch with a prebuilt flash-attn wheel (issue #19); the wheel
-    # has to be built for the same torch, and for the C++11 ABI that PyPI
-    # torch wheels use since 2.7.
-    assert pins["torch"] == "2.8.0"
-    assert "cu12torch2.8cxx11abiTRUE" in script
-    # The last 4.x: upstream's code fails on transformers 5 (issue #19).
-    assert pins["transformers"] == "4.57.6"
+    assert "flash-attn" not in pins
+    # The shim passes scale, window_size and enable_gqa to
+    # torch.nn.attention.varlen.varlen_attn (torch 2.12+), and
+    # restore_default_rope exists for transformers 5.
+    assert Version(pins["torch"]) >= Version("2.12")
+    assert Version(pins["transformers"]).major >= 5
 
 
 def test_unimedvl_python_matches_everywhere() -> None:
-    """The venv, the CI job, the lock and the flash-attn wheel use one Python."""
+    """The venv, the CI jobs and the lock use one Python."""
     script = SCRIPT_PATH.read_text()
-    wheel = re.search(r'FLASH_ATTN_WHEEL="[^"]*-cp(\d)(\d+)-cp\d+-', script)
     default = re.search(
         r'UNIMEDVL_PYTHON="\$\{UNIMEDVL_PYTHON:-python([\d.]+)\}"', script
     )
-    job = re.search(
+    jobs = re.findall(
         r"Setup Python ([\d.]+) for UniMedVL.*?python-version: '([\d.]+)'",
         WORKFLOW.read_text(),
         re.DOTALL,
     )
     source = (ROOT / "scripts" / "unimedvl-requirements.in").read_text()
-    compiled = re.search(r"--python-version ([\d.]+)", source)
-    assert wheel
+    lock = (ROOT / "scripts" / "unimedvl-requirements.txt").read_text()
+    compiled = re.findall(r"--python-version ([\d.]+)", source + lock)
     assert default
-    assert job
-    assert compiled
-    python = f"{wheel[1]}.{wheel[2]}"
-    assert default[1] == job[1] == job[2] == compiled[1] == python
-    # 3.10 reaches end of life in October 2026 (issue #19).
-    assert python == "3.13"
+    assert len(jobs) == 2  # the GPU job and the unimedvl-cpu job
+    assert len(compiled) == 2  # the .in's instructions and the lock's header
+    versions = {default[1], *compiled, *(version for job in jobs for version in job)}
+    assert len(versions) == 1, versions
+    # The flash-attn wheels held this at 3.13 (issue #19); without them the
+    # newest Python that torch publishes wheels for is used (issue #21).
+    assert Version(versions.pop()) >= Version("3.14")
+
+
+def test_unimedvl_cpu_job_runs_the_upstream_tests() -> None:
+    """The unimedvl-cpu job tests the shims and upstream's code on CPU torch."""
+    text = WORKFLOW.read_text(encoding="utf-8")
+    job = text.split("\n  unimedvl-cpu:\n", 1)[1].split("\n  # Self-hosted", 1)[0]
+    assert "UNIMEDVL_DEVICE: cpu" in job
+    assert "tests/test_unimedvl_attention.py tests/test_unimedvl_upstream.py" in job
+    assert "unimedvl-cpu" in text.split("\n  pipeline-status:\n", 1)[1]
+    # Its pytest is installed at pyproject.toml's dev floors.
+    project = tomllib.loads((ROOT / "pyproject.toml").read_text())
+    dev = project["project"]["optional-dependencies"]["dev"]
+    for requirement in re.findall(r'"(pytest(?:-asyncio)?>=[\d.]+)"', job):
+        assert requirement in dev
+
+
+# Released with torch (torchvision, triton) or transformers (tokenizers), so
+# the .in names them without a version (dependabot/dependabot-core#16390).
+UNIMEDVL_CARRIED = {"torchvision", "triton", "tokenizers"}
 
 
 def unimedvl_pins(name: str) -> dict[str, str]:
-    """Map each package in a UniMedVL requirements file to its exact pin."""
+    """Map each package in a UniMedVL requirements file to its exact pin.
+
+    Only the .in's packages released with their parent have no pin ("").
+    """
     pins: dict[str, str] = {}
     for line in (ROOT / "scripts" / name).read_text().splitlines():
         requirement = line.split("#", 1)[0].strip()
         if requirement:
             package, _, pinned = requirement.partition("==")
-            assert pinned, line
-            pins[package.strip().lower()] = pinned.strip()
+            package = package.strip().lower()
+            assert pinned or package in UNIMEDVL_CARRIED, line
+            pins[package] = pinned.strip()
     return pins
 
 
@@ -317,11 +418,20 @@ def test_unimedvl_lock_matches_its_input() -> None:
 
     The lock is compiled from the .in (with uv pip compile, see its header),
     so it also pins every transitive package; an edit to one file without the
-    other would install something nobody reviewed.
+    other would install something nobody reviewed. torchvision, triton and
+    tokenizers are named in the .in without a version: Dependabot updates a
+    group's members one at a time, so pinning them beside torch and
+    transformers would stop all of them moving
+    (experiments/issue21_dependabot_lockstep.sh).
     """
     wanted = unimedvl_pins("unimedvl-requirements.in")
     locked = unimedvl_pins("unimedvl-requirements.txt")
     assert wanted
-    assert {name: locked.get(name) for name in wanted} == wanted
+    carried = {name for name, pinned in wanted.items() if not pinned}
+    assert carried == UNIMEDVL_CARRIED
+    assert all(locked.get(name) for name in carried)
+    pinned = {name: pinned for name, pinned in wanted.items() if pinned}
+    assert {name: locked.get(name) for name in pinned} == pinned
     # Everything torch, transformers and accelerate import is locked too.
-    assert {"huggingface-hub", "filelock", "nvidia-cudnn-cu12"} <= set(locked)
+    assert {"huggingface-hub", "filelock"} <= set(locked)
+    assert any(name.startswith("nvidia-cudnn-cu") for name in locked)

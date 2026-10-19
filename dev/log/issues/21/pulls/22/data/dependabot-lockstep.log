@@ -1,0 +1,17 @@
+# bash experiments/issue21_dependabot_lockstep.sh with uv 0.13.1, 2026-10-19
+pinned-a (order: torch torchvision triton), start: torch==2.13.0 torchvision==0.28.0 triton==3.7.1 
+  torch -> 2.14.1: skipped, cause: Because torch>=2.14.1 depends on triton{python_full_version < '3.15' and sys_platform == 'linux'}>=3.8.0,<3.9.dev0 and you require torch==2.14.1, we can conclude that you require triton>=3.8.0,<3.9.dev0.
+  torchvision -> 0.29.1: skipped, cause: Because torchvision>=0.29.1 depends on torch>=2.14.0 and you require torch==2.13.0, we can conclude that your requirements and torchvision>=0.29.1 are incompatible.
+  triton -> 3.8.0: skipped, cause: Because torch==2.13.0 depends on triton{python_full_version < '3.15' and sys_platform == 'linux'}==3.7.1 and triton{python_full_version < '3.15' and sys_platform == 'linux'}==3.8.0, we can conclude that torch==2.13.0 cannot be used.
+  result: torch==2.13.0 torchvision==0.28.0 triton==3.7.1 
+pinned-b (order: triton torchvision torch), start: torch==2.13.0 torchvision==0.28.0 triton==3.7.1 
+  triton -> 3.8.0: skipped, cause: Because torch==2.13.0 depends on triton{python_full_version < '3.15' and sys_platform == 'linux'}==3.7.1 and triton{python_full_version < '3.15' and sys_platform == 'linux'}==3.8.0, we can conclude that torch==2.13.0 cannot be used.
+  torchvision -> 0.29.1: skipped, cause: Because torchvision>=0.29.1 depends on torch>=2.14.0 and you require torch==2.13.0, we can conclude that your requirements and torchvision>=0.29.1 are incompatible.
+  torch -> 2.14.1: skipped, cause: Because torch>=2.14.1 depends on triton{python_full_version < '3.15' and sys_platform == 'linux'}>=3.8.0,<3.9.dev0 and you require torch==2.14.1, we can conclude that you require triton>=3.8.0,<3.9.dev0.
+  result: torch==2.13.0 torchvision==0.28.0 triton==3.7.1 
+carried-a (order: torch torchvision triton), start: torch==2.13.0 torchvision==0.28.0 triton==3.7.1 
+  torch -> 2.14.1: lock now torch==2.14.1 torchvision==0.29.1 triton==3.8.0 
+  result: torch==2.14.1 torchvision==0.29.1 triton==3.8.0 
+carried-b (order: triton torchvision torch), start: torch==2.13.0 torchvision==0.28.0 triton==3.7.1 
+  torch -> 2.14.1: lock now torch==2.14.1 torchvision==0.29.1 triton==3.8.0 
+  result: torch==2.14.1 torchvision==0.29.1 triton==3.8.0 

@@ -1,0 +1,57 @@
+Running Sphinx v9.1.0
+loading translations [en]... done
+loading pickled environment... The configuration has changed (1 option: 'pygments_dark_style')
+done
+[autosummary] generating autosummary for: _autosummary/medbench.augment.rst, _autosummary/medbench.backends.rst, _autosummary/medbench.benchmark.rst, _autosummary/medbench.cli.rst, _autosummary/medbench.clinical_text.rst, _autosummary/medbench.ddxplus.rst, _autosummary/medbench.hardware.rst, _autosummary/medbench.metrics.rst, _autosummary/medbench.mlx_backend.rst, _autosummary/medbench.models.rst, ..., _autosummary/medbench.validity.rst, api.md, apple-silicon.md, audit-2026-10-16.md, evaluation-validity.md, hardware-workflows.md, index.md, preview-regeneration.md, publishing.md, repository-policy.md
+myst v5.1.0: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=set(), disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=0, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, strikethrough_single_tilde=False, colon_fence_exact_match=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 2 source files that are out of date
+updating environment: 0 added, 3 changed, 0 removed
+reading sources... [ 33%] _autosummary/medbench.support
+reading sources... [ 67%] hardware-workflows
+reading sources... [100%] repository-policy
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to <tmp>/_site/_static/documentation_options.js
+Writing evaluated template result to <tmp>/_site/_static/language_data.js
+Writing evaluated template result to <tmp>/_site/_static/basic.css
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [ 20%] _autosummary/medbench
+writing output... [ 40%] _autosummary/medbench.support
+writing output... [ 60%] hardware-workflows
+writing output... [ 80%] index
+writing output... [100%] repository-policy
+
+generating indices... genindex py-modindex done
+highlighting module code... [  6%] medbench.augment
+highlighting module code... [ 12%] medbench.backends
+highlighting module code... [ 19%] medbench.benchmark
+highlighting module code... [ 25%] medbench.cli
+highlighting module code... [ 31%] medbench.clinical_text
+highlighting module code... [ 38%] medbench.ddxplus
+highlighting module code... [ 44%] medbench.hardware
+highlighting module code... [ 50%] medbench.metrics
+highlighting module code... [ 56%] medbench.mlx_backend
+highlighting module code... [ 62%] medbench.models
+highlighting module code... [ 69%] medbench.monitor
+highlighting module code... [ 75%] medbench.real_data
+highlighting module code... [ 81%] medbench.resources
+highlighting module code... [ 88%] medbench.support
+highlighting module code... [ 94%] medbench.synthetic_cases
+highlighting module code... [100%] medbench.validity
+
+writing additional pages... search done
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in ../w21/_site.

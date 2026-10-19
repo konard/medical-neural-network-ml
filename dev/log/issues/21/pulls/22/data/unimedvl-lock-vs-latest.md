@@ -1,0 +1,75 @@
+
+### scripts/unimedvl-requirements.txt
+
+| Package | Pinned | Latest (PyPI) | Released | Status |
+| --- | --- | --- | --- | --- |
+| accelerate | ==1.15.0 | 1.15.0 | 2026-09-09 | latest |
+| annotated-doc | ==0.0.5 | 0.0.5 | 2026-07-28 | latest |
+| anyio | ==4.15.1 | 4.15.1 | 2026-09-05 | latest |
+| click | ==8.5.0 | 8.5.0 | 2026-08-26 | latest |
+| contourpy | ==1.4.0 | 1.4.0 | 2026-09-11 | latest |
+| cuda-bindings | ==13.4.4 | 13.4.4 | 2026-10-14 | latest |
+| cuda-pathfinder | ==1.8.3 | 1.8.3 | 2026-10-02 | latest |
+| cuda-toolkit | ==13.0.3.0 | 13.4.3 | 2026-10-14 | **behind** |
+| cycler | ==0.12.1 | 0.12.1 | 2023-10-07 | latest |
+| einops | ==0.8.2 | 0.8.2 | 2026-01-26 | latest |
+| filelock | ==4.2.4 | 4.2.4 | 2026-10-19 | latest |
+| fonttools | ==4.67.0 | 4.67.0 | 2026-10-14 | latest |
+| fsspec | ==2026.9.0 | 2026.9.0 | 2026-09-18 | latest |
+| h11 | ==0.16.0 | 0.16.0 | 2025-04-24 | latest |
+| hf-xet | ==1.7.0 | 1.7.0 | 2026-10-06 | latest |
+| httpcore2 | ==2.14.0 | 2.14.0 | 2026-10-18 | latest |
+| httpx2 | ==2.14.0 | 2.14.0 | 2026-10-18 | latest |
+| huggingface-hub | ==2.2.0 | 2.2.0 | 2026-10-08 | latest |
+| idna | ==3.20 | 3.20 | 2026-09-17 | latest |
+| jinja2 | ==3.1.6 | 3.1.6 | 2025-03-05 | latest |
+| kiwisolver | ==1.5.1 | 1.5.1 | 2026-08-28 | latest |
+| markdown-it-py | ==4.2.0 | 4.2.0 | 2026-05-07 | latest |
+| markupsafe | ==3.0.4 | 3.0.4 | 2026-10-02 | latest |
+| matplotlib | ==3.11.2 | 3.11.2 | 2026-09-11 | latest |
+| mdurl | ==0.1.2 | 0.1.2 | 2022-08-14 | latest |
+| mpmath | ==1.3.0 | 1.4.1 | 2026-03-15 | **behind** |
+| networkx | ==3.7 | 3.7 | 2026-09-21 | latest |
+| numpy | ==2.5.4 | 2.5.4 | 2026-10-10 | latest |
+| nvidia-cublas | ==13.1.1.3 | 13.8.1.7 | 2026-09-28 | **behind** |
+| nvidia-cuda-cupti | ==13.0.85 | 13.4.92 | 2026-09-16 | **behind** |
+| nvidia-cuda-nvrtc | ==13.0.88 | 13.4.92 | 2026-09-16 | **behind** |
+| nvidia-cuda-runtime | ==13.0.96 | 13.4.92 | 2026-09-16 | **behind** |
+| nvidia-cudnn-cu13 | ==9.24.0.43 | 9.27.0.42 | 2026-09-29 | **behind** |
+| nvidia-cufft | ==12.0.0.61 | 12.4.0.43 | 2026-09-16 | **behind** |
+| nvidia-cufile | ==1.15.1.6 | 1.19.1.55 | 2026-09-16 | **behind** |
+| nvidia-curand | ==10.4.0.35 | 10.4.4.72 | 2026-09-16 | **behind** |
+| nvidia-cusolver | ==12.0.4.66 | 12.3.5.3 | 2026-10-14 | **behind** |
+| nvidia-cusparse | ==12.6.3.3 | 12.8.6.72 | 2026-09-16 | **behind** |
+| nvidia-cusparselt-cu13 | ==0.8.1 | 0.10.0 | 2026-09-30 | **behind** |
+| nvidia-nccl-cu13 | ==2.30.7 | 2.32.3 | 2026-09-22 | **behind** |
+| nvidia-nvjitlink | ==13.4.92 | 13.4.92 | 2026-09-16 | latest |
+| nvidia-nvshmem-cu13 | ==3.4.5 | 3.8.0 | 2026-09-22 | **behind** |
+| nvidia-nvtx | ==13.0.85 | 13.4.92 | 2026-09-16 | **behind** |
+| opencv-python | ==5.0.0.93 | 5.0.0.93 | 2026-07-02 | latest |
+| packaging | ==26.3 | 26.3 | 2026-08-04 | latest |
+| pillow | ==13.0.0 | 13.0.0 | 2026-10-16 | latest |
+| psutil | ==7.2.2 | 7.2.2 | 2026-01-28 | latest |
+| pygments | ==2.21.0 | 2.21.0 | 2026-08-17 | latest |
+| pyparsing | ==3.3.3 | 3.3.3 | 2026-09-20 | latest |
+| python-dateutil | ==2.9.0.post0 | 2.9.0.post0 | 2024-03-01 | latest |
+| pyyaml | ==6.0.3 | 6.0.3 | 2025-09-25 | latest |
+| regex | ==2026.9.29 | 2026.9.29 | 2026-09-29 | latest |
+| rich | ==15.0.0 | 15.0.0 | 2026-04-12 | latest |
+| safetensors | ==0.8.0 | 0.8.0 | 2026-06-09 | latest |
+| sentencepiece | ==0.2.2 | 0.2.2 | 2026-07-12 | latest |
+| setuptools | ==84.0.0 | 84.0.0 | 2026-08-08 | latest |
+| shellingham | ==1.5.4 | 1.5.4 | 2023-10-24 | latest |
+| six | ==1.17.0 | 1.17.0 | 2024-12-04 | latest |
+| sympy | ==1.14.0 | 1.14.0 | 2025-04-27 | latest |
+| tokenizers | ==0.23.3 | 0.23.3 | 2026-10-09 | latest |
+| torch | ==2.14.1 | 2.14.1 | 2026-09-30 | latest |
+| torchvision | ==0.29.1 | 0.29.1 | 2026-09-30 | latest |
+| tqdm | ==4.70.1 | 4.70.1 | 2026-09-11 | latest |
+| transformers | ==5.20.1 | 5.20.1 | 2026-10-16 | latest |
+| triton | ==3.8.0 | 3.8.0 | 2026-08-28 | latest |
+| truststore | ==0.10.5 | 0.10.5 | 2026-10-12 | latest |
+| typer | ==0.27.3 | 0.27.3 | 2026-10-06 | latest |
+| typing-extensions | ==4.16.0 | 4.16.0 | 2026-07-02 | latest |
+
+16 entries behind the newest release.

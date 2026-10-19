@@ -1,0 +1,717 @@
+Dependabot	UNKNOWN STEP	﻿2026-10-19T11:15:27.4232288Z Current runner version: '2.337.0'
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4251861Z ##[group]Runner Image Provisioner
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4252639Z Hosted Compute Agent
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4253218Z Version: 20261012.601
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4253777Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4254475Z Build Date: 2026-10-12T17:48:21Z
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4255091Z Worker ID: {54c4928d-9e3b-4f8b-a0f0-a37d0ab9220b}
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4255683Z Region: westus3
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4256192Z Cloud: Azure
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4256985Z ##[endgroup]
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4258273Z ##[group]Operating System
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4258849Z Ubuntu
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4259291Z 24.04.5
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4259816Z LTS
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4260255Z ##[endgroup]
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4260812Z ##[group]Runner Image
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4261342Z Image: ubuntu-24.04
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4261845Z Version: 20261012.334.1
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4262959Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4264334Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4265152Z ##[endgroup]
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4266603Z ##[group]GITHUB_TOKEN Permissions
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4268362Z Contents: read
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4268931Z Metadata: read
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4269413Z Packages: read
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4269869Z ##[endgroup]
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4271561Z Secret source: None
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4272327Z Cache mode: read
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4273041Z Prepare workflow directory
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4530871Z Prepare all required actions
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.4570028Z Getting action download info
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:27.7387130Z Download action repository 'github/dependabot-action@main' (SHA:3df2c0bb9519bd3154c7befdeed45aa491c806af)
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:28.7522469Z Complete job name: Dependabot
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:28.8150682Z ##[group]Run mkdir -p  ./dependabot-job-1636673307-1792408522
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:28.8151512Z ^[[36;1mmkdir -p  ./dependabot-job-1636673307-1792408522^[[0m
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:28.8371689Z shell: /usr/bin/bash -e {0}
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:28.8372405Z ##[endgroup]
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:28.8650481Z ##[group]Run github/dependabot-action@main
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:28.8651053Z env:
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:28.8651439Z   DEPENDABOT_DISABLE_CLEANUP: 1
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:28.8651931Z   DEPENDABOT_ENABLE_CONNECTIVITY_CHECK: 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:28.8655529Z   GITHUB_TOKEN: ***
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:28.8656256Z   GITHUB_DEPENDABOT_JOB_TOKEN: ***
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:28.8657167Z   GITHUB_DEPENDABOT_CRED_TOKEN: ***
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:28.8657656Z   GITHUB_REGISTRIES_PROXY: 
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:28.8658088Z ##[endgroup]
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:28.9924551Z 🤖 ~ starting update ~
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:28.9945607Z Fetching job details
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:30.8207199Z 🤖 ~ Failed to parse GITHUB_REGISTRIES_PROXY environment variable ~
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:30.8210390Z ##[group]Pulling updater images
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:30.8256848Z Pulling image ghcr.io/dependabot/dependabot-updater-pip:7c099fb8a885705b609f59f88b916bfc2cc7ff28 (attempt 1)...
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:31.0180930Z Successfully sent metric (dependabot.action.ghcr_image_pull) to remote API endpoint
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:52.2810276Z Pulled image ghcr.io/dependabot/dependabot-updater-pip:7c099fb8a885705b609f59f88b916bfc2cc7ff28
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:52.2835830Z Pulling image ghcr.io/dependabot/proxy:v2.0.20261016101855@sha256:1a92374ed16022e6fb183f8870d66c72a66e896046bef3a3852d0094d6a948e6 (attempt 1)...
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:52.4606799Z Successfully sent metric (dependabot.action.ghcr_image_pull) to remote API endpoint
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:53.4870347Z Pulled image ghcr.io/dependabot/proxy:v2.0.20261016101855@sha256:1a92374ed16022e6fb183f8870d66c72a66e896046bef3a3852d0094d6a948e6
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:53.4872802Z ##[endgroup]
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:53.4873113Z Starting update process
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:53.6265929Z Created proxy container: cb84b1b6c598f1d6b7007a8789ce3ca2db5cad63a55c027a9cd27192336e9e87
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:53.8722466Z   proxy | 2026/10/19 11:15:53 proxy starting, commit: 5f186c538117cf00c0efad3d07dc14ed32dfa42c
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:53.8728118Z   proxy | 2026/10/19 11:15:53 Listening (:1080)
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:54.0729559Z Created container: dc4e7eb56aa88410fbabe0b04a17db3cebcc31387a5ddc1e486db736ba017969
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:54.1642483Z Started container dc4e7eb56aa88410fbabe0b04a17db3cebcc31387a5ddc1e486db736ba017969
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:54.3244299Z updater | Updating certificates in /etc/ssl/certs...
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:55.1971649Z updater | rehash: warning: skipping ca-certificates.crt,it does not contain exactly one certificate or CRL
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:55.2206920Z updater | 1 added, 0 removed; done.
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:55.2238459Z updater | Running hooks in /etc/ca-certificates/update.d...
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:55.2284299Z updater | done.
+Dependabot	UNKNOWN STEP	2026-10-19T11:15:55.5738064Z updater | fetch_files command is no longer used directly
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:00.5666236Z updater | 2026/10/19 11:16:00 INFO <job_1636673307> Starting job processing
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:00.5674685Z updater | 2026/10/19 11:16:00 INFO <job_1636673307> Job definition: {"job":{"command":"version","allowed-updates":[{"dependency-type":"direct","update-type":"all"}],"commit-message-options":{"prefix":"deps","prefix-development":null,"include-scope":null},"credentials-metadata":[{"type":"git_source","host":"github.com"}],"debug":null,"dependencies":null,"dependency-groups":[{"name":"python","rules":{"patterns":["*"]}}],"dependency-group-to-refresh":null,"existing-pull-requests":[],"existing-group-pull-requests":[],"experiments":{"record-ecosystem-versions":true,"record-update-job-unknown-error":true,"azure-registry-backup":true,"automatic-github-packages-auth":true,"blocked-versions":true,"workflow-job-summary":true,"async-retry":true,"enable-npmrc-credential-generation":true,"proxy-read-only-git-credentials":true,"proxy-egress-observe":true,"proxy-egress-enforce":true,"github-actions-lockfile":true,"maven-wrapper-updater":true,"prioritize-scm-source":true,"enable-yarn-berry-conflicting-dependencies":true},"ignore-conditions":[],"lockfile-only":false,"package-manager":"pip","requirements-update-strategy":"bump_versions","reject-external-code":false,"security-advisories":[],"security-updates-only":false,"source":{"provider":"github","repo":"konard/medical-neural-network-ml","branch":null,"directory":null,"api-endpoint":"https://api.github.com/","hostname":"github.com","directories":["/.","/docs"]},"updating-a-pull-request":false,"update-subdependencies":false,"vendor-dependencies":false,"enable-beta-ecosystems":false,"repo-private":false,"cooldown":{"default-days":7,"semver-major-days":0,"semver-minor-days":0,"semver-patch-days":0,"include":[],"exclude":[]},"multi-ecosystem-update":true,"exclude-paths":["scripts/unimedvl-requirements.*"]}}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:00.7008218Z   proxy | 2026/10/19 11:16:00 [002] GET https://github.com:443/konard/medical-neural-network-ml.git/info/refs?service=git-upload-pack
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:00.7008959Z 2026/10/19 11:16:00 [002] * authenticating git server request (host: github.com)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:00.9414064Z   proxy | 2026/10/19 11:16:00 [002] 200 https://github.com:443/konard/medical-neural-network-ml.git/info/refs?service=git-upload-pack
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:01.1855880Z updater | 2026/10/19 11:16:01 INFO <job_1636673307> Started process PID: 1001 with command: {} git clone --no-tags --depth 1 --recurse-submodules --shallow-submodules https://github.com/konard/medical-neural-network-ml /home/dependabot/dependabot-updater/repo {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:01.7034569Z   proxy | 2026/10/19 11:16:01 [004] GET https://github.com:443/konard/medical-neural-network-ml/info/refs?service=git-upload-pack
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:01.7035375Z 2026/10/19 11:16:01 [004] * authenticating git server request (host: github.com)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:01.8107964Z   proxy | 2026/10/19 11:16:01 [004] 200 https://github.com:443/konard/medical-neural-network-ml/info/refs?service=git-upload-pack
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:01.8112998Z   proxy | 2026/10/19 11:16:01 [005] POST https://github.com:443/konard/medical-neural-network-ml/git-upload-pack
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:01.8114590Z 2026/10/19 11:16:01 [005] * authenticating git server request (host: github.com)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:01.9139265Z   proxy | 2026/10/19 11:16:01 [005] 200 https://github.com:443/konard/medical-neural-network-ml/git-upload-pack
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:01.9310760Z   proxy | 2026/10/19 11:16:01 [006] POST https://github.com:443/konard/medical-neural-network-ml/git-upload-pack
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:01.9311609Z 2026/10/19 11:16:01 [006] * authenticating git server request (host: github.com)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.1097627Z   proxy | 2026/10/19 11:16:02 [006] 200 https://github.com:443/konard/medical-neural-network-ml/git-upload-pack
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.5981441Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> Process PID: 1001 completed with status: pid 1001 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.5982217Z 2026/10/19 11:16:02 INFO <job_1636673307> Total execution time: 1.41 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.5991039Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> Started process PID: 1044 with command: {} git -C /home/dependabot/dependabot-updater/repo ls-files --stage {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.6148475Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> Process PID: 1044 completed with status: pid 1044 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.6149234Z 2026/10/19 11:16:02 INFO <job_1636673307> Total execution time: 0.02 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.6590069Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> Started process PID: 1140 with command: {} git rev-parse HEAD {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.6662522Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> Process PID: 1140 completed with status: pid 1140 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.6663453Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> Total execution time: 0.01 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7254355Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: entries=22, exclude_paths=["scripts/unimedvl-requirements.*"]
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7255268Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /.git
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7256120Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /.github
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7257419Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /.gitignore
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7258282Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /.lycheeignore
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7258925Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /.pre-commit-config.yaml
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7259513Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /.ruff.toml
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7260093Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /.secretlintrc.json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7260778Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /CHANGELOG.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7261428Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /CONTRIBUTING.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7262081Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /LICENSE
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7262769Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /README.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7265571Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /THIRD_PARTY_NOTICES.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7266277Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /changelog.d
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7267352Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /dev
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7267999Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /docs
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7268643Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /examples
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7269339Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /experiments
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7270039Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /lychee.toml
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7270687Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /pyproject.toml
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7271541Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /scripts
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7272171Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /src
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7272738Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: /tests
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7273466Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: Filtered from 22 to 22 entries
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7280451Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: entries=11, exclude_paths=["scripts/unimedvl-requirements.*"]
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7283810Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: .git/HEAD
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7284819Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: .git/config
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7285768Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: .git/description
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7286910Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: .git/hooks
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7287651Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: .git/index
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7288205Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: .git/info
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7288587Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: .git/logs
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7288990Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: .git/objects
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7289449Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: .git/packed-refs
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7289865Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: .git/refs
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7290259Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: .git/shallow
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7290711Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: Filtered from 11 to 11 entries
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7291487Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: entries=6, exclude_paths=["scripts/unimedvl-requirements.*"]
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7292031Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: .github/actionlint.yaml
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7292468Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: .github/codeql
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7292923Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: .github/dependabot.yml
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7293586Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: .github/rulesets
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7294258Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: .github/workflows
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7294976Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: .github/zizmor.yml
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7295759Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: Filtered from 6 to 6 entries
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7296802Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: entries=48, exclude_paths=["scripts/unimedvl-requirements.*"]
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7301713Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20251218_133759_drakonard_issue_1_3b50e2f12be6.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7303051Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260509_204000_issue_6_release_metadata.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7304394Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260515_000000_issue_8_docs_pages.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7305644Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260529_222900_issue_9_preview_regeneration.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7307158Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260604_170000_issue_16_release_notes_limit.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7308499Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260609_000000_issue_18_manual_release_skip.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7309607Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260614_000000_issue_20_published_package_smoke_test.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7310689Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260614_issue_21_python_monorepo_releases.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7311715Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260628_issue_24_file_size_warnings.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7312758Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260703_issue_26_docs_pages_opt_in.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7313771Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260703_issue_27_codecov_token_gate.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7314813Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260703_issue_28_git_default_branch_env.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7315828Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260722_issue_32_node24_actions.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7317027Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260722_issue_33_release_permissions.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7318072Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260722_issue_34_codecov_v7_input.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7319207Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260722_issue_35_ci_release_guards.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7320234Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260727_issue_40_change_detection.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7321193Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260801_issue_42_workflow_hardening.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7322314Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260802_issue_44_mypy_python_39.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7323240Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260802_issue_45_changelog_check.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7324511Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260809_issue_48_security_scanning.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7325428Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260809_issue_49_broken_links.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7332709Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260809_issue_50_pipeline_timeout_status.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7333376Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260812_issue_54_archived_broken_links.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7333997Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260812_issue_55_multi_arch_docker.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7334597Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260816_issue_58_dependency_audit.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7335188Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260820_issue_60_step_execution_budgets.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7335765Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260828_issue_62_workflow_lint.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7336331Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260903_issue_64_workflow_audit.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7337080Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260909_issue_66_pipeline_hardening.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7337695Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260915_issue_83_pipeline_false_negatives.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7338505Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20260927_issue_85_86_release_changelog_artifact.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7339125Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20261005_issue_91_ci_links.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7339801Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20261007_issue_100_fragment_replacements.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7340807Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20261007_issue_93_changelog_validation.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7341834Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20261007_issue_98_ci_release_recovery.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7342833Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20261010_issue_102_zizmor_reproduction.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7343947Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20261014_issue_1_medical_research_plan.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7344554Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20261015_issue_4_ci_false_results.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7345133Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20261016_audit_mlx_public_domain.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7345945Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20261016_gpu_execution_budget.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7347151Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20261016_issue_11_open_issues.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7349396Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20261016_parser_type_compatibility.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7351783Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20261016_precommit_parity.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7357394Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20261016_system_bash_pipeline_status.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7358103Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/20261017_issue_19_dependency_updates.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7358651Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/README.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7359266Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: changelog.d/fragment_template.md.j2
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7359773Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: Filtered from 48 to 48 entries
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7360322Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: entries=1, exclude_paths=["scripts/unimedvl-requirements.*"]
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7360827Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: dev/log
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7361263Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: Filtered from 1 to 1 entries
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7362205Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: entries=12, exclude_paths=["scripts/unimedvl-requirements.*"]
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7363121Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: docs/api.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7363861Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: docs/apple-silicon.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7364667Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: docs/audit-2026-10-16.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7365403Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: docs/case-studies
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7366070Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: docs/conf.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7367309Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: docs/evaluation-validity.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7369009Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: docs/hardware-workflows.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7369731Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: docs/index.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7370504Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: docs/preview-regeneration.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7371294Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: docs/publishing.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7372069Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: docs/repository-policy.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7374073Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: docs/requirements.txt
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7374887Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: Filtered from 12 to 12 entries
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7375794Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: entries=2, exclude_paths=["scripts/unimedvl-requirements.*"]
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7376776Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: examples/basic_usage.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7377520Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: examples/medbench_quickstart.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7378305Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: Filtered from 2 to 2 entries
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7379218Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: entries=20, exclude_paths=["scripts/unimedvl-requirements.*"]
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7380168Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: experiments/issue11_build_label_review.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7381011Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: experiments/issue11_ci_resources.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7381911Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: experiments/issue11_ddxplus_parser_probe.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7383005Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: experiments/issue11_rss_watchdog.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7383892Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: experiments/issue11_smolvlm_image_tokens.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7384829Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: experiments/issue11_training_memory_cpu.sh
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7385497Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: experiments/issue19_lock_vs_pypi.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7386033Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: experiments/issue19_resolve_latest.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7386764Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: experiments/issue19_subprocess_coverage.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7387331Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: experiments/issue19_unimedvl_cpu_smoke.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7387921Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: experiments/issue19_unimedvl_opencv_probe.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7388480Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: experiments/issue19_unimedvl_tf5_probe.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7389024Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: experiments/issue19_wilson_boundary.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7389532Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: experiments/issue1_xray_truth.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7390072Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: experiments/issue_1_llama_server_memory_probe.sh
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7390623Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: experiments/issue_1_memory_bandwidth.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7391266Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: experiments/issue_98_analysis.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7391973Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: experiments/reproduce_partial_release.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7392854Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: experiments/reproduce_zizmor_scope.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7394837Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: experiments/resolve_action_pins.sh
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7396041Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: Filtered from 20 to 20 entries
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7397907Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: entries=31, exclude_paths=["scripts/unimedvl-requirements.*"]
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7398902Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/audit_dependencies.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7399725Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/bump_version.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7400572Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/check-dependency-graph.sh
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7401470Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/check-pipeline-status.sh
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7402320Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/check-required-docs.sh
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7403167Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/check_distribution.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7403937Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/check_file_size.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7404716Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/check_release.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7405551Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/check_web_archive.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7406730Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/create_github_release.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7407579Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/create_manual_changeset.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7408405Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/detect_code_changes.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7409241Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/format_release_notes.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7410093Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/measure_training_memory.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7410925Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/medbench-mlx-run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7411745Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/medbench-model-run.sh
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7412612Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/preflight-credentials.sh
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7413173Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/publish_to_pypi.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7413681Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/read-job-cancel-in-progress.sh
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7414165Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/read_manifest.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7414674Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/recheck_broken_links.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7415324Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/release_naming.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7415934Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/repository_rulesets.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7418919Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/run-with-budget-warning.sh
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7419720Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/simulate-fresh-merge.sh
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7420264Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/smoke_test_published_package.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7420789Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/unimedvl-requirements.in
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7421310Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/unimedvl-requirements.txt
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7421820Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/unimedvl_server.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7422550Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/validate_changeset.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7423049Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: scripts/version_and_commit.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7423538Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: Filtered from 31 to 29 entries
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7424085Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: entries=2, exclude_paths=["scripts/unimedvl-requirements.*"]
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7424610Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: src/medbench
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7425021Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: src/my_package
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7425465Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: Filtered from 2 to 2 entries
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7426007Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: entries=44, exclude_paths=["scripts/unimedvl-requirements.*"]
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7426712Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/__init__.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7427192Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_audit_dependencies.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7427890Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_check_dependency_graph.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7428425Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_check_distribution.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7428916Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_check_file_size.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7429426Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_check_pipeline_status.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7429957Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_check_release.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7430453Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_check_required_docs.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7430946Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_check_web_archive.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7431457Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_create_github_release.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7431957Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_detect_code_changes.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7432444Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_issue_91.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7432894Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_issue_98.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7433373Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_measure_training_memory.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7433926Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_medbench_benchmark.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7434433Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_medbench_clinical_text.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7435059Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_medbench_ddxplus_parser.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7435582Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_medbench_hardware.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7436062Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_medbench_metrics.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7436641Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_medbench_mlx.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7437143Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_medbench_model_run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7437635Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_medbench_monitor.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7438130Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_medbench_real_data.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7438624Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_medbench_resources.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7439105Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_medbench_support.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7439579Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_medbench_synthetic.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7440053Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_medbench_validity.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7440516Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_my_package.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7441004Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_preflight_credentials.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7441530Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_preview_regeneration_docs.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7442051Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_project_metadata.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7442631Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_read_manifest.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7443111Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_real_models.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7443610Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_recheck_broken_links.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7444086Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_release_workflow.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7444554Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_repository_policy.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7445073Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_run_with_budget_warning.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7445560Z 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_simulate_fresh_merge.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7446068Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_smoke_test_published_package.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7446674Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_unimedvl_server.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7447170Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_validate_changeset.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7447688Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_version_and_commit.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7448160Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/test_workflows.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7448633Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG: Checking entry path: tests/workflow_helpers.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.7449093Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> DEBUG filter_excluded: Filtered from 44 to 44 entries
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:02.9170081Z updater | 2026/10/19 11:16:02 INFO <job_1636673307> Dependabot is using Python version '3.11.15'.
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.0853322Z   proxy | 2026/10/19 11:16:03 [008] POST /update_jobs/1636673307/record_ecosystem_versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.2819358Z   proxy | 2026/10/19 11:16:03 [008] 204 /update_jobs/1636673307/record_ecosystem_versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.3292757Z updater | 2026/10/19 11:16:03 INFO <job_1636673307> DEBUG filter_excluded: entries=12, exclude_paths=["scripts/unimedvl-requirements.*"]
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.3293664Z 2026/10/19 11:16:03 INFO <job_1636673307> DEBUG: Checking entry path: docs/api.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.3294169Z updater | 2026/10/19 11:16:03 INFO <job_1636673307> DEBUG: Checking entry path: docs/apple-silicon.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.3294649Z updater | 2026/10/19 11:16:03 INFO <job_1636673307> DEBUG: Checking entry path: docs/audit-2026-10-16.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.3295303Z updater | 2026/10/19 11:16:03 INFO <job_1636673307> DEBUG: Checking entry path: docs/case-studies
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.3295812Z updater | 2026/10/19 11:16:03 INFO <job_1636673307> DEBUG: Checking entry path: docs/conf.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.3296586Z updater | 2026/10/19 11:16:03 INFO <job_1636673307> DEBUG: Checking entry path: docs/evaluation-validity.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.3297384Z updater | 2026/10/19 11:16:03 INFO <job_1636673307> DEBUG: Checking entry path: docs/hardware-workflows.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.3298094Z updater | 2026/10/19 11:16:03 INFO <job_1636673307> DEBUG: Checking entry path: docs/index.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.3298836Z updater | 2026/10/19 11:16:03 INFO <job_1636673307> DEBUG: Checking entry path: docs/preview-regeneration.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.3299559Z 2026/10/19 11:16:03 INFO <job_1636673307> DEBUG: Checking entry path: docs/publishing.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.3300242Z 2026/10/19 11:16:03 INFO <job_1636673307> DEBUG: Checking entry path: docs/repository-policy.md
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.3300943Z 2026/10/19 11:16:03 INFO <job_1636673307> DEBUG: Checking entry path: docs/requirements.txt
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.3302059Z 2026/10/19 11:16:03 INFO <job_1636673307> DEBUG filter_excluded: Filtered from 12 to 12 entries
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.3302943Z 2026/10/19 11:16:03 INFO <job_1636673307> DEBUG filter_excluded: entries=1, exclude_paths=["scripts/unimedvl-requirements.*"]
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.3303838Z 2026/10/19 11:16:03 INFO <job_1636673307> DEBUG: Checking entry path: docs/case-studies/issue-1
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.3304548Z 2026/10/19 11:16:03 INFO <job_1636673307> DEBUG filter_excluded: Filtered from 1 to 1 entries
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.3305251Z updater | 2026/10/19 11:16:03 INFO <job_1636673307> Dependabot is using Python version '3.14.7'.
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.4022628Z   proxy | 2026/10/19 11:16:03 [010] POST /update_jobs/1636673307/record_ecosystem_versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.4908151Z   proxy | 2026/10/19 11:16:03 [010] 204 /update_jobs/1636673307/record_ecosystem_versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.4913018Z updater | 2026/10/19 11:16:03 INFO <job_1636673307> Base commit SHA: fff9d99fa7eff21702c8b00de4015ea46829f0fa
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.4913752Z 2026/10/19 11:16:03 INFO <job_1636673307> Finished job processing
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.4927226Z updater | 2026/10/19 11:16:03 INFO <job_1636673307> Starting job processing
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.5652212Z   proxy | 2026/10/19 11:16:03 [012] GET /update_jobs/1636673307/blocked_versions?package-manager=pip
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.6370046Z   proxy | 2026/10/19 11:16:03 [012] 200 /update_jobs/1636673307/blocked_versions?package-manager=pip
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.6397501Z updater | 2026/10/19 11:16:03 INFO <job_1636673307> Started process PID: 1321 with command: {} pyenv versions {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.6870559Z updater | 2026/10/19 11:16:03 INFO <job_1636673307> Process PID: 1321 completed with status: pid 1321 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.6871151Z 2026/10/19 11:16:03 INFO <job_1636673307> Total execution time: 0.05 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:03.8190246Z updater | 2026/10/19 11:16:03 INFO <job_1636673307> Started process PID: 1365 with command: {} tar -axf /usr/local/.pyenv/versions/3.11.15.tar.zst -C /usr/local/.pyenv/versions {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:04.2485270Z updater | 2026/10/19 11:16:04 INFO <job_1636673307> Process PID: 1365 completed with status: pid 1365 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:04.2485812Z 2026/10/19 11:16:04 INFO <job_1636673307> Total execution time: 0.43 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:04.2515988Z updater | 2026/10/19 11:16:04 INFO <job_1636673307> Started process PID: 1370 with command: {} pyenv local 3.11 {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:04.3122459Z updater | 2026/10/19 11:16:04 INFO <job_1636673307> Process PID: 1370 completed with status: pid 1370 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:04.3123202Z 2026/10/19 11:16:04 INFO <job_1636673307> Total execution time: 0.06 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:04.3130054Z updater | 2026/10/19 11:16:04 INFO <job_1636673307> Started process PID: 1414 with command: {} pyenv exec pip --version {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:04.9371802Z updater | 2026/10/19 11:16:04 INFO <job_1636673307> Process PID: 1414 completed with status: pid 1414 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:04.9372780Z 2026/10/19 11:16:04 INFO <job_1636673307> Total execution time: 0.62 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:04.9373964Z 2026/10/19 11:16:04 INFO <job_1636673307> Package manager pip, Info : pip 26.2.1 from /usr/local/.pyenv/versions/3.11.15/lib/python3.11/site-packages/pip (python 3.11)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:04.9374818Z 
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:04.9381852Z updater | 2026/10/19 11:16:04 INFO <job_1636673307> Started process PID: 1544 with command: {} pyenv exec python --version {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:05.0230644Z updater | 2026/10/19 11:16:05 INFO <job_1636673307> Process PID: 1544 completed with status: pid 1544 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:05.0231123Z 2026/10/19 11:16:05 INFO <job_1636673307> Total execution time: 0.09 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:05.0683394Z updater | 2026/10/19 11:16:05 INFO <job_1636673307> Started process PID: 1653 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:06.6036930Z updater | 2026/10/19 11:16:06 INFO <job_1636673307> Process PID: 1653 completed with status: pid 1653 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:06.6037686Z 2026/10/19 11:16:06 INFO <job_1636673307> Total execution time: 1.54 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:06.6080352Z updater | 2026/10/19 11:16:06 INFO <job_1636673307> Started process PID: 1763 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:07.2912811Z updater | 2026/10/19 11:16:07 INFO <job_1636673307> Process PID: 1763 completed with status: pid 1763 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:07.2913478Z 2026/10/19 11:16:07 INFO <job_1636673307> Total execution time: 0.68 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:07.2937597Z updater | 2026/10/19 11:16:07 INFO <job_1636673307> Started process PID: 1895 with command: {} pyenv versions {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:07.3524132Z updater | 2026/10/19 11:16:07 INFO <job_1636673307> Process PID: 1895 completed with status: pid 1895 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:07.3524909Z 2026/10/19 11:16:07 INFO <job_1636673307> Total execution time: 0.06 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:07.3537122Z updater | 2026/10/19 11:16:07 INFO <job_1636673307> Started process PID: 1970 with command: {} pyenv local 3.14 {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:07.3838222Z updater | 2026/10/19 11:16:07 INFO <job_1636673307> Process PID: 1970 completed with status: pid 1970 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:07.3905365Z updater | 2026/10/19 11:16:07 INFO <job_1636673307> Total execution time: 0.03 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:07.3906644Z updater | 2026/10/19 11:16:07 INFO <job_1636673307> Started process PID: 2014 with command: {} pyenv exec pip --version {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:08.3513036Z updater | 2026/10/19 11:16:08 INFO <job_1636673307> Process PID: 2014 completed with status: pid 2014 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:08.3513539Z 2026/10/19 11:16:08 INFO <job_1636673307> Total execution time: 0.97 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:08.3514142Z updater | 2026/10/19 11:16:08 INFO <job_1636673307> Package manager pip, Info : pip 26.2.1 from /usr/local/.pyenv/versions/3.14.7/lib/python3.14/site-packages/pip (python 3.14)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:08.3514577Z 
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:08.3519540Z updater | 2026/10/19 11:16:08 INFO <job_1636673307> Started process PID: 2144 with command: {} pyenv exec python --version {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:08.4365355Z updater | 2026/10/19 11:16:08 INFO <job_1636673307> Process PID: 2144 completed with status: pid 2144 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:08.4366086Z 2026/10/19 11:16:08 INFO <job_1636673307> Total execution time: 0.08 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:08.4379127Z updater | 2026/10/19 11:16:08 INFO <job_1636673307> Started process PID: 2253 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.5239311Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Process PID: 2253 completed with status: pid 2253 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.5239807Z 2026/10/19 11:16:10 INFO <job_1636673307> Total execution time: 2.09 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.5276544Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Checking specificity for ruff in group 'python' (applies_to: version-updates)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.5281983Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Checking specificity for mypy in group 'python' (applies_to: version-updates)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.5283057Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Checking specificity for pytest in group 'python' (applies_to: version-updates)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.5287699Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Checking specificity for pytest-asyncio in group 'python' (applies_to: version-updates)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.5294244Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Checking specificity for pytest-cov in group 'python' (applies_to: version-updates)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.5295999Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Checking specificity for pre-commit in group 'python' (applies_to: version-updates)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.5297884Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Checking specificity for scriv in group 'python' (applies_to: version-updates)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.5300282Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Checking specificity for pillow in group 'python' (applies_to: version-updates)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.5303147Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Checking specificity for mlx-vlm in group 'python' (applies_to: version-updates)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.5306830Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Checking specificity for sphinx in group 'python' (applies_to: version-updates)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.5309206Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Checking specificity for furo in group 'python' (applies_to: version-updates)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.5312160Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Checking specificity for myst-parser in group 'python' (applies_to: version-updates)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.5315197Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Checking specificity for hatchling in group 'python' (applies_to: version-updates)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.5322837Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Checking specificity for sphinx in group 'python' (applies_to: version-updates)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.5325977Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Checking specificity for furo in group 'python' (applies_to: version-updates)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.5329820Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Checking specificity for myst-parser in group 'python' (applies_to: version-updates)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.5674044Z   proxy | 2026/10/19 11:16:10 [014] POST /update_jobs/1636673307/update_dependency_list
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.6483423Z   proxy | 2026/10/19 11:16:10 [014] 204 /update_jobs/1636673307/update_dependency_list
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.7202215Z   proxy | 2026/10/19 11:16:10 [016] POST /update_jobs/1636673307/increment_metric
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.7872577Z   proxy | 2026/10/19 11:16:10 [016] 204 /update_jobs/1636673307/increment_metric
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.7882256Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Starting grouped update job for konard/medical-neural-network-ml
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.7882995Z 2026/10/19 11:16:10 INFO <job_1636673307> Found 1 group(s).
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.7887777Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Starting update group for 'python'
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.7899988Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Started process PID: 2385 with command: {} git rev-parse HEAD {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.7935572Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Process PID: 2385 completed with status: pid 2385 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.7937516Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Total execution time: 0.0 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.7943156Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Started process PID: 2393 with command: {} git config user.name "dependabot[bot]" {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.7981007Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Process PID: 2393 completed with status: pid 2393 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.7981651Z 2026/10/19 11:16:10 INFO <job_1636673307> Total execution time: 0.0 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.7987470Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Started process PID: 2401 with command: {} git config user.email "dependabot[bot]@users.noreply.github.com" {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.8021923Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Process PID: 2401 completed with status: pid 2401 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.8022568Z 2026/10/19 11:16:10 INFO <job_1636673307> Total execution time: 0.0 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.8024998Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Dependency Snapshot: ruff, mypy, pytest, pytest-asyncio, pytest-cov, pre-commit, scriv, pillow, mlx-vlm, sphinx, furo, myst-parser, hatchling
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.8025659Z 2026/10/19 11:16:10 INFO <job_1636673307> Job specified dependencies: 
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.8028405Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Updating the / directory.
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:10.8443564Z updater | 2026/10/19 11:16:10 INFO <job_1636673307> Started process PID: 2409 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:11.5182495Z updater | 2026/10/19 11:16:11 INFO <job_1636673307> Process PID: 2409 completed with status: pid 2409 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:11.5183180Z 2026/10/19 11:16:11 INFO <job_1636673307> Total execution time: 0.67 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:11.5210040Z updater | 2026/10/19 11:16:11 INFO <job_1636673307> Started process PID: 2519 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:12.2260628Z updater | 2026/10/19 11:16:12 INFO <job_1636673307> Process PID: 2519 completed with status: pid 2519 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:12.2261419Z 2026/10/19 11:16:12 INFO <job_1636673307> Total execution time: 0.71 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:12.2281834Z updater | 2026/10/19 11:16:12 INFO <job_1636673307> Checking if ruff  needs updating
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:12.3141651Z updater | 2026/10/19 11:16:12 INFO <job_1636673307> Fetching release information from json registry at https://pypi.org/pypi/ for ruff
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:12.4205431Z   proxy | 2026/10/19 11:16:12 [018] GET https://pypi.org:443/pypi/ruff/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:12.4511550Z   proxy | 2026/10/19 11:16:12 [018] 200 https://pypi.org:443/pypi/ruff/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:12.8405263Z updater | 2026/10/19 11:16:12 INFO <job_1636673307> Filtered out 4 yanked versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:12.8449321Z updater | 2026/10/19 11:16:12 INFO <job_1636673307> Filtered out 1 versions due to cooldown
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:12.8478573Z updater | 2026/10/19 11:16:12 INFO <job_1636673307> Latest version is 0.17.0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:12.8480407Z updater | 2026/10/19 11:16:12 INFO <job_1636673307> Adding dependencies as handled: (ruff).
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:12.8486817Z updater | 2026/10/19 11:16:12 INFO <job_1636673307> No update needed for ruff 
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:12.8908810Z updater | 2026/10/19 11:16:12 INFO <job_1636673307> Started process PID: 2651 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:13.5584214Z updater | 2026/10/19 11:16:13 INFO <job_1636673307> Process PID: 2651 completed with status: pid 2651 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:13.5585155Z 2026/10/19 11:16:13 INFO <job_1636673307> Total execution time: 0.67 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:13.5611207Z updater | 2026/10/19 11:16:13 INFO <job_1636673307> Started process PID: 2761 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:14.2732544Z updater | 2026/10/19 11:16:14 INFO <job_1636673307> Process PID: 2761 completed with status: pid 2761 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:14.2733432Z 2026/10/19 11:16:14 INFO <job_1636673307> Total execution time: 0.71 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:14.2750474Z updater | 2026/10/19 11:16:14 INFO <job_1636673307> Checking if mypy  needs updating
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:14.3605794Z updater | 2026/10/19 11:16:14 INFO <job_1636673307> Fetching release information from json registry at https://pypi.org/pypi/ for mypy
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:14.4326680Z   proxy | 2026/10/19 11:16:14 [020] GET https://pypi.org:443/pypi/mypy/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:14.4419231Z   proxy | 2026/10/19 11:16:14 [020] 200 https://pypi.org:443/pypi/mypy/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:14.5482745Z updater | 2026/10/19 11:16:14 INFO <job_1636673307> Latest version is 2.4.0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:14.5483389Z 2026/10/19 11:16:14 INFO <job_1636673307> Adding dependencies as handled: (mypy).
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:14.5497347Z updater | 2026/10/19 11:16:14 INFO <job_1636673307> No update needed for mypy 
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:14.6189374Z updater | 2026/10/19 11:16:14 INFO <job_1636673307> Started process PID: 2893 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:15.2992278Z updater | 2026/10/19 11:16:15 INFO <job_1636673307> Process PID: 2893 completed with status: pid 2893 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:15.2992824Z 2026/10/19 11:16:15 INFO <job_1636673307> Total execution time: 0.68 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:15.3020172Z updater | 2026/10/19 11:16:15 INFO <job_1636673307> Started process PID: 3003 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:16.0094702Z updater | 2026/10/19 11:16:16 INFO <job_1636673307> Process PID: 3003 completed with status: pid 3003 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:16.0095559Z 2026/10/19 11:16:16 INFO <job_1636673307> Total execution time: 0.71 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:16.0114794Z updater | 2026/10/19 11:16:16 INFO <job_1636673307> Checking if pytest  needs updating
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:16.1026032Z updater | 2026/10/19 11:16:16 INFO <job_1636673307> Fetching release information from json registry at https://pypi.org/pypi/ for pytest
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:16.1752178Z   proxy | 2026/10/19 11:16:16 [022] GET https://pypi.org:443/pypi/pytest/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:16.1842397Z   proxy | 2026/10/19 11:16:16 [022] 200 https://pypi.org:443/pypi/pytest/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:16.2348561Z updater | 2026/10/19 11:16:16 INFO <job_1636673307> Filtered out 1 yanked versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:16.2370975Z updater | 2026/10/19 11:16:16 INFO <job_1636673307> Filtered out 4 pre-release versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:16.2379140Z updater | 2026/10/19 11:16:16 INFO <job_1636673307> Latest version is 9.1.1
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:16.2388301Z updater | 2026/10/19 11:16:16 INFO <job_1636673307> Adding dependencies as handled: (pytest).
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:16.2388936Z 2026/10/19 11:16:16 INFO <job_1636673307> No update needed for pytest 
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:16.2784821Z updater | 2026/10/19 11:16:16 INFO <job_1636673307> Started process PID: 3135 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:16.9471925Z updater | 2026/10/19 11:16:16 INFO <job_1636673307> Process PID: 3135 completed with status: pid 3135 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:16.9472663Z 2026/10/19 11:16:16 INFO <job_1636673307> Total execution time: 0.67 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:16.9498271Z updater | 2026/10/19 11:16:16 INFO <job_1636673307> Started process PID: 3245 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:17.6480597Z updater | 2026/10/19 11:16:17 INFO <job_1636673307> Process PID: 3245 completed with status: pid 3245 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:17.6481393Z 2026/10/19 11:16:17 INFO <job_1636673307> Total execution time: 0.7 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:17.6496728Z updater | 2026/10/19 11:16:17 INFO <job_1636673307> Checking if pytest-asyncio  needs updating
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:17.7338427Z updater | 2026/10/19 11:16:17 INFO <job_1636673307> Fetching release information from json registry at https://pypi.org/pypi/ for pytest-asyncio
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:17.8061829Z   proxy | 2026/10/19 11:16:17 [024] GET https://pypi.org:443/pypi/pytest-asyncio/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:17.8154529Z   proxy | 2026/10/19 11:16:17 [024] 200 https://pypi.org:443/pypi/pytest-asyncio/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:17.8367151Z updater | 2026/10/19 11:16:17 INFO <job_1636673307> Filtered out 1 yanked versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:17.8377603Z updater | 2026/10/19 11:16:17 INFO <job_1636673307> Filtered out 19 pre-release versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:17.8380660Z updater | 2026/10/19 11:16:17 INFO <job_1636673307> Latest version is 1.4.0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:17.8381334Z updater | 2026/10/19 11:16:17 INFO <job_1636673307> Adding dependencies as handled: (pytest-asyncio).
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:17.8384198Z updater | 2026/10/19 11:16:17 INFO <job_1636673307> No update needed for pytest-asyncio 
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:17.8833090Z updater | 2026/10/19 11:16:17 INFO <job_1636673307> Started process PID: 3377 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:18.5620422Z updater | 2026/10/19 11:16:18 INFO <job_1636673307> Process PID: 3377 completed with status: pid 3377 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:18.5621115Z 2026/10/19 11:16:18 INFO <job_1636673307> Total execution time: 0.68 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:18.5647247Z updater | 2026/10/19 11:16:18 INFO <job_1636673307> Started process PID: 3487 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:19.2774657Z updater | 2026/10/19 11:16:19 INFO <job_1636673307> Process PID: 3487 completed with status: pid 3487 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:19.2775158Z 2026/10/19 11:16:19 INFO <job_1636673307> Total execution time: 0.71 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:19.2792814Z updater | 2026/10/19 11:16:19 INFO <job_1636673307> Checking if pytest-cov  needs updating
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:19.3643695Z updater | 2026/10/19 11:16:19 INFO <job_1636673307> Fetching release information from json registry at https://pypi.org/pypi/ for pytest-cov
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:19.4362202Z   proxy | 2026/10/19 11:16:19 [026] GET https://pypi.org:443/pypi/pytest-cov/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:19.4454918Z   proxy | 2026/10/19 11:16:19 [026] 200 https://pypi.org:443/pypi/pytest-cov/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:19.4609601Z updater | 2026/10/19 11:16:19 INFO <job_1636673307> Latest version is 7.1.0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:19.4610588Z updater | 2026/10/19 11:16:19 INFO <job_1636673307> Adding dependencies as handled: (pytest-cov).
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:19.4612727Z updater | 2026/10/19 11:16:19 INFO <job_1636673307> No update needed for pytest-cov 
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:19.5026372Z updater | 2026/10/19 11:16:19 INFO <job_1636673307> Started process PID: 3619 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:20.1817653Z updater | 2026/10/19 11:16:20 INFO <job_1636673307> Process PID: 3619 completed with status: pid 3619 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:20.1818245Z 2026/10/19 11:16:20 INFO <job_1636673307> Total execution time: 0.68 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:20.1843308Z updater | 2026/10/19 11:16:20 INFO <job_1636673307> Started process PID: 3729 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:20.9139569Z updater | 2026/10/19 11:16:20 INFO <job_1636673307> Process PID: 3729 completed with status: pid 3729 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:20.9140341Z 2026/10/19 11:16:20 INFO <job_1636673307> Total execution time: 0.73 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:20.9156148Z updater | 2026/10/19 11:16:20 INFO <job_1636673307> Checking if pre-commit  needs updating
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:21.0024908Z updater | 2026/10/19 11:16:21 INFO <job_1636673307> Fetching release information from json registry at https://pypi.org/pypi/ for pre-commit
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:21.0741487Z   proxy | 2026/10/19 11:16:21 [028] GET https://pypi.org:443/pypi/pre-commit/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:21.0830035Z   proxy | 2026/10/19 11:16:21 [028] 200 https://pypi.org:443/pypi/pre-commit/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:21.1330585Z updater | 2026/10/19 11:16:21 INFO <job_1636673307> Filtered out 1 versions due to cooldown
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:21.1344037Z updater | 2026/10/19 11:16:21 INFO <job_1636673307> Latest version is 4.6.2
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:21.1344706Z updater | 2026/10/19 11:16:21 INFO <job_1636673307> Adding dependencies as handled: (pre-commit).
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:21.1347701Z updater | 2026/10/19 11:16:21 INFO <job_1636673307> No update needed for pre-commit 
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:21.1767599Z updater | 2026/10/19 11:16:21 INFO <job_1636673307> Started process PID: 3861 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:21.8424142Z updater | 2026/10/19 11:16:21 INFO <job_1636673307> Process PID: 3861 completed with status: pid 3861 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:21.8424633Z 2026/10/19 11:16:21 INFO <job_1636673307> Total execution time: 0.67 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:21.8449816Z updater | 2026/10/19 11:16:21 INFO <job_1636673307> Started process PID: 3971 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:22.5478592Z updater | 2026/10/19 11:16:22 INFO <job_1636673307> Process PID: 3971 completed with status: pid 3971 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:22.5479089Z 2026/10/19 11:16:22 INFO <job_1636673307> Total execution time: 0.7 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:22.5497291Z updater | 2026/10/19 11:16:22 INFO <job_1636673307> Checking if scriv  needs updating
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:22.6337966Z updater | 2026/10/19 11:16:22 INFO <job_1636673307> Fetching release information from json registry at https://pypi.org/pypi/ for scriv
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:22.7062012Z   proxy | 2026/10/19 11:16:22 [030] GET https://pypi.org:443/pypi/scriv/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:22.7807632Z   proxy | 2026/10/19 11:16:22 [030] 200 https://pypi.org:443/pypi/scriv/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:22.7877225Z updater | 2026/10/19 11:16:22 INFO <job_1636673307> Latest version is 1.8.0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:22.7877839Z 2026/10/19 11:16:22 INFO <job_1636673307> Adding dependencies as handled: (scriv).
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:22.7880425Z updater | 2026/10/19 11:16:22 INFO <job_1636673307> No update needed for scriv 
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:22.8302534Z updater | 2026/10/19 11:16:22 INFO <job_1636673307> Started process PID: 4103 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:23.5116773Z updater | 2026/10/19 11:16:23 INFO <job_1636673307> Process PID: 4103 completed with status: pid 4103 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:23.5117515Z 2026/10/19 11:16:23 INFO <job_1636673307> Total execution time: 0.68 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:23.5141978Z updater | 2026/10/19 11:16:23 INFO <job_1636673307> Started process PID: 4213 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:24.2245505Z updater | 2026/10/19 11:16:24 INFO <job_1636673307> Process PID: 4213 completed with status: pid 4213 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:24.2246243Z 2026/10/19 11:16:24 INFO <job_1636673307> Total execution time: 0.71 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:24.2263439Z updater | 2026/10/19 11:16:24 INFO <job_1636673307> Checking if pillow  needs updating
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:24.3101061Z updater | 2026/10/19 11:16:24 INFO <job_1636673307> Fetching release information from json registry at https://pypi.org/pypi/ for pillow
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:24.3822038Z   proxy | 2026/10/19 11:16:24 [032] GET https://pypi.org:443/pypi/pillow/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:24.3909232Z   proxy | 2026/10/19 11:16:24 [032] 200 https://pypi.org:443/pypi/pillow/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:24.5281628Z updater | 2026/10/19 11:16:24 INFO <job_1636673307> Filtered out 1 versions due to cooldown
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:24.5282419Z updater | 2026/10/19 11:16:24 INFO <job_1636673307> Filtered out 3 pre-release versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:24.5286789Z updater | 2026/10/19 11:16:24 INFO <job_1636673307> Latest version is 12.3.0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:24.5288170Z updater | 2026/10/19 11:16:24 INFO <job_1636673307> Adding dependencies as handled: (pillow).
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:24.5291884Z updater | 2026/10/19 11:16:24 INFO <job_1636673307> No update needed for pillow 
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:24.5766241Z updater | 2026/10/19 11:16:24 INFO <job_1636673307> Started process PID: 4345 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:25.2599155Z updater | 2026/10/19 11:16:25 INFO <job_1636673307> Process PID: 4345 completed with status: pid 4345 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:25.2599669Z 2026/10/19 11:16:25 INFO <job_1636673307> Total execution time: 0.68 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:25.2628915Z updater | 2026/10/19 11:16:25 INFO <job_1636673307> Started process PID: 4455 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:25.9686949Z updater | 2026/10/19 11:16:25 INFO <job_1636673307> Process PID: 4455 completed with status: pid 4455 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:25.9687466Z 2026/10/19 11:16:25 INFO <job_1636673307> Total execution time: 0.71 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:25.9702794Z updater | 2026/10/19 11:16:25 INFO <job_1636673307> Checking if mlx-vlm 0.7.8 needs updating
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:26.0541689Z updater | 2026/10/19 11:16:26 INFO <job_1636673307> Fetching release information from json registry at https://pypi.org/pypi/ for mlx-vlm
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:26.1261764Z   proxy | 2026/10/19 11:16:26 [034] GET https://pypi.org:443/pypi/mlx-vlm/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:26.1355270Z   proxy | 2026/10/19 11:16:26 [034] 200 https://pypi.org:443/pypi/mlx-vlm/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:26.1630910Z updater | 2026/10/19 11:16:26 INFO <job_1636673307> Filtered out 1 versions due to cooldown
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:26.1633989Z updater | 2026/10/19 11:16:26 INFO <job_1636673307> Filtered out 1 pre-release versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:26.1638148Z updater | 2026/10/19 11:16:26 INFO <job_1636673307> Latest version is 0.7.6
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:26.1641052Z updater | 2026/10/19 11:16:26 INFO <job_1636673307> Adding dependencies as handled: (mlx-vlm).
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:26.1641498Z updater | 2026/10/19 11:16:26 INFO <job_1636673307> No update needed for mlx-vlm 0.7.8
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:26.2049322Z updater | 2026/10/19 11:16:26 INFO <job_1636673307> Started process PID: 4587 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:26.8799871Z updater | 2026/10/19 11:16:26 INFO <job_1636673307> Process PID: 4587 completed with status: pid 4587 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:26.8800377Z 2026/10/19 11:16:26 INFO <job_1636673307> Total execution time: 0.68 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:26.8827126Z updater | 2026/10/19 11:16:26 INFO <job_1636673307> Started process PID: 4697 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:27.6017801Z updater | 2026/10/19 11:16:27 INFO <job_1636673307> Process PID: 4697 completed with status: pid 4697 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:27.6018316Z 2026/10/19 11:16:27 INFO <job_1636673307> Total execution time: 0.72 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:27.6034759Z updater | 2026/10/19 11:16:27 INFO <job_1636673307> Checking if sphinx  needs updating
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:27.6871025Z updater | 2026/10/19 11:16:27 INFO <job_1636673307> Fetching release information from json registry at https://pypi.org/pypi/ for sphinx
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:27.7591900Z   proxy | 2026/10/19 11:16:27 [036] GET https://pypi.org:443/pypi/sphinx/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:27.7684773Z   proxy | 2026/10/19 11:16:27 [036] 200 https://pypi.org:443/pypi/sphinx/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:27.8198975Z updater | 2026/10/19 11:16:27 INFO <job_1636673307> Filtered out 1 yanked versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:27.8228328Z updater | 2026/10/19 11:16:27 INFO <job_1636673307> Filtered out 39 pre-release versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:27.8237446Z updater | 2026/10/19 11:16:27 INFO <job_1636673307> Latest version is 9.1.0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:27.8237891Z 2026/10/19 11:16:27 INFO <job_1636673307> Adding dependencies as handled: (sphinx).
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:27.8242680Z updater | 2026/10/19 11:16:27 INFO <job_1636673307> No update needed for sphinx 
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:27.8673819Z updater | 2026/10/19 11:16:27 INFO <job_1636673307> Started process PID: 4829 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:28.5304950Z updater | 2026/10/19 11:16:28 INFO <job_1636673307> Process PID: 4829 completed with status: pid 4829 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:28.5305699Z 2026/10/19 11:16:28 INFO <job_1636673307> Total execution time: 0.66 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:28.5329301Z updater | 2026/10/19 11:16:28 INFO <job_1636673307> Started process PID: 4939 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:29.2315414Z updater | 2026/10/19 11:16:29 INFO <job_1636673307> Process PID: 4939 completed with status: pid 4939 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:29.2315903Z 2026/10/19 11:16:29 INFO <job_1636673307> Total execution time: 0.7 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:29.2332347Z updater | 2026/10/19 11:16:29 INFO <job_1636673307> Checking if furo  needs updating
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:29.3166992Z updater | 2026/10/19 11:16:29 INFO <job_1636673307> Fetching release information from json registry at https://pypi.org/pypi/ for furo
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:29.3892027Z   proxy | 2026/10/19 11:16:29 [038] GET https://pypi.org:443/pypi/furo/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:29.4679759Z   proxy | 2026/10/19 11:16:29 [038] 200 https://pypi.org:443/pypi/furo/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:29.4862427Z updater | 2026/10/19 11:16:29 INFO <job_1636673307> Filtered out 5 yanked versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:29.4873461Z updater | 2026/10/19 11:16:29 INFO <job_1636673307> Filtered out 40 pre-release versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:29.4875723Z updater | 2026/10/19 11:16:29 INFO <job_1636673307> Latest version is 2025.12.19
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:29.4876354Z updater | 2026/10/19 11:16:29 INFO <job_1636673307> Adding dependencies as handled: (furo).
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:29.4880946Z updater | 2026/10/19 11:16:29 INFO <job_1636673307> No update needed for furo 
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:29.5294174Z updater | 2026/10/19 11:16:29 INFO <job_1636673307> Started process PID: 5071 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:30.1978362Z updater | 2026/10/19 11:16:30 INFO <job_1636673307> Process PID: 5071 completed with status: pid 5071 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:30.1979056Z 2026/10/19 11:16:30 INFO <job_1636673307> Total execution time: 0.67 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:30.2003693Z updater | 2026/10/19 11:16:30 INFO <job_1636673307> Started process PID: 5181 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:30.9025124Z updater | 2026/10/19 11:16:30 INFO <job_1636673307> Process PID: 5181 completed with status: pid 5181 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:30.9041981Z 2026/10/19 11:16:30 INFO <job_1636673307> Total execution time: 0.7 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:30.9042566Z updater | 2026/10/19 11:16:30 INFO <job_1636673307> Checking if myst-parser  needs updating
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:30.9885428Z updater | 2026/10/19 11:16:30 INFO <job_1636673307> Fetching release information from json registry at https://pypi.org/pypi/ for myst-parser
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:31.0612013Z   proxy | 2026/10/19 11:16:31 [040] GET https://pypi.org:443/pypi/myst-parser/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:31.0705163Z   proxy | 2026/10/19 11:16:31 [040] 200 https://pypi.org:443/pypi/myst-parser/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:31.0867794Z updater | 2026/10/19 11:16:31 INFO <job_1636673307> Filtered out 21 yanked versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:31.0876071Z updater | 2026/10/19 11:16:31 INFO <job_1636673307> Filtered out 3 pre-release versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:31.0878989Z updater | 2026/10/19 11:16:31 INFO <job_1636673307> Latest version is 5.1.0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:31.0879778Z updater | 2026/10/19 11:16:31 INFO <job_1636673307> Adding dependencies as handled: (myst-parser).
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:31.0884152Z updater | 2026/10/19 11:16:31 INFO <job_1636673307> No update needed for myst-parser 
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:31.1316824Z updater | 2026/10/19 11:16:31 INFO <job_1636673307> Started process PID: 5313 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:31.7997239Z updater | 2026/10/19 11:16:31 INFO <job_1636673307> Process PID: 5313 completed with status: pid 5313 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:31.7997783Z 2026/10/19 11:16:31 INFO <job_1636673307> Total execution time: 0.67 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:31.8023132Z updater | 2026/10/19 11:16:31 INFO <job_1636673307> Started process PID: 5423 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.5047250Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Process PID: 5423 completed with status: pid 5423 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.5047738Z 2026/10/19 11:16:32 INFO <job_1636673307> Total execution time: 0.7 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.5063515Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Checking if hatchling  needs updating
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.5901916Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Fetching release information from json registry at https://pypi.org/pypi/ for hatchling
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.6621976Z   proxy | 2026/10/19 11:16:32 [042] GET https://pypi.org:443/pypi/hatchling/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.6712858Z   proxy | 2026/10/19 11:16:32 [042] 200 https://pypi.org:443/pypi/hatchling/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.6885305Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Filtered out 9 yanked versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.6899478Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Latest version is 1.32.4
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.6900166Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Adding dependencies as handled: (hatchling).
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.6904631Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> No update needed for hatchling 
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.6905216Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Skipping sphinx in group python as it has already been handled by a previous group
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.6906138Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Skipping furo in group python as it has already been handled by a previous group
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.6907292Z 2026/10/19 11:16:32 INFO <job_1636673307> Skipping myst-parser in group python as it has already been handled by a previous group
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.6918847Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Started process PID: 5555 with command: {} git reset --hard fff9d99fa7eff21702c8b00de4015ea46829f0fa {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7267023Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Process PID: 5555 completed with status: pid 5555 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7267707Z 2026/10/19 11:16:32 INFO <job_1636673307> Total execution time: 0.04 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7274951Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Started process PID: 5562 with command: {} git clean -fx . {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7340105Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Process PID: 5562 completed with status: pid 5562 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7340662Z 2026/10/19 11:16:32 INFO <job_1636673307> Total execution time: 0.01 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7344500Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Started process PID: 5569 with command: {} git stash clear {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7379136Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Process PID: 5569 completed with status: pid 5569 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7380056Z 2026/10/19 11:16:32 INFO <job_1636673307> Total execution time: 0.0 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7388356Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Started process PID: 5576 with command: {} git rev-parse HEAD {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7416217Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Process PID: 5576 completed with status: pid 5576 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7417241Z 2026/10/19 11:16:32 INFO <job_1636673307> Total execution time: 0.0 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7420506Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Started process PID: 5583 with command: {} git config user.name "dependabot[bot]" {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7458491Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Process PID: 5583 completed with status: pid 5583 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7459192Z 2026/10/19 11:16:32 INFO <job_1636673307> Total execution time: 0.0 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7461984Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Started process PID: 5592 with command: {} git config user.email "dependabot[bot]@users.noreply.github.com" {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7505140Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Process PID: 5592 completed with status: pid 5592 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7505948Z 2026/10/19 11:16:32 INFO <job_1636673307> Total execution time: 0.0 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7506877Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Dependency Snapshot: sphinx, furo, myst-parser
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7507538Z 2026/10/19 11:16:32 INFO <job_1636673307> Job specified dependencies: 
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7508027Z 2026/10/19 11:16:32 INFO <job_1636673307> Updating the /docs directory.
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:32.7513610Z updater | 2026/10/19 11:16:32 INFO <job_1636673307> Started process PID: 5600 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:33.4576171Z updater | 2026/10/19 11:16:33 INFO <job_1636673307> Process PID: 5600 completed with status: pid 5600 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:33.4577255Z updater | 2026/10/19 11:16:33 INFO <job_1636673307> Total execution time: 0.71 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:33.4597422Z updater | 2026/10/19 11:16:33 INFO <job_1636673307> Started process PID: 5732 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:34.1573070Z updater | 2026/10/19 11:16:34 INFO <job_1636673307> Process PID: 5732 completed with status: pid 5732 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:34.1573837Z 2026/10/19 11:16:34 INFO <job_1636673307> Total execution time: 0.7 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:34.1591315Z updater | 2026/10/19 11:16:34 INFO <job_1636673307> Started process PID: 5864 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:34.8625319Z updater | 2026/10/19 11:16:34 INFO <job_1636673307> Process PID: 5864 completed with status: pid 5864 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:34.8626186Z 2026/10/19 11:16:34 INFO <job_1636673307> Total execution time: 0.7 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:34.8644251Z updater | 2026/10/19 11:16:34 INFO <job_1636673307> Started process PID: 5996 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:35.5616069Z updater | 2026/10/19 11:16:35 INFO <job_1636673307> Process PID: 5996 completed with status: pid 5996 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:35.5616858Z updater | 2026/10/19 11:16:35 INFO <job_1636673307> Total execution time: 0.7 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:35.5637338Z updater | 2026/10/19 11:16:35 INFO <job_1636673307> Started process PID: 6128 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:36.2649728Z updater | 2026/10/19 11:16:36 INFO <job_1636673307> Process PID: 6128 completed with status: pid 6128 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:36.2650237Z 2026/10/19 11:16:36 INFO <job_1636673307> Total execution time: 0.7 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:36.2667681Z updater | 2026/10/19 11:16:36 INFO <job_1636673307> Started process PID: 6260 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:36.9659971Z updater | 2026/10/19 11:16:36 INFO <job_1636673307> Process PID: 6260 completed with status: pid 6260 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:36.9660528Z updater | 2026/10/19 11:16:36 INFO <job_1636673307> Total execution time: 0.7 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:36.9678189Z updater | 2026/10/19 11:16:36 INFO <job_1636673307> Started process PID: 6392 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:37.6622160Z updater | 2026/10/19 11:16:37 INFO <job_1636673307> Process PID: 6392 completed with status: pid 6392 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:37.6622644Z 2026/10/19 11:16:37 INFO <job_1636673307> Total execution time: 0.69 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:37.6640669Z updater | 2026/10/19 11:16:37 INFO <job_1636673307> Started process PID: 6524 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:38.3635960Z updater | 2026/10/19 11:16:38 INFO <job_1636673307> Process PID: 6524 completed with status: pid 6524 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:38.3636631Z 2026/10/19 11:16:38 INFO <job_1636673307> Total execution time: 0.7 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:38.3654650Z updater | 2026/10/19 11:16:38 INFO <job_1636673307> Started process PID: 6656 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:39.0596136Z updater | 2026/10/19 11:16:39 INFO <job_1636673307> Process PID: 6656 completed with status: pid 6656 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:39.0597049Z 2026/10/19 11:16:39 INFO <job_1636673307> Total execution time: 0.69 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:39.0615313Z updater | 2026/10/19 11:16:39 INFO <job_1636673307> Started process PID: 6788 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:39.7610271Z updater | 2026/10/19 11:16:39 INFO <job_1636673307> Process PID: 6788 completed with status: pid 6788 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:39.7610974Z 2026/10/19 11:16:39 INFO <job_1636673307> Total execution time: 0.7 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:39.7624504Z updater | 2026/10/19 11:16:39 INFO <job_1636673307> Checking if sphinx  needs updating
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:39.7627822Z updater | 2026/10/19 11:16:39 INFO <job_1636673307> Fetching release information from json registry at https://pypi.org/pypi/ for sphinx
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:39.8382136Z   proxy | 2026/10/19 11:16:39 [044] GET https://pypi.org:443/pypi/sphinx/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:39.8383211Z   proxy | 2026/10/19 11:16:39 [044] 200 https://pypi.org:443/pypi/sphinx/json (cached)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:39.8891570Z updater | 2026/10/19 11:16:39 INFO <job_1636673307> Filtered out 1 yanked versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:39.8920499Z updater | 2026/10/19 11:16:39 INFO <job_1636673307> Filtered out 39 pre-release versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:39.8929770Z updater | 2026/10/19 11:16:39 INFO <job_1636673307> Latest version is 9.1.0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:39.8930348Z 2026/10/19 11:16:39 INFO <job_1636673307> Adding dependencies as handled: (sphinx).
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:39.8933580Z updater | 2026/10/19 11:16:39 INFO <job_1636673307> No update needed for sphinx 
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:39.8943690Z updater | 2026/10/19 11:16:39 INFO <job_1636673307> Started process PID: 6920 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:40.6015576Z updater | 2026/10/19 11:16:40 INFO <job_1636673307> Process PID: 6920 completed with status: pid 6920 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:40.6016123Z 2026/10/19 11:16:40 INFO <job_1636673307> Total execution time: 0.71 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:40.6027810Z updater | 2026/10/19 11:16:40 INFO <job_1636673307> Checking if furo  needs updating
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:40.6032022Z updater | 2026/10/19 11:16:40 INFO <job_1636673307> Fetching release information from json registry at https://pypi.org/pypi/ for furo
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:40.6771706Z   proxy | 2026/10/19 11:16:40 [046] GET https://pypi.org:443/pypi/furo/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:40.6777319Z   proxy | 2026/10/19 11:16:40 [046] 200 https://pypi.org:443/pypi/furo/json (cached)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:40.6946674Z updater | 2026/10/19 11:16:40 INFO <job_1636673307> Filtered out 5 yanked versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:40.6956357Z updater | 2026/10/19 11:16:40 INFO <job_1636673307> Filtered out 40 pre-release versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:40.6958922Z updater | 2026/10/19 11:16:40 INFO <job_1636673307> Latest version is 2025.12.19
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:40.6959559Z updater | 2026/10/19 11:16:40 INFO <job_1636673307> Adding dependencies as handled: (furo).
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:40.6962603Z updater | 2026/10/19 11:16:40 INFO <job_1636673307> No update needed for furo 
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:40.6972964Z updater | 2026/10/19 11:16:40 INFO <job_1636673307> Started process PID: 7052 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:41.4101577Z updater | 2026/10/19 11:16:41 INFO <job_1636673307> Process PID: 7052 completed with status: pid 7052 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:41.4102282Z 2026/10/19 11:16:41 INFO <job_1636673307> Total execution time: 0.71 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:41.4114538Z updater | 2026/10/19 11:16:41 INFO <job_1636673307> Checking if myst-parser  needs updating
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:41.4118758Z updater | 2026/10/19 11:16:41 INFO <job_1636673307> Fetching release information from json registry at https://pypi.org/pypi/ for myst-parser
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:41.4862156Z   proxy | 2026/10/19 11:16:41 [048] GET https://pypi.org:443/pypi/myst-parser/json
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:41.4862804Z   proxy | 2026/10/19 11:16:41 [048] 200 https://pypi.org:443/pypi/myst-parser/json (cached)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:41.5017910Z updater | 2026/10/19 11:16:41 INFO <job_1636673307> Filtered out 21 yanked versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:41.5025857Z updater | 2026/10/19 11:16:41 INFO <job_1636673307> Filtered out 3 pre-release versions
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:41.5029068Z updater | 2026/10/19 11:16:41 INFO <job_1636673307> Latest version is 5.1.0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:41.5029805Z updater | 2026/10/19 11:16:41 INFO <job_1636673307> Adding dependencies as handled: (myst-parser).
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:41.5033071Z updater | 2026/10/19 11:16:41 INFO <job_1636673307> No update needed for myst-parser 
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:41.5042372Z updater | 2026/10/19 11:16:41 INFO <job_1636673307> Started process PID: 7184 with command: pyenv exec python3 /opt/python/run.py
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:42.2252200Z updater | 2026/10/19 11:16:42 INFO <job_1636673307> Process PID: 7184 completed with status: pid 7184 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:42.2253111Z 2026/10/19 11:16:42 INFO <job_1636673307> Total execution time: 0.72 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:42.2262945Z updater | 2026/10/19 11:16:42 INFO <job_1636673307> Skipping sphinx in group python as it has already been handled by a previous group
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:42.2263565Z 2026/10/19 11:16:42 INFO <job_1636673307> Skipping furo in group python as it has already been handled by a previous group
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:42.2264149Z 2026/10/19 11:16:42 INFO <job_1636673307> Skipping myst-parser in group python as it has already been handled by a previous group
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:42.2278458Z updater | 2026/10/19 11:16:42 INFO <job_1636673307> Started process PID: 7316 with command: {} git reset --hard fff9d99fa7eff21702c8b00de4015ea46829f0fa {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:42.2340117Z updater | 2026/10/19 11:16:42 INFO <job_1636673307> Process PID: 7316 completed with status: pid 7316 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:42.2340885Z updater | 2026/10/19 11:16:42 INFO <job_1636673307> Total execution time: 0.01 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:42.2344545Z updater | 2026/10/19 11:16:42 INFO <job_1636673307> Started process PID: 7324 with command: {} git clean -fx . {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:42.2380912Z updater | 2026/10/19 11:16:42 INFO <job_1636673307> Process PID: 7324 completed with status: pid 7324 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:42.2381655Z 2026/10/19 11:16:42 INFO <job_1636673307> Total execution time: 0.0 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:42.2385078Z updater | 2026/10/19 11:16:42 INFO <job_1636673307> Started process PID: 7331 with command: {} git stash clear {}
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:42.2417202Z updater | 2026/10/19 11:16:42 INFO <job_1636673307> Process PID: 7331 completed with status: pid 7331 exit 0
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:42.2417945Z 2026/10/19 11:16:42 INFO <job_1636673307> Total execution time: 0.0 seconds
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:42.2419559Z updater | 2026/10/19 11:16:42 INFO <job_1636673307> Applying GroupDependencySelector filtering for group 'python'
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:42.2422133Z updater | 2026/10/19 11:16:42 INFO <job_1636673307> No dependencies were filtered out
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:42.2422586Z 2026/10/19 11:16:42 INFO <job_1636673307> Nothing to update for Dependency Group: 'python'
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:42.3181859Z   proxy | 2026/10/19 11:16:42 [050] PATCH /update_jobs/1636673307/mark_as_processed
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:42.5099605Z   proxy | 2026/10/19 11:16:42 [050] 204 /update_jobs/1636673307/mark_as_processed
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:42.5103574Z updater | 2026/10/19 11:16:42 INFO <job_1636673307> Finished job processing
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:44.2426394Z Cleaned up container dc4e7eb56aa88410fbabe0b04a17db3cebcc31387a5ddc1e486db736ba017969
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:44.2519975Z   proxy | 2026/10/19 11:16:44 3/26 calls cached (11%)
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:44.2520727Z 2026/10/19 11:16:44 Posting metrics to remote API endpoint
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:44.4619239Z 🤖 ~ finished ~
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:44.4750897Z Post job cleanup.
+Dependabot	UNKNOWN STEP	2026-10-19T11:16:44.5889939Z Cleaning up orphan processes

@@ -142,9 +142,14 @@ flowchart TD
 
 1. **Driver.** Install the NVIDIA driver from your distribution (on Ubuntu,
    `sudo ubuntu-drivers install`) and check that `nvidia-smi` lists the GPU.
-   The llama.cpp CUDA 12.8 build used by the workflow brings its own CUDA
-   runtime (`cudart-*.tar.gz`), so the full CUDA toolkit is not required. A
-   recent driver (R570 or newer, which supports CUDA 12.8) is needed.
+   The llama.cpp CUDA 13.4 build used by the workflow brings its own CUDA
+   runtime (`cudart-*.tar.gz`), and UniMedVL's torch 2.14.1 wheels bring
+   theirs (CUDA 13.0), so the full CUDA toolkit is not required. Both need a
+   driver of the R580 branch or newer: CUDA 13.x applications run on any
+   driver >= 580 through minor version compatibility
+   ([CUDA release notes](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html),
+   table 3). CUDA 13 no longer supports GPUs older than Turing (Maxwell,
+   Pascal, Volta), so the GPU must be a Turing card or newer (issue #21).
 2. **User.** Create a dedicated user, for example `sudo useradd -m ghrunner`.
    Never run the runner as root or as your own desktop user.
 3. **Runner.** As `ghrunner`:
