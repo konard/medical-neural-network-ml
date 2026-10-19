@@ -268,10 +268,12 @@ def flash_attn_varlen_func(
     ``(total_tokens, heads, head_dim)`` tensors, cumulative sequence lengths
     and ``causal``, and nothing else. flash-attn publishes wheels only up to
     torch 2.8 and Python 3.13, so the upstream environment used to be held
-    there. torch 2.10+ ships the same FlashAttention-2 kernel as
-    ``torch.nn.attention.varlen.varlen_attn``, which runs on CUDA. On other
-    devices ``varlen_attn`` raises ``NotImplementedError``, so each sequence
-    goes through ``scaled_dot_product_attention`` instead.
+    there. torch ships the same FlashAttention-2 kernel as
+    ``torch.nn.attention.varlen.varlen_attn`` (since 2.10; the ``scale``,
+    ``window_size`` and ``enable_gqa`` arguments used here since 2.12), which
+    runs on CUDA. On other devices ``varlen_attn`` raises
+    ``NotImplementedError``, so each sequence goes through
+    ``scaled_dot_product_attention`` instead.
 
     Causal masks are aligned to the bottom-right corner, as in flash-attn 2.1+
     and ``varlen_attn``: with a KV cache, query ``i`` of ``n`` sees every key up
