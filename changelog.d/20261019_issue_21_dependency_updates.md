@@ -4,7 +4,7 @@
 - A new `unimedvl-cpu` job in `model-tests.yml` installs the lock with CPU torch (`UNIMEDVL_DEVICE=cpu`). It runs upstream's `Bagel.chat` on a tiny model built from the real configs and compares the result with golden tokens and logits (`tests/test_unimedvl_upstream.py`). It also checks the attention shim against a reference implementation (`tests/test_unimedvl_attention.py`). An update of the lock that breaks upstream's code now fails on its pull request. The lock tests no longer assert exact versions.
 - `pip-audit` finds no known vulnerability in the new lock, so the 14 accepted torch 2.8.0 and transformers 4.57.6 advisories are removed from `scripts/audit_dependencies.py`, and Dependency Review now allows no advisory at all.
 - Dependabot's `uv` ecosystem now opens a weekly pull request for the UniMedVL lock (`directory: /scripts`) instead of leaving it out. The lock is compiled from `scripts/`, the way Dependabot compiles it, so its pull requests change only versions.
-- llama.cpp b11707 → b11734 and its GPU build from CUDA 12.8 to CUDA 13.4. The GPU runner needs an R580 or newer driver and a Turing or newer GPU, which UniMedVL's torch 2.14.1 (CUDA 13.0) needs too.
+- llama.cpp b11707 → b11738 and its GPU build from CUDA 12.8 to CUDA 13.4. The GPU runner needs an R580 or newer driver and a Turing or newer GPU, which UniMedVL's torch 2.14.1 (CUDA 13.0) needs too.
 - mlx-vlm 0.7.8 → 0.7.9. Since 0.7.9, mlx-vlm reads sampling defaults from the checkpoint only for options the caller leaves unset. `MlxBackend` sets `temperature=0.0`, so decoding stays greedy.
 
 ### Fixed

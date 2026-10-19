@@ -338,10 +338,10 @@ jobs:
     permissions:
       contents: read
     env:
-      LLAMA_ARCHIVE: llama-b11734-bin-ubuntu-cuda-13.4-x64.tar.gz
-      LLAMA_SHA256: f165c871d0473ace56b05b5ed32fef7ecb47d6a01ca06cbda0ad9d55132b0892
-      CUDART_ARCHIVE: cudart-llama-b11734-bin-ubuntu-cuda-13.4-x64.tar.gz
-      CUDART_SHA256: e0aa65934ed0171a8784a32d072ac473cd001d3ff041bc08ff370a908a853daa
+      LLAMA_ARCHIVE: llama-b11738-bin-ubuntu-cuda-13.4-x64.tar.gz
+      LLAMA_SHA256: c48881ae73dface588b8470e3acb308d06365af91303799ed8bf010e8de6b681
+      CUDART_ARCHIVE: cudart-llama-b11738-bin-ubuntu-cuda-13.4-x64.tar.gz
+      CUDART_SHA256: d60c7698166bfcbc9516c5d053321d8ac850a2c0316d3c009260dfd11c905330
       GPU_LAYERS: 999
       GPU_MODEL: ${{ inputs.gpu-model }}
     steps:

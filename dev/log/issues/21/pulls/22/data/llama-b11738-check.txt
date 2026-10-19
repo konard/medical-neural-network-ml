@@ -1,0 +1,10 @@
+# llama.cpp b11738 CUDA 13.4 x64: both archives unpacked with --strip-components 1 into one folder
+d60c7698166bfcbc9516c5d053321d8ac850a2c0316d3c009260dfd11c905330  cudart-llama-b11738-bin-ubuntu-cuda-13.4-x64.tar.gz
+c48881ae73dface588b8470e3acb308d06365af91303799ed8bf010e8de6b681  llama-b11738-bin-ubuntu-cuda-13.4-x64.tar.gz
+4d4101b8a51eace7fee64f6dbaec8e536221567ef6d8b99563345cbab7b4f2a8  llama-b11738-bin-ubuntu-x64.tar.gz
+version: 0.7.0-dev (build 11738, commit f174553e1)
+built with GNU 11.4.0 for Linux x86_64
+	libcudart.so.13 => $LLAMA_DIR/libcudart.so.13
+	libcublas.so.13 => $LLAMA_DIR/libcublas.so.13
+	libcuda.so.1 => not found
+	libcublasLt.so.13 => $LLAMA_DIR/libcublasLt.so.13

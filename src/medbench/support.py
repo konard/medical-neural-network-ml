@@ -59,7 +59,7 @@ IMAGE_TASKS = frozenset(task for task in TASK_NAMES if not task.startswith("diag
 
 RUNTIMES: dict[str, str] = {
     "llama.cpp": (
-        "llama-server b11734 (GGUF, CPU or CUDA) started by "
+        "llama-server b11738 (GGUF, CPU or CUDA) started by "
         "scripts/medbench-model-run.sh and called through "
         "OpenAICompatibleBackend"
     ),
