@@ -130,7 +130,7 @@ Fine-tuning changes the model's weights using our data.
 
 | Method | Simple explanation | Pros | Cons | When to use |
 |---|---|---|---|---|
-| Full fine-tuning | Change all weights. | Highest possible quality; learns the most. | Needs much GPU memory (weights + gradients + optimizer state, roughly 4x model size or more); most forgetting; one full copy per task. | Large data (100k+ examples), big budget, big change of behavior. |
+| Full fine-tuning | Change all weights. | Highest possible quality; learns the most. | Needs much GPU memory (weights + gradients + optimizer state: about 16 bytes per weight with mixed-precision AdamW, so about 8x the bf16 model size, plus activations); most forgetting; one full copy per task. | Large data (100k+ examples), big budget, big change of behavior. |
 | LoRA (Low-Rank Adaptation) | Freeze the model and train two small extra matrices beside each layer. | For GPT-3 175B: 10,000x fewer trainable parameters and 3x less GPU memory; no extra delay at inference (can be merged in). [S5] Forgets less than full FT. [S6] | Learns less than full FT, especially for continued pre-training. [S6] | Default first choice for fine-tuning. |
 | QLoRA | LoRA, with the frozen base model stored in 4-bit (NF4), plus "double quantization" and "paged optimizers". | Fine-tuned a 65B model on a single 48 GB GPU in about 24 hours; Guanaco reached 99.3% of ChatGPT on the Vicuna benchmark. [S7] | Slower per step than LoRA; small quality loss possible; needs bitsandbytes and a supported GPU. | When GPU memory is small. Google's official MedGemma fine-tuning notebook uses QLoRA. [S8] |
 | DoRA | Split each weight into "size" (magnitude) and "direction"; LoRA updates only the direction. | Closer to full FT quality than LoRA, with no extra inference cost (paper claim). [S9] | Newer and less tested; a bit slower to train. | When LoRA plateaus. |
@@ -146,10 +146,10 @@ Fine-tuning changes the model's weights using our data.
 | Continued pre-training (domain-adaptive pre-training, DAPT) | Keep training the base model on lots of raw medical text/images (no labels) the same way it was first trained. | Millions to billions of tokens / images, unlabeled. | Teaches medical words and image patterns; gains even in low-resource settings; task-adaptive pre-training (TAPT) on the task's own unlabeled data helps even more. [S10] | Expensive; can cause forgetting, so mix in some general data ("replay"). | Domain or language that is very different (e.g. local-language clinical notes). |
 | Instruction tuning / SFT (supervised fine-tuning) | Show (question, ideal answer) pairs. | 1k-100k pairs. | Simple, stable, well supported. | Copies the style of the answers, including mistakes; can overfit. | Teach a format or task (e.g. "extract drugs from prescription as JSON"). |
 | RLHF with PPO | Train a "reward model" from human preferences, then improve the model with RL against it. | Thousands of human comparisons. | Very flexible. | Complex, unstable, needs several model copies in memory. | Only for large teams. |
-| DPO | Learn directly from pairs "answer A is better than answer B", with a simple classification-like loss. No reward model and no RL loop. | Thousands of preference pairs. | Stable, simple, cheap; as good as or better than PPO in the paper. [S11] | Needs paired preferences; can over-optimize. | Make answers safer or more useful after SFT. |
+| DPO | Learn directly from pairs "answer A is better than answer B", with a simple classification-like loss. No reward model and no RL loop. | Thousands of preference pairs. | Stable, simple, cheap; as good as or better than PPO in the paper. [S11] | Needs paired preferences; can over-optimize; tends to make answers longer rather than better (length exploitation), so track answer length. [S60] | Make answers safer or more useful after SFT. |
 | ORPO | Combines SFT and preference learning in one step, with no reference model. | Preference pairs. | One training run instead of two; less memory. [S12] | Newer; in TRL it is marked "experimental". [S13] | Small budget preference tuning. |
-| KTO | Learns from simple "good" / "bad" labels on single answers (no pairs needed). | Thumbs up / down per answer. | Easy to collect from clinician feedback; matched or beat preference methods at 1B-30B in the paper. [S14] (unverified, secondary source) | Less studied in medicine. | When doctors only mark answers as OK / not OK. |
-| RL with verifiable rewards (GRPO) | Model makes several answers; a program checks each one (right/wrong); the model is pushed toward the above-average ones. No separate "critic" model. [S15] | Questions with checkable answers (multiple choice, codes, numbers). | Strong reasoning gains with little data; generalizes well. | Needs an automatic checker; reward hacking possible; training is slower than SFT. | Diagnosis multiple choice, coding (ICD), extraction with exact answers. |
+| KTO | Learns from simple "good" / "bad" labels on single answers (no pairs needed). | Thumbs up / down per answer. | Easy to collect from clinician feedback; matched or beat preference methods at 1B-30B in the paper. [S14] | Less studied in medicine. | When doctors only mark answers as OK / not OK. |
+| RL with verifiable rewards (GRPO) | Model makes several answers; a program checks each one (right/wrong); the model is pushed toward the above-average ones. No separate "critic" model. [S15] | Questions with checkable answers (multiple choice, codes, numbers). | Strong reasoning gains with little data; generalizes well. | Needs an automatic checker; reward hacking possible; training is slower than SFT; the original GRPO loss biases toward longer answers, especially wrong ones, so use the Dr. GRPO or DAPO loss (TRL now defaults to `loss_type="dapo"` and `beta=0.0`, no reference model). [S61] | Diagnosis multiple choice, coding (ICD), extraction with exact answers. |
 | Knowledge distillation | A big "teacher" model writes answers (or probabilities) and a small "student" learns to copy them. | Unlabeled questions + teacher access. | Small fast model with much of the teacher's skill; cheap labels. | Student copies teacher errors; check teacher's license terms. | We need a small model for CPU / edge, and a big good model exists. |
 | Model merging | Average or combine the weights of several fine-tuned models (model soups, TIES, DARE, SLERP). | None (only models). | No training needed; runs on CPU or 8 GB VRAM. [S16] | Unpredictable; models must share the same base. | Combine a "medical" and a "general" fine-tune. |
 
@@ -199,7 +199,10 @@ Key points:
    - SFT settings: learning rates 1e-7 to 1e-6, **one epoch**.
 8. **Official recipe for our own fine-tuning** (Google notebook `fine_tune_with_hugging_face.ipynb`): `google/medgemma-4b-it`,
    4-bit NF4 QLoRA, LoRA r=16, alpha=16, dropout 0.05, all linear layers, TRL `SFTTrainer`,
-   1 epoch, lr 2e-4, batch 4 x grad-accum 4, gradient checkpointing. It needs a bf16 GPU with
+   1 epoch, lr 2e-4, batch 4 x grad-accum 4, gradient checkpointing. It also sets
+   `modules_to_save=["lm_head", "embed_tokens"]`, so the embedding and output layers (about
+   0.67B weights each with the 262k vocabulary) are trained in full and saved with the
+   adapter; that is far more than 1% of the weights. It needs a bf16 GPU with
    **at least 40 GB** of memory (A100). Example data: CRC100k histology. [S8]
 
 **Lesson for us:** a GPU with 40 GB or more is the minimum for fine-tuning MedGemma 4B with the official
@@ -226,7 +229,8 @@ recipe. Libraries like Unsloth claim lower memory use (section 5) (unverified fo
   Chinchilla: 70B parameters, **1.4 trillion tokens** (about 20 tokens per parameter).
   Paper's table: 1B params needs about 20.2B tokens; 10B needs 205.1B tokens. [S20]
 - **Real compute:** Llama 3.1 (8B + 70B + 405B together) used **39.3M H100 GPU-hours**. The 8B model
-  alone used 1.46M GPU-hours. [S21] (secondary mirrors of the official model card)
+  alone used 1.46M GPU-hours. All were trained on about 15 trillion tokens, far past the
+  Chinchilla ratio. [S21]
 - Rough cost estimate, for planning only: at about $2 per H100-hour, 1.46M hours is about $3M for an
   8B model. This is far beyond a research project budget. (our estimate)
 
@@ -307,6 +311,8 @@ MedGemma or another strong open base, or from a medical encoder (MedSigLIP, RAD-
 | VLMEvalKit (OpenCompass) | Image+text model benchmark runner. | General, limited medical coverage. [S41] |
 | MedEvalKit (Alibaba DAMO, Lingshu) | 24 medical benchmarks: VQA-RAD, SLAKE, PathVQA, PMC-VQA, OmniMedVQA, MIMIC-CXR, CheXpert Plus, IU X-ray, MedQA, MedMCQA, PubMedQA, MedXpertQA, HealthBench, and more. [S42] | Apache-2.0 (per README badge). Best fit for us. |
 | MultiMedEval (2024) | 6 multimodal tasks, 23 datasets, 11 medical domains. [S41] | Alternative. |
+| HealthBench (OpenAI, 2025) | 5,000 multi-turn health conversations graded with 48,562 rubric criteria written by 262 physicians. [S62] | Open conversations, not multiple choice. |
+| MedHELM (Stanford, 2025) | 121 clinical tasks in 5 categories, scored partly by an LLM jury. [S62] | Broad clinical coverage. |
 
 ---
 
@@ -538,10 +544,10 @@ image. If the label changes (a flipped heart), do not use it, or change the labe
 
 | Area | Key facts |
 |---|---|
-| USA - FDA | Software that diagnoses or treats is a medical device (SaMD). The **PCCP final guidance** (December 2024) lets makers pre-approve planned model updates, and covers all AI-enabled devices. [S57] The **"AI-Enabled Device Software Functions: Lifecycle Management and Marketing Submission Recommendations"** guidance is still a **draft** (January 2025, docket FDA-2024-D-4488) on the FDA page as of this check. [S58] |
+| USA - FDA | Software that diagnoses or treats is a medical device (SaMD). The **PCCP final guidance** (December 2024; current version dated August 2025) lets makers pre-approve planned model updates, and covers all AI-enabled devices. [S57] The **"AI-Enabled Device Software Functions: Lifecycle Management and Marketing Submission Recommendations"** guidance is still a **draft** (January 2025, docket FDA-2024-D-4488) on the FDA page as of this check. [S58] |
 | USA - HIPAA | Covers health data at covered entities. De-identify by Safe Harbor (18 identifiers) or Expert Determination. [S45] |
 | EU - MDR | Medical device software is classified under MDR Rule 11. Diagnostic decision-support is at least Class IIa, so a notified body must review it. (Rule 11 detail is from common knowledge, unverified here.) |
-| EU - AI Act | AI that is (part of) a medical device needing a notified body counts as **high-risk** (Annex I). The **Digital Omnibus (Regulation (EU) 2026/1744)**, in force since 27 July 2026, moved high-risk deadlines: Annex III stand-alone systems from 2 Aug 2026 to **2 Dec 2027**; Annex I product systems (including **medical devices**) from 2 Aug 2027 to **2 Aug 2028**. Transparency (Art. 50) and general-purpose AI rules stay on the 2 Aug 2026 schedule. [S59] (Secondary law-firm sources; check against the Official Journal text.) |
+| EU - AI Act | AI that is (part of) a medical device needing a notified body counts as **high-risk** (Annex I). The **Digital Omnibus (Regulation (EU) 2026/1744)**, in force since 27 July 2026, moved high-risk deadlines: Annex III stand-alone systems from 2 Aug 2026 to **2 Dec 2027**; Annex I product systems (including **medical devices**) from 2 Aug 2027 to **2 Aug 2028**. Transparency (Art. 50) and general-purpose AI rules stay on the 2 Aug 2026 schedule, except that the Art. 50(2) marking of generated content gets until 2 Dec 2026 for systems placed on the market before 2 Aug 2026. [S59] (Checked against the Official Journal text, new Art. 113.) |
 | EU - GDPR | Health data is special-category data (Art. 9). It needs a legal basis plus an Art. 9 condition (e.g. consent or scientific research with safeguards). Pseudonymized data is still personal data. |
 
 **For this project (research, not a product):** use only public, de-identified, or synthetic data in
@@ -602,7 +608,7 @@ flowchart TD
 - [S18] Chen et al., "HuatuoGPT-o1, Towards Medical Complex Reasoning with LLMs", arXiv:2412.18925 - https://arxiv.org/abs/2412.18925
 - [S19] Chen et al., "MEDITRON-70B: Scaling Medical Pretraining for Large Language Models", arXiv:2311.16079 - https://arxiv.org/abs/2311.16079 ; https://github.com/epfl-nlp/meditron
 - [S20] Hoffmann et al., "Training Compute-Optimal Large Language Models" (Chinchilla), arXiv:2203.15556 - https://arxiv.org/abs/2203.15556 , https://ar5iv.labs.arxiv.org/html/2203.15556
-- [S21] Llama 3.1 model card (Hugging Face mirror) - https://huggingface.co/unsloth/Llama-3.1-8B
+- [S21] Llama 3.1 model card - https://huggingface.co/meta-llama/Llama-3.1-8B (mirror: https://huggingface.co/unsloth/Llama-3.1-8B)
 - [S22] Gu et al., "Domain-Specific Language Model Pretraining for Biomedical NLP" (PubMedBERT, BLURB), arXiv:2007.15779 - https://arxiv.org/abs/2007.15779
 - [S23] Luo et al., "BioGPT", arXiv:2210.10341 - https://arxiv.org/abs/2210.10341 ; Microsoft Research page - https://www.microsoft.com/en-us/research/publication/biogpt-generative-pre-trained-transformer-for-biomedical-text-generation/
 - [S24] Yang et al., "GatorTron: A Large Clinical Language Model", arXiv:2203.03540 - https://arxiv.org/abs/2203.03540
@@ -638,9 +644,12 @@ flowchart TD
 - [S54] Perez-Garcia et al., "Exploring Scalable Medical Image Encoders Beyond Text Supervision" (RAD-DINO), arXiv:2401.10815 - https://arxiv.org/html/2401.10815v2
 - [S55] Zhang et al., "BiomedCLIP", arXiv:2303.00915 - https://arxiv.org/abs/2303.00915v3
 - [S56] Muennighoff et al., "Scaling Data-Constrained Language Models", arXiv:2305.16264 - https://arxiv.org/abs/2305.16264 , https://arxiv.org/html/2305.16264
-- [S57] FDA PCCP final guidance (December 2024), law-firm summaries - https://www.foley.com/insights/publications/2025/01/fda-final-guidance-ai-device-software-predetermined-change-control-plan/ ; https://ropesgray.com/en/insights/alerts/2024/12/fda-finalizes-guidance-on-predetermined-change-control-plans-for-ai-enabled-device
+- [S57] FDA PCCP final guidance (December 2024, current version August 2025) - https://www.fda.gov/regulatory-information/search-fda-guidance-documents/marketing-submission-recommendations-predetermined-change-control-plan-artificial-intelligence ; law-firm summaries - https://www.foley.com/insights/publications/2025/01/fda-final-guidance-ai-device-software-predetermined-change-control-plan/ ; https://ropesgray.com/en/insights/alerts/2024/12/fda-finalizes-guidance-on-predetermined-change-control-plans-for-ai-enabled-device
 - [S58] FDA, "Artificial Intelligence-Enabled Device Software Functions: Lifecycle Management and Marketing Submission Recommendations" (draft) - https://www.fda.gov/regulatory-information/search-fda-guidance-documents/artificial-intelligence-enabled-device-software-functions-lifecycle-management-and-marketing
-- [S59] EU AI Act Digital Omnibus - Gibson Dunn - https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/ ; ActuIA (Regulation 2026/1744) - https://www.actuia.com/en/news/ai-act-obligations-in-force-and-delays-under-omnibus-2026-1744/ ; Orrick - https://www.orrick.com/en/Insights/2026/07/EU-AI-Act-Update-Digital-Omnibus-Finalizes-8-Compliance-Changes
+- [S59] EU AI Act Digital Omnibus, Regulation (EU) 2026/1744, Official Journal - https://eur-lex.europa.eu/eli/reg/2026/1744/oj ; Gibson Dunn - https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/ ; ActuIA (Regulation 2026/1744) - https://www.actuia.com/en/news/ai-act-obligations-in-force-and-delays-under-omnibus-2026-1744/ ; Orrick - https://www.orrick.com/en/Insights/2026/07/EU-AI-Act-Update-Digital-Omnibus-Finalizes-8-Compliance-Changes
+- [S60] Park et al. 2024, "Disentangling Length from Quality in Direct Preference Optimization", arXiv:2403.19159 - https://arxiv.org/abs/2403.19159
+- [S61] Liu et al. 2025, "Understanding R1-Zero-Like Training: A Critical Perspective" (Dr. GRPO), arXiv:2503.20783 - https://arxiv.org/abs/2503.20783 ; TRL GRPOTrainer docs (defaults `loss_type="dapo"`, `beta=0.0`) - https://huggingface.co/docs/trl/main/en/grpo_trainer
+- [S62] HealthBench, arXiv:2505.08775 - https://arxiv.org/abs/2505.08775 ; MedHELM, arXiv:2505.23802 - https://arxiv.org/abs/2505.23802
 
 Well-known method papers cited by name only (not re-fetched for this note): chain-of-thought (Wei et al.
 2022, arXiv:2201.11903), self-consistency (Wang et al. 2022, arXiv:2203.11171), adapters (Houlsby et al.

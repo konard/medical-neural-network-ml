@@ -51,13 +51,13 @@ Each step up costs about 10 times more data, money or time (§1).
 | Step | What changes | Pros | Cons | Real example |
 | --- | --- | --- | --- | --- |
 | 1. Prompting, RAG, tools | Nothing in the model; we change what we send it | Hours of work, no GPU for training, easy to undo | Limited by what the model already knows; long prompts are slower | Medprompt took GPT-4 to 90.2% on MedQA without training; MedRAG gave up to +18% |
-| 2. LoRA / QLoRA | Small adapter matrices, under 1% of weights | 27B QLoRA is 20–28 GB by formula at 512–2 048 tokens, so one 24 GB GPU only with short sequences or a chunked loss (hypothesis, not measured; [measurements.md §7](measurements.md#7-fine-tuning-memory-medbench-estimate---finetune)); adapters are a few MB; the base stays intact | Smaller gains than full training on very new tasks | Google's MedGemma notebook: QLoRA, 1 epoch, one 40 GB GPU |
+| 2. LoRA / QLoRA | Small adapter matrices, under 1% of weights | 27B QLoRA is 20–28 GB by formula at 512–2 048 tokens, so one 24 GB GPU only with short sequences or a chunked loss (hypothesis, not measured; [measurements.md §7](measurements.md#7-fine-tuning-memory-medbench-estimate---finetune)); rank-16 adapters are about 58 MB (4B) to 224 MB (27B) in bf16; the base stays intact | Smaller gains than full training on very new tasks | Google's MedGemma 4B notebook: QLoRA, 1 epoch, one 40 GB GPU; it also trains the embedding and output layers (`modules_to_save`), so its saved adapter is GB-sized (§3.4) |
 | 3a. Full fine-tune | All weights | Biggest gains on a new task | 16 bytes per weight: about 80 GB for 4B and 450 GB for 27B by formula; risk of forgetting | Most medical models from a base |
 | 3b. DPO (preferences) | All weights or LoRA | Teaches "this answer is better than that one"; no reward model | Needs pairs of answers ranked by doctors | – |
 | 3c. GRPO / RL with checkers | All weights or LoRA | Works with little data when an answer can be checked automatically (multiple choice, field extraction) | Needs a good checker; can learn to game it | MedVLM-R1: 600 samples, 55% → 78% |
 | 3d. Distillation | A small model learns from a big one | A 4B model that runs on CPU and talks like 27B | Inherits the teacher's mistakes | MedGemma's text skills came from distillation from a large teacher |
 | 4. Continued pre-training | The model reads lots of unlabeled medical text or images | New vocabulary, new image types | Weeks of GPU time; needs huge clean data | MEDITRON: 48.1B tokens on Llama 2 |
-| 5. From scratch | Everything | Full control of data and license | About 61 000 H100-hours ($150–250k) for a 27B LLM; weaker general knowledge | Rarely used for medical LLMs today |
+| 5. From scratch | Everything | Full control of data and license | About 61 000 H100-hours ($150–250k) for a 27B LLM, and that is only the Chinchilla minimum of 540B tokens; Gemma 3 27B used 14T tokens, about 26 times more; weaker general knowledge | Rarely used for medical LLMs today |
 
 ## 3. From scratch or from a base?
 
@@ -72,7 +72,9 @@ flowchart TD
 from scratch in this project. Start from the base that is closest to the
 task (§4.3). Rule of thumb: a model needs about **20 tokens of text per
 parameter** to be trained well from scratch (Chinchilla). For 7B that is
-140 billion tokens, far more medical text than any clinic has.
+140 billion tokens, far more medical text than any clinic has. That is a
+minimum: current open models train far past it (Llama 3.1 8B on about 15
+trillion tokens, Gemma 3 4B on 4 trillion).
 
 ## 4. Collecting a dataset
 
@@ -136,10 +138,26 @@ in [`src/medbench/augment.py`](../../../src/medbench/augment.py):
 * Red-team for dangerous answers: wrong doses, missed emergencies.
 * **Regulation** (not legal advice): software that diagnoses is a medical
   device. In the US, the FDA allows a *predetermined change control plan*
-  (PCCP, final guidance December 2024) for planned retraining. In the EU,
-  the AI Act's high-risk rules for medical devices apply from 2 August 2028
-  (moved by the 2026 Digital Omnibus). Health data is a special category under GDPR
-  Article 9. None of the models in this study is cleared for clinical use.
+  (PCCP, final guidance December 2024, current version August 2025) for
+  planned retraining. In the EU, the AI Act's high-risk rules for medical
+  devices apply from 2 August 2028 (moved by the 2026 Digital Omnibus,
+  [Regulation (EU) 2026/1744](https://eur-lex.europa.eu/eli/reg/2026/1744/oj)).
+  Health data is a special category under GDPR Article 9. None of the
+  models in this study is cleared for clinical use.
+
+Practices that the steps above also need (checked in
+[issue-23/ladder-review.md](../issue-23/ladder-review.md)):
+
+| Practice | What to do | Source |
+| --- | --- | --- |
+| Contamination check | Before trusting a public benchmark score, check that the model has not seen the test items (give it the first half of an item and see if it writes the rest) | [Golchin and Surdeanu 2023](https://arxiv.org/abs/2308.08493) |
+| LLM-as-judge with care | Judges favour the first answer, longer answers and their own answers; swap the order, cap length, and check a sample against doctors | [Zheng et al. 2023](https://arxiv.org/abs/2306.05685) |
+| Length bias in DPO and GRPO | Both can teach the model to write longer, not better; track answer length, and for GRPO use the Dr. GRPO or DAPO loss (the TRL default, `loss_type="dapo"`) | [Park et al. 2024](https://arxiv.org/abs/2403.19159), [Dr. GRPO](https://arxiv.org/abs/2503.20783), [TRL GRPO](https://huggingface.co/docs/trl/main/en/grpo_trainer) |
+| Open medical benchmarks | Add HealthBench (5 000 conversations, physician rubrics) and MedHELM (121 tasks) next to MedQA-style tests | [HealthBench](https://arxiv.org/abs/2505.08775), [MedHELM](https://arxiv.org/abs/2505.23802) |
+| Reproducibility | Pin model and dataset revisions, fix seeds, log every run (MLflow), version data (DVC) | §5.3 |
+| Privacy in training | If clinic data is used, consider differentially private training (Opacus) or federated learning; language models can repeat rare training records word for word | [Carlini et al. 2021](https://arxiv.org/abs/2012.07805), [Opacus](https://github.com/meta-pytorch/opacus) |
+| Reporting | Write a model card; report studies with TRIPOD+AI (prediction models), TRIPOD-LLM (LLMs), CLAIM 2024 (imaging), DECIDE-AI (early clinical tests) | [Model cards](https://arxiv.org/abs/1810.03993), [TRIPOD+AI](https://www.bmj.com/content/385/bmj-2023-078378), [TRIPOD-LLM](https://pubmed.ncbi.nlm.nih.gov/39779929/), [CLAIM](https://pubs.rsna.org/page/ai/claim), [DECIDE-AI](https://pubmed.ncbi.nlm.nih.gov/35585198/) |
+| Good ML practice for devices | Follow the 10 IMDRF principles: representative data, independent test sets, humans in the loop, monitoring after release | [IMDRF N88, 2025](https://imdrf.org/sites/default/files/2025-02/IMDRF_AIML%20WG_GMLP_N88%20Final.pdf) |
 
 ## 7. Our concrete plan if the ready models fail
 
@@ -158,8 +176,10 @@ flowchart TD
 Resources for each step come from `medbench estimate --finetune` (see
 [measurements.md §7](measurements.md#7-fine-tuning-memory-medbench-estimate---finetune)):
 
-* QLoRA of 4B: about 5 GB of GPU memory, so any modern GPU will do.
-* QLoRA of 27B: about 20 GB, so one L4 or RTX 4090.
-* LoRA of 27B in bf16: about 60 GB, so one A100 or H100 80 GB.
+* QLoRA of 4B: 6.5–13.5 GB of GPU memory at 512–2 048 tokens, so one
+  16–24 GB GPU.
+* QLoRA of 27B: 20–28 GB, so one 24 GB GPU (L4, RTX 4090) only with short
+  sequences or a chunked loss; this is a hypothesis to measure first.
+* LoRA of 27B in bf16: 61–69 GB, so one A100 or H100 80 GB.
 * Compute is about 6 × parameters × tokens. A LoRA run of 27B on 10M tokens
   is roughly 1.1 H100-hours (about $3–5 to rent).

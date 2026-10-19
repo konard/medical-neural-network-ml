@@ -7,20 +7,24 @@ as a self-hosted runner for the full tests. Sources and the raw notes are in
 
 ## 1. Two kinds of tests
 
-There are four layers of tests. Only the last two need a real model.
+There are six layers of tests. Only the last two run a medical model.
 
 | Layer | Where it runs | What it proves | Time |
 |---|---|---|---|
 | Unit tests (`pytest`) | Every pull request, hosted runner | Manifest and license checks, downloads (mocked), metrics, prompt parsing, resource maths, scripts | About 1 minute |
 | Real sample files (`Model Tests / real-data`) | Hosted runner; pull requests reuse a cache, the weekly run downloads again | All 40 real files download, match their SHA-256 and have an allowed license; `ATTRIBUTION.md` is uploaded | 1 to 3 minutes |
-| CPU smoke test (`Model Tests / cpu-smoke`) | Hosted `ubuntu-24.04` runner (4 vCPU, 16 GB) | Download, hash check, serving, image input and scoring work end to end with MedGemma 4B | 10 to 25 minutes |
-| GPU tests (`Model Tests / gpu`) | Self-hosted runner with labels `self-hosted, linux, x64, gpu` | All 7 tasks with up to 20 items each; MedGemma 27B or 4B | 10 to 40 minutes |
+| OCR baseline (`Model Tests / ocr-baseline`) | Hosted `ubuntu-26.04` runner, after `real-data` | Tesseract reads every real OCR file and is scored, as a non-LLM baseline | Up to 15 minutes (job limit) |
+| UniMedVL code on CPU (`Model Tests / unimedvl-cpu`) | Hosted `ubuntu-26.04` runner, Python 3.14 | UniMedVL's pinned upstream code, configs and tokenizer (no weights) install with the locked CPU PyTorch, and the shim and upstream tests pass | Up to 30 minutes (job limit) |
+| CPU smoke test (`Model Tests / cpu-smoke`) | Hosted `ubuntu-26.04` runner (4 vCPU, 16 GB) | Download, hash check, serving, image input and scoring work end to end with MedGemma 4B | 10 to 25 minutes |
+| GPU tests (`Model Tests / gpu`) | Self-hosted runner with labels `self-hosted, linux, x64, gpu` | All 7 tasks with up to 20 items each; MedGemma 27B or 4B, or UniMedVL | 10 to 40 minutes |
 
 ```mermaid
 flowchart LR
   PR[Pull request] --> UT[Unit tests<br/>every PR]
   PR -->|"only if src/medbench, the runner script<br/>or the workflow changed"| RD[real-data<br/>download + SHA-256 + licenses]
   RD --> CPU[cpu-smoke<br/>MedGemma 4B Q4 on CPU]
+  RD --> OCR[ocr-baseline<br/>Tesseract on real OCR files]
+  PR --> UV[unimedvl-cpu<br/>upstream code, no weights]
   Maint[Maintainer clicks<br/>Run workflow] --> CPU
   Maint -->|"input gpu = true"| GPU[gpu job<br/>self-hosted NVIDIA runner]
   CPU --> Rep[medbench-cpu-reports artifact]
