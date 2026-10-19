@@ -1,0 +1,503 @@
+Python 3.15 on macos-26	Set up job	﻿2026-10-19T16:57:55.0833410Z Current runner version: '2.337.0'
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.0968240Z ##[group]Runner Image Provisioner
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.0969320Z Hosted Compute Agent
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.0970820Z Version: 20261012.601
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.0971450Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.0972510Z Build Date: 2026-10-12T17:48:21Z
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.0973120Z Worker ID: {e8a9869d-a9aa-4058-a29c-a0a6a72085e5}
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.0974120Z Region: westus
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.0975700Z Cloud: MacCloud
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.0976250Z ##[endgroup]
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.0978150Z ##[group]Operating System
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.0978810Z macOS
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.0979180Z 26.6.2
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.0980630Z 25G83
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.0982190Z ##[endgroup]
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.0983230Z ##[group]Runner Image
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.0985800Z Image: macos-26-arm64
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.0987920Z Version: 20261013.0424.1
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.0989620Z Included Software: https://github.com/actions/runner-images/blob/macos-26-arm64/20261013.0424/images/macos/macos-26-arm64-Readme.md
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.0993670Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-26-arm64%2F20261013.0424
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.1007880Z ##[endgroup]
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.1113400Z ##[group]GITHUB_TOKEN Permissions
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.1120290Z Contents: read
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.1122430Z Metadata: read
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.1123940Z ##[endgroup]
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.1129720Z Secret source: Actions
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.1132060Z Cache mode: write
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.1133540Z Prepare workflow directory
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.1684000Z Prepare all required actions
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.1733620Z Getting action download info
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:55.5667050Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:56.4390410Z Download action repository 'actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97' (SHA:5fda3b95a4ea91299a34e894583c3862153e4b97)
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:56.5812400Z Download action repository 'actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+Python 3.15 on macos-26	Set up job	2026-10-19T16:57:57.2207350Z Complete job name: Python 3.15 on macos-26
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-19T16:57:57.2935260Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:57.2936180Z with:
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:57.2936570Z   persist-credentials: false
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:57.2937030Z   repository: konard/medical-neural-network-ml
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:57.2940000Z   token: ***
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:57.2940350Z   ssh-strict: true
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:57.2940700Z   ssh-user: git
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:57.2941040Z   clean: true
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:57.2941430Z   sparse-checkout-cone-mode: true
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:57.2941940Z   fetch-depth: 1
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:57.2942300Z   fetch-tags: false
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:57.2942680Z   show-progress: true
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:57.2943060Z   lfs: false
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:57.2943410Z   submodules: false
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:57.2943780Z   set-safe-directory: true
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:57.2944250Z   allow-unsafe-pr-checkout: false
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:57.2945060Z env:
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:57.2945440Z   GIT_CONFIG_COUNT: 1
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:57.2945830Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:57.2946260Z   GIT_CONFIG_VALUE_0: main
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:57.2946700Z ##[endgroup]
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.1007080Z Syncing repository: konard/medical-neural-network-ml
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.1009370Z ##[group]Getting Git version info
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.1010370Z Working directory is '/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml'
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.1011840Z [command]/opt/homebrew/bin/git version
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.1459410Z git version 2.56.0
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.1556110Z ##[endgroup]
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.1572710Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/6b768302-f3ca-4c38-9d9c-af19135972ec/.gitconfig'
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.1576860Z Temporarily overriding HOME='/Users/runner/work/_temp/6b768302-f3ca-4c38-9d9c-af19135972ec' before making global git config changes
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.1583260Z Adding repository directory to the temporary git global config as a safe directory
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.1589730Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.1702740Z Deleting the contents of '/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml'
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.1715530Z ##[group]Determining repository object format
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.1720530Z ##[endgroup]
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.1722170Z ##[group]Initializing the repository
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.1724300Z [command]/opt/homebrew/bin/git init /Users/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.2165470Z Initialized empty Git repository in /Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.2184210Z [command]/opt/homebrew/bin/git remote add origin https://github.com/konard/medical-neural-network-ml
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.2319630Z ##[endgroup]
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.2323610Z ##[group]Disabling automatic garbage collection
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.2326490Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.2448780Z ##[endgroup]
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.2453890Z ##[group]Setting up auth
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.2456410Z Removing SSH command configuration
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.2458450Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.2555810Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.4120270Z Removing HTTP extra header
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.4125430Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.4207410Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.5330260Z Removing includeIf entries pointing to credentials config files
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.5337210Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.5409360Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.7270690Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/_temp/git-credentials-6f6aa678-88fa-4563-89c7-71ab006b9948.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.7590850Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path /Users/runner/work/_temp/git-credentials-6f6aa678-88fa-4563-89c7-71ab006b9948.config
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.7904900Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path /Users/runner/work/_temp/git-credentials-6f6aa678-88fa-4563-89c7-71ab006b9948.config
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.8192790Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-6f6aa678-88fa-4563-89c7-71ab006b9948.config
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.8199160Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-6f6aa678-88fa-4563-89c7-71ab006b9948.config
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.8203990Z ##[endgroup]
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.8205390Z ##[group]Fetching the repository
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:58.8208170Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +be1f2980d7ed0b402f836c64fcc797f5123a6f7b:refs/remotes/pull/22/merge
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:59.4898030Z From https://github.com/konard/medical-neural-network-ml
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:59.4901680Z  * [new ref]         be1f2980d7ed0b402f836c64fcc797f5123a6f7b -> pull/22/merge
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:59.4906450Z ##[endgroup]
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:59.4907080Z ##[group]Determining the checkout info
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:59.4907720Z ##[endgroup]
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:59.4908600Z [command]/opt/homebrew/bin/git sparse-checkout disable
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:59.5108540Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:59.5207790Z ##[group]Checking out the ref
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:59.5217920Z [command]/opt/homebrew/bin/git checkout --progress --force refs/remotes/pull/22/merge
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:59.5967620Z HEAD is now at be1f298 Merge 55a591c87f2daf61ec7a5ff2bbdd67a30c393914 into fff9d99fa7eff21702c8b00de4015ea46829f0fa
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:59.6048120Z ##[endgroup]
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:59.6414710Z [command]/opt/homebrew/bin/git log -1 --format=%H
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:59.6499000Z be1f2980d7ed0b402f836c64fcc797f5123a6f7b
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:59.6514820Z ##[group]Removing auth
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:59.6515620Z Removing SSH command configuration
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:59.6521640Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:59.6613990Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:59.8231730Z Removing HTTP extra header
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:59.8437260Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:57:59.8650220Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.0896830Z Removing includeIf entries pointing to credentials config files
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.1000160Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.1104960Z includeif.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.1205340Z includeif.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.1305730Z includeif.gitdir:/github/workspace/.git.path
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.1437800Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.1742110Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.1818510Z /Users/runner/work/_temp/git-credentials-6f6aa678-88fa-4563-89c7-71ab006b9948.config
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.2028480Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path \/Users\/runner\/work\/_temp\/git\-credentials\-6f6aa678\-88fa\-4563\-89c7\-71ab006b9948\.config
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.2065700Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.2067420Z /Users/runner/work/_temp/git-credentials-6f6aa678-88fa-4563-89c7-71ab006b9948.config
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.2071760Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path \/Users\/runner\/work\/_temp\/git\-credentials\-6f6aa678\-88fa\-4563\-89c7\-71ab006b9948\.config
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.2073530Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.2074250Z /github/runner_temp/git-credentials-6f6aa678-88fa-4563-89c7-71ab006b9948.config
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.2075630Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-6f6aa678\-88fa\-4563\-89c7\-71ab006b9948\.config
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.2077600Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.2078330Z /github/runner_temp/git-credentials-6f6aa678-88fa-4563-89c7-71ab006b9948.config
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.2079690Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-6f6aa678\-88fa\-4563\-89c7\-71ab006b9948\.config
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.2081230Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.3379290Z Removing credentials config '/Users/runner/work/_temp/git-credentials-6f6aa678-88fa-4563-89c7-71ab006b9948.config'
+Python 3.15 on macos-26	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T16:58:00.3393160Z ##[endgroup]
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	﻿2026-10-19T16:58:00.3818250Z ##[group]Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:00.3818700Z with:
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:00.3818990Z   python-version: 3.15
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:00.3819180Z   check-latest: false
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:00.3821390Z   token: ***
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:00.3821730Z   update-environment: true
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:00.3822000Z   allow-prereleases: false
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:00.3822230Z   freethreaded: false
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:00.3822490Z env:
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:00.3822790Z   GIT_CONFIG_COUNT: 1
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:00.3823070Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:00.3823380Z   GIT_CONFIG_VALUE_0: main
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:00.3823650Z ##[endgroup]
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:00.6515060Z ##[group]Installed versions
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:00.6609230Z Version 3.15 was not found in the local cache
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:01.5540630Z Version 3.15 is available for downloading
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:01.5642890Z Download from "https://github.com/actions/python-versions/releases/download/3.15.0-38076878863/python-3.15.0-darwin-arm64.tar.gz"
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:02.7600740Z Extract downloaded archive
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:02.7918880Z [command]/usr/bin/tar xz -C /Users/runner/work/_temp/3263d4d7-7d0f-4202-b07d-d1f3021c9efa -f /Users/runner/work/_temp/4080a66e-dc7f-4f42-b138-548f9fcbc988
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:03.0375600Z Execute installation script
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:03.0827470Z Check if Python hostedtoolcache folder exist...
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:03.1260120Z Install Python binaries from prebuilt package
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:42.5396570Z installer: Package name is Python
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:42.5397990Z installer: choices changes file '/var/folders/n6/hn37q6pj7sj_9dmqqc2113800000gn/T/tmp.UDk3RQhSyp' applied
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:42.5398680Z installer: Upgrading at base path /
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:42.5399120Z installer: The upgrade was successful.
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:42.5402290Z Create hostedtoolcach symlinks (Required for the backward compatibility)
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:42.5403670Z Create Python 3.15.0 folder
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:42.5711000Z Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:42.5872390Z Upgrading pip...
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:43.8038350Z Collecting pip
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:43.8166220Z Using cached pip-26.2.1-py3-none-any.whl.metadata (4.6 kB)
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:43.8297800Z Using cached pip-26.2.1-py3-none-any.whl (1.8 MB)
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:43.9581250Z Installing collected packages: pip
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:43.9612660Z Attempting uninstall: pip
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:43.9634850Z Found existing installation: pip 26.2.1
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:43.9882110Z Uninstalling pip-26.2.1:
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:44.2354120Z Successfully uninstalled pip-26.2.1
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:45.4132250Z Successfully installed pip-26.2.1
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:45.5098870Z Install OpenSSL certificates
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:46.1435570Z Collecting certifi
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:46.2308780Z Downloading certifi-2026.10.18-py3-none-any.whl.metadata (2.5 kB)
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:46.3272280Z Downloading certifi-2026.10.18-py3-none-any.whl (134 kB)
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:46.3952430Z Installing collected packages: certifi
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:46.5190430Z Successfully installed certifi-2026.10.18
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:46.6546080Z -- pip install --upgrade certifi
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:46.6546670Z  -- removing any existing file or link
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:46.6547210Z  -- creating symlink to certifi certificate bundle
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:46.6547820Z  -- setting permissions
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:46.6548270Z  -- update complete
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:46.6634750Z Create complete file
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:46.7032540Z Successfully set up CPython (3.15.0)
+Python 3.15 on macos-26	Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97	2026-10-19T16:58:46.7034570Z ##[endgroup]
+Python 3.15 on macos-26	Install test dependencies	﻿2026-10-19T16:58:46.7457140Z ##[group]Run python -m pip install -e '.[dev]'
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:46.7458030Z ^[[36;1mpython -m pip install -e '.[dev]'^[[0m
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:46.7741240Z shell: /bin/bash -e {0}
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:46.7741550Z env:
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:46.7741840Z   GIT_CONFIG_COUNT: 1
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:46.7742140Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:46.7742360Z   GIT_CONFIG_VALUE_0: main
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:46.7742740Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.15.0/arm64
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:46.7743370Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.15.0/arm64/lib/pkgconfig
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:46.7743880Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.15.0/arm64
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:46.7744430Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.15.0/arm64
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:46.7744840Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.15.0/arm64
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:46.7745130Z ##[endgroup]
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:47.3626900Z Obtaining file:///Users/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:47.3743730Z   Installing build dependencies: started
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:48.8010520Z   Installing build dependencies: finished with status 'done'
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:48.8018830Z   Checking if build backend supports build_editable: started
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:48.8592370Z   Checking if build backend supports build_editable: finished with status 'done'
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:48.8620380Z   Getting requirements to build editable: started
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:49.0411020Z   Getting requirements to build editable: finished with status 'done'
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:49.0444380Z   Installing backend dependencies: started
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:49.6657920Z   Installing backend dependencies: finished with status 'done'
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:49.6667100Z   Preparing editable metadata (pyproject.toml): started
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:49.8733500Z   Preparing editable metadata (pyproject.toml): finished with status 'done'
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.0226940Z Collecting mypy>=2.4.0 (from medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.0921940Z   Downloading mypy-2.4.0-cp315-cp315-macosx_11_0_arm64.whl.metadata (2.4 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.2208460Z Collecting pillow>=13.0.0 (from medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.2412770Z   Downloading pillow-13.0.0-cp315-cp315-macosx_11_0_arm64.whl.metadata (9.1 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.2964680Z Collecting pre-commit>=4.7.0 (from medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.3123150Z   Downloading pre_commit-4.7.0-py2.py3-none-any.whl.metadata (1.2 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.3470340Z Collecting pytest-asyncio>=1.4.0 (from medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.3619330Z   Downloading pytest_asyncio-1.4.0-py3-none-any.whl.metadata (4.1 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.3875000Z Collecting pytest-cov>=7.1.0 (from medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.4050800Z   Downloading pytest_cov-7.1.0-py3-none-any.whl.metadata (32 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.4423810Z Collecting pytest>=9.1.1 (from medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.4560680Z   Downloading pytest-9.1.1-py3-none-any.whl.metadata (7.6 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.6617690Z Collecting ruff<0.18,>=0.17.1 (from medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.6769010Z   Downloading ruff-0.17.1-py3-none-macosx_11_0_arm64.whl.metadata (20 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.7092360Z Collecting scriv>=1.8.0 (from scriv[toml]>=1.8.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.7266380Z   Downloading scriv-1.8.0-py3-none-any.whl.metadata (26 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.7663430Z Collecting typing_extensions>=4.14.0 (from mypy>=2.4.0->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.7815110Z   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.8158280Z Collecting mypy_extensions>=1.0.0 (from mypy>=2.4.0->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.8301750Z   Downloading mypy_extensions-1.1.0-py3-none-any.whl.metadata (1.1 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.8422230Z Collecting pathspec>=1.0.0 (from mypy>=2.4.0->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.8451060Z   Using cached pathspec-1.1.1-py3-none-any.whl.metadata (14 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.9437280Z Collecting librt>=0.16.0 (from mypy>=2.4.0->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:50.9620630Z   Downloading librt-0.16.0-cp315-cp315-macosx_11_0_arm64.whl.metadata (1.3 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:51.0181050Z Collecting ast-serialize<1.0.0,>=0.11.2 (from mypy>=2.4.0->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:51.0358750Z   Downloading ast_serialize-0.13.1-cp315-abi3.abi3t-macosx_11_0_arm64.whl.metadata (1.4 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:51.0661660Z Collecting cfgv>=2.0.0 (from pre-commit>=4.7.0->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:51.0820280Z   Downloading cfgv-3.5.0-py2.py3-none-any.whl.metadata (8.9 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:51.1561720Z Collecting identify>=1.0.0 (from pre-commit>=4.7.0->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:51.1696690Z   Downloading identify-2.6.20-py2.py3-none-any.whl.metadata (4.4 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:51.1954840Z Collecting nodeenv>=0.11.1 (from pre-commit>=4.7.0->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:51.2165370Z   Downloading nodeenv-1.11.0-py2.py3-none-any.whl.metadata (40 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:51.2685340Z Collecting pyyaml>=5.1 (from pre-commit>=4.7.0->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:51.2850350Z   Downloading pyyaml-6.0.3.tar.gz (130 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:51.4981500Z   Installing build dependencies: started
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:52.9164330Z   Installing build dependencies: finished with status 'done'
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:52.9194130Z   Getting requirements to build wheel: started
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:55.4888390Z   Getting requirements to build wheel: finished with status 'done'
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:55.5029690Z   Preparing metadata (pyproject.toml): started
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:55.9614940Z   Preparing metadata (pyproject.toml): finished with status 'done'
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:56.0346320Z Collecting virtualenv>=20.10.0 (from pre-commit>=4.7.0->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:56.0488740Z   Downloading virtualenv-21.14.11-py3-none-any.whl.metadata (4.1 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:56.0793800Z Collecting iniconfig>=1.0.1 (from pytest>=9.1.1->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:56.0950570Z   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:56.1114400Z Collecting packaging>=22 (from pytest>=9.1.1->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:56.1149370Z   Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:56.1295860Z Collecting pluggy<2,>=1.5 (from pytest>=9.1.1->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:56.1405140Z   Using cached pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:56.2005960Z Collecting pygments>=2.7.2 (from pytest>=9.1.1->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:56.2160180Z   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:56.7231580Z Collecting coverage>=7.10.6 (from coverage[toml]>=7.10.6->pytest-cov>=7.1.0->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:56.7393570Z   Downloading coverage-7.16.2-cp315-cp315-macosx_11_0_arm64.whl.metadata (8.2 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:56.8207980Z Collecting attrs (from scriv>=1.8.0->scriv[toml]>=1.8.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:56.8358640Z   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:56.9303210Z Collecting click (from scriv>=1.8.0->scriv[toml]>=1.8.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:56.9449850Z   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:57.0891990Z Collecting click-log (from scriv>=1.8.0->scriv[toml]>=1.8.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:57.1061480Z   Downloading click_log-0.4.0-py2.py3-none-any.whl.metadata (1.2 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:57.1880010Z Collecting jinja2>=2.7 (from scriv>=1.8.0->scriv[toml]>=1.8.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:57.2113290Z   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:57.2790360Z Collecting markdown-it-py (from scriv>=1.8.0->scriv[toml]>=1.8.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:57.2938650Z   Downloading markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:57.3555490Z Collecting requests (from scriv>=1.8.0->scriv[toml]>=1.8.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:57.3717760Z   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:57.4990500Z Collecting MarkupSafe>=2.0 (from jinja2>=2.7->scriv>=1.8.0->scriv[toml]>=1.8.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:57.5152790Z   Downloading markupsafe-3.0.4-cp315-cp315-macosx_11_0_arm64.whl.metadata (2.7 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:57.6237030Z Collecting distlib<1,>=0.4.3 (from virtualenv>=20.10.0->pre-commit>=4.7.0->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:57.6403480Z   Downloading distlib-0.4.4-py2.py3-none-any.whl.metadata (5.3 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:57.7524980Z Collecting filelock<5,>=3.24.2 (from virtualenv>=20.10.0->pre-commit>=4.7.0->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:57.7729560Z   Downloading filelock-4.2.4-py3-none-any.whl.metadata (2.0 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:57.8803640Z Collecting platformdirs<5,>=4.4 (from virtualenv>=20.10.0->pre-commit>=4.7.0->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:57.8950800Z   Downloading platformdirs-4.13.5-py3-none-any.whl.metadata (5.5 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:57.9290520Z Collecting python-discovery>=1.6.1 (from virtualenv>=20.10.0->pre-commit>=4.7.0->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:57.9431490Z   Downloading python_discovery-1.6.4-py3-none-any.whl.metadata (5.1 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.0069610Z Collecting mdurl~=0.1 (from markdown-it-py->scriv>=1.8.0->scriv[toml]>=1.8.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.0209010Z   Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.1270500Z Collecting charset_normalizer<4,>=2 (from requests->scriv>=1.8.0->scriv[toml]>=1.8.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.1435170Z   Downloading charset_normalizer-3.5.2-cp315-cp315-macosx_10_15_universal2.whl.metadata (46 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.2052140Z Collecting idna<4,>=2.5 (from requests->scriv>=1.8.0->scriv[toml]>=1.8.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.2214850Z   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.2560810Z Collecting urllib3<3,>=1.26 (from requests->scriv>=1.8.0->scriv[toml]>=1.8.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.2727040Z   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.3094520Z Requirement already satisfied: certifi>=2023.5.7 in /Library/Frameworks/Python.framework/Versions/3.15/lib/python3.15/site-packages (from requests->scriv>=1.8.0->scriv[toml]>=1.8.0; extra == "dev"->medical-neural-network-ml==0.1.0) (2026.10.18)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.3304970Z Downloading ruff-0.17.1-py3-none-macosx_11_0_arm64.whl (9.3 MB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.4646650Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.3/9.3 MB 74.8 MB/s  0:00:00
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.4883010Z Downloading mypy-2.4.0-cp315-cp315-macosx_11_0_arm64.whl (14.2 MB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.6193080Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 14.2/14.2 MB 109.4 MB/s  0:00:00
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.6414180Z Downloading ast_serialize-0.13.1-cp315-abi3.abi3t-macosx_11_0_arm64.whl (1.2 MB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.6506850Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 138.7 MB/s  0:00:00
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.6680200Z Downloading librt-0.16.0-cp315-cp315-macosx_11_0_arm64.whl (154 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.6921910Z Downloading mypy_extensions-1.1.0-py3-none-any.whl (5.0 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.7018660Z Using cached pathspec-1.1.1-py3-none-any.whl (57 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.7215940Z Downloading pillow-13.0.0-cp315-cp315-macosx_11_0_arm64.whl (4.9 MB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.7552220Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.9/4.9 MB 145.6 MB/s  0:00:00
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.7689710Z Downloading pre_commit-4.7.0-py2.py3-none-any.whl (226 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.7877720Z Downloading cfgv-3.5.0-py2.py3-none-any.whl (7.4 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.8073090Z Downloading identify-2.6.20-py2.py3-none-any.whl (99 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.8275350Z Downloading nodeenv-1.11.0-py2.py3-none-any.whl (34 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.8454340Z Downloading pytest-9.1.1-py3-none-any.whl (386 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.8574340Z Using cached pluggy-1.7.0-py3-none-any.whl (27 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.8718480Z Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.8775490Z Using cached packaging-26.3-py3-none-any.whl (129 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.8928080Z Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.9053130Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 122.4 MB/s  0:00:00
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.9225520Z Downloading pytest_asyncio-1.4.0-py3-none-any.whl (16 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.9430350Z Downloading pytest_cov-7.1.0-py3-none-any.whl (22 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.9656920Z Downloading coverage-7.16.2-cp315-cp315-macosx_11_0_arm64.whl (224 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:58.9901500Z Downloading scriv-1.8.0-py3-none-any.whl (39 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.0119390Z Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.0348260Z Downloading markupsafe-3.0.4-cp315-cp315-macosx_11_0_arm64.whl (12 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.0575960Z Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.0779920Z Downloading virtualenv-21.14.11-py3-none-any.whl (5.5 MB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.1135240Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.5/5.5 MB 155.6 MB/s  0:00:00
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.1288670Z Downloading distlib-0.4.4-py2.py3-none-any.whl (472 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.1522200Z Downloading filelock-4.2.4-py3-none-any.whl (162 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.1718750Z Downloading platformdirs-4.13.5-py3-none-any.whl (32 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.2054480Z Downloading python_discovery-1.6.4-py3-none-any.whl (39 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.2261900Z Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.2470760Z Downloading click-8.5.0-py3-none-any.whl (125 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.2683710Z Downloading click_log-0.4.0-py2.py3-none-any.whl (4.3 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.2909530Z Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.3109900Z Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.3295630Z Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.3616120Z Downloading charset_normalizer-3.5.2-cp315-cp315-macosx_10_15_universal2.whl (367 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.3812320Z Downloading idna-3.20-py3-none-any.whl (69 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.4001540Z Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.5502500Z Building wheels for collected packages: medical-neural-network-ml, pyyaml
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.5525410Z   Building editable for medical-neural-network-ml (pyproject.toml): started
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.6550050Z   Building editable for medical-neural-network-ml (pyproject.toml): finished with status 'done'
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.6589130Z   Created wheel for medical-neural-network-ml: filename=medical_neural_network_ml-0.1.0-py3-none-any.whl size=8706 sha256=96dd735229fb82e1ed95229430239a4540194276622904ff35d1a9ef144a5075
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.6593700Z   Stored in directory: /private/var/folders/n6/hn37q6pj7sj_9dmqqc2113800000gn/T/pip-ephem-wheel-cache-t19yszel/wheels/3f/18/2a/31556ef8bb6c62d0ac389209a49dd52e97325a029122e17022
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:58:59.6685650Z   Building wheel for pyyaml (pyproject.toml): started
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:59:02.9098190Z   Building wheel for pyyaml (pyproject.toml): finished with status 'done'
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:59:02.9169540Z   Created wheel for pyyaml: filename=pyyaml-6.0.3-cp315-cp315-macosx_10_15_universal2.whl size=45472 sha256=13c020cfd492866e61dfe83abd31a0482de381a7955440630ce0908d372fe772
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:59:02.9174170Z   Stored in directory: /Users/runner/Library/Caches/pip/wheels/39/c5/03/188d3f8dc792f835b1e767b5e6e0fec41846dc06f6dd368652
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:59:02.9267660Z Successfully built medical-neural-network-ml pyyaml
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:59:03.0345570Z Installing collected packages: distlib, urllib3, typing_extensions, ruff, pyyaml, pygments, pluggy, platformdirs, pillow, pathspec, packaging, nodeenv, mypy_extensions, medical-neural-network-ml, mdurl, MarkupSafe, librt, iniconfig, idna, identify, filelock, coverage, click, charset_normalizer, cfgv, attrs, ast-serialize, requests, python-discovery, pytest, mypy, markdown-it-py, jinja2, click-log, virtualenv, scriv, pytest-cov, pytest-asyncio, pre-commit
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:59:08.5886020Z 
+Python 3.15 on macos-26	Install test dependencies	2026-10-19T16:59:08.5904750Z Successfully installed MarkupSafe-3.0.4 ast-serialize-0.13.1 attrs-26.1.0 cfgv-3.5.0 charset_normalizer-3.5.2 click-8.5.0 click-log-0.4.0 coverage-7.16.2 distlib-0.4.4 filelock-4.2.4 identify-2.6.20 idna-3.20 iniconfig-2.3.1 jinja2-3.1.6 librt-0.16.0 markdown-it-py-4.2.0 mdurl-0.1.2 medical-neural-network-ml-0.1.0 mypy-2.4.0 mypy_extensions-1.1.0 nodeenv-1.11.0 packaging-26.3 pathspec-1.1.1 pillow-13.0.0 platformdirs-4.13.5 pluggy-1.7.0 pre-commit-4.7.0 pygments-2.21.0 pytest-9.1.1 pytest-asyncio-1.4.0 pytest-cov-7.1.0 python-discovery-1.6.4 pyyaml-6.0.3 requests-2.34.2 ruff-0.17.1 scriv-1.8.0 typing_extensions-4.16.0 urllib3-2.8.0 virtualenv-21.14.11
+Python 3.15 on macos-26	Run compatibility tests without model downloads	﻿2026-10-19T16:59:08.8892600Z ##[group]Run bash scripts/run-with-budget-warning.sh "$TEST_BUDGET_SECONDS" \
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:08.8893190Z ^[[36;1mbash scripts/run-with-budget-warning.sh "$TEST_BUDGET_SECONDS" \^[[0m
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:08.8893650Z ^[[36;1m  "Compatibility ($RUN_LABEL)" \^[[0m
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:08.8893960Z ^[[36;1m  python -m medbench.cli monitor --interval 2 \^[[0m
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:08.8894410Z ^[[36;1m  --out "resources/compatibility-$RUN_LABEL.json" \^[[0m
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:08.8894810Z ^[[36;1m  --label "Compatibility ($RUN_LABEL)" -- \^[[0m
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:08.8895400Z ^[[36;1m  python -m pytest^[[0m
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:08.8944180Z shell: /bin/bash -e {0}
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:08.8944490Z env:
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:08.8944800Z   GIT_CONFIG_COUNT: 1
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:08.8945130Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:08.8945570Z   GIT_CONFIG_VALUE_0: main
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:08.8945910Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.15.0/arm64
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:08.8946540Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.15.0/arm64/lib/pkgconfig
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:08.8947400Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.15.0/arm64
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:08.8947950Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.15.0/arm64
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:08.8948510Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.15.0/arm64
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:08.8948990Z   TEST_BUDGET_SECONDS: 600
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:08.8949260Z   RUN_LABEL: macos-26-py3.15
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:08.8949620Z ##[endgroup]
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:51.5735320Z ........................................................................ [  7%]
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:52.7659260Z ........................................................................ [ 14%]
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:53.8829340Z ........................................................................ [ 21%]
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:55.0410530Z ...s............s....................................................... [ 28%]
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:55.0411830Z ........................................................................ [ 36%]
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:55.0414030Z .....................................................s.................. [ 43%]
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:57.3379960Z ...............F.sss.................................................... [ 50%]
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:57.3381140Z .......................................................................s [ 57%]
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:58.4460070Z sssssssssssssssssssssssssssssssssssssss................................. [ 65%]
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T16:59:58.4461160Z ........................................................................ [ 72%]
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:09.6957360Z .......................................................ss............... [ 79%]
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:29.8755040Z ........................................................................ [ 86%]
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:48.0766040Z ........................................................................ [ 93%]
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0382050Z ...................s........................................             [100%]
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0484040Z =================================== FAILURES ===================================
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0691060Z _______________ test_cuda_runtime_lands_next_to_the_cuda_backend _______________
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0795230Z 
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0800950Z tmp_path = PosixPath('/private/var/folders/n6/hn37q6pj7sj_9dmqqc2113800000gn/T/pytest-of-runner/pytest-0/test_cuda_runtime_lands_next_t0')
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0802140Z 
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0806490Z     def test_cuda_runtime_lands_next_to_the_cuda_backend(tmp_path: Path) -> None:
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0808690Z         """llama.cpp's libggml-cuda.so finds libcudart only in its own folder.
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0811080Z     
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0812410Z         Both release archives keep their files in one top-level folder, and the
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0813310Z         CUDA backend's RUNPATH is ``$ORIGIN``. Unpacked without
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0815280Z         ``--strip-components 1`` the runtime went to a subfolder, the backend
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0816440Z         did not load and llama-server ran on the CPU (issue #21).
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0818150Z         """
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0821640Z         llama = tar_folder(
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0822210Z             tmp_path,
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0823230Z             "llama-b1-bin-ubuntu-cuda-13.4-x64",
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0826470Z             {"llama-server": "#!/bin/sh\n", "libggml-cuda.so": ""},
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0827620Z         )
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0828360Z         cudart = tar_folder(
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0832150Z             tmp_path,
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0832800Z             "cudart-llama-b1-bin-ubuntu-cuda-13.4-x64",
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0834720Z             {"libcudart.so.13": "", "libcublas.so.13": ""},
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0835200Z         )
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0835630Z         cache = tmp_path / "cache"
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0836300Z         cache.mkdir()
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0845390Z         for archive in (llama, cudart):
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0849010Z             (cache / archive.name).write_bytes(archive.read_bytes())
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0849660Z         model_dir = cache / "models" / REVISION[:12]
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0850050Z         model_dir.mkdir(parents=True)
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0850480Z         (model_dir / "model.gguf").write_text("gguf")
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0850950Z         result = run_script(
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0851420Z             "download",
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0851720Z             CACHE_DIR=str(cache),
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0852070Z             LLAMA_VERSION="b1",
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0852410Z             LLAMA_ARCHIVE=llama.name,
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0855140Z             LLAMA_SHA256=sha256(llama),
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0855440Z             CUDART_ARCHIVE=cudart.name,
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0855940Z             CUDART_SHA256=sha256(cudart),
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0856320Z             MODEL_REVISION=REVISION,
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0856590Z             MODEL_FILE="model.gguf",
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0856970Z             MODEL_SHA256=sha256(model_dir / "model.gguf"),
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0857270Z             MMPROJ_FILE="",
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0857630Z         )
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0857880Z >       assert result.returncode == 0, result.stderr
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0858520Z E       AssertionError: [medbench-model-run] This pinned llama.cpp build requires Linux x86_64; see docs/apple-silicon.md for MLX.
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0862800Z E         
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0863130Z E       assert 2 == 0
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0864190Z E        +  where 2 = CompletedProcess(args=['bash', '/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/scripts/medbenc... stderr='[medbench-model-run] This pinned llama.cpp build requires Linux x86_64; see docs/apple-silicon.md for MLX.\n').returncode
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0865270Z 
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0865540Z tests/test_medbench_model_run.py:201: AssertionError
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0866170Z =========================== short test summary info ============================
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0866790Z SKIPPED [1] tests/test_unimedvl_attention.py:18: could not import 'torch': No module named 'torch'
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0867490Z SKIPPED [1] tests/test_unimedvl_upstream.py:35: could not import 'torch': No module named 'torch'
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0868150Z SKIPPED [1] tests/test_measure_training_memory.py:56: needs Linux /proc
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0868800Z SKIPPED [1] tests/test_measure_training_memory.py:234: could not import 'torch': No module named 'torch'
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0869550Z SKIPPED [1] tests/test_medbench_ddxplus_parser.py:88: set MEDBENCH_NETWORK_TESTS=1 to download the real files
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0870640Z SKIPPED [1] tests/test_medbench_model_run.py:287: the run script only runs on Linux x86_64
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0872040Z SKIPPED [1] tests/test_medbench_model_run.py:307: the run script only runs on Linux x86_64
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0872640Z SKIPPED [1] tests/test_medbench_model_run.py:320: the run script only runs on Linux x86_64
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0873300Z SKIPPED [40] tests/test_medbench_real_data.py:442: set MEDBENCH_NETWORK_TESTS=1 to download the real files
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0873940Z SKIPPED [1] tests/test_real_models.py:41: set MEDBENCH_BASE_URL to run
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0875140Z SKIPPED [1] tests/test_real_models.py:60: set MEDBENCH_VISION=1 for image models
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0875760Z SKIPPED [1] tests/test_validate_changeset.py:372: Requires the multi-language layout
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0876950Z FAILED tests/test_medbench_model_run.py::test_cuda_runtime_lands_next_to_the_cuda_backend - AssertionError: [medbench-model-run] This pinned llama.cpp build requires Linux x86_64; see docs/apple-silicon.md for MLX.
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0877930Z   
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0878140Z assert 2 == 0
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0879130Z  +  where 2 = CompletedProcess(args=['bash', '/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/scripts/medbenc... stderr='[medbench-model-run] This pinned llama.cpp build requires Linux x86_64; see docs/apple-silicon.md for MLX.\n').returncode
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0880330Z 1 failed, 946 passed, 51 skipped in 107.60s (0:01:47)
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0880740Z Compatibility (macos-26-py3.15) took 110s of its 600s execution budget.
+Python 3.15 on macos-26	Run compatibility tests without model downloads	2026-10-19T17:00:58.0922640Z ##[error]Process completed with exit code 1.
+Python 3.15 on macos-26	Upload resource report	﻿2026-10-19T17:00:58.1232770Z ##[group]Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.1233210Z with:
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.1233450Z   name: resources-compatibility-macos-26-py3.15
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.1233730Z   path: resources
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.1233950Z   if-no-files-found: ignore
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.1234140Z   compression-level: 6
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.1234300Z   overwrite: false
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.1234560Z   include-hidden-files: false
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.1234800Z   archive: true
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.1235000Z env:
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.1235260Z   GIT_CONFIG_COUNT: 1
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.1235500Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.1235810Z   GIT_CONFIG_VALUE_0: main
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.1236060Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.15.0/arm64
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.1236610Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.15.0/arm64/lib/pkgconfig
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.1237150Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.15.0/arm64
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.1237900Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.15.0/arm64
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.1238280Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.15.0/arm64
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.1238840Z ##[endgroup]
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.8782770Z With the provided path, there will be 1 file uploaded
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.8784020Z Artifact name is valid!
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:58.8784590Z Root directory input is valid!
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:59.1746100Z Uploading artifact: resources-compatibility-macos-26-py3.15.zip
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:59.1750560Z Beginning upload of artifact content to blob storage
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:59.3855900Z Uploaded bytes 931
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:59.4322420Z Finished uploading artifact content to blob storage!
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:59.4325210Z SHA256 digest of uploaded artifact is 8d1bf186bcdf6e430fe37f6d2cf3f2c4180d717b291a8a0b7169fc5bcdfcdb2d
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:59.4326500Z Finalizing artifact upload
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:59.7435250Z Artifact resources-compatibility-macos-26-py3.15 successfully finalized. Artifact ID 12203879624
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:59.7436320Z Artifact resources-compatibility-macos-26-py3.15 has been successfully uploaded! Final size is 931 bytes. Artifact ID is 12203879624
+Python 3.15 on macos-26	Upload resource report	2026-10-19T17:00:59.7439030Z Artifact download URL: https://github.com/konard/medical-neural-network-ml/actions/runs/39289958473/artifacts/12203879624
+Python 3.15 on macos-26	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-19T17:00:59.7741670Z Post job cleanup.
+Python 3.15 on macos-26	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T17:00:59.9947930Z [command]/opt/homebrew/bin/git version
+Python 3.15 on macos-26	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T17:01:00.0122040Z git version 2.56.0
+Python 3.15 on macos-26	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T17:01:00.0177040Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/90112fcf-a8cb-4330-9398-bff716df5205/.gitconfig'
+Python 3.15 on macos-26	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T17:01:00.0203640Z Temporarily overriding HOME='/Users/runner/work/_temp/90112fcf-a8cb-4330-9398-bff716df5205' before making global git config changes
+Python 3.15 on macos-26	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T17:01:00.0205420Z Adding repository directory to the temporary git global config as a safe directory
+Python 3.15 on macos-26	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T17:01:00.0212600Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Python 3.15 on macos-26	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T17:01:00.0663430Z Removing SSH command configuration
+Python 3.15 on macos-26	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T17:01:00.0740910Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+Python 3.15 on macos-26	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T17:01:00.0907430Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Python 3.15 on macos-26	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T17:01:00.2741990Z Removing HTTP extra header
+Python 3.15 on macos-26	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T17:01:00.2769930Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Python 3.15 on macos-26	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T17:01:00.2840910Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Python 3.15 on macos-26	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T17:01:00.5263500Z Removing includeIf entries pointing to credentials config files
+Python 3.15 on macos-26	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T17:01:00.5366360Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Python 3.15 on macos-26	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-19T17:01:00.5672090Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Python 3.15 on macos-26	Complete job	﻿2026-10-19T17:01:00.7735330Z Cleaning up orphan processes

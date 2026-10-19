@@ -30,6 +30,12 @@ WORKFLOW = ROOT / ".github" / "workflows" / "model-tests.yml"
 REVISION = "fa17ea2647ef236db91adfe1465a61ab6562cf2c"
 
 
+linux_x86_64 = pytest.mark.skipif(
+    platform.system() != "Linux" or platform.machine() != "x86_64",
+    reason="the run script only runs on Linux x86_64",
+)
+
+
 def run_script(*args: str, **env: str) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
         ["bash", str(SCRIPT_PATH), *args],
@@ -160,6 +166,7 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+@linux_x86_64
 def test_cuda_runtime_lands_next_to_the_cuda_backend(tmp_path: Path) -> None:
     """llama.cpp's libggml-cuda.so finds libcudart only in its own folder.
 
@@ -232,12 +239,6 @@ def test_pull_request_paths_cover_every_file_the_jobs_run() -> None:
 
     missing = sorted(path for path in used if path not in filters)
     assert not missing, f"model-tests.yml pull_request paths miss {missing}"
-
-
-linux_x86_64 = pytest.mark.skipif(
-    platform.system() != "Linux" or platform.machine() != "x86_64",
-    reason="the run script only runs on Linux x86_64",
-)
 
 
 def free_port() -> int:

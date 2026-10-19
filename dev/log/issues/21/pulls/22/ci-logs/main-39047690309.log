@@ -1,0 +1,400 @@
+Branch Rulesets	UNKNOWN STEP	﻿2026-10-17T16:02:43.7464631Z Current runner version: '2.337.0'
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7492310Z ##[group]Runner Image Provisioner
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7493251Z Hosted Compute Agent
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7493909Z Version: 20261012.601
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7494564Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7495364Z Build Date: 2026-10-12T17:48:21Z
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7496116Z Worker ID: {34194748-ac77-43d8-a61f-c2184ade6cfb}
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7496852Z Region: westus
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7497419Z Cloud: Azure
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7498379Z ##[endgroup]
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7499986Z ##[group]Operating System
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7500739Z Ubuntu
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7501299Z 26.04.1
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7501787Z LTS
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7502358Z ##[endgroup]
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7502904Z ##[group]Runner Image
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7503573Z Image: ubuntu-26.04
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7504163Z Version: 20261012.163.1
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7505509Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261012.163/images/ubuntu/Ubuntu2604-Readme.md
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7507074Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261012.163
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7508422Z ##[endgroup]
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7509532Z ##[group]GITHUB_TOKEN Permissions
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7511849Z Contents: read
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7512507Z Metadata: read
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7513068Z ##[endgroup]
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7515371Z Secret source: Actions
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7516345Z Cache mode: write
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7517148Z Prepare workflow directory
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.7983548Z Prepare all required actions
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:43.8034595Z Getting action download info
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.1649532Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.2660474Z Download action repository 'actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97' (SHA:5fda3b95a4ea91299a34e894583c3862153e4b97)
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.4228123Z Complete job name: Branch Rulesets
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5025928Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5027015Z with:
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5027704Z   persist-credentials: false
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5028306Z   repository: konard/medical-neural-network-ml
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5032070Z   token: ***
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5032516Z   ssh-strict: true
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5032965Z   ssh-user: git
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5033394Z   clean: true
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5033846Z   sparse-checkout-cone-mode: true
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5034372Z   fetch-depth: 1
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5034799Z   fetch-tags: false
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5035240Z   show-progress: true
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5035690Z   lfs: false
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5036107Z   submodules: false
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5036566Z   set-safe-directory: true
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5037080Z   allow-unsafe-pr-checkout: false
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5038022Z env:
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5038462Z   GIT_CONFIG_COUNT: 1
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5038962Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5039583Z   GIT_CONFIG_VALUE_0: main
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.5040064Z ##[endgroup]
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6121217Z Syncing repository: konard/medical-neural-network-ml
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6123690Z ##[group]Getting Git version info
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6124777Z Working directory is '/home/runner/work/medical-neural-network-ml/medical-neural-network-ml'
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6126954Z [command]/usr/bin/git version
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6132599Z git version 2.55.0
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6158943Z ##[endgroup]
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6172797Z Temporarily overriding HOME='/home/runner/work/_temp/fcaef446-3e5a-437d-9731-1c0fd8322079' before making global git config changes
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6175360Z Adding repository directory to the temporary git global config as a safe directory
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6180170Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6267378Z Deleting the contents of '/home/runner/work/medical-neural-network-ml/medical-neural-network-ml'
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6270297Z ##[group]Determining repository object format
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6271593Z ##[endgroup]
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6273472Z ##[group]Initializing the repository
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6275478Z [command]/usr/bin/git init /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6388151Z Initialized empty Git repository in /home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6402072Z [command]/usr/bin/git remote add origin https://github.com/konard/medical-neural-network-ml
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6458082Z ##[endgroup]
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6458986Z ##[group]Disabling automatic garbage collection
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6462509Z [command]/usr/bin/git config --local gc.auto 0
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6501009Z ##[endgroup]
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6502158Z ##[group]Setting up auth
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6502707Z Removing SSH command configuration
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6509806Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.6551040Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.7026059Z Removing HTTP extra header
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.7032100Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.7065708Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.7353563Z Removing includeIf entries pointing to credentials config files
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.7360970Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.7397271Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.7680190Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-a1f847e1-2620-4408-8728-b5da73c0939e.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.7719195Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path /home/runner/work/_temp/git-credentials-a1f847e1-2620-4408-8728-b5da73c0939e.config
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.7754806Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-a1f847e1-2620-4408-8728-b5da73c0939e.config
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.7792001Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-a1f847e1-2620-4408-8728-b5da73c0939e.config
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.7829335Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-a1f847e1-2620-4408-8728-b5da73c0939e.config
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.7859797Z ##[endgroup]
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.7861163Z ##[group]Fetching the repository
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:44.7867895Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +fff9d99fa7eff21702c8b00de4015ea46829f0fa:refs/remotes/origin/main
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.2617986Z From https://github.com/konard/medical-neural-network-ml
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.2619110Z  * [new ref]         fff9d99fa7eff21702c8b00de4015ea46829f0fa -> origin/main
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.2627092Z [command]/usr/bin/git branch --list --remote origin/main
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.2660485Z   origin/main
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.2669039Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.2693392Z fff9d99fa7eff21702c8b00de4015ea46829f0fa
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.2698425Z ##[endgroup]
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.2699720Z ##[group]Determining the checkout info
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.2701432Z ##[endgroup]
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.2702487Z [command]/usr/bin/git sparse-checkout disable
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.2772896Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.2827721Z ##[group]Checking out the ref
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.2833894Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3090892Z Reset branch 'main'
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3092038Z branch 'main' set up to track 'origin/main'.
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3101106Z ##[endgroup]
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3154637Z [command]/usr/bin/git log -1 --format=%H
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3184780Z fff9d99fa7eff21702c8b00de4015ea46829f0fa
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3196479Z ##[group]Removing auth
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3197427Z Removing SSH command configuration
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3201673Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3240409Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3536413Z Removing HTTP extra header
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3542047Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3581373Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3877134Z Removing includeIf entries pointing to credentials config files
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3880679Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3914951Z includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3918983Z includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3921847Z includeif.gitdir:/github/workspace/.git.path
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3923898Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3929943Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3961126Z /home/runner/work/_temp/git-credentials-a1f847e1-2620-4408-8728-b5da73c0939e.config
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.3974349Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-a1f847e1\-2620\-4408\-8728\-b5da73c0939e\.config
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.4028708Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.4063275Z /home/runner/work/_temp/git-credentials-a1f847e1-2620-4408-8728-b5da73c0939e.config
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.4074470Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-a1f847e1\-2620\-4408\-8728\-b5da73c0939e\.config
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.4114652Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.4144504Z /github/runner_temp/git-credentials-a1f847e1-2620-4408-8728-b5da73c0939e.config
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.4158808Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-a1f847e1\-2620\-4408\-8728\-b5da73c0939e\.config
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.4196667Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.4223929Z /github/runner_temp/git-credentials-a1f847e1-2620-4408-8728-b5da73c0939e.config
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.4233624Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-a1f847e1\-2620\-4408\-8728\-b5da73c0939e\.config
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.4273021Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.4565359Z Removing credentials config '/home/runner/work/_temp/git-credentials-a1f847e1-2620-4408-8728-b5da73c0939e.config'
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.4574399Z ##[endgroup]
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.5014870Z ##[group]Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.5016279Z with:
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.5016781Z   python-version: 3.15
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.5017683Z   check-latest: false
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.5026666Z   token: ***
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.5027224Z   update-environment: true
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.5028118Z   allow-prereleases: false
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.5028790Z   freethreaded: false
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.5029381Z env:
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.5029875Z   GIT_CONFIG_COUNT: 1
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.5030530Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.5031332Z   GIT_CONFIG_VALUE_0: main
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.5031958Z ##[endgroup]
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.6287984Z ##[group]Installed versions
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:45.6373967Z Version 3.15 was not found in the local cache
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:46.4283650Z Version 3.15 is available for downloading
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:46.4285310Z Download from "https://github.com/actions/python-versions/releases/download/3.15.0-38076878863/python-3.15.0-linux-26.04-x64.tar.gz"
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:47.7379634Z Extract downloaded archive
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:47.7527125Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/924a1be3-1db6-4e16-9913-75bf25f19468 -f /home/runner/work/_temp/89b801b6-3066-455b-acbd-16745be46a29
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:49.2373253Z Execute installation script
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:49.2526622Z Check if Python hostedtoolcache folder exist...
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:49.2528542Z Create Python 3.15.0 folder
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:49.2554546Z Copy Python binaries to hostedtoolcache folder
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:49.8590033Z Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:49.8709471Z Upgrading pip...
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:51.8566853Z Collecting pip
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:51.8791593Z Downloading pip-26.2.1-py3-none-any.whl.metadata (4.6 kB)
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:51.9258511Z Downloading pip-26.2.1-py3-none-any.whl (1.8 MB)
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:51.9538810Z ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 84.3 MB/s  0:00:00
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:51.9539728Z 
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:52.1005750Z Installing collected packages: pip
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:52.1006478Z Attempting uninstall: pip
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:52.1030180Z Found existing installation: pip 26.2.1
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:52.1332802Z Uninstalling pip-26.2.1:
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:52.1393849Z Successfully uninstalled pip-26.2.1
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.2597319Z Successfully installed pip-26.2.1
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.3393367Z Create complete file
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.3465028Z Successfully set up CPython (3.15.0)
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.3466138Z ##[endgroup]
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.3667390Z ##[group]Run python scripts/repository_rulesets.py check
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.3668347Z ^[[36;1mpython scripts/repository_rulesets.py check^[[0m
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.3835462Z shell: /usr/bin/bash -e {0}
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.3835785Z env:
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.3836011Z   GIT_CONFIG_COUNT: 1
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.3836310Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.3836620Z   GIT_CONFIG_VALUE_0: main
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.3836978Z   pythonLocation: /opt/hostedtoolcache/Python/3.15.0/x64
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.3837698Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.15.0/x64/lib/pkgconfig
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.3838175Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.15.0/x64
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.3838590Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.15.0/x64
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.3839005Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.15.0/x64
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.3839698Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.15.0/x64/lib
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.3842804Z   GITHUB_TOKEN: ***
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.3843049Z ##[endgroup]
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.6966897Z ##[error]ruleset 'main-checks' is not applied
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.6975822Z ##[error]ruleset 'main-history' is not applied
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.6977103Z ##[error]ruleset 'main-review' is not applied
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.6980097Z ##[error]The default branch of konard/medical-neural-network-ml is not protected as .github/rulesets/ describes. A repository admin must read docs/repository-policy.md, then run: GH_TOKEN=$(gh auth token) python scripts/repository_rulesets.py apply --yes
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.7087268Z ##[error]Process completed with exit code 1.
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.7253001Z Post job cleanup.
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.8171300Z [command]/usr/bin/git version
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.8227230Z git version 2.55.0
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.8265574Z Temporarily overriding HOME='/home/runner/work/_temp/092e7d58-65f7-4c0c-b0e3-e0c61f12da33' before making global git config changes
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.8266911Z Adding repository directory to the temporary git global config as a safe directory
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.8272291Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.8312575Z Removing SSH command configuration
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.8320067Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.8361199Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.8672793Z Removing HTTP extra header
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.8680478Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.8723864Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.9045696Z Removing includeIf entries pointing to credentials config files
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.9054419Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.9096770Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Branch Rulesets	UNKNOWN STEP	2026-10-17T16:02:53.9520134Z Cleaning up orphan processes
+Pipeline Status (Security)	UNKNOWN STEP	﻿2026-10-17T16:08:39.1523624Z Current runner version: '2.337.0'
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1551412Z ##[group]Runner Image Provisioner
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1552719Z Hosted Compute Agent
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1553415Z Version: 20261012.601
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1554120Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1554947Z Build Date: 2026-10-12T17:48:21Z
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1555629Z Worker ID: {a5de1e12-8a3f-4f3c-a716-e0432d1fb6d0}
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1556316Z Region: eastus
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1556921Z Cloud: Azure
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1557874Z ##[endgroup]
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1559535Z ##[group]Operating System
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1560202Z Ubuntu
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1560727Z 26.04.1
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1561293Z LTS
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1561844Z ##[endgroup]
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1562482Z ##[group]Runner Image
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1563070Z Image: ubuntu-26.04
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1563615Z Version: 20261012.163.1
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1564963Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261012.163/images/ubuntu/Ubuntu2604-Readme.md
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1566595Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261012.163
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1567796Z ##[endgroup]
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1568976Z ##[group]GITHUB_TOKEN Permissions
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1571275Z Contents: read
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1571970Z Metadata: read
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1572582Z ##[endgroup]
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1574848Z Secret source: Actions
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1575838Z Cache mode: write
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1576642Z Prepare workflow directory
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.1987993Z Prepare all required actions
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.2039051Z Getting action download info
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.3385948Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.5398539Z Complete job name: Pipeline Status (Security)
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6218623Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6220461Z with:
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6221277Z   persist-credentials: false
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6222383Z   repository: konard/medical-neural-network-ml
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6229750Z   token: ***
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6230659Z   ssh-strict: true
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6231418Z   ssh-user: git
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6232140Z   clean: true
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6232906Z   sparse-checkout-cone-mode: true
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6233813Z   fetch-depth: 1
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6234591Z   fetch-tags: false
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6235398Z   show-progress: true
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6236177Z   lfs: false
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6236904Z   submodules: false
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6237980Z   set-safe-directory: true
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6238850Z   allow-unsafe-pr-checkout: false
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6240192Z env:
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6240911Z   GIT_CONFIG_COUNT: 1
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6241769Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6242815Z   GIT_CONFIG_VALUE_0: main
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.6243643Z ##[endgroup]
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7372857Z Syncing repository: konard/medical-neural-network-ml
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7375916Z ##[group]Getting Git version info
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7377808Z Working directory is '/home/runner/work/medical-neural-network-ml/medical-neural-network-ml'
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7379552Z [command]/usr/bin/git version
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7388395Z git version 2.55.0
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7431091Z ##[endgroup]
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7440023Z Temporarily overriding HOME='/home/runner/work/_temp/b0d9a5f1-72e5-4445-ad15-6ba41b63c02e' before making global git config changes
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7442328Z Adding repository directory to the temporary git global config as a safe directory
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7444814Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7507691Z Deleting the contents of '/home/runner/work/medical-neural-network-ml/medical-neural-network-ml'
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7510724Z ##[group]Determining repository object format
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7512498Z ##[endgroup]
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7513889Z ##[group]Initializing the repository
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7518303Z [command]/usr/bin/git init /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7646934Z Initialized empty Git repository in /home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7668992Z [command]/usr/bin/git remote add origin https://github.com/konard/medical-neural-network-ml
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7716854Z ##[endgroup]
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7718446Z ##[group]Disabling automatic garbage collection
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7721384Z [command]/usr/bin/git config --local gc.auto 0
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7761620Z ##[endgroup]
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7762848Z ##[group]Setting up auth
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7768674Z Removing SSH command configuration
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7803249Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.7811857Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.8295540Z Removing HTTP extra header
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.8300319Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.8341517Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.8621212Z Removing includeIf entries pointing to credentials config files
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.8626510Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.8674074Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.8964144Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-b0c7ce60-89e2-483e-b5a9-31d2d49b9176.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.9007931Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path /home/runner/work/_temp/git-credentials-b0c7ce60-89e2-483e-b5a9-31d2d49b9176.config
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.9043604Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-b0c7ce60-89e2-483e-b5a9-31d2d49b9176.config
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.9082334Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-b0c7ce60-89e2-483e-b5a9-31d2d49b9176.config
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.9118055Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-b0c7ce60-89e2-483e-b5a9-31d2d49b9176.config
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.9148399Z ##[endgroup]
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.9149262Z ##[group]Fetching the repository
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:39.9157732Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +fff9d99fa7eff21702c8b00de4015ea46829f0fa:refs/remotes/origin/main
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2302885Z From https://github.com/konard/medical-neural-network-ml
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2305892Z  * [new ref]         fff9d99fa7eff21702c8b00de4015ea46829f0fa -> origin/main
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2312220Z [command]/usr/bin/git branch --list --remote origin/main
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2345740Z   origin/main
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2356280Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2384373Z fff9d99fa7eff21702c8b00de4015ea46829f0fa
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2391615Z ##[endgroup]
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2392618Z ##[group]Determining the checkout info
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2394054Z ##[endgroup]
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2401878Z [command]/usr/bin/git sparse-checkout disable
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2466963Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2506325Z ##[group]Checking out the ref
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2511495Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2773427Z Reset branch 'main'
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2774725Z branch 'main' set up to track 'origin/main'.
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2783315Z ##[endgroup]
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2869935Z [command]/usr/bin/git log -1 --format=%H
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2897487Z fff9d99fa7eff21702c8b00de4015ea46829f0fa
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2907970Z ##[group]Removing auth
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2908764Z Removing SSH command configuration
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2911909Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.2948930Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3228057Z Removing HTTP extra header
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3232366Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3268670Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3540604Z Removing includeIf entries pointing to credentials config files
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3543498Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3569797Z includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3572018Z includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3573290Z includeif.gitdir:/github/workspace/.git.path
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3574169Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3580577Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3603779Z /home/runner/work/_temp/git-credentials-b0c7ce60-89e2-483e-b5a9-31d2d49b9176.config
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3614927Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-b0c7ce60\-89e2\-483e\-b5a9\-31d2d49b9176\.config
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3658837Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3689433Z /home/runner/work/_temp/git-credentials-b0c7ce60-89e2-483e-b5a9-31d2d49b9176.config
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3701098Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-b0c7ce60\-89e2\-483e\-b5a9\-31d2d49b9176\.config
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3737404Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3769073Z /github/runner_temp/git-credentials-b0c7ce60-89e2-483e-b5a9-31d2d49b9176.config
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3804008Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-b0c7ce60\-89e2\-483e\-b5a9\-31d2d49b9176\.config
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3855483Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3881455Z /github/runner_temp/git-credentials-b0c7ce60-89e2-483e-b5a9-31d2d49b9176.config
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3889078Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-b0c7ce60\-89e2\-483e\-b5a9\-31d2d49b9176\.config
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.3923359Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.4210096Z Removing credentials config '/home/runner/work/_temp/git-credentials-b0c7ce60-89e2-483e-b5a9-31d2d49b9176.config'
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.4214815Z ##[endgroup]
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.4474240Z ##[group]Run bash scripts/check-pipeline-status.sh
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.4475193Z ^[[36;1mbash scripts/check-pipeline-status.sh^[[0m
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.4660076Z shell: /usr/bin/bash -e {0}
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.4660781Z env:
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.4661299Z   GIT_CONFIG_COUNT: 1
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.4661883Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.4662551Z   GIT_CONFIG_VALUE_0: main
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.4664806Z   NEEDS_JSON: {
+Pipeline Status (Security)	UNKNOWN STEP	  "dependency-audit": {
+Pipeline Status (Security)	UNKNOWN STEP	    "result": "success",
+Pipeline Status (Security)	UNKNOWN STEP	    "outputs": {}
+Pipeline Status (Security)	UNKNOWN STEP	  },
+Pipeline Status (Security)	UNKNOWN STEP	  "codeql": {
+Pipeline Status (Security)	UNKNOWN STEP	    "result": "success",
+Pipeline Status (Security)	UNKNOWN STEP	    "outputs": {}
+Pipeline Status (Security)	UNKNOWN STEP	  },
+Pipeline Status (Security)	UNKNOWN STEP	  "dependency-review": {
+Pipeline Status (Security)	UNKNOWN STEP	    "result": "skipped",
+Pipeline Status (Security)	UNKNOWN STEP	    "outputs": {}
+Pipeline Status (Security)	UNKNOWN STEP	  },
+Pipeline Status (Security)	UNKNOWN STEP	  "dependency-graph": {
+Pipeline Status (Security)	UNKNOWN STEP	    "result": "success",
+Pipeline Status (Security)	UNKNOWN STEP	    "outputs": {}
+Pipeline Status (Security)	UNKNOWN STEP	  },
+Pipeline Status (Security)	UNKNOWN STEP	  "rulesets": {
+Pipeline Status (Security)	UNKNOWN STEP	    "result": "failure",
+Pipeline Status (Security)	UNKNOWN STEP	    "outputs": {}
+Pipeline Status (Security)	UNKNOWN STEP	  }
+Pipeline Status (Security)	UNKNOWN STEP	}
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.4667441Z   RUN_SHA: fff9d99fa7eff21702c8b00de4015ea46829f0fa
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.4668180Z   BRANCH_NAME: main
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.4668714Z ##[endgroup]
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.5342955Z ##[error]Failed jobs: rulesets
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.5356542Z ##[error]Process completed with exit code 1.
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.5618545Z Post job cleanup.
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.6473002Z [command]/usr/bin/git version
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.6531944Z git version 2.55.0
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.6605711Z Temporarily overriding HOME='/home/runner/work/_temp/a491d581-4ca3-4fc1-a452-1c03a8529f6e' before making global git config changes
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.6609292Z Adding repository directory to the temporary git global config as a safe directory
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.6613199Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.6676426Z Removing SSH command configuration
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.6677830Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.6717041Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.7044236Z Removing HTTP extra header
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.7050146Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.7110395Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.7411891Z Removing includeIf entries pointing to credentials config files
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.7417370Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.7455916Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Pipeline Status (Security)	UNKNOWN STEP	2026-10-17T16:08:40.7879674Z Cleaning up orphan processes

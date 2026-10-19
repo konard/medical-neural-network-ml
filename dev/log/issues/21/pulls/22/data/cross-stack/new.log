@@ -1,0 +1,4 @@
+/tmp/w21/venv-new/lib/python3.14/site-packages/transformers/modeling_rope_utils.py:1126: FutureWarning: `rope_config_validation` is deprecated and has been removed. Its functionality has been moved to RotaryEmbeddingConfigMixin.validate_rope method. PreTrainedConfig inherits this class, so please call self.validate_rope() instead. Also, make sure to use the new rope_parameters syntax. You can call self.standardize_rope_params() in the meantime.
+  warnings.warn(
+The safetensors archive passed at /tmp/w21/cross/tiny.safetensors does not contain metadata. Make sure to save your model with the `save_pretrained` method. Defaulting to 'pt' metadata.
+/tmp/w21/cross/new.json

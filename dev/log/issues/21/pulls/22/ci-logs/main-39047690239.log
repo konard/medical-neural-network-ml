@@ -1,0 +1,396 @@
+Release Preflight (credentials)	UNKNOWN STEP	﻿2026-10-17T16:02:44.7617257Z Current runner version: '2.337.0'
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7639311Z ##[group]Runner Image Provisioner
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7640037Z Hosted Compute Agent
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7640612Z Version: 20261012.601
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7641126Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7641740Z Build Date: 2026-10-12T17:48:21Z
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7642310Z Worker ID: {b1a30674-98df-45f2-89d2-19d405c3fdb1}
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7642915Z Region: mexicocentral
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7643500Z Cloud: Azure
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7643943Z ##[endgroup]
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7645346Z ##[group]Operating System
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7645881Z Ubuntu
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7646344Z 26.04.1
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7646807Z LTS
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7647236Z ##[endgroup]
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7647676Z ##[group]Runner Image
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7648214Z Image: ubuntu-26.04
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7648709Z Version: 20261012.163.1
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7649757Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261012.163/images/ubuntu/Ubuntu2604-Readme.md
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7650975Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261012.163
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7651837Z ##[endgroup]
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7652768Z ##[group]GITHUB_TOKEN Permissions
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7654593Z Contents: read
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7655322Z Metadata: read
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7655856Z ##[endgroup]
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7657613Z Secret source: Actions
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7658452Z Cache mode: write
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7659030Z Prepare workflow directory
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.7974408Z Prepare all required actions
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:44.8015842Z Getting action download info
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.0992755Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.4530009Z Complete job name: Release Preflight (credentials)
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5147805Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5148654Z with:
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5149015Z   persist-credentials: false
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5149467Z   repository: konard/medical-neural-network-ml
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5152650Z   token: ***
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5153006Z   ssh-strict: true
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5153354Z   ssh-user: git
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5153697Z   clean: true
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5154056Z   sparse-checkout-cone-mode: true
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5154473Z   fetch-depth: 1
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5154817Z   fetch-tags: false
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5155317Z   show-progress: true
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5155681Z   lfs: false
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5156013Z   submodules: false
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5156555Z   set-safe-directory: true
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5157084Z   allow-unsafe-pr-checkout: false
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5157904Z env:
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5158378Z   GIT_CONFIG_COUNT: 1
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5158795Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5159408Z   GIT_CONFIG_VALUE_0: main
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.5159789Z ##[endgroup]
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.6000798Z Syncing repository: konard/medical-neural-network-ml
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.6002443Z ##[group]Getting Git version info
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.6003255Z Working directory is '/home/runner/work/medical-neural-network-ml/medical-neural-network-ml'
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.6004323Z [command]/usr/bin/git version
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.6021210Z git version 2.55.0
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.6037500Z ##[endgroup]
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.6047956Z Temporarily overriding HOME='/home/runner/work/_temp/6294bd48-9c9e-4778-8970-ec8f79c36e9f' before making global git config changes
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.6049852Z Adding repository directory to the temporary git global config as a safe directory
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.6053157Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.6847236Z Deleting the contents of '/home/runner/work/medical-neural-network-ml/medical-neural-network-ml'
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.6849825Z ##[group]Determining repository object format
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.6851414Z ##[endgroup]
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.6852332Z ##[group]Initializing the repository
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.6856590Z [command]/usr/bin/git init /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.7100436Z Initialized empty Git repository in /home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.7109022Z [command]/usr/bin/git remote add origin https://github.com/konard/medical-neural-network-ml
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.7155694Z ##[endgroup]
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.7156686Z ##[group]Disabling automatic garbage collection
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.7158701Z [command]/usr/bin/git config --local gc.auto 0
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.7188025Z ##[endgroup]
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.7188917Z ##[group]Setting up auth
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.7189671Z Removing SSH command configuration
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.7193666Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.7222351Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.7652705Z Removing HTTP extra header
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.7657462Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.7686910Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.7916307Z Removing includeIf entries pointing to credentials config files
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.7919747Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.7955749Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.8203945Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-11d68826-9fcd-4729-ae2f-f11a79b7d6d8.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.8244471Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path /home/runner/work/_temp/git-credentials-11d68826-9fcd-4729-ae2f-f11a79b7d6d8.config
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.8276240Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-11d68826-9fcd-4729-ae2f-f11a79b7d6d8.config
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.8311574Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-11d68826-9fcd-4729-ae2f-f11a79b7d6d8.config
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.8344158Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-11d68826-9fcd-4729-ae2f-f11a79b7d6d8.config
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.8372870Z ##[endgroup]
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.8373655Z ##[group]Fetching the repository
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:45.8380721Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +fff9d99fa7eff21702c8b00de4015ea46829f0fa:refs/remotes/origin/main
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.6460815Z From https://github.com/konard/medical-neural-network-ml
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.6462522Z  * [new ref]         fff9d99fa7eff21702c8b00de4015ea46829f0fa -> origin/main
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.6467441Z [command]/usr/bin/git branch --list --remote origin/main
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.6500737Z   origin/main
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.6508218Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.6531152Z fff9d99fa7eff21702c8b00de4015ea46829f0fa
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.6540210Z ##[endgroup]
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.6541218Z ##[group]Determining the checkout info
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.6542347Z ##[endgroup]
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.6544716Z [command]/usr/bin/git sparse-checkout disable
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.6594747Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.6623257Z ##[group]Checking out the ref
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.6625774Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.6946212Z Reset branch 'main'
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.6950415Z branch 'main' set up to track 'origin/main'.
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.6957980Z ##[endgroup]
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7005280Z [command]/usr/bin/git log -1 --format=%H
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7029740Z fff9d99fa7eff21702c8b00de4015ea46829f0fa
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7037991Z ##[group]Removing auth
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7039214Z Removing SSH command configuration
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7041056Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7071567Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7316150Z Removing HTTP extra header
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7318444Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7349303Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7586484Z Removing includeIf entries pointing to credentials config files
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7593995Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7618328Z includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7621988Z includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7624498Z includeif.gitdir:/github/workspace/.git.path
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7626394Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7630367Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7648301Z /home/runner/work/_temp/git-credentials-11d68826-9fcd-4729-ae2f-f11a79b7d6d8.config
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7657980Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-11d68826\-9fcd\-4729\-ae2f\-f11a79b7d6d8\.config
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7689093Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7715841Z /home/runner/work/_temp/git-credentials-11d68826-9fcd-4729-ae2f-f11a79b7d6d8.config
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7723315Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-11d68826\-9fcd\-4729\-ae2f\-f11a79b7d6d8\.config
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7752003Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7772988Z /github/runner_temp/git-credentials-11d68826-9fcd-4729-ae2f-f11a79b7d6d8.config
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7781632Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-11d68826\-9fcd\-4729\-ae2f\-f11a79b7d6d8\.config
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7818754Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7839449Z /github/runner_temp/git-credentials-11d68826-9fcd-4729-ae2f-f11a79b7d6d8.config
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7846258Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-11d68826\-9fcd\-4729\-ae2f\-f11a79b7d6d8\.config
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.7876044Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.8112059Z Removing credentials config '/home/runner/work/_temp/git-credentials-11d68826-9fcd-4729-ae2f-f11a79b7d6d8.config'
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.8119684Z ##[endgroup]
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.8348177Z ##[group]Run bash scripts/preflight-credentials.sh
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.8349520Z ^[[36;1mbash scripts/preflight-credentials.sh^[[0m
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.8546327Z shell: /usr/bin/bash -e {0}
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.8547309Z env:
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.8548031Z   GIT_CONFIG_COUNT: 1
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.8548876Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.8549889Z   GIT_CONFIG_VALUE_0: main
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.8550775Z   PREFLIGHT_MODE: release
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.8551622Z   DOCKERHUB_IMAGE: 
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.8552404Z   DOCKERHUB_USERNAME: 
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.8553214Z   DOCKERHUB_TOKEN: 
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.8554012Z ##[endgroup]
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:46.8677593Z PyPI:
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.5288637Z   FAIL: PyPI refused to mint an upload token (422 invalid-publisher: valid token, but no corresponding publisher (Publisher with matching claims was not found)) -- the publish step would be rejected the same way. A PyPI maintainer must add a GitHub trusted publisher with owner=konard, repository=medical-neural-network-ml, workflow=release.yml, environment=(blank) as a pending publisher for the new project "medical-neural-network-ml" at https://pypi.org/manage/account/publishing/. Steps and the first release: docs/publishing.md.
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.5291606Z Docker Hub:
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.5292414Z   SKIP: DOCKERHUB_IMAGE is not set -- Docker publishing is disabled (the release workflow disables it with the same condition)
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.5293013Z 
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.5293215Z Release preflight: 0 verified, 1 failed, 0 unknown
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.5317778Z ##[error]release-preflight: PyPI refused to mint an upload token (422 invalid-publisher: valid token, but no corresponding publisher (Publisher with matching claims was not found)) -- the publish step would be rejected the same way. A PyPI maintainer must add a GitHub trusted publisher with owner=konard, repository=medical-neural-network-ml, workflow=release.yml, environment=(blank) as a pending publisher for the new project "medical-neural-network-ml" at https://pypi.org/manage/account/publishing/. Steps and the first release: docs/publishing.md.
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.5326895Z ##[error]release-preflight: refusing to release with 1 refused credential(s)
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.5331090Z ##[error]Process completed with exit code 1.
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.5537331Z Post job cleanup.
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.6286124Z [command]/usr/bin/git version
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.6334533Z git version 2.55.0
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.6366106Z Temporarily overriding HOME='/home/runner/work/_temp/80103263-d435-49fb-bdab-86b06ac61342' before making global git config changes
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.6367387Z Adding repository directory to the temporary git global config as a safe directory
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.6373693Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.6409451Z Removing SSH command configuration
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.6416105Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.6457099Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.6730862Z Removing HTTP extra header
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.6737618Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.6774565Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.7054131Z Removing includeIf entries pointing to credentials config files
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.7059493Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.7092402Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Release Preflight (credentials)	UNKNOWN STEP	2026-10-17T16:02:47.7471883Z Cleaning up orphan processes
+Pipeline Status (CI/CD)	UNKNOWN STEP	﻿2026-10-17T16:05:17.1555775Z Current runner version: '2.337.0'
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1577132Z ##[group]Runner Image Provisioner
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1577807Z Hosted Compute Agent
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1578328Z Version: 20261012.601
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1578887Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1579506Z Build Date: 2026-10-12T17:48:21Z
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1580112Z Worker ID: {0dc3f2d5-0c98-42fd-8baa-f23ed80f603e}
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1580692Z Region: westus3
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1581123Z Cloud: Azure
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1581614Z ##[endgroup]
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1582814Z ##[group]Operating System
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1583378Z Ubuntu
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1584115Z 26.04.1
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1584533Z LTS
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1585029Z ##[endgroup]
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1585526Z ##[group]Runner Image
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1586032Z Image: ubuntu-26.04
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1586514Z Version: 20261012.163.1
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1587627Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261012.163/images/ubuntu/Ubuntu2604-Readme.md
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1588895Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261012.163
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1589709Z ##[endgroup]
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1590690Z ##[group]GITHUB_TOKEN Permissions
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1592823Z Contents: read
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1593393Z Metadata: read
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1594112Z ##[endgroup]
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1596499Z Secret source: Actions
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1597246Z Cache mode: write
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1597922Z Prepare workflow directory
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.1971864Z Prepare all required actions
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.2011251Z Getting action download info
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.4793957Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.6471813Z Complete job name: Pipeline Status (CI/CD)
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7115785Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7116587Z with:
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7116973Z   persist-credentials: false
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7117424Z   repository: konard/medical-neural-network-ml
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7120533Z   token: ***
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7120887Z   ssh-strict: true
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7121247Z   ssh-user: git
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7121595Z   clean: true
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7121957Z   sparse-checkout-cone-mode: true
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7122477Z   fetch-depth: 1
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7122831Z   fetch-tags: false
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7123192Z   show-progress: true
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7123555Z   lfs: false
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7124020Z   submodules: false
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7124389Z   set-safe-directory: true
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7124805Z   allow-unsafe-pr-checkout: false
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7125380Z env:
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7125709Z   GIT_CONFIG_COUNT: 1
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7126094Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7126572Z   GIT_CONFIG_VALUE_0: main
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7126950Z ##[endgroup]
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7965350Z Syncing repository: konard/medical-neural-network-ml
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7967688Z ##[group]Getting Git version info
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7968868Z Working directory is '/home/runner/work/medical-neural-network-ml/medical-neural-network-ml'
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.7970511Z [command]/usr/bin/git version
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8006453Z git version 2.55.0
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8054823Z ##[endgroup]
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8063237Z Temporarily overriding HOME='/home/runner/work/_temp/76250228-cf60-455d-b72e-9dac77f60d34' before making global git config changes
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8065296Z Adding repository directory to the temporary git global config as a safe directory
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8068797Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8121181Z Deleting the contents of '/home/runner/work/medical-neural-network-ml/medical-neural-network-ml'
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8123595Z ##[group]Determining repository object format
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8125459Z ##[endgroup]
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8126391Z ##[group]Initializing the repository
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8128921Z [command]/usr/bin/git init /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8226962Z Initialized empty Git repository in /home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8235954Z [command]/usr/bin/git remote add origin https://github.com/konard/medical-neural-network-ml
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8392897Z ##[endgroup]
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8394116Z ##[group]Disabling automatic garbage collection
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8396122Z [command]/usr/bin/git config --local gc.auto 0
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8431379Z ##[endgroup]
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8432482Z ##[group]Setting up auth
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8433466Z Removing SSH command configuration
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8437669Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8470421Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8808295Z Removing HTTP extra header
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8815203Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.8844601Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.9072913Z Removing includeIf entries pointing to credentials config files
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.9077697Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.9112562Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.9346097Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-0a13ead9-823a-4555-834b-f0e538be84f0.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.9379240Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path /home/runner/work/_temp/git-credentials-0a13ead9-823a-4555-834b-f0e538be84f0.config
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.9407438Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-0a13ead9-823a-4555-834b-f0e538be84f0.config
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.9436575Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-0a13ead9-823a-4555-834b-f0e538be84f0.config
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.9465860Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-0a13ead9-823a-4555-834b-f0e538be84f0.config
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.9489596Z ##[endgroup]
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.9490245Z ##[group]Fetching the repository
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:17.9497988Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +fff9d99fa7eff21702c8b00de4015ea46829f0fa:refs/remotes/origin/main
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6105628Z From https://github.com/konard/medical-neural-network-ml
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6106503Z  * [new ref]         fff9d99fa7eff21702c8b00de4015ea46829f0fa -> origin/main
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6112211Z [command]/usr/bin/git branch --list --remote origin/main
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6140326Z   origin/main
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6147028Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6168772Z fff9d99fa7eff21702c8b00de4015ea46829f0fa
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6173922Z ##[endgroup]
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6175373Z ##[group]Determining the checkout info
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6176828Z ##[endgroup]
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6178854Z [command]/usr/bin/git sparse-checkout disable
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6257121Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6290591Z ##[group]Checking out the ref
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6294482Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6501182Z Reset branch 'main'
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6505085Z branch 'main' set up to track 'origin/main'.
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6510163Z ##[endgroup]
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6553845Z [command]/usr/bin/git log -1 --format=%H
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6577613Z fff9d99fa7eff21702c8b00de4015ea46829f0fa
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6585597Z ##[group]Removing auth
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6586325Z Removing SSH command configuration
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6588678Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6618153Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6862870Z Removing HTTP extra header
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6866405Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.6897638Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7142232Z Removing includeIf entries pointing to credentials config files
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7143976Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7166751Z includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7169363Z includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7171044Z includeif.gitdir:/github/workspace/.git.path
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7172245Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7175733Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7196771Z /home/runner/work/_temp/git-credentials-0a13ead9-823a-4555-834b-f0e538be84f0.config
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7211377Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-0a13ead9\-823a\-4555\-834b\-f0e538be84f0\.config
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7242278Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7277323Z /home/runner/work/_temp/git-credentials-0a13ead9-823a-4555-834b-f0e538be84f0.config
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7280859Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-0a13ead9\-823a\-4555\-834b\-f0e538be84f0\.config
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7309173Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7335490Z /github/runner_temp/git-credentials-0a13ead9-823a-4555-834b-f0e538be84f0.config
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7367907Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-0a13ead9\-823a\-4555\-834b\-f0e538be84f0\.config
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7430166Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7454212Z /github/runner_temp/git-credentials-0a13ead9-823a-4555-834b-f0e538be84f0.config
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7459939Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-0a13ead9\-823a\-4555\-834b\-f0e538be84f0\.config
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7490269Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7723872Z Removing credentials config '/home/runner/work/_temp/git-credentials-0a13ead9-823a-4555-834b-f0e538be84f0.config'
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7732803Z ##[endgroup]
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7972553Z ##[group]Run bash scripts/check-pipeline-status.sh
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.7973519Z ^[[36;1mbash scripts/check-pipeline-status.sh^[[0m
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.8105075Z shell: /usr/bin/bash -e {0}
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.8105648Z env:
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.8106024Z   GIT_CONFIG_COUNT: 1
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.8106519Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.8107155Z   GIT_CONFIG_VALUE_0: main
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.8114882Z   NEEDS_JSON: {
+Pipeline Status (CI/CD)	UNKNOWN STEP	  "detect-changes": {
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "result": "success",
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "outputs": {
+Pipeline Status (CI/CD)	UNKNOWN STEP	      "any-code-changed": "true",
+Pipeline Status (CI/CD)	UNKNOWN STEP	      "docs-changed": "true"
+Pipeline Status (CI/CD)	UNKNOWN STEP	    }
+Pipeline Status (CI/CD)	UNKNOWN STEP	  },
+Pipeline Status (CI/CD)	UNKNOWN STEP	  "validate-docs": {
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "result": "success",
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "outputs": {}
+Pipeline Status (CI/CD)	UNKNOWN STEP	  },
+Pipeline Status (CI/CD)	UNKNOWN STEP	  "release-preflight": {
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "result": "failure",
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "outputs": {}
+Pipeline Status (CI/CD)	UNKNOWN STEP	  },
+Pipeline Status (CI/CD)	UNKNOWN STEP	  "lint": {
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "result": "success",
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "outputs": {}
+Pipeline Status (CI/CD)	UNKNOWN STEP	  },
+Pipeline Status (CI/CD)	UNKNOWN STEP	  "test": {
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "result": "success",
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "outputs": {}
+Pipeline Status (CI/CD)	UNKNOWN STEP	  },
+Pipeline Status (CI/CD)	UNKNOWN STEP	  "build": {
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "result": "success",
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "outputs": {}
+Pipeline Status (CI/CD)	UNKNOWN STEP	  },
+Pipeline Status (CI/CD)	UNKNOWN STEP	  "changelog": {
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "result": "skipped",
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "outputs": {}
+Pipeline Status (CI/CD)	UNKNOWN STEP	  },
+Pipeline Status (CI/CD)	UNKNOWN STEP	  "docker-build": {
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "result": "skipped",
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "outputs": {}
+Pipeline Status (CI/CD)	UNKNOWN STEP	  },
+Pipeline Status (CI/CD)	UNKNOWN STEP	  "auto-release": {
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "result": "skipped",
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "outputs": {}
+Pipeline Status (CI/CD)	UNKNOWN STEP	  },
+Pipeline Status (CI/CD)	UNKNOWN STEP	  "manual-release": {
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "result": "skipped",
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "outputs": {}
+Pipeline Status (CI/CD)	UNKNOWN STEP	  },
+Pipeline Status (CI/CD)	UNKNOWN STEP	  "docker-publish-config": {
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "result": "skipped",
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "outputs": {}
+Pipeline Status (CI/CD)	UNKNOWN STEP	  },
+Pipeline Status (CI/CD)	UNKNOWN STEP	  "docker-publish-build": {
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "result": "skipped",
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "outputs": {}
+Pipeline Status (CI/CD)	UNKNOWN STEP	  },
+Pipeline Status (CI/CD)	UNKNOWN STEP	  "docker-publish": {
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "result": "skipped",
+Pipeline Status (CI/CD)	UNKNOWN STEP	    "outputs": {}
+Pipeline Status (CI/CD)	UNKNOWN STEP	  }
+Pipeline Status (CI/CD)	UNKNOWN STEP	}
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.8122731Z   RUN_SHA: fff9d99fa7eff21702c8b00de4015ea46829f0fa
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.8123474Z   BRANCH_NAME: main
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.8123989Z ##[endgroup]
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.8722407Z ##[error]Failed jobs: release-preflight
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.8732796Z ##[error]Process completed with exit code 1.
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.8996045Z Post job cleanup.
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.9692152Z [command]/usr/bin/git version
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.9739232Z git version 2.55.0
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.9772580Z Temporarily overriding HOME='/home/runner/work/_temp/c86e01df-a375-4682-b820-0db51496651f' before making global git config changes
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.9775814Z Adding repository directory to the temporary git global config as a safe directory
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.9778821Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.9810988Z Removing SSH command configuration
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.9817054Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:18.9866123Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:19.0120609Z Removing HTTP extra header
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:19.0125541Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:19.0161371Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:19.0418252Z Removing includeIf entries pointing to credentials config files
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:19.0423873Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:19.0454336Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Pipeline Status (CI/CD)	UNKNOWN STEP	2026-10-17T16:05:19.0831531Z Cleaning up orphan processes

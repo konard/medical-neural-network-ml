@@ -1,0 +1,16 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.8, pytest-9.1.1, pluggy-1.7.0
+rootdir: /tmp/gh-issue-solver-1792424047800
+configfile: pyproject.toml
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 30 items
+
+tests/test_unimedvl_attention.py .......s..                              [ 33%]
+tests/test_unimedvl_upstream.py .                                        [ 36%]
+tests/test_measure_training_memory.py ..............s....                [100%]
+
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_unimedvl_attention.py:145: needs a CUDA GPU
+SKIPPED [1] tests/test_measure_training_memory.py:235: could not import 'peft': No module named 'peft'
+======================== 28 passed, 2 skipped in 12.90s ========================

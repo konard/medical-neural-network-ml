@@ -1,0 +1,421 @@
+Python 3.12 on macos-15	UNKNOWN STEP	﻿2026-10-16T19:40:39.7947360Z Current runner version: '2.337.0'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.7997730Z ##[group]Runner Image Provisioner
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.7998350Z Hosted Compute Agent
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.7998740Z Version: 20260828.587
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.7999170Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.7999720Z Build Date: 2026-08-28T16:44:25Z
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8000190Z Worker ID: {09c20c21-465b-492e-8808-84452c8da070}
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8000780Z Azure Region: westus
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8001200Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8002440Z ##[group]Operating System
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8002840Z macOS
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8003180Z 15.7.9
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8003510Z 24G830
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8003850Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8004280Z ##[group]Runner Image
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8004680Z Image: macos-15-arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8005060Z Version: 20260907.0337.1
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8006070Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20260907.0337/images/macos/macos-15-arm64-Readme.md
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8007150Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20260907.0337
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8007830Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8008660Z ##[group]GITHUB_TOKEN Permissions
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8010180Z Contents: read
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8010540Z Metadata: read
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8010980Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8013690Z Secret source: Dependabot
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8015400Z Cache mode: write
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8016150Z Prepare workflow directory
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8471850Z Prepare all required actions
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8508950Z Getting action download info
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.1381070Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.6159300Z Download action repository 'actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97' (SHA:5fda3b95a4ea91299a34e894583c3862153e4b97)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.7746280Z Download action repository 'actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.4423090Z Complete job name: Python 3.12 on macos-15
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5273720Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5276330Z with:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5277350Z   persist-credentials: false
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5278600Z   repository: konard/medical-neural-network-ml
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5286660Z   token: ***
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5287680Z   ssh-strict: true
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5288640Z   ssh-user: git
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5289600Z   clean: true
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5290580Z   sparse-checkout-cone-mode: true
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5291770Z   fetch-depth: 1
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5292810Z   fetch-tags: false
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5294040Z   show-progress: true
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5295080Z   lfs: false
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5296070Z   submodules: false
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5297120Z   set-safe-directory: true
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5298630Z   allow-unsafe-pr-checkout: false
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5300140Z env:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5300510Z   GIT_CONFIG_COUNT: 1
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5300910Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5301400Z   GIT_CONFIG_VALUE_0: main
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5302190Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.9354080Z Syncing repository: konard/medical-neural-network-ml
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.9359260Z ##[group]Getting Git version info
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.9361750Z Working directory is '/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.9365150Z [command]/opt/homebrew/bin/git version
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.0023640Z git version 2.55.0
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.0052100Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.0063950Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/2a590658-24dc-4d6d-9626-f23334c56909/.gitconfig'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.0077290Z Temporarily overriding HOME='/Users/runner/work/_temp/2a590658-24dc-4d6d-9626-f23334c56909' before making global git config changes
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.0081650Z Adding repository directory to the temporary git global config as a safe directory
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.0086070Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.0269850Z Deleting the contents of '/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.0274880Z ##[group]Determining repository object format
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.0277900Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.0279900Z ##[group]Initializing the repository
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.0284540Z [command]/opt/homebrew/bin/git init /Users/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.1081000Z Initialized empty Git repository in /Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.1086880Z [command]/opt/homebrew/bin/git remote add origin https://github.com/konard/medical-neural-network-ml
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.1181230Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.1181990Z ##[group]Disabling automatic garbage collection
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.1182690Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.1296900Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.1300960Z ##[group]Setting up auth
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.1303170Z Removing SSH command configuration
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.1307100Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.1425240Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.2864000Z Removing HTTP extra header
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.2874170Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.2947040Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.4162830Z Removing includeIf entries pointing to credentials config files
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.4215810Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.4224530Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.5221930Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/_temp/git-credentials-342129ca-268d-4ac6-b246-a73e54d97f7b.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.5319450Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path /Users/runner/work/_temp/git-credentials-342129ca-268d-4ac6-b246-a73e54d97f7b.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.5420500Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path /Users/runner/work/_temp/git-credentials-342129ca-268d-4ac6-b246-a73e54d97f7b.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.5537380Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-342129ca-268d-4ac6-b246-a73e54d97f7b.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.5630590Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-342129ca-268d-4ac6-b246-a73e54d97f7b.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.5700360Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.5702680Z ##[group]Fetching the repository
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:42.5707350Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +ffe9b761b0912c9945f5634fa5451b664245ad64:refs/remotes/pull/14/merge
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.1429160Z From https://github.com/konard/medical-neural-network-ml
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.1431900Z  * [new ref]         ffe9b761b0912c9945f5634fa5451b664245ad64 -> pull/14/merge
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.1434830Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.1435920Z ##[group]Determining the checkout info
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.1437070Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.1437800Z [command]/opt/homebrew/bin/git sparse-checkout disable
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.1521960Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.1620470Z ##[group]Checking out the ref
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.1628820Z [command]/opt/homebrew/bin/git checkout --progress --force refs/remotes/pull/14/merge
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.2799540Z HEAD is now at ffe9b76 Merge 2203371202155950bde4f64ee48ca0f10c423c01 into cc8e90b446a174cf5fff743313e441cda4a432ef
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.2829700Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.2933800Z [command]/opt/homebrew/bin/git log -1 --format=%H
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.3009730Z ffe9b761b0912c9945f5634fa5451b664245ad64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.3019160Z ##[group]Removing auth
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.3021600Z Removing SSH command configuration
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.3025270Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.3108470Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.4212790Z Removing HTTP extra header
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.4242700Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.4385790Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.5695750Z Removing includeIf entries pointing to credentials config files
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.5697890Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.5762070Z includeif.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.5769760Z includeif.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.5807920Z includeif.gitdir:/github/workspace/.git.path
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.5811810Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.5820690Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.5915190Z /Users/runner/work/_temp/git-credentials-342129ca-268d-4ac6-b246-a73e54d97f7b.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.5944220Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path \/Users\/runner\/work\/_temp\/git\-credentials\-342129ca\-268d\-4ac6\-b246\-a73e54d97f7b\.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.6069540Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.6160160Z /Users/runner/work/_temp/git-credentials-342129ca-268d-4ac6-b246-a73e54d97f7b.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.6166870Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path \/Users\/runner\/work\/_temp\/git\-credentials\-342129ca\-268d\-4ac6\-b246\-a73e54d97f7b\.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.6248520Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.6305420Z /github/runner_temp/git-credentials-342129ca-268d-4ac6-b246-a73e54d97f7b.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.6319140Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-342129ca\-268d\-4ac6\-b246\-a73e54d97f7b\.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.6384460Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.6464830Z /github/runner_temp/git-credentials-342129ca-268d-4ac6-b246-a73e54d97f7b.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.6477780Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-342129ca\-268d\-4ac6\-b246\-a73e54d97f7b\.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.6569070Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.7665270Z Removing credentials config '/Users/runner/work/_temp/git-credentials-342129ca-268d-4ac6-b246-a73e54d97f7b.config'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.7673140Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.7987490Z ##[group]Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.7988630Z with:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.7989280Z   python-version: 3.12
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.7989990Z   check-latest: false
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.7996570Z   token: ***
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.7997230Z   update-environment: true
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.7998010Z   allow-prereleases: false
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.7998900Z   freethreaded: false
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.7999550Z env:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.8000140Z   GIT_CONFIG_COUNT: 1
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.8000830Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.8001610Z   GIT_CONFIG_VALUE_0: main
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.8002290Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:43.9961540Z ##[group]Installed versions
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.0022870Z Successfully set up CPython (3.12.10)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.0026040Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.0160040Z ##[group]Run python -m pip install -e '.[dev]'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.0161110Z ^[[36;1mpython -m pip install -e '.[dev]'^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.0239280Z shell: /bin/bash -e {0}
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.0240070Z env:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.0240660Z   GIT_CONFIG_COUNT: 1
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.0241390Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.0242270Z   GIT_CONFIG_VALUE_0: main
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.0243300Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.0256420Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.0257820Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.0259090Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.0260400Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.0261480Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:45.5533090Z Obtaining file:///Users/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:45.5551280Z   Installing build dependencies: started
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:46.7024320Z   Installing build dependencies: finished with status 'done'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:46.7043480Z   Checking if build backend supports build_editable: started
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:46.7581250Z   Checking if build backend supports build_editable: finished with status 'done'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:46.7591280Z   Getting requirements to build editable: started
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:46.8979630Z   Getting requirements to build editable: finished with status 'done'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:46.9003950Z   Installing backend dependencies: started
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:47.4966080Z   Installing backend dependencies: finished with status 'done'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:47.4974890Z   Preparing editable metadata (pyproject.toml): started
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:47.6581590Z   Preparing editable metadata (pyproject.toml): finished with status 'done'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:47.8452780Z Collecting mypy<3.0,>=1.13.0 (from medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:47.9093610Z   Downloading mypy-2.4.0-cp312-cp312-macosx_11_0_arm64.whl.metadata (2.4 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.0675590Z Collecting pillow>=10.1 (from medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.0828440Z   Downloading pillow-12.3.0-cp312-cp312-macosx_11_0_arm64.whl.metadata (9.1 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.1265970Z Collecting pre-commit>=4.0.0 (from medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.1407100Z   Downloading pre_commit-4.7.0-py2.py3-none-any.whl.metadata (1.2 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.1711130Z Collecting pytest-asyncio>=0.24.0 (from medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.1854900Z   Downloading pytest_asyncio-1.4.0-py3-none-any.whl.metadata (4.1 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.2463010Z Collecting pytest-cov>=6.0.0 (from medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.2601780Z   Downloading pytest_cov-7.1.0-py3-none-any.whl.metadata (32 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.3016590Z Collecting pytest>=8.3.0 (from medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.3164620Z   Downloading pytest-9.1.1-py3-none-any.whl.metadata (7.6 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.5317360Z Collecting ruff<0.9,>=0.8.0 (from medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.5473360Z   Downloading ruff-0.8.6-py3-none-macosx_11_0_arm64.whl.metadata (25 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.5881120Z Collecting scriv>=1.7.0 (from scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.6039920Z   Downloading scriv-1.8.0-py3-none-any.whl.metadata (26 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.6374470Z Collecting typing_extensions>=4.6.0 (from mypy<3.0,>=1.13.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.6515360Z   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.6742100Z Collecting mypy_extensions>=1.0.0 (from mypy<3.0,>=1.13.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.6887450Z   Downloading mypy_extensions-1.1.0-py3-none-any.whl.metadata (1.1 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.6990680Z Collecting pathspec>=1.0.0 (from mypy<3.0,>=1.13.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.7044730Z   Using cached pathspec-1.1.1-py3-none-any.whl.metadata (14 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.8043180Z Collecting librt>=0.16.0 (from mypy<3.0,>=1.13.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.8204720Z   Downloading librt-0.16.0-cp312-cp312-macosx_11_0_arm64.whl.metadata (1.3 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.8678180Z Collecting ast-serialize<1.0.0,>=0.11.2 (from mypy<3.0,>=1.13.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.8820530Z   Downloading ast_serialize-0.13.0-cp39-abi3-macosx_11_0_arm64.whl.metadata (1.4 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.9074450Z Collecting cfgv>=2.0.0 (from pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.9219090Z   Downloading cfgv-3.5.0-py2.py3-none-any.whl.metadata (8.9 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.9653560Z Collecting identify>=1.0.0 (from pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:48.9813040Z   Downloading identify-2.6.20-py2.py3-none-any.whl.metadata (4.4 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.0465130Z Collecting nodeenv>=0.11.1 (from pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.0625260Z   Downloading nodeenv-1.11.0-py2.py3-none-any.whl.metadata (40 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.1045200Z Collecting pyyaml>=5.1 (from pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.1195590Z   Downloading pyyaml-6.0.3-cp312-cp312-macosx_11_0_arm64.whl.metadata (2.4 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.1755900Z Collecting virtualenv>=20.10.0 (from pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.1895720Z   Downloading virtualenv-21.14.8-py3-none-any.whl.metadata (4.1 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.2194850Z Collecting iniconfig>=1.0.1 (from pytest>=8.3.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.2344420Z   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.4305930Z Collecting packaging>=22 (from pytest>=8.3.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.4319960Z   Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.4369160Z Collecting pluggy<2,>=1.5 (from pytest>=8.3.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.4395940Z   Using cached pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.4715860Z Collecting pygments>=2.7.2 (from pytest>=8.3.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.4863680Z   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.7805560Z Collecting coverage>=7.10.6 (from coverage[toml]>=7.10.6->pytest-cov>=6.0.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.7976350Z   Downloading coverage-7.16.2-cp312-cp312-macosx_11_0_arm64.whl.metadata (8.2 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.8528180Z Collecting attrs (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.8688450Z   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.9075600Z Collecting click (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.9217030Z   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.9471470Z Collecting click-log (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:49.9716050Z   Downloading click_log-0.4.0-py2.py3-none-any.whl.metadata (1.2 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.0130580Z Collecting jinja2>=2.7 (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.0287660Z   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.0592050Z Collecting markdown-it-py (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.0741160Z   Downloading markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.1203280Z Collecting requests (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.1353290Z   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.2102910Z Collecting MarkupSafe>=2.0 (from jinja2>=2.7->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.2249680Z   Downloading markupsafe-3.0.4-cp312-cp312-macosx_11_0_arm64.whl.metadata (2.7 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.2536660Z Collecting distlib<1,>=0.4.3 (from virtualenv>=20.10.0->pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.2674110Z   Downloading distlib-0.4.4-py2.py3-none-any.whl.metadata (5.3 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.2981490Z Collecting filelock<5,>=3.24.2 (from virtualenv>=20.10.0->pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.3117680Z   Downloading filelock-4.2.0-py3-none-any.whl.metadata (2.0 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.3424950Z Collecting platformdirs<5,>=4.4 (from virtualenv>=20.10.0->pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.3574690Z   Downloading platformdirs-4.13.3-py3-none-any.whl.metadata (5.5 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.4088320Z Collecting python-discovery>=1.6.1 (from virtualenv>=20.10.0->pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.4224200Z   Downloading python_discovery-1.6.3-py3-none-any.whl.metadata (5.1 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.4524960Z Collecting mdurl~=0.1 (from markdown-it-py->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.4657630Z   Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.5522420Z Collecting charset_normalizer<4,>=2 (from requests->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.5696570Z   Downloading charset_normalizer-3.5.2-cp312-cp312-macosx_10_13_universal2.whl.metadata (46 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.6024440Z Collecting idna<4,>=2.5 (from requests->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.6162240Z   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.6449560Z Collecting urllib3<3,>=1.26 (from requests->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.6587530Z   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.6646880Z Requirement already satisfied: certifi>=2023.5.7 in /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages (from requests->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0) (2026.7.22)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.6829860Z Downloading mypy-2.4.0-cp312-cp312-macosx_11_0_arm64.whl (14.4 MB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.8046490Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 14.4/14.4 MB 142.4 MB/s  0:00:00
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.8231790Z Downloading ast_serialize-0.13.0-cp39-abi3-macosx_11_0_arm64.whl (1.2 MB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.8350220Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 99.2 MB/s  0:00:00
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.8509390Z Downloading ruff-0.8.6-py3-none-macosx_11_0_arm64.whl (10.0 MB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.9315320Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.0/10.0 MB 125.7 MB/s  0:00:00
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.9491000Z Downloading librt-0.16.0-cp312-cp312-macosx_11_0_arm64.whl (155 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.9758430Z Downloading mypy_extensions-1.1.0-py3-none-any.whl (5.0 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.9827280Z Using cached pathspec-1.1.1-py3-none-any.whl (57 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:50.9991200Z Downloading pillow-12.3.0-cp312-cp312-macosx_11_0_arm64.whl (4.8 MB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.1074300Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.8/4.8 MB 45.8 MB/s  0:00:00
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.1263540Z Downloading pre_commit-4.7.0-py2.py3-none-any.whl (226 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.1485020Z Downloading cfgv-3.5.0-py2.py3-none-any.whl (7.4 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.1693100Z Downloading identify-2.6.20-py2.py3-none-any.whl (99 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.1913460Z Downloading nodeenv-1.11.0-py2.py3-none-any.whl (34 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.2396450Z Downloading pytest-9.1.1-py3-none-any.whl (386 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.2474960Z Using cached pluggy-1.7.0-py3-none-any.whl (27 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.2620120Z Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.3025590Z Using cached packaging-26.3-py3-none-any.whl (129 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.3396740Z Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.3490360Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 149.5 MB/s  0:00:00
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.3646720Z Downloading pytest_asyncio-1.4.0-py3-none-any.whl (16 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.4163040Z Downloading pytest_cov-7.1.0-py3-none-any.whl (22 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.4543350Z Downloading coverage-7.16.2-cp312-cp312-macosx_11_0_arm64.whl (224 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.4769620Z Downloading pyyaml-6.0.3-cp312-cp312-macosx_11_0_arm64.whl (173 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.4994590Z Downloading scriv-1.8.0-py3-none-any.whl (39 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.5554490Z Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.5832660Z Downloading markupsafe-3.0.4-cp312-cp312-macosx_11_0_arm64.whl (12 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.6041800Z Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.6252660Z Downloading virtualenv-21.14.8-py3-none-any.whl (5.5 MB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.6776150Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.5/5.5 MB 109.9 MB/s  0:00:00
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.7000840Z Downloading distlib-0.4.4-py2.py3-none-any.whl (472 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.7221370Z Downloading filelock-4.2.0-py3-none-any.whl (135 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.8017300Z Downloading platformdirs-4.13.3-py3-none-any.whl (32 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.8317800Z Downloading python_discovery-1.6.3-py3-none-any.whl (39 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.8602270Z Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.8763440Z Downloading click-8.5.0-py3-none-any.whl (125 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.8971130Z Downloading click_log-0.4.0-py2.py3-none-any.whl (4.3 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.9195170Z Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.9363550Z Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.9576860Z Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:51.9836380Z Downloading charset_normalizer-3.5.2-cp312-cp312-macosx_10_13_universal2.whl (367 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:52.0224070Z Downloading idna-3.20-py3-none-any.whl (69 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:52.0427290Z Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:52.1487390Z Building wheels for collected packages: medical-neural-network-ml
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:52.1495980Z   Building editable for medical-neural-network-ml (pyproject.toml): started
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:52.2077680Z   Building editable for medical-neural-network-ml (pyproject.toml): finished with status 'done'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:52.2199750Z   Created wheel for medical-neural-network-ml: filename=medical_neural_network_ml-0.1.0-py3-none-any.whl size=8627 sha256=92b3b86269c8cdc601fe8482ded06d289d0ebde80cbd385e72a33a901a07b5da
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:52.2313850Z   Stored in directory: /private/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pip-ephem-wheel-cache-azjb7iq6/wheels/3e/d1/58/1584a5740294032e55ddef87421ba86fb16ffa767805335ba1
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:52.2370200Z Successfully built medical-neural-network-ml
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:52.3291990Z Installing collected packages: distlib, urllib3, typing_extensions, ruff, pyyaml, pygments, pluggy, platformdirs, pillow, pathspec, packaging, nodeenv, mypy_extensions, medical-neural-network-ml, mdurl, MarkupSafe, librt, iniconfig, idna, identify, filelock, coverage, click, charset_normalizer, cfgv, attrs, ast-serialize, requests, python-discovery, pytest, mypy, markdown-it-py, jinja2, click-log, virtualenv, scriv, pytest-cov, pytest-asyncio, pre-commit
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.0397590Z 
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.0433300Z Successfully installed MarkupSafe-3.0.4 ast-serialize-0.13.0 attrs-26.1.0 cfgv-3.5.0 charset_normalizer-3.5.2 click-8.5.0 click-log-0.4.0 coverage-7.16.2 distlib-0.4.4 filelock-4.2.0 identify-2.6.20 idna-3.20 iniconfig-2.3.1 jinja2-3.1.6 librt-0.16.0 markdown-it-py-4.2.0 mdurl-0.1.2 medical-neural-network-ml-0.1.0 mypy-2.4.0 mypy_extensions-1.1.0 nodeenv-1.11.0 packaging-26.3 pathspec-1.1.1 pillow-12.3.0 platformdirs-4.13.3 pluggy-1.7.0 pre-commit-4.7.0 pygments-2.21.0 pytest-9.1.1 pytest-asyncio-1.4.0 pytest-cov-7.1.0 python-discovery-1.6.3 pyyaml-6.0.3 requests-2.34.2 ruff-0.8.6 scriv-1.8.0 typing_extensions-4.16.0 urllib3-2.8.0 virtualenv-21.14.8
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.3904170Z ##[group]Run monitor=(python -m medbench.cli monitor --interval 2
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.3906030Z ^[[36;1mmonitor=(python -m medbench.cli monitor --interval 2^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.3907420Z ^[[36;1m  --out "resources/compatibility-$RUNNER_LABEL.json"^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.3909640Z ^[[36;1m  --label "Compatibility ($RUNNER_LABEL)" --)^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.3913120Z ^[[36;1mif [ "$TEST_SCOPE" = runtime ]; then^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.3914070Z ^[[36;1m  bash scripts/run-with-budget-warning.sh "$TEST_BUDGET_SECONDS" \^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.3915560Z ^[[36;1m    "Runtime compatibility" "${monitor[@]}" \^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.3917820Z ^[[36;1m    python -m pytest tests/test_medbench*.py tests/test_my_package.py^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.3919940Z ^[[36;1melse^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.3920420Z ^[[36;1m  bash scripts/run-with-budget-warning.sh "$TEST_BUDGET_SECONDS" \^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.3922950Z ^[[36;1m    "Mac compatibility" "${monitor[@]}" python -m pytest^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.3923540Z ^[[36;1mfi^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.4103610Z shell: /bin/bash -e {0}
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.4103860Z env:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.4104120Z   GIT_CONFIG_COUNT: 1
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.4104390Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.4104650Z   GIT_CONFIG_VALUE_0: main
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.4104930Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.4105390Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.4105940Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.4106360Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.4106770Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.4107060Z   TEST_SCOPE: full
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.4107280Z   TEST_BUDGET_SECONDS: 600
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.4107490Z   RUNNER_LABEL: macos-15
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:57.4107710Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:40.1341850Z ........................................................................ [  7%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:40.1343370Z ........................................................................ [ 14%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:41.2923230Z ........................................................................ [ 22%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:42.4838460Z ...s............s....................................................... [ 29%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:42.4839660Z ........................................................................ [ 36%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:42.4841150Z .................................................s...................... [ 44%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:45.8743590Z ............sss......................................................... [ 51%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:45.8844000Z ..............................................................ssssssssss [ 59%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:45.8929430Z ssssssssssssssssssssssssssssss.......................................... [ 66%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:45.9030020Z ........................................................................ [ 73%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:58.3629530Z .................................F....ss................................ [ 81%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:20.7667910Z ........................................................................ [ 88%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:36.3652410Z .......................................................................s [ 96%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:39.9974660Z .......................................                                  [100%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0080670Z =================================== FAILURES ===================================
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0184980Z ____________ test_mypy_dependency_supports_configured_python_target ____________
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0286350Z 
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0375390Z     def test_mypy_dependency_supports_configured_python_target() -> None:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0432250Z         """The dev extra must not install mypy versions that reject Python 3.9."""
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0443490Z         mypy = dev_requirement("mypy")
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0509120Z     
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0509800Z         assert "1.13.0" in mypy.specifier
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0510110Z >       assert "2.0" not in mypy.specifier
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0510550Z E       AssertionError: assert '2.0' not in <SpecifierSet('<3.0,>=1.13.0')>
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0511200Z E        +  where <SpecifierSet('<3.0,>=1.13.0')> = <Requirement('mypy<3.0,>=1.13.0')>.specifier
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0511460Z 
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0511700Z tests/test_project_metadata.py:26: AssertionError
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0512160Z =========================== short test summary info ============================
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0512600Z SKIPPED [1] tests/test_measure_training_memory.py:56: needs Linux /proc
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0513660Z SKIPPED [1] tests/test_measure_training_memory.py:234: could not import 'torch': No module named 'torch'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0516280Z SKIPPED [1] tests/test_medbench_ddxplus_parser.py:88: set MEDBENCH_NETWORK_TESTS=1 to download the real files
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0518270Z SKIPPED [1] tests/test_medbench_model_run.py:216: the run script only runs on Linux x86_64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0519730Z SKIPPED [1] tests/test_medbench_model_run.py:236: the run script only runs on Linux x86_64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0521070Z SKIPPED [1] tests/test_medbench_model_run.py:249: the run script only runs on Linux x86_64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0522740Z SKIPPED [40] tests/test_medbench_real_data.py:426: set MEDBENCH_NETWORK_TESTS=1 to download the real files
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0524570Z SKIPPED [1] tests/test_real_models.py:41: set MEDBENCH_BASE_URL to run
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0525800Z SKIPPED [1] tests/test_real_models.py:60: set MEDBENCH_VISION=1 for image models
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0527070Z SKIPPED [1] tests/test_validate_changeset.py:373: Requires the multi-language layout
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0530240Z FAILED tests/test_project_metadata.py::test_mypy_dependency_supports_configured_python_target - AssertionError: assert '2.0' not in <SpecifierSet('<3.0,>=1.13.0')>
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0540450Z  +  where <SpecifierSet('<3.0,>=1.13.0')> = <Requirement('mypy<3.0,>=1.13.0')>.specifier
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0541480Z 1 failed, 925 passed, 49 skipped in 101.04s (0:01:41)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0542430Z Mac compatibility took 103s of its 600s execution budget.
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0573680Z ##[error]Process completed with exit code 1.
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0996530Z ##[group]Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0996970Z with:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0997140Z   name: resources-compatibility-macos-15
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0997440Z   path: resources
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0997600Z   if-no-files-found: ignore
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0998200Z   compression-level: 6
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0998610Z   overwrite: false
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0998770Z   include-hidden-files: false
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0998950Z   archive: true
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0999090Z env:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0999230Z   GIT_CONFIG_COUNT: 1
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0999400Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0999660Z   GIT_CONFIG_VALUE_0: main
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.0999970Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.1000490Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.1001050Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.1001630Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.1001990Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.1002330Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.6749820Z With the provided path, there will be 1 file uploaded
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.6763370Z Artifact name is valid!
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:40.6764640Z Root directory input is valid!
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.0548780Z Uploading artifact: resources-compatibility-macos-15.zip
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.0550460Z Beginning upload of artifact content to blob storage
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.2156870Z Uploaded bytes 909
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.2621380Z Finished uploading artifact content to blob storage!
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.2724230Z SHA256 digest of uploaded artifact is ff06515b40b6c3a5542ced2e0d6cfa4804d739ead9faca663895396f964a3462
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.2861000Z Finalizing artifact upload
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.5903540Z Artifact resources-compatibility-macos-15 successfully finalized. Artifact ID 12071235659
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.5905220Z Artifact resources-compatibility-macos-15 has been successfully uploaded! Final size is 909 bytes. Artifact ID is 12071235659
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.5910060Z Artifact download URL: https://github.com/konard/medical-neural-network-ml/actions/runs/38956645024/artifacts/12071235659
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.6093770Z Post job cleanup.
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.7049180Z [command]/opt/homebrew/bin/git version
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.7124070Z git version 2.55.0
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.7145010Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/d41c9e80-2b1c-4963-8105-944f2d126301/.gitconfig'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.7153960Z Temporarily overriding HOME='/Users/runner/work/_temp/d41c9e80-2b1c-4963-8105-944f2d126301' before making global git config changes
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.7156140Z Adding repository directory to the temporary git global config as a safe directory
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.7160680Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.7237340Z Removing SSH command configuration
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.7241750Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.7305750Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.8718000Z Removing HTTP extra header
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.8726450Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:41.8831510Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:42.0013630Z Removing includeIf entries pointing to credentials config files
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:42.0018620Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:42.0087220Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:42.1998730Z Cleaning up orphan processes
