@@ -85,6 +85,15 @@ def _run_options() -> argparse.ArgumentParser:
     group.add_argument(
         "--gpu-count", type=int, default=1, help="GPUs per Job pod (0 for a CPU test)"
     )
+    group.add_argument(
+        "--pod-cpu", default="", help="Job pod CPU request (default: per model)"
+    )
+    group.add_argument(
+        "--pod-memory", default="", help="Job pod memory request, e.g. 8Gi"
+    )
+    group.add_argument(
+        "--pod-disk", default="", help="Job pod ephemeral storage, e.g. 20Gi"
+    )
     group.add_argument("--node-count", type=int, default=1)
     group.add_argument(
         "--spot",

@@ -10,9 +10,11 @@
 #
 # Needs docker, kind and kubectl. Uses the kind cluster $CLUSTER if it
 # exists (the CI job creates it with helm/kind-action), else creates it and
-# deletes it afterwards unless KEEP_CLUSTER=1. The same command with
-# --kube-context of a real GPU cluster and without --gpu-count 0,
-# --no-require-gpu and the echo engine is a real GPU test.
+# deletes it afterwards unless KEEP_CLUSTER=1. The --pod-* requests fit a
+# 4 vCPU / 16 GB CI runner; UniMedVL's own requests (7 CPUs, 48Gi) would
+# leave the pod Pending. The same command with --kube-context of a real GPU
+# cluster and without --gpu-count 0, --no-require-gpu, the --pod-* options
+# and the echo engine is a real GPU test.
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 CLUSTER="${CLUSTER:-medbench-issue23}"
@@ -36,6 +38,7 @@ status=0
 python3 -m scripts.cloud_gpu all \
   --provider kubernetes --mode k8s --kube-context "kind-$CLUSTER" \
   --model unimedvl --gpu-count 0 --no-require-gpu \
+  --pod-cpu 1 --pod-memory 4Gi --pod-disk 10Gi \
   --steps run --count 2 --tasks diagnosis --time-budget 600 --ttl 60 \
   --env UNIMEDVL_ENGINE=echo --env RUN_PYTEST=0 \
   --workdir "$WORKDIR" --yes 2>&1 | tee "$LOG" || status=$?

@@ -64,7 +64,11 @@ Useful options: `--spot` (cheaper, may be interrupted), `--region`,
 `--tool tofu`, `--backend-config` (remote Terraform state; the backend
 is s3, azurerm or gcs unless `--backend-type` names another, such as
 `http` for GitLab-managed state),
-`--allowed-cidr` (default: this machine's public address). Without `--yes`,
+`--allowed-cidr` (default: this machine's public address), and for the
+Job `--pod-cpu`, `--pod-memory` and `--pod-disk` (requests; the defaults per
+model are meant for GPU nodes, so a small cluster needs smaller ones, or the
+pod stays Pending; the wait logs the scheduler's reason and a timeout saves
+`kubectl describe` to `reports/pod-describe.txt`). Without `--yes`,
 `up` and `all` refuse to create paid resources. Logins come from the clouds'
 usual places (`aws configure`/`AWS_PROFILE`, `az login` or `ARM_*`,
 `gcloud auth application-default login`, `HETZNER_ROBOT_USER` and

@@ -183,6 +183,85 @@ def test_every_model_has_job_resources() -> None:
     assert set(kube.RESOURCES) == set(cfg.MODELS)
 
 
+def test_job_pod_requests_can_be_set(tmp_path: Path) -> None:
+    text = rendered_job(
+        tmp_path, model="unimedvl", pod_cpu="500m", pod_memory="4Gi", pod_disk="10Gi"
+    )
+    assert 'cpu: "500m"' in text
+    assert 'memory: "4Gi"' in text
+    assert text.count('ephemeral-storage: "10Gi"') == 2
+    with pytest.raises(ValueError, match="--pod-memory"):
+        rendered_job(tmp_path, pod_memory="4 GB")
+
+
+def test_kind_example_fits_a_ci_runner() -> None:
+    """The kind job runs on a 4 vCPU / 16 GB runner, where the control plane
+    requests about 1 CPU. UniMedVL's own requests (7 CPUs, 48Gi) left the
+    pod Pending until the job was cancelled."""
+    script = (ROOT / "examples" / "cloud_gpu_kind.sh").read_text()
+    options = dict(re.findall(r"--pod-(cpu|memory|disk) (\S+)", script))
+    assert float(options["cpu"]) <= 2
+    assert options["memory"].endswith("Gi")
+    assert int(options["memory"][:-2]) <= 8
+    assert options["disk"].endswith("Gi")
+    assert int(options["disk"][:-2]) <= 20
+    cpu, memory = kube.RESOURCES["unimedvl"]
+    assert float(cpu) > 4 or int(memory[:-2]) > 16
+
+
+class FakeKubectl(kube.Kubectl):
+    """Answers like a cluster whose only pod no node can fit."""
+
+    def get(self, *args: str, timeout: float | None = 120) -> str:
+        if args[:2] == ("get", "pods"):
+            return "medbench-x-abc"
+        if "jsonpath={.status.phase}" in args:
+            return "Pending"
+        pod = {
+            "status": {
+                "phase": "Pending",
+                "conditions": [
+                    {
+                        "type": "PodScheduled",
+                        "status": "False",
+                        "reason": "Unschedulable",
+                        "message": "0/1 nodes are available: 1 Insufficient cpu.",
+                    }
+                ],
+            }
+        }
+        return json.dumps(pod)
+
+    def raw(
+        self, *args: str, stdin: bytes | None = None
+    ) -> subprocess.CompletedProcess[bytes]:
+        return subprocess.CompletedProcess(
+            list(args), 0, b"Events: FailedScheduling\n", b""
+        )
+
+
+def test_waiting_for_the_pod_says_why_it_is_pending(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    reports = tmp_path / "reports"
+    with pytest.raises(TimeoutError, match="Insufficient cpu"):
+        kube.wait_for_pod(FakeKubectl(), "medbench-x", reports, timeout=0)
+    assert (
+        "medbench-x-abc is Pending: Unschedulable: 0/1 nodes" in capsys.readouterr().err
+    )
+    assert (reports / "pod-describe.txt").read_text() == "Events: FailedScheduling\n"
+
+
+def test_pod_waiting_reason_reports_image_pull_errors() -> None:
+    class Pulling(FakeKubectl):
+        def get(self, *args: str, timeout: float | None = 120) -> str:
+            waiting = {"reason": "ErrImagePull", "message": "not found"}
+            pod = {"status": {"containerStatuses": [{"state": {"waiting": waiting}}]}}
+            return json.dumps(pod)
+
+    assert kube.pod_waiting_reason(Pulling(), "p") == "ErrImagePull: not found"
+
+
 @pytest.mark.skipif(shutil.which("kubeconform") is None, reason="needs kubeconform")
 @pytest.mark.parametrize("gpu_count", [0, 1])
 def test_rendered_job_is_valid_kubernetes(tmp_path: Path, gpu_count: int) -> None:

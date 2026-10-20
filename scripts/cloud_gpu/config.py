@@ -165,6 +165,10 @@ class RunConfig:
     ssh_key: str = ""
     kube_context: str = ""
     namespace: str = "default"
+    # Job pod requests; empty means the model's default (scripts/cloud_gpu/kube.py).
+    pod_cpu: str = ""
+    pod_memory: str = ""
+    pod_disk: str = ""
     hetzner_location: str = ""
     hetzner_order_timeout: int = 180
     github_repository: str = ""
@@ -217,6 +221,14 @@ class RunConfig:
         if self.backend_type and not re.fullmatch(r"[a-z][a-z0-9]*", self.backend_type):
             message = f"invalid Terraform backend type {self.backend_type!r}"
             raise ValueError(message)
+        for option, value in (
+            ("--pod-cpu", self.pod_cpu),
+            ("--pod-memory", self.pod_memory),
+            ("--pod-disk", self.pod_disk),
+        ):
+            if value and not re.fullmatch(r"[0-9]+(\.[0-9]+)?(m|[KMGT]i?)?", value):
+                message = f"{option} {value!r} is not a Kubernetes quantity (e.g. 2, 500m, 8Gi)"
+                raise ValueError(message)
         for key in self.extra_env:
             if not re.fullmatch(r"[A-Z_][A-Z0-9_]*", key):
                 message = f"invalid environment variable name {key!r}"

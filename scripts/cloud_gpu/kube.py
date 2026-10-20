@@ -38,6 +38,8 @@ def job_values(config: cfg.RunConfig) -> dict[str, str]:
     """Return the values for every placeholder of the Job template."""
     cpu, memory = RESOURCES[config.model]
     disk_gb = max(50, config.disk_gb - 30)  # leave room for the node itself
+    # A small node (kind on a CI runner) needs smaller requests, or the pod
+    # stays Pending: --pod-cpu, --pod-memory and --pod-disk.
     return {
         "name": config.name,
         "namespace": config.namespace,
@@ -51,9 +53,9 @@ def job_values(config: cfg.RunConfig) -> dict[str, str]:
         "require_gpu": "1" if config.require_gpu else "0",
         "commit": config.commit,
         "collect_seconds": str(COLLECT_SECONDS),
-        "cpu": cpu,
-        "memory": memory,
-        "disk": f"{disk_gb}Gi",
+        "cpu": config.pod_cpu or cpu,
+        "memory": config.pod_memory or memory,
+        "disk": config.pod_disk or f"{disk_gb}Gi",
         "gpu_count": str(config.gpu_count),
     }
 
@@ -198,12 +200,77 @@ def pod_phase(kubectl: Kubectl, pod: str) -> str:
         return "Unknown"
 
 
+def pod_waiting_reason(kubectl: Kubectl, pod: str) -> str:
+    """Return why a pod is not running yet, or "" (best effort).
+
+    The scheduler's message for a pod no node fits (too little CPU, memory,
+    disk or no GPU), else a container's reason, such as ErrImagePull.
+    """
+    try:
+        status = json.loads(kubectl.get("get", "pod", pod, "--output", "json"))
+    except (CommandError, ValueError):
+        return ""
+    status = status.get("status", {})
+    for condition in status.get("conditions", []):
+        if (
+            condition.get("type") == "PodScheduled"
+            and condition.get("status") == "False"
+        ):
+            reason = condition.get("reason") or "Unschedulable"
+            return f"{reason}: {condition.get('message', '')}".rstrip(": ")
+    for container in status.get("containerStatuses", []):
+        waiting = container.get("state", {}).get("waiting", {})
+        reason = waiting.get("reason", "")
+        if reason and reason != "ContainerCreating":
+            return f"{reason}: {waiting.get('message', '')}".rstrip(": ")
+    return ""
+
+
 def pod_exec(
     kubectl: Kubectl, pod: str, script: str, stdin: bytes | None = None
 ) -> subprocess.CompletedProcess[bytes]:
     """Run a shell script in the pod."""
     args = ["exec", "-i" if stdin is not None else "", pod, "--", "sh", "-c", script]
     return kubectl.raw(*[a for a in args if a], stdin=stdin)
+
+
+def wait_for_pod(kubectl: Kubectl, job: str, reports: Path, *, timeout: float) -> str:
+    """Wait until the Job's pod runs and return its name.
+
+    On a timeout ``kubectl describe`` goes to reports/pod-describe.txt.
+    """
+    pod = ""
+    waiting = ""
+
+    def running() -> bool:
+        nonlocal pod, waiting
+        pod = pod or job_pod(kubectl, job)
+        if not pod:
+            return False
+        phase = pod_phase(kubectl, pod)
+        if phase in {"Failed", "Succeeded"}:
+            message = f"pod {pod} ended ({phase}) before the run started"
+            raise RuntimeError(message)
+        if phase == "Running":
+            return True
+        # Say why it waits: an autoscaler may still add a node, but a pod
+        # no node can ever fit would otherwise wait in silence.
+        reason = pod_waiting_reason(kubectl, pod)
+        if reason and reason != waiting:
+            log(f"{pod} is {phase or 'Pending'}: {reason}")
+        waiting = reason
+        return False
+
+    # A new GPU node can take a while: image pull, driver, device plugin.
+    try:
+        wait_until(f"pod of job {job}", running, timeout=timeout, interval=10)
+    except TimeoutError as error:
+        describe = kubectl.raw("describe", "pod" if pod else "job", pod or job)
+        reports.mkdir(parents=True, exist_ok=True)
+        (reports / "pod-describe.txt").write_bytes(describe.stdout + describe.stderr)
+        message = f"{error}; last reason: {waiting or 'none reported'}"
+        raise TimeoutError(message) from error
+    return pod
 
 
 def run_job(
@@ -223,21 +290,7 @@ def run_job(
     job = config.name
     kubectl("apply", "-f", "-", stdin=render_job(config).encode("utf-8"))
 
-    pod = ""
-
-    def running() -> bool:
-        nonlocal pod
-        pod = pod or job_pod(kubectl, job)
-        if not pod:
-            return False
-        phase = pod_phase(kubectl, pod)
-        if phase in {"Failed", "Succeeded"}:
-            message = f"pod {pod} ended ({phase}) before the run started"
-            raise RuntimeError(message)
-        return phase == "Running"
-
-    # A new GPU node can take a while: image pull, driver, device plugin.
-    wait_until(f"pod of job {job}", running, timeout=start_timeout, interval=10)
+    pod = wait_for_pod(kubectl, job, reports, timeout=start_timeout)
     log(f"uploading the repository ({len(archive) // 1024} KiB) into {pod}")
     upload = pod_exec(
         kubectl, pod, "mkdir -p /work/repo && tar -xzf - -C /work/repo", archive
