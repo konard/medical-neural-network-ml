@@ -21,11 +21,14 @@ import argparse
 import dataclasses
 import json
 import os
+import signal
 import subprocess
 import sys
+import threading
 import time
 from collections.abc import Sequence
 from pathlib import Path
+from types import FrameType
 
 from scripts.cloud_gpu import config as cfg
 from scripts.cloud_gpu import flows, hetzner, kube, reaper, remote, terraform
@@ -389,9 +392,36 @@ def reap(args: argparse.Namespace) -> int:
     return 1 if sweeper.failed else 0
 
 
+STOP_SIGNALS = (signal.SIGTERM, signal.SIGHUP)
+
+
+def _stop(signum: int, frame: FrameType | None) -> None:
+    """Turn the first SIGTERM or SIGHUP into SystemExit, ignore later ones.
+
+    A cancelled CI job or an expired step budget sends SIGTERM; without this
+    Python dies at once and `all` never reaches its `down`, leaving paid
+    machines behind. Raising SystemExit runs the ``finally`` blocks; later
+    signals are ignored so that `down` itself is not interrupted (SIGKILL
+    still ends the process).
+    """
+    del frame
+    for number in STOP_SIGNALS:
+        signal.signal(number, _ignore)
+    log(f"received {signal.Signals(signum).name}: stopping, deleting what was created")
+    raise SystemExit(128 + signum)
+
+
+def _ignore(signum: int, frame: FrameType | None) -> None:
+    del frame
+    log(f"received {signal.Signals(signum).name} again: still deleting")
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     """Parse the command line and run the subcommand."""
     args = build_parser().parse_args(argv)
+    previous = {}
+    if threading.current_thread() is threading.main_thread():
+        previous = {number: signal.signal(number, _stop) for number in STOP_SIGNALS}
     try:
         return dispatch(args)
     except (CommandError, RuntimeError, TimeoutError, ValueError, KeyError) as error:
@@ -400,6 +430,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     except subprocess.TimeoutExpired as error:
         log(f"error: {error}")
         return 1
+    finally:
+        for number, handler in previous.items():
+            signal.signal(number, handler)
 
 
 def job_manifest(args: argparse.Namespace) -> int:

@@ -11,9 +11,12 @@ from __future__ import annotations
 import io
 import json
 import os
+import signal
 import stat
+import subprocess
 import sys
 import tarfile
+import time
 from pathlib import Path
 
 import pytest
@@ -418,6 +421,47 @@ def test_all_runs_on_an_ssh_host_and_collects_the_reports(
     host = json.loads((reports / "gpu-host-run.json").read_text())
     assert host["model"] == "unimedvl"
     assert json.loads((reports / "diagnosis.json").read_text())["items_run"] == 2
+    _, outputs = cfg.load_state(tmp_path / "run")
+    assert "stopped_at" in outputs
+
+
+HANGING_SSH = """\
+printf 'connected\\n' >> "$FAKE_SSH_LOG"
+exec sleep 600
+"""
+
+
+def test_sigterm_still_runs_down(tmp_path: Path) -> None:
+    """A cancelled job or an expired budget sends SIGTERM; `all` must still
+    reach `down`, or the machine keeps running (and costing) until the
+    reaper or its own timer finds it."""
+    fake_tool(tmp_path / "bin", "ssh", HANGING_SSH)
+    log = tmp_path / "ssh.log"
+    env = {
+        **os.environ,
+        "PATH": f"{tmp_path / 'bin'}{os.pathsep}{os.environ['PATH']}",
+        "FAKE_SSH_LOG": str(log),
+    }
+    command = [sys.executable, "-m", "scripts.cloud_gpu", "all", "--provider", "ssh"]
+    command += ["--ssh-host", "gpu.example", "--model", "unimedvl"]
+    command += ["--run-id", "sigterm-test", "--workdir", str(tmp_path / "run")]
+    process = subprocess.Popen(
+        command,
+        cwd=Path(__file__).resolve().parents[1],
+        env=env,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    deadline = time.monotonic() + 60
+    while not log.exists() and process.poll() is None:
+        assert time.monotonic() < deadline, "the fake ssh was never called"
+        time.sleep(0.1)
+    process.send_signal(signal.SIGTERM)
+    output, _ = process.communicate(timeout=60)
+    assert process.returncode == 128 + signal.SIGTERM, output
+    assert "received SIGTERM" in output
+    assert "run sigterm-test cleaned up" in output
     _, outputs = cfg.load_state(tmp_path / "run")
     assert "stopped_at" in outputs
 

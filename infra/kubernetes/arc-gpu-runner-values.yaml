@@ -18,8 +18,8 @@
 # Jobs then use `runs-on: medbench-gpu`. The token is a fine-grained personal
 # access token for this repository with "Administration: read and write"
 # (docs/cloud-gpu.md); a GitHub App would also work for an organisation-owned
-# repository. tests/test_cloud_gpu_infra.py renders this file with helm when
-# helm is installed.
+# repository. `bash scripts/check-infra.sh helm` renders the chart with this
+# file (the Infrastructure job of .github/workflows/cloud-gpu-tests.yml).
 githubConfigUrl: https://github.com/konard/medical-neural-network-ml
 githubConfigSecret: medbench-arc-github
 runnerScaleSetName: medbench-gpu
