@@ -52,7 +52,7 @@ def gpu_job() -> str:
 def job_env(block: str) -> dict[str, str]:
     """The job-level ``env:`` mapping (six-space keys) of a job block."""
     env_text = block.split("\n    env:\n", 1)[1].split("\n    steps:\n", 1)[0]
-    pairs = re.findall(r"^      ([A-Z_]+): (.+)$", env_text, re.MULTILINE)
+    pairs = re.findall(r"^      ([A-Z0-9_]+): (.+)$", env_text, re.MULTILINE)
     return {key: value.strip() for key, value in pairs if "${{" not in value}
 
 
@@ -60,7 +60,7 @@ def select_step_lines(block: str, model: str) -> dict[str, str]:
     """``echo "KEY=VALUE"`` lines of one case of the Select model step."""
     step = block.split("- name: Select model", 1)[1].split("\n      - name:", 1)[0]
     case = step.split(f"            {model})", 1)[1].split(";;", 1)[0]
-    pairs = re.findall(r'echo "([A-Z_]+)=([^"$]+)"', case)
+    pairs = re.findall(r'echo "([A-Z0-9_]+)=([^"$]+)"', case)
     return dict(pairs)
 
 
@@ -229,9 +229,8 @@ def yaml_value(path: Path, name: str) -> str:
 def test_driver_and_toolkit_pins_match_the_playbook() -> None:
     """The bare-host bootstrap and Ansible install the same NVIDIA stack."""
     playbook = ANSIBLE / "gpu-host.yml"
-    assert shell_value(BOOTSTRAP, "DRIVER_BRANCH") == yaml_value(
-        playbook, "nvidia_driver_branch"
-    )
+    branch = shell_value(BOOTSTRAP, "DRIVER_BRANCH")
+    assert branch == yaml_value(playbook, "nvidia_driver_branch")
     assert shell_value(BOOTSTRAP, "TOOLKIT_VERSION") == yaml_value(
         playbook, "nvidia_container_toolkit_version"
     )
@@ -243,9 +242,8 @@ def test_driver_and_toolkit_pins_match_the_playbook() -> None:
     toolkit = evidence["nvidia_container_toolkit"]
     assert fingerprint == toolkit["signing_key_fingerprint"]
     assert shell_value(BOOTSTRAP, "TOOLKIT_VERSION") in toolkit["versions_seen"]
-    assert shell_value(BOOTSTRAP, "DRIVER_BRANCH") == shell_value(
-        HOST_RUN, "MIN_DRIVER"
-    ).split(":-", 1)[-1].rstrip("}")
+    for script in (BOOTSTRAP, HOST_RUN):
+        assert f'MIN_DRIVER="${{MIN_DRIVER:-{branch}}}"' in script.read_text()
 
 
 def test_k3s_pins_match_the_playbook_and_the_evidence() -> None:
@@ -256,7 +254,9 @@ def test_k3s_pins_match_the_playbook_and_the_evidence() -> None:
     assert yaml_value(playbook, "k3s_version") == k3s["version"]
     assert shell_value(BOOTSTRAP, "K3S_SHA256_AMD64") == k3s["k3s_amd64_sha256"]
     assert yaml_value(playbook, "k3s_sha256") == k3s["k3s_amd64_sha256"]
-    assert shell_value(BOOTSTRAP, "K3S_INSTALL_SHA256") == k3s["install_sh_sha256_at_tag"]
+    assert (
+        shell_value(BOOTSTRAP, "K3S_INSTALL_SHA256") == k3s["install_sh_sha256_at_tag"]
+    )
     assert yaml_value(playbook, "k3s_install_sha256") == k3s["install_sh_sha256_at_tag"]
 
 
