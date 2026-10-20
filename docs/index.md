@@ -11,6 +11,7 @@ the Unlicense; datasets and model weights keep their original terms.
 api
 apple-silicon
 hardware-workflows
+cloud-gpu
 audit-2026-10-16
 evaluation-validity
 preview-regeneration

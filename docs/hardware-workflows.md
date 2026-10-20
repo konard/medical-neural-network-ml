@@ -84,6 +84,13 @@ estimate. Actual runtime still needs measurement; incomplete coverage fails
 explicitly instead of silently passing.
 [Run and measure both large models](https://github.com/konard/medical-neural-network-ml/issues/6).
 
+For a GPU we do not own, the [cloud GPU tests](cloud-gpu.md) rent a
+machine for one run and delete it afterwards. They run on AWS, Azure,
+Google Cloud or a Hetzner GEX server. The default machines have 16 to 24 GB
+GPUs for MedGemma (an L4 on AWS and Google Cloud) and 48 to 96 GB GPUs for
+UniMedVL. The same orchestrator can
+start an ephemeral GPU runner for the self-hosted job.
+
 ## Fine-tuning and training
 
 `medbench estimate --finetune` adds up weights, trainable adapters,
