@@ -88,9 +88,18 @@ def _tf(config: cfg.RunConfig, *args: str, capture: bool = False) -> str:
 
 
 def init(config: cfg.RunConfig) -> None:
-    """``terraform init`` with the committed provider lock file."""
+    """``terraform init`` with the committed provider lock file.
+
+    The modules declare no backend, and without one Terraform ignores
+    -backend-config and keeps the state local; so a remote state also gets
+    an override file that declares the backend.
+    """
     args = ["init", "-input=false", "-lockfile=readonly", "-no-color"]
     if config.backend_config:
+        backend = config.backend_type or cfg.TERRAFORM_BACKENDS[config.provider]
+        (module_dir(config) / "backend_override.tf").write_text(
+            f'terraform {{\n  backend "{backend}" {{}}\n}}\n', "utf-8"
+        )
         args.append(f"-backend-config={config.backend_config}")
     _tf(config, *args)
 

@@ -251,6 +251,24 @@ def test_terraform_apply_and_destroy(
         "1|init -input=false -lockfile=readonly -no-color -backend-config=backend.hcl",
         "1|destroy -input=false -auto-approve -no-color",
     ]
+    # Without a backend block Terraform ignores -backend-config.
+    override = terraform.module_dir(config) / "backend_override.tf"
+    assert override.read_text() == 'terraform {\n  backend "s3" {}\n}\n'
+
+
+def test_backend_type_and_config_path(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.chdir(tmp_path)
+    argv = ["plan", "--provider", "gcp", "--gcp-project", "p", "--commit", "abc"]
+    argv += ["--allowed-cidr", "203.0.113.7/32", "--backend-config", "state.hcl"]
+    args = cli.build_parser().parse_args([*argv, "--backend-type", "http"])
+    config = cli.config_from_args(args, needs_cidr=True)
+    assert config.backend_config == str(tmp_path / "state.hcl")
+    assert config.backend_type == "http"
+    config.backend_type = "http\n}"
+    with pytest.raises(ValueError, match="backend type"):
+        config.validate()
 
 
 def test_down_runs_every_step_and_reports_failures(

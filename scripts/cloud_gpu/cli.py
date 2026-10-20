@@ -158,6 +158,11 @@ def _run_options() -> argparse.ArgumentParser:
         help="Terraform backend config file for remote state",
     )
     group.add_argument(
+        "--backend-type",
+        default="",
+        help="Terraform backend of --backend-config (default: s3, azurerm or gcs)",
+    )
+    group.add_argument(
         "--commit", default="", help="recorded in the reports (default: git HEAD)"
     )
     return run_options
@@ -266,6 +271,8 @@ def config_from_args(args: argparse.Namespace, *, needs_cidr: bool) -> cfg.RunCo
             "created_at": int(time.time()),
         }
     )
+    if config.backend_config:  # terraform init runs in the module's copy
+        config.backend_config = str(Path(config.backend_config).resolve())
     if not config.ssh_user and config.provider == "ssh":
         config.ssh_user = os.environ.get("USER", "root")
     if not config.commit:

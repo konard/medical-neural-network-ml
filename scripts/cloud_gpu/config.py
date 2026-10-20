@@ -105,6 +105,10 @@ DEFAULT_REGIONS = {
 # Hard limit for any temporary machine: the VMs power themselves off after
 # ttl_minutes, and the reaper deletes anything still there after expires_at.
 MAX_TTL_MINUTES = 24 * 60
+
+# The Terraform backend used for --backend-config unless --backend-type names
+# another one (for example http, GitLab's managed Terraform state).
+TERRAFORM_BACKENDS = {"aws": "s3", "azure": "azurerm", "gcp": "gcs"}
 RUN_ID_PATTERN = re.compile(r"^[a-z0-9][a-z0-9-]{2,30}$")
 
 
@@ -166,6 +170,7 @@ class RunConfig:
     github_repository: str = ""
     runner_labels: list[str] = field(default_factory=list)
     backend_config: str = ""
+    backend_type: str = ""
 
     @property
     def name(self) -> str:
@@ -208,6 +213,9 @@ class RunConfig:
             raise ValueError(message)
         if self.mode == "runner" and not self.github_repository:
             message = "--github-repository (or GITHUB_REPOSITORY) is required"
+            raise ValueError(message)
+        if self.backend_type and not re.fullmatch(r"[a-z][a-z0-9]*", self.backend_type):
+            message = f"invalid Terraform backend type {self.backend_type!r}"
             raise ValueError(message)
         for key in self.extra_env:
             if not re.fullmatch(r"[A-Z_][A-Z0-9_]*", key):
