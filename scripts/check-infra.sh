@@ -74,7 +74,7 @@ check_helm() {
 
 check_shell() {
   shellcheck scripts/gpu-host-*.sh scripts/gpu-model-env.sh scripts/gpu-runner-start.sh \
-    scripts/check-infra.sh examples/*.sh
+    scripts/check-infra.sh scripts/cloud-gpu-*.sh ci/gitlab/*.sh examples/*.sh
 }
 
 for check in "${CHECKS[@]}"; do

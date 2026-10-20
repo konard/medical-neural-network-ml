@@ -39,6 +39,8 @@ on:
       - 'scripts/gpu-*.sh'
       - 'scripts/medbench-model-run.sh'
       - 'scripts/check-infra.sh'
+      - 'scripts/cloud-gpu-*.sh'
+      - 'ci/gitlab/**'
       - 'scripts/run-with-budget-warning.sh'
       - 'examples/cloud_gpu_kind.sh'
       - 'src/medbench/**'
@@ -317,12 +319,18 @@ jobs:
           terraform_version: 1.16.6
           terraform_wrapper: false
 
+      # The session must outlive the run: `down` and, in k8s mode, every
+      # kubectl call (aws eks get-token) use it hours after this step. The
+      # role's maximum session duration must be at least 6 hours
+      # (docs/cloud-gpu.md); Azure and Google Cloud refresh their tokens
+      # from the runner's OIDC endpoint by themselves.
       - name: Log in to AWS
         if: inputs.provider == 'aws' && inputs.action == 'test'
         uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
         with:
           role-to-assume: ${{ vars.AWS_ROLE_ARN }}
           role-session-name: medbench-${{ github.run_id }}
+          role-duration-seconds: 21600
           aws-region: ${{ vars.CLOUD_GPU_REGION || 'us-east-1' }}
 
       - name: Log in to Azure

@@ -67,6 +67,8 @@ def test_pull_requests_run_when_any_file_the_checks_use_changes() -> None:
         *[p for p in (ROOT / "infra").rglob("*") if p.is_file()],
         *(ROOT / "scripts" / "cloud_gpu").glob("*.py"),
         *(ROOT / "scripts").glob("gpu-*.sh"),
+        *(ROOT / "scripts").glob("cloud-gpu-*.sh"),
+        *(ROOT / "ci" / "gitlab").iterdir(),
         ROOT / "scripts" / "check-infra.sh",
         ROOT / "scripts" / "run-with-budget-warning.sh",
         ROOT / "scripts" / "medbench-model-run.sh",
