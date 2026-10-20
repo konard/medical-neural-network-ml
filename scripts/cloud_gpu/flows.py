@@ -170,7 +170,6 @@ def run_tests(config: cfg.RunConfig, outputs: dict[str, Any], reports: Path) -> 
             config,
             remote.repository_archive(),
             reports,
-            extra_env=config.extra_env,
         )
     else:
         ssh = ssh_for(config, outputs)
@@ -222,6 +221,22 @@ def wait_runner(config: cfg.RunConfig, outputs: dict[str, Any]) -> None:
     )
 
 
+def _cancel_hetzner(outputs: dict[str, Any]) -> None:
+    """Cancel the run's server, also one delivered after `up` gave up."""
+    number = outputs.get("hetzner_server")
+    transaction = outputs.get("hetzner_transaction")
+    if not number and transaction:
+        number = hetzner.order_status(str(transaction)).get("server_number")
+        if not number:
+            log(
+                f"order {transaction} has no server yet: the reaper cancels it a "
+                f"day after the order if Hetzner delivers it later"
+            )
+            return
+    if number:
+        hetzner.cancel(int(number))
+
+
 def down(config: cfg.RunConfig, outputs: dict[str, Any]) -> None:
     """Delete everything of the run; every step runs even if one fails."""
     errors: list[str] = []
@@ -248,16 +263,7 @@ def down(config: cfg.RunConfig, outputs: dict[str, Any]) -> None:
     if config.provider in cfg.CLOUDS:
         attempt("terraform destroy", lambda: terraform.destroy(config))
     if config.provider == "hetzner":
-        if outputs.get("hetzner_server"):
-            attempt(
-                "cancelling the server",
-                lambda: hetzner.cancel(int(outputs["hetzner_server"])),
-            )
-        elif outputs.get("hetzner_transaction"):
-            log(
-                f"order {outputs['hetzner_transaction']} has no server yet: check Robot "
-                "and cancel it there if it is delivered later (the reaper does too)"
-            )
+        attempt("cancelling the server", lambda: _cancel_hetzner(outputs))
         if outputs.get("hetzner_key"):
             attempt(
                 "deleting the SSH key",

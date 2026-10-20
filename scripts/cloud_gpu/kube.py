@@ -79,6 +79,19 @@ def render_job(config: cfg.RunConfig, template: Path = JOB_TEMPLATE) -> str:
         rendered = re.sub(r"\n\s+- name: TASKS\n\s+value: \"\"", "", rendered, count=1)
     if config.gpu_count == 0:
         rendered = re.sub(r"\n\s+nvidia\.com/gpu: \"0\"", "", rendered, count=1)
+    if config.extra_env:
+        # --env settings follow the last variable, so `job-manifest` output
+        # applied by hand runs with them too.
+        last = re.search(r"\n( +)- name: COLLECT_SECONDS\n +value: .*", rendered)
+        if last is None:
+            message = f"{template} has no COLLECT_SECONDS variable to add --env after"
+            raise KeyError(message)
+        indent = last.group(1)
+        extra = "".join(
+            f"\n{indent}- name: {key}\n{indent}  value: {json.dumps(value)}"
+            for key, value in config.extra_env.items()
+        )
+        rendered = rendered[: last.end()] + extra + rendered[last.end() :]
     return rendered
 
 
@@ -202,7 +215,11 @@ def run_job(
     extra_env: Mapping[str, str] | None = None,
     start_timeout: float = 1800,
 ) -> int:
-    """Apply the Job, feed it the repository, wait, collect; return its status."""
+    """Apply the Job, feed it the repository, wait, collect; return its status.
+
+    ``config.extra_env`` is part of the manifest; ``extra_env`` goes into
+    /work/run.env and overrides it for this run only.
+    """
     job = config.name
     kubectl("apply", "-f", "-", stdin=render_job(config).encode("utf-8"))
 

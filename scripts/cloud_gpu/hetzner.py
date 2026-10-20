@@ -19,6 +19,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+from datetime import UTC, datetime
 from typing import Any
 
 from scripts.cloud_gpu import config as cfg
@@ -155,13 +156,19 @@ def order(
     return transaction
 
 
+def order_status(transaction_id: str) -> dict[str, Any]:
+    """Return an order (status, and server_number once delivered)."""
+    answer: dict[str, Any] = request(
+        "GET", f"/order/server/transaction/{urllib.parse.quote(transaction_id)}"
+    )["transaction"]
+    return answer
+
+
 def wait_ready(transaction_id: str, *, timeout_minutes: int) -> dict[str, Any]:
     """Wait until Hetzner has handed over the server; return the transaction."""
     deadline = time.monotonic() + timeout_minutes * 60
     while True:
-        transaction: dict[str, Any] = request(
-            "GET", f"/order/server/transaction/{urllib.parse.quote(transaction_id)}"
-        )["transaction"]
+        transaction = order_status(transaction_id)
         status = transaction.get("status")
         if status == "ready" and transaction.get("server_number"):
             log(f"server {transaction['server_number']} is ready")
@@ -172,7 +179,7 @@ def wait_ready(transaction_id: str, *, timeout_minutes: int) -> dict[str, Any]:
         if time.monotonic() > deadline:
             message = (
                 f"order {transaction_id} not ready after {timeout_minutes} min; "
-                "cancel it in Robot if it completes later"
+                "`down` and the reaper cancel it once it is delivered"
             )
             raise TimeoutError(message)
         log(f"order {transaction_id}: {status}")
@@ -211,16 +218,56 @@ def servers() -> list[dict[str, Any]]:
     return [item["server"] for item in answer or []]
 
 
+def transactions() -> list[dict[str, Any]]:
+    """Return the server orders of the last 30 days."""
+    answer = request("GET", "/order/server/transaction")
+    return [item["transaction"] for item in answer or []]
+
+
+def ordered_by_us(transaction: dict[str, Any]) -> bool:
+    """Return True if the order carried a run's key (named medbench-<run id>)."""
+    for item in transaction.get("authorized_key") or []:
+        name = str((item.get("key") or {}).get("name", ""))
+        if name.startswith("medbench-") and cfg.RUN_ID_PATTERN.match(name[9:]):
+            return True
+    return False
+
+
+def order_deadline(transaction: dict[str, Any]) -> float | None:
+    """Return the latest expires-at a run could have given the order's server."""
+    try:
+        ordered = datetime.fromisoformat(str(transaction.get("date", "")))
+    except ValueError:
+        return None
+    if ordered.tzinfo is None:
+        ordered = ordered.replace(tzinfo=UTC)
+    return ordered.timestamp() + cfg.MAX_TTL_MINUTES * 60
+
+
 def expired_servers(now: float | None = None) -> list[dict[str, Any]]:
-    """Return our servers whose name says they have expired."""
+    """Return our servers whose deadline has passed.
+
+    A server that `up` named carries its deadline in the name. A server that
+    Hetzner delivered after `up` stopped waiting has no name; it is found by
+    the run's SSH key in the order and expires a day after the order.
+    """
     moment = now if now is not None else time.time()
     found = []
     prefix = f"{cfg.MANAGED_BY}-"
+    late: dict[int, float] = {}
+    for transaction in transactions():
+        deadline = order_deadline(transaction)
+        number = transaction.get("server_number")
+        if number and deadline is not None and ordered_by_us(transaction):
+            late[int(number)] = deadline
     for server in servers():
-        name = str(server.get("server_name", ""))
-        if not name.startswith(prefix) or server.get("cancelled"):
+        if server.get("cancelled"):
             continue
-        expires = name.rsplit("-", 1)[-1]
-        if expires.isdigit() and int(expires) < moment:
+        name = str(server.get("server_name") or "")
+        if name.startswith(prefix):
+            expires = name.rsplit("-", 1)[-1]
+            if expires.isdigit() and int(expires) < moment:
+                found.append(server)
+        elif not name and late.get(int(server["server_number"]), moment) < moment:
             found.append(server)
     return found

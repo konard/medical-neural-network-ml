@@ -2,12 +2,12 @@
 
 Every resource of a run carries managed-by=medbench-cloud-gpu and
 expires-at=<unix time> (tags on AWS and Azure, labels or descriptions on
-Google Cloud, the server name on Hetzner). `reap` deletes those whose
-deadline has passed. It is the safety net behind `down` and the VMs' own
-power-off timers, and runs on a schedule (.github/workflows/cloud-gpu-tests.yml,
-ci/gitlab/cloud-gpu.gitlab-ci.yml). It uses the clouds' own command line
-tools (aws, az, gcloud), which the CI images already have. With
-``dry_run`` it only prints what it would delete.
+Google Cloud, the server name or the order's SSH key on Hetzner). `reap`
+deletes those whose deadline has passed. It is the safety net behind `down`
+and the VMs' own power-off timers, and runs on a schedule
+(.github/workflows/cloud-gpu-tests.yml, ci/gitlab/cloud-gpu.gitlab-ci.yml).
+It uses the clouds' own command line tools (aws, az, gcloud), which the CI
+images already have. With ``dry_run`` it only prints what it would delete.
 """
 
 from __future__ import annotations

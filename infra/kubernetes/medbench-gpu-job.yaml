@@ -60,8 +60,8 @@ spec:
                 ca-certificates curl git libgomp1 tar >/dev/null
               echo "medbench: waiting for the repository in /work/repo"
               until [ -f /work/ready ]; do sleep 2; done
-              # Optional KEY=VALUE overrides the orchestrator uploads next to
-              # the repository (for example UNIMEDVL_ENGINE=echo).
+              # Optional KEY=VALUE overrides uploaded next to the repository;
+              # --env settings of job-manifest are in env: below.
               if [ -f /work/run.env ]; then set -a; . /work/run.env; set +a; fi
               cd /work/repo
               status=0
