@@ -261,7 +261,12 @@ them in order. Four independent layers make sure no machine is forgotten:
 
 - The `kind-job` CI job runs the whole Job flow on kind: it renders the
   Job, streams the commit into the pod, installs medbench, runs it, and
-  collects the reports. It uses 0 GPUs and UniMedVL's echo engine.
+  collects the reports. It uses 0 GPUs and UniMedVL's echo engine. It
+  passed in [run 39428370031](https://github.com/konard/medical-neural-network-ml/actions/runs/39428370031)
+  in 47 s, with 6 report files and the Job deleted. The first runs left the pod
+  Pending until they were cancelled: UniMedVL's requests (7 CPUs, 48Gi) do not
+  fit a 4 vCPU / 16 GB runner. The example now passes `--pod-cpu 1
+  --pod-memory 4Gi --pod-disk 10Gi`, and the wait logs the scheduler's reason.
 - kubeconform validates the manifests.
 - `tests/test_cloud_gpu_orchestrator.py` tests the k8s flow with a stub
   `kubectl`.
@@ -482,5 +487,5 @@ not have. They are left open, not reported as done.
 | A GitLab job killed hard (runner lost) loses the local Terraform state | No remote state by default | The power-off timer and the reaper, or `--backend-config` for remote state |
 | The GitLab logins on a real GitLab instance | The project is on GitHub | Stub tests of `cloud-login.sh`; the tool installer run in the default image |
 | The AWS role's maximum session must be at least 6 hours | An account setting | Documented in docs/cloud-gpu.md; the workflow asks for 21600 seconds |
-| kind inside this sandbox | No nested containers here | The `kind-job` CI job runs it |
+| kind inside this sandbox | kind and k3s cannot set up cgroups here | The `kind-job` CI job runs it and passes |
 | The Azure and Google Cloud default GPU quotas, the EKS default taint, and Azure auto-shutdown deallocation | Not documented (landscape §13) | The EKS Job tolerates the `nvidia.com/gpu` taint anyway; quota is a manual first step in docs/cloud-gpu.md |
