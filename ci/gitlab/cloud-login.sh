@@ -19,19 +19,20 @@
 # docs/cloud-gpu.md shows the cloud-side trust for each.
 
 cloud_gpu_login() {
-  local provider="$1" missing=() name
+  local provider="$1" missing=() name needs
   local dir="${CLOUD_GPU_LOGIN_DIR:-${CI_BUILDS_DIR:-/tmp}/cloud-gpu-login-${CI_JOB_ID:-local}}"
-  local -A needs=(
-    [aws]="AWS_ROLE_ARN AWS_ID_TOKEN"
-    [azure]="AZURE_CLIENT_ID AZURE_TENANT_ID AZURE_SUBSCRIPTION_ID AZURE_ID_TOKEN"
-    [gcp]="GCP_WORKLOAD_IDENTITY_PROVIDER GCP_SERVICE_ACCOUNT GCP_PROJECT GCP_ID_TOKEN"
-    [hetzner]="HETZNER_ROBOT_USER HETZNER_ROBOT_PASSWORD"
-  )
-  if [ -z "${needs[$provider]+set}" ]; then
-    echo "cloud-login: unknown provider '$provider' (aws, azure, gcp, hetzner)" >&2
-    return 2
-  fi
-  for name in ${needs[$provider]}; do
+  # A case, not an associative array, so bash 3.2 (macOS) can source it too.
+  case "$provider" in
+    aws) needs="AWS_ROLE_ARN AWS_ID_TOKEN" ;;
+    azure) needs="AZURE_CLIENT_ID AZURE_TENANT_ID AZURE_SUBSCRIPTION_ID AZURE_ID_TOKEN" ;;
+    gcp) needs="GCP_WORKLOAD_IDENTITY_PROVIDER GCP_SERVICE_ACCOUNT GCP_PROJECT GCP_ID_TOKEN" ;;
+    hetzner) needs="HETZNER_ROBOT_USER HETZNER_ROBOT_PASSWORD" ;;
+    *)
+      echo "cloud-login: unknown provider '$provider' (aws, azure, gcp, hetzner)" >&2
+      return 2
+      ;;
+  esac
+  for name in $needs; do
     [ -n "${!name:-}" ] || missing+=("$name")
   done
   if [ "${#missing[@]}" -gt 0 ]; then

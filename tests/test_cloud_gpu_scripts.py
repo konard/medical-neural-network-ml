@@ -309,3 +309,11 @@ def test_shellcheck() -> None:
         check=False,
     )
     assert result.returncode == 0, result.stdout
+
+
+def test_scripts_avoid_bash_4_builtins() -> None:
+    """macOS ships bash 3.2, which has no mapfile and no associative arrays."""
+    scripts = [*SHELL_SCRIPTS, ROOT / "ci" / "gitlab" / "cloud-login.sh"]
+    bash_4 = re.compile(r"^\s*(mapfile|readarray|(local|declare|typeset) -A)\b", re.M)
+    for script in scripts:
+        assert not bash_4.search(script.read_text(encoding="utf-8")), script

@@ -131,15 +131,15 @@ setup_python() {
 
 # Export the model profile, keeping anything the caller already set.
 load_model() {
-  local line
-  local -a profile
-  mapfile -t profile < <(bash "$SCRIPT_DIR/gpu-model-env.sh" "$GPU_MODEL")
-  for line in "${profile[@]}"; do
-    local key="${line%%=*}"
-    if [[ -z "${!key:-}" ]]; then
+  local line key profile
+  # No mapfile: bash 3.2 (macOS) does not have it.
+  profile="$(bash "$SCRIPT_DIR/gpu-model-env.sh" "$GPU_MODEL")"
+  while IFS= read -r line; do
+    key="${line%%=*}"
+    if [[ -n "$key" && -z "${!key:-}" ]]; then
       export "${key}=${line#*=}"
     fi
-  done
+  done <<< "$profile"
 }
 
 summary() {
