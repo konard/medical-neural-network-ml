@@ -1,0 +1,576 @@
+name: Cloud GPU Tests
+
+# GPU model tests on temporary cloud machines (issue #23). The work is done
+# by `python -m scripts.cloud_gpu` (docs/cloud-gpu.md), which runs the same on
+# a laptop and in GitLab CI (ci/gitlab/cloud-gpu.gitlab-ci.yml); this
+# workflow only installs pinned tools, logs in to the cloud and calls it.
+#
+# infra        Lints and validates the Terraform modules, the Ansible
+#              playbooks, the Kubernetes Job, the ARC runner values and the
+#              shell scripts (scripts/check-infra.sh). No cloud account.
+# kind-job     The Kubernetes Job flow end to end on a kind cluster
+#              (examples/cloud_gpu_kind.sh): the rendered Job, the commit
+#              streamed into the pod, scripts/gpu-host-run.sh installing
+#              medbench, the run, the reports and the deletion. The Job asks
+#              for 0 GPUs and UniMedVL answers with its echo engine.
+# orchestrate  Manual dispatch from main only, in the `cloud-gpu`
+#              environment: creates a GPU VM (vm), a GPU Kubernetes cluster
+#              (k8s) or an ephemeral GitHub Actions runner on a GPU VM
+#              (runner) on AWS, Azure, Google Cloud or Hetzner, runs the tests
+#              or waits for gpu-tests, and deletes everything, also after a
+#              failure, an expired budget or a cancellation. action=plan only
+#              prints the settings and the worst-case cost.
+# gpu-tests    runner mode: the tests on the just-in-time runner that
+#              orchestrate registered for this run alone (its label is
+#              medbench-gh-<run id>-<attempt>); it takes one job and is gone.
+# reap         Daily (and action=reap): deletes what crashed runs left behind,
+#              found by the managed-by and expires-at tags, in every cloud
+#              the `cloud-gpu-reaper` environment is configured for.
+#
+# Cloud logins use OpenID Connect: no cloud key is stored in GitHub. The
+# variables, secrets and trust settings are listed in docs/cloud-gpu.md.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    # Every file the infra and kind-job jobs run or install from.
+    paths:
+      - 'infra/**'
+      - 'scripts/cloud_gpu/**'
+      - 'scripts/gpu-*.sh'
+      - 'scripts/medbench-model-run.sh'
+      - 'scripts/check-infra.sh'
+      - 'scripts/run-with-budget-warning.sh'
+      - 'examples/cloud_gpu_kind.sh'
+      - 'src/medbench/**'
+      - 'pyproject.toml'
+      - '.github/workflows/cloud-gpu-tests.yml'
+  schedule:
+    - cron: '41 4 * * *'
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'test: create, test, delete; plan: settings and cost only; reap: delete expired resources'
+        type: choice
+        options:
+          - test
+          - plan
+          - reap
+        default: plan
+      provider:
+        description: 'Cloud'
+        type: choice
+        options:
+          - aws
+          - azure
+          - gcp
+          - hetzner
+        default: aws
+      mode:
+        description: 'vm: GPU VM over SSH; k8s: Job on a GPU cluster; runner: ephemeral GitHub runner'
+        type: choice
+        options:
+          - vm
+          - k8s
+          - runner
+        default: vm
+      model:
+        description: 'Model'
+        type: choice
+        options:
+          - medgemma-4b-it
+          - medgemma-27b-it
+          - unimedvl
+        default: medgemma-4b-it
+      count:
+        description: 'Items per task'
+        type: number
+        default: 2
+      spot:
+        description: 'Spot/preemptible capacity (cheaper, may be interrupted)'
+        type: boolean
+        default: false
+      ttl:
+        description: 'Minutes until the machine powers off and the reaper may delete it'
+        type: number
+        default: 360
+
+permissions:
+  contents: read
+
+env:
+  GIT_CONFIG_COUNT: '1'
+  GIT_CONFIG_KEY_0: init.defaultBranch
+  GIT_CONFIG_VALUE_0: main
+
+jobs:
+  infra:
+    name: Infrastructure (Terraform, Ansible, Kubernetes)
+    if: github.event_name != 'workflow_dispatch'
+    runs-on: ubuntu-26.04
+    timeout-minutes: 30
+    concurrency:
+      group: cloud-gpu-${{ github.workflow }}-${{ github.ref }}-infra
+      cancel-in-progress: true
+    permissions:
+      contents: read
+    env:
+      KUBECONFORM_VERSION: v0.8.0
+      KUBECONFORM_SHA256: 9bc2bffbf71f261128533edaf912153948b7ff238f9a531ae6d34466ec287883
+      HELM_VERSION: v4.3.1
+      HELM_SHA256: 0403a88ae20913d11b10a2467b50087721fea7581736da6b9d3992f5357fe54b
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # ansible-core 2.21 supports Python 3.12 to 3.14.
+      - name: Setup Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.14'
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
+        with:
+          terraform_version: 1.16.6
+          terraform_wrapper: false
+
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@6ffdbaa3be476b3431f7275c26966ef32ff60337 # v6.3.2
+        with:
+          tflint_version: v0.64.0
+
+      - name: Install kubeconform, helm and ansible-lint
+        run: |
+          mkdir -p "$RUNNER_TEMP/bin"
+          cd "$RUNNER_TEMP"
+          curl -fsSLo kubeconform.tar.gz \
+            "https://github.com/yannh/kubeconform/releases/download/$KUBECONFORM_VERSION/kubeconform-linux-amd64.tar.gz"
+          echo "$KUBECONFORM_SHA256  kubeconform.tar.gz" | sha256sum -c -
+          tar -xzf kubeconform.tar.gz -C bin kubeconform
+          curl -fsSLo helm.tar.gz "https://get.helm.sh/helm-$HELM_VERSION-linux-amd64.tar.gz"
+          echo "$HELM_SHA256  helm.tar.gz" | sha256sum -c -
+          tar -xzf helm.tar.gz --strip-components=1 -C bin linux-amd64/helm
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+          python -m pip install --upgrade pip
+          python -m pip install ansible-core==2.21.5 ansible-lint==26.10.1 yamllint==1.38.0
+
+      # tflint --init downloads the AWS, Azure and Google rulesets from
+      # GitHub releases; the token only lifts the anonymous rate limit.
+      - name: Lint and validate the infrastructure code
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          INFRA_BUDGET_SECONDS: 900
+        run: |
+          terraform version
+          tflint --version
+          kubeconform -v
+          helm version --short
+          shellcheck --version | head -2
+          ansible-lint --version
+          bash scripts/run-with-budget-warning.sh \
+            "$INFRA_BUDGET_SECONDS" "Check infrastructure" \
+            bash scripts/check-infra.sh
+
+  kind-job:
+    name: Kubernetes Job on kind (no GPU)
+    if: github.event_name != 'workflow_dispatch'
+    runs-on: ubuntu-26.04
+    timeout-minutes: 50
+    concurrency:
+      group: cloud-gpu-${{ github.workflow }}-${{ github.ref }}-kind-job
+      cancel-in-progress: true
+    permissions:
+      contents: read
+    env:
+      CLUSTER: medbench-ci
+      WORKDIR: .cache/cloud-gpu/kind
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.15'
+
+      - name: Create a kind cluster
+        uses: helm/kind-action@1544676c07bb3570fcb70166beaa07c4528fd4aa # v1.15.1
+        with:
+          version: v0.33.0
+          cluster_name: medbench-ci
+          wait: 120s
+
+      - name: Run the Job flow end to end
+        env:
+          KIND_BUDGET_SECONDS: 1800
+        run: |
+          bash scripts/run-with-budget-warning.sh \
+            "$KIND_BUDGET_SECONDS" "Kubernetes Job on kind" \
+            bash examples/cloud_gpu_kind.sh "$WORKDIR.log"
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: cloud-gpu-kind-reports
+          path: |
+            .cache/cloud-gpu/kind/reports
+            .cache/cloud-gpu/kind.log
+          if-no-files-found: ignore
+
+  # Paid machines: like the self-hosted GPU job of model-tests.yml, only a
+  # manual dispatch from main runs this, never a pull request, and the
+  # `cloud-gpu` environment is where the maintainer adds required reviewers
+  # and the cloud settings (docs/repository-policy.md). Every step after
+  # `up` that can fail is followed by `down` under if: always(); the VM's
+  # own power-off timer (--ttl) and the daily reap job are the safety nets
+  # behind it.
+  orchestrate:
+    name: Cloud GPU run
+    if: >-
+      github.event_name == 'workflow_dispatch' && inputs.action != 'reap' &&
+      github.ref == 'refs/heads/main'
+    environment: cloud-gpu
+    runs-on: ubuntu-26.04
+    timeout-minutes: 360
+    permissions:
+      contents: read
+      # OpenID Connect login to AWS, Azure and Google Cloud.
+      id-token: write
+      # Cancels this run when the runner never took gpu-tests, which would
+      # otherwise wait 24 hours for a runner with its label.
+      actions: write
+    env:
+      PROVIDER: ${{ inputs.provider }}
+      MODE: ${{ inputs.mode }}
+      MODEL: ${{ inputs.model }}
+      COUNT: ${{ inputs.count }}
+      SPOT: ${{ inputs.spot }}
+      TTL: ${{ inputs.ttl }}
+      RUN_ID: gh-${{ github.run_id }}-${{ github.run_attempt }}
+      WORKDIR: .cache/cloud-gpu/run
+      REPORTS: cloud-gpu-reports
+      CLOUD_GPU_REGION: ${{ vars.CLOUD_GPU_REGION }}
+      AWS_ROLE_ARN: ${{ vars.AWS_ROLE_ARN }}
+      AZURE_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+      AZURE_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
+      AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      GCP_WORKLOAD_IDENTITY_PROVIDER: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+      GCP_SERVICE_ACCOUNT: ${{ vars.GCP_SERVICE_ACCOUNT }}
+      GCP_PROJECT: ${{ vars.GCP_PROJECT }}
+      # The azurerm provider requests its own OIDC token from the runner.
+      ARM_USE_OIDC: 'true'
+      ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+      ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # Fails before anything is created, with what to set where.
+      - name: Check the cloud settings
+        env:
+          HAS_HETZNER_ROBOT_USER: ${{ secrets.HETZNER_ROBOT_USER != '' }}
+          HAS_HETZNER_ROBOT_PASSWORD: ${{ secrets.HETZNER_ROBOT_PASSWORD != '' }}
+          HAS_CLOUD_GPU_RUNNER_TOKEN: ${{ secrets.CLOUD_GPU_RUNNER_TOKEN != '' }}
+        run: |
+          missing=()
+          need_var() { [ -n "${!1:-}" ] || missing+=("variable $1"); }
+          need_secret() { [ "${!1}" = true ] || missing+=("secret ${1#HAS_}"); }
+          case "$PROVIDER" in
+            aws) need_var AWS_ROLE_ARN ;;
+            azure) need_var AZURE_CLIENT_ID; need_var AZURE_TENANT_ID; need_var AZURE_SUBSCRIPTION_ID ;;
+            gcp) need_var GCP_WORKLOAD_IDENTITY_PROVIDER; need_var GCP_SERVICE_ACCOUNT; need_var GCP_PROJECT ;;
+            hetzner) need_secret HAS_HETZNER_ROBOT_USER; need_secret HAS_HETZNER_ROBOT_PASSWORD ;;
+          esac
+          if [ "$MODE" = runner ]; then need_secret HAS_CLOUD_GPU_RUNNER_TOKEN; fi
+          if [ "${#missing[@]}" -gt 0 ]; then
+            echo "::error::The cloud-gpu environment has no ${missing[*]}. Add them in Settings -> Environments -> cloud-gpu; docs/cloud-gpu.md lists every setting and the cloud-side OIDC trust."
+            exit 1
+          fi
+          {
+            printf '%s\n' --provider "$PROVIDER" --mode "$MODE" --model "$MODEL" \
+              --run-id "$RUN_ID" --ttl "$TTL" --count "$COUNT" --time-budget 5400 \
+              --workdir "$WORKDIR" --reports "$REPORTS" \
+              --github-repository "$GITHUB_REPOSITORY" --commit "$GITHUB_SHA"
+            if [ "$SPOT" = true ]; then printf '%s\n' --spot; fi
+            if [ -n "$CLOUD_GPU_REGION" ]; then printf '%s\n' --region "$CLOUD_GPU_REGION"; fi
+            if [ "$PROVIDER" = gcp ]; then printf '%s\n' --gcp-project "$GCP_PROJECT"; fi
+            if [ "$PROVIDER" = azure ]; then
+              printf '%s\n' --azure-subscription "$AZURE_SUBSCRIPTION_ID"
+            fi
+          } > "$RUNNER_TEMP/cloud-gpu-args"
+          echo "Run $RUN_ID: $PROVIDER, $MODE, $MODEL"
+
+      - name: Setup Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.15'
+
+      - name: Setup Terraform
+        if: inputs.provider != 'hetzner'
+        uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
+        with:
+          terraform_version: 1.16.6
+          terraform_wrapper: false
+
+      - name: Log in to AWS
+        if: inputs.provider == 'aws' && inputs.action == 'test'
+        uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          role-session-name: medbench-${{ github.run_id }}
+          aws-region: ${{ vars.CLOUD_GPU_REGION || 'us-east-1' }}
+
+      - name: Log in to Azure
+        if: inputs.provider == 'azure' && inputs.action == 'test'
+        uses: azure/login@a641126d1b8aa4d1fa005f4f92df94a3a4c4c906 # v3.1.0
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Log in to Google Cloud
+        if: inputs.provider == 'gcp' && inputs.action == 'test'
+        uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3.0.0
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+
+      # The GKE kubeconfig authenticates through gke-gcloud-auth-plugin.
+      - name: Setup gcloud
+        if: inputs.provider == 'gcp' && inputs.action == 'test'
+        uses: google-github-actions/setup-gcloud@aa5489c8933f4cc7a4f7d45035b3b1440c9c10db # v3.0.1
+        with:
+          install_components: gke-gcloud-auth-plugin
+
+      - name: Show the plan and the worst-case cost
+        run: |
+          mapfile -t args < "$RUNNER_TEMP/cloud-gpu-args"
+          python -m scripts.cloud_gpu plan "${args[@]}"
+
+      - name: Create the GPU machine
+        if: inputs.action == 'test'
+        env:
+          UP_BUDGET_SECONDS: 2400
+          HETZNER_ROBOT_USER: ${{ secrets.HETZNER_ROBOT_USER }}
+          HETZNER_ROBOT_PASSWORD: ${{ secrets.HETZNER_ROBOT_PASSWORD }}
+          CLOUD_GPU_RUNNER_TOKEN: ${{ secrets.CLOUD_GPU_RUNNER_TOKEN }}
+        run: |
+          mapfile -t args < "$RUNNER_TEMP/cloud-gpu-args"
+          bash scripts/run-with-budget-warning.sh \
+            "$UP_BUDGET_SECONDS" "Create the GPU machine" \
+            python -m scripts.cloud_gpu up "${args[@]}" --yes
+
+      # vm and k8s: run the tests and copy the reports back. runner: wait
+      # until the ephemeral runner has run gpu-tests and removed itself.
+      - name: Run the GPU tests
+        if: inputs.action == 'test'
+        env:
+          RUN_BUDGET_SECONDS: 10200
+          CLOUD_GPU_RUNNER_TOKEN: ${{ secrets.CLOUD_GPU_RUNNER_TOKEN }}
+        run: |
+          if [ "$MODE" = runner ]; then
+            command=(python -m scripts.cloud_gpu wait-runner --workdir "$WORKDIR")
+          else
+            command=(python -m scripts.cloud_gpu run --workdir "$WORKDIR" --reports "$REPORTS")
+          fi
+          bash scripts/run-with-budget-warning.sh \
+            "$RUN_BUDGET_SECONDS" "Run the GPU tests" "${command[@]}"
+
+      - name: Delete the GPU machine
+        if: always() && inputs.action == 'test'
+        env:
+          DOWN_BUDGET_SECONDS: 2400
+          HETZNER_ROBOT_USER: ${{ secrets.HETZNER_ROBOT_USER }}
+          HETZNER_ROBOT_PASSWORD: ${{ secrets.HETZNER_ROBOT_PASSWORD }}
+          CLOUD_GPU_RUNNER_TOKEN: ${{ secrets.CLOUD_GPU_RUNNER_TOKEN }}
+        run: |
+          if [ ! -f "$WORKDIR/state.json" ]; then
+            echo "Nothing was created."
+            exit 0
+          fi
+          bash scripts/run-with-budget-warning.sh \
+            "$DOWN_BUDGET_SECONDS" "Delete the GPU machine" \
+            python -m scripts.cloud_gpu down --workdir "$WORKDIR"
+
+      # The reports only: the working directory holds the run's SSH key and
+      # the Terraform state.
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: cloud-gpu-reports
+          path: cloud-gpu-reports
+          if-no-files-found: ignore
+
+      - name: Cancel the GPU job that no runner took
+        if: failure() && inputs.mode == 'runner' && inputs.action == 'test'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "::error::The ephemeral runner did not finish gpu-tests; cancelling this run so that job does not wait 24 hours for a runner."
+          gh run cancel "$GITHUB_RUN_ID" --repo "$GITHUB_REPOSITORY"
+
+  # runner mode: queued from the start, it waits for the just-in-time runner
+  # orchestrate registers with this run's own label, so no other job can
+  # land on that machine and this job cannot land on another one. No
+  # secrets; the model weights are public.
+  gpu-tests:
+    name: GPU tests (ephemeral cloud runner)
+    if: >-
+      github.event_name == 'workflow_dispatch' && inputs.action == 'test' &&
+      inputs.mode == 'runner' && github.ref == 'refs/heads/main'
+    runs-on: [self-hosted, linux, x64, 'medbench-gh-${{ github.run_id }}-${{ github.run_attempt }}']
+    timeout-minutes: 150
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Run the GPU tests
+        env:
+          GPU_BUDGET_SECONDS: 6000
+          GPU_MODEL: ${{ inputs.model }}
+          COUNT: ${{ inputs.count }}
+          TIME_BUDGET: 4800
+          OUT_DIR: medbench-reports
+          MEDBENCH_COMMIT: ${{ github.sha }}
+        run: |
+          bash scripts/run-with-budget-warning.sh \
+            "$GPU_BUDGET_SECONDS" "GPU tests" bash scripts/gpu-host-run.sh
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: cloud-gpu-runner-reports
+          path: medbench-reports
+          if-no-files-found: ignore
+
+  # The safety net behind `down` and the VMs' power-off timers. Its own
+  # environment (no reviewers, main only) so the schedule never waits for an
+  # approval; a cloud without settings there is skipped with a notice.
+  reap:
+    name: Delete expired cloud resources
+    if: >-
+      github.ref == 'refs/heads/main' && (github.event_name == 'schedule' ||
+      (github.event_name == 'workflow_dispatch' && inputs.action == 'reap'))
+    environment: cloud-gpu-reaper
+    runs-on: ubuntu-26.04
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      # OpenID Connect login to AWS, Azure and Google Cloud.
+      id-token: write
+    env:
+      AWS_ROLE_ARN: ${{ vars.AWS_ROLE_ARN }}
+      AWS_REGIONS: ${{ vars.CLOUD_GPU_AWS_REGIONS || vars.CLOUD_GPU_REGION || 'us-east-1' }}
+      AZURE_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+      GCP_WORKLOAD_IDENTITY_PROVIDER: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+      GCP_PROJECT: ${{ vars.GCP_PROJECT }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Find the configured clouds
+        id: clouds
+        env:
+          HAS_HETZNER: ${{ secrets.HETZNER_ROBOT_USER != '' }}
+          HAS_RUNNER_TOKEN: ${{ secrets.CLOUD_GPU_RUNNER_TOKEN != '' }}
+        run: |
+          {
+            echo "aws=$([ -n "$AWS_ROLE_ARN" ] && echo true || echo false)"
+            echo "azure=$([ -n "$AZURE_CLIENT_ID" ] && echo true || echo false)"
+            echo "gcp=$([ -n "$GCP_WORKLOAD_IDENTITY_PROVIDER" ] && [ -n "$GCP_PROJECT" ] && echo true || echo false)"
+            echo "hetzner=$HAS_HETZNER"
+            echo "github=$HAS_RUNNER_TOKEN"
+          } | tee -a "$GITHUB_OUTPUT"
+
+      - name: Setup Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.15'
+
+      - name: Log in to AWS
+        if: steps.clouds.outputs.aws == 'true'
+        uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          role-session-name: medbench-reaper-${{ github.run_id }}
+          aws-region: us-east-1
+
+      - name: Log in to Azure
+        if: steps.clouds.outputs.azure == 'true'
+        uses: azure/login@a641126d1b8aa4d1fa005f4f92df94a3a4c4c906 # v3.1.0
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Log in to Google Cloud
+        if: steps.clouds.outputs.gcp == 'true'
+        uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3.0.0
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+
+      - name: Delete expired resources
+        env:
+          REAP_BUDGET_SECONDS: 2400
+          REAP_AWS: ${{ steps.clouds.outputs.aws }}
+          REAP_AZURE: ${{ steps.clouds.outputs.azure }}
+          REAP_GCP: ${{ steps.clouds.outputs.gcp }}
+          REAP_HETZNER: ${{ steps.clouds.outputs.hetzner }}
+          REAP_GITHUB: ${{ steps.clouds.outputs.github }}
+          HETZNER_ROBOT_USER: ${{ secrets.HETZNER_ROBOT_USER }}
+          HETZNER_ROBOT_PASSWORD: ${{ secrets.HETZNER_ROBOT_PASSWORD }}
+          CLOUD_GPU_RUNNER_TOKEN: ${{ secrets.CLOUD_GPU_RUNNER_TOKEN }}
+        run: |
+          args=()
+          if [ "$REAP_AWS" = true ]; then
+            args+=(--provider aws)
+            for region in $AWS_REGIONS; do args+=(--region "$region"); done
+          fi
+          if [ "$REAP_AZURE" = true ]; then args+=(--provider azure); fi
+          if [ "$REAP_GCP" = true ]; then args+=(--provider gcp --gcp-project "$GCP_PROJECT"); fi
+          if [ "$REAP_HETZNER" = true ]; then args+=(--provider hetzner); fi
+          if [ "$REAP_GITHUB" = true ]; then
+            args+=(--provider github --github-repository "$GITHUB_REPOSITORY")
+          fi
+          if [ "${#args[@]}" -eq 0 ]; then
+            echo "::notice::No cloud is configured in the cloud-gpu-reaper environment, so there is nothing to reap. docs/cloud-gpu.md lists the settings."
+            exit 0
+          fi
+          bash scripts/run-with-budget-warning.sh \
+            "$REAP_BUDGET_SECONDS" "Delete expired resources" \
+            python -m scripts.cloud_gpu reap "${args[@]}" --yes
+
+  pipeline-status:
+    name: Pipeline Status (Cloud GPU Tests)
+    needs:
+      - infra
+      - kind-job
+      - orchestrate
+      - gpu-tests
+      - reap
+    if: always()
+    runs-on: ubuntu-26.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check aggregate pipeline status
+        env:
+          NEEDS_JSON: ${{ toJSON(needs) }}
+          RUN_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+        run: bash scripts/check-pipeline-status.sh

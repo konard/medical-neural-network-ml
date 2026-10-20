@@ -126,8 +126,12 @@ def test_gpu_job_removes_what_it_downloaded() -> None:
     assert "rm -rf .cache/medbench medbench-reports" in cleanup
 
 
-def test_only_the_gpu_job_runs_on_a_self_hosted_runner() -> None:
-    """Every other job, in every workflow, stays on GitHub-hosted runners."""
+def test_only_the_gpu_jobs_run_on_a_self_hosted_runner() -> None:
+    """Every other job, in every workflow, stays on GitHub-hosted runners.
+
+    The second one is the cloud workflow's gpu-tests job: its label names the
+    run, so only the ephemeral runner created for that run can take it.
+    """
     workflows = ROOT / ".github" / "workflows"
     hits = [
         (path.name, line.strip())
@@ -135,7 +139,11 @@ def test_only_the_gpu_job_runs_on_a_self_hosted_runner() -> None:
         for line in path.read_text(encoding="utf-8").splitlines()
         if "self-hosted" in line and line.lstrip().startswith("runs-on:")
     ]
-    assert hits == [("model-tests.yml", "runs-on: [self-hosted, linux, x64, gpu]")]
+    run_label = "'medbench-gh-${{ github.run_id }}-${{ github.run_attempt }}'"
+    assert hits == [
+        ("cloud-gpu-tests.yml", f"runs-on: [self-hosted, linux, x64, {run_label}]"),
+        ("model-tests.yml", "runs-on: [self-hosted, linux, x64, gpu]"),
+    ]
 
 
 def test_workflow_pins_every_download() -> None:
