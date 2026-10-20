@@ -1,0 +1,75 @@
+{
+ "source": "https://raw.githubusercontent.com/Azure/AgentBaker/master/parts/common/components.json",
+ "retrieved": "2026-10-19",
+ "note": "AgentBaker master (last commit to this file 2026-10-19, sha 6d9f756e). Builds AKS node images; versions here may precede what is rolled out in released node images.",
+ "data": {
+  "GPUContainerImages": [
+   {
+    "downloadURL": "mcr.microsoft.com/aks/aks-gpu-cuda-lts:*",
+    "gpuVersion": {
+     "renovateTag": "registry=https://mcr.microsoft.com, name=aks/aks-gpu-cuda-lts",
+     "latestVersion": "580.159.04-20260918140533"
+    }
+   },
+   {
+    "downloadURL": "mcr.microsoft.com/aks/aks-gpu-cuda:*",
+    "gpuVersion": {
+     "renovateTag": "registry=https://mcr.microsoft.com, name=aks/aks-gpu-cuda",
+     "latestVersion": "580.126.09-20260430040408"
+    }
+   },
+   {
+    "downloadURL": "mcr.microsoft.com/aks/aks-gpu-grid:*",
+    "gpuVersion": {
+     "renovateTag": "registry=https://mcr.microsoft.com, name=aks/aks-gpu-grid",
+     "latestVersion": "580.178.04-20261006181431"
+    }
+   },
+   {
+    "downloadURL": "mcr.microsoft.com/aks/aks-gpu-grid-v20:*",
+    "gpuVersion": {
+     "renovateTag": "registry=https://mcr.microsoft.com, name=aks/aks-gpu-grid-v20",
+     "latestVersion": "595.91.07-20260917204440"
+    }
+   }
+  ],
+  "nvidia-device-plugin": {
+   "ubuntu": {
+    "r2604": {
+     "versionsV2": [
+      {
+       "renovateTag": "name=nvidia-device-plugin, repository=production, os=ubuntu, release=26.04",
+       "latestVersion": "0.19.3"
+      }
+     ]
+    },
+    "r2404": {
+     "versionsV2": [
+      {
+       "renovateTag": "name=nvidia-device-plugin, repository=production, os=ubuntu, release=24.04",
+       "latestVersion": "0.19.3"
+      }
+     ]
+    },
+    "r2204": {
+     "versionsV2": [
+      {
+       "renovateTag": "name=nvidia-device-plugin, repository=production, os=ubuntu, release=22.04",
+       "latestVersion": "0.19.3"
+      }
+     ]
+    }
+   },
+   "azurelinux": {
+    "v3.0": {
+     "versionsV2": [
+      {
+       "renovateTag": "RPM_registry=https://packages.microsoft.com/azurelinux/3.0/prod/cloud-native/x86_64/repodata, name=nvidia-device-plugin, os=azurelinux, release=3.0",
+       "latestVersion": "0.19.3"
+      }
+     ]
+    }
+   }
+  }
+ }
+}

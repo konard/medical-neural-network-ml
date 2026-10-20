@@ -1,0 +1,60 @@
+---
+# A one-node k3s cluster with GPU support on a GPU host we keep (issue #23),
+# for the Kubernetes mode of `python -m scripts.cloud_gpu --provider kubernetes`
+# or for infra/kubernetes/arc-gpu-runner-values.yaml. Run gpu-host.yml first.
+# containerd uses the NVIDIA runtime by default, and the NVIDIA device plugin
+# advertises nvidia.com/gpu. Versions match scripts/gpu-host-bootstrap.sh.
+- name: Install k3s with GPU support
+  hosts: gpu_hosts
+  become: true
+  vars:
+    k3s_version: v1.37.1+k3s1
+    k3s_sha256: 92b94582eb7b34a8cf532e6006842b9ed215a6783cf56a3dd6271fd35243b2c0
+    k3s_install_sha256: ed01f89fd977bf20ac1516bbebf8370bf3ddbaa55dac8aba610956a4c78cc00b
+  tasks:
+    - name: Download k3s
+      ansible.builtin.get_url:
+        url: "https://github.com/k3s-io/k3s/releases/download/{{ k3s_version | urlencode }}/k3s"
+        dest: /usr/local/bin/k3s
+        checksum: "sha256:{{ k3s_sha256 }}"
+        mode: "0755"
+
+    - name: Download the k3s installer of the same release
+      ansible.builtin.get_url:
+        url: "https://raw.githubusercontent.com/k3s-io/k3s/{{ k3s_version | urlencode }}/install.sh"
+        dest: /usr/local/share/k3s-install.sh
+        checksum: "sha256:{{ k3s_install_sha256 }}"
+        mode: "0755"
+
+    - name: Install the k3s service
+      ansible.builtin.command: /usr/local/share/k3s-install.sh
+      args:
+        creates: /etc/systemd/system/k3s.service
+      environment:
+        INSTALL_K3S_SKIP_DOWNLOAD: "true"
+        INSTALL_K3S_VERSION: "{{ k3s_version }}"
+        INSTALL_K3S_EXEC: server --default-runtime=nvidia --disable=traefik --write-kubeconfig-mode=0600
+
+    - name: Wait for the node
+      ansible.builtin.command: k3s kubectl wait --for=condition=Ready node --all --timeout=300s
+      changed_when: false
+
+    - name: Copy the NVIDIA device plugin manifest
+      ansible.builtin.copy:
+        src: ../kubernetes/nvidia-device-plugin.yaml
+        dest: /usr/local/share/nvidia-device-plugin.yaml
+        mode: "0644"
+
+    - name: Apply the NVIDIA device plugin
+      ansible.builtin.command: k3s kubectl apply -f /usr/local/share/nvidia-device-plugin.yaml
+      register: plugin
+      changed_when: "'unchanged' not in plugin.stdout"
+
+    - name: Wait until the node advertises its GPUs
+      ansible.builtin.command: >-
+        k3s kubectl get nodes -o jsonpath={.items[0].status.allocatable.nvidia\.com/gpu}
+      register: gpus
+      until: gpus.stdout | length > 0 and gpus.stdout != "0"
+      retries: 30
+      delay: 10
+      changed_when: false

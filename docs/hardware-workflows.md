@@ -56,7 +56,7 @@ label does not establish that Metal model inference is available.
 | MedGemma 4B, native MLX | 18 GiB Mac with sufficient free RAM; at least ~6.5 GB reclaimable for the 70% preflight, 8 GB model ceiling | 2.995 GB checkpoint + 1.5 GB minimum buffer allowance; not run on this busy Mac |
 | MedGemma 27B Q4_K_M, llama.cpp CUDA | NVIDIA 24 GB VRAM recommended, 32 GB+ host RAM, 50 GB free disk | 16.547 GB language file + 0.858 GB projector, plus cache/buffers. GPU workflow exists, measurements outstanding |
 | MedGemma 27B bf16 | 80 GB GPU is a conservative initial target | About 55 GB weights alone. A simple arithmetic fit on 64 GB does not prove runtime capacity |
-| UniMedVL bf16 | Dedicated CUDA host; start with 40 GB+ VRAM, 64 GB+ host RAM, 80 GB free disk | About 29.2 GB weights. `scripts/unimedvl_server.py` serves the pinned upstream code (commit `f51aa0a`) and weights (revision `29918ce`) in an isolated Python 3.13 environment; not yet run on a GPU. 40 GB is an unverified lower target; 80 GB provides more headroom |
+| UniMedVL bf16 | Dedicated CUDA host; start with 40 GB+ VRAM, 64 GB+ host RAM, 80 GB free disk | About 29.2 GB weights. `scripts/unimedvl_server.py` serves the pinned upstream code (commit `f51aa0a`) and weights (revision `29918ce`) in an isolated Python 3.14 environment; not yet run on a GPU. 40 GB is an unverified lower target; 80 GB provides more headroom |
 
 All model runs must record context, image resolution, output length, batch,
 concurrency and runtime version. Doubling these can change capacity. The
@@ -83,6 +83,13 @@ replaces a 30-minute task budget that was shorter than the historical 27B
 estimate. Actual runtime still needs measurement; incomplete coverage fails
 explicitly instead of silently passing.
 [Run and measure both large models](https://github.com/konard/medical-neural-network-ml/issues/6).
+
+For a GPU we do not own, the [cloud GPU tests](cloud-gpu.md) rent a
+machine for one run and delete it afterwards. They run on AWS, Azure,
+Google Cloud or a Hetzner GEX server. The default machines have 16 to 24 GB
+GPUs for MedGemma (an L4 on AWS and Google Cloud) and 48 to 96 GB GPUs for
+UniMedVL. The same orchestrator can
+start an ephemeral GPU runner for the self-hosted job.
 
 ## Fine-tuning and training
 

@@ -1,0 +1,14 @@
+{"source": "https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-instance-quotas.html", "retrieved": "2026-10-19", "data": {
+ "unit": "vCPU", "service_code": "ec2",
+ "quotas": [
+  {"name": "Running On-Demand G and VT instances", "code": "L-DB2E81BA", "default": 0, "adjustable": true},
+  {"name": "Running On-Demand P instances", "code": "L-417A185B", "default": 0, "adjustable": true},
+  {"name": "All G and VT Spot Instance Requests", "code": "L-3819A6DF", "default": 0, "adjustable": true},
+  {"name": "All P Spot Instance Requests", "code": "L-7212CCBC", "default": 0, "adjustable": true},
+  {"name": "Running On-Demand Standard (A, C, D, H, I, M, R, T, Z) instances", "code": "L-1216C47A", "default": 5, "adjustable": true},
+  {"name": "Concurrent P5 Capacity Blocks per account", "code": "L-DA6814F2", "default": 0, "adjustable": true}
+ ],
+ "increase_cli": "aws service-quotas request-service-quota-increase --service-code ec2 --quota-code L-DB2E81BA --desired-value 8",
+ "increase_cli_source": "https://docs.aws.amazon.com/cli/latest/reference/service-quotas/request-service-quota-increase.html",
+ "note": "Defaults are as shown on the docs page; real account values vary and EC2 may raise quotas automatically with usage. Check with: aws service-quotas get-service-quota --service-code ec2 --quota-code <code>"
+}}

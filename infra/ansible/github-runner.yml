@@ -1,0 +1,139 @@
+---
+# Turn a GPU host we keep into a source of ephemeral GitHub Actions runners
+# (issue #23): files/medbench-runner-loop.sh registers a just-in-time runner,
+# lets it run one job as the unprivileged user `runner` and wipes the work
+# directory before the next one. Run gpu-host.yml first.
+#
+# The token is a fine-grained personal access token for this repository with
+# "Administration: read and write" (docs/cloud-gpu.md). Pass it without
+# writing it into a file in the repository, for example:
+#   RUNNER_TOKEN=... ansible-playbook -i inventory.yml github-runner.yml \
+#     -e runner_token="{{ lookup('ansible.builtin.env', 'RUNNER_TOKEN') }}"
+- name: Install an ephemeral GitHub Actions runner service
+  hosts: gpu_hosts
+  become: true
+  vars:
+    runner_version: "2.338.0"
+    runner_sha256: af4b794c1bc41d73d40535e3fe092a39f9679cd8d965954c2aca25a05ca41d32
+    runner_home: /opt/actions-runner
+    runner_repository: konard/medical-neural-network-ml
+    runner_labels: self-hosted,linux,x64,gpu
+    runner_group_id: 1
+    runner_token: ""
+  tasks:
+    - name: Require the registration token
+      ansible.builtin.assert:
+        that: runner_token | length > 0
+        fail_msg: Pass -e runner_token=... (see the comment at the top)
+      no_log: true
+
+    - name: Create the runner user
+      ansible.builtin.user:
+        name: runner
+        home: /home/runner
+        shell: /bin/bash
+        system: true
+
+    - name: Create the runner directory
+      ansible.builtin.file:
+        path: "{{ runner_home }}"
+        state: directory
+        owner: runner
+        group: runner
+        mode: "0755"
+
+    - name: Download the runner
+      ansible.builtin.get_url:
+        url: "https://github.com/actions/runner/releases/download/v{{ runner_version }}/actions-runner-linux-x64-{{ runner_version }}.tar.gz"
+        dest: "/tmp/actions-runner-{{ runner_version }}.tar.gz"
+        checksum: "sha256:{{ runner_sha256 }}"
+        mode: "0644"
+
+    - name: Unpack the runner
+      ansible.builtin.unarchive:
+        src: "/tmp/actions-runner-{{ runner_version }}.tar.gz"
+        dest: "{{ runner_home }}"
+        remote_src: true
+        owner: runner
+        group: runner
+        creates: "{{ runner_home }}/run.sh"
+
+    - name: Install the runner's system packages
+      ansible.builtin.command: "{{ runner_home }}/bin/installdependencies.sh"
+      args:
+        creates: /var/lib/medbench-runner-dependencies
+      notify: Mark dependencies installed
+
+    - name: Create the settings directory
+      ansible.builtin.file:
+        path: /etc/medbench-runner
+        state: directory
+        owner: root
+        group: root
+        mode: "0700"
+
+    - name: Write the runner settings, readable by root only
+      ansible.builtin.copy:
+        dest: /etc/medbench-runner/runner.env
+        owner: root
+        group: root
+        mode: "0600"
+        content: |
+          GITHUB_REPOSITORY={{ runner_repository }}
+          RUNNER_TOKEN={{ runner_token }}
+          RUNNER_LABELS={{ runner_labels }}
+          RUNNER_GROUP_ID={{ runner_group_id }}
+      no_log: true
+      notify: Restart the runner service
+
+    - name: Install the runner loop
+      ansible.builtin.copy:
+        src: files/medbench-runner-loop.sh
+        dest: /usr/local/sbin/medbench-runner-loop
+        owner: root
+        group: root
+        mode: "0755"
+      notify: Restart the runner service
+
+    - name: Install the systemd service
+      ansible.builtin.copy:
+        dest: /etc/systemd/system/medbench-runner.service
+        owner: root
+        group: root
+        mode: "0644"
+        content: |
+          [Unit]
+          Description=Ephemeral GitHub Actions GPU runner (medbench, issue #23)
+          After=network-online.target
+          Wants=network-online.target
+
+          [Service]
+          EnvironmentFile=/etc/medbench-runner/runner.env
+          Environment=RUNNER_HOME={{ runner_home }}
+          ExecStart=/usr/local/sbin/medbench-runner-loop
+          Restart=always
+          RestartSec=30
+
+          [Install]
+          WantedBy=multi-user.target
+      notify: Restart the runner service
+
+    - name: Start the runner service
+      ansible.builtin.systemd_service:
+        name: medbench-runner
+        enabled: true
+        state: started
+        daemon_reload: true
+
+  handlers:
+    - name: Mark dependencies installed
+      ansible.builtin.file:
+        path: /var/lib/medbench-runner-dependencies
+        state: touch
+        mode: "0644"
+
+    - name: Restart the runner service
+      ansible.builtin.systemd_service:
+        name: medbench-runner
+        state: restarted
+        daemon_reload: true

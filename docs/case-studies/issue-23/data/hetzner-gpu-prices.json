@@ -1,0 +1,428 @@
+{
+ "source": "https://website-price-api.hetzner.com/api/v1/products/{productId} (public API used by https://www.hetzner.com/dedicated-rootserver/matrix-gpu/ ; prices excl. VAT)",
+ "retrieved": "2026-10-19",
+ "data": {
+  "product_key_map": {
+   "ROBOT_1768": "GEX45-1",
+   "ROBOT_1767": "GEX63-1",
+   "ROBOT_1747": "GEX131-1",
+   "ROBOT_1748": "GEX131-2",
+   "ROBOT_1749": "GEX131-3",
+   "ROBOT_1266": "Primary IPv4 addon",
+   "ROBOT_1338": "10 Gbit uplink addon"
+  },
+  "note": "'X+ROBOT_1266' = server incl. Primary IPv4 (the price shown on the website). Website shows 'excl. VAT' for country 'All others'.",
+  "prices": {
+   "ROBOT_1768+ROBOT_1266": {
+    "productId": "ROBOT_1768+ROBOT_1266",
+    "locations": [
+     {
+      "countryCode": "de",
+      "active": true,
+      "datacenter": "FSN1",
+      "prices": {
+       "hourly": {
+        "EUR": "0.342900",
+        "USD": "0.399000"
+       },
+       "monthly": {
+        "EUR": "214.00",
+        "USD": "249.00"
+       },
+       "setup": {
+        "EUR": "209.00",
+        "USD": "249.00"
+       }
+      }
+     },
+     {
+      "countryCode": "fi",
+      "active": true,
+      "datacenter": "HEL1",
+      "prices": {
+       "hourly": {
+        "EUR": "0.342900",
+        "USD": "0.399000"
+       },
+       "monthly": {
+        "EUR": "214.00",
+        "USD": "249.00"
+       },
+       "setup": {
+        "EUR": "209.00",
+        "USD": "249.00"
+       }
+      }
+     },
+     {
+      "countryCode": "de",
+      "active": true,
+      "datacenter": "NBG1",
+      "prices": {
+       "hourly": {
+        "EUR": "0.342900",
+        "USD": "0.399000"
+       },
+       "monthly": {
+        "EUR": "214.00",
+        "USD": "249.00"
+       },
+       "setup": {
+        "EUR": "209.00",
+        "USD": "249.00"
+       }
+      }
+     }
+    ]
+   },
+   "ROBOT_1767+ROBOT_1266": {
+    "productId": "ROBOT_1767+ROBOT_1266",
+    "locations": [
+     {
+      "countryCode": "de",
+      "active": true,
+      "datacenter": "NBG1",
+      "prices": {
+       "hourly": {
+        "EUR": "1.600900",
+        "USD": "1.921400"
+       },
+       "monthly": {
+        "EUR": "999.00",
+        "USD": "1199.00"
+       },
+       "setup": {
+        "EUR": "999.00",
+        "USD": "1199.00"
+       }
+      }
+     },
+     {
+      "countryCode": "de",
+      "active": true,
+      "datacenter": "FSN1",
+      "prices": {
+       "hourly": {
+        "EUR": "1.600900",
+        "USD": "1.921400"
+       },
+       "monthly": {
+        "EUR": "999.00",
+        "USD": "1199.00"
+       },
+       "setup": {
+        "EUR": "999.00",
+        "USD": "1199.00"
+       }
+      }
+     },
+     {
+      "countryCode": "fi",
+      "active": true,
+      "datacenter": "HEL1",
+      "prices": {
+       "hourly": {
+        "EUR": "1.600900",
+        "USD": "1.921400"
+       },
+       "monthly": {
+        "EUR": "999.00",
+        "USD": "1199.00"
+       },
+       "setup": {
+        "EUR": "999.00",
+        "USD": "1199.00"
+       }
+      }
+     }
+    ]
+   },
+   "ROBOT_1747+ROBOT_1266": {
+    "productId": "ROBOT_1747+ROBOT_1266",
+    "locations": [
+     {
+      "countryCode": "fi",
+      "active": true,
+      "datacenter": "HEL1",
+      "prices": {
+       "hourly": {
+        "EUR": "2.402200",
+        "USD": "2.722700"
+       },
+       "monthly": {
+        "EUR": "1499.00",
+        "USD": "1699.00"
+       },
+       "setup": {
+        "EUR": "1499.00",
+        "USD": "1699.00"
+       }
+      }
+     },
+     {
+      "countryCode": "de",
+      "active": true,
+      "datacenter": "FSN1",
+      "prices": {
+       "hourly": {
+        "EUR": "2.402200",
+        "USD": "2.722700"
+       },
+       "monthly": {
+        "EUR": "1499.00",
+        "USD": "1699.00"
+       },
+       "setup": {
+        "EUR": "1499.00",
+        "USD": "1699.00"
+       }
+      }
+     },
+     {
+      "countryCode": "de",
+      "active": true,
+      "datacenter": "NBG1",
+      "prices": {
+       "hourly": {
+        "EUR": "2.402200",
+        "USD": "2.722700"
+       },
+       "monthly": {
+        "EUR": "1499.00",
+        "USD": "1699.00"
+       },
+       "setup": {
+        "EUR": "1499.00",
+        "USD": "1699.00"
+       }
+      }
+     }
+    ]
+   },
+   "ROBOT_1747": {
+    "productId": "ROBOT_1747",
+    "locations": [
+     {
+      "countryCode": "fi",
+      "active": true,
+      "datacenter": "HEL1",
+      "prices": {
+       "hourly": {
+        "EUR": "2.399500",
+        "USD": "2.719700"
+       },
+       "monthly": {
+        "EUR": "1497.30",
+        "USD": "1697.10"
+       },
+       "setup": {
+        "EUR": "1499.00",
+        "USD": "1699.00"
+       }
+      }
+     },
+     {
+      "countryCode": "de",
+      "active": true,
+      "datacenter": "FSN1",
+      "prices": {
+       "setup": {
+        "EUR": "1499.00",
+        "USD": "1699.00"
+       },
+       "monthly": {
+        "USD": "1697.10",
+        "EUR": "1497.30"
+       },
+       "hourly": {
+        "USD": "2.719700",
+        "EUR": "2.399500"
+       }
+      }
+     },
+     {
+      "countryCode": "de",
+      "active": true,
+      "datacenter": "NBG1",
+      "prices": {
+       "setup": {
+        "USD": "1699.00",
+        "EUR": "1499.00"
+       },
+       "monthly": {
+        "EUR": "1497.30",
+        "USD": "1697.10"
+       },
+       "hourly": {
+        "USD": "2.719700",
+        "EUR": "2.399500"
+       }
+      }
+     }
+    ]
+   },
+   "ROBOT_1748": {
+    "productId": "ROBOT_1748",
+    "locations": [
+     {
+      "countryCode": "de",
+      "active": true,
+      "datacenter": "NBG1",
+      "prices": {
+       "hourly": {
+        "EUR": "3.361100",
+        "USD": "3.841500"
+       },
+       "monthly": {
+        "EUR": "2097.30",
+        "USD": "2397.10"
+       },
+       "setup": {
+        "USD": "2399.00",
+        "EUR": "2099.00"
+       }
+      }
+     },
+     {
+      "countryCode": "fi",
+      "active": true,
+      "datacenter": "HEL1",
+      "prices": {
+       "hourly": {
+        "EUR": "3.361100",
+        "USD": "3.841500"
+       },
+       "monthly": {
+        "EUR": "2097.30",
+        "USD": "2397.10"
+       },
+       "setup": {
+        "EUR": "2099.00",
+        "USD": "2399.00"
+       }
+      }
+     },
+     {
+      "countryCode": "de",
+      "active": true,
+      "datacenter": "FSN1",
+      "prices": {
+       "monthly": {
+        "USD": "2397.10",
+        "EUR": "2097.30"
+       },
+       "hourly": {
+        "EUR": "3.361100",
+        "USD": "3.841500"
+       },
+       "setup": {
+        "EUR": "2099.00",
+        "USD": "2399.00"
+       }
+      }
+     }
+    ]
+   },
+   "ROBOT_1749": {
+    "productId": "ROBOT_1749",
+    "locations": [
+     {
+      "countryCode": "de",
+      "active": true,
+      "datacenter": "NBG1",
+      "prices": {
+       "setup": {
+        "EUR": "2699.00",
+        "USD": "3199.00"
+       },
+       "monthly": {
+        "EUR": "2697.30",
+        "USD": "3197.10"
+       },
+       "hourly": {
+        "USD": "5.123600",
+        "EUR": "4.322600"
+       }
+      }
+     },
+     {
+      "countryCode": "de",
+      "active": true,
+      "datacenter": "FSN1",
+      "prices": {
+       "hourly": {
+        "EUR": "4.322600",
+        "USD": "5.123600"
+       },
+       "monthly": {
+        "USD": "3197.10",
+        "EUR": "2697.30"
+       },
+       "setup": {
+        "USD": "3199.00",
+        "EUR": "2699.00"
+       }
+      }
+     },
+     {
+      "countryCode": "fi",
+      "active": true,
+      "datacenter": "HEL1",
+      "prices": {
+       "monthly": {
+        "EUR": "2697.30",
+        "USD": "3197.10"
+       },
+       "hourly": {
+        "USD": "5.123600",
+        "EUR": "4.322600"
+       },
+       "setup": {
+        "USD": "3199.00",
+        "EUR": "2699.00"
+       }
+      }
+     }
+    ]
+   },
+   "ROBOT_1266": {
+    "productId": "ROBOT_1266",
+    "locations": [
+     {
+      "active": true,
+      "datacenter": "ALL",
+      "prices": {
+       "hourly": {
+        "EUR": "0.002700",
+        "USD": "0.003000"
+       },
+       "monthly": {
+        "USD": "1.90",
+        "EUR": "1.70"
+       }
+      }
+     }
+    ]
+   },
+   "ROBOT_1338": {
+    "productId": "ROBOT_1338",
+    "locations": [
+     {
+      "active": true,
+      "datacenter": "ALL",
+      "prices": {
+       "monthly": {
+        "EUR": "43.00",
+        "USD": "48.00"
+       },
+       "hourly": {
+        "EUR": "0.068900",
+        "USD": "0.076900"
+       }
+      }
+     }
+    ]
+   }
+  }
+ }
+}

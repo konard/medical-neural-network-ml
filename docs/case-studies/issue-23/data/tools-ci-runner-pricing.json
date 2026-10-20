@@ -1,0 +1,21 @@
+{
+  "source": [
+    "https://docs.github.com/en/billing/reference/actions-runner-pricing",
+    "https://docs.github.com/en/actions/reference/runners/larger-runners",
+    "https://docs.gitlab.com/ci/runners/hosted_runners/gpu_enabled/",
+    "https://docs.gitlab.com/ci/pipelines/compute_minutes/",
+    "https://about.gitlab.com/pricing/",
+    "https://runs-on.com/pricing/",
+    "https://runs-on.com/docs/runners/platforms/gpu/",
+    "https://cirun.io/pricing",
+    "https://docs.cirun.io/"
+  ],
+  "retrieved": "2026-10-19",
+  "data": {
+    "github_hosted_gpu": {"sku": "linux_4_core_gpu", "usd_per_min": 0.052, "usd_per_hour": 3.12, "hw": "4 vCPU, 28 GB RAM, 1x Tesla T4 16 GB VRAM, 176 GB SSD", "plans": "Larger runners are only available for organizations and enterprises using the GitHub Team or GitHub Enterprise Cloud plans.", "public_repos": "The larger runners are not free for public repositories.", "windows_4_core_gpu_usd_per_min": 0.102},
+    "github_self_hosted_fee": "Planned $0.002/min for private repos (announced Dec 2025, for 2026-03-01) was postponed; public repos unaffected. Not shown on the pricing page as of retrieval.",
+    "gitlab_hosted_gpu": {"tag": "saas-linux-medium-amd64-gpu-standard", "hw": "4 vCPU, 15 GB RAM, 50 GB, 1x Tesla T4 (or similar) 16 GB", "tiers": "Premium, Ultimate (GitLab.com only)", "cost_factor": 7, "extra_minutes": "$10 per 1,000", "effective_usd_per_job_hour_on_purchased_minutes": 4.20, "oss_program_public_project_factor": 0.5},
+    "runs_on": {"license_tiers_eur_per_year": {"Free": "0 (non-commercial / open source / non-profit, link back)", "Starter": 300, "Growth": 900, "Scale": 1800, "Sponsorship": 3600}, "cloud": "AWS only (own account)", "gpu_spot_usd_per_min_us_east_1": {"g4dn.xlarge T4": 0.0051, "g4dn.2xlarge T4": 0.0050, "g5.4xlarge A10G": 0.0123}, "gpus": "T4, A10G, L4, L40S, M60, V100, A100, H100, H200", "images": ["ubuntu22-gpu-x64", "ubuntu24-gpu-x64", "ubuntu24-gpu-arm64"]},
+    "cirun": {"plans_usd_per_month": {"Open Source": 0, "Startup": 29, "Business": 79, "Enterprise": "custom"}, "public_repos": "Always free for open source; unlimited public repositories", "gpu": "GPU runners listed in Open Source plan", "clouds": ["AWS", "GCP", "Azure", "Hetzner", "DigitalOcean", "Oracle", "OpenStack", "Vast.ai", "on-prem"], "license": "hosted SaaS, source not public (not explicitly stated on pricing page)"}
+  }
+}

@@ -275,6 +275,9 @@ def test_only_reviewed_release_jobs_can_write_to_the_repository() -> None:
                 for scope in re.findall(r"^\s+([a-z-]+): write$", block, re.MULTILINE)
             ]
     assert sorted(writers) == [
+        ("cloud-gpu-tests.yml", "orchestrate", "actions"),
+        ("cloud-gpu-tests.yml", "orchestrate", "id-token"),
+        ("cloud-gpu-tests.yml", "reap", "id-token"),
         ("docs.yml", "build", "pages"),
         ("docs.yml", "deploy", "id-token"),
         ("docs.yml", "deploy", "pages"),
@@ -314,6 +317,12 @@ def test_fork_pull_requests_never_run_with_secrets_or_write_tokens() -> None:
             ):
                 secrets.add((path.name, job, secret))
     assert secrets == {
+        ("cloud-gpu-tests.yml", "orchestrate", "CLOUD_GPU_RUNNER_TOKEN"),
+        ("cloud-gpu-tests.yml", "orchestrate", "HETZNER_ROBOT_PASSWORD"),
+        ("cloud-gpu-tests.yml", "orchestrate", "HETZNER_ROBOT_USER"),
+        ("cloud-gpu-tests.yml", "reap", "CLOUD_GPU_RUNNER_TOKEN"),
+        ("cloud-gpu-tests.yml", "reap", "HETZNER_ROBOT_PASSWORD"),
+        ("cloud-gpu-tests.yml", "reap", "HETZNER_ROBOT_USER"),
         ("links.yml", "link-checker", "GITHUB_TOKEN"),
         ("release.yml", "auto-release", "GITHUB_TOKEN"),
         ("release.yml", "manual-release", "GITHUB_TOKEN"),

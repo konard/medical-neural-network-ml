@@ -1,0 +1,18 @@
+Issue #23: We need to add CI/CD templates for GPU inference tests for models from hugging face
+URL: https://github.com/konard/medical-neural-network-ml/issues/23
+Author: konard, opened 2026-10-19T17:01:02Z
+Snapshot taken: 2026-10-20 (no comments at that time)
+
+We should support https://www.hetzner.com, AWS, Azure, Google cloud, with terraform/ansible where applicable.
+
+In all cases we should get a system that uses API of cloud providers to shortly/temporary deploy servers with GPUs with or without kubernetes clusters, so we can test how our inference works, does it pass all the tests and so on.
+
+In addition to GitHub Actions workflows we should have python scripts, that will work independently from GitHub Actions, for example if we need to migrate to GitLab and so on.
+
+We should also support flows, where we run tests on GitHub Actions Runners with GPU access hosted by us, or directly in these cloud providers.
+
+We should also double check for all escalation ladder of research we use all industry leading best practices, so if you see something wrong that must be corrected.
+
+We need to collect data related about the issue to this repository, make sure we compile that data to `./docs/case-studies/issue-{id}` folder, and use it to do deep case study analysis (also make sure to search online for additional facts and data), list of each and all requirements from the issue, and propose possible solutions and solution plans for each requirement (we should also check known existing components/libraries, that solve similar problem or can help in solutions).
+
+Please plan and execute everything in this single pull request, you have unlimited time and context, as context auto-compacts and you can continue indefinitely, until each and every requirement fully addressed, and everything is totally done.

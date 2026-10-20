@@ -1,0 +1,93 @@
+{
+ "source": "https://docs.hetzner.cloud/cloud.spec.json ; https://docs.hetzner.cloud/changelog ; https://www.hetzner.com/cloud/",
+ "retrieved": "2026-10-19",
+ "data": {
+  "openapi_info": {
+   "title": "Hetzner Cloud API",
+   "version": "1.0.0"
+  },
+  "securitySchemes": {
+   "APIToken": {
+    "type": "http",
+    "scheme": "bearer"
+   }
+  },
+  "top_level_paths": [
+   "/actions",
+   "/certificates",
+   "/datacenters",
+   "/firewalls",
+   "/floating_ips",
+   "/images",
+   "/isos",
+   "/load_balancer_types",
+   "/load_balancers",
+   "/locations",
+   "/networks",
+   "/placement_groups",
+   "/pricing",
+   "/primary_ips",
+   "/server_types",
+   "/servers",
+   "/ssh_keys",
+   "/volumes",
+   "/zones"
+  ],
+  "case_insensitive_counts_in_spec": {
+   "gpu": 0,
+   "nvidia": 0,
+   "kubernetes": 0,
+   "oidc": 0,
+   "openid": 0,
+   "oauth": 0
+  },
+  "changelog_count_gpu": 0,
+  "changelog_headings_2025_11_to_2026_10": [
+   "## October 2026",
+   "Network subnet type server is deprecated",
+   "Link headers are deprecated",
+   "Load Balancers can now be created with existing Primary IPs",
+   "Deleting a Load Balancer now returns an Action",
+   "Data Center endpoints return HTTP 410 Gone",
+   "## September 2026",
+   "Omitted TTL for changing an RRSet's TTL is not allowed",
+   "Omitted DNS pointers not allowed on change",
+   "Primary IP's assignee_type returns \"unassigned\" if IP is not assigned",
+   "New endpoint to list the resources attached to a Network",
+   "New requirements for deleting Buckets",
+   "Field \"deprecated\" will be removed",
+   "## August 2026",
+   "Debian 11 image is deprecated",
+   "Load Balancer health checks now report why a target is unhealthy",
+   "EC2-compatible routes for Server Metadata were removed",
+   "## July 2026",
+   "OpenSUSE 15 image is unavailable for new servers",
+   "Omitted TTL for changing an RRSet's TTL is deprecated",
+   "Omitted DNS pointers deprecated on change",
+   "Remove Datacenters properties for Primary IPs and Servers",
+   "## June 2026",
+   "Fedora 42 image is unavailable for new servers",
+   "EC2-compatible routes for Server Metadata are deprecated",
+   "Load Balancer Idle Timeout now configurable via the Console",
+   "Field \"deprecated\" on Load Balancer Types is now deprecated",
+   "Deprecation Info for Load Balancer Types",
+   "Deprecation Data Center endpoints",
+   "## May 2026",
+   "Private Networks auto-configuration is available via cloud-init",
+   "Fedora 44 and Ubuntu 26.04 are now available",
+   "Deleting assigned Primary IPs & Floating IPs is no longer possible",
+   "## April 2026",
+   "OpenSUSE 15 image is deprecated",
+   "Load Balancers idle timeout can now be configured",
+   "All GET /<resource>/{id}/actions/{action_id} operations are deprecated",
+   "Primary IP's assignee_type will return \"unassigned\" if IP is not assigned",
+   "Primary IP's Create property \"assignee_type\" is now optional",
+   "Leading whitespace characters in SSH Keys are invalid"
+  ],
+  "cloud_page_plan_families": [
+   "Cost-Optimized (shared, 'Currently not available')",
+   "Regular Performance (shared)",
+   "General Purpose (dedicated vCPU)"
+  ]
+ }
+}

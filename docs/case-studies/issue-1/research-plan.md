@@ -90,7 +90,7 @@ Steps:
 4. UniMedVL: it has no GGUF build and its Mixture-of-Transformers model is
    not a stock Transformers or vLLM architecture, so
    `scripts/unimedvl_server.py` wraps its own code (pinned commit and
-   weights, Python 3.10 environment) in an OpenAI-compatible server.
+   weights, Python 3.14 environment) in an OpenAI-compatible server.
    `SERVER=unimedvl bash scripts/medbench-model-run.sh download` and `run`
    start it, or the GPU job with `gpu-model: unimedvl`. A 40 GB+ GPU is an
    estimate, not a measured minimum.
@@ -192,6 +192,8 @@ augmentation rules in §5.
 * Red-team tests for dangerous outputs.
 * Bias checks by age, sex and scanner.
 * Monitoring after deployment.
+* A model card, and reports that follow TRIPOD+AI, TRIPOD-LLM or CLAIM
+  ([if-models-fail.md §6](if-models-fail.md#6-evaluation-safety-and-rules-8)).
 * Regulatory paperwork if this ever becomes a product (FDA PCCP, EU MDR
   and the AI Act).
 

@@ -210,3 +210,9 @@ __marimo__/
 
 # Local benchmark outputs can contain separately licensed source text.
 medbench-reports/
+
+# Terraform working directories (infra/terraform, issue #23)
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan

@@ -1,0 +1,22 @@
+Sources:
+ https://docs.hetzner.com/general/billing-and-account-management/billing-at-hetzner/billing-system-hetzner/ (Last change 2026-10-01)
+ https://docs.hetzner.com/general/billing-and-account-management/cancellation/cancellations-robot (Last change 2026-08-06)
+ https://www.hetzner.com/dedicated-rootserver/gex45/ (also gex63, gex131)
+Retrieved: 2026-10-19
+
+Billing doc:
+- "We have pro-rated billing (you pay AFTER you use our products). Each invoice contains the services for the entire previous month."
+- "Billing begins when we give you access to a product. We will use the hourly price as long as the product has not been used
+  for almost the entire calendar month. After that, we use the monthly price, which is lower."
+- "We exclude from hourly billing products with an annual term, such as domains or SSL certificates; products with a monthly
+  term, such as licenses; and products we bill per day or part thereof, such as colocation and add-ons."
+- "We round up partial hours. The total cost is never more than the monthly price."
+- "If a product still exists on your account, we will invoice you for it, even if you are not actively using it or it is turned off."
+- Minimum invoice amount $10 / EUR 10 (charges combined across months until reached).
+
+Cancellation doc (Robot), "Canceling dedicated servers":
+- "You can only cancel immediately. We bill by the hour and never exceed the monthly price cap (except for additional hardware and licenses)."
+- Data cannot be recovered after cancellation.
+
+GEX product pages: "No minimum contract term", "Cancellation period: immediately"; one-time setup fee applies (GEX45 EUR 209, GEX63 EUR 999, GEX131-1 EUR 1499, excl. VAT).
+Server Auction page (https://www.hetzner.com/sb/): "All without setup fees".

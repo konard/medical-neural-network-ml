@@ -1,0 +1,13 @@
+---
+# Example inventory for the GPU host playbooks (issue #23). Copy it, put the
+# address of each GPU host under gpu_hosts and run, from infra/ansible:
+#   ansible-playbook -i inventory.yml gpu-host.yml
+#   ansible-playbook -i inventory.yml github-runner.yml   # needs the token, see the playbook
+#   ansible-playbook -i inventory.yml k3s-gpu.yml
+all:
+  children:
+    gpu_hosts:
+      hosts:
+        gex-1:
+          ansible_host: 203.0.113.10
+          ansible_user: root

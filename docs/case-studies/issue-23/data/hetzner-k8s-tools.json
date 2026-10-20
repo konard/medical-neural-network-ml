@@ -1,0 +1,28 @@
+{
+ "source": [
+  "https://api.github.com/repos/vitobotta/hetzner-k3s",
+  "https://github.com/vitobotta/hetzner-k3s/releases/tag/v2.6.0",
+  "https://api.github.com/repos/kube-hetzner/terraform-hcloud-kube-hetzner",
+  "https://github.com/kube-hetzner/terraform-hcloud-kube-hetzner/blob/master/docs/add-robot-server.md"
+ ],
+ "retrieved": "2026-10-19",
+ "data": {
+  "managed_kubernetes": "none found (no kubernetes paths/mentions in hcloud OpenAPI spec or changelog; /cloud/kubernetes/ renders generic cloud page)",
+  "vitobotta/hetzner-k3s": {
+   "license": "MIT",
+   "stars": 3708,
+   "latest": "v2.6.0 (2026-06-24)",
+   "robot_support": "external nodes: instance_type: external, external.provider: robot, robot_user/robot_password (ROBOT_USER/ROBOT_PASSWORD), robot_server_number; not supported with Hetzner private networks",
+   "gpu_docs": "none found"
+  },
+  "kube-hetzner/terraform-hcloud-kube-hetzner": {
+   "license": "MIT",
+   "stars": 3940,
+   "latest": "v3.2.1 (2026-09-09)",
+   "registry_module": "kube-hetzner/kube-hetzner/hcloud 3.2.1",
+   "robot_support": "HCCM v1.19+ with vSwitch; enable_robot_ccm = true, robot_user, robot_password, vswitch_id",
+   "gpu_docs": "GitHub code search 'nvidia' returned no results"
+  },
+  "nvidia_gpu_operator_on_gex": "no Hetzner documentation found (unverified)"
+ }
+}

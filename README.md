@@ -17,6 +17,10 @@ openly licensed medical images and documents downloaded at test time.
 - Memory and time budgets, plus inference and training resource estimates.
 - [Research plan and evidence](docs/case-studies/issue-1/README.md), including
   alternatives, architectures, data collection and fine-tuning.
+- [GPU tests on temporary cloud machines](docs/cloud-gpu.md) on AWS, Azure,
+  Google Cloud or Hetzner, with or without Kubernetes. They run from a laptop,
+  GitHub Actions or GitLab CI, and the machines are deleted afterwards
+  ([case study](docs/case-studies/issue-23/README.md)).
 
 These are research smoke tests. Small, selected teaching samples do not
 establish clinical accuracy. MedGemma 27B and UniMedVL have not been measured
@@ -100,6 +104,15 @@ gh workflow run model-tests.yml -f gpu=true -f gpu-model=unimedvl -f count=20
 Each model download and run is wrapped in `medbench monitor`, which writes
 `medbench-reports/resources-*.json` with peak GPU and host memory, free disk,
 driver and CUDA versions and wall time, also when the run fails.
+
+Without a GPU of your own, `python -m scripts.cloud_gpu` rents one for a
+single run. It creates the machine, runs the same tests and deletes it again
+([docs/cloud-gpu.md](docs/cloud-gpu.md)):
+
+```bash
+python -m scripts.cloud_gpu plan --provider aws --model medgemma-27b-it
+python -m scripts.cloud_gpu all --provider gcp --model medgemma-4b-it --gcp-project my-project --yes
+```
 
 ## Configuration
 

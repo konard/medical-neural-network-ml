@@ -1,0 +1,33 @@
+{
+ "source": [
+  "https://registry.terraform.io/v1/providers/hashicorp/google",
+  "https://registry.terraform.io/v1/providers/hashicorp/google-beta"
+ ],
+ "retrieved": "2026-10-19",
+ "data": {
+  "google": {
+   "namespace": "hashicorp",
+   "name": "google",
+   "version": "8.7.0",
+   "published_at": "2026-10-13T17:14:11Z",
+   "source": "https://github.com/hashicorp/terraform-provider-google",
+   "downloads": 2674558117
+  },
+  "google-beta": {
+   "namespace": "hashicorp",
+   "name": "google-beta",
+   "version": "8.7.0",
+   "published_at": "2026-10-13T17:43:12Z",
+   "source": "https://github.com/hashicorp/terraform-provider-google-beta",
+   "downloads": 1356270474
+  }
+ },
+ "notes": {
+  "max_run_duration_GA": "scheduling.max_run_duration present in GA provider schema (google/services/compute/resource_compute_instance.go line ~1177 at tag v8.7.0) and not marked [Beta] in docs https://raw.githubusercontent.com/hashicorp/terraform-provider-google/v8.7.0/website/docs/r/compute_instance.html.markdown",
+  "beta_only_scheduling_fields": [
+   "maintenance_interval",
+   "graceful_shutdown",
+   "skip_guest_os_shutdown"
+  ]
+ }
+}

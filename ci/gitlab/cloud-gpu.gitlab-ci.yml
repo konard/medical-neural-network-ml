@@ -1,0 +1,197 @@
+# Cloud GPU tests for GitLab CI (issue #23): the GitLab counterpart of
+# .github/workflows/cloud-gpu-tests.yml. Both only install tools, log in and
+# call `python -m scripts.cloud_gpu` (docs/cloud-gpu.md), so a laptop, GitHub
+# and GitLab create, test and delete the GPU machines the same way.
+#
+# Use it from the project's .gitlab-ci.yml:
+#
+#   include:
+#     - local: ci/gitlab/cloud-gpu.gitlab-ci.yml
+#   stages: [check, cloud, reap]   # or add these three to your own stages
+#
+# cloud-gpu:check-infra  Merge requests and the default branch: lints and
+#                        validates the Terraform modules, the Ansible
+#                        playbooks, the Kubernetes Job and the shell scripts
+#                        (scripts/check-infra.sh). No cloud account.
+# cloud-gpu:plan         The settings and worst-case cost of the cloud run.
+# cloud-gpu:test         Run pipeline (web/API) or schedule on a protected
+#                        branch with CLOUD_GPU_TEST=true: creates a GPU VM
+#                        (vm) or GPU cluster (k8s) on AWS, Azure, Google
+#                        Cloud or Hetzner, runs the tests, and deletes it in
+#                        after_script, which also runs when the job fails or
+#                        is cancelled; RUNNER_SCRIPT_TIMEOUT stops script
+#                        early enough that it also runs before the job's
+#                        timeout (GitLab skips after_script on a job timeout).
+# cloud-gpu:reap         Schedule with CLOUD_GPU_REAP=true: deletes what
+#                        crashed runs left behind (managed-by and expires-at
+#                        tags) in every cloud that has settings.
+#
+# Cloud logins use GitLab's OIDC ID tokens (id_tokens), so no cloud key is
+# stored in GitLab; Hetzner Robot has no OIDC and uses masked variables.
+# Settings (CI/CD variables; protect them so only protected branches get
+# them): see "GitLab CI" in docs/cloud-gpu.md. The `runner` mode registers
+# a GitHub Actions runner and is GitHub only.
+
+variables:
+  CLOUD_GPU_PROVIDER: aws # aws, azure, gcp or hetzner
+  CLOUD_GPU_MODE: vm # vm or k8s
+  CLOUD_GPU_MODEL: medgemma-4b-it # medgemma-4b-it, medgemma-27b-it or unimedvl
+  CLOUD_GPU_COUNT: '2'
+  CLOUD_GPU_TTL: '360'
+  CLOUD_GPU_SPOT: 'false'
+  CLOUD_GPU_REGION: ''
+  CLOUD_GPU_TEST: 'false'
+  CLOUD_GPU_REAP: 'false'
+  CLOUD_GPU_IMAGE: python:3.14-slim-trixie
+  # The same audiences the cloud-side trust must accept (docs/cloud-gpu.md).
+  CLOUD_GPU_AWS_AUDIENCE: sts.amazonaws.com
+  CLOUD_GPU_AZURE_AUDIENCE: api://AzureADTokenExchange
+
+.cloud-gpu:
+  image: $CLOUD_GPU_IMAGE
+  variables:
+    PIP_DISABLE_PIP_VERSION_CHECK: '1'
+    CLOUD_GPU_WORKDIR: $CI_PROJECT_DIR/.cache/cloud-gpu/run
+    CLOUD_GPU_REPORTS: $CI_PROJECT_DIR/cloud-gpu-reports
+  interruptible: false
+
+.cloud-gpu-settings: &cloud-gpu-settings
+  - |
+    args=(--provider "$CLOUD_GPU_PROVIDER" --mode "$CLOUD_GPU_MODE"
+      --model "$CLOUD_GPU_MODEL" --run-id "gl-$CI_PIPELINE_ID-$CI_JOB_ID"
+      --ttl "$CLOUD_GPU_TTL" --count "$CLOUD_GPU_COUNT" --time-budget 5400
+      --workdir "$CLOUD_GPU_WORKDIR" --reports "$CLOUD_GPU_REPORTS"
+      --commit "$CI_COMMIT_SHA")
+    if [ "$CLOUD_GPU_SPOT" = true ]; then args+=(--spot); fi
+    if [ -n "$CLOUD_GPU_REGION" ]; then args+=(--region "$CLOUD_GPU_REGION"); fi
+    if [ "$CLOUD_GPU_PROVIDER" = gcp ]; then args+=(--gcp-project "${GCP_PROJECT:-}"); fi
+    if [ "$CLOUD_GPU_PROVIDER" = azure ]; then
+      args+=(--azure-subscription "${AZURE_SUBSCRIPTION_ID:-}")
+    fi
+
+# The cloud logins, for script and again for after_script (a new shell).
+.cloud-gpu-login: &cloud-gpu-login
+  - source ci/gitlab/cloud-login.sh "$CLOUD_GPU_PROVIDER"
+
+cloud-gpu:check-infra:
+  extends: .cloud-gpu
+  stage: check
+  timeout: 30m
+  interruptible: true
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - infra/**/*
+        - scripts/cloud_gpu/**/*
+        - scripts/gpu-*.sh
+        - scripts/cloud-gpu-*.sh
+        - scripts/check-infra.sh
+        - ci/gitlab/*
+        - examples/cloud_gpu_kind.sh
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push"
+  script:
+    - bash scripts/cloud-gpu-install-tools.sh infra
+    - bash scripts/check-infra.sh
+
+cloud-gpu:plan:
+  extends: .cloud-gpu
+  stage: check
+  timeout: 10m
+  interruptible: true
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CLOUD_GPU_TEST == "true"
+  script:
+    - bash scripts/cloud-gpu-install-tools.sh base
+    - *cloud-gpu-settings
+    - python3 -m scripts.cloud_gpu plan "${args[@]}"
+
+cloud-gpu:test:
+  extends: .cloud-gpu
+  stage: cloud
+  needs: [cloud-gpu:plan]
+  timeout: 6h
+  variables:
+    # script and after_script together stay under the job's 6 hours, so
+    # after_script deletes the machines even when the tests hang; `down` of
+    # a GPU cluster can take 15 minutes and after_script's default is 5.
+    RUNNER_SCRIPT_TIMEOUT: 5h
+    RUNNER_AFTER_SCRIPT_TIMEOUT: 45m
+  # Paid machines: never for a merge request, only a run pipeline or a
+  # schedule on a protected branch, which also keeps the protected cloud
+  # variables away from unreviewed code.
+  rules:
+    - if: >-
+        $CLOUD_GPU_TEST == "true" && $CI_COMMIT_REF_PROTECTED == "true" &&
+        ($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api" ||
+        $CI_PIPELINE_SOURCE == "schedule")
+  resource_group: cloud-gpu-$CLOUD_GPU_PROVIDER
+  id_tokens:
+    AWS_ID_TOKEN:
+      aud: $CLOUD_GPU_AWS_AUDIENCE
+    AZURE_ID_TOKEN:
+      aud: $CLOUD_GPU_AZURE_AUDIENCE
+    GCP_ID_TOKEN:
+      aud: https://iam.googleapis.com/$GCP_WORKLOAD_IDENTITY_PROVIDER
+  before_script:
+    - bash scripts/cloud-gpu-install-tools.sh "$CLOUD_GPU_PROVIDER"
+  script:
+    - *cloud-gpu-login
+    - *cloud-gpu-settings
+    - python3 -m scripts.cloud_gpu up "${args[@]}" --yes
+    - python3 -m scripts.cloud_gpu run --workdir "$CLOUD_GPU_WORKDIR" --reports "$CLOUD_GPU_REPORTS"
+  after_script:
+    - |
+      if [ ! -f "$CLOUD_GPU_WORKDIR/state.json" ]; then
+        echo "Nothing was created."
+        exit 0
+      fi
+    - *cloud-gpu-login
+    - python3 -m scripts.cloud_gpu down --workdir "$CLOUD_GPU_WORKDIR"
+  # The reports only: the working directory holds the run's SSH key and the
+  # Terraform state.
+  artifacts:
+    when: always
+    expire_in: 30 days
+    paths:
+      - cloud-gpu-reports/
+
+cloud-gpu:reap:
+  extends: .cloud-gpu
+  stage: reap
+  timeout: 1h
+  rules:
+    - if: >-
+        $CLOUD_GPU_REAP == "true" && $CI_COMMIT_REF_PROTECTED == "true" &&
+        ($CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web")
+  id_tokens:
+    AWS_ID_TOKEN:
+      aud: $CLOUD_GPU_AWS_AUDIENCE
+    AZURE_ID_TOKEN:
+      aud: $CLOUD_GPU_AZURE_AUDIENCE
+    GCP_ID_TOKEN:
+      aud: https://iam.googleapis.com/$GCP_WORKLOAD_IDENTITY_PROVIDER
+  script:
+    - |
+      providers=()
+      if [ -n "${AWS_ROLE_ARN:-}" ]; then providers+=(aws); fi
+      if [ -n "${AZURE_CLIENT_ID:-}" ]; then providers+=(azure); fi
+      if [ -n "${GCP_WORKLOAD_IDENTITY_PROVIDER:-}" ] && [ -n "${GCP_PROJECT:-}" ]; then
+        providers+=(gcp)
+      fi
+      if [ -n "${HETZNER_ROBOT_USER:-}" ]; then providers+=(hetzner); fi
+      if [ "${#providers[@]}" -eq 0 ]; then
+        echo "No cloud has settings in this project's CI/CD variables; nothing to reap (docs/cloud-gpu.md)."
+        exit 0
+      fi
+      bash scripts/cloud-gpu-install-tools.sh "${providers[@]}"
+      args=()
+      for provider in "${providers[@]}"; do
+        source ci/gitlab/cloud-login.sh "$provider"
+        args+=(--provider "$provider")
+      done
+      for region in ${CLOUD_GPU_AWS_REGIONS:-${CLOUD_GPU_REGION:-us-east-1}}; do
+        args+=(--region "$region")
+      done
+      if [ -n "${GCP_PROJECT:-}" ]; then args+=(--gcp-project "$GCP_PROJECT"); fi
+      python3 -m scripts.cloud_gpu reap "${args[@]}" --yes

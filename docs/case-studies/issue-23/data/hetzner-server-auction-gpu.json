@@ -1,0 +1,149 @@
+{
+ "source": "https://www.hetzner.com/_resources/app/data/app/live_data_sb.json (feeds https://www.hetzner.com/sb/)",
+ "retrieved": "2026-10-19",
+ "data": {
+  "total_servers_in_auction": 154,
+  "gpu_servers": [
+   {
+    "Id": 3088260,
+    "CPU": "Intel Core i5-13500",
+    "RAM_GB": 64,
+    "Prices_excl_IPv4_excl_VAT": {
+     "monthly": {
+      "EUR": 233,
+      "USD": 259
+     },
+     "hourly": {
+      "EUR": 0.3734,
+      "USD": 0.4151
+     },
+     "setup": {
+      "EUR": 0,
+      "USD": 0
+     },
+     "fixed": true
+    },
+    "IPv4": {
+     "monthly": {
+      "EUR": 1.7,
+      "USD": 1.9
+     },
+     "hourly": {
+      "EUR": 0.0027,
+      "USD": 0.003
+     },
+     "Amount": 1
+    },
+    "Description": [
+     "IPv4",
+     "GPU",
+     "DC",
+     "NVME",
+     "SSD",
+     "GPU",
+     "Intel Core i5-13500",
+     "2x RAM 32768 MB DDR4",
+     "2x SSD U.2 NVMe 1,92 TB Datacenter",
+     "GPU -Nvidia RTX 4000 SFF Ada"
+    ],
+    "Datacenter": "FSN1-DC12"
+   },
+   {
+    "Id": 3096250,
+    "CPU": "Intel Xeon Gold 5412U",
+    "RAM_GB": 128,
+    "Prices_excl_IPv4_excl_VAT": {
+     "monthly": {
+      "EUR": 926,
+      "USD": 1028
+     },
+     "hourly": {
+      "EUR": 1.484,
+      "USD": 1.6474
+     },
+     "setup": {
+      "EUR": 0,
+      "USD": 0
+     },
+     "fixed": false
+    },
+    "IPv4": {
+     "monthly": {
+      "EUR": 1.7,
+      "USD": 1.9
+     },
+     "hourly": {
+      "EUR": 0.0027,
+      "USD": 0.003
+     },
+     "Amount": 1
+    },
+    "Description": [
+     "IPv4",
+     "GPU",
+     "iNIC",
+     "DC",
+     "NVME",
+     "SSD",
+     "ECC",
+     "GPU",
+     "INIC",
+     "Intel Xeon Gold 5412U",
+     "4x RAM 32768 MB DDR5 ECC reg.",
+     "2x SSD U.2 NVMe 1,92 TB Datacenter",
+     "GPU - Nvidia RTX 6000 Ada",
+     "NIC 1 Gbit - Intel X550-AT2"
+    ],
+    "Datacenter": "NBG1-DC6"
+   },
+   {
+    "Id": 3096212,
+    "CPU": "Intel Xeon Gold 5412U",
+    "RAM_GB": 128,
+    "Prices_excl_IPv4_excl_VAT": {
+     "monthly": {
+      "EUR": 943,
+      "USD": 1047
+     },
+     "hourly": {
+      "EUR": 1.5112,
+      "USD": 1.6779
+     },
+     "setup": {
+      "EUR": 0,
+      "USD": 0
+     },
+     "fixed": false
+    },
+    "IPv4": {
+     "monthly": {
+      "EUR": 1.7,
+      "USD": 1.9
+     },
+     "hourly": {
+      "EUR": 0.0027,
+      "USD": 0.003
+     },
+     "Amount": 1
+    },
+    "Description": [
+     "IPv4",
+     "GPU",
+     "iNIC",
+     "DC",
+     "NVME",
+     "SSD",
+     "ECC",
+     "GPU",
+     "INIC",
+     "Intel Xeon Gold 5412U",
+     "4x RAM 32768 MB DDR5 ECC reg.",
+     "2x SSD U.2 NVMe 1,92 TB Datacenter",
+     "GPU - Nvidia RTX 6000 Ada",
+     "NIC 1 Gbit - Intel X550-AT2"
+    ],
+    "Datacenter": "FSN1-DC16"
+   }
+  ]
+ }
+}

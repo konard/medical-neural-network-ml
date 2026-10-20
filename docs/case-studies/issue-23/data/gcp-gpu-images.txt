@@ -1,0 +1,33 @@
+# GCP boot images with NVIDIA driver >= R580 (retrieved 2026-10-19)
+#
+# 1) Deep Learning VM images, image project: deeplearning-platform-release
+#    Source: https://cloud.google.com/deep-learning-vm/docs/images  (page "Last updated 2026-10-13")
+#    "Ubuntu 22.04 and 24.04 are supported OS versions, and the images come with the NVIDIA driver version 580."
+common-cu129-ubuntu-2404-nvidia-580      # Base, CUDA 12.9, Python 3.12, Ubuntu 24.04, driver R580
+common-cu129-ubuntu-2204-nvidia-580      # Base, CUDA 12.9, Ubuntu 22.04, driver R580
+pytorch-2-9-cu129-ubuntu-2404-nvidia-580 # PyTorch 2.9, CUDA 12.9, Ubuntu 24.04, driver R580
+pytorch-2-9-cu129-ubuntu-2204-nvidia-580 # PyTorch 2.9, CUDA 12.9, Ubuntu 22.04, driver R580 (example image: pytorch-2-9-cu129-ubuntu-2204-nvidia-580-v20260416)
+common-cu128-ubuntu-2204-nvidia-570      # DEPRECATED (release notes 2026-04-13: "Images with Nvidia 570 drivers have been deprecated")
+#    No cu13x DLVM family is documented as of 2026-10-19 (CUDA 13 user-space must come from the container/wheel; driver 580 supports CUDA 13.x).
+#    Release notes: https://cloud.google.com/deep-learning-vm/docs/release-notes
+#      2026-04-08 M132: "Ubuntu 22.04 and Ubuntu 24.04 images with Nvidia 580 drivers and CUDA 12.9 stack are now available for Common and PyTorch 2.9 images."
+#    Metadata install-nvidia-driver=True: https://cloud.google.com/deep-learning-vm/docs/cli
+#
+# 2) Ubuntu Accelerated images, image project: ubuntu-os-accelerator-images
+#    Source: https://cloud.google.com/compute/docs/images/os-details (page "Last updated 2026-10-15")
+ubuntu-accelerator-2404-amd64-with-nvidia-580   # GA, EOS June 2028; listed machine series: A4X, A4, A3 Ultra
+ubuntu-accelerator-2204-amd64-with-nvidia-580   # GA, EOS April 2027; listed machine series: A4X, A4, A3 Ultra
+#    (arm64 variants: ubuntu-accelerator-2404-arm64-with-nvidia-580, ubuntu-accelerator-2204-arm64-with-nvidia-580)
+#    Older -with-nvidia-570 / -with-nvidia-550 families are in the deprecated table.
+#
+# 3) Container-Optimized OS, image project cos-cloud: cos-133-lts / cos-129-lts / cos-125-lts / cos-121-lts
+#    Source: https://cloud.google.com/container-optimized-os/docs/release-notes
+#    `sudo cos-extensions install gpu [-- -version=default|latest|R580|R595]`: https://cloud.google.com/container-optimized-os/docs/how-to/run-gpus
+#    cos-133-19999-44-126 (2026-10-12): DEFAULT=LATEST=580.178.04, R595=595.91.07 for T4/L4/A100/H100/RTX PRO 6000 (see gcp-cos133-gpu-driver-versions.json)
+#
+# 4) Google recommended drivers: https://cloud.google.com/compute/docs/gpus/install-drivers-gpu (page "Last updated 2026-10-13")
+#    Recommended branch R580 LTSB (EOS June 2028) for T4, L4, A100, H100, RTX PRO 6000; min Linux 580.95.05 (G4 fractional: 580.126.09).
+#    Latest PB verified by Google: R595 (EOS March 2027).
+#    Recommended CUDA toolkit: 13.0+ for T4/L4/A100/H100; 13.1+ for G4 (RTX PRO 6000). V100/P4: CUDA 12 max.
+#    Installer: curl -L https://storage.googleapis.com/compute-gpu-installation-us/installer/latest/cuda_installer.pyz -o cuda_installer.pyz
+#               sudo python3 cuda_installer.pyz install_driver --installation-mode=repo --installation-branch=lts|prod

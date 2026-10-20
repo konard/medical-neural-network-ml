@@ -1,0 +1,56 @@
+{
+ "source": "https://api.github.com/repos/{owner}/{repo} and /releases ; https://registry.terraform.io/v1/providers/{ns}/{name}",
+ "retrieved": "2026-10-19",
+ "data": [
+  {
+   "repo": "gen0sec/terraform-provider-hetzner-robot",
+   "license": "MPL-2.0",
+   "pushed_at": "2026-07-25",
+   "latest_release": "v0.1.0 (2026-07-13)",
+   "registry": "not found under gen0sec/hetzner-robot (unverified elsewhere)",
+   "ordering": true,
+   "resources": [
+    "server_order (POST /order/server/transaction, default test=true; destroy does NOT cancel)",
+    "server_market_order",
+    "server_addon_order",
+    "server_cancellation",
+    "boot",
+    "firewall",
+    "reset",
+    "rdns",
+    "ssh_key",
+    "vswitch"
+   ],
+   "data_sources": [
+    "server_products",
+    "server_market_products"
+   ]
+  },
+  {
+   "repo": "DigitecGalaxus/terraform-provider-hetznerrobot",
+   "license": "MPL-2.0",
+   "pushed_at": "2026-06-03",
+   "latest_release": "v0.0.1 (2025-01-23)",
+   "registry": "DigitecGalaxus/hetznerrobot 0.0.1 (~17.5k downloads)",
+   "ordering": false,
+   "note": "servers data source only"
+  },
+  {
+   "repo": "mwudka/terraform-provider-hetznerrobot",
+   "license": null,
+   "pushed_at": "2021-11-30",
+   "latest_release": "v0.0.14 (2021-10-22)",
+   "registry": "mwudka/hetznerrobot 0.0.14 (~21.8k downloads)",
+   "ordering": false,
+   "note": "firewall only, unmaintained"
+  },
+  {
+   "repo": "sophotechlabs/terraform-provider-hetzner-robot",
+   "license": "MIT",
+   "pushed_at": "2026-09-21",
+   "latest_release": "v0.2.1 (2026-06-27)",
+   "ordering": false,
+   "note": "rescue boot, reset, firewall, rDNS, SSH keys"
+  }
+ ]
+}

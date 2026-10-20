@@ -1,0 +1,14 @@
+{
+ "source": "https://registry.terraform.io/v1/providers/hashicorp/aws",
+ "retrieved": "2026-10-19",
+ "data": {
+  "id": "hashicorp/aws/6.69.1",
+  "namespace": "hashicorp",
+  "name": "aws",
+  "version": "6.69.1",
+  "published_at": "2026-10-15T20:36:55Z",
+  "source": "https://github.com/hashicorp/terraform-provider-aws",
+  "downloads": 8081463486,
+  "tier": "official"
+ }
+}

@@ -1,0 +1,26 @@
+#cloud-config
+# First boot of a temporary GPU VM (issue #23), shared by every vm module.
+# The images already hold an NVIDIA driver of branch R580 or newer (AWS Deep
+# Learning AMI, Google Deep Learning VM, Azure driver extension). The
+# orchestrator (python -m scripts.cloud_gpu) waits for this file to finish,
+# uploads the repository over SSH and runs scripts/gpu-host-run.sh.
+package_update: true
+packages:
+  - ca-certificates
+  - curl
+  - git
+  - libgomp1
+  - python3
+  - tar
+write_files:
+  - path: /etc/medbench-cloud-gpu.env
+    permissions: '0644'
+    content: |
+      MEDBENCH_RUN_ID=${run_id}
+      MEDBENCH_EXPIRES_AT=${expires_at}
+runcmd:
+  # Hard deadline: power off when the time to live is over, even if nobody
+  # runs `down`. AWS and GCP then delete the VM; on Azure a stopped VM is
+  # still billed, so the reaper deletes it.
+  - [shutdown, -P, "+${ttl_minutes}", "medbench-cloud-gpu: time to live reached"]
+  - [touch, /var/lib/medbench-cloud-gpu-ready]

@@ -1,0 +1,54 @@
+{
+ "source": [
+  "https://api.github.com/repos/Azure/login/releases?per_page=3",
+  "https://gitlab.com/api/v4/projects/gitlab-org%2Ffleeting%2Fplugins%2Fazure/releases?per_page=3",
+  "https://api.github.com/repos/Azure/azure-rest-api-specs/contents/specification/quota/resource-manager/Microsoft.Quota/Quota/stable"
+ ],
+ "retrieved": "2026-10-19",
+ "data": {
+  "azure/login": {
+   "releases": [
+    {
+     "tag": "v3.1.0",
+     "published_at": "2026-09-10T03:16:59Z"
+    },
+    {
+     "tag": "v3.0.2",
+     "published_at": "2026-08-26T03:17:11Z"
+    },
+    {
+     "tag": "v3.0.1",
+     "published_at": "2026-08-04T02:19:41Z"
+    }
+   ],
+   "action_runtime": "node24",
+   "support": {
+    "v3": "Supported",
+    "v2": "Maintenance mode (security fixes only)",
+    "v1": "End of Life"
+   }
+  },
+  "gitlab-org/fleeting/plugins/azure": {
+   "releases": [
+    {
+     "tag": "v1.2.0",
+     "released_at": "2026-01-06T11:50:38.760Z"
+    },
+    {
+     "tag": "v1.1.0-rc0",
+     "released_at": "2025-09-11T14:58:44.340Z"
+    },
+    {
+     "tag": "v1.0.0",
+     "released_at": "2024-09-16T17:14:33.754Z"
+    }
+   ]
+  },
+  "Microsoft.Quota stable api-versions": [
+   "2023-02-01",
+   "2025-03-01",
+   "2025-07-15",
+   "2025-09-01"
+  ]
+ }
+}

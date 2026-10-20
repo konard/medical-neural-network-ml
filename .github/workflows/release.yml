@@ -184,6 +184,8 @@ jobs:
         run: |
           cd "$PYTHON_ROOT"
           mypy src
+          # The cloud GPU orchestrator (issue #23) is a package under scripts/.
+          mypy --strict -p scripts.cloud_gpu
 
       - name: Check file size limit
         run: |

@@ -1,0 +1,35 @@
+{
+  "source": [
+    "https://docs.github.com/en/rest/actions/self-hosted-runners",
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax",
+    "https://docs.github.com/en/actions/tutorials/use-actions-runner-controller/authenticate-to-the-api",
+    "https://github.com/actions/runner/blob/main/src/Runner.Common/Constants.cs",
+    "https://api.github.com/repos/konard/medical-neural-network-ml"
+  ],
+  "retrieved": "2026-10-19",
+  "data": {
+    "generate_jitconfig": {
+      "endpoint": "POST /repos/{owner}/{repo}/actions/runners/generate-jitconfig",
+      "body": {"name": "string, required", "runner_group_id": "integer, required", "labels": "array[string], required, 1..100", "work_folder": "string, optional, default _work"},
+      "response_201": {"runner": "object (id, name, os, status, busy, labels, ephemeral, ...)", "encoded_jit_config": "string"},
+      "status_codes": [201, 404, 409, 422],
+      "usage_on_vm": "./run.sh --jitconfig <encoded_jit_config>  (flag name 'jitconfig' in actions/runner Constants.cs)",
+      "runner_group_id_for_repo": "not stated in docs; commonly 1 (Default) - unverified"
+    },
+    "registration_token": {
+      "endpoint": "POST /repos/{owner}/{repo}/actions/runners/registration-token",
+      "body": "none",
+      "response_201": {"token": "string", "expires_at": "date-time"},
+      "expiry": "The token expires after one hour.",
+      "usage_on_vm": "./config.sh --url https://github.com/OWNER/REPO --token <token> --ephemeral --unattended --labels ..."
+    },
+    "permissions": {
+      "fine_grained_pat_or_github_app": "\"Administration\" repository permissions (write)",
+      "classic_pat": "repo scope",
+      "user": "must have admin access to the repository",
+      "GITHUB_TOKEN": "cannot: the GITHUB_TOKEN permissions key lists actions, artifact-metadata, attestations, checks, code-quality, contents, copilot-requests, deployments, id-token, issues, discussions, packages, pages, pull-requests, security-events, statuses, vulnerability-alerts - no 'administration'",
+      "ARC_github_app_note": "GitHub App for ARC must be owned by and installed on an organization; for a user-owned repo use a PAT"
+    },
+    "this_repo": {"owner_type": "User", "visibility": "public", "registered_runners_at_retrieval": 0}
+  }
+}

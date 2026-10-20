@@ -97,6 +97,7 @@ still safe:
 | `GITHUB_TOKEN` | `links.yml` link-checker; `auto-release`, `manual-release` | read-only token; the release jobs do not run |
 | `CODECOV_TOKEN` | `test` | empty, so the upload step is skipped (`test_release_workflow_gates_codecov_upload_on_token`) |
 | `DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN` | `release-preflight`, `docker-publish*` | preflight runs in `report` mode and only annotates; publishing jobs do not run |
+| `HETZNER_ROBOT_USER`, `HETZNER_ROBOT_PASSWORD`, `CLOUD_GPU_RUNNER_TOKEN` | `cloud-gpu-tests.yml` `orchestrate`, `reap` | neither job runs: `orchestrate` only for a manual dispatch from main, `reap` only on the schedule or a dispatch from main; both read them from the `cloud-gpu` and `cloud-gpu-reaper` environments |
 
 The release preflight cannot exchange an OIDC token in a fork, and the
 Dependency graph and branch ruleset checks are repository settings, so all
@@ -106,12 +107,22 @@ fail.
 ## Tokens and Credentials
 
 - Every workflow defaults to `contents: read`; write scopes are granted per
-  job. `tests/test_repository_policy.py` lists the ten write scopes that
-  exist today, so a new one fails the tests until this section is reviewed.
+  job. `tests/test_repository_policy.py` lists the thirteen write scopes
+  that exist today, so a new one fails the tests until this section is
+  reviewed.
 - Every checkout sets `persist-credentials: false` except `manual-release`,
   which needs the token in `.git/config` for its `git push origin main`.
 - `id-token: write` is held by the release jobs and the preflight (PyPI
-  trusted publishing) and by the Pages deploy.
+  trusted publishing), by the Pages deploy, and by the `orchestrate` and
+  `reap` jobs of `cloud-gpu-tests.yml`, which log in to AWS, Azure and
+  Google Cloud with OpenID Connect instead of stored cloud keys. The cloud
+  side trusts only the environment subjects
+  `repo:konard/medical-neural-network-ml:environment:cloud-gpu` and
+  `repo:konard/medical-neural-network-ml:environment:cloud-gpu-reaper`
+  (`docs/cloud-gpu.md`), and both environments are limited to main.
+- `actions: write` is held by `orchestrate` alone, to cancel its own run
+  when the ephemeral runner never took the `gpu-tests` job, which would
+  otherwise stay queued for 24 hours.
 
 ## Action Pins and Update Pull Requests
 
@@ -155,8 +166,12 @@ already pinned, so a repository admin can turn it on at any time.
 ## Self-Hosted Runners
 
 No self-hosted runner is attached today (0 registered on 2026-10-16). The
-`gpu` job of `model-tests.yml` is the only job that may use one, and the
-following holds before a GPU host is attached:
+`gpu` job of `model-tests.yml` and the `gpu-tests` job of
+`cloud-gpu-tests.yml` are the only jobs that may use one. `gpu-tests` asks
+for the label `medbench-gh-<run id>-<attempt>`, which only the just-in-time
+runner that `orchestrate` registers on a new cloud GPU VM for that run
+carries; the runner takes that one job and is deleted with the VM
+(`docs/cloud-gpu.md`). The following holds before a GPU host is attached:
 
 - **Trusted dispatch only.** The job runs only for a manual
   `workflow_dispatch` from main with `gpu: true`, never for a pull request,
@@ -165,7 +180,10 @@ following holds before a GPU host is attached:
   dispatch.
 - **Approval.** The job uses the `gpu` environment. Before attaching a
   runner, open Settings → Environments → `gpu`, restrict deployment branches
-  to `main` and add the maintainer as a required reviewer.
+  to `main` and add the maintainer as a required reviewer. The paid cloud
+  runs of `cloud-gpu-tests.yml` use the `cloud-gpu` environment the same
+  way; its daily reaper uses `cloud-gpu-reaper`, limited to `main` without
+  reviewers so the schedule never waits for an approval.
 - **Least privilege.** `contents: read`, no secrets, no persisted
   credentials; models and archives are pinned by revision and SHA-256.
 - **Ephemeral and isolated.** Register the runner with

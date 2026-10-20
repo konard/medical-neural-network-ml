@@ -1,0 +1,20 @@
+{
+  "source": [
+    "https://raw.githubusercontent.com/NVIDIA/gpu-operator/v26.7.2/deployments/gpu-operator/values.yaml",
+    "https://api.github.com/repos/NVIDIA/gpu-operator/releases/latest",
+    "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/26.7/release-notes.html#v26-7-2"
+  ],
+  "retrieved": "2026-10-19",
+  "data": {
+    "gpu_operator_release": {"tag": "v26.7.2", "published_at": "2026-10-14T20:54:42Z"},
+    "default_component_versions_in_values_yaml": {
+      "driver (nvcr.io/nvidia/driver)": "595.91.07",
+      "container-toolkit": "v1.20.1",
+      "k8s-device-plugin": "v0.20.1",
+      "dcgm": "4.6.1-1-ubuntu24.04",
+      "dcgm-exporter": "4.6.1-4.8.4-distroless",
+      "k8s-mig-manager": "v0.15.1"
+    },
+    "k8s_device_plugin_release": {"tag": "v0.20.1", "published_at": "2026-09-22T20:00:53Z"}
+  }
+}

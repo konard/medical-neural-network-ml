@@ -1,0 +1,44 @@
+{
+ "source": "https://storage.googleapis.com/cos-tools/19999.44.126/lakitu/gpu_driver_versions.textproto",
+ "source_context": "COS 133 LTS image cos-133-19999-44-126 (2026-10-12), linked as 'See List' from https://cloud.google.com/container-optimized-os/docs/release-notes/m133",
+ "retrieved": "2026-10-19",
+ "note": "labels usable with 'sudo cos-extensions install gpu -- -version=LABEL' (default|latest|R580|R595); see https://cloud.google.com/container-optimized-os/docs/how-to/run-gpus",
+ "data": {
+  "NVIDIA_TESLA_T4": {
+   "LATEST": "580.178.04",
+   "DEFAULT": "580.178.04",
+   "R595": "595.91.07",
+   "R580": "580.178.04"
+  },
+  "NVIDIA_L4": {
+   "LATEST": "580.178.04",
+   "DEFAULT": "580.178.04",
+   "R595": "595.91.07",
+   "R580": "580.178.04"
+  },
+  "NVIDIA_TESLA_A100": {
+   "LATEST": "580.178.04",
+   "DEFAULT": "580.178.04",
+   "R595": "595.91.07",
+   "R580": "580.178.04"
+  },
+  "NVIDIA_A100_80GB": {
+   "LATEST": "580.178.04",
+   "DEFAULT": "580.178.04",
+   "R595": "595.91.07",
+   "R580": "580.178.04"
+  },
+  "NVIDIA_H100_80GB": {
+   "LATEST": "580.178.04",
+   "DEFAULT": "580.178.04",
+   "R595": "595.91.07",
+   "R580": "580.178.04"
+  },
+  "NVIDIA_RTX_PRO_6000": {
+   "LATEST": "580.178.04",
+   "DEFAULT": "580.178.04",
+   "R595": "595.91.07",
+   "R580": "580.178.04"
+  }
+ }
+}

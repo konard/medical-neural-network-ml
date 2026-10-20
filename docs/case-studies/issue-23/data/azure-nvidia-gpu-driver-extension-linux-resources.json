@@ -1,0 +1,177 @@
+{
+  "source": "https://raw.githubusercontent.com/Azure/azhpc-extensions/master/NvidiaGPU/Nvidia-GPU-Linux-Resources.json (linked from https://learn.microsoft.com/azure/virtual-machines/extensions/hpccompute-gpu-linux)",
+  "retrieved": "2026-10-19",
+  "last_commit": "2026-09-30T20:34:02Z \"[Public] Prune GRID drivers below v18.8, add v19.6, move A10 to v20.2 (#128)\"",
+  "note": "Trimmed: RegionControl maps and non-Ubuntu repo entries removed. CUDA category installs Latest from NVIDIA CUDA apt repo pinned to driver branch 615 (nvidia-driver-pinning-615); GRID category installs Microsoft-hosted grid-azure .run file.",
+  "data": {
+    "metadataVersion": 20241213,
+    "defaultsPerVMFamily": {
+      "NC_A100_v4 series": {
+        "GpuModel": "NVIDIA A100",
+        "DefaultCategory": "CUDA",
+        "DefaultDriverVersion": "Latest",
+        "RegionSupport": "DefaultAllRegions"
+      },
+      "NCasT4_v3 sizes": {
+        "GpuModel": "Nvidia Tesla T4",
+        "DefaultCategory": "CUDA",
+        "DefaultDriverVersion": "Latest",
+        "RegionSupport": "DefaultAllRegions",
+        "GridDriverSupported": true,
+        "DefaultGridDriverVersion": "595.91.07",
+        "SupportedGridDriverVersions": [
+          "595.91.07",
+          "580.178.04",
+          "570.237"
+        ]
+      },
+      "NVv3 Series": {
+        "GpuModel": "NVIDIA Tesla M60",
+        "DefaultCategory": "GRID",
+        "DefaultDriverVersion": "535.161.08",
+        "RegionSupport": "DefaultAllRegions"
+      },
+      "NVadsA10_v5 Series": {
+        "GpuModel": "NVIDIA A10",
+        "DefaultCategory": "GRID",
+        "DefaultDriverVersion": "595.91.07",
+        "DefaultDrivervGPUVersion": "20.2",
+        "SupportedGridDriverVersions": [
+          "595.91.07",
+          "580.178.04",
+          "570.237"
+        ],
+        "RegionSupport": "RegionControl"
+      },
+      "NC_H100_v5 series": {
+        "GpuModel": "NVIDIA H100 NVL GPU",
+        "DefaultCategory": "CUDA",
+        "DefaultDriverVersion": "Latest",
+        "RegionSupport": "DefaultAllRegions"
+      },
+      "NCC_H100_v5 series": {
+        "GpuModel": "NVIDIA H100 Tensor Core GPU",
+        "DefaultCategory": "CUDA",
+        "DefaultDriverVersion": "Latest",
+        "RegionSupport": "DefaultAllRegions"
+      },
+      "NDv2 series": {
+        "GpuModel": "NVIDIA Tesla V100",
+        "DefaultCategory": "CUDA",
+        "DefaultDriverVersion": "Latest",
+        "RegionSupport": "DefaultAllRegions"
+      },
+      "ND family": {
+        "VMSeries": "ND*-A100-v4, ND-H100-V5, ND-H200-v5, ND-GB200-v6, ND-GB300-v6",
+        "DefaultCategory": "CUDA",
+        "DefaultDriverVersion": "Latest",
+        "RegionSupport": "DefaultAllRegions"
+      },
+      "NCRTXPRO6000BSE_v6 series": {
+        "GpuModel": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+        "DefaultCategory": "GRID",
+        "DefaultDriverVersion": "595.91.07",
+        "DefaultDrivervGPUVersion": "20.2",
+        "SupportedGridDriverVersions": [
+          "595.91.07"
+        ],
+        "RegionSupport": "RegionControl"
+      }
+    },
+    "latestGRID": [
+      {
+        "DriverVersion": "595.91.07",
+        "vGPUVersion": "20.2",
+        "families": [
+          "NCRTXPRO6000BSE_v6 series",
+          "NCasT4_v3 sizes",
+          "NVadsA10_v5 Series"
+        ],
+        "os": [
+          "Ubuntu 26.04 LTS",
+          "Ubuntu 24.04 LTS",
+          "Ubuntu 22.04 LTS",
+          "Ubuntu 20.04 LTS",
+          "Red Hat Enterprise Linux 9.8",
+          "Red Hat Enterprise Linux 9.6",
+          "Red Hat Enterprise Linux 9.4",
+          "Red Hat Enterprise Linux 8.10"
+        ],
+        "url": "https://download.microsoft.com/download/a7cb6d36-3bbc-43d6-9e88-e0842e6f9ab9/NVIDIA-Linux-x86_64-595.91.07-grid-azure.run"
+      }
+    ],
+    "latestCUDA": [
+      {
+        "DriverVersion": "Latest",
+        "DriverBranch": "615",
+        "DriverPinPackage": "nvidia-driver-pinning-615",
+        "DriverPackage": "cuda-drivers",
+        "CUDA Toolkit": "Latest",
+        "families": {
+          "NC series": {
+            "GpuModel": "NVIDIA Tesla K80"
+          },
+          "NCv2 series": {
+            "GpuModel": "NVIDIA Tesla P100"
+          },
+          "NCasT4_v3 sizes": {
+            "GpuModel": "Nvidia Tesla T4",
+            "DriverPackage": "nvidia-open",
+            "RhelDriverModuleStream": "615-open",
+            "RhelCudaPackage": "nvidia-open"
+          },
+          "NVv3 Series": {
+            "GpuModel": "NVIDIA Tesla M60"
+          },
+          "NC_A100_v4 series": {
+            "GpuModel": "NVIDIA A100",
+            "DriverPackage": "nvidia-open",
+            "RhelDriverModuleStream": "615-open",
+            "RhelCudaPackage": "nvidia-open"
+          },
+          "NC_H100_v5 series": {
+            "GpuModel": "NVIDIA H100 NVL GPU",
+            "DriverPackage": "nvidia-open",
+            "RhelDriverModuleStream": "615-open",
+            "RhelCudaPackage": "nvidia-open"
+          },
+          "NCC_H100_v5 series": {
+            "GpuModel": "NVIDIA H100 Tensor Core GPU",
+            "DriverPackage": "nvidia-open",
+            "RhelDriverModuleStream": "615-open",
+            "RhelCudaPackage": "nvidia-open"
+          },
+          "NDv2 series": {
+            "GpuModel": "NVIDIA Tesla V100"
+          },
+          "ND family": {
+            "VMSeries": "ND*-A100-v4, ND-H100-V5, ND-H200-v5, ND-GB200-v6, ND-GB300-v6",
+            "DriverPackage": "nvidia-open",
+            "RhelDriverModuleStream": "615-open",
+            "RhelCudaPackage": "nvidia-open"
+          }
+        },
+        "ubuntuRepos": [
+          {
+            "os": [
+              "Ubuntu 26.04 LTS"
+            ],
+            "RepoUrl": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2604/x86_64/"
+          },
+          {
+            "os": [
+              "Ubuntu 24.04 LTS"
+            ],
+            "RepoUrl": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/"
+          },
+          {
+            "os": [
+              "Ubuntu 22.04 LTS"
+            ],
+            "RepoUrl": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/"
+          }
+        ]
+      }
+    ]
+  }
+}

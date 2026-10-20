@@ -1,0 +1,155 @@
+{
+ "source": [
+  "https://api.github.com/repos/{owner}/{repo}/releases/latest",
+  "https://api.github.com/repos/{owner}/{repo}",
+  "https://pypi.org/pypi/{package}/json",
+  "https://galaxy.ansible.com/api/v1/roles/?owner__username=nvidia&name=nvidia_driver"
+ ],
+ "retrieved": "2026-10-19",
+ "data": {
+  "github_releases": [
+   {
+    "repo": "hashicorp/terraform",
+    "tag": "v1.16.6",
+    "published_at": "2026-10-14T09:31:54Z",
+    "license_spdx": "NOASSERTION",
+    "archived": false,
+    "url": "https://github.com/hashicorp/terraform/releases/tag/v1.16.6",
+    "license_note": "LICENSE file is the Business Source License 1.1 (GitHub reports NOASSERTION)"
+   },
+   {
+    "repo": "opentofu/opentofu",
+    "tag": "v1.13.1",
+    "published_at": "2026-10-01T17:15:15Z",
+    "license_spdx": "MPL-2.0",
+    "archived": false,
+    "url": "https://github.com/opentofu/opentofu/releases/tag/v1.13.1"
+   },
+   {
+    "repo": "ansible/ansible",
+    "tag": "v2.21.5",
+    "published_at": "2026-10-05T15:11:41Z",
+    "license_spdx": "GPL-3.0",
+    "archived": false,
+    "url": "https://github.com/ansible/ansible/releases/tag/v2.21.5"
+   },
+   {
+    "repo": "terraform-linters/tflint",
+    "tag": "v0.64.0",
+    "published_at": "2026-07-17T15:37:19Z",
+    "license_spdx": "MPL-2.0",
+    "archived": false,
+    "url": "https://github.com/terraform-linters/tflint/releases/tag/v0.64.0"
+   },
+   {
+    "repo": "aquasecurity/trivy",
+    "tag": "v0.76.0",
+    "published_at": "2026-10-14T11:45:44Z",
+    "license_spdx": "Apache-2.0",
+    "archived": false,
+    "url": "https://github.com/aquasecurity/trivy/releases/tag/v0.76.0"
+   },
+   {
+    "repo": "aquasecurity/tfsec",
+    "tag": "v1.28.14",
+    "published_at": "2025-05-02T04:22:26Z",
+    "license_spdx": "MIT",
+    "archived": false,
+    "url": "https://github.com/aquasecurity/tfsec/releases/tag/v1.28.14",
+    "license_note": "README: tfsec is being consolidated into Trivy (trivy config); last release 2025-05-02"
+   },
+   {
+    "repo": "bridgecrewio/checkov",
+    "tag": "3.3.29",
+    "published_at": "2026-10-13T23:03:17Z",
+    "license_spdx": "Apache-2.0",
+    "archived": false,
+    "url": "https://github.com/bridgecrewio/checkov/releases/tag/3.3.29"
+   },
+   {
+    "repo": "ansible/ansible-lint",
+    "tag": "v26.10.1",
+    "published_at": "2026-10-13T12:44:22Z",
+    "license_spdx": "GPL-3.0",
+    "archived": false,
+    "url": "https://github.com/ansible/ansible-lint/releases/tag/v26.10.1"
+   },
+   {
+    "repo": "yannh/kubeconform",
+    "tag": "v0.8.0",
+    "published_at": "2026-06-04T20:08:59Z",
+    "license_spdx": "Apache-2.0",
+    "archived": false,
+    "url": "https://github.com/yannh/kubeconform/releases/tag/v0.8.0"
+   },
+   {
+    "repo": "NVIDIA/nvidia-container-toolkit",
+    "tag": "v1.20.1",
+    "published_at": "2026-09-19T00:01:48Z",
+    "license_spdx": "Apache-2.0",
+    "archived": false,
+    "url": "https://github.com/NVIDIA/nvidia-container-toolkit/releases/tag/v1.20.1"
+   },
+   {
+    "repo": "NVIDIA/ansible-role-nvidia-driver",
+    "tag": "v2.4.0",
+    "published_at": "2026-10-19T15:14:28Z",
+    "license_spdx": "BSD-3-Clause",
+    "archived": false,
+    "url": "https://github.com/NVIDIA/ansible-role-nvidia-driver/releases/tag/v2.4.0"
+   }
+  ],
+  "pypi": {
+   "ansible-core": {
+    "version": "2.21.5",
+    "uploaded": "2026-10-05"
+   },
+   "ansible": {
+    "version": "14.5.0",
+    "uploaded": "2026-10-06",
+    "license": "GPL-3.0-or-later"
+   },
+   "checkov": {
+    "version": "3.3.29",
+    "uploaded": "2026-10-13"
+   },
+   "ansible-lint": {
+    "version": "26.10.1",
+    "uploaded": "2026-10-13"
+   }
+  },
+  "galaxy_role_nvidia.nvidia_driver": {
+   "latest": "v2.4.0",
+   "release_date": "2026-10-05",
+   "defaults": {
+    "nvidia_driver_branch": "580",
+    "nvidia_driver_ubuntu_packages_suffix": "-server",
+    "nvidia_driver_ubuntu_install_from_cuda_repo": false
+   },
+   "platforms": {
+    "Ubuntu": [
+     "jammy",
+     "noble"
+    ],
+    "EL": [
+     "8",
+     "9"
+    ]
+   },
+   "defaults_source": "https://github.com/NVIDIA/ansible-role-nvidia-driver/blob/master/defaults/main.yml"
+  },
+  "nvidia_container_toolkit_install": {
+   "source": "https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html",
+   "version_pin": "NVIDIA_CONTAINER_TOOLKIT_VERSION=1.20.1-1",
+   "keyring": "https://nvidia.github.io/libnvidia-container/gpgkey -> /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg",
+   "list": "https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list",
+   "packages": [
+    "nvidia-container-toolkit",
+    "nvidia-container-toolkit-base",
+    "libnvidia-container-tools",
+    "libnvidia-container1"
+   ],
+   "configure": "sudo nvidia-ctk runtime configure --runtime=docker && sudo systemctl restart docker"
+  }
+ }
+}

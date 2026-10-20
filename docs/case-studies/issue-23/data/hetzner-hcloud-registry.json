@@ -1,0 +1,53 @@
+{
+ "source": "https://registry.terraform.io/v1/providers/hetznercloud/hcloud",
+ "retrieved": "2026-10-19",
+ "data": {
+  "id": "hetznercloud/hcloud/1.70.0",
+  "namespace": "hetznercloud",
+  "name": "hcloud",
+  "version": "1.70.0",
+  "published_at": "2026-10-05T14:45:11Z",
+  "downloads": 20619441,
+  "source": "https://github.com/hetznercloud/terraform-provider-hcloud",
+  "tag": "v1.70.0",
+  "description": "Terraform Hetzner Cloud provider",
+  "recent_versions": [
+   "1.66.1",
+   "1.67.0",
+   "1.68.0",
+   "1.69.0",
+   "1.70.0"
+  ],
+  "resources_v1.70.0 (from https://registry.terraform.io/v2/provider-docs)": [
+   "certificate",
+   "firewall",
+   "firewall_attachment",
+   "floating_ip",
+   "floating_ip_assignment",
+   "load_balancer",
+   "load_balancer_network",
+   "load_balancer_service",
+   "load_balancer_target",
+   "managed_certificate",
+   "network",
+   "network_route",
+   "network_subnet",
+   "placement_group",
+   "primary_ip",
+   "rdns",
+   "server",
+   "server_network",
+   "snapshot",
+   "ssh_key",
+   "storage_box",
+   "storage_box_snapshot",
+   "storage_box_subaccount",
+   "uploaded_certificate",
+   "volume",
+   "volume_attachment",
+   "zone",
+   "zone_record",
+   "zone_rrset"
+  ]
+ }
+}
