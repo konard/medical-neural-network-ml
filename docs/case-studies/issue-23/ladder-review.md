@@ -98,9 +98,9 @@ Every correction marked "fixed" is now in the file.
 | ci-and-gpu-runner §4 | Hosted T4 GPU runner at $0.052/min | `linux_4_core_gpu` at $0.052/min. [GitHub pricing](https://docs.github.com/en/billing/reference/actions-runner-pricing) | correct | – |
 | ci-and-gpu-runner §5 | actions/runner v2.338.0 | Latest release is v2.338.0. [actions/runner](https://github.com/actions/runner/releases) | correct | – |
 
-Out of scope, not changed: [docs/hardware-workflows.md](../../hardware-workflows.md)
-still says "Python 3.13 isolated environment" for UniMedVL; the scripts use
-3.14.
+Also fixed: [docs/hardware-workflows.md](../../hardware-workflows.md) said
+"Python 3.13 isolated environment" for UniMedVL; the scripts use 3.14, and
+the page now says so.
 
 ## 2. Missing practices, now added
 
