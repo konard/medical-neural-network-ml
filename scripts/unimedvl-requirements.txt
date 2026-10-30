@@ -14,9 +14,9 @@ contourpy==1.4.0
     #   matplotlib
 cuda-bindings==13.4.4
     # via torch
-cuda-pathfinder==1.8.3
+cuda-pathfinder==1.8.5
     # via cuda-bindings
-cuda-toolkit==13.0.3.0
+cuda-toolkit==13.2.2
     # via torch
 cycler==0.12.1
     # via
@@ -28,7 +28,7 @@ filelock==4.2.4
     # via
     #   huggingface-hub
     #   torch
-fonttools==4.67.0
+fonttools==4.68.0
     # via
     #   -r unimedvl-requirements.in
     #   matplotlib
@@ -38,13 +38,13 @@ fsspec==2026.9.0
     #   torch
 h11==0.16.0
     # via httpcore2
-hf-xet==1.7.0
+hf-xet==1.8.0
     # via huggingface-hub
-httpcore2==2.14.0
+httpcore2==2.16.0
     # via httpx2
-httpx2==2.14.0
+httpx2==2.16.0
     # via huggingface-hub
-huggingface-hub==2.2.0
+huggingface-hub==2.4.0
     # via
     #   accelerate
     #   tokenizers
@@ -80,30 +80,30 @@ numpy==2.5.4
     #   opencv-python
     #   torchvision
     #   transformers
-nvidia-cublas==13.1.1.3
+nvidia-cublas==13.4.1.3
     # via
     #   cuda-toolkit
     #   nvidia-cudnn-cu13
     #   nvidia-cusolver
-nvidia-cuda-cupti==13.0.85
+nvidia-cuda-cccl==13.3.4.3.1
+    # via nvidia-nvshmem-cu13
+nvidia-cuda-cupti==13.2.86
     # via cuda-toolkit
-nvidia-cuda-nvrtc==13.0.88
+nvidia-cuda-nvrtc==13.2.86
     # via
     #   cuda-toolkit
     #   nvidia-cublas
-nvidia-cuda-runtime==13.0.96
+nvidia-cuda-runtime==13.2.86
     # via cuda-toolkit
-nvidia-cudnn-cu13==9.24.0.43
+nvidia-cudnn-cu13==9.26.0.51
     # via torch
-nvidia-cufft==12.0.0.61
+nvidia-cufft==12.2.0.57
     # via cuda-toolkit
-nvidia-cufile==1.15.1.6
+nvidia-cufile==1.17.1.22
     # via cuda-toolkit
-nvidia-curand==10.4.0.35
+nvidia-cusolver==12.2.0.11
     # via cuda-toolkit
-nvidia-cusolver==12.0.4.66
-    # via cuda-toolkit
-nvidia-cusparse==12.6.3.3
+nvidia-cusparse==12.7.10.12
     # via
     #   cuda-toolkit
     #   nvidia-cusolver
@@ -117,9 +117,9 @@ nvidia-nvjitlink==13.4.92
     #   nvidia-cufft
     #   nvidia-cusolver
     #   nvidia-cusparse
-nvidia-nvshmem-cu13==3.4.5
+nvidia-nvshmem-cu13==3.7.2
     # via torch
-nvidia-nvtx==13.0.85
+nvidia-nvtx==13.2.86
     # via cuda-toolkit
 opencv-python==5.0.0.93
     # via -r unimedvl-requirements.in
@@ -143,7 +143,7 @@ pyparsing==3.3.3
     # via
     #   -r unimedvl-requirements.in
     #   matplotlib
-python-dateutil==2.9.0.post0
+python-dateutil==3.0.0
     # via
     #   -r unimedvl-requirements.in
     #   matplotlib
@@ -163,7 +163,7 @@ safetensors==0.8.0
     #   transformers
 sentencepiece==0.2.2
     # via -r unimedvl-requirements.in
-setuptools==84.0.0
+setuptools==84.2.1
     # via torch
 shellingham==1.5.4
     # via typer
@@ -175,20 +175,20 @@ tokenizers==0.23.3
     # via
     #   -r unimedvl-requirements.in
     #   transformers
-torch==2.14.1
+torch==2.15.0
     # via
     #   -r unimedvl-requirements.in
     #   accelerate
     #   torchvision
-torchvision==0.29.1
+torchvision==0.29.2
     # via -r unimedvl-requirements.in
 tqdm==4.70.1
     # via
     #   huggingface-hub
     #   transformers
-transformers==5.20.1
+transformers==5.22.1
     # via -r unimedvl-requirements.in
-triton==3.8.0
+triton==3.9.0
     # via
     #   -r unimedvl-requirements.in
     #   torch
@@ -203,3 +203,5 @@ typing-extensions==4.16.0
     #   anyio
     #   huggingface-hub
     #   torch
+tzdata==2026.6
+    # via python-dateutil

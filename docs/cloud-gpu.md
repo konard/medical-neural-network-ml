@@ -203,7 +203,7 @@ directory is never an artifact; only `cloud-gpu-reports/` is kept.
 For GPU machines that stay up (a monthly Hetzner GEX server, a lab
 workstation):
 
-- `infra/ansible/gpu-host.yml` installs the NVIDIA R580 driver and the
+- `infra/ansible/gpu-host.yml` installs the NVIDIA R615 driver and the
   container toolkit; `--provider ssh` then runs the tests on it.
 - `infra/ansible/github-runner.yml` installs a service that registers one
   just-in-time runner at a time, runs one job as an unprivileged user and

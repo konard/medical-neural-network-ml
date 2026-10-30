@@ -40,13 +40,12 @@ resource "google_compute_subnetwork" "this" {
 }
 
 resource "google_container_cluster" "this" {
-  name                     = var.name
-  location                 = var.zone
-  network                  = google_compute_network.this.id
-  subnetwork               = google_compute_subnetwork.this.id
-  remove_default_node_pool = true
-  initial_node_count       = 1
-  deletion_protection      = false
+  name                = var.name
+  location            = var.zone
+  network             = google_compute_network.this.id
+  subnetwork          = google_compute_subnetwork.this.id
+  initial_node_count  = 0
+  deletion_protection = false
   resource_labels = merge(var.labels, {
     managed-by = "medbench-cloud-gpu"
     run-id     = var.run_id

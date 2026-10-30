@@ -127,20 +127,20 @@ jobs:
 
       # ansible-core 2.21 supports Python 3.12 to 3.14.
       - name: Setup Python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: '3.14'
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
         with:
-          terraform_version: 1.16.6
+          terraform_version: 1.17.1
           terraform_wrapper: false
 
       - name: Setup TFLint
         uses: terraform-linters/setup-tflint@6ffdbaa3be476b3431f7275c26966ef32ff60337 # v6.3.2
         with:
-          tflint_version: v0.64.0
+          tflint_version: v0.65.0
 
       - name: Install kubeconform, helm and ansible-lint
         run: |
@@ -155,10 +155,10 @@ jobs:
           tar -xzf helm.tar.gz --strip-components=1 -C bin linux-amd64/helm
           echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
           python -m pip install --upgrade pip
-          python -m pip install ansible-core==2.21.5 ansible-lint==26.10.1 yamllint==1.38.0
+          python -m pip install -r "$GITHUB_WORKSPACE/scripts/infra-requirements.txt"
 
-      # tflint --init downloads the AWS, Azure and Google rulesets from
-      # GitHub releases; the token only lifts the anonymous rate limit.
+      # Keep the token available for tflint plugin initialization if cloud
+      # rulesets are added to infra/terraform/.tflint.hcl.
       - name: Lint and validate the infrastructure code
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -193,7 +193,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: '3.15'
 
@@ -308,7 +308,7 @@ jobs:
           echo "Run $RUN_ID: $PROVIDER, $MODE, $MODEL"
 
       - name: Setup Python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: '3.15'
 
@@ -316,7 +316,7 @@ jobs:
         if: inputs.provider != 'hetzner'
         uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
         with:
-          terraform_version: 1.16.6
+          terraform_version: 1.17.1
           terraform_wrapper: false
 
       # The session must outlive the run: `down` and, in k8s mode, every
@@ -502,7 +502,7 @@ jobs:
           } | tee -a "$GITHUB_OUTPUT"
 
       - name: Setup Python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: '3.15'
 

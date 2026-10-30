@@ -23,7 +23,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
 TF="${TF:-terraform}"
 ARC_CHART="oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set"
-ARC_VERSION="0.15.0"
+ARC_VERSION="0.15.1"
 CHECKS=("$@")
 if ((${#CHECKS[@]} == 0)); then
   CHECKS=(terraform tflint ansible kubernetes helm shell)
@@ -49,7 +49,8 @@ check_tflint() {
 }
 
 check_ansible() {
-  (cd infra/ansible && ansible-lint --profile production --strict .)
+  (cd infra/ansible && ansible-lint --profile production --strict \
+    gpu-host.yml github-runner.yml k3s-gpu.yml)
 }
 
 check_kubernetes() {

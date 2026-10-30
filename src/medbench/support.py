@@ -59,11 +59,11 @@ IMAGE_TASKS = frozenset(task for task in TASK_NAMES if not task.startswith("diag
 
 RUNTIMES: dict[str, str] = {
     "llama.cpp": (
-        "llama-server b11738 (GGUF, CPU or CUDA) started by "
+        "llama-server b12012 (GGUF, CPU or CUDA) started by "
         "scripts/medbench-model-run.sh and called through "
         "OpenAICompatibleBackend"
     ),
-    "mlx-vlm": "mlx-vlm 0.7.9 on Apple silicon through MlxBackend",
+    "mlx-vlm": "mlx-vlm 0.7.11 on Apple silicon through MlxBackend",
     "unimedvl-upstream": (
         "UniMedVL's own PyTorch code at a pinned commit in its own conda "
         "environment, served by scripts/unimedvl_server.py"

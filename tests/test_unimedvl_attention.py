@@ -9,6 +9,7 @@ locked UniMedVL packages (scripts/unimedvl-requirements.txt).
 from __future__ import annotations
 
 import importlib.util
+import json
 import sys
 from pathlib import Path
 from typing import Any
@@ -175,23 +176,26 @@ def test_shim_is_what_upstream_imports_and_transformers_ignores(
     assert not transformers_utils.is_flash_attn_2_available()
 
 
-def test_default_rope_matches_transformers_own(monkeypatch: pytest.MonkeyPatch) -> None:
-    """The restored initialiser gives the frequencies transformers 5 computes itself."""
-    rope_utils = pytest.importorskip("transformers.modeling_rope_utils")
-    from transformers import Qwen2Config
+@pytest.mark.filterwarnings("error::FutureWarning")
+def test_legacy_config_uses_transformers_rope_parameters(tmp_path: Path) -> None:
+    """Legacy JSON is converted to the native config without deprecated setters."""
+    pytest.importorskip("transformers")
     from transformers.models.qwen2.modeling_qwen2 import Qwen2RotaryEmbedding
 
-    functions = dict(rope_utils.ROPE_INIT_FUNCTIONS)
-    monkeypatch.setattr(rope_utils, "ROPE_INIT_FUNCTIONS", functions)
-    functions.pop("default", None)
-    assert server_module.restore_default_rope() is True
-    assert server_module.restore_default_rope() is False
-
-    config = Qwen2Config(hidden_size=64, num_attention_heads=4, rope_theta=1_000_000.0)
-    config.rope_theta = 1_000_000.0  # upstream's own Qwen2Config keeps this attribute
-    inv_freq, factor = functions["default"](config, "cpu")
-    expected, expected_factor = Qwen2RotaryEmbedding.compute_default_rope_parameters(
-        config
+    path = tmp_path / "llm_config.json"
+    path.write_text(
+        json.dumps(
+            {
+                "hidden_size": 64,
+                "num_attention_heads": 4,
+                "rope_theta": 1_000_000.0,
+                "rope_scaling": None,
+            }
+        )
     )
-    torch.testing.assert_close(inv_freq, expected)
-    assert factor == expected_factor == 1.0
+    config = server_module.load_qwen2_config(path)
+    assert config.rope_parameters == {"rope_type": "default", "rope_theta": 1_000_000.0}
+    assert config.rope_theta == config.rope_parameters["rope_theta"]
+    embedding = Qwen2RotaryEmbedding(config)
+    expected = 1.0 / (1_000_000.0 ** (torch.arange(0, 16, 2).float() / 16))
+    torch.testing.assert_close(embedding.inv_freq, expected)

@@ -13,8 +13,8 @@
   hosts: gpu_hosts
   become: true
   vars:
-    runner_version: "2.338.0"
-    runner_sha256: af4b794c1bc41d73d40535e3fe092a39f9679cd8d965954c2aca25a05ca41d32
+    runner_version: "2.338.2"
+    runner_sha256: baebf204307bac6193480852732f0aba2ae97b6c5597c244f4d5558390147c40
     runner_home: /opt/actions-runner
     runner_repository: konard/medical-neural-network-ml
     runner_labels: self-hosted,linux,x64,gpu

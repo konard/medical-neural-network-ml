@@ -89,7 +89,10 @@ def test_every_job_uses_a_known_stage_and_the_python_image() -> None:
     for name in JOBS:
         assert job(name)["stage"] in {"check", "cloud", "reap"}
         assert job(name)["image"] == "$CLOUD_GPU_IMAGE"
-    assert TEMPLATE["variables"]["CLOUD_GPU_IMAGE"] == "python:3.14-slim-trixie"
+    assert (
+        TEMPLATE["variables"]["CLOUD_GPU_IMAGE"]
+        == "python:3.14-slim-trixie@sha256:cd89c30eda26ee911a4611b18680086e0ea42e6f5f8cbe653d07fa7958c9cec8"
+    )
 
 
 @pytest.mark.parametrize("name", ["cloud-gpu:test", "cloud-gpu:reap"])

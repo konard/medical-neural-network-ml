@@ -151,3 +151,12 @@ def test_missing_pinned_surface_fails_the_audit(tmp_path: Path) -> None:
     (tmp_path / "docs" / "requirements.txt").write_text("")
     with pytest.raises(FileNotFoundError, match=re.escape("unimedvl-requirements.txt")):
         module.audit_dependencies(tmp_path)
+
+
+def test_every_runtime_and_tool_lock_is_audited() -> None:
+    root = SCRIPT_PATH.parents[1]
+    locks = {
+        str(path.relative_to(root))
+        for path in (root / "scripts").glob("*-requirements.txt")
+    }
+    assert set(module.PINNED_SURFACES) == locks

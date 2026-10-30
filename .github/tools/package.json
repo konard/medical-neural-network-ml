@@ -1,0 +1,13 @@
+{
+  "name": "medbench-ci-tools",
+  "private": true,
+  "version": "1.0.0",
+  "packageManager": "pnpm@12.16.1",
+  "engines": {
+    "node": ">=26.13.0"
+  },
+  "devDependencies": {
+    "@secretlint/secretlint-rule-preset-recommend": "13.1.0",
+    "secretlint": "13.1.0"
+  }
+}

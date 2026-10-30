@@ -15,10 +15,10 @@ set -euo pipefail
 # llama.cpp CUDA 13.4 build: needs NVIDIA driver R580 or newer and a Turing
 # (compute capability 7.5) or newer GPU.
 gpu_llama() {
-  echo "LLAMA_ARCHIVE=llama-b11738-bin-ubuntu-cuda-13.4-x64.tar.gz"
-  echo "LLAMA_SHA256=c48881ae73dface588b8470e3acb308d06365af91303799ed8bf010e8de6b681"
-  echo "CUDART_ARCHIVE=cudart-llama-b11738-bin-ubuntu-cuda-13.4-x64.tar.gz"
-  echo "CUDART_SHA256=d60c7698166bfcbc9516c5d053321d8ac850a2c0316d3c009260dfd11c905330"
+  echo "LLAMA_ARCHIVE=llama-b12012-bin-ubuntu-cuda-13.4-x64.tar.gz"
+  echo "LLAMA_SHA256=324ee513196aa1fa72627ed978276e3fa117cc6f7cf6cf5ff7c5218ef70a0345"
+  echo "CUDART_ARCHIVE=cudart-llama-b12012-bin-ubuntu-cuda-13.4-x64.tar.gz"
+  echo "CUDART_SHA256=01e16c460a2b9bd142ca040ced8b34e0ae74d5c0220c306e8a7ac2c25565b492"
   echo "GPU_LAYERS=999"
 }
 

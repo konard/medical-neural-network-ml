@@ -89,7 +89,9 @@ def test_modules_are_complete(cloud: str, kind: str) -> None:
     assert 'provider "registry.terraform.io/hashicorp/' in lock
     assert "h1:" in lock
     versions = (module / "versions.tf").read_text()
-    assert re.search(r'required_version\s*=\s*">= 1\.\d+"', versions), versions
+    assert re.search(r'required_version\s*=\s*">= 1\.\d+(?:\.\d+)?"', versions), (
+        versions
+    )
     assert re.search(r'\n\s+version\s*=\s*"~> \d+\.\d+"', versions), versions
     assert re.search(r'version\s*=\s*"\d+\.\d+\.\d+"', lock), lock
     main = (module / "main.tf").read_text()
@@ -110,6 +112,17 @@ def test_vms_power_themselves_off(cloud: str) -> None:
     assert "gpu-vm.yaml.tftpl" in main
     template = (TERRAFORM / "cloud-init" / "gpu-vm.yaml.tftpl").read_text()
     assert "shutdown" in template or "poweroff" in template
+
+
+def test_gke_does_not_create_then_delete_default_nodes() -> None:
+    """Google 8.9 supports creating the separate GPU pool directly (#25).
+
+    The old remove_default_node_pool setting is deprecated on current GKE;
+    booting a temporary CPU node also adds unnecessary provisioning time.
+    """
+    main = (TERRAFORM / "gcp" / "k8s" / "main.tf").read_text()
+    assert "remove_default_node_pool" not in main
+    assert re.search(r"initial_node_count\s*=\s*0", main)
 
 
 def test_ssh_and_api_access_is_limited_to_given_addresses() -> None:
