@@ -11,4 +11,4 @@
 
 - Cover all six Terraform roots with weekly Dependabot updates and test that
   newly added provider locks cannot silently lose update coverage.
-- Lock and audit infrastructure Python tools, Azure CLI and secretlint's full dependency graph; use current Node.js and npm in CI.
+- Lock and audit infrastructure Python tools, Azure CLI and secretlint's full dependency graph; use current Node.js and pnpm in CI.
