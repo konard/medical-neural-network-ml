@@ -1,0 +1,15 @@
+scripts/audit_dependencies.py:12:A known advisory without a compatible fix can be accepted in
+scripts/audit_dependencies.py:32:# accepted before. An advisory without a compatible fix goes here with the
+scripts/detect_code_changes.py:113:    # For push events or fallback
+scripts/unimedvl_server.py:2:"""OpenAI-compatible chat server for UniMedVL (issue #6).
+scripts/unimedvl_server.py:331:def install_flash_attn_shim() -> None:
+scripts/unimedvl_server.py:387:    install_flash_attn_shim()
+scripts/check_web_archive.py:145:        "::error title=Broken link - No Web Archive fallback::"
+scripts/validate_changeset.py:15:use a full-history checkout in CI. No network fetch or fallback diff is attempted.
+scripts/create_github_release.py:87:    # generic fallback and older changelogs use an unbracketed heading.
+scripts/smoke_test_published_package.py:119:    fallback_name = distribution_name.replace("-", "_").replace(".", "_")
+scripts/smoke_test_published_package.py:120:    if fallback_name.isidentifier():
+scripts/smoke_test_published_package.py:121:        return [fallback_name]
+scripts/recheck_broken_links.py:212:            pass  # A failed fallback never proves the original URL healthy.
+src/medbench/backends.py:88:    """Classify an error answer from an OpenAI-compatible server."""
+src/medbench/backends.py:177:    """Client for an OpenAI-compatible chat completions server.

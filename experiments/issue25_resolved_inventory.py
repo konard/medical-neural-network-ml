@@ -18,6 +18,7 @@ from packaging.utils import canonicalize_name
 from packaging.version import Version
 
 OUT = Path("dev/log/issues/25/pulls/26/data")
+BASE_REF = "55f57ce7ee01d4a865af5c18a4589d89384bef2c"
 SURFACES = (
     "scripts/unimedvl-requirements.txt",
     "scripts/infra-requirements.txt",
@@ -55,7 +56,7 @@ def main() -> None:
     old: dict[str, dict[str, str]] = {}
     for surface in SURFACES:
         result = subprocess.run(
-            ["git", "show", f"HEAD:{surface}"],
+            ["git", "show", f"{BASE_REF}:{surface}"],
             text=True,
             capture_output=True,
             check=False,

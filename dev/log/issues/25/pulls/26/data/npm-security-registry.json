@@ -1,0 +1,36 @@
+{
+  "undici": {
+    "latest": "8.12.3",
+    "versions": {
+      "6.29.1": {
+        "engines": {
+          "node": ">=18.17"
+        },
+        "dependencies": null
+      },
+      "8.12.3": {
+        "engines": {
+          "node": ">=22.19.0"
+        },
+        "dependencies": null
+      }
+    }
+  },
+  "ip-address": {
+    "latest": "10.7.5",
+    "versions": {
+      "10.7.4": {
+        "engines": {
+          "node": ">= 12"
+        },
+        "dependencies": null
+      },
+      "10.7.5": {
+        "engines": {
+          "node": ">= 12"
+        },
+        "dependencies": null
+      }
+    }
+  }
+}

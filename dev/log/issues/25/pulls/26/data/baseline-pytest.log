@@ -1,0 +1,29 @@
+........................................................................ [  6%]
+........................................................................ [ 12%]
+................................................ss...................... [ 18%]
+.........................s.............................................. [ 24%]
+........................................................................ [ 30%]
+......................................s................................. [ 37%]
+........................................................................ [ 43%]
+........................................................................ [ 49%]
+...s.................................................................... [ 55%]
+........................................................................ [ 61%]
+.....................ssssssssssssssssssssssssssssssssssssssss........... [ 68%]
+........................................................................ [ 74%]
+........................................................................ [ 80%]
+.....ss................................................................. [ 86%]
+........................................................................ [ 92%]
+.........................................s.............................. [ 99%]
+..........                                                               [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_unimedvl_attention.py:18: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests/test_unimedvl_upstream.py:35: could not import 'torch': No module named 'torch'
+SKIPPED [2] tests/test_cloud_gpu_infra.py:265: needs kubeconform
+SKIPPED [1] tests/test_cloud_gpu_scripts.py:302: needs shellcheck
+SKIPPED [1] tests/test_measure_training_memory.py:234: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests/test_medbench_ddxplus_parser.py:88: set MEDBENCH_NETWORK_TESTS=1 to download the real files
+SKIPPED [40] tests/test_medbench_real_data.py:442: set MEDBENCH_NETWORK_TESTS=1 to download the real files
+SKIPPED [1] tests/test_real_models.py:41: set MEDBENCH_BASE_URL to run
+SKIPPED [1] tests/test_real_models.py:60: set MEDBENCH_VISION=1 for image models
+SKIPPED [1] tests/test_validate_changeset.py:372: Requires the multi-language layout
+1114 passed, 50 skipped in 113.61s (0:01:53)

@@ -1,0 +1,31 @@
+[check-infra] == terraform
+[check-infra] terraform validate infra/terraform/aws/vm
+Success! The configuration is valid.
+
+[check-infra] terraform validate infra/terraform/azure/vm
+Success! The configuration is valid.
+
+[check-infra] terraform validate infra/terraform/gcp/vm
+Success! The configuration is valid.
+
+[check-infra] terraform validate infra/terraform/aws/k8s
+Success! The configuration is valid.
+
+[check-infra] terraform validate infra/terraform/azure/k8s
+Success! The configuration is valid.
+
+[check-infra] terraform validate infra/terraform/gcp/k8s
+Success! The configuration is valid.
+
+[check-infra] == tflint
+[check-infra] == ansible
+
+Passed: 0 failure(s), 0 warning(s) in 3 files processed of 3 encountered. Profile 'production' was required, and it passed.
+[check-infra] == kubernetes
+Summary: 3 resources found in 3 files - Valid: 3, Invalid: 0, Errors: 0, Skipped: 0
+[check-infra] == helm
+Pulled: ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set:0.15.1
+Digest: sha256:2ae7e43db61047aa3c4182e73c8f58ace35e796fa07d41b64fb3c39e81e1f365
+[check-infra] helm template of gha-runner-scale-set 0.15.1 passed
+[check-infra] == shell
+[check-infra] all checks passed: terraform tflint ansible kubernetes helm shell

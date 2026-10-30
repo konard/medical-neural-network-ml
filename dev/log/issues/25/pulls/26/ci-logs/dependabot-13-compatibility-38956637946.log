@@ -1,0 +1,1082 @@
+Python 3.12 on macos-15	UNKNOWN STEP	﻿2026-10-16T19:40:30.9803030Z Current runner version: '2.337.0'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9816500Z ##[group]Runner Image Provisioner
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9816990Z Hosted Compute Agent
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9817340Z Version: 20260828.587
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9817720Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9818170Z Build Date: 2026-08-28T16:44:25Z
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9818590Z Worker ID: {06b52553-0ae6-4191-add7-551ff5d46f64}
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9819020Z Azure Region: westus
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9819360Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9820120Z ##[group]Operating System
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9820490Z macOS
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9820880Z 15.7.9
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9821190Z 24G830
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9821510Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9821850Z ##[group]Runner Image
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9822220Z Image: macos-15-arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9822580Z Version: 20260907.0337.1
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9823420Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20260907.0337/images/macos/macos-15-arm64-Readme.md
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9824420Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20260907.0337
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9825070Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9825800Z ##[group]GITHUB_TOKEN Permissions
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9826840Z Contents: read
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9827200Z Metadata: read
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9827550Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9828850Z Secret source: Dependabot
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9829400Z Cache mode: write
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:30.9829820Z Prepare workflow directory
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:31.0080040Z Prepare all required actions
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:31.0113590Z Getting action download info
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:31.1576980Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:32.1957770Z Download action repository 'actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97' (SHA:5fda3b95a4ea91299a34e894583c3862153e4b97)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:32.2664720Z Download action repository 'actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2129980Z Complete job name: Python 3.12 on macos-15
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2620840Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2621880Z with:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2622400Z   persist-credentials: false
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2623080Z   repository: konard/medical-neural-network-ml
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2629640Z   token: ***
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2630170Z   ssh-strict: true
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2630770Z   ssh-user: git
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2631300Z   clean: true
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2631870Z   sparse-checkout-cone-mode: true
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2632600Z   fetch-depth: 1
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2633200Z   fetch-tags: false
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2633740Z   show-progress: true
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2634290Z   lfs: false
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2634790Z   submodules: false
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2635350Z   set-safe-directory: true
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2635970Z   allow-unsafe-pr-checkout: false
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2636760Z env:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2637250Z   GIT_CONFIG_COUNT: 1
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2637830Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2638530Z   GIT_CONFIG_VALUE_0: main
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.2639120Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.5207040Z Syncing repository: konard/medical-neural-network-ml
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.5209190Z ##[group]Getting Git version info
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.5210510Z Working directory is '/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.5212280Z [command]/opt/homebrew/bin/git version
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.5709250Z git version 2.55.0
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.5720300Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.5725930Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/17860685-35bd-4251-b738-79c4891ea6b6/.gitconfig'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.5730550Z Temporarily overriding HOME='/Users/runner/work/_temp/17860685-35bd-4251-b738-79c4891ea6b6' before making global git config changes
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.5732780Z Adding repository directory to the temporary git global config as a safe directory
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.5734800Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.5820340Z Deleting the contents of '/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.5856290Z ##[group]Determining repository object format
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.5857570Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.5858520Z ##[group]Initializing the repository
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.5859780Z [command]/opt/homebrew/bin/git init /Users/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.6009280Z Initialized empty Git repository in /Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.6013650Z [command]/opt/homebrew/bin/git remote add origin https://github.com/konard/medical-neural-network-ml
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.6071020Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.6072080Z ##[group]Disabling automatic garbage collection
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.6073090Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.6118850Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.6119850Z ##[group]Setting up auth
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.6120560Z Removing SSH command configuration
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.6122980Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.6169390Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.6863530Z Removing HTTP extra header
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.6866010Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.6912280Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.7476320Z Removing includeIf entries pointing to credentials config files
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.7478240Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.7529290Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.8151850Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/_temp/git-credentials-21dc4f28-4aa2-4dd4-99ff-6f0073a44908.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.8207300Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path /Users/runner/work/_temp/git-credentials-21dc4f28-4aa2-4dd4-99ff-6f0073a44908.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.8257430Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path /Users/runner/work/_temp/git-credentials-21dc4f28-4aa2-4dd4-99ff-6f0073a44908.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.8307970Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-21dc4f28-4aa2-4dd4-99ff-6f0073a44908.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.8360010Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-21dc4f28-4aa2-4dd4-99ff-6f0073a44908.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.8407980Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.8408540Z ##[group]Fetching the repository
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:33.8412020Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +bdc17567145a96cbb53fa719d021fbc39727dfc7:refs/remotes/pull/13/merge
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.7290610Z From https://github.com/konard/medical-neural-network-ml
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.7292250Z  * [new ref]         bdc17567145a96cbb53fa719d021fbc39727dfc7 -> pull/13/merge
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.7299700Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.7305190Z ##[group]Determining the checkout info
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.7305720Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.7306110Z [command]/opt/homebrew/bin/git sparse-checkout disable
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.7367100Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.7447110Z ##[group]Checking out the ref
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.7449790Z [command]/opt/homebrew/bin/git checkout --progress --force refs/remotes/pull/13/merge
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.8060060Z HEAD is now at bdc1756 Merge 62271ee1f6da2d8e3f91f3f955d150202eed0a8c into cc8e90b446a174cf5fff743313e441cda4a432ef
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.8076500Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.8148770Z [command]/opt/homebrew/bin/git log -1 --format=%H
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.8204390Z bdc17567145a96cbb53fa719d021fbc39727dfc7
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.8214880Z ##[group]Removing auth
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.8231080Z Removing SSH command configuration
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.8231710Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.8297500Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.8895780Z Removing HTTP extra header
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.8897680Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.8949310Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.9548660Z Removing includeIf entries pointing to credentials config files
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.9550350Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.9602960Z includeif.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.9604240Z includeif.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.9604800Z includeif.gitdir:/github/workspace/.git.path
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.9605180Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.9607690Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.9651960Z /Users/runner/work/_temp/git-credentials-21dc4f28-4aa2-4dd4-99ff-6f0073a44908.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.9657440Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path \/Users\/runner\/work\/_temp\/git\-credentials\-21dc4f28\-4aa2\-4dd4\-99ff\-6f0073a44908\.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.9707090Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.9750840Z /Users/runner/work/_temp/git-credentials-21dc4f28-4aa2-4dd4-99ff-6f0073a44908.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.9754830Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/Users/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path \/Users\/runner\/work\/_temp\/git\-credentials\-21dc4f28\-4aa2\-4dd4\-99ff\-6f0073a44908\.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.9804860Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.9848110Z /github/runner_temp/git-credentials-21dc4f28-4aa2-4dd4-99ff-6f0073a44908.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.9852450Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-21dc4f28\-4aa2\-4dd4\-99ff\-6f0073a44908\.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.9902990Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.9951370Z /github/runner_temp/git-credentials-21dc4f28-4aa2-4dd4-99ff-6f0073a44908.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:34.9952880Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-21dc4f28\-4aa2\-4dd4\-99ff\-6f0073a44908\.config
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.0035710Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.0631010Z Removing credentials config '/Users/runner/work/_temp/git-credentials-21dc4f28-4aa2-4dd4-99ff-6f0073a44908.config'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.0635580Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.0836450Z ##[group]Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.0836780Z with:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.0847250Z   python-version: 3.12
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.0847440Z   check-latest: false
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.0849560Z   token: ***
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.0849710Z   update-environment: true
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.0849890Z   allow-prereleases: false
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.0850060Z   freethreaded: false
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.0850210Z env:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.0850400Z   GIT_CONFIG_COUNT: 1
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.0850580Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.0850770Z   GIT_CONFIG_VALUE_0: main
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.0850940Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.1832230Z ##[group]Installed versions
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.1876730Z Successfully set up CPython (3.12.10)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.1877200Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.1948940Z ##[group]Run python -m pip install -e '.[dev]'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.1949320Z ^[[36;1mpython -m pip install -e '.[dev]'^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.1994430Z shell: /bin/bash -e {0}
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.1994640Z env:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.1994800Z   GIT_CONFIG_COUNT: 1
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.1995020Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.1995240Z   GIT_CONFIG_VALUE_0: main
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.1995500Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.1995930Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.1996340Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.1996700Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.1997050Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:35.1997330Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:36.2194250Z Obtaining file:///Users/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:36.2209250Z   Installing build dependencies: started
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:36.9189030Z   Installing build dependencies: finished with status 'done'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:36.9195530Z   Checking if build backend supports build_editable: started
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:36.9522730Z   Checking if build backend supports build_editable: finished with status 'done'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:36.9530150Z   Getting requirements to build editable: started
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:37.0579650Z   Getting requirements to build editable: finished with status 'done'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:37.0589940Z   Installing backend dependencies: started
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:37.4493220Z   Installing backend dependencies: finished with status 'done'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:37.4500890Z   Preparing editable metadata (pyproject.toml): started
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:37.5718440Z   Preparing editable metadata (pyproject.toml): finished with status 'done'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:37.7992850Z Collecting mypy<2.0,>=1.13.0 (from medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:37.8646960Z   Downloading mypy-1.20.2-cp312-cp312-macosx_11_0_arm64.whl.metadata (2.4 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.0434620Z Collecting pillow>=10.1 (from medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.0593670Z   Downloading pillow-12.3.0-cp312-cp312-macosx_11_0_arm64.whl.metadata (9.1 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.0984210Z Collecting pre-commit>=4.0.0 (from medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.1137360Z   Downloading pre_commit-4.7.0-py2.py3-none-any.whl.metadata (1.2 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.1427350Z Collecting pytest-asyncio>=0.24.0 (from medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.1582200Z   Downloading pytest_asyncio-1.4.0-py3-none-any.whl.metadata (4.1 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.1863100Z Collecting pytest-cov>=6.0.0 (from medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.2016030Z   Downloading pytest_cov-7.1.0-py3-none-any.whl.metadata (32 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.2455560Z Collecting pytest>=8.3.0 (from medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.2616540Z   Downloading pytest-9.1.1-py3-none-any.whl.metadata (7.6 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.6151550Z Collecting ruff<0.9,>=0.8.0 (from medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.6467380Z   Downloading ruff-0.8.6-py3-none-macosx_11_0_arm64.whl.metadata (25 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.6775410Z Collecting scriv>=1.7.0 (from scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.6927650Z   Downloading scriv-1.8.0-py3-none-any.whl.metadata (26 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.7237540Z Collecting typing_extensions>=4.6.0 (from mypy<2.0,>=1.13.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.7389150Z   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.7639020Z Collecting mypy_extensions>=1.0.0 (from mypy<2.0,>=1.13.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.7789090Z   Downloading mypy_extensions-1.1.0-py3-none-any.whl.metadata (1.1 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.7851190Z Collecting pathspec>=1.0.0 (from mypy<2.0,>=1.13.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.7858250Z   Using cached pathspec-1.1.1-py3-none-any.whl.metadata (14 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.9088220Z Collecting librt>=0.8.0 (from mypy<2.0,>=1.13.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.9240230Z   Downloading librt-0.16.0-cp312-cp312-macosx_11_0_arm64.whl.metadata (1.3 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.9519710Z Collecting cfgv>=2.0.0 (from pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:38.9673830Z   Downloading cfgv-3.5.0-py2.py3-none-any.whl.metadata (8.9 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.0075810Z Collecting identify>=1.0.0 (from pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.0241070Z   Downloading identify-2.6.20-py2.py3-none-any.whl.metadata (4.4 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.0581860Z Collecting nodeenv>=0.11.1 (from pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.0731730Z   Downloading nodeenv-1.11.0-py2.py3-none-any.whl.metadata (40 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.1207440Z Collecting pyyaml>=5.1 (from pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.1360330Z   Downloading pyyaml-6.0.3-cp312-cp312-macosx_11_0_arm64.whl.metadata (2.4 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.1801170Z Collecting virtualenv>=20.10.0 (from pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.1954530Z   Downloading virtualenv-21.14.8-py3-none-any.whl.metadata (4.1 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.2369650Z Collecting iniconfig>=1.0.1 (from pytest>=8.3.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.2524680Z   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.2867720Z Collecting packaging>=22 (from pytest>=8.3.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.2876140Z   Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.3034130Z Collecting pluggy<2,>=1.5 (from pytest>=8.3.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.3042470Z   Using cached pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.3327420Z Collecting pygments>=2.7.2 (from pytest>=8.3.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.3484890Z   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.6508750Z Collecting coverage>=7.10.6 (from coverage[toml]>=7.10.6->pytest-cov>=6.0.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.6665030Z   Downloading coverage-7.16.2-cp312-cp312-macosx_11_0_arm64.whl.metadata (8.2 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.6965560Z Collecting attrs (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.7114940Z   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.7427480Z Collecting click (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.7882730Z   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8148870Z Collecting click-log (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8311290Z   Downloading click_log-0.4.0-py2.py3-none-any.whl.metadata (1.2 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8586260Z Collecting jinja2>=2.7 (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.8745390Z   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.9015040Z Collecting markdown-it-py (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.9174590Z   Downloading markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.9512290Z Collecting requests (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:39.9666460Z   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.0550560Z Collecting MarkupSafe>=2.0 (from jinja2>=2.7->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.0707570Z   Downloading markupsafe-3.0.4-cp312-cp312-macosx_11_0_arm64.whl.metadata (2.7 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.0965210Z Collecting distlib<1,>=0.4.3 (from virtualenv>=20.10.0->pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.1159980Z   Downloading distlib-0.4.4-py2.py3-none-any.whl.metadata (5.3 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.1608910Z Collecting filelock<5,>=3.24.2 (from virtualenv>=20.10.0->pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.1761230Z   Downloading filelock-4.2.0-py3-none-any.whl.metadata (2.0 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.2054100Z Collecting platformdirs<5,>=4.4 (from virtualenv>=20.10.0->pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.2208350Z   Downloading platformdirs-4.13.3-py3-none-any.whl.metadata (5.5 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.2472510Z Collecting python-discovery>=1.6.1 (from virtualenv>=20.10.0->pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.2623290Z   Downloading python_discovery-1.6.3-py3-none-any.whl.metadata (5.1 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.2897650Z Collecting mdurl~=0.1 (from markdown-it-py->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.3048230Z   Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.4047350Z Collecting charset_normalizer<4,>=2 (from requests->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.4202210Z   Downloading charset_normalizer-3.5.2-cp312-cp312-macosx_10_13_universal2.whl.metadata (46 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.4503930Z Collecting idna<4,>=2.5 (from requests->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.4767410Z   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.5073840Z Collecting urllib3<3,>=1.26 (from requests->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.5229650Z   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.5321220Z Requirement already satisfied: certifi>=2023.5.7 in /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages (from requests->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0) (2026.7.22)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.5441180Z Downloading mypy-1.20.2-cp312-cp312-macosx_11_0_arm64.whl (13.4 MB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.6798410Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.4/13.4 MB 120.8 MB/s  0:00:00
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.6979680Z Downloading ruff-0.8.6-py3-none-macosx_11_0_arm64.whl (10.0 MB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.7797580Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.0/10.0 MB 123.5 MB/s  0:00:00
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.8050230Z Downloading librt-0.16.0-cp312-cp312-macosx_11_0_arm64.whl (155 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.8232310Z Downloading mypy_extensions-1.1.0-py3-none-any.whl (5.0 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.8266760Z Using cached pathspec-1.1.1-py3-none-any.whl (57 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.8451490Z Downloading pillow-12.3.0-cp312-cp312-macosx_11_0_arm64.whl (4.8 MB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.8707420Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.8/4.8 MB 190.4 MB/s  0:00:00
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.8870460Z Downloading pre_commit-4.7.0-py2.py3-none-any.whl (226 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.9051120Z Downloading cfgv-3.5.0-py2.py3-none-any.whl (7.4 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.9224330Z Downloading identify-2.6.20-py2.py3-none-any.whl (99 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.9418800Z Downloading nodeenv-1.11.0-py2.py3-none-any.whl (34 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.9600320Z Downloading pytest-9.1.1-py3-none-any.whl (386 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.9648000Z Using cached pluggy-1.7.0-py3-none-any.whl (27 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:40.9816260Z Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.0007880Z Using cached packaging-26.3-py3-none-any.whl (129 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.0172710Z Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.0240140Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 179.5 MB/s  0:00:00
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.0396500Z Downloading pytest_asyncio-1.4.0-py3-none-any.whl (16 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.0567000Z Downloading pytest_cov-7.1.0-py3-none-any.whl (22 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.0756950Z Downloading coverage-7.16.2-cp312-cp312-macosx_11_0_arm64.whl (224 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.0935360Z Downloading pyyaml-6.0.3-cp312-cp312-macosx_11_0_arm64.whl (173 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.1370910Z Downloading scriv-1.8.0-py3-none-any.whl (39 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.1553030Z Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.1742770Z Downloading markupsafe-3.0.4-cp312-cp312-macosx_11_0_arm64.whl (12 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.1920770Z Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.2093110Z Downloading virtualenv-21.14.8-py3-none-any.whl (5.5 MB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.2338250Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.5/5.5 MB 226.0 MB/s  0:00:00
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.2536840Z Downloading distlib-0.4.4-py2.py3-none-any.whl (472 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.2990520Z Downloading filelock-4.2.0-py3-none-any.whl (135 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.3169400Z Downloading platformdirs-4.13.3-py3-none-any.whl (32 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.3350620Z Downloading python_discovery-1.6.3-py3-none-any.whl (39 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.3522350Z Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.3700540Z Downloading click-8.5.0-py3-none-any.whl (125 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.3876860Z Downloading click_log-0.4.0-py2.py3-none-any.whl (4.3 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.4293860Z Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.4683350Z Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5050520Z Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5254890Z Downloading charset_normalizer-3.5.2-cp312-cp312-macosx_10_13_universal2.whl (367 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5438210Z Downloading idna-3.20-py3-none-any.whl (69 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.5615080Z Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.6314470Z Building wheels for collected packages: medical-neural-network-ml
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.6319890Z   Building editable for medical-neural-network-ml (pyproject.toml): started
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.6644430Z   Building editable for medical-neural-network-ml (pyproject.toml): finished with status 'done'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.6649680Z   Created wheel for medical-neural-network-ml: filename=medical_neural_network_ml-0.1.0-py3-none-any.whl size=8626 sha256=f131d2047984eede7d70027896044c796f6f9b70312bc707a19811efeef5adb4
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.6651290Z   Stored in directory: /private/var/folders/nj/vtw8zd2j31d1gdrtntc5y4600000gn/T/pip-ephem-wheel-cache-yc8iluqu/wheels/3e/d1/58/1584a5740294032e55ddef87421ba86fb16ffa767805335ba1
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.6666800Z Successfully built medical-neural-network-ml
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:41.7068520Z Installing collected packages: distlib, urllib3, typing_extensions, ruff, pyyaml, pygments, pluggy, platformdirs, pillow, pathspec, packaging, nodeenv, mypy_extensions, medical-neural-network-ml, mdurl, MarkupSafe, librt, iniconfig, idna, identify, filelock, coverage, click, charset_normalizer, cfgv, attrs, requests, python-discovery, pytest, mypy, markdown-it-py, jinja2, click-log, virtualenv, scriv, pytest-cov, pytest-asyncio, pre-commit
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.6014320Z 
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.6040630Z Successfully installed MarkupSafe-3.0.4 attrs-26.1.0 cfgv-3.5.0 charset_normalizer-3.5.2 click-8.5.0 click-log-0.4.0 coverage-7.16.2 distlib-0.4.4 filelock-4.2.0 identify-2.6.20 idna-3.20 iniconfig-2.3.1 jinja2-3.1.6 librt-0.16.0 markdown-it-py-4.2.0 mdurl-0.1.2 medical-neural-network-ml-0.1.0 mypy-1.20.2 mypy_extensions-1.1.0 nodeenv-1.11.0 packaging-26.3 pathspec-1.1.1 pillow-12.3.0 platformdirs-4.13.3 pluggy-1.7.0 pre-commit-4.7.0 pygments-2.21.0 pytest-9.1.1 pytest-asyncio-1.4.0 pytest-cov-7.1.0 python-discovery-1.6.3 pyyaml-6.0.3 requests-2.34.2 ruff-0.8.6 scriv-1.8.0 typing_extensions-4.16.0 urllib3-2.8.0 virtualenv-21.14.8
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7484320Z ##[group]Run monitor=(python -m medbench.cli monitor --interval 2
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7484710Z ^[[36;1mmonitor=(python -m medbench.cli monitor --interval 2^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7485020Z ^[[36;1m  --out "resources/compatibility-$RUNNER_LABEL.json"^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7485310Z ^[[36;1m  --label "Compatibility ($RUNNER_LABEL)" --)^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7485580Z ^[[36;1mif [ "$TEST_SCOPE" = runtime ]; then^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7485910Z ^[[36;1m  bash scripts/run-with-budget-warning.sh "$TEST_BUDGET_SECONDS" \^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7486240Z ^[[36;1m    "Runtime compatibility" "${monitor[@]}" \^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7486560Z ^[[36;1m    python -m pytest tests/test_medbench*.py tests/test_my_package.py^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7486830Z ^[[36;1melse^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7487060Z ^[[36;1m  bash scripts/run-with-budget-warning.sh "$TEST_BUDGET_SECONDS" \^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7487410Z ^[[36;1m    "Mac compatibility" "${monitor[@]}" python -m pytest^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7487680Z ^[[36;1mfi^[[0m
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7718020Z shell: /bin/bash -e {0}
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7718210Z env:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7718350Z   GIT_CONFIG_COUNT: 1
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7718520Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7718730Z   GIT_CONFIG_VALUE_0: main
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7719070Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7719530Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7719930Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7720280Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7720630Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7720900Z   TEST_SCOPE: full
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7721050Z   TEST_BUDGET_SECONDS: 600
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7721210Z   RUNNER_LABEL: macos-15
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:40:44.7721360Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:26.0941630Z ........................................................................ [  7%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:27.1893720Z ........................................................................ [ 14%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:27.1894130Z ........................................................................ [ 22%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:28.2901830Z ...s............s....................................................... [ 29%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:28.2905670Z ........................................................................ [ 36%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:28.2910850Z .................................................s...................... [ 44%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:31.4697520Z ............sssF........................................................ [ 51%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:31.4697930Z ..............................................................ssssssssss [ 59%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:31.4698450Z ssssssssssssssssssssssssssssss.......................................... [ 66%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:31.4698870Z ........................................................................ [ 73%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:41:43.5151440Z ......................................ss................................ [ 81%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:02.9915850Z ........................................................................ [ 88%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:13.8544600Z .......................................................................s [ 96%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0126520Z .......................................                                  [100%]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0127700Z =================================== FAILURES ===================================
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0146020Z ______________________________ test_unimedvl_pins ______________________________
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0146290Z 
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0146600Z     def test_unimedvl_pins() -> None:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0146970Z         """Code commit, weight hashes and the flash-attn wheel hash are fixed."""
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0147430Z         script = SCRIPT_PATH.read_text()
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0148410Z         assert 'UNIMEDVL_CODE_COMMIT="f51aa0accbd02e846e5ea20b595fb39b516dbe1f"' in script
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0148930Z         assert re.search(r'UNIMEDVL_MODEL_REVISION="[0-9a-f]{40}"', script)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0149320Z         files = re.findall(r'^  "([\w.]+) ([0-9a-f]{64})"$', script, re.MULTILINE)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0149730Z         assert {name for name, _ in files} >= {
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0150030Z             "ema_bf16.safetensors",
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0150270Z             "llm_config.json",
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0150510Z             "vit_config.json",
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0150720Z             "tokenizer.json",
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0150940Z         }
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0151210Z         assert re.search(r'FLASH_ATTN_SHA256="[0-9a-f]{64}"', script)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0151700Z         requirements = (ROOT / "scripts" / "unimedvl-requirements.txt").read_text()
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0152180Z         pins = [line for line in requirements.splitlines() if line and line[0] != "#"]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0152510Z         assert pins
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0152770Z         assert all("==" in line for line in pins)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0153080Z         # 2.6.0 is the first torch without GHSA-53q9-r3pm-6pq6 (torch.load RCE);
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0153520Z         # the flash-attn wheel has to be built for the same torch.
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0153830Z >       assert "torch==2.6.0" in pins
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0154420Z E       AssertionError: assert 'torch==2.6.0' in ['torch==2.14.1', 'torchvision==0.29.1', 'triton==3.8.0', 'transformers==4.49.0', 'accelerate==1.15.0', 'safetensors==0.8.0', ...]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0154900Z 
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0155020Z tests/test_medbench_model_run.py:275: AssertionError
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0155360Z =========================== short test summary info ============================
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0155740Z SKIPPED [1] tests/test_measure_training_memory.py:56: needs Linux /proc
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0156210Z SKIPPED [1] tests/test_measure_training_memory.py:234: could not import 'torch': No module named 'torch'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0156780Z SKIPPED [1] tests/test_medbench_ddxplus_parser.py:88: set MEDBENCH_NETWORK_TESTS=1 to download the real files
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0157290Z SKIPPED [1] tests/test_medbench_model_run.py:216: the run script only runs on Linux x86_64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0157770Z SKIPPED [1] tests/test_medbench_model_run.py:236: the run script only runs on Linux x86_64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0158310Z SKIPPED [1] tests/test_medbench_model_run.py:249: the run script only runs on Linux x86_64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0159230Z SKIPPED [40] tests/test_medbench_real_data.py:426: set MEDBENCH_NETWORK_TESTS=1 to download the real files
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0159760Z SKIPPED [1] tests/test_real_models.py:41: set MEDBENCH_BASE_URL to run
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0160520Z SKIPPED [1] tests/test_real_models.py:60: set MEDBENCH_VISION=1 for image models
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0166550Z SKIPPED [1] tests/test_validate_changeset.py:373: Requires the multi-language layout
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0169770Z FAILED tests/test_medbench_model_run.py::test_unimedvl_pins - AssertionError: assert 'torch==2.6.0' in ['torch==2.14.1', 'torchvision==0.29.1', 'triton==3.8.0', 'transformers==4.49.0', 'accelerate==1.15.0', 'safetensors==0.8.0', ...]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0184970Z 1 failed, 925 passed, 49 skipped in 90.22s (0:01:30)
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0204000Z Mac compatibility took 92s of its 600s execution budget.
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0248250Z ##[error]Process completed with exit code 1.
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0361610Z ##[group]Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0361950Z with:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0362180Z   name: resources-compatibility-macos-15
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0362390Z   path: resources
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0362560Z   if-no-files-found: ignore
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0362790Z   compression-level: 6
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0363070Z   overwrite: false
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0363250Z   include-hidden-files: false
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0363550Z   archive: true
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0363750Z env:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0363940Z   GIT_CONFIG_COUNT: 1
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0364180Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0364450Z   GIT_CONFIG_VALUE_0: main
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0364780Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0365190Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.12.10/arm64/lib/pkgconfig
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0365660Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0366040Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0366370Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.12.10/arm64
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.0366680Z ##[endgroup]
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.2903820Z With the provided path, there will be 1 file uploaded
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.2906280Z Artifact name is valid!
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.2915960Z Root directory input is valid!
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.4828540Z Uploading artifact: resources-compatibility-macos-15.zip
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.4856160Z Beginning upload of artifact content to blob storage
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.5356830Z Uploaded bytes 855
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.5462820Z Finished uploading artifact content to blob storage!
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.5463570Z SHA256 digest of uploaded artifact is 94b0631446e2e439c95abe075cd3c95ea63670407098dcb7f28a89b1f0e7d004
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.5464230Z Finalizing artifact upload
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.7720260Z Artifact resources-compatibility-macos-15 successfully finalized. Artifact ID 12070644164
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.7722500Z Artifact resources-compatibility-macos-15 has been successfully uploaded! Final size is 855 bytes. Artifact ID is 12070644164
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.7733570Z Artifact download URL: https://github.com/konard/medical-neural-network-ml/actions/runs/38956637946/artifacts/12070644164
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.8089360Z Post job cleanup.
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.9018580Z [command]/opt/homebrew/bin/git version
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.9074270Z git version 2.55.0
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.9090320Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/f16e7300-f65f-48f8-9b60-ef5d96fead3d/.gitconfig'
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.9096600Z Temporarily overriding HOME='/Users/runner/work/_temp/f16e7300-f65f-48f8-9b60-ef5d96fead3d' before making global git config changes
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.9097320Z Adding repository directory to the temporary git global config as a safe directory
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.9100340Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.9158450Z Removing SSH command configuration
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.9162770Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.9209240Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.9850960Z Removing HTTP extra header
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.9854730Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:16.9904340Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:17.0471850Z Removing includeIf entries pointing to credentials config files
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:17.0475460Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:17.0519270Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Python 3.12 on macos-15	UNKNOWN STEP	2026-10-16T19:42:17.1209350Z Cleaning up orphan processes
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	﻿2026-10-16T19:40:29.2317930Z Current runner version: '2.337.0'
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2399122Z ##[group]Runner Image Provisioner
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2399893Z Hosted Compute Agent
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2400388Z Version: 20261012.601
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2400920Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2401554Z Build Date: 2026-10-12T17:48:21Z
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2402161Z Worker ID: {4df90008-37c7-4211-b7e3-5ba18a2b1240}
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2402777Z Region: centralus
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2403640Z Cloud: Azure
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2404089Z ##[endgroup]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2406179Z ##[group]Operating System
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2406726Z Ubuntu
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2407195Z 24.04.5
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2407607Z LTS
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2408014Z ##[endgroup]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2408457Z ##[group]Runner Image
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2408935Z Image: ubuntu-24.04
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2409400Z Version: 20261012.334.1
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2410481Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2411847Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2412710Z ##[endgroup]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2414008Z ##[group]GITHUB_TOKEN Permissions
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2416115Z Contents: read
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2416621Z Metadata: read
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2417079Z ##[endgroup]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2419085Z Secret source: Dependabot
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2419893Z Cache mode: write
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2420809Z Prepare workflow directory
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2828200Z Prepare all required actions
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.2878184Z Getting action download info
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.5653716Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.7017687Z Download action repository 'actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97' (SHA:5fda3b95a4ea91299a34e894583c3862153e4b97)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:29.8122178Z Download action repository 'actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.4127203Z Complete job name: Python 3.9 on ubuntu-24.04
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5068780Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5069967Z with:
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5070457Z   persist-credentials: false
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5071092Z   repository: konard/medical-neural-network-ml
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5075152Z   token: ***
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5075638Z   ssh-strict: true
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5076117Z   ssh-user: git
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5076570Z   clean: true
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5077060Z   sparse-checkout-cone-mode: true
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5077629Z   fetch-depth: 1
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5078094Z   fetch-tags: false
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5078578Z   show-progress: true
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5079066Z   lfs: false
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5079518Z   submodules: false
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5080019Z   set-safe-directory: true
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5080601Z   allow-unsafe-pr-checkout: false
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5081432Z env:
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5081887Z   GIT_CONFIG_COUNT: 1
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5082422Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5083229Z   GIT_CONFIG_VALUE_0: main
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.5083767Z ##[endgroup]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6115841Z Syncing repository: konard/medical-neural-network-ml
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6119119Z ##[group]Getting Git version info
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6120783Z Working directory is '/home/runner/work/medical-neural-network-ml/medical-neural-network-ml'
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6123003Z [command]/usr/bin/git version
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6196895Z git version 2.55.0
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6222683Z ##[endgroup]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6235147Z Temporarily overriding HOME='/home/runner/work/_temp/1a7365e8-f8aa-4f6d-b93a-b37001d3e1f6' before making global git config changes
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6238112Z Adding repository directory to the temporary git global config as a safe directory
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6242707Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6304622Z Deleting the contents of '/home/runner/work/medical-neural-network-ml/medical-neural-network-ml'
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6317651Z ##[group]Determining repository object format
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6319630Z ##[endgroup]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6320657Z ##[group]Initializing the repository
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6325146Z [command]/usr/bin/git init /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6452790Z Initialized empty Git repository in /home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6462885Z [command]/usr/bin/git remote add origin https://github.com/konard/medical-neural-network-ml
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6527704Z ##[endgroup]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6529759Z ##[group]Disabling automatic garbage collection
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6531757Z [command]/usr/bin/git config --local gc.auto 0
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6574546Z ##[endgroup]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6576164Z ##[group]Setting up auth
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6577216Z Removing SSH command configuration
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6581684Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6619622Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.6994400Z Removing HTTP extra header
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.7013868Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.7044462Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.7273740Z Removing includeIf entries pointing to credentials config files
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.7278670Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.7325060Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.7558930Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-54879036-99e2-4c06-8642-5d1487df7511.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.7600910Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path /home/runner/work/_temp/git-credentials-54879036-99e2-4c06-8642-5d1487df7511.config
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.7637652Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-54879036-99e2-4c06-8642-5d1487df7511.config
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.7675184Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-54879036-99e2-4c06-8642-5d1487df7511.config
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.7711929Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-54879036-99e2-4c06-8642-5d1487df7511.config
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.7745367Z ##[endgroup]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.7746450Z ##[group]Fetching the repository
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:30.7751291Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +bdc17567145a96cbb53fa719d021fbc39727dfc7:refs/remotes/pull/13/merge
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3237728Z From https://github.com/konard/medical-neural-network-ml
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3240248Z  * [new ref]         bdc17567145a96cbb53fa719d021fbc39727dfc7 -> pull/13/merge
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3245615Z ##[endgroup]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3247797Z ##[group]Determining the checkout info
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3250409Z ##[endgroup]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3252297Z [command]/usr/bin/git sparse-checkout disable
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3307373Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3342632Z ##[group]Checking out the ref
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3346349Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/13/merge
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3580693Z Note: switching to 'refs/remotes/pull/13/merge'.
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3581593Z 
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3582350Z You are in 'detached HEAD' state. You can look around, make experimental
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3584623Z changes and commit them, and you can discard any commits you make in this
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3586741Z state without impacting any branches by switching back to a branch.
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3588590Z 
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3589835Z If you want to create a new branch to retain commits you create, you may
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3593245Z do so (now or later) by using -c with the switch command. Example:
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3595278Z 
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3596156Z   git switch -c <new-branch-name>
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3597622Z 
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3598502Z Or undo this operation with:
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3600033Z 
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3600849Z   git switch -
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3601937Z 
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3603694Z Turn off this advice by setting config variable advice.detachedHead to false
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3605912Z 
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3608437Z HEAD is now at bdc1756 Merge 62271ee1f6da2d8e3f91f3f955d150202eed0a8c into cc8e90b446a174cf5fff743313e441cda4a432ef
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3614774Z ##[endgroup]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3648202Z [command]/usr/bin/git log -1 --format=%H
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3678301Z bdc17567145a96cbb53fa719d021fbc39727dfc7
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3688613Z ##[group]Removing auth
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3690010Z Removing SSH command configuration
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3692253Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3728706Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3959186Z Removing HTTP extra header
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.3962927Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4005023Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4244952Z Removing includeIf entries pointing to credentials config files
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4248751Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4282165Z includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4288621Z includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4293007Z includeif.gitdir:/github/workspace/.git.path
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4296041Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4303977Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4321785Z /home/runner/work/_temp/git-credentials-54879036-99e2-4c06-8642-5d1487df7511.config
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4333577Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-54879036\-99e2\-4c06\-8642\-5d1487df7511\.config
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4371420Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4399210Z /home/runner/work/_temp/git-credentials-54879036-99e2-4c06-8642-5d1487df7511.config
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4412992Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-54879036\-99e2\-4c06\-8642\-5d1487df7511\.config
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4448217Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4516757Z /github/runner_temp/git-credentials-54879036-99e2-4c06-8642-5d1487df7511.config
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4522737Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-54879036\-99e2\-4c06\-8642\-5d1487df7511\.config
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4566453Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4595137Z /github/runner_temp/git-credentials-54879036-99e2-4c06-8642-5d1487df7511.config
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4622812Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-54879036\-99e2\-4c06\-8642\-5d1487df7511\.config
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4654533Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4893399Z Removing credentials config '/home/runner/work/_temp/git-credentials-54879036-99e2-4c06-8642-5d1487df7511.config'
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.4902298Z ##[endgroup]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.5327968Z ##[group]Run actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.5330164Z with:
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.5331069Z   python-version: 3.9
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.5332074Z   check-latest: false
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.5341031Z   token: ***
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.5341984Z   update-environment: true
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.5343264Z   allow-prereleases: false
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.5344331Z   freethreaded: false
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.5345278Z env:
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.5346121Z   GIT_CONFIG_COUNT: 1
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.5347187Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.5348389Z   GIT_CONFIG_VALUE_0: main
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.5349407Z ##[endgroup]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.6524748Z ##[group]Installed versions
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:31.6595188Z Version 3.9 was not found in the local cache
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:32.7193850Z Version 3.9 is available for downloading
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:32.7194648Z Download from "https://github.com/actions/python-versions/releases/download/3.9.25-19039189640/python-3.9.25-linux-24.04-x64.tar.gz"
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:33.3701510Z Extract downloaded archive
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:33.3821993Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/6ce13296-feb7-4f49-a2cd-ea8d68f33f69 -f /home/runner/work/_temp/b17a6723-75b1-4ea3-b512-7657bed72113
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:34.7631255Z Execute installation script
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:34.7727388Z Check if Python hostedtoolcache folder exist...
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:34.7728173Z Create Python 3.9.25 folder
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:34.7742931Z Copy Python binaries to hostedtoolcache folder
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:35.2477158Z Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:35.2517870Z Upgrading pip...
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:37.4795330Z Looking in links: /tmp/tmpus36jgeq
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:37.4800551Z Requirement already satisfied: setuptools in /opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/site-packages (79.0.1)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:37.4805827Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/site-packages (23.0.1)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:38.7075725Z Collecting pip
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:38.7709842Z Downloading pip-26.0.1-py3-none-any.whl (1.8 MB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:38.8754346Z ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 17.6 MB/s eta 0:00:00
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:38.8755074Z 
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:38.9389545Z Installing collected packages: pip
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:38.9390194Z Attempting uninstall: pip
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:38.9414498Z Found existing installation: pip 23.0.1
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:39.1448987Z Uninstalling pip-23.0.1:
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:39.1545136Z Successfully uninstalled pip-23.0.1
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:40.4352810Z Successfully installed pip-26.0.1
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:40.4848709Z Create complete file
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:40.4895176Z Successfully set up CPython (3.9.25)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:40.4896369Z ##[endgroup]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:40.5056756Z ##[group]Run python -m pip install -e '.[dev]'
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:40.5057197Z ^[[36;1mpython -m pip install -e '.[dev]'^[[0m
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:40.5316444Z shell: /usr/bin/bash -e {0}
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:40.5316830Z env:
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:40.5347279Z   GIT_CONFIG_COUNT: 1
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:40.5347750Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:40.5348228Z   GIT_CONFIG_VALUE_0: main
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:40.5348763Z   pythonLocation: /opt/hostedtoolcache/Python/3.9.25/x64
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:40.5349593Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.9.25/x64/lib/pkgconfig
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:40.5350380Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.9.25/x64
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:40.5351109Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.9.25/x64
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:40.5351823Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.9.25/x64
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:40.5352540Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.9.25/x64/lib
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:40.5353394Z ##[endgroup]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:40.8508201Z Obtaining file:///home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:40.8546011Z   Installing build dependencies: started
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:41.8881981Z   Installing build dependencies: finished with status 'done'
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:41.8892919Z   Checking if build backend supports build_editable: started
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:41.9266225Z   Checking if build backend supports build_editable: finished with status 'done'
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:41.9277048Z   Getting requirements to build editable: started
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:42.0649420Z   Getting requirements to build editable: finished with status 'done'
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:42.0674892Z   Installing backend dependencies: started
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:42.5912139Z   Installing backend dependencies: finished with status 'done'
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:42.5923450Z   Preparing editable metadata (pyproject.toml): started
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:42.7856138Z   Preparing editable metadata (pyproject.toml): finished with status 'done'
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:43.0561739Z Collecting mypy<2.0,>=1.13.0 (from medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:43.1174127Z   Downloading mypy-1.19.1-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.2 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:43.3662760Z Collecting pillow>=10.1 (from medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:43.3804359Z   Downloading pillow-11.3.0-cp39-cp39-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.0 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:43.4312640Z Collecting pre-commit>=4.0.0 (from medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:43.4448605Z   Downloading pre_commit-4.3.0-py2.py3-none-any.whl.metadata (1.2 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:43.4775482Z Collecting pytest-asyncio>=0.24.0 (from medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:43.4926102Z   Downloading pytest_asyncio-1.2.0-py3-none-any.whl.metadata (4.1 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:43.5210937Z Collecting pytest-cov>=6.0.0 (from medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:43.5345293Z   Downloading pytest_cov-7.1.0-py3-none-any.whl.metadata (32 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:43.5864154Z Collecting pytest>=8.3.0 (from medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:43.6001339Z   Downloading pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.0904603Z Collecting ruff<0.9,>=0.8.0 (from medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.1047297Z   Downloading ruff-0.8.6-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (25 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.1344101Z Collecting scriv>=1.7.0 (from scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.1486746Z   Downloading scriv-1.7.0-py3-none-any.whl.metadata (24 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.1828531Z Collecting typing_extensions>=4.6.0 (from mypy<2.0,>=1.13.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.1963120Z   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.2195988Z Collecting mypy_extensions>=1.0.0 (from mypy<2.0,>=1.13.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.2335620Z   Downloading mypy_extensions-1.1.0-py3-none-any.whl.metadata (1.1 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.2594389Z Collecting pathspec>=0.9.0 (from mypy<2.0,>=1.13.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.2613335Z   Using cached pathspec-1.1.1-py3-none-any.whl.metadata (14 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.3065321Z Collecting tomli>=1.1.0 (from mypy<2.0,>=1.13.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.3084823Z   Using cached tomli-2.5.0-py3-none-any.whl.metadata (10 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.5147915Z Collecting librt>=0.6.2 (from mypy<2.0,>=1.13.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.5290863Z   Downloading librt-0.16.0-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (1.3 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.5567028Z Collecting cfgv>=2.0.0 (from pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.5699924Z   Downloading cfgv-3.4.0-py2.py3-none-any.whl.metadata (8.5 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.6272075Z Collecting identify>=1.0.0 (from pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.6408459Z   Downloading identify-2.6.15-py2.py3-none-any.whl.metadata (4.4 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.6723681Z Collecting nodeenv>=0.11.1 (from pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.6858740Z   Downloading nodeenv-1.11.0-py2.py3-none-any.whl.metadata (40 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.7455940Z Collecting pyyaml>=5.1 (from pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.7593483Z   Downloading pyyaml-6.0.3-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.8266957Z Collecting virtualenv>=20.10.0 (from pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.8406670Z   Downloading virtualenv-21.14.8-py3-none-any.whl.metadata (4.1 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.8705369Z Collecting exceptiongroup>=1 (from pytest>=8.3.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.8843891Z   Downloading exceptiongroup-1.3.1-py3-none-any.whl.metadata (6.7 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.9103802Z Collecting iniconfig>=1 (from pytest>=8.3.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.9239272Z   Downloading iniconfig-2.1.0-py3-none-any.whl.metadata (2.7 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.9546031Z Collecting packaging>=20 (from pytest>=8.3.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.9564748Z   Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.9796906Z Collecting pluggy<2,>=1.5 (from pytest>=8.3.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:44.9816173Z   Using cached pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:45.0151307Z Collecting pygments>=2.7.2 (from pytest>=8.3.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:45.0288139Z   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:45.0569054Z Collecting backports-asyncio-runner<2,>=1.1 (from pytest-asyncio>=0.24.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:45.0702909Z   Downloading backports_asyncio_runner-1.2.0-py3-none-any.whl.metadata (7.5 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:45.6682860Z Collecting coverage>=7.10.6 (from coverage[toml]>=7.10.6->pytest-cov>=6.0.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:45.6824401Z   Downloading coverage-7.10.7-cp39-cp39-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (8.9 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:45.7202659Z Collecting attrs (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:45.7339903Z   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:45.7665583Z Collecting click (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:45.7800537Z   Downloading click-8.1.8-py3-none-any.whl.metadata (2.3 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:45.8077673Z Collecting click-log (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:45.8272072Z   Downloading click_log-0.4.0-py2.py3-none-any.whl.metadata (1.2 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:45.8571753Z Collecting jinja2>=2.7 (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:45.8708384Z   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:45.9001045Z Collecting markdown-it-py (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:45.9139869Z   Downloading markdown_it_py-3.0.0-py3-none-any.whl.metadata (6.9 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:45.9601273Z Collecting requests (from scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:45.9737729Z   Downloading requests-2.32.5-py3-none-any.whl.metadata (4.9 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.0600578Z Collecting MarkupSafe>=2.0 (from jinja2>=2.7->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.0742402Z   Downloading markupsafe-3.0.4-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.1045461Z Collecting distlib<1,>=0.4.3 (from virtualenv>=20.10.0->pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.1184211Z   Downloading distlib-0.4.4-py2.py3-none-any.whl.metadata (5.3 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.1588868Z Collecting filelock<=3.19.1,>=3.19.1 (from virtualenv>=20.10.0->pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.1725927Z   Downloading filelock-3.19.1-py3-none-any.whl.metadata (2.1 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.2078585Z Collecting platformdirs<5,>=4.4 (from virtualenv>=20.10.0->pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.2837064Z   Downloading platformdirs-4.4.0-py3-none-any.whl.metadata (12 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.3123395Z Collecting python-discovery>=1.6.1 (from virtualenv>=20.10.0->pre-commit>=4.0.0->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.3258660Z   Downloading python_discovery-1.6.3-py3-none-any.whl.metadata (5.1 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.3566305Z Collecting mdurl~=0.1 (from markdown-it-py->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.3698704Z   Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.5418564Z Collecting charset_normalizer<4,>=2 (from requests->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.5563705Z   Downloading charset_normalizer-3.5.2-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.5880587Z Collecting idna<4,>=2.5 (from requests->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.6019257Z   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.6430774Z Collecting urllib3<3,>=1.21.1 (from requests->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.6566061Z   Downloading urllib3-2.6.3-py3-none-any.whl.metadata (6.9 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.6918249Z Collecting certifi>=2017.4.17 (from requests->scriv>=1.7.0->scriv[toml]>=1.7.0; extra == "dev"->medical-neural-network-ml==0.1.0)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.7053200Z   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.7245990Z Downloading mypy-1.19.1-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (13.5 MB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.8736409Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.5/13.5 MB 107.5 MB/s  0:00:00
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.8878103Z Downloading ruff-0.8.6-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (11.3 MB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.9298050Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.3/11.3 MB 282.0 MB/s  0:00:00
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.9434304Z Downloading librt-0.16.0-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (515 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.9602314Z Downloading mypy_extensions-1.1.0-py3-none-any.whl (5.0 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.9636803Z Using cached pathspec-1.1.1-py3-none-any.whl (57 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:46.9772730Z Downloading pillow-11.3.0-cp39-cp39-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.6 MB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.0005618Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.6/6.6 MB 306.9 MB/s  0:00:00
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.0143930Z Downloading pre_commit-4.3.0-py2.py3-none-any.whl (220 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.0299408Z Downloading cfgv-3.4.0-py2.py3-none-any.whl (7.2 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.0453074Z Downloading identify-2.6.15-py2.py3-none-any.whl (99 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.0621372Z Downloading nodeenv-1.11.0-py2.py3-none-any.whl (34 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.0781164Z Downloading pytest-8.4.2-py3-none-any.whl (365 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.0826224Z Using cached pluggy-1.6.0-py3-none-any.whl (20 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.0959570Z Downloading exceptiongroup-1.3.1-py3-none-any.whl (16 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.1109747Z Downloading iniconfig-2.1.0-py3-none-any.whl (6.0 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.1145765Z Using cached packaging-26.3-py3-none-any.whl (129 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.1286457Z Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.1355301Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 241.8 MB/s  0:00:00
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.1490050Z Downloading pytest_asyncio-1.2.0-py3-none-any.whl (15 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.1641362Z Downloading backports_asyncio_runner-1.2.0-py3-none-any.whl (12 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.1790739Z Downloading pytest_cov-7.1.0-py3-none-any.whl (22 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.1943362Z Downloading coverage-7.10.7-cp39-cp39-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (246 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.2109508Z Downloading pyyaml-6.0.3-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (750 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.2164942Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 750.8/750.8 kB 162.7 MB/s  0:00:00
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.2315364Z Downloading scriv-1.7.0-py3-none-any.whl (37 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.2469601Z Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.2627210Z Downloading markupsafe-3.0.4-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (20 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.2662506Z Using cached tomli-2.5.0-py3-none-any.whl (14 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.2797911Z Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.2955396Z Downloading virtualenv-21.14.8-py3-none-any.whl (5.5 MB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.3157784Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.5/5.5 MB 315.2 MB/s  0:00:00
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.3300196Z Downloading distlib-0.4.4-py2.py3-none-any.whl (472 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.3467982Z Downloading filelock-3.19.1-py3-none-any.whl (15 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.3622774Z Downloading platformdirs-4.4.0-py3-none-any.whl (18 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.3775442Z Downloading python_discovery-1.6.3-py3-none-any.whl (39 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.3929087Z Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.4086534Z Downloading click-8.1.8-py3-none-any.whl (98 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.4243321Z Downloading click_log-0.4.0-py2.py3-none-any.whl (4.3 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.4399650Z Downloading markdown_it_py-3.0.0-py3-none-any.whl (87 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.4552373Z Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.4704532Z Downloading requests-2.32.5-py3-none-any.whl (64 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.4859901Z Downloading charset_normalizer-3.5.2-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (271 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.5028151Z Downloading idna-3.20-py3-none-any.whl (69 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.5185981Z Downloading urllib3-2.6.3-py3-none-any.whl (131 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.5343987Z Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.6093699Z Building wheels for collected packages: medical-neural-network-ml
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.6103501Z   Building editable for medical-neural-network-ml (pyproject.toml): started
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.6483964Z   Building editable for medical-neural-network-ml (pyproject.toml): finished with status 'done'
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.6493015Z   Created wheel for medical-neural-network-ml: filename=medical_neural_network_ml-0.1.0-py3-none-any.whl size=8627 sha256=c6af7be46b08ce79a7eb988e0b15941534d6d001d6d577645e552552f9594a9c
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.6495310Z   Stored in directory: /tmp/pip-ephem-wheel-cache-m80m7jaz/wheels/27/b0/1e/7389cb4c0aca0c55b6233f698a000a17c245d9db188b48b770
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.6518721Z Successfully built medical-neural-network-ml
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:47.7345262Z Installing collected packages: distlib, urllib3, typing_extensions, tomli, ruff, pyyaml, pygments, pluggy, platformdirs, pillow, pathspec, packaging, nodeenv, mypy_extensions, medical-neural-network-ml, mdurl, MarkupSafe, librt, iniconfig, idna, identify, filelock, coverage, click, charset_normalizer, cfgv, certifi, backports-asyncio-runner, attrs, requests, python-discovery, mypy, markdown-it-py, jinja2, exceptiongroup, click-log, virtualenv, scriv, pytest, pytest-cov, pytest-asyncio, pre-commit
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.4028680Z 
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.4099341Z Successfully installed MarkupSafe-3.0.4 attrs-26.1.0 backports-asyncio-runner-1.2.0 certifi-2026.7.22 cfgv-3.4.0 charset_normalizer-3.5.2 click-8.1.8 click-log-0.4.0 coverage-7.10.7 distlib-0.4.4 exceptiongroup-1.3.1 filelock-3.19.1 identify-2.6.15 idna-3.20 iniconfig-2.1.0 jinja2-3.1.6 librt-0.16.0 markdown-it-py-3.0.0 mdurl-0.1.2 medical-neural-network-ml-0.1.0 mypy-1.19.1 mypy_extensions-1.1.0 nodeenv-1.11.0 packaging-26.3 pathspec-1.1.1 pillow-11.3.0 platformdirs-4.4.0 pluggy-1.6.0 pre-commit-4.3.0 pygments-2.21.0 pytest-8.4.2 pytest-asyncio-1.2.0 pytest-cov-7.1.0 python-discovery-1.6.3 pyyaml-6.0.3 requests-2.32.5 ruff-0.8.6 scriv-1.7.0 tomli-2.5.0 typing_extensions-4.16.0 urllib3-2.6.3 virtualenv-21.14.8
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8576353Z ##[group]Run monitor=(python -m medbench.cli monitor --interval 2
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8576898Z ^[[36;1mmonitor=(python -m medbench.cli monitor --interval 2^[[0m
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8577323Z ^[[36;1m  --out "resources/compatibility-$RUNNER_LABEL.json"^[[0m
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8577689Z ^[[36;1m  --label "Compatibility ($RUNNER_LABEL)" --)^[[0m
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8578019Z ^[[36;1mif [ "$TEST_SCOPE" = runtime ]; then^[[0m
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8578426Z ^[[36;1m  bash scripts/run-with-budget-warning.sh "$TEST_BUDGET_SECONDS" \^[[0m
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8578866Z ^[[36;1m    "Runtime compatibility" "${monitor[@]}" \^[[0m
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8579279Z ^[[36;1m    python -m pytest tests/test_medbench*.py tests/test_my_package.py^[[0m
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8579650Z ^[[36;1melse^[[0m
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8579956Z ^[[36;1m  bash scripts/run-with-budget-warning.sh "$TEST_BUDGET_SECONDS" \^[[0m
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8580398Z ^[[36;1m    "Mac compatibility" "${monitor[@]}" python -m pytest^[[0m
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8580758Z ^[[36;1mfi^[[0m
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8644332Z shell: /usr/bin/bash -e {0}
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8644597Z env:
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8644793Z   GIT_CONFIG_COUNT: 1
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8645042Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8645326Z   GIT_CONFIG_VALUE_0: main
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8645638Z   pythonLocation: /opt/hostedtoolcache/Python/3.9.25/x64
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8646099Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.9.25/x64/lib/pkgconfig
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8646559Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.9.25/x64
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8646958Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.9.25/x64
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8647358Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.9.25/x64
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8647755Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.9.25/x64/lib
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8648099Z   TEST_SCOPE: runtime
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8648326Z   TEST_BUDGET_SECONDS: 600
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8648568Z   RUNNER_LABEL: ubuntu-24.04
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:51.8648818Z ##[endgroup]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:54.9537046Z ........................................................................ [ 14%]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:54.9537780Z ........................................................................ [ 29%]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:40:59.0225607Z ............................s.....................................F..... [ 43%]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:01.0560619Z ........................................................................ [ 58%]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:01.0561436Z .........................................sssssssssssssssssssssssssssssss [ 72%]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:01.0562454Z sssssssss............................................................... [ 87%]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0639900Z ................................................................         [100%]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0640723Z =================================== FAILURES ===================================
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0641522Z ______________________________ test_unimedvl_pins ______________________________
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0642217Z 
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0642474Z     def test_unimedvl_pins() -> None:
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0643436Z         """Code commit, weight hashes and the flash-attn wheel hash are fixed."""
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0644121Z         script = SCRIPT_PATH.read_text()
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0644850Z         assert 'UNIMEDVL_CODE_COMMIT="f51aa0accbd02e846e5ea20b595fb39b516dbe1f"' in script
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0645672Z         assert re.search(r'UNIMEDVL_MODEL_REVISION="[0-9a-f]{40}"', script)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0646455Z         files = re.findall(r'^  "([\w.]+) ([0-9a-f]{64})"$', script, re.MULTILINE)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0647124Z         assert {name for name, _ in files} >= {
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0647610Z             "ema_bf16.safetensors",
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0648055Z             "llm_config.json",
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0648451Z             "vit_config.json",
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0648876Z             "tokenizer.json",
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0649273Z         }
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0650179Z         assert re.search(r'FLASH_ATTN_SHA256="[0-9a-f]{64}"', script)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0651032Z         requirements = (ROOT / "scripts" / "unimedvl-requirements.txt").read_text()
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0651913Z         pins = [line for line in requirements.splitlines() if line and line[0] != "#"]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0652570Z         assert pins
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0652843Z         assert all("==" in line for line in pins)
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0653623Z         # 2.6.0 is the first torch without GHSA-53q9-r3pm-6pq6 (torch.load RCE);
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0654089Z         # the flash-attn wheel has to be built for the same torch.
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0654426Z >       assert "torch==2.6.0" in pins
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0655551Z E       AssertionError: assert 'torch==2.6.0' in ['torch==2.14.1', 'torchvision==0.29.1', 'triton==3.8.0', 'transformers==4.49.0', 'accelerate==1.15.0', 'safetensors==0.8.0', ...]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0656611Z 
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0656866Z tests/test_medbench_model_run.py:275: AssertionError
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0657565Z =========================== short test summary info ============================
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0658591Z SKIPPED [1] tests/test_medbench_ddxplus_parser.py:88: set MEDBENCH_NETWORK_TESTS=1 to download the real files
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0659874Z SKIPPED [40] tests/test_medbench_real_data.py:426: set MEDBENCH_NETWORK_TESTS=1 to download the real files
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0661224Z FAILED tests/test_medbench_model_run.py::test_unimedvl_pins - AssertionError: assert 'torch==2.6.0' in ['torch==2.14.1', 'torchvision==0.29.1', 'triton==3.8.0', 'transformers==4.49.0', 'accelerate==1.15.0', 'safetensors==0.8.0', ...]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0662141Z 1 failed, 454 passed, 41 skipped in 8.86s
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0677854Z Runtime compatibility took 11s of its 600s execution budget.
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0707001Z ##[error]Process completed with exit code 1.
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0839965Z ##[group]Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0840384Z with:
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0840625Z   name: resources-compatibility-ubuntu-24.04
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0841100Z   path: resources
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0841319Z   if-no-files-found: ignore
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0841563Z   compression-level: 6
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0841776Z   overwrite: false
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0841990Z   include-hidden-files: false
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0842221Z   archive: true
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0842408Z env:
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0842585Z   GIT_CONFIG_COUNT: 1
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0842812Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0843369Z   GIT_CONFIG_VALUE_0: main
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0843682Z   pythonLocation: /opt/hostedtoolcache/Python/3.9.25/x64
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0844104Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.9.25/x64/lib/pkgconfig
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0844514Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.9.25/x64
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0844914Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.9.25/x64
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0845289Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.9.25/x64
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0845661Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.9.25/x64/lib
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.0845979Z ##[endgroup]
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.2304395Z With the provided path, there will be 1 file uploaded
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.2305243Z Artifact name is valid!
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.2305501Z Root directory input is valid!
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.4983741Z Uploading artifact: resources-compatibility-ubuntu-24.04.zip
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.5031097Z Beginning upload of artifact content to blob storage
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.6941995Z Uploaded bytes 773
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.7349446Z Finished uploading artifact content to blob storage!
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.7350968Z SHA256 digest of uploaded artifact is 5e28e1788da61d3582e303c869b92b8343dfcd287320d64c848233b1cd60b26a
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:02.7352354Z Finalizing artifact upload
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:03.0537917Z Artifact resources-compatibility-ubuntu-24.04 successfully finalized. Artifact ID 12071365221
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:03.0539966Z Artifact resources-compatibility-ubuntu-24.04 has been successfully uploaded! Final size is 773 bytes. Artifact ID is 12071365221
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:03.0542968Z Artifact download URL: https://github.com/konard/medical-neural-network-ml/actions/runs/38956637946/artifacts/12071365221
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:03.0753974Z Post job cleanup.
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:03.1618434Z [command]/usr/bin/git version
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:03.1666847Z git version 2.55.0
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:03.1717317Z Temporarily overriding HOME='/home/runner/work/_temp/e3898226-5868-4653-864f-b446feec32ca' before making global git config changes
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:03.1718903Z Adding repository directory to the temporary git global config as a safe directory
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:03.1723989Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:03.1757267Z Removing SSH command configuration
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:03.1764398Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:03.1801296Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:03.2058304Z Removing HTTP extra header
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:03.2065198Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:03.2104206Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:03.2353399Z Removing includeIf entries pointing to credentials config files
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:03.2362793Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:03.2397225Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Python 3.9 on ubuntu-24.04	UNKNOWN STEP	2026-10-16T19:41:03.2827141Z Cleaning up orphan processes
+Pipeline Status (Compatibility)	UNKNOWN STEP	﻿2026-10-16T19:42:43.4376197Z Current runner version: '2.337.0'
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4392677Z ##[group]Runner Image Provisioner
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4393197Z Hosted Compute Agent
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4393528Z Version: 20261012.601
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4393976Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4394398Z Build Date: 2026-10-12T17:48:21Z
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4394812Z Worker ID: {f3b1269f-4c63-4592-b242-c4737b020ebd}
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4395263Z Region: southcentralus
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4395638Z Cloud: Azure
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4396027Z ##[endgroup]
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4397055Z ##[group]Operating System
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4397460Z Ubuntu
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4397779Z 24.04.5
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4398079Z LTS
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4398443Z ##[endgroup]
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4398762Z ##[group]Runner Image
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4399105Z Image: ubuntu-24.04
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4399509Z Version: 20261012.334.1
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4400207Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4401147Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4401664Z ##[endgroup]
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4402338Z ##[group]GITHUB_TOKEN Permissions
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4403614Z Contents: read
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4403956Z Metadata: read
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4404278Z ##[endgroup]
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4405873Z Secret source: Dependabot
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4406560Z Cache mode: write
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.4407051Z Prepare workflow directory
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.5093976Z Prepare all required actions
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.5134706Z Getting action download info
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:43.7567871Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0046110Z Complete job name: Pipeline Status (Compatibility)
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0536705Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0537384Z with:
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0537638Z   persist-credentials: false
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0537955Z   repository: konard/medical-neural-network-ml
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0540201Z   token: ***
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0540485Z   ssh-strict: true
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0540770Z   ssh-user: git
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0541012Z   clean: true
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0541316Z   sparse-checkout-cone-mode: true
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0541642Z   fetch-depth: 1
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0541882Z   fetch-tags: false
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0542207Z   show-progress: true
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0542459Z   lfs: false
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0542692Z   submodules: false
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0543019Z   set-safe-directory: true
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0543301Z   allow-unsafe-pr-checkout: false
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0543729Z env:
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0543975Z   GIT_CONFIG_COUNT: 1
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0544244Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0544651Z   GIT_CONFIG_VALUE_0: main
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.0544913Z ##[endgroup]
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.1258910Z Syncing repository: konard/medical-neural-network-ml
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.1260104Z ##[group]Getting Git version info
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.1260596Z Working directory is '/home/runner/work/medical-neural-network-ml/medical-neural-network-ml'
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.1261305Z [command]/usr/bin/git version
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.1343650Z git version 2.55.0
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.1361415Z ##[endgroup]
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.1393417Z Temporarily overriding HOME='/home/runner/work/_temp/9b50d8a1-573d-46cb-a6dc-26380c16aa7e' before making global git config changes
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.1394977Z Adding repository directory to the temporary git global config as a safe directory
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.1400190Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.1503056Z Deleting the contents of '/home/runner/work/medical-neural-network-ml/medical-neural-network-ml'
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.1503970Z ##[group]Determining repository object format
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.1505039Z ##[endgroup]
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.1505440Z ##[group]Initializing the repository
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.1514354Z [command]/usr/bin/git init /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.1788502Z Initialized empty Git repository in /home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.1797532Z [command]/usr/bin/git remote add origin https://github.com/konard/medical-neural-network-ml
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.1981914Z ##[endgroup]
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.1982358Z ##[group]Disabling automatic garbage collection
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.1982754Z [command]/usr/bin/git config --local gc.auto 0
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.2082353Z ##[endgroup]
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.2082921Z ##[group]Setting up auth
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.2083362Z Removing SSH command configuration
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.2087081Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.2114607Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.2381109Z Removing HTTP extra header
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.2384019Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.2410796Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.2576433Z Removing includeIf entries pointing to credentials config files
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.2579536Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.2607580Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.2778361Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-7c5c5f60-b76a-4d25-87f3-50095756d3f9.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.2969659Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path /home/runner/work/_temp/git-credentials-7c5c5f60-b76a-4d25-87f3-50095756d3f9.config
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.3086995Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-7c5c5f60-b76a-4d25-87f3-50095756d3f9.config
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.3286520Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-7c5c5f60-b76a-4d25-87f3-50095756d3f9.config
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.3346291Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-7c5c5f60-b76a-4d25-87f3-50095756d3f9.config
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.3684948Z ##[endgroup]
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.3685634Z ##[group]Fetching the repository
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:44.3690580Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +bdc17567145a96cbb53fa719d021fbc39727dfc7:refs/remotes/pull/13/merge
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.3121862Z From https://github.com/konard/medical-neural-network-ml
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.3122562Z  * [new ref]         bdc17567145a96cbb53fa719d021fbc39727dfc7 -> pull/13/merge
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.3124241Z ##[endgroup]
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.3124808Z ##[group]Determining the checkout info
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.3125329Z ##[endgroup]
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.3128332Z [command]/usr/bin/git sparse-checkout disable
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.3595292Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.3890645Z ##[group]Checking out the ref
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.3893383Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/13/merge
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4491654Z Note: switching to 'refs/remotes/pull/13/merge'.
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4492134Z 
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4492408Z You are in 'detached HEAD' state. You can look around, make experimental
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4492954Z changes and commit them, and you can discard any commits you make in this
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4493481Z state without impacting any branches by switching back to a branch.
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4493754Z 
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4493906Z If you want to create a new branch to retain commits you create, you may
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4494239Z do so (now or later) by using -c with the switch command. Example:
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4494431Z 
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4494548Z   git switch -c <new-branch-name>
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4494720Z 
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4494871Z Or undo this operation with:
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4495064Z 
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4495196Z   git switch -
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4495382Z 
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4495816Z Turn off this advice by setting config variable advice.detachedHead to false
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4496226Z 
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4496769Z HEAD is now at bdc1756 Merge 62271ee1f6da2d8e3f91f3f955d150202eed0a8c into cc8e90b446a174cf5fff743313e441cda4a432ef
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4512117Z ##[endgroup]
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4553729Z [command]/usr/bin/git log -1 --format=%H
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4579344Z bdc17567145a96cbb53fa719d021fbc39727dfc7
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4587094Z ##[group]Removing auth
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4587420Z Removing SSH command configuration
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4589516Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4618986Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4798098Z Removing HTTP extra header
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4800612Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.4831372Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5002209Z Removing includeIf entries pointing to credentials config files
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5004255Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5028453Z includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5029159Z includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5029632Z includeif.gitdir:/github/workspace/.git.path
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5029946Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5035129Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5056647Z /home/runner/work/_temp/git-credentials-7c5c5f60-b76a-4d25-87f3-50095756d3f9.config
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5063827Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-7c5c5f60\-b76a\-4d25\-87f3\-50095756d3f9\.config
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5255660Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5276564Z /home/runner/work/_temp/git-credentials-7c5c5f60-b76a-4d25-87f3-50095756d3f9.config
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5287996Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/medical-neural-network-ml/medical-neural-network-ml/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-7c5c5f60\-b76a\-4d25\-87f3\-50095756d3f9\.config
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5321613Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5344027Z /github/runner_temp/git-credentials-7c5c5f60-b76a-4d25-87f3-50095756d3f9.config
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5349582Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-7c5c5f60\-b76a\-4d25\-87f3\-50095756d3f9\.config
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5383849Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5406229Z /github/runner_temp/git-credentials-7c5c5f60-b76a-4d25-87f3-50095756d3f9.config
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5450428Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-7c5c5f60\-b76a\-4d25\-87f3\-50095756d3f9\.config
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5473671Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5645286Z Removing credentials config '/home/runner/work/_temp/git-credentials-7c5c5f60-b76a-4d25-87f3-50095756d3f9.config'
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5667621Z ##[endgroup]
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5863212Z ##[group]Run bash scripts/check-pipeline-status.sh
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.5863624Z ^[[36;1mbash scripts/check-pipeline-status.sh^[[0m
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.6052270Z shell: /usr/bin/bash -e {0}
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.6052602Z env:
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.6052845Z   GIT_CONFIG_COUNT: 1
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.6053065Z   GIT_CONFIG_KEY_0: init.defaultBranch
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.6053361Z   GIT_CONFIG_VALUE_0: main
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.6053644Z   NEEDS_JSON: {
+Pipeline Status (Compatibility)	UNKNOWN STEP	  "test": {
+Pipeline Status (Compatibility)	UNKNOWN STEP	    "result": "failure",
+Pipeline Status (Compatibility)	UNKNOWN STEP	    "outputs": {}
+Pipeline Status (Compatibility)	UNKNOWN STEP	  }
+Pipeline Status (Compatibility)	UNKNOWN STEP	}
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.6053983Z   RUN_SHA: 62271ee1f6da2d8e3f91f3f955d150202eed0a8c
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.6054346Z   BRANCH_NAME: dependabot/pip/python-minor-and-patch-50cb289dc9
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.6054636Z ##[endgroup]
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.6625734Z ##[error]Failed jobs: test
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.6632697Z ##[error]Process completed with exit code 1.
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.6779177Z Post job cleanup.
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.7313559Z [command]/usr/bin/git version
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.7348749Z git version 2.55.0
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.7370303Z Temporarily overriding HOME='/home/runner/work/_temp/6ba201a7-3c67-4871-92be-5086002ed08d' before making global git config changes
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.7371066Z Adding repository directory to the temporary git global config as a safe directory
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.7372778Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/medical-neural-network-ml/medical-neural-network-ml
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.7397748Z Removing SSH command configuration
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.7402134Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.7428187Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.7619954Z Removing HTTP extra header
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.7624638Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.7651906Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.7831214Z Removing includeIf entries pointing to credentials config files
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.7836076Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.7866580Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Pipeline Status (Compatibility)	UNKNOWN STEP	2026-10-16T19:42:45.8143759Z Cleaning up orphan processes

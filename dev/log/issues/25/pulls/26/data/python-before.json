@@ -1,0 +1,613 @@
+{
+  "hatchling": [
+    {
+      "location": "pyproject.toml",
+      "pinned": "1.32.4"
+    }
+  ],
+  "ruff": [
+    {
+      "location": "pyproject.toml [dev]",
+      "pinned": "0.17.1"
+    }
+  ],
+  "mypy": [
+    {
+      "location": "pyproject.toml [dev]",
+      "pinned": "2.4.0"
+    }
+  ],
+  "pytest": [
+    {
+      "location": "pyproject.toml [dev]",
+      "pinned": "9.1.1"
+    }
+  ],
+  "pytest-asyncio": [
+    {
+      "location": "pyproject.toml [dev]",
+      "pinned": "1.4.0"
+    }
+  ],
+  "pytest-cov": [
+    {
+      "location": "pyproject.toml [dev]",
+      "pinned": "7.1.0"
+    }
+  ],
+  "pre-commit": [
+    {
+      "location": "pyproject.toml [dev]",
+      "pinned": "4.7.0"
+    }
+  ],
+  "scriv": [
+    {
+      "location": "pyproject.toml [dev]",
+      "pinned": "1.8.0"
+    }
+  ],
+  "pillow": [
+    {
+      "location": "pyproject.toml [dev]",
+      "pinned": "13.0.0"
+    },
+    {
+      "location": "pyproject.toml [imaging]",
+      "pinned": "13.0.0"
+    },
+    {
+      "location": "scripts/unimedvl-requirements.in",
+      "pinned": "13.0.0"
+    },
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "13.0.0"
+    }
+  ],
+  "mlx-vlm": [
+    {
+      "location": "pyproject.toml [mlx]",
+      "pinned": "0.7.9"
+    }
+  ],
+  "sphinx": [
+    {
+      "location": "pyproject.toml [docs]",
+      "pinned": "9.1.0"
+    },
+    {
+      "location": "docs/requirements.txt",
+      "pinned": "9.1.0"
+    }
+  ],
+  "furo": [
+    {
+      "location": "pyproject.toml [docs]",
+      "pinned": "2025.12.19"
+    },
+    {
+      "location": "docs/requirements.txt",
+      "pinned": "2025.12.19"
+    }
+  ],
+  "myst-parser": [
+    {
+      "location": "pyproject.toml [docs]",
+      "pinned": "5.1.0"
+    },
+    {
+      "location": "docs/requirements.txt",
+      "pinned": "5.1.0"
+    }
+  ],
+  "torch": [
+    {
+      "location": "scripts/unimedvl-requirements.in",
+      "pinned": "2.14.1"
+    },
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "2.14.1"
+    }
+  ],
+  "transformers": [
+    {
+      "location": "scripts/unimedvl-requirements.in",
+      "pinned": "5.20.1"
+    },
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "5.20.1"
+    }
+  ],
+  "accelerate": [
+    {
+      "location": "scripts/unimedvl-requirements.in",
+      "pinned": "1.15.0"
+    },
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "1.15.0"
+    }
+  ],
+  "safetensors": [
+    {
+      "location": "scripts/unimedvl-requirements.in",
+      "pinned": "0.8.0"
+    },
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "0.8.0"
+    }
+  ],
+  "sentencepiece": [
+    {
+      "location": "scripts/unimedvl-requirements.in",
+      "pinned": "0.2.2"
+    },
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "0.2.2"
+    }
+  ],
+  "numpy": [
+    {
+      "location": "scripts/unimedvl-requirements.in",
+      "pinned": "2.5.4"
+    },
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "2.5.4"
+    }
+  ],
+  "opencv-python": [
+    {
+      "location": "scripts/unimedvl-requirements.in",
+      "pinned": "5.0.0.93"
+    },
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "5.0.0.93"
+    }
+  ],
+  "einops": [
+    {
+      "location": "scripts/unimedvl-requirements.in",
+      "pinned": "0.8.2"
+    },
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "0.8.2"
+    }
+  ],
+  "matplotlib": [
+    {
+      "location": "scripts/unimedvl-requirements.in",
+      "pinned": "3.11.2"
+    },
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "3.11.2"
+    }
+  ],
+  "contourpy": [
+    {
+      "location": "scripts/unimedvl-requirements.in",
+      "pinned": "1.4.0"
+    },
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "1.4.0"
+    }
+  ],
+  "cycler": [
+    {
+      "location": "scripts/unimedvl-requirements.in",
+      "pinned": "0.12.1"
+    },
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "0.12.1"
+    }
+  ],
+  "fonttools": [
+    {
+      "location": "scripts/unimedvl-requirements.in",
+      "pinned": "4.67.0"
+    },
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "4.67.0"
+    }
+  ],
+  "kiwisolver": [
+    {
+      "location": "scripts/unimedvl-requirements.in",
+      "pinned": "1.5.1"
+    },
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "1.5.1"
+    }
+  ],
+  "packaging": [
+    {
+      "location": "scripts/unimedvl-requirements.in",
+      "pinned": "26.3"
+    },
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "26.3"
+    }
+  ],
+  "pyparsing": [
+    {
+      "location": "scripts/unimedvl-requirements.in",
+      "pinned": "3.3.3"
+    },
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "3.3.3"
+    }
+  ],
+  "python-dateutil": [
+    {
+      "location": "scripts/unimedvl-requirements.in",
+      "pinned": "2.9.0.post0"
+    },
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "2.9.0.post0"
+    }
+  ],
+  "annotated-doc": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "0.0.5"
+    }
+  ],
+  "anyio": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "4.15.1"
+    }
+  ],
+  "click": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "8.5.0"
+    }
+  ],
+  "cuda-bindings": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "13.4.4"
+    }
+  ],
+  "cuda-pathfinder": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "1.8.3"
+    }
+  ],
+  "cuda-toolkit": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "13.0.3.0"
+    }
+  ],
+  "filelock": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "4.2.4"
+    }
+  ],
+  "fsspec": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "2026.9.0"
+    }
+  ],
+  "h11": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "0.16.0"
+    }
+  ],
+  "hf-xet": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "1.7.0"
+    }
+  ],
+  "httpcore2": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "2.14.0"
+    }
+  ],
+  "httpx2": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "2.14.0"
+    }
+  ],
+  "huggingface-hub": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "2.2.0"
+    }
+  ],
+  "idna": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "3.20"
+    }
+  ],
+  "jinja2": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "3.1.6"
+    }
+  ],
+  "markdown-it-py": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "4.2.0"
+    }
+  ],
+  "markupsafe": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "3.0.4"
+    }
+  ],
+  "mdurl": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "0.1.2"
+    }
+  ],
+  "mpmath": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "1.3.0"
+    }
+  ],
+  "networkx": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "3.7"
+    }
+  ],
+  "nvidia-cublas": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "13.1.1.3"
+    }
+  ],
+  "nvidia-cuda-cupti": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "13.0.85"
+    }
+  ],
+  "nvidia-cuda-nvrtc": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "13.0.88"
+    }
+  ],
+  "nvidia-cuda-runtime": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "13.0.96"
+    }
+  ],
+  "nvidia-cudnn-cu13": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "9.24.0.43"
+    }
+  ],
+  "nvidia-cufft": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "12.0.0.61"
+    }
+  ],
+  "nvidia-cufile": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "1.15.1.6"
+    }
+  ],
+  "nvidia-curand": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "10.4.0.35"
+    }
+  ],
+  "nvidia-cusolver": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "12.0.4.66"
+    }
+  ],
+  "nvidia-cusparse": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "12.6.3.3"
+    }
+  ],
+  "nvidia-cusparselt-cu13": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "0.8.1"
+    }
+  ],
+  "nvidia-nccl-cu13": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "2.30.7"
+    }
+  ],
+  "nvidia-nvjitlink": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "13.4.92"
+    }
+  ],
+  "nvidia-nvshmem-cu13": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "3.4.5"
+    }
+  ],
+  "nvidia-nvtx": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "13.0.85"
+    }
+  ],
+  "psutil": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "7.2.2"
+    }
+  ],
+  "pygments": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "2.21.0"
+    }
+  ],
+  "pyyaml": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "6.0.3"
+    }
+  ],
+  "regex": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "2026.9.29"
+    }
+  ],
+  "rich": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "15.0.0"
+    }
+  ],
+  "setuptools": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "84.0.0"
+    }
+  ],
+  "shellingham": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "1.5.4"
+    }
+  ],
+  "six": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "1.17.0"
+    }
+  ],
+  "sympy": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "1.14.0"
+    }
+  ],
+  "tokenizers": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "0.23.3"
+    }
+  ],
+  "torchvision": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "0.29.1"
+    }
+  ],
+  "tqdm": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "4.70.1"
+    }
+  ],
+  "triton": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "3.8.0"
+    }
+  ],
+  "truststore": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "0.10.5"
+    }
+  ],
+  "typer": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "0.27.3"
+    }
+  ],
+  "typing-extensions": [
+    {
+      "location": "scripts/unimedvl-requirements.txt",
+      "pinned": "4.16.0"
+    }
+  ],
+  "ansible-core": [
+    {
+      "location": ".github/workflows/cloud-gpu-tests.yml",
+      "pinned": "2.21.5"
+    },
+    {
+      "location": "scripts/cloud-gpu-install-tools.sh",
+      "pinned": "2.21.5"
+    }
+  ],
+  "ansible-lint": [
+    {
+      "location": ".github/workflows/cloud-gpu-tests.yml",
+      "pinned": "26.10.1"
+    },
+    {
+      "location": "scripts/cloud-gpu-install-tools.sh",
+      "pinned": "26.10.1"
+    }
+  ],
+  "yamllint": [
+    {
+      "location": ".github/workflows/cloud-gpu-tests.yml",
+      "pinned": "1.38.0"
+    },
+    {
+      "location": "scripts/cloud-gpu-install-tools.sh",
+      "pinned": "1.38.0"
+    }
+  ],
+  "shellcheck-py": [
+    {
+      "location": "scripts/cloud-gpu-install-tools.sh",
+      "pinned": "0.11.0.1"
+    }
+  ],
+  "uv": [],
+  "pip": [],
+  "pip-audit": [],
+  "build": [],
+  "twine": [],
+  "zizmor": [],
+  "azure-cli": []
+}

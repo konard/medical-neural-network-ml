@@ -1,0 +1,10 @@
+ INFO zizmor: 🌈 zizmor v1.31.1
+ INFO audit: zizmor: 🌈 completed .github/workflows/cloud-gpu-tests.yml
+ INFO audit: zizmor: 🌈 completed .github/workflows/compatibility.yml
+ INFO audit: zizmor: 🌈 completed .github/workflows/docs.yml
+ INFO audit: zizmor: 🌈 completed .github/workflows/links.yml
+ INFO audit: zizmor: 🌈 completed .github/workflows/model-tests.yml
+ INFO audit: zizmor: 🌈 completed .github/workflows/release.yml
+ INFO audit: zizmor: 🌈 completed .github/workflows/security.yml
+ INFO audit: zizmor: 🌈 completed .github/workflows/workflows.yml
+No findings to report. Good job! (24 suppressed)

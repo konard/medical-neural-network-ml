@@ -1,0 +1,105 @@
+Running Sphinx v9.2.0
+loading translations [en]... done
+making output directory... done
+[autosummary] generating autosummary for: api.md, apple-silicon.md, audit-2026-10-16.md, cloud-gpu.md, evaluation-validity.md, hardware-workflows.md, index.md, preview-regeneration.md, publishing.md, repository-policy.md
+[autosummary] generating autosummary for: /tmp/gh-issue-solver-1793372776892/docs/_autosummary/medbench.rst
+[autosummary] generating autosummary for: /tmp/gh-issue-solver-1793372776892/docs/_autosummary/medbench.augment.rst, /tmp/gh-issue-solver-1793372776892/docs/_autosummary/medbench.backends.rst, /tmp/gh-issue-solver-1793372776892/docs/_autosummary/medbench.benchmark.rst, /tmp/gh-issue-solver-1793372776892/docs/_autosummary/medbench.cli.rst, /tmp/gh-issue-solver-1793372776892/docs/_autosummary/medbench.clinical_text.rst, /tmp/gh-issue-solver-1793372776892/docs/_autosummary/medbench.ddxplus.rst, /tmp/gh-issue-solver-1793372776892/docs/_autosummary/medbench.hardware.rst, /tmp/gh-issue-solver-1793372776892/docs/_autosummary/medbench.metrics.rst, /tmp/gh-issue-solver-1793372776892/docs/_autosummary/medbench.mlx_backend.rst, /tmp/gh-issue-solver-1793372776892/docs/_autosummary/medbench.models.rst, /tmp/gh-issue-solver-1793372776892/docs/_autosummary/medbench.monitor.rst, /tmp/gh-issue-solver-1793372776892/docs/_autosummary/medbench.real_data.rst, /tmp/gh-issue-solver-1793372776892/docs/_autosummary/medbench.resources.rst, /tmp/gh-issue-solver-1793372776892/docs/_autosummary/medbench.support.rst, /tmp/gh-issue-solver-1793372776892/docs/_autosummary/medbench.synthetic_cases.rst, /tmp/gh-issue-solver-1793372776892/docs/_autosummary/medbench.validity.rst
+loading intersphinx inventory 'python' from https://docs.python.org/3/objects.inv ...
+myst v5.1.0: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=set(), disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=0, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, strikethrough_single_tilde=False, colon_fence_exact_match=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 10 source files that are out of date
+updating environment: [new config] 27 added, 0 changed, 0 removed
+reading sources... [  4%] _autosummary/medbench
+reading sources... [  7%] _autosummary/medbench.augment
+reading sources... [ 11%] _autosummary/medbench.backends
+reading sources... [ 15%] _autosummary/medbench.benchmark
+reading sources... [ 19%] _autosummary/medbench.cli
+reading sources... [ 22%] _autosummary/medbench.clinical_text
+reading sources... [ 26%] _autosummary/medbench.ddxplus
+reading sources... [ 30%] _autosummary/medbench.hardware
+reading sources... [ 33%] _autosummary/medbench.metrics
+reading sources... [ 37%] _autosummary/medbench.mlx_backend
+reading sources... [ 41%] _autosummary/medbench.models
+reading sources... [ 44%] _autosummary/medbench.monitor
+reading sources... [ 48%] _autosummary/medbench.real_data
+reading sources... [ 52%] _autosummary/medbench.resources
+reading sources... [ 56%] _autosummary/medbench.support
+reading sources... [ 59%] _autosummary/medbench.synthetic_cases
+reading sources... [ 63%] _autosummary/medbench.validity
+reading sources... [ 67%] api
+reading sources... [ 70%] apple-silicon
+reading sources... [ 74%] audit-2026-10-16
+reading sources... [ 78%] cloud-gpu
+reading sources... [ 81%] evaluation-validity
+reading sources... [ 85%] hardware-workflows
+reading sources... [ 89%] index
+reading sources... [ 93%] preview-regeneration
+reading sources... [ 96%] publishing
+reading sources... [100%] repository-policy
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /tmp/gh-issue-solver-1793372776892/_site/_static/documentation_options.js
+Writing evaluated template result to /tmp/gh-issue-solver-1793372776892/_site/_static/language_data.js
+Writing evaluated template result to /tmp/gh-issue-solver-1793372776892/_site/_static/basic.css
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [  4%] _autosummary/medbench
+writing output... [  7%] _autosummary/medbench.augment
+writing output... [ 11%] _autosummary/medbench.backends
+writing output... [ 15%] _autosummary/medbench.benchmark
+writing output... [ 19%] _autosummary/medbench.cli
+writing output... [ 22%] _autosummary/medbench.clinical_text
+writing output... [ 26%] _autosummary/medbench.ddxplus
+writing output... [ 30%] _autosummary/medbench.hardware
+writing output... [ 33%] _autosummary/medbench.metrics
+writing output... [ 37%] _autosummary/medbench.mlx_backend
+writing output... [ 41%] _autosummary/medbench.models
+writing output... [ 44%] _autosummary/medbench.monitor
+writing output... [ 48%] _autosummary/medbench.real_data
+writing output... [ 52%] _autosummary/medbench.resources
+writing output... [ 56%] _autosummary/medbench.support
+writing output... [ 59%] _autosummary/medbench.synthetic_cases
+writing output... [ 63%] _autosummary/medbench.validity
+writing output... [ 67%] api
+writing output... [ 70%] apple-silicon
+writing output... [ 74%] audit-2026-10-16
+writing output... [ 78%] cloud-gpu
+writing output... [ 81%] evaluation-validity
+writing output... [ 85%] hardware-workflows
+writing output... [ 89%] index
+writing output... [ 93%] preview-regeneration
+writing output... [ 96%] publishing
+writing output... [100%] repository-policy
+
+generating indices... genindex py-modindex done
+highlighting module code... [  6%] medbench.augment
+highlighting module code... [ 12%] medbench.backends
+highlighting module code... [ 19%] medbench.benchmark
+highlighting module code... [ 25%] medbench.cli
+highlighting module code... [ 31%] medbench.clinical_text
+highlighting module code... [ 38%] medbench.ddxplus
+highlighting module code... [ 44%] medbench.hardware
+highlighting module code... [ 50%] medbench.metrics
+highlighting module code... [ 56%] medbench.mlx_backend
+highlighting module code... [ 62%] medbench.models
+highlighting module code... [ 69%] medbench.monitor
+highlighting module code... [ 75%] medbench.real_data
+highlighting module code... [ 81%] medbench.resources
+highlighting module code... [ 88%] medbench.support
+highlighting module code... [ 94%] medbench.synthetic_cases
+highlighting module code... [100%] medbench.validity
+
+writing additional pages... search done
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in _site.

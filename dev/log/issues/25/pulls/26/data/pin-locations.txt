@@ -1,0 +1,553 @@
+ci/gitlab/cloud-gpu.gitlab-ci.yml:36:  CLOUD_GPU_PROVIDER: aws # aws, azure, gcp or hetzner
+ci/gitlab/cloud-gpu.gitlab-ci.yml:51:  image: $CLOUD_GPU_IMAGE
+ci/gitlab/cloud-gpu.gitlab-ci.yml:82:    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+ci/gitlab/cloud-gpu.gitlab-ci.yml:91:    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push"
+ci/gitlab/cloud-gpu.gitlab-ci.yml:102:    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+ci/gitlab/cloud-gpu.gitlab-ci.yml:103:    - if: $CLOUD_GPU_TEST == "true"
+ci/gitlab/cloud-gpu.gitlab-ci.yml:125:        $CLOUD_GPU_TEST == "true" && $CI_COMMIT_REF_PROTECTED == "true" &&
+ci/gitlab/cloud-gpu.gitlab-ci.yml:126:        ($CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api" ||
+ci/gitlab/cloud-gpu.gitlab-ci.yml:127:        $CI_PIPELINE_SOURCE == "schedule")
+ci/gitlab/cloud-gpu.gitlab-ci.yml:165:        $CLOUD_GPU_REAP == "true" && $CI_COMMIT_REF_PROTECTED == "true" &&
+ci/gitlab/cloud-gpu.gitlab-ci.yml:166:        ($CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web")
+infra/kubernetes/nvidia-device-plugin.yaml:33:      - image: nvcr.io/nvidia/k8s-device-plugin:v0.20.1@sha256:27c1b2553a690ca3d29889dcd61df97525d46f58272c0be8dc63c2b18f120075
+infra/kubernetes/medbench-gpu-job.yaml:49:          # CUDA 13.4 base image: the llama.cpp build brings its own CUDA
+infra/kubernetes/medbench-gpu-job.yaml:51:          image: nvidia/cuda:13.4.1-base-ubuntu24.04@sha256:3eb2d952d9cff2d7a4e42a1cedc19cfa610a7f72c3b8428811731dcea5a175fd
+infra/kubernetes/medbench-gpu-job.yaml:58:              apt-get update -qq
+infra/kubernetes/medbench-gpu-job.yaml:59:              apt-get install -qq --yes --no-install-recommends \
+infra/kubernetes/arc-gpu-runner-values.yaml:44:        image: ghcr.io/actions/actions-runner:2.338.0@sha256:4ffadc0002b2581327e06101fc8c06cd189232baf79fe561fac9caeb76f5e807
+ci/gitlab/cloud-login.sh:10:# need new credentials, so Terraform, kubectl (aws eks get-token,
+ci/gitlab/cloud-login.sh:11:# gke-gcloud-auth-plugin) and the CLIs keep working for the whole job: GitLab
+ci/gitlab/cloud-login.sh:13:#   aws      AWS_ROLE_ARN (role trusting this GitLab's OIDC provider)
+ci/gitlab/cloud-login.sh:53:      aws sts get-caller-identity --query Arn --output text
+ci/gitlab/cloud-login.sh:56:      # az for the reaper; Terraform's azurerm provider reads the token
+ci/gitlab/cloud-login.sh:64:      az login --service-principal --username "$AZURE_CLIENT_ID" \
+ci/gitlab/cloud-login.sh:66:      az account set --subscription "$AZURE_SUBSCRIPTION_ID"
+ci/gitlab/cloud-login.sh:70:      # gcloud, gke-gcloud-auth-plugin) exchange the token file for a short
+ci/gitlab/cloud-login.sh:73:      gcloud iam workload-identity-pools create-cred-config \
+ci/gitlab/cloud-login.sh:82:      gcloud auth print-access-token >/dev/null
+infra/ansible/github-runner.yml:16:    runner_version: "2.338.0"
+infra/ansible/github-runner.yml:47:        url: "https://github.com/actions/runner/releases/download/v{{ runner_version }}/actions-runner-linux-x64-{{ runner_version }}.tar.gz"
+infra/ansible/k3s-gpu.yml:11:    k3s_version: v1.37.1+k3s1
+infra/ansible/k3s-gpu.yml:17:        url: "https://github.com/k3s-io/k3s/releases/download/{{ k3s_version | urlencode }}/k3s"
+infra/ansible/k3s-gpu.yml:35:        INSTALL_K3S_VERSION: "{{ k3s_version }}"
+infra/terraform/azure/k8s/versions.tf:2:  required_version = ">= 1.10"
+infra/terraform/azure/k8s/versions.tf:5:      source  = "hashicorp/azurerm"
+infra/terraform/azure/k8s/versions.tf:6:      version = "~> 5.10"
+infra/ansible/gpu-host.yml:12:    nvidia_container_toolkit_version: "1.20.1-1"
+infra/terraform/azure/k8s/main.tf:12:  subscription_id = var.subscription_id == "" ? null : var.subscription_id
+infra/terraform/aws/k8s/versions.tf:2:  required_version = ">= 1.10"
+infra/terraform/aws/k8s/versions.tf:4:    aws = {
+infra/terraform/aws/k8s/versions.tf:5:      source  = "hashicorp/aws"
+infra/terraform/aws/k8s/versions.tf:6:      version = "~> 6.69"
+infra/terraform/azure/vm/versions.tf:2:  required_version = ">= 1.10"
+infra/terraform/azure/vm/versions.tf:5:      source  = "hashicorp/azurerm"
+infra/terraform/azure/vm/versions.tf:6:      version = "~> 5.10"
+infra/terraform/aws/k8s/main.tf:118:  version  = var.kubernetes_version == "" ? null : var.kubernetes_version
+infra/terraform/aws/k8s/outputs.tf:7:  description = "Kubeconfig that gets a token from `aws eks get-token` (needs the AWS CLI and the same credentials)."
+infra/terraform/aws/vm/versions.tf:2:  required_version = ">= 1.10"
+infra/terraform/aws/vm/versions.tf:4:    aws = {
+infra/terraform/aws/vm/versions.tf:5:      source  = "hashicorp/aws"
+infra/terraform/aws/vm/versions.tf:6:      version = "~> 6.69"
+infra/terraform/azure/vm/main.tf:10:  subscription_id = var.subscription_id == "" ? null : var.subscription_id
+infra/terraform/azure/vm/main.tf:120:    version   = "latest"
+infra/terraform/azure/vm/main.tf:133:  type_handler_version       = "1.6"
+infra/terraform/azure/vm/main.tf:134:  auto_upgrade_minor_version = true
+infra/terraform/aws/vm/variables.tf:41:  description = "Public SSM parameter of the image: the Deep Learning Base OSS Nvidia Driver GPU AMI (Ubuntu 24.04) ships driver R580 or newer."
+infra/terraform/gcp/k8s/versions.tf:2:  required_version = ">= 1.10"
+infra/terraform/gcp/k8s/versions.tf:5:      source  = "hashicorp/google"
+infra/terraform/gcp/k8s/versions.tf:6:      version = "~> 8.7"
+infra/terraform/gcp/k8s/main.tf:88:        gpu_driver_version = "DEFAULT"
+.github/dependabot.yml:28:version: 2
+infra/terraform/gcp/k8s/outputs.tf:7:  description = "Kubeconfig that gets a token from gke-gcloud-auth-plugin (needs the gcloud CLI and the same credentials)."
+infra/terraform/gcp/k8s/outputs.tf:26:          command            = "gke-gcloud-auth-plugin"
+.github/workflows/cloud-gpu-tests.yml:119:      KUBECONFORM_VERSION: v0.8.0
+.github/workflows/cloud-gpu-tests.yml:121:      HELM_VERSION: v4.3.1
+.github/workflows/cloud-gpu-tests.yml:132:          python-version: '3.14'
+.github/workflows/cloud-gpu-tests.yml:137:          terraform_version: 1.16.6
+.github/workflows/cloud-gpu-tests.yml:143:          tflint_version: v0.64.0
+.github/workflows/cloud-gpu-tests.yml:150:            "https://github.com/yannh/kubeconform/releases/download/$KUBECONFORM_VERSION/kubeconform-linux-amd64.tar.gz"
+.github/workflows/cloud-gpu-tests.yml:157:          python -m pip install --upgrade pip
+.github/workflows/cloud-gpu-tests.yml:158:          python -m pip install ansible-core==2.21.5 ansible-lint==26.10.1 yamllint==1.38.0
+.github/workflows/cloud-gpu-tests.yml:198:          python-version: '3.15'
+.github/workflows/cloud-gpu-tests.yml:203:          version: v0.33.0
+.github/workflows/cloud-gpu-tests.yml:235:      github.event_name == 'workflow_dispatch' && inputs.action != 'reap' &&
+.github/workflows/cloud-gpu-tests.yml:236:      github.ref == 'refs/heads/main'
+.github/workflows/cloud-gpu-tests.yml:313:          python-version: '3.15'
+.github/workflows/cloud-gpu-tests.yml:319:          terraform_version: 1.16.6
+.github/workflows/cloud-gpu-tests.yml:323:      # kubectl call (aws eks get-token) use it hours after this step. The
+.github/workflows/cloud-gpu-tests.yml:328:        if: inputs.provider == 'aws' && inputs.action == 'test'
+.github/workflows/cloud-gpu-tests.yml:337:        if: inputs.provider == 'azure' && inputs.action == 'test'
+.github/workflows/cloud-gpu-tests.yml:345:        if: inputs.provider == 'gcp' && inputs.action == 'test'
+.github/workflows/cloud-gpu-tests.yml:351:      # The GKE kubeconfig authenticates through gke-gcloud-auth-plugin.
+.github/workflows/cloud-gpu-tests.yml:352:      - name: Setup gcloud
+.github/workflows/cloud-gpu-tests.yml:353:        if: inputs.provider == 'gcp' && inputs.action == 'test'
+.github/workflows/cloud-gpu-tests.yml:354:        uses: google-github-actions/setup-gcloud@aa5489c8933f4cc7a4f7d45035b3b1440c9c10db # v3.0.1
+.github/workflows/cloud-gpu-tests.yml:356:          install_components: gke-gcloud-auth-plugin
+.github/workflows/cloud-gpu-tests.yml:364:        if: inputs.action == 'test'
+.github/workflows/cloud-gpu-tests.yml:379:        if: inputs.action == 'test'
+.github/workflows/cloud-gpu-tests.yml:393:        if: always() && inputs.action == 'test'
+.github/workflows/cloud-gpu-tests.yml:419:        if: failure() && inputs.mode == 'runner' && inputs.action == 'test'
+.github/workflows/cloud-gpu-tests.yml:433:      github.event_name == 'workflow_dispatch' && inputs.action == 'test' &&
+.github/workflows/cloud-gpu-tests.yml:434:      inputs.mode == 'runner' && github.ref == 'refs/heads/main'
+.github/workflows/cloud-gpu-tests.yml:470:      github.ref == 'refs/heads/main' && (github.event_name == 'schedule' ||
+.github/workflows/cloud-gpu-tests.yml:471:      (github.event_name == 'workflow_dispatch' && inputs.action == 'reap'))
+.github/workflows/cloud-gpu-tests.yml:507:          python-version: '3.15'
+.github/workflows/cloud-gpu-tests.yml:510:        if: steps.clouds.outputs.aws == 'true'
+.github/workflows/cloud-gpu-tests.yml:518:        if: steps.clouds.outputs.azure == 'true'
+.github/workflows/cloud-gpu-tests.yml:526:        if: steps.clouds.outputs.gcp == 'true'
+.github/workflows/cloud-gpu-tests.yml:535:          REAP_AWS: ${{ steps.clouds.outputs.aws }}
+.github/workflows/model-tests.yml:96:          python-version: '3.15'
+.github/workflows/model-tests.yml:100:          python -m pip install --upgrade pip
+.github/workflows/model-tests.yml:101:          pip install -e ".[dev]"
+.github/workflows/model-tests.yml:159:          python-version: '3.15'
+.github/workflows/model-tests.yml:168:              python -m pip install --upgrade pip
+.github/workflows/model-tests.yml:169:              pip install -e ".[dev]"
+.github/workflows/model-tests.yml:235:          python-version: '3.15'
+.github/workflows/model-tests.yml:239:          sudo apt-get update
+.github/workflows/model-tests.yml:240:          sudo apt-get install -y --no-install-recommends tesseract-ocr
+.github/workflows/model-tests.yml:242:          python -m pip install --upgrade pip
+.github/workflows/model-tests.yml:243:          pip install -e ".[dev]"
+.github/workflows/model-tests.yml:295:          python-version: '3.14'
+.github/workflows/model-tests.yml:311:          "$python" -m pip install --quiet "pytest>=9.1.1" "pytest-asyncio>=1.4.0"
+.github/workflows/model-tests.yml:328:      github.event_name == 'workflow_dispatch' && inputs.gpu &&
+.github/workflows/model-tests.yml:329:      github.ref == 'refs/heads/main'
+.github/workflows/model-tests.yml:357:        if: inputs.gpu-model == 'unimedvl'
+.github/workflows/model-tests.yml:360:          python-version: '3.14'
+.github/workflows/model-tests.yml:365:          python-version: '3.15'
+.github/workflows/model-tests.yml:407:              python -m pip install --upgrade pip
+.github/workflows/model-tests.yml:408:              pip install -e ".[dev]"
+.github/workflows/workflows.yml:28:  ZIZMOR_VERSION: '1.31.1'
+.github/workflows/workflows.yml:75:  #   pipx run "zizmor==$ZIZMOR_VERSION" --min-confidence low --persona regular \
+.github/workflows/workflows.yml:103:          version: ${{ env.ZIZMOR_VERSION }}
+.github/workflows/workflows.yml:125:          pipx run "zizmor==$ZIZMOR_VERSION" --config .github/zizmor.yml \
+.github/workflows/docs.yml:62:          python-version: '3.15'
+.github/workflows/docs.yml:66:          python -m pip install --upgrade pip
+.github/workflows/docs.yml:67:          pip install -e .
+.github/workflows/docs.yml:68:          pip install -r docs/requirements.txt
+.github/workflows/docs.yml:93:        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.DEPLOY_GITHUB_PAGES != 'true'
+.github/workflows/docs.yml:97:        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.DEPLOY_GITHUB_PAGES == 'true'
+.github/workflows/docs.yml:101:        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.DEPLOY_GITHUB_PAGES == 'true'
+.github/workflows/docs.yml:109:    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.DEPLOY_GITHUB_PAGES == 'true'
+.github/workflows/links.yml:91:        # `!= 'true'`, never `== 'false'`: a skipped re-check leaves the
+scripts/version_and_commit.py:86:    version = document["project"].get("version")
+scripts/version_and_commit.py:162:        if completed.returncode == 0:
+scripts/version_and_commit.py:185:        if attempt >= max_attempts:
+scripts/version_and_commit.py:249:            remote_version = parse_version(remote_content)
+scripts/version_and_commit.py:254:        print(f"Remote version: {remote_version}")
+scripts/version_and_commit.py:257:        local_version = get_current_version(pyproject_path)
+scripts/version_and_commit.py:258:        if local_version != remote_version:
+scripts/version_and_commit.py:303:        already_released, remote_version = check_remote_changes(
+scripts/version_and_commit.py:316:        old_version = get_current_version(pyproject_path)
+scripts/version_and_commit.py:317:        print(f"\nCurrent version: {old_version}")
+scripts/version_and_commit.py:340:        new_version = get_current_version(pyproject_path)
+scripts/version_and_commit.py:341:        print(f"New version: {new_version}")
+scripts/version_and_commit.py:383:if __name__ == "__main__":
+scripts/create_manual_changeset.py:240:        print("Install scriv for better fragment management: pip install scriv[toml]")
+scripts/create_manual_changeset.py:245:if __name__ == "__main__":
+scripts/check-infra.sh:26:ARC_VERSION="0.15.0"
+scripts/check-infra.sh:28:if ((${#CHECKS[@]} == 0)); then
+scripts/check-infra.sh:83:      log "== $check"
+scripts/gpu-host-bootstrap.sh:24:TOOLKIT_VERSION="1.20.1-1"
+scripts/gpu-host-bootstrap.sh:27:K3S_VERSION="v1.37.1+k3s1"
+scripts/gpu-host-bootstrap.sh:40:  DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends "$@"
+scripts/gpu-host-bootstrap.sh:46:  apt-get update
+scripts/gpu-host-bootstrap.sh:53:  version="$(nvidia-smi --query-gpu=driver_version --format=csv,noheader 2>/dev/null | head -n 1)"
+scripts/gpu-host-bootstrap.sh:54:  [[ "${version%%.*}" =~ ^[0-9]+$ ]] && ((${version%%.*} >= MIN_DRIVER))
+scripts/gpu-host-bootstrap.sh:63:  apt-get update
+scripts/gpu-host-bootstrap.sh:68:    apt-get update
+scripts/gpu-host-bootstrap.sh:96:  apt-get update
+scripts/gpu-host-bootstrap.sh:118:    "https://github.com/k3s-io/k3s/releases/download/${K3S_VERSION/+/%2B}/k3s"
+scripts/gpu-host-bootstrap.sh:128:  INSTALL_K3S_SKIP_DOWNLOAD=true INSTALL_K3S_VERSION="$K3S_VERSION" \
+scripts/audit_dependencies.py:67:    scripts_directory = "Scripts" if sys.platform == "win32" else "bin"
+scripts/audit_dependencies.py:68:    executable = "python.exe" if sys.platform == "win32" else "python"
+scripts/audit_dependencies.py:137:                f"pip-audit=={PIP_AUDIT_VERSION}",
+scripts/audit_dependencies.py:189:if __name__ == "__main__":
+scripts/unimedvl_server.py:171:            if kind == "text":
+scripts/unimedvl_server.py:173:            elif kind == "image_url":
+scripts/unimedvl_server.py:205:    if isinstance(error, MemoryError) or type(error).__name__ == "OutOfMemoryError":
+scripts/unimedvl_server.py:217:    if len(usage) == 2:  # both counts known
+scripts/unimedvl_server.py:249:    return peak if sys.platform == "darwin" else peak * 1024
+scripts/unimedvl_server.py:304:            # varlen_attn compares with ==, so this must be a tuple.
+scripts/unimedvl_server.py:655:        if self.path == "/health":
+scripts/unimedvl_server.py:657:        elif self.path == "/v1/models":
+scripts/unimedvl_server.py:659:        elif self.path == "/metrics":
+scripts/unimedvl_server.py:729:    if args.engine == "echo":
+scripts/unimedvl_server.py:754:if __name__ == "__main__":
+scripts/run-with-budget-warning.sh:141:    awk -v group="$command_pid" '$1 == group && $3 !~ /^Z/ {
+scripts/publish_to_pypi.py:136:                    f"Error: {tool} is not installed. Install with: pip install {tool}",
+scripts/publish_to_pypi.py:156:if __name__ == "__main__":
+scripts/unimedvl-requirements.in:41:# (torchvision 0.29.0 requires torch==2.14.0, torch 2.14.1 triton~=3.8.0,
+scripts/unimedvl-requirements.in:44:# pinned here neither could ever move. They are named without a version: the
+scripts/unimedvl-requirements.in:47:torch==2.14.1
+scripts/unimedvl-requirements.in:50:transformers==5.20.1
+scripts/unimedvl-requirements.in:51:accelerate==1.15.0
+scripts/unimedvl-requirements.in:52:safetensors==0.8.0
+scripts/unimedvl-requirements.in:54:sentencepiece==0.2.2
+scripts/unimedvl-requirements.in:55:pillow==13.0.0
+scripts/unimedvl-requirements.in:56:numpy==2.5.4
+scripts/unimedvl-requirements.in:57:opencv-python==5.0.0.93
+scripts/unimedvl-requirements.in:58:einops==0.8.2
+scripts/unimedvl-requirements.in:59:matplotlib==3.11.2
+scripts/unimedvl-requirements.in:60:contourpy==1.4.0
+scripts/unimedvl-requirements.in:61:cycler==0.12.1
+scripts/unimedvl-requirements.in:62:fonttools==4.67.0
+scripts/unimedvl-requirements.in:63:kiwisolver==1.5.1
+scripts/unimedvl-requirements.in:64:packaging==26.3
+scripts/unimedvl-requirements.in:65:pyparsing==3.3.3
+scripts/unimedvl-requirements.in:66:python-dateutil==2.9.0.post0
+scripts/create_github_release.py:78:def extract_changelog_entry(changelog_path: Path, version: str) -> str:
+scripts/create_github_release.py:100:    next_version = re.search(
+scripts/create_github_release.py:106:    if next_version:
+scripts/create_github_release.py:117:    version: str,
+scripts/create_github_release.py:164:    if notice_size >= max_bytes:
+scripts/create_github_release.py:175:    version: str,
+scripts/create_github_release.py:308:        bare_version = normalize_version(args.version)
+scripts/create_github_release.py:333:if __name__ == "__main__":
+scripts/read_manifest.py:75:if __name__ == "__main__":
+scripts/release_naming.py:45:def normalize_version(version: str) -> str:
+scripts/release_naming.py:47:    if not version:
+scripts/release_naming.py:61:def build_release_tag(version: str, multi_language: bool) -> str:
+scripts/release_naming.py:67:    version: str,
+scripts/release_naming.py:72:    bare_version = normalize_version(version)
+scripts/release_naming.py:78:def build_pypi_badge(distribution_name: str, version: str) -> str:
+scripts/release_naming.py:80:    bare_version = normalize_version(version)
+scripts/release_naming.py:81:    badge_version = quote(bare_version, safe="")
+scripts/detect_code_changes.py:84:    if event_name == "pull_request":
+scripts/detect_code_changes.py:203:if __name__ == "__main__":
+scripts/cloud_gpu/remote.py:93:        return "" if self.user == "root" else "sudo -n "
+scripts/cloud_gpu/remote.py:119:        return result.returncode == 0
+scripts/cloud_gpu/remote.py:254:        if result.returncode == REBOOT_NEEDED:
+scripts/cloud_gpu/shell.py:17:TRACE = os.environ.get("CLOUD_GPU_TRACE", "0") == "1"
+scripts/cloud_gpu/shell.py:128:        if time.monotonic() >= deadline:
+scripts/cloud_gpu/config.py:212:        if self.provider == "gcp" and not self.gcp_project:
+scripts/cloud_gpu/config.py:215:        if self.provider == "ssh" and not self.ssh_host:
+scripts/cloud_gpu/config.py:218:        if self.mode == "runner" and not self.github_repository:
+scripts/cloud_gpu/config.py:241:        if self.provider == "gcp" and not self.zone:
+scripts/cloud_gpu/config.py:245:            machine, accelerator = machines["k8s" if self.mode == "k8s" else "vm"]
+scripts/cloud_gpu/config.py:252:        if self.mode == "runner" and not self.runner_labels:
+scripts/cloud_gpu/config.py:275:        unit = "EUR" if self.provider == "hetzner" else "USD"
+scripts/cloud_gpu/config.py:283:        if self.provider == "hetzner" and fee:
+scripts/cloud_gpu/kube.py:82:    if config.gpu_count == 0:
+scripts/cloud_gpu/kube.py:216:            condition.get("type") == "PodScheduled"
+scripts/cloud_gpu/kube.py:217:            and condition.get("status") == "False"
+scripts/cloud_gpu/kube.py:254:        if phase == "Running":
+scripts/cloud_gpu/kube.py:316:        if pod_exec(kubectl, pod, "test -f /work/exit-code").returncode == 0:
+scripts/cloud_gpu/kube.py:330:        if data.returncode == 0:
+scripts/cloud_gpu/kube.py:367:        return kubectl.raw("get", "nodes").returncode == 0
+scripts/cloud_gpu/github.py:131:        if status == "online":
+scripts/cloud_gpu/github.py:168:            and runner.get("status") == "offline"
+scripts/cloud_gpu/__main__.py:9:if __name__ == "__main__":
+scripts/cloud_gpu/reaper.py:9:It uses the clouds' own command line tools (aws, az, gcloud): GitHub's
+scripts/cloud_gpu/reaper.py:69:        az = require_tool("az")
+scripts/cloud_gpu/reaper.py:97:        aws = require_tool("aws")
+scripts/cloud_gpu/reaper.py:104:            return next((t["Value"] for t in tags or [] if t.get("Key") == key), "")
+scripts/cloud_gpu/reaper.py:142:            if tags.get("managed-by") == cfg.MANAGED_BY and self.expired(
+scripts/cloud_gpu/reaper.py:176:            if tag(values, "managed-by") == cfg.MANAGED_BY and self.expired(
+scripts/cloud_gpu/reaper.py:325:        gcloud = require_tool("gcloud")
+scripts/cloud_gpu/reaper.py:326:        base = [gcloud, "--project", project, "--quiet"]
+scripts/cloud_gpu/flows.py:42:    elif config.provider == "ssh":
+scripts/cloud_gpu/flows.py:60:    if config.provider == "kubernetes":
+scripts/cloud_gpu/flows.py:89:    elif config.provider == "hetzner":
+scripts/cloud_gpu/flows.py:92:    if config.mode == "k8s":
+scripts/cloud_gpu/flows.py:94:        if config.provider == "hetzner":
+scripts/cloud_gpu/flows.py:102:    if config.provider in cfg.CLOUDS or config.provider == "hetzner":
+scripts/cloud_gpu/flows.py:104:    elif config.mode == "runner":  # a host we keep, prepared with infra/ansible
+scripts/cloud_gpu/flows.py:108:    if config.mode == "runner":
+scripts/cloud_gpu/flows.py:138:    if config.provider == "hetzner":
+scripts/cloud_gpu/flows.py:159:    if config.mode == "runner":
+scripts/cloud_gpu/flows.py:162:    if config.provider == "local":
+scripts/cloud_gpu/flows.py:167:    elif config.mode == "k8s":
+scripts/cloud_gpu/flows.py:176:        if config.provider == "ssh":
+scripts/cloud_gpu/flows.py:251:    if config.mode == "runner" and outputs.get("runner_id"):
+scripts/cloud_gpu/flows.py:258:    if config.mode == "k8s" and config.provider in {"kubernetes", "ssh"}:
+scripts/cloud_gpu/flows.py:265:    if config.provider == "hetzner":
+scripts/cloud_gpu/cli.py:6:  python -m scripts.cloud_gpu plan --provider aws --model medgemma-27b-it
+scripts/cloud_gpu/cli.py:15:  python -m scripts.cloud_gpu reap --provider aws --provider gcp --yes
+scripts/cloud_gpu/cli.py:285:    if not config.ssh_user and config.provider == "ssh":
+scripts/cloud_gpu/cli.py:330:    elif config.provider == "hetzner" and check:
+scripts/cloud_gpu/cli.py:367:        if config.mode == "runner":
+scripts/cloud_gpu/cli.py:390:        if provider == "aws":
+scripts/cloud_gpu/cli.py:393:        elif provider == "gcp":
+scripts/cloud_gpu/cli.py:398:        elif provider == "azure":
+scripts/cloud_gpu/cli.py:400:        elif provider == "hetzner":
+scripts/cloud_gpu/cli.py:402:        elif provider == "github":
+scripts/cloud_gpu/cli.py:470:    if args.command == "run":
+scripts/cloud_gpu/cli.py:472:    if args.command == "wait-runner":
+scripts/cloud_gpu/cli.py:483:    if command == "plan":
+scripts/cloud_gpu/cli.py:491:    if command == "up":
+scripts/cloud_gpu/cli.py:500:    if args.command == "reap":
+scripts/cloud_gpu/cli.py:502:    if args.command == "job-manifest":
+scripts/cloud_gpu/hetzner.py:173:        if status == "ready" and transaction.get("server_number"):
+scripts/cloud_gpu/hetzner.py:176:        if status == "cancelled":
+scripts/cloud_gpu/hetzner.py:208:        if error.status == 409:
+scripts/cloud_gpu/terraform.py:16:    return "k8s" if config.mode == "k8s" else "vm"
+scripts/cloud_gpu/terraform.py:40:    if kind == "vm":
+scripts/cloud_gpu/terraform.py:47:    if config.provider == "aws":
+scripts/cloud_gpu/terraform.py:49:    elif config.provider == "gcp":
+scripts/cloud_gpu/terraform.py:52:        if config.accelerator_type or kind == "k8s":
+scripts/cloud_gpu/terraform.py:54:    elif config.provider == "azure":
+scripts/repository_rulesets.py:97:        if summary.get("source_type", "Repository") == "Repository"
+scripts/repository_rulesets.py:147:        same = sorted(map(_canonical, want)) == sorted(map(_canonical, have))
+scripts/repository_rulesets.py:149:    return [] if want == have else mismatch
+scripts/repository_rulesets.py:197:    level = "error" if mode == "require" else "warning"
+scripts/repository_rulesets.py:202:        return 1 if mode == "require" else 0
+scripts/repository_rulesets.py:218:    return 1 if mode == "require" else 0
+scripts/repository_rulesets.py:253:    if args.command == "check":
+scripts/repository_rulesets.py:262:if __name__ == "__main__":
+scripts/bump_version.py:40:    if bump_type == "major":
+scripts/bump_version.py:42:    if bump_type == "minor":
+scripts/bump_version.py:44:    if bump_type == "patch":
+scripts/bump_version.py:50:def update_pyproject(pyproject_path: Path, old_version: str, new_version: str) -> None:
+scripts/bump_version.py:58:    if content == new_content:
+scripts/bump_version.py:67:    changelog_path: Path, version: str, bump_type: str, description: str
+scripts/bump_version.py:147:        old_version = get_current_version(pyproject_path)
+scripts/bump_version.py:148:        print(f"Current version: {old_version}")
+scripts/bump_version.py:151:        new_version = bump_version(old_version, args.bump_type)
+scripts/bump_version.py:152:        print(f"New version: {new_version}")
+scripts/bump_version.py:177:if __name__ == "__main__":
+scripts/gpu-runner-start.sh:21:RUNNER_VERSION="2.338.0"
+scripts/gpu-runner-start.sh:46:    "https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz"
+scripts/gpu-runner-start.sh:71:  if [[ "${1:-}" == --poweroff ]]; then
+scripts/gpu-runner-start.sh:101:  if [[ "${1:-}" == serve ]]; then
+scripts/medbench-model-run.sh:52:LLAMA_VERSION="${LLAMA_VERSION:-b11738}"
+scripts/medbench-model-run.sh:107:if [[ "$SERVER" == unimedvl ]]; then
+scripts/medbench-model-run.sh:150:  local release="https://github.com/ggml-org/llama.cpp/releases/download/$LLAMA_VERSION"
+scripts/medbench-model-run.sh:188:    if [[ "$UNIMEDVL_DEVICE" == cpu && "$name" == *.safetensors ]]; then
+scripts/medbench-model-run.sh:206:  "$python" -m pip install --quiet --upgrade pip
+scripts/medbench-model-run.sh:207:  if [[ "$UNIMEDVL_DEVICE" == cuda ]]; then
+scripts/medbench-model-run.sh:208:    "$python" -m pip install --quiet -r "$lock"
+scripts/medbench-model-run.sh:211:  mapfile -t torch_pins < <(grep -E '^(torch|torchvision)==' "$lock")
+scripts/medbench-model-run.sh:212:  grep -vE '^(torch|torchvision|triton|nvidia-[a-z0-9-]+|cuda-[a-z-]+)==' "$lock" >"$cpu_lock"
+scripts/medbench-model-run.sh:213:  "$python" -m pip install --quiet --no-deps \
+scripts/medbench-model-run.sh:214:    --index-url https://download.pytorch.org/whl/cpu "${torch_pins[@]}"
+scripts/medbench-model-run.sh:215:  "$python" -m pip install --quiet --no-deps -r "$cpu_lock"
+scripts/medbench-model-run.sh:283:  if [[ "$UNIMEDVL_ENGINE" == echo ]]; then
+scripts/medbench-model-run.sh:312:  if [[ "$load_mode" == mmap ]]; then
+scripts/medbench-model-run.sh:333:  if [[ "$SERVER" == unimedvl ]]; then
+scripts/medbench-model-run.sh:366:    if ((waited >= HEALTH_TIMEOUT)); then
+scripts/medbench-model-run.sh:382:  if [[ "$SERVER" == unimedvl ]]; then
+scripts/medbench-model-run.sh:405:    [[ "$task" == ocr-history ]] && tokens=$PAGE_MAX_TOKENS
+scripts/medbench-model-run.sh:418:  if [[ "${RUN_PYTEST:-1}" == 1 ]]; then
+scripts/medbench-model-run.sh:422:      MEDBENCH_VISION="$([[ "$SERVER" == unimedvl || -n "$MMPROJ_FILE" ]] && echo 1 || echo 0)" \
+scripts/medbench-model-run.sh:427:  if [[ "$SERVER" == llama ]]; then
+scripts/medbench-model-run.sh:438:  if [[ "$SERVER" == unimedvl ]]; then
+scripts/validate_changeset.py:150:    prefix = "" if prefix == "." else f"{prefix}/"
+scripts/validate_changeset.py:167:        if PurePosixPath(name).parent.as_posix() == f"{prefix}changelog.d"
+scripts/validate_changeset.py:235:if __name__ == "__main__":
+scripts/check-pipeline-status.sh:24:    if selection == "cancelled" and result == "cancelled":
+scripts/check-pipeline-status.sh:26:    elif selection == "failed" and result not in {"success", "skipped", "cancelled"}:
+scripts/check-pipeline-status.sh:43:    [[ "$path" == "$reference" ]] && return 1
+scripts/check-pipeline-status.sh:57:    branch_head="$(git ls-remote "$GIT_REMOTE" "refs/heads/$BRANCH_NAME" 2>/dev/null | awk 'NR == 1 {print $1}')"
+scripts/check-pipeline-status.sh:95:      if [[ "$policy_job" == "$job" ]]; then
+scripts/check-pipeline-status.sh:100:    if [[ "$superseded" == true && "$policy" == true ]]; then
+scripts/gpu-host-run.sh:49:PYTHON_VERSION="${PYTHON_VERSION:-3.15}"
+scripts/gpu-host-run.sh:50:UNIMEDVL_PYTHON_VERSION="3.14"  # scripts/unimedvl-requirements.in
+scripts/gpu-host-run.sh:53:UV_VERSION="0.13.1"
+scripts/gpu-host-run.sh:63:  local version="$1"
+scripts/gpu-host-run.sh:75:  version="$(nvidia-smi --query-gpu=driver_version --format=csv,noheader | head -n 1)"
+scripts/gpu-host-run.sh:98:      "https://github.com/astral-sh/uv/releases/download/$UV_VERSION/uv-$arch-unknown-linux-gnu.tar.gz"
+scripts/gpu-host-run.sh:120:  "$UV" pip install --quiet --python "$venv/bin/python" -e ".[dev]"
+scripts/gpu-host-run.sh:125:  if [[ "$GPU_MODEL" == unimedvl && -z "${UNIMEDVL_PYTHON:-}" ]]; then
+scripts/gpu-host-run.sh:172:  if [[ "$REQUIRE_GPU" == 1 ]]; then
+scripts/gpu-host-run.sh:178:  if [[ " $STEPS " == *" download "* ]]; then
+scripts/gpu-host-run.sh:183:  if ((status == 0)) && [[ " $STEPS " == *" run "* ]]; then
+scripts/gpu-host-run.sh:189:  if [[ "$CLEANUP" == 1 ]]; then
+infra/terraform/gcp/vm/versions.tf:2:  required_version = ">= 1.10"
+infra/terraform/gcp/vm/versions.tf:5:      source  = "hashicorp/google"
+infra/terraform/gcp/vm/versions.tf:6:      version = "~> 8.7"
+.github/workflows/security.yml:44:          python-version: ${{ matrix.python }}
+.github/workflows/security.yml:99:    if: github.event_name == 'pull_request'
+.github/workflows/security.yml:120:        if: steps.graph.outputs.enabled == 'true'
+.github/workflows/security.yml:168:          python-version: '3.15'
+infra/terraform/gcp/vm/variables.tf:34:  description = "Zone of the VM; the GPU type must be offered there (gcloud compute accelerator-types list)."
+infra/terraform/gcp/vm/variables.tf:58:  description = "Boot image: the Deep Learning VM base image ships NVIDIA driver R580."
+scripts/check_release.py:71:def pypi_url(package_name: str, version: str) -> str:
+scripts/check_release.py:78:    if status == 200:
+scripts/check_release.py:80:    if status == 404:
+scripts/check_release.py:88:def pypi_release_exists(package_name: str, version: str) -> bool:
+scripts/check_release.py:91:    return artifact_exists(status, f"{package_name}=={version} on PyPI")
+scripts/check_release.py:97:    url = f"https://api.github.com/repos/{repository_path}/releases/tags/{quote(tag, safe='')}"
+scripts/check_release.py:115:    version = read_field(manifest, "project.version")
+scripts/check_release.py:139:    version: str,
+scripts/check_release.py:154:    print(f"Waiting up to {timeout_seconds:g}s for {package_name}=={version} on PyPI")
+scripts/check_release.py:164:            if status == 200:
+scripts/check_release.py:165:                print(f"PyPI now serves {package_name}=={version}")
+scripts/check_release.py:179:        f"The upload step succeeded, but {package_name}=={version} was not visible "
+scripts/check_release.py:203:        if args.command == "check":
+scripts/check_release.py:224:if __name__ == "__main__":
+scripts/check_file_size.py:158:        if status == LineStatus.VIOLATION:
+scripts/check_file_size.py:160:        elif status == LineStatus.WARNING:
+scripts/check_file_size.py:253:if __name__ == "__main__":
+infra/terraform/gcp/vm/main.tf:67:    for_each = var.accelerator_type == "" ? [] : [var.accelerator_type]
+scripts/cloud-gpu-install-tools.sh:13:#   aws      terraform and AWS CLI v2 (aws eks get-token, the reaper)
+scripts/cloud-gpu-install-tools.sh:15:#   gcp      terraform, gcloud and gke-gcloud-auth-plugin
+scripts/cloud-gpu-install-tools.sh:25:TERRAFORM_VERSION=1.16.6
+scripts/cloud-gpu-install-tools.sh:27:TFLINT_VERSION=v0.64.0
+scripts/cloud-gpu-install-tools.sh:29:KUBECTL_VERSION=v1.37.1
+scripts/cloud-gpu-install-tools.sh:31:KUBECONFORM_VERSION=v0.8.0
+scripts/cloud-gpu-install-tools.sh:33:HELM_VERSION=v4.3.1
+scripts/cloud-gpu-install-tools.sh:35:AWSCLI_VERSION=2.37.13
+scripts/cloud-gpu-install-tools.sh:37:GCLOUD_VERSION=588.0.0
+scripts/cloud-gpu-install-tools.sh:39:AZURE_CLI_VERSION=2.91.0
+scripts/cloud-gpu-install-tools.sh:40:PYTHON_TOOLS=(ansible-core==2.21.5 ansible-lint==26.10.1 yamllint==1.38.0 shellcheck-py==0.11.0.1)
+scripts/cloud-gpu-install-tools.sh:53:  if command -v apt-get >/dev/null && ! command -v ssh >/dev/null; then
+scripts/cloud-gpu-install-tools.sh:54:    apt-get update -qq
+scripts/cloud-gpu-install-tools.sh:55:    apt-get install -y -qq --no-install-recommends \
+scripts/cloud-gpu-install-tools.sh:67:  fetch "https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" \
+scripts/cloud-gpu-install-tools.sh:75:  fetch "https://github.com/terraform-linters/tflint/releases/download/$TFLINT_VERSION/tflint_linux_amd64.zip" \
+scripts/cloud-gpu-install-tools.sh:79:  fetch "https://github.com/yannh/kubeconform/releases/download/$KUBECONFORM_VERSION/kubeconform-linux-amd64.tar.gz" \
+scripts/cloud-gpu-install-tools.sh:86:  python3 -m pip install -q --no-cache-dir "${PYTHON_TOOLS[@]}"
+scripts/cloud-gpu-install-tools.sh:91:  command -v aws >/dev/null && return
+scripts/cloud-gpu-install-tools.sh:100:  command -v az >/dev/null && return
+scripts/cloud-gpu-install-tools.sh:102:  "$PREFIX/azure-cli/bin/pip" install -q --no-cache-dir "azure-cli==$AZURE_CLI_VERSION"
+scripts/cloud-gpu-install-tools.sh:108:  if ! command -v gcloud >/dev/null; then
+scripts/cloud-gpu-install-tools.sh:109:    fetch "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-$GCLOUD_VERSION-linux-x86_64.tar.gz" \
+scripts/cloud-gpu-install-tools.sh:110:      "$GCLOUD_SHA256" gcloud.tar.gz
+scripts/cloud-gpu-install-tools.sh:111:    tar -xzf gcloud.tar.gz -C "$PREFIX"
+scripts/cloud-gpu-install-tools.sh:112:    ln -sf "$PREFIX/google-cloud-sdk/bin/gcloud" "$PREFIX/bin/gcloud"
+scripts/cloud-gpu-install-tools.sh:114:  if ! command -v gke-gcloud-auth-plugin >/dev/null; then
+scripts/cloud-gpu-install-tools.sh:115:    gcloud components install gke-gcloud-auth-plugin --quiet >/dev/null
+scripts/cloud-gpu-install-tools.sh:116:    ln -sf "$(dirname "$(readlink -f "$(command -v gcloud)")")/gke-gcloud-auth-plugin" \
+scripts/cloud-gpu-install-tools.sh:117:      "$PREFIX/bin/gke-gcloud-auth-plugin"
+scripts/cloud-gpu-install-tools.sh:132:    infra | aws | azure | gcp | hetzner)
+scripts/smoke_test_published_package.py:159:    if os.name == "nt":
+scripts/smoke_test_published_package.py:166:    scripts_dir = venv_dir / ("Scripts" if os.name == "nt" else "bin")
+scripts/smoke_test_published_package.py:168:    if os.name == "nt" and not script_path.exists():
+scripts/smoke_test_published_package.py:184:    version: str,
+scripts/smoke_test_published_package.py:195:    package_spec = f"{package_name}=={version}"
+scripts/smoke_test_published_package.py:210:        if result.returncode == 0:
+scripts/smoke_test_published_package.py:220:def verify_imports(python: Path, metadata: PackageMetadata, version: str) -> None:
+scripts/smoke_test_published_package.py:323:        help="Number of pip install attempts while waiting for index propagation",
+scripts/smoke_test_published_package.py:364:            f"{metadata.distribution_name}=={args.version} "
+scripts/smoke_test_published_package.py:396:if __name__ == "__main__":
+scripts/recheck_broken_links.py:145:    return status is not None and (status == 429 or 500 <= status <= 599)
+scripts/recheck_broken_links.py:161:    if not owner or not repo or not ref or (parts[2] == "blob" and not path):
+scripts/recheck_broken_links.py:207:                if response.status == 200:
+scripts/recheck_broken_links.py:239:            if time.monotonic() + delay >= deadline:
+scripts/recheck_broken_links.py:260:                if os.environ.get("RECHECK_VERBOSE") == "true":
+scripts/recheck_broken_links.py:265:            if os.environ.get("RECHECK_VERBOSE") == "true":
+scripts/recheck_broken_links.py:368:        and len(result.recovered) == len(unanswered)
+scripts/recheck_broken_links.py:374:if __name__ == "__main__":
+.github/workflows/release.yml:40:  # === DETECT CHANGES - determines which jobs should run ===
+.github/workflows/release.yml:61:          python-version: '3.15'
+.github/workflows/release.yml:100:  # === LINT AND FORMAT CHECK ===
+.github/workflows/release.yml:115:        github.event_name == 'workflow_dispatch' ||
+.github/workflows/release.yml:116:        needs.detect-changes.outputs.any-code-changed == 'true'
+.github/workflows/release.yml:125:        if: github.event_name == 'pull_request'
+.github/workflows/release.yml:133:          python-version: '3.15'
+.github/workflows/release.yml:169:              python -m pip install --upgrade pip
+.github/workflows/release.yml:170:              pip install -e ".[dev]"
+.github/workflows/release.yml:203:  # === DOCUMENTATION VALIDATION ===
+.github/workflows/release.yml:220:        github.event_name == 'workflow_dispatch' ||
+.github/workflows/release.yml:221:        needs.detect-changes.outputs.docs-changed == 'true'
+.github/workflows/release.yml:241:  # gate on `result == 'success'` rather than on the run being green.
+.github/workflows/release.yml:263:                (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+.github/workflows/release.yml:264:                github.event_name == 'workflow_dispatch'
+.github/workflows/release.yml:272:  # === TEST ===
+.github/workflows/release.yml:288:        github.event_name == 'workflow_dispatch' ||
+.github/workflows/release.yml:289:        needs.detect-changes.outputs.any-code-changed == 'true'
+.github/workflows/release.yml:299:          python-version: '3.15'
+.github/workflows/release.yml:335:              python -m pip install --upgrade pip
+.github/workflows/release.yml:336:              pip install -e ".[dev]"
+.github/workflows/release.yml:360:        if: env.CODECOV_TOKEN == ''
+.github/workflows/release.yml:372:  # === BUILD PACKAGE ===
+.github/workflows/release.yml:385:        github.event_name == 'workflow_dispatch' ||
+.github/workflows/release.yml:386:        needs.detect-changes.outputs.any-code-changed == 'true'
+.github/workflows/release.yml:388:        needs.lint.result == 'success' &&
+.github/workflows/release.yml:389:        needs.test.result == 'success'
+.github/workflows/release.yml:399:          python-version: '3.15'
+.github/workflows/release.yml:429:          python -m pip install --upgrade pip
+.github/workflows/release.yml:430:          pip install build twine
+.github/workflows/release.yml:469:  # === CHANGELOG CHECK - only runs on PRs with code changes ===
+.github/workflows/release.yml:479:    if: github.event_name == 'pull_request' && needs.detect-changes.outputs.any-code-changed == 'true'
+.github/workflows/release.yml:489:          python-version: "3.15"
+.github/workflows/release.yml:523:  # === DOCKER IMAGE BUILD CHECK (pull requests) ===
+.github/workflows/release.yml:534:    if: github.event_name == 'pull_request' && needs.detect-changes.outputs.any-code-changed == 'true'
+.github/workflows/release.yml:551:        if: steps.dockerfile.outputs.exists == 'true'
+.github/workflows/release.yml:555:        if: steps.dockerfile.outputs.exists == 'true'
+.github/workflows/release.yml:577:      version: ${{ steps.github_release.outputs.version }}
+.github/workflows/release.yml:587:      github.event_name == 'push' && github.ref == 'refs/heads/main' &&
+.github/workflows/release.yml:588:      needs.lint.result == 'success' &&
+.github/workflows/release.yml:589:      needs.test.result == 'success' &&
+.github/workflows/release.yml:590:      needs.build.result == 'success' &&
+.github/workflows/release.yml:591:      needs.release-preflight.result == 'success'
+.github/workflows/release.yml:606:          python-version: '3.15'
+.github/workflows/release.yml:636:          python -m pip install --upgrade pip
+.github/workflows/release.yml:637:          pip install build twine
+.github/workflows/release.yml:646:        if: steps.version_check.outputs.should_release == 'true'
+.github/workflows/release.yml:653:        if: steps.version_check.outputs.should_release == 'true'
+.github/workflows/release.yml:659:        if: steps.version_check.outputs.should_release == 'true'
+.github/workflows/release.yml:663:          RELEASE_VERSION: ${{ steps.version_check.outputs.current_version }}
+.github/workflows/release.yml:667:        if: steps.version_check.outputs.should_release == 'true'
+.github/workflows/release.yml:669:          RELEASE_VERSION: ${{ steps.version_check.outputs.current_version }}
+.github/workflows/release.yml:676:        if: steps.version_check.outputs.should_release == 'true'
+.github/workflows/release.yml:679:          RELEASE_VERSION: ${{ steps.version_check.outputs.current_version }}
+.github/workflows/release.yml:686:          echo "version=$RELEASE_VERSION" >> "$GITHUB_OUTPUT"
+.github/workflows/release.yml:694:      version: ${{ steps.github_release.outputs.version }}
+.github/workflows/release.yml:707:      github.event_name == 'workflow_dispatch' &&
+.github/workflows/release.yml:708:      needs.lint.result == 'success' &&
+.github/workflows/release.yml:709:      needs.test.result == 'success' &&
+.github/workflows/release.yml:710:      needs.build.result == 'success' &&
+.github/workflows/release.yml:711:      needs.release-preflight.result == 'success'
+.github/workflows/release.yml:731:          python-version: '3.15'
+.github/workflows/release.yml:762:          python -m pip install --upgrade pip
+.github/workflows/release.yml:763:          pip install build twine "scriv[toml]"
+.github/workflows/release.yml:783:        if: steps.version.outputs.version_committed == 'true' || steps.version.outputs.already_released == 'true'
+.github/workflows/release.yml:789:        if: steps.version_check.outputs.should_release == 'true'
+.github/workflows/release.yml:795:        if: steps.version_check.outputs.should_release == 'true'
+.github/workflows/release.yml:803:        if: steps.version_check.outputs.should_release == 'true'
+.github/workflows/release.yml:809:        if: steps.version_check.outputs.should_release == 'true'
+.github/workflows/release.yml:816:        if: steps.version_check.outputs.should_release == 'true'
+.github/workflows/release.yml:820:          RELEASE_VERSION: ${{ steps.version_check.outputs.current_version }}
+.github/workflows/release.yml:824:        if: steps.version_check.outputs.should_release == 'true'
+.github/workflows/release.yml:826:          RELEASE_VERSION: ${{ steps.version_check.outputs.current_version }}
+.github/workflows/release.yml:833:        if: steps.version_check.outputs.should_release == 'true'
+.github/workflows/release.yml:836:          RELEASE_VERSION: ${{ steps.version_check.outputs.current_version }}
+.github/workflows/release.yml:843:          echo "version=$RELEASE_VERSION" >> "$GITHUB_OUTPUT"
+.github/workflows/release.yml:853:      needs.release-preflight.result == 'success' && (
+.github/workflows/release.yml:854:        needs.auto-release.outputs.released == 'true' ||
+.github/workflows/release.yml:855:        needs.manual-release.outputs.released == 'true'
+.github/workflows/release.yml:863:      image: ${{ steps.config.outputs.image }}
+.github/workflows/release.yml:864:      version: ${{ steps.config.outputs.version }}
+.github/workflows/release.yml:869:      RELEASE_VERSION: ${{ needs.auto-release.outputs.version || needs.manual-release.outputs.version }}
+.github/workflows/release.yml:888:              echo "version=$RELEASE_VERSION"
+.github/workflows/release.yml:898:      needs.release-preflight.result == 'success' &&
+.github/workflows/release.yml:899:      needs.docker-publish-config.outputs.enabled == 'true'
+.github/workflows/release.yml:956:      needs.release-preflight.result == 'success' &&
+.github/workflows/release.yml:957:      needs.docker-publish-build.result == 'success'
+.github/workflows/compatibility.yml:60:          python-version: ${{ matrix.python }}
+.github/workflows/compatibility.yml:62:        run: python -m pip install -e '.[dev]'
+scripts/measure_training_memory.py:126:    return peak / GB if sys.platform == "darwin" else peak * 1024 / GB
+scripts/measure_training_memory.py:197:def model_spec(config: Any, name: str, params: float, image: bool) -> Any:
+scripts/measure_training_memory.py:252:    if config.method == "qlora" and device != "cuda":
+scripts/measure_training_memory.py:257:    if config.method == "qlora" and not _has_module("bitsandbytes"):
+scripts/measure_training_memory.py:259:    if config.autocast_dtype == "bf16" and device == "mps":
+scripts/measure_training_memory.py:291:    if config.image_size == 0:
+scripts/measure_training_memory.py:334:    return int((batch["input_ids"][0] == token).sum())
+scripts/measure_training_memory.py:361:    if config.method == "qlora":
+scripts/measure_training_memory.py:384:    if config.method == "full":
+scripts/measure_training_memory.py:390:    if config.method == "qlora":
+scripts/measure_training_memory.py:414:    if device == "cuda":
+scripts/measure_training_memory.py:425:    if device == "cuda":
+scripts/measure_training_memory.py:443:    if device == "cuda":
+scripts/measure_training_memory.py:455:            dtype=torch.bfloat16 if autocast == "bf16" else torch.float16,
+scripts/measure_training_memory.py:463:        if device == "cuda":
+scripts/measure_training_memory.py:489:    free = report["device"].get("free_gb" if device == "cuda" else "host_available_gb")
+scripts/measure_training_memory.py:622:        or type(error).__name__ == "OutOfMemoryError"
+scripts/measure_training_memory.py:665:    weights = args.weights_dtype or ("fp32" if args.method == "full" else "bf16")
+scripts/measure_training_memory.py:676:        autocast_dtype=None if args.autocast == "none" else args.autocast,
+scripts/measure_training_memory.py:705:if __name__ == "__main__":
+scripts/check_distribution.py:144:    version = metadata.get("Metadata-Version", "0")
+scripts/check_distribution.py:146:    if parsed < MINIMUM_METADATA_VERSION:
+scripts/check_distribution.py:322:        bin_dir = work / "venv" / ("Scripts" if sys.platform == "win32" else "bin")
+scripts/check_distribution.py:391:if __name__ == "__main__":
+scripts/preflight-credentials.sh:254:  status=$(printf '%s\n' "$headers" | awk 'NR==1{gsub(/\r/,"");print $2}')
+scripts/preflight-credentials.sh:255:  location=$(printf '%s\n' "$headers" | awk 'tolower($1)=="location:"{gsub(/\r/,"");print $2; exit}')
+scripts/check_web_archive.py:136:        "Suggested fix: replace the broken link with the archived version:\n"
+scripts/check_web_archive.py:156:    print("=== Web Archive Fallback Check ===")
+scripts/check_web_archive.py:199:if __name__ == "__main__":
+scripts/medbench-mlx-run.py:48:    if sys.argv[1:] == ["--worker-smoke"]:
+scripts/medbench-mlx-run.py:82:if __name__ == "__main__":
+scripts/format_release_notes.py:90:    version: str,
+scripts/format_release_notes.py:123:    bare_version = normalize_version(version)
+scripts/format_release_notes.py:261:if __name__ == "__main__":

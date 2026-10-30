@@ -1,0 +1,90 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.10, pytest-9.2.0, pluggy-1.7.0 -- /tmp/gh-issue-solver-1793372776892/.cache/issue25/unimedvl/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/gh-issue-solver-1793372776892
+configfile: pyproject.toml
+plugins: anyio-4.15.1, asyncio-1.4.1, cov-7.1.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 1 item
+
+tests/test_unimedvl_upstream.py::test_chat_generates_the_golden_tokens FAILED [100%]
+
+=================================== FAILURES ===================================
+____________________ test_chat_generates_the_golden_tokens _____________________
+
+upstream = (PosixPath('/tmp/gh-issue-solver-1793372776892/.cache/medbench/unimedvl-code-f51aa0accbd0'), PosixPath('/tmp/gh-issue-solver-1793372776892/.cache/medbench/models/unimedvl-29918cef3ce9'))
+
+    @pytest.mark.filterwarnings("ignore:.*CUDA is not available.*")
+    def test_chat_generates_the_golden_tokens(upstream: tuple[Path, Path]) -> None:
+>       tokens, best_logits = generate(*upstream)
+                              ^^^^^^^^^^^^^^^^^^^
+
+/tmp/gh-issue-solver-1793372776892/tests/test_unimedvl_upstream.py:202: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tmp/gh-issue-solver-1793372776892/tests/test_unimedvl_upstream.py:154: in generate
+    model = tiny_bagel(model_dir)
+            ^^^^^^^^^^^^^^^^^^^^^
+/tmp/gh-issue-solver-1793372776892/tests/test_unimedvl_upstream.py:114: in tiny_bagel
+    model = Bagel(Qwen2ForCausalLM(llm_config), SiglipVisionModel(vit_config), config)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tmp/gh-issue-solver-1793372776892/.cache/medbench/unimedvl-code-f51aa0accbd0/codes/modeling/unimedvl/qwen2_navit.py:1184: in __init__
+    self.model = Qwen2Model(config)
+                 ^^^^^^^^^^^^^^^^^^
+/tmp/gh-issue-solver-1793372776892/.cache/medbench/unimedvl-code-f51aa0accbd0/codes/modeling/unimedvl/qwen2_navit.py:1035: in __init__
+    [layer_module(config, layer_idx) for layer_idx in range(config.num_hidden_layers)]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tmp/gh-issue-solver-1793372776892/.cache/medbench/unimedvl-code-f51aa0accbd0/codes/modeling/unimedvl/qwen2_navit.py:724: in __init__
+    self.self_attn = attn_module(config, layer_idx)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tmp/gh-issue-solver-1793372776892/.cache/medbench/unimedvl-code-f51aa0accbd0/codes/modeling/unimedvl/qwen2_navit.py:391: in __init__
+    super().__init__(config, layer_idx)
+/tmp/gh-issue-solver-1793372776892/.cache/medbench/unimedvl-code-f51aa0accbd0/codes/modeling/qwen2/modeling_qwen2.py:274: in __init__
+    self.rope_theta = config.rope_theta
+                      ^^^^^^^^^^^^^^^^^
+/tmp/gh-issue-solver-1793372776892/.cache/issue25/unimedvl/lib/python3.14/site-packages/transformers/configuration_utils.py:658: in __getattribute__
+    return super().__getattribute__(key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Qwen2Config {
+  "_attn_implementation_autoset": true,
+  "add_cross_attention": false,
+  "architectures": [
+    "Qwen2F...sion": "5.22.1",
+  "use_bfloat16": false,
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 152064
+}
+
+key = 'rope_theta'
+
+    def __getattribute__(self, key: str) -> Any:
+        # In heterogeneous configs, per-layer attributes are ambiguous on the global config.
+        # Callers must read them from a concrete layer unless they explicitly opt into the global value.
+        heterogeneity_spec = super().__getattribute__("__dict__").get("_heterogeneity_spec")
+        if heterogeneity_spec is not None:
+            if key in heterogeneity_spec.per_layer_attributes:
+                if not super().__getattribute__("allow_global_per_layer_attribute_access"):
+                    raise AmbiguousGlobalPerLayerAttributeError(
+                        f"'{key}' is a per-layer attribute and may vary across layers. Access it via the individual layer "
+                        f"configs instead (e.g. config.per_layer_config[i].{key}). To read the global config value from "
+                        f"config.{key} anyway, set `allow_global_per_layer_attribute_access` to `True` on the config. "
+                        f"Warning: only do this if the caller can safely handle heterogeneous configs; code that assumes "
+                        f"a homogeneous model may use the global value incorrectly."
+                    )
+    
+                logger.warning_once(
+                    f"Reading global config value for per-layer attribute `{key}` on a heterogeneous config. "
+                    "Only do this if the caller can safely handle heterogeneous configs; code that assumes a homogeneous "
+                    "model may use the global value incorrectly."
+                )
+    
+>       return super().__getattribute__(key)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'Qwen2Config' object has no attribute 'rope_theta'
+
+/tmp/gh-issue-solver-1793372776892/.cache/issue25/unimedvl/lib/python3.14/site-packages/transformers/integrations/heterogeneity/configuration_utils.py:312: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_unimedvl_upstream.py::test_chat_generates_the_golden_tokens
+============================== 1 failed in 11.09s ==============================

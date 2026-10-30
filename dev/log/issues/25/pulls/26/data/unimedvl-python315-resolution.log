@@ -1,0 +1,663 @@
+DEBUG Found workspace root: /tmp/gh-issue-solver-1793372776892
+DEBUG Adding root workspace member: /tmp/gh-issue-solver-1793372776892
+DEBUG Skipping `pyproject.toml` in `/tmp/gh-issue-solver-1793372776892` (no `[tool.uv]` section)
+DEBUG Searching for user configuration in: /home/box/.config/uv/uv.toml
+DEBUG uv 0.13.6 (x86_64-unknown-linux-gnu)
+DEBUG Starting Python discovery for Python 3.15
+DEBUG Looking for Python 3.15
+DEBUG Searching for Python 3.15 in virtual environments, managed installations, or search path
+DEBUG Found `cpython-3.15.0-linux-x86_64-gnu` at `/tmp/gh-issue-solver-1793372776892/.venv/bin/python` (virtual environment)
+DEBUG Using Python 3.15.0 interpreter at `.venv/bin/python` for builds
+DEBUG Using request connect timeout of 10s and read timeout of 30s
+DEBUG Solving with installed Python version: 3.15.0
+DEBUG Solving with target Python version: >=3.15
+DEBUG Adding direct dependency: torch>=2.15.0, <2.15.0+
+DEBUG Adding direct dependency: torchvision*
+DEBUG Adding direct dependency: triton*
+DEBUG Adding direct dependency: transformers>=5.22.1, <5.22.1+
+DEBUG Adding direct dependency: accelerate>=1.15.0, <1.15.0+
+DEBUG Adding direct dependency: safetensors>=0.8.0, <0.8.0+
+DEBUG Adding direct dependency: tokenizers*
+DEBUG Adding direct dependency: sentencepiece>=0.2.2, <0.2.2+
+DEBUG Adding direct dependency: pillow>=13.0.0, <13.0.0+
+DEBUG Adding direct dependency: numpy>=2.5.4, <2.5.4+
+DEBUG Adding direct dependency: opencv-python>=5.0.0.93, <5.0.0.93+
+DEBUG Adding direct dependency: einops>=0.8.2, <0.8.2+
+DEBUG Adding direct dependency: matplotlib>=3.11.2, <3.11.2+
+DEBUG Adding direct dependency: contourpy>=1.4.0, <1.4.0+
+DEBUG Adding direct dependency: cycler>=0.12.1, <0.12.1+
+DEBUG Adding direct dependency: fonttools>=4.68.0, <4.68.0+
+DEBUG Adding direct dependency: kiwisolver>=1.5.1, <1.5.1+
+DEBUG Adding direct dependency: packaging>=26.3, <26.3+
+DEBUG Adding direct dependency: pyparsing>=3.3.3, <3.3.3+
+DEBUG Adding direct dependency: python-dateutil>=3.0.0, <3.0.0+
+INFO add_decision: Id::<PubGrubPackage>(0) @ 0a0.dev0 without checking dependencies    
+DEBUG Found stale response for: https://pypi.org/simple/torch/
+DEBUG Found fresh response for: https://pypi.org/simple/transformers/
+DEBUG Found stale response for: https://pypi.org/simple/accelerate/
+DEBUG Sending revalidation request for: https://pypi.org/simple/torch/
+DEBUG starting new connection 'Some("pypi.org")'    
+DEBUG Sending revalidation request for: https://pypi.org/simple/accelerate/
+DEBUG starting new connection 'Some("pypi.org")'    
+DEBUG connecting to 151.101.64.223:443
+DEBUG Found stale response for: https://pypi.org/simple/triton/
+DEBUG connecting to 151.101.128.223:443
+DEBUG Sending revalidation request for: https://pypi.org/simple/triton/
+DEBUG starting new connection 'Some("pypi.org")'    
+DEBUG Found fresh response for: https://pypi.org/simple/sentencepiece/
+DEBUG connected to 151.101.64.223:443
+DEBUG No cached session for DnsName("pypi.org")    
+DEBUG Not resuming any session    
+DEBUG Found stale response for: https://pypi.org/simple/torchvision/
+DEBUG Found stale response for: https://pypi.org/simple/tokenizers/
+DEBUG Found fresh response for: https://pypi.org/simple/opencv-python/
+DEBUG Found fresh response for: https://pypi.org/simple/numpy/
+DEBUG Found stale response for: https://pypi.org/simple/einops/
+DEBUG Found fresh response for: https://pypi.org/simple/pillow/
+DEBUG Found stale response for: https://pypi.org/simple/safetensors/
+DEBUG Found stale response for: https://pypi.org/simple/matplotlib/
+DEBUG Found stale response for: https://pypi.org/simple/contourpy/
+DEBUG Found fresh response for: https://pypi.org/simple/packaging/
+DEBUG Found stale response for: https://pypi.org/simple/cycler/
+DEBUG Found stale response for: https://pypi.org/simple/python-dateutil/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/75/75/47ebe0e2f1b04a180000e3a49ebdf4669dbab0c63489bcecf7855c26e4f4/transformers-5.22.1-py3-none-any.whl.metadata
+DEBUG Found stale response for: https://pypi.org/simple/kiwisolver/
+DEBUG Found stale response for: https://pypi.org/simple/pyparsing/
+DEBUG Found stale response for: https://pypi.org/simple/fonttools/
+DEBUG Sending revalidation request for: https://pypi.org/simple/torchvision/
+DEBUG starting new connection 'Some("pypi.org")'    
+DEBUG Sending revalidation request for: https://pypi.org/simple/tokenizers/
+DEBUG starting new connection 'Some("pypi.org")'    
+DEBUG Sending revalidation request for: https://pypi.org/simple/einops/
+DEBUG starting new connection 'Some("pypi.org")'    
+DEBUG connecting to 151.101.192.223:443
+DEBUG Sending revalidation request for: https://pypi.org/simple/safetensors/
+DEBUG starting new connection 'Some("pypi.org")'    
+DEBUG Sending revalidation request for: https://pypi.org/simple/matplotlib/
+DEBUG starting new connection 'Some("pypi.org")'    
+DEBUG Sending revalidation request for: https://pypi.org/simple/contourpy/
+DEBUG starting new connection 'Some("pypi.org")'    
+DEBUG Sending revalidation request for: https://pypi.org/simple/cycler/
+DEBUG starting new connection 'Some("pypi.org")'    
+DEBUG Sending revalidation request for: https://pypi.org/simple/python-dateutil/
+DEBUG starting new connection 'Some("pypi.org")'    
+DEBUG Sending revalidation request for: https://pypi.org/simple/kiwisolver/
+DEBUG starting new connection 'Some("pypi.org")'    
+DEBUG Sending revalidation request for: https://pypi.org/simple/pyparsing/
+DEBUG starting new connection 'Some("pypi.org")'    
+DEBUG Sending revalidation request for: https://pypi.org/simple/fonttools/
+DEBUG starting new connection 'Some("pypi.org")'    
+DEBUG connecting to 151.101.64.223:443
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/cf/4c/c73f828fdbcd37eaf21d08fa852544a3ca7c2dbb3ea76873d64f2ea413d1/opencv_python-5.0.0.93-cp37-abi3-manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/63/34/ba1c580383c9eada3711951fef0795c80b829a078d72188184bcab9dd527/packaging-26.3-py3-none-any.whl.metadata
+DEBUG connecting to 151.101.64.223:443
+DEBUG connecting to 151.101.192.223:443
+DEBUG connecting to 151.101.192.223:443
+DEBUG connecting to 151.101.192.223:443
+DEBUG connecting to 151.101.128.223:443
+DEBUG No cache entry for: https://files.pythonhosted.org/packages/93/3a/01360c8036822ed9f7aa32189a77d1476567ec1e8e1383522389e4faac45/numpy-2.5.4-cp315-cp315-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Sending fresh GET request for: https://files.pythonhosted.org/packages/93/3a/01360c8036822ed9f7aa32189a77d1476567ec1e8e1383522389e4faac45/numpy-2.5.4-cp315-cp315-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG starting new connection 'Some("files.pythonhosted.org")'    
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/85/11/e46fa0bcc0fc117f1eacc206b3d51f04d583fab328b4b740672d0438d83f/pillow-13.0.0-cp315-cp315-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG connecting to 151.101.128.223:443
+DEBUG connecting to 151.101.128.223:443
+DEBUG connected to 151.101.128.223:443
+DEBUG No cached session for DnsName("pypi.org")    
+DEBUG Not resuming any session    
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Not resuming    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG pooling idle connection for ("https", pypi.org)
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG connected to 151.101.64.223:443
+DEBUG Resuming session    
+DEBUG send frame=Headers { stream_id: StreamId(1), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(3), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(5), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(7), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(9), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(11), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(13), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(15), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(17), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(19), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(21), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(23), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(25), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(27), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG connected to 151.101.64.223:443
+DEBUG No cached session for DnsName("pypi.org")    
+DEBUG Not resuming any session    
+DEBUG connected to 151.101.192.223:443
+DEBUG No cached session for DnsName("pypi.org")    
+DEBUG Not resuming any session    
+DEBUG connected to 151.101.192.223:443
+DEBUG No cached session for DnsName("pypi.org")    
+DEBUG Not resuming any session    
+DEBUG connected to 151.101.192.223:443
+DEBUG No cached session for DnsName("pypi.org")    
+DEBUG Not resuming any session    
+DEBUG connected to 151.101.128.223:443
+DEBUG No cached session for DnsName("pypi.org")    
+DEBUG Not resuming any session    
+DEBUG connected to 151.101.192.223:443
+DEBUG No cached session for DnsName("pypi.org")    
+DEBUG Not resuming any session    
+DEBUG connected to 151.101.128.223:443
+DEBUG No cached session for DnsName("pypi.org")    
+DEBUG Not resuming any session    
+DEBUG connecting to 151.101.192.223:443
+DEBUG received frame=Settings { flags: (0x0), header_table_size: 8192, max_concurrent_streams: 100 }
+DEBUG send frame=Settings { flags: (0x1: ACK) }
+DEBUG received frame=WindowUpdate { stream_id: StreamId(0), size_increment: 16711681 }
+DEBUG received frame=Settings { flags: (0x1: ACK) }
+DEBUG received settings ACK; applying Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG connecting to 151.101.192.223:443
+DEBUG connecting to 151.101.128.223:443
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Resuming using PSK    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG connected to 151.101.192.223:443
+DEBUG Resuming session    
+DEBUG connecting to 151.101.64.223:443
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Not resuming    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG received frame=Headers { stream_id: StreamId(25), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(23), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(27), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(9), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(17), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(19), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(21), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(15), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(13), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(11), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(7), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(5), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(3), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(1), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Not resuming    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Not resuming    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Not resuming    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG connected to 151.101.128.223:443
+DEBUG Resuming session    
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Not resuming    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG Found not-modified response for: https://pypi.org/simple/pyparsing/
+DEBUG Found not-modified response for: https://pypi.org/simple/kiwisolver/
+DEBUG Found not-modified response for: https://pypi.org/simple/fonttools/
+DEBUG Found not-modified response for: https://pypi.org/simple/tokenizers/
+DEBUG Found not-modified response for: https://pypi.org/simple/contourpy/
+DEBUG Found not-modified response for: https://pypi.org/simple/cycler/
+DEBUG Found not-modified response for: https://pypi.org/simple/python-dateutil/
+DEBUG Found not-modified response for: https://pypi.org/simple/matplotlib/
+DEBUG Found not-modified response for: https://pypi.org/simple/safetensors/
+DEBUG Found not-modified response for: https://pypi.org/simple/einops/
+DEBUG Found not-modified response for: https://pypi.org/simple/triton/
+DEBUG Found not-modified response for: https://pypi.org/simple/accelerate/
+DEBUG Found not-modified response for: https://pypi.org/simple/torchvision/
+DEBUG Found not-modified response for: https://pypi.org/simple/torch/
+DEBUG connected to 151.101.64.223:443
+DEBUG Searching for a compatible version of torch (>=2.15.0, <2.15.0+)
+DEBUG No cached session for DnsName("files.pythonhosted.org")    
+DEBUG Not resuming any session    
+DEBUG Selecting: torch==2.15.0 [compatible] (torch-2.15.0-cp315-cp315-manylinux_2_28_x86_64.whl)
+DEBUG No cache entry for: https://files.pythonhosted.org/packages/89/b1/ba7b9c0164ce1cf62bf2872db63b8483289cf0f3110d6f9390eb09e409ed/kiwisolver-1.5.1-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata
+DEBUG Sending fresh GET request for: https://files.pythonhosted.org/packages/89/b1/ba7b9c0164ce1cf62bf2872db63b8483289cf0f3110d6f9390eb09e409ed/kiwisolver-1.5.1-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata
+DEBUG starting new connection 'Some("files.pythonhosted.org")'    
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/38/bb/d215ee7c73b61497b28a5503f9f53523f294fcc936762b7caf90e0c1c2b5/pyparsing-3.3.3-py3-none-any.whl.metadata
+DEBUG No cache entry for: https://files.pythonhosted.org/packages/ae/94/39660e8dc309f96bf7971eb4ec5659f272f84e42b34c9990a96ecce8442c/contourpy-1.4.0-cp315-cp315-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Sending fresh GET request for: https://files.pythonhosted.org/packages/ae/94/39660e8dc309f96bf7971eb4ec5659f272f84e42b34c9990a96ecce8442c/contourpy-1.4.0-cp315-cp315-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG starting new connection 'Some("files.pythonhosted.org")'    
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/3a/40/6706b82693715581457c6d5423eaa7faae576bb0526c5738a57085eb4449/tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+DEBUG No cache entry for: https://files.pythonhosted.org/packages/a1/ff/a97925464230d9c39c94e4cd7c5690db950373b34317e7f0ffe7b64b8d49/fonttools-4.68.0-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata
+DEBUG Sending fresh GET request for: https://files.pythonhosted.org/packages/a1/ff/a97925464230d9c39c94e4cd7c5690db950373b34317e7f0ffe7b64b8d49/fonttools-4.68.0-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata
+DEBUG starting new connection 'Some("files.pythonhosted.org")'    
+DEBUG connecting to 151.101.0.223:443
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/e7/05/c19819d5e3d95294a6f5947fb9b9629efb316b96de511b418c53d245aae6/cycler-0.12.1-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/5a/17/cebee01d1c0c1441174cf0456ddc91b280d79acb65340c05e41d77866ee8/python_dateutil-3.0.0-py2.py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/28/50/f203ff3a3ddfe19308efc83c5a3a29ed02bf786732ec35e68bf9162f3365/safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/3f/c9/af85b25e0d98bd921a7646ad1db1c8746250ee04b8f1595982d29b6283cf/triton-3.9.0-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/2a/09/f8d8f8f31e4483c10a906437b4ce31bdf3d6d417b73fe33f1a8b59e34228/einops-0.8.2-py3-none-any.whl.metadata
+DEBUG No cache entry for: https://files.pythonhosted.org/packages/a1/97/d7e90225ac145046787a2ee0fa4cdc7e4d5cb6772ea232130b10f8a4095a/matplotlib-3.11.2-cp315-cp315-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Sending fresh GET request for: https://files.pythonhosted.org/packages/a1/97/d7e90225ac145046787a2ee0fa4cdc7e4d5cb6772ea232130b10f8a4095a/matplotlib-3.11.2-cp315-cp315-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/92/74/699d28bed7453dbe40b09d37aab8f6cd75f19a77a77d5ab4588a4f3239e7/torchvision-0.29.2-py3-none-manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/8a/4c/34f0450479d01195027260da68d8a3880683f1640c3ca5adf64acb3185f1/accelerate-1.15.0-py3-none-any.whl.metadata
+DEBUG starting new connection 'Some("files.pythonhosted.org")'    
+DEBUG No cache entry for: https://files.pythonhosted.org/packages/5a/19/2cf22cae319810b3b488313c917ba7dd8566a4e849e0b8ed64599b414658/torch-2.15.0-cp315-cp315-manylinux_2_28_x86_64.whl.metadata
+DEBUG Sending fresh GET request for: https://files.pythonhosted.org/packages/5a/19/2cf22cae319810b3b488313c917ba7dd8566a4e849e0b8ed64599b414658/torch-2.15.0-cp315-cp315-manylinux_2_28_x86_64.whl.metadata
+DEBUG starting new connection 'Some("files.pythonhosted.org")'    
+DEBUG connecting to 151.101.64.223:443
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Not resuming    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Not resuming    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Resuming using PSK    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG connected to 151.101.128.223:443
+DEBUG Resuming session    
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Not resuming    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG pooling idle connection for ("https", files.pythonhosted.org)
+DEBUG reuse idle connection for ("https", files.pythonhosted.org)
+DEBUG reuse idle connection for ("https", files.pythonhosted.org)
+DEBUG reuse idle connection for ("https", files.pythonhosted.org)
+DEBUG reuse idle connection for ("https", files.pythonhosted.org)
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Resuming using PSK    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Not resuming    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG connected to 151.101.192.223:443
+DEBUG Resuming session    
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=Headers { stream_id: StreamId(1), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(3), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(5), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(7), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(9), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG connecting to 151.101.0.223:443
+DEBUG connecting to 151.101.0.223:443
+DEBUG reuse idle connection for ("https", files.pythonhosted.org)
+DEBUG connected to 151.101.64.223:443
+DEBUG Resuming session    
+DEBUG received frame=Settings { flags: (0x0), header_table_size: 8192, max_concurrent_streams: 100 }
+DEBUG send frame=Settings { flags: (0x1: ACK) }
+DEBUG received frame=WindowUpdate { stream_id: StreamId(0), size_increment: 16711681 }
+DEBUG connecting to 151.101.64.223:443
+DEBUG send frame=Headers { stream_id: StreamId(11), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG connected to 151.101.0.223:443
+DEBUG No cached session for DnsName("files.pythonhosted.org")    
+DEBUG Not resuming any session    
+DEBUG received frame=Settings { flags: (0x1: ACK) }
+DEBUG received settings ACK; applying Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG connected to 151.101.0.223:443
+DEBUG No cached session for DnsName("files.pythonhosted.org")    
+DEBUG Not resuming any session    
+DEBUG connected to 151.101.0.223:443
+DEBUG No cached session for DnsName("files.pythonhosted.org")    
+DEBUG Not resuming any session    
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Resuming using PSK    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG received frame=Headers { stream_id: StreamId(5), flags: (0x4: END_HEADERS) }
+DEBUG received frame=Data { stream_id: StreamId(5), flags: (0x1: END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(7), flags: (0x4: END_HEADERS) }
+DEBUG received frame=Headers { stream_id: StreamId(1), flags: (0x4: END_HEADERS) }
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG received frame=Data { stream_id: StreamId(7) }
+DEBUG received frame=Data { stream_id: StreamId(1), flags: (0x1: END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(3), flags: (0x4: END_HEADERS) }
+DEBUG received frame=Data { stream_id: StreamId(7) }
+DEBUG received frame=Data { stream_id: StreamId(7) }
+DEBUG received frame=Data { stream_id: StreamId(7), flags: (0x1: END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(9), flags: (0x4: END_HEADERS) }
+DEBUG received frame=Data { stream_id: StreamId(9) }
+DEBUG received frame=Data { stream_id: StreamId(3), flags: (0x1: END_STREAM) }
+DEBUG received frame=Data { stream_id: StreamId(9), flags: (0x1: END_STREAM) }
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Resuming using PSK    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Not resuming    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Not resuming    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Resuming using PSK    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG connected to 151.101.64.223:443
+DEBUG Resuming session    
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Not resuming    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG received frame=Headers { stream_id: StreamId(11), flags: (0x4: END_HEADERS) }
+DEBUG received frame=Data { stream_id: StreamId(11), flags: (0x1: END_STREAM) }
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Resuming using PSK    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG Adding transitive dependency for torch==2.15.0: filelock*
+DEBUG Adding transitive dependency for torch==2.15.0: typing-extensions>=4.13.0
+DEBUG Adding transitive dependency for torch==2.15.0: setuptools>=77.0.3
+DEBUG Adding transitive dependency for torch==2.15.0: sympy>=1.13.3
+DEBUG Adding transitive dependency for torch==2.15.0: networkx>=2.5.1
+DEBUG Adding transitive dependency for torch==2.15.0: jinja2*
+DEBUG Adding transitive dependency for torch==2.15.0: fsspec>=0.8.5
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-toolkit[cublas]>=13.2.2, <13.2.2+
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-toolkit[cudart]>=13.2.2, <13.2.2+
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-toolkit[cufft]>=13.2.2, <13.2.2+
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-toolkit[cufile]>=13.2.2, <13.2.2+
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-toolkit[cupti]>=13.2.2, <13.2.2+
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-toolkit[cusolver]>=13.2.2, <13.2.2+
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-toolkit[cusparse]>=13.2.2, <13.2.2+
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-toolkit[nvjitlink]>=13.2.2, <13.2.2+
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-toolkit[nvrtc]>=13.2.2, <13.2.2+
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-toolkit[nvtx]>=13.2.2, <13.2.2+
+DEBUG Adding transitive dependency for torch==2.15.0: nvidia-cudnn-cu13{sys_platform == 'linux'}>=9.26.0.51, <9.26.0.51+
+DEBUG Adding transitive dependency for torch==2.15.0: nvidia-cusparselt-cu13{sys_platform == 'linux'}>=0.8.1, <0.8.1+
+DEBUG Adding transitive dependency for torch==2.15.0: nvidia-nccl-cu13{sys_platform == 'linux'}>=2.30.7, <2.30.7+
+DEBUG Adding transitive dependency for torch==2.15.0: nvidia-nvshmem-cu13{sys_platform == 'linux'}>=3.7.2, <3.7.2+
+DEBUG Adding transitive dependency for torch==2.15.0: triton{python_full_version < '3.16' and sys_platform == 'linux'}>=3.9.0, <3.10.dev0
+INFO add_decision: Id::<PubGrubPackage>(1) @ 2.15.0 without checking dependencies    
+DEBUG Searching for a compatible version of transformers (>=5.22.1, <5.22.1+)
+DEBUG Selecting: transformers==5.22.1 [compatible] (transformers-5.22.1-py3-none-any.whl)
+DEBUG Adding transitive dependency for transformers==5.22.1: huggingface-hub>=1.31.0, <3.0
+DEBUG Adding transitive dependency for transformers==5.22.1: numpy>=1.17
+DEBUG Adding transitive dependency for transformers==5.22.1: packaging>=20.0
+DEBUG Adding transitive dependency for transformers==5.22.1: pyyaml>=5.1
+DEBUG Adding transitive dependency for transformers==5.22.1: regex>=2025.10.22
+DEBUG Adding transitive dependency for transformers==5.22.1: tokenizers>=0.23.1, <0.24.0
+DEBUG Adding transitive dependency for transformers==5.22.1: typer*
+DEBUG Adding transitive dependency for transformers==5.22.1: safetensors>=0.8.0
+DEBUG Found fresh response for: https://pypi.org/simple/typing-extensions/
+DEBUG Found stale response for: https://pypi.org/simple/filelock/
+DEBUG Adding transitive dependency for transformers==5.22.1: tqdm>=4.60
+INFO add_decision: Id::<PubGrubPackage>(4) @ 5.22.1 without checking dependencies    
+DEBUG Searching for a compatible version of accelerate (>=1.15.0, <1.15.0+)
+DEBUG Selecting: accelerate==1.15.0 [compatible] (accelerate-1.15.0-py3-none-any.whl)
+DEBUG Adding transitive dependency for accelerate==1.15.0: numpy>=1.17
+DEBUG Adding transitive dependency for accelerate==1.15.0: packaging>=20.0
+DEBUG Adding transitive dependency for accelerate==1.15.0: psutil*
+DEBUG Adding transitive dependency for accelerate==1.15.0: pyyaml*
+DEBUG Adding transitive dependency for accelerate==1.15.0: torch>=2.0.0
+DEBUG Adding transitive dependency for accelerate==1.15.0: huggingface-hub>=0.21.0
+DEBUG Adding transitive dependency for accelerate==1.15.0: safetensors>=0.4.3
+INFO add_decision: Id::<PubGrubPackage>(5) @ 1.15.0 without checking dependencies    
+DEBUG Searching for a compatible version of safetensors (>=0.8.0, <0.8.0+)
+DEBUG Selecting: safetensors==0.8.0 [compatible] (safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(6) @ 0.8.0 without checking dependencies    
+DEBUG Searching for a compatible version of sentencepiece (>=0.2.2, <0.2.2+)
+INFO Start conflict resolution because incompat satisfied:
+   sentencepiece >0.2.1 is forbidden    
+INFO prior cause: root ==0a0.dev0 is forbidden    
+DEBUG Found stale response for: https://pypi.org/simple/setuptools/
+DEBUG Sending revalidation request for: https://pypi.org/simple/setuptools/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG Found fresh response for: https://pypi.org/simple/jinja2/
+DEBUG Sending revalidation request for: https://pypi.org/simple/filelock/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG Found stale response for: https://pypi.org/simple/sympy/
+DEBUG Found stale response for: https://pypi.org/simple/networkx/
+DEBUG Found stale response for: https://pypi.org/simple/cuda-toolkit/
+DEBUG Sending revalidation request for: https://pypi.org/simple/sympy/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG Sending revalidation request for: https://pypi.org/simple/networkx/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG Sending revalidation request for: https://pypi.org/simple/cuda-toolkit/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG send frame=Headers { stream_id: StreamId(29), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(31), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(33), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(35), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(37), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found stale response for: https://pypi.org/simple/nvidia-cusparselt-cu13/
+DEBUG Found stale response for: https://pypi.org/simple/nvidia-cudnn-cu13/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/49/d3/b8441a820a491ddfc024b0b0cf0393375b75ea13866d9c66727e54c2fc80/typing_extensions-4.16.0-py3-none-any.whl.metadata
+DEBUG Found stale response for: https://pypi.org/simple/nvidia-nccl-cu13/
+DEBUG Found fresh response for: https://pypi.org/simple/pyyaml/
+DEBUG Found stale response for: https://pypi.org/simple/nvidia-nvshmem-cu13/
+DEBUG Found stale response for: https://pypi.org/simple/fsspec/
+DEBUG Found fresh response for: https://pypi.org/simple/tqdm/
+DEBUG Sending revalidation request for: https://pypi.org/simple/nvidia-cusparselt-cu13/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG Sending revalidation request for: https://pypi.org/simple/nvidia-cudnn-cu13/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG Sending revalidation request for: https://pypi.org/simple/nvidia-nccl-cu13/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG Sending revalidation request for: https://pypi.org/simple/nvidia-nvshmem-cu13/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG Sending revalidation request for: https://pypi.org/simple/fsspec/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG send frame=Headers { stream_id: StreamId(39), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(41), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(43), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(45), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(47), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found stale response for: https://pypi.org/simple/huggingface-hub/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/a7/03/921a3d3c75785aca9ebfbfcabfbc3a1be12e2ab5265deb026d55a5a3f83e/tqdm-4.70.1-py3-none-any.whl.metadata
+DEBUG Sending revalidation request for: https://pypi.org/simple/huggingface-hub/
+DEBUG Found stale response for: https://pypi.org/simple/typer/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG Sending revalidation request for: https://pypi.org/simple/typer/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG send frame=Headers { stream_id: StreamId(49), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(51), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found stale response for: https://pypi.org/simple/psutil/
+DEBUG Sending revalidation request for: https://pypi.org/simple/psutil/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG send frame=Headers { stream_id: StreamId(53), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(37), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(29), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(35), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(31), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(33), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(41), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(47), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(45), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found not-modified response for: https://pypi.org/simple/cuda-toolkit/
+DEBUG Found stale response for: https://pypi.org/simple/regex/
+DEBUG Found not-modified response for: https://pypi.org/simple/setuptools/
+DEBUG Found not-modified response for: https://pypi.org/simple/networkx/
+DEBUG Found not-modified response for: https://pypi.org/simple/filelock/
+DEBUG Found not-modified response for: https://pypi.org/simple/sympy/
+DEBUG Found not-modified response for: https://pypi.org/simple/nvidia-cudnn-cu13/
+DEBUG Found not-modified response for: https://pypi.org/simple/fsspec/
+DEBUG Found not-modified response for: https://pypi.org/simple/nvidia-nvshmem-cu13/
+DEBUG Sending revalidation request for: https://pypi.org/simple/regex/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG send frame=Headers { stream_id: StreamId(55), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(51), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(49), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(39), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(43), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(53), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/ef/55/6dc6d6bb953bdfc52519a0059592c52b6e3b8ad51cf8256dffceb55b0610/setuptools-84.2.1-py3-none-any.whl.metadata
+DEBUG Found not-modified response for: https://pypi.org/simple/typer/
+DEBUG Found not-modified response for: https://pypi.org/simple/huggingface-hub/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/ac/1b/ea72dd62f26ce3e0a7870b85148b75a5987507629b712deebeb87f7cce9a/nvidia_cudnn_cu13-9.26.0.51-py3-none-manylinux_2_27_x86_64.whl.metadata
+DEBUG Found not-modified response for: https://pypi.org/simple/nvidia-cusparselt-cu13/
+DEBUG Found not-modified response for: https://pypi.org/simple/nvidia-nccl-cu13/
+DEBUG Found not-modified response for: https://pypi.org/simple/psutil/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/3d/62/854e4a141f5e87e5425513bad2a742a6260acfe06ef148001b5362148f31/cuda_toolkit-13.2.2-py2.py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/4f/4a/037dfbbafc96ad1828ef62326f27970cae2c0eb271cf5b8e6922f32a7427/nvidia_nvshmem_cu13-3.7.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/e0/1b/5e74289a1878e666bb4b65fe5805a04cafcac2aa5f519ef1ead67ef91c56/filelock-4.2.4-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/6c/c0/a98505f18594f1bce828bb159cec0fcf9860562f1a2c85913409fc8f3d9e/fsspec-2026.9.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/a2/09/77d55d46fd61b4a135c444fc97158ef34a095e5681d0a6c10b75bf356191/sympy-1.14.0-py3-none-any.whl.metadata
+DEBUG received frame=Headers { stream_id: StreamId(55), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found not-modified response for: https://pypi.org/simple/regex/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/07/ea/2e31b67051e91a133189e9c000c222502ddc6969856416de0d095de4c0b0/typer-0.27.3-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/7e/cd/fe58041e9011f307c490e3e17dd48cc516448f7c698a3f2d9d9d65d7e6a8/networkx-3.7-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/34/7d/2661f2fb3ac4302f3a246f5fc030213ac60c1fe0bce84f9783dbd831dbb7/nvidia_cusparselt_cu13-0.8.1-py3-none-manylinux2014_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/b5/70/5d8df3b09e25bce090399cf48e452d25c935ab72dad19406c77f4e828045/psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/d4/55/ff47f1b082ecf5f43f4bc1e3b932d68eead171dabbbd1a92666c686301d7/huggingface_hub-2.4.0-py3-none-any.whl.metadata
+DEBUG No cache entry for: https://files.pythonhosted.org/packages/81/42/a8c480f6dd5ac59fa28ddae79afd9d7ac7e596fdb61813adc65bb6e674b8/regex-2026.9.29-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Sending fresh GET request for: https://files.pythonhosted.org/packages/81/42/a8c480f6dd5ac59fa28ddae79afd9d7ac7e596fdb61813adc65bb6e674b8/regex-2026.9.29-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG reuse idle connection for ("https", files.pythonhosted.org)
+DEBUG send frame=Headers { stream_id: StreamId(13), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/3f/34/c500f90c7ae641b8e0f98965b36b8a7ac79cc8b296e8d251fe3eb592ee54/nvidia_nccl_cu13-2.30.7-py3-none-manylinux_2_18_x86_64.whl.metadata
+DEBUG received frame=Headers { stream_id: StreamId(13), flags: (0x4: END_HEADERS) }
+DEBUG received frame=Data { stream_id: StreamId(13) }
+DEBUG received frame=Data { stream_id: StreamId(13), flags: (0x1: END_STREAM) }
+error: No solution found when resolving dependencies
+  cause: Because sentencepiece==0.2.2 has no usable wheels and you require sentencepiece==0.2.2, we can conclude that your requirements are unsatisfiable.
+
+hint: Wheels are required for `sentencepiece` because building from source is disabled for all packages (i.e., with `--no-build`)

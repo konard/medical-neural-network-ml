@@ -1,0 +1,22 @@
+{
+  "actions/setup-python": {
+    "tag": "v7.1.0",
+    "sha": "6d4fd22b20465ccc0f7354476588e8df7c9ca0e0"
+  },
+  "docker/login-action": {
+    "tag": "v4.7.0",
+    "sha": "81c6f93d4bc991e510b342a00b419b3bb4efc5c6"
+  },
+  "github/codeql-action": {
+    "tag": "v4.39.1",
+    "sha": "9b3254085494b55a0f7c4c2b3d2d52cc712ce370"
+  },
+  "pypa/gh-action-pypi-publish": {
+    "tag": "v1.14.3",
+    "sha": "7245906fb61fa33a13554f9d5fb856fe61758086"
+  },
+  "zizmorcore/zizmor-action": {
+    "tag": "v0.8.0",
+    "sha": "53290badfa369cb0bf7ad16342cb62c2fa47ac7b"
+  }
+}

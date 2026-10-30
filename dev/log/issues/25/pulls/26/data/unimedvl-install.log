@@ -1,0 +1,9 @@
+[medbench-model-run] verified UniMedVL code at f51aa0accbd02e846e5ea20b595fb39b516dbe1f
+[medbench-model-run] verified .cache/medbench/models/unimedvl-29918cef3ce9/config.json
+[medbench-model-run] verified .cache/medbench/models/unimedvl-29918cef3ce9/llm_config.json
+[medbench-model-run] verified .cache/medbench/models/unimedvl-29918cef3ce9/vit_config.json
+[medbench-model-run] verified .cache/medbench/models/unimedvl-29918cef3ce9/tokenizer.json
+[medbench-model-run] verified .cache/medbench/models/unimedvl-29918cef3ce9/tokenizer_config.json
+[medbench-model-run] verified .cache/medbench/models/unimedvl-29918cef3ce9/vocab.json
+[medbench-model-run] verified .cache/medbench/models/unimedvl-29918cef3ce9/merges.txt
+No broken requirements found.
