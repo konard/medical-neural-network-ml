@@ -82,13 +82,12 @@ def tiny_bagel(model_dir: Path) -> Any:
     from modeling.unimedvl import (  # type: ignore[import-not-found]
         Bagel,
         BagelConfig,
-        Qwen2Config,
         Qwen2ForCausalLM,
         SiglipVisionConfig,
         SiglipVisionModel,
     )
 
-    llm_config = Qwen2Config.from_json_file(str(model_dir / "llm_config.json"))
+    llm_config = load_server_module().load_qwen2_config(model_dir / "llm_config.json")
     llm_config.qk_norm = True
     llm_config.tie_word_embeddings = False
     llm_config.layer_module = "Qwen2MoTDecoderLayer"
@@ -198,6 +197,7 @@ def upstream(monkeypatch: pytest.MonkeyPatch) -> tuple[Path, Path]:
 
 
 @pytest.mark.filterwarnings("ignore:.*CUDA is not available.*")
+@pytest.mark.filterwarnings("error::FutureWarning")
 def test_chat_generates_the_golden_tokens(upstream: tuple[Path, Path]) -> None:
     tokens, best_logits = generate(*upstream)
     assert tokens == GOLDEN_TOKENS

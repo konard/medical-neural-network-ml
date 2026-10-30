@@ -7,20 +7,24 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-yaml
+        args: [--allow-multiple-documents]
+        # Integer @{...} slots are not YAML until rendered. check-infra.sh
+        # renders this template and validates the resulting Job with kubeconform.
+        exclude: ^infra/kubernetes/medbench-gpu-job\.yaml$
       - id: check-added-large-files
       - id: check-merge-conflict
       - id: check-toml
       - id: debug-statements
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.17.1
+    rev: v0.17.3
     hooks:
       - id: ruff-check
         args: [--fix, --exit-non-zero-on-fix]
       - id: ruff-format
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v2.4.0
+    rev: v2.4.1
     hooks:
       - id: mypy
         # src/ imports pillow (lazily); CI's mypy sees its types through the
@@ -38,7 +42,7 @@ repos:
   # Dependabot only reports a broken .github/dependabot.yml in its own logs,
   # so check the file (and the workflows) against SchemaStore before commit.
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.38.2
+    rev: 0.39.0
     hooks:
       - id: check-dependabot
       - id: check-github-workflows

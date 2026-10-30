@@ -1,0 +1,24 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.10, pytest-9.2.0, pluggy-1.7.0 -- /tmp/gh-issue-solver-1793372776892/.cache/issue25/unimedvl/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/gh-issue-solver-1793372776892
+configfile: pyproject.toml
+plugins: anyio-4.15.1, asyncio-1.4.1, cov-7.1.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 11 items
+
+tests/test_unimedvl_attention.py::test_packed_sequences_match_the_reference[False] PASSED [  9%]
+tests/test_unimedvl_attention.py::test_packed_sequences_match_the_reference[True] PASSED [ 18%]
+tests/test_unimedvl_attention.py::test_cached_decoding_is_causal_from_the_bottom_right PASSED [ 27%]
+tests/test_unimedvl_attention.py::test_bfloat16_in_bfloat16_out PASSED   [ 36%]
+tests/test_unimedvl_attention.py::test_softmax_scale_is_used PASSED      [ 45%]
+tests/test_unimedvl_attention.py::test_dropout_and_unknown_arguments_are_refused PASSED [ 54%]
+tests/test_unimedvl_attention.py::test_varlen_attn_still_has_no_cpu_kernel PASSED [ 63%]
+tests/test_unimedvl_attention.py::test_cuda_uses_varlen_attn_and_matches_the_reference SKIPPED [ 72%]
+tests/test_unimedvl_attention.py::test_shim_is_what_upstream_imports_and_transformers_ignores PASSED [ 81%]
+tests/test_unimedvl_attention.py::test_legacy_config_uses_transformers_rope_parameters PASSED [ 90%]
+tests/test_unimedvl_upstream.py::test_chat_generates_the_golden_tokens PASSED [100%]
+
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_unimedvl_attention.py:147: needs a CUDA GPU
+======================== 10 passed, 1 skipped in 12.28s ========================

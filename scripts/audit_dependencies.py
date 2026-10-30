@@ -24,7 +24,11 @@ from pathlib import Path
 
 PIP_AUDIT_VERSION = "2.10.1"
 DEPENDENCY_SURFACES = ("pyproject.toml", "docs/requirements.txt")
-PINNED_SURFACES = ("scripts/unimedvl-requirements.txt",)
+PINNED_SURFACES = (
+    "scripts/unimedvl-requirements.txt",
+    "scripts/infra-requirements.txt",
+    "scripts/azure-cli-requirements.txt",
+)
 
 # Why each advisory of the pinned UniMedVL runtime is accepted, keyed by id.
 # Empty since issue #21 moved the runtime to torch 2.14.1 and transformers

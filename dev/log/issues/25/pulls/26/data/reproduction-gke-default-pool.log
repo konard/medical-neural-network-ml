@@ -1,0 +1,26 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______________ test_gke_does_not_create_then_delete_default_nodes ______________
+
+    def test_gke_does_not_create_then_delete_default_nodes() -> None:
+        """Google 8.9 supports creating the separate GPU pool directly (#25).
+    
+        The old remove_default_node_pool setting is deprecated on current GKE;
+        booting a temporary CPU node also adds unnecessary provisioning time.
+        """
+        main = (TERRAFORM / "gcp" / "k8s" / "main.tf").read_text()
+>       assert "remove_default_node_pool" not in main
+E       AssertionError: assert 'remove_default_node_pool' not in '# Temporary... }\n  }\n}\n'
+E         
+E         'remove_default_node_pool' is contained here:
+E           this.id
+E             remove_default_node_pool = true
+E             initial_node_count       = 1
+E             deletion_protection      = false
+E             resource_labels = merge(var.labels, {...
+E         
+E         ...Full output truncated, use '-vv' to show
+
+tests/test_cloud_gpu_infra.py:124: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_cloud_gpu_infra.py::test_gke_does_not_create_then_delete_default_nodes

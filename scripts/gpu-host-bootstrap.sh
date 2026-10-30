@@ -3,7 +3,7 @@
 #
 # The cloud images of AWS, Azure and GCP already hold an NVIDIA driver, so
 # there `driver` only checks it. A Hetzner dedicated GPU server (Robot GEX)
-# starts from a plain Ubuntu, and `driver` installs the R580 server driver
+# starts from a plain Ubuntu, and `driver` installs the R615 server driver
 # with the open kernel modules that Blackwell GPUs need. The orchestrator
 # (python -m scripts.cloud_gpu) runs it as root over SSH; infra/ansible holds
 # the same steps as playbooks for hosts we keep.
@@ -19,7 +19,7 @@
 set -euo pipefail
 
 MIN_DRIVER="${MIN_DRIVER:-580}"
-DRIVER_BRANCH="580"
+DRIVER_BRANCH="615"
 DRIVER_PACKAGES=("nvidia-driver-${DRIVER_BRANCH}-server-open" "nvidia-utils-${DRIVER_BRANCH}-server")
 TOOLKIT_VERSION="1.20.1-1"
 TOOLKIT_KEY_FINGERPRINT="C95B321B61E88C1809C4F759DDCAE044F796ECB0"
@@ -62,9 +62,10 @@ install_driver() {
   log "installing ${DRIVER_PACKAGES[*]} from the Ubuntu archive"
   apt-get update
   if ! apt-cache policy "${DRIVER_PACKAGES[0]}" | grep -q 'Candidate: [0-9]'; then
-    # The driver lives in `restricted`, which some installer images leave out.
+    # Enable the archive components holding the driver and its dependencies.
     apt_install software-properties-common
     add-apt-repository --yes restricted
+    add-apt-repository --yes multiverse
     apt-get update
   fi
   apt_install "${DRIVER_PACKAGES[@]}"

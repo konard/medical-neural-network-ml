@@ -1,0 +1,13 @@
+Progress: resolved 0, reused 0, downloaded 1, added 0
+Packages are hard linked from the content-addressable store to the virtual store.
+  Content-addressable store is at: /home/box/.local/share/pnpm/store/v11
+  Virtual store is at:             node_modules/.pnpm
+Packages: +84
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 84, reused 0, downloaded 84, added 84, done
+
+devDependencies:
++ @secretlint/secretlint-rule-preset-recommend 13.1.0
++ secretlint 13.1.0
+
+Done in 883ms using pnpm v12.16.1

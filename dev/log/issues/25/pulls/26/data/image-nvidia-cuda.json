@@ -1,0 +1,29 @@
+{
+  "repository": "nvidia/cuda",
+  "tag": "13.4.1-base-ubuntu24.04",
+  "digest": "sha256:3eb2d952d9cff2d7a4e42a1cedc19cfa610a7f72c3b8428811731dcea5a175fd",
+  "manifest": {
+    "mediaType": "application/vnd.docker.distribution.manifest.list.v2+json",
+    "schemaVersion": 2,
+    "manifests": [
+      {
+        "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+        "digest": "sha256:89ed8c7b096fafeb3dce13159e7a397c6c56c2e96705d529c2c765d5c79f8236",
+        "size": 1793,
+        "platform": {
+          "architecture": "arm64",
+          "os": "linux"
+        }
+      },
+      {
+        "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+        "digest": "sha256:277a8d73fee9d8c592c9b1b6bc915b745d03eec82033bcbbebfb32c8686cd139",
+        "size": 1786,
+        "platform": {
+          "architecture": "amd64",
+          "os": "linux"
+        }
+      }
+    ]
+  }
+}

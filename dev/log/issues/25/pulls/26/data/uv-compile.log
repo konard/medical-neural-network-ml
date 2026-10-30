@@ -1,0 +1,1037 @@
+DEBUG Found workspace root: /tmp/gh-issue-solver-1793372776892
+DEBUG Adding root workspace member: /tmp/gh-issue-solver-1793372776892
+DEBUG Skipping `pyproject.toml` in `/tmp/gh-issue-solver-1793372776892` (no `[tool.uv]` section)
+DEBUG Searching for user configuration in: /home/box/.config/uv/uv.toml
+DEBUG uv 0.13.6 (x86_64-unknown-linux-gnu)
+DEBUG Starting Python discovery for Python 3.14
+DEBUG Looking for Python 3.14
+DEBUG Searching for Python 3.14 in virtual environments, managed installations, or search path
+DEBUG Found `cpython-3.15.0-linux-x86_64-gnu` at `/tmp/gh-issue-solver-1793372776892/.venv/bin/python` (virtual environment)
+DEBUG Skipping interpreter at `/tmp/gh-issue-solver-1793372776892/.venv/bin/python` from virtual environment: does not satisfy request `3.14`
+DEBUG Searching for managed installations at `/home/box/.local/share/uv/python`
+DEBUG Found managed installation `cpython-3.14.10-linux-x86_64-gnu`
+DEBUG Found `cpython-3.14.10-linux-x86_64-gnu` at `/home/box/.local/share/uv/python/cpython-3.14-linux-x86_64-gnu/bin/python3.14` (managed installations)
+DEBUG Using Python 3.14.10 interpreter at `/home/box/.local/share/uv/python/cpython-3.14-linux-x86_64-gnu/bin/python3.14` for builds
+DEBUG Using request connect timeout of 10s and read timeout of 30s
+DEBUG Solving with installed Python version: 3.14.10
+DEBUG Solving with target Python version: >=3.14
+DEBUG Adding direct dependency: torch>=2.15.0, <2.15.0+
+DEBUG Adding direct dependency: torchvision*
+DEBUG Adding direct dependency: triton*
+DEBUG Adding direct dependency: transformers>=5.22.1, <5.22.1+
+DEBUG Adding direct dependency: accelerate>=1.15.0, <1.15.0+
+DEBUG Adding direct dependency: safetensors>=0.8.0, <0.8.0+
+DEBUG Adding direct dependency: tokenizers*
+DEBUG Adding direct dependency: sentencepiece>=0.2.2, <0.2.2+
+DEBUG Adding direct dependency: pillow>=13.0.0, <13.0.0+
+DEBUG Adding direct dependency: numpy>=2.5.4, <2.5.4+
+DEBUG Adding direct dependency: opencv-python>=5.0.0.93, <5.0.0.93+
+DEBUG Adding direct dependency: einops>=0.8.2, <0.8.2+
+DEBUG Adding direct dependency: matplotlib>=3.11.2, <3.11.2+
+DEBUG Adding direct dependency: contourpy>=1.4.0, <1.4.0+
+DEBUG Adding direct dependency: cycler>=0.12.1, <0.12.1+
+DEBUG Adding direct dependency: fonttools>=4.68.0, <4.68.0+
+DEBUG Adding direct dependency: kiwisolver>=1.5.1, <1.5.1+
+DEBUG Adding direct dependency: packaging>=26.3, <26.3+
+DEBUG Adding direct dependency: pyparsing>=3.3.3, <3.3.3+
+DEBUG Adding direct dependency: python-dateutil>=3.0.0, <3.0.0+
+INFO add_decision: Id::<PubGrubPackage>(0) @ 0a0.dev0 without checking dependencies    
+DEBUG Found fresh response for: https://pypi.org/simple/torchvision/
+DEBUG Found fresh response for: https://pypi.org/simple/torch/
+DEBUG Found fresh response for: https://pypi.org/simple/transformers/
+DEBUG Found fresh response for: https://pypi.org/simple/triton/
+DEBUG Found fresh response for: https://pypi.org/simple/accelerate/
+DEBUG Found fresh response for: https://pypi.org/simple/sentencepiece/
+DEBUG Searching for a compatible version of torch (>=2.15.0, <2.15.0+)
+DEBUG Found fresh response for: https://pypi.org/simple/tokenizers/
+DEBUG Found fresh response for: https://pypi.org/simple/safetensors/
+DEBUG Selecting: torch==2.15.0 [preference] (torch-2.15.0-cp314-cp314-manylinux_2_28_x86_64.whl)
+DEBUG Found fresh response for: https://pypi.org/simple/einops/
+DEBUG Found fresh response for: https://pypi.org/simple/opencv-python/
+DEBUG Found fresh response for: https://pypi.org/simple/pillow/
+DEBUG Found fresh response for: https://pypi.org/simple/cycler/
+DEBUG Found fresh response for: https://pypi.org/simple/contourpy/
+DEBUG Found fresh response for: https://pypi.org/simple/numpy/
+DEBUG Found fresh response for: https://pypi.org/simple/matplotlib/
+DEBUG Found fresh response for: https://pypi.org/simple/kiwisolver/
+DEBUG Found fresh response for: https://pypi.org/simple/pyparsing/
+DEBUG Found fresh response for: https://pypi.org/simple/packaging/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/92/74/699d28bed7453dbe40b09d37aab8f6cd75f19a77a77d5ab4588a4f3239e7/torchvision-0.29.2-py3-none-manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/75/75/47ebe0e2f1b04a180000e3a49ebdf4669dbab0c63489bcecf7855c26e4f4/transformers-5.22.1-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://pypi.org/simple/python-dateutil/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/3f/c9/af85b25e0d98bd921a7646ad1db1c8746250ee04b8f1595982d29b6283cf/triton-3.9.0-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/8a/4c/34f0450479d01195027260da68d8a3880683f1640c3ca5adf64acb3185f1/accelerate-1.15.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/59/9b/e8e2f15272cf45fe00dd8a077a74ded59606a424f8ce754906b3fce04126/torch-2.15.0-cp314-cp314-manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/24/b3/718847349da7b25c8220ed86d85b89080af94740b2d87a59198104ae5c51/sentencepiece-0.2.2-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/3a/40/6706b82693715581457c6d5423eaa7faae576bb0526c5738a57085eb4449/tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/28/50/f203ff3a3ddfe19308efc83c5a3a29ed02bf786732ec35e68bf9162f3365/safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/2a/09/f8d8f8f31e4483c10a906437b4ce31bdf3d6d417b73fe33f1a8b59e34228/einops-0.8.2-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/1d/f2/1371707ce438ba9a43f9d24089828494ec6f9396e28cd7903aa704dd6306/pillow-13.0.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/cf/4c/c73f828fdbcd37eaf21d08fa852544a3ca7c2dbb3ea76873d64f2ea413d1/opencv_python-5.0.0.93-cp37-abi3-manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://pypi.org/simple/fonttools/
+DEBUG Adding transitive dependency for torch==2.15.0: filelock*
+DEBUG Adding transitive dependency for torch==2.15.0: typing-extensions>=4.13.0
+DEBUG Adding transitive dependency for torch==2.15.0: setuptools>=77.0.3
+DEBUG Adding transitive dependency for torch==2.15.0: sympy>=1.13.3
+DEBUG Adding transitive dependency for torch==2.15.0: networkx>=2.5.1
+DEBUG Adding transitive dependency for torch==2.15.0: jinja2*
+DEBUG Adding transitive dependency for torch==2.15.0: fsspec>=0.8.5
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-toolkit[cublas]>=13.2.2, <13.2.2+
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-toolkit[cudart]>=13.2.2, <13.2.2+
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-toolkit[cufft]>=13.2.2, <13.2.2+
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-toolkit[cufile]>=13.2.2, <13.2.2+
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-toolkit[cupti]>=13.2.2, <13.2.2+
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-toolkit[cusolver]>=13.2.2, <13.2.2+
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-toolkit[cusparse]>=13.2.2, <13.2.2+
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-toolkit[nvjitlink]>=13.2.2, <13.2.2+
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-toolkit[nvrtc]>=13.2.2, <13.2.2+
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-toolkit[nvtx]>=13.2.2, <13.2.2+
+DEBUG Adding transitive dependency for torch==2.15.0: cuda-bindings{python_full_version < '3.15' and sys_platform == 'linux'}>=13.0.3, <14
+DEBUG Adding transitive dependency for torch==2.15.0: nvidia-cudnn-cu13{sys_platform == 'linux'}>=9.26.0.51, <9.26.0.51+
+DEBUG Adding transitive dependency for torch==2.15.0: nvidia-cusparselt-cu13{sys_platform == 'linux'}>=0.8.1, <0.8.1+
+DEBUG Adding transitive dependency for torch==2.15.0: nvidia-nccl-cu13{sys_platform == 'linux'}>=2.30.7, <2.30.7+
+DEBUG Adding transitive dependency for torch==2.15.0: nvidia-nvshmem-cu13{sys_platform == 'linux'}>=3.7.2, <3.7.2+
+DEBUG Adding transitive dependency for torch==2.15.0: triton{python_full_version < '3.16' and sys_platform == 'linux'}>=3.9.0, <3.10.dev0
+INFO add_decision: Id::<PubGrubPackage>(1) @ 2.15.0 without checking dependencies    
+DEBUG Searching for a compatible version of transformers (>=5.22.1, <5.22.1+)
+DEBUG Selecting: transformers==5.22.1 [preference] (transformers-5.22.1-py3-none-any.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/e7/05/c19819d5e3d95294a6f5947fb9b9629efb316b96de511b418c53d245aae6/cycler-0.12.1-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/16/d5/928078d2b28f26829b138b4a6c3980045022fb409f570657a224ae60ef4e/numpy-2.5.4-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/29/5e/52f56f93d5b20815ee0ae352f7a38eff25580edb180b4fa7df87cfeba68f/matplotlib-3.11.2-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/cf/8c/9677dad226e5aaac5b823d5b09d881ebc32ff1648af417597649841e516c/contourpy-1.4.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/a1/13/08188f0cafa3a800403e4ff62b9aad4e7a17f9c4c7e080dc8f18c64794cf/kiwisolver-1.5.1-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata
+DEBUG Adding transitive dependency for transformers==5.22.1: huggingface-hub>=1.31.0, <3.0
+DEBUG Adding transitive dependency for transformers==5.22.1: numpy>=1.17
+DEBUG Adding transitive dependency for transformers==5.22.1: packaging>=20.0
+DEBUG Adding transitive dependency for transformers==5.22.1: pyyaml>=5.1
+DEBUG Adding transitive dependency for transformers==5.22.1: regex>=2025.10.22
+DEBUG Adding transitive dependency for transformers==5.22.1: tokenizers>=0.23.1, <0.24.0
+DEBUG Adding transitive dependency for transformers==5.22.1: typer*
+DEBUG Adding transitive dependency for transformers==5.22.1: safetensors>=0.8.0
+DEBUG Adding transitive dependency for transformers==5.22.1: tqdm>=4.60
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/38/bb/d215ee7c73b61497b28a5503f9f53523f294fcc936762b7caf90e0c1c2b5/pyparsing-3.3.3-py3-none-any.whl.metadata
+INFO add_decision: Id::<PubGrubPackage>(4) @ 5.22.1 without checking dependencies    
+DEBUG Searching for a compatible version of accelerate (>=1.15.0, <1.15.0+)
+DEBUG Selecting: accelerate==1.15.0 [preference] (accelerate-1.15.0-py3-none-any.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/63/34/ba1c580383c9eada3711951fef0795c80b829a078d72188184bcab9dd527/packaging-26.3-py3-none-any.whl.metadata
+DEBUG Adding transitive dependency for accelerate==1.15.0: numpy>=1.17
+DEBUG Adding transitive dependency for accelerate==1.15.0: packaging>=20.0
+DEBUG Adding transitive dependency for accelerate==1.15.0: psutil*
+DEBUG Adding transitive dependency for accelerate==1.15.0: pyyaml*
+DEBUG Adding transitive dependency for accelerate==1.15.0: torch>=2.0.0
+DEBUG Adding transitive dependency for accelerate==1.15.0: huggingface-hub>=0.21.0
+DEBUG Adding transitive dependency for accelerate==1.15.0: safetensors>=0.4.3
+INFO add_decision: Id::<PubGrubPackage>(5) @ 1.15.0 without checking dependencies    
+DEBUG Searching for a compatible version of safetensors (>=0.8.0, <0.8.0+)
+DEBUG Selecting: safetensors==0.8.0 [preference] (safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(6) @ 0.8.0 without checking dependencies    
+DEBUG Searching for a compatible version of sentencepiece (>=0.2.2, <0.2.2+)
+DEBUG Selecting: sentencepiece==0.2.2 [preference] (sentencepiece-0.2.2-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/5a/17/cebee01d1c0c1441174cf0456ddc91b280d79acb65340c05e41d77866ee8/python_dateutil-3.0.0-py2.py3-none-any.whl.metadata
+INFO add_decision: Id::<PubGrubPackage>(8) @ 0.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of pillow (>=13.0.0, <13.0.0+)
+DEBUG Selecting: pillow==13.0.0 [preference] (pillow-13.0.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(9) @ 13.0.0 without checking dependencies    
+DEBUG Searching for a compatible version of numpy (>=2.5.4, <2.5.4+)
+DEBUG Selecting: numpy==2.5.4 [preference] (numpy-2.5.4-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/b7/67/e9f2eb2aed41d4ed251a3c6f66e104685f0a03d8ded7ed87f1f0fc63898c/fonttools-4.68.0-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata
+INFO add_decision: Id::<PubGrubPackage>(10) @ 2.5.4 without checking dependencies    
+DEBUG Searching for a compatible version of opencv-python (>=5.0.0.93, <5.0.0.93+)
+DEBUG Selecting: opencv-python==5.0.0.93 [preference] (opencv_python-5.0.0.93-cp37-abi3-manylinux_2_28_x86_64.whl)
+DEBUG Found fresh response for: https://pypi.org/simple/typing-extensions/
+DEBUG Adding transitive dependency for opencv-python==5.0.0.93: numpy{python_full_version >= '3.9'}>=2
+INFO add_decision: Id::<PubGrubPackage>(11) @ 5.0.0.93 without checking dependencies    
+DEBUG Searching for a compatible version of numpy{python_full_version >= '3.9'} (>=2)
+DEBUG Selecting: numpy==2.5.4 [preference] (numpy-2.5.4-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl)
+DEBUG Adding transitive dependency for numpy==2.5.4: numpy==2.5.4
+DEBUG Adding transitive dependency for numpy==2.5.4: numpy{python_full_version >= '3.9'}==2.5.4
+INFO add_decision: Id::<PubGrubPackage>(56) @ 2.5.4 without checking dependencies    
+DEBUG Searching for a compatible version of numpy{python_full_version >= '3.9'} (==2.5.4)
+DEBUG Selecting: numpy==2.5.4 [preference] (numpy-2.5.4-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(57) @ 2.5.4 without checking dependencies    
+DEBUG Searching for a compatible version of einops (>=0.8.2, <0.8.2+)
+DEBUG Selecting: einops==0.8.2 [preference] (einops-0.8.2-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(12) @ 0.8.2 without checking dependencies    
+DEBUG Searching for a compatible version of matplotlib (>=3.11.2, <3.11.2+)
+DEBUG Selecting: matplotlib==3.11.2 [preference] (matplotlib-3.11.2-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl)
+DEBUG Adding transitive dependency for matplotlib==3.11.2: contourpy>=1.0.1
+DEBUG Adding transitive dependency for matplotlib==3.11.2: cycler>=0.10
+DEBUG Adding transitive dependency for matplotlib==3.11.2: fonttools>=4.28.2
+DEBUG Adding transitive dependency for matplotlib==3.11.2: kiwisolver>=1.3.1
+DEBUG Adding transitive dependency for matplotlib==3.11.2: numpy>=1.25
+DEBUG Adding transitive dependency for matplotlib==3.11.2: packaging>=20.0
+DEBUG Adding transitive dependency for matplotlib==3.11.2: pillow>=9
+DEBUG Adding transitive dependency for matplotlib==3.11.2: pyparsing>=3
+DEBUG Adding transitive dependency for matplotlib==3.11.2: python-dateutil>=2.7
+INFO add_decision: Id::<PubGrubPackage>(13) @ 3.11.2 without checking dependencies    
+DEBUG Searching for a compatible version of contourpy (>=1.4.0, <1.4.0+)
+DEBUG Selecting: contourpy==1.4.0 [preference] (contourpy-1.4.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl)
+DEBUG Adding transitive dependency for contourpy==1.4.0: numpy>=2.0
+INFO add_decision: Id::<PubGrubPackage>(14) @ 1.4.0 without checking dependencies    
+DEBUG Searching for a compatible version of cycler (>=0.12.1, <0.12.1+)
+DEBUG Selecting: cycler==0.12.1 [preference] (cycler-0.12.1-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(15) @ 0.12.1 without checking dependencies    
+DEBUG Searching for a compatible version of fonttools (>=4.68.0, <4.68.0+)
+DEBUG Selecting: fonttools==4.68.0 [preference] (fonttools-4.68.0-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(16) @ 4.68.0 without checking dependencies    
+DEBUG Searching for a compatible version of kiwisolver (>=1.5.1, <1.5.1+)
+DEBUG Selecting: kiwisolver==1.5.1 [preference] (kiwisolver-1.5.1-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+DEBUG Found fresh response for: https://pypi.org/simple/filelock/
+DEBUG Found fresh response for: https://pypi.org/simple/networkx/
+INFO add_decision: Id::<PubGrubPackage>(17) @ 1.5.1 without checking dependencies    
+DEBUG Searching for a compatible version of packaging (>=26.3, <26.3+)
+DEBUG Selecting: packaging==26.3 [preference] (packaging-26.3-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(18) @ 26.3 without checking dependencies    
+DEBUG Searching for a compatible version of pyparsing (>=3.3.3, <3.3.3+)
+DEBUG Selecting: pyparsing==3.3.3 [preference] (pyparsing-3.3.3-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(19) @ 3.3.3 without checking dependencies    
+DEBUG Searching for a compatible version of python-dateutil (>=3.0.0, <3.0.0+)
+DEBUG Selecting: python-dateutil==3.0.0 [preference] (python_dateutil-3.0.0-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for python-dateutil==3.0.0: six>=1.6
+DEBUG Adding transitive dependency for python-dateutil==3.0.0: tzdata*
+INFO add_decision: Id::<PubGrubPackage>(20) @ 3.0.0 without checking dependencies    
+DEBUG Found fresh response for: https://pypi.org/simple/jinja2/
+DEBUG Found fresh response for: https://pypi.org/simple/sympy/
+DEBUG Found fresh response for: https://pypi.org/simple/fsspec/
+DEBUG Found fresh response for: https://pypi.org/simple/cuda-toolkit/
+DEBUG Searching for a compatible version of cuda-toolkit[cublas] (>=13.2.2, <13.2.2+)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit[cublas]==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit{sys_platform == 'linux'}==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit[cublas]{sys_platform == 'linux'}==13.2.2
+INFO add_decision: Id::<PubGrubPackage>(21) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Found fresh response for: https://pypi.org/simple/nvidia-cusparselt-cu13/
+DEBUG Found fresh response for: https://pypi.org/simple/nvidia-cudnn-cu13/
+DEBUG Found fresh response for: https://pypi.org/simple/nvidia-nccl-cu13/
+DEBUG Found fresh response for: https://pypi.org/simple/nvidia-nvshmem-cu13/
+DEBUG Found fresh response for: https://pypi.org/simple/cuda-bindings/
+DEBUG Found fresh response for: https://pypi.org/simple/pyyaml/
+DEBUG Found fresh response for: https://pypi.org/simple/huggingface-hub/
+DEBUG Found fresh response for: https://pypi.org/simple/typer/
+DEBUG Found fresh response for: https://pypi.org/simple/tqdm/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/49/d3/b8441a820a491ddfc024b0b0cf0393375b75ea13866d9c66727e54c2fc80/typing_extensions-4.16.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/e0/1b/5e74289a1878e666bb4b65fe5805a04cafcac2aa5f519ef1ead67ef91c56/filelock-4.2.4-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://pypi.org/simple/psutil/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/7e/cd/fe58041e9011f307c490e3e17dd48cc516448f7c698a3f2d9d9d65d7e6a8/networkx-3.7-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://pypi.org/simple/six/
+DEBUG Found fresh response for: https://pypi.org/simple/tzdata/
+DEBUG Found fresh response for: https://pypi.org/simple/setuptools/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/6c/c0/a98505f18594f1bce828bb159cec0fcf9860562f1a2c85913409fc8f3d9e/fsspec-2026.9.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/a2/09/77d55d46fd61b4a135c444fc97158ef34a095e5681d0a6c10b75bf356191/sympy-1.14.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/ac/1b/ea72dd62f26ce3e0a7870b85148b75a5987507629b712deebeb87f7cce9a/nvidia_cudnn_cu13-9.26.0.51-py3-none-manylinux_2_27_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/34/7d/2661f2fb3ac4302f3a246f5fc030213ac60c1fe0bce84f9783dbd831dbb7/nvidia_cusparselt_cu13-0.8.1-py3-none-manylinux2014_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/3d/62/854e4a141f5e87e5425513bad2a742a6260acfe06ef148001b5362148f31/cuda_toolkit-13.2.2-py2.py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/3f/34/c500f90c7ae641b8e0f98965b36b8a7ac79cc8b296e8d251fe3eb592ee54/nvidia_nccl_cu13-2.30.7-py3-none-manylinux_2_18_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/4f/4a/037dfbbafc96ad1828ef62326f27970cae2c0eb271cf5b8e6922f32a7427/nvidia_nvshmem_cu13-3.7.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/88/f9/16491d7ed2a919954993e48aa941b200f38040928474c9e85ea9e64222c3/pyyaml-6.0.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/07/ea/2e31b67051e91a133189e9c000c222502ddc6969856416de0d095de4c0b0/typer-0.27.3-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/d4/55/ff47f1b082ecf5f43f4bc1e3b932d68eead171dabbbd1a92666c686301d7/huggingface_hub-2.4.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/15/65/0b8f2f2509e5f1a8e556a2e083ac0287fe4af79afdba3153454229306f39/cuda_bindings-13.4.4-cp314-cp314-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata
+INFO add_decision: Id::<PubGrubPackage>(22) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[cudart] (>=13.2.2, <13.2.2+)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit[cudart]==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit{sys_platform == 'linux'}==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit[cudart]{sys_platform == 'linux'}==13.2.2
+INFO add_decision: Id::<PubGrubPackage>(23) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[cufft] (>=13.2.2, <13.2.2+)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit[cufft]==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit{sys_platform == 'linux'}==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit[cufft]{sys_platform == 'linux'}==13.2.2
+INFO add_decision: Id::<PubGrubPackage>(24) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[cufile] (>=13.2.2, <13.2.2+)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit[cufile]==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit{sys_platform == 'linux'}==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit[cufile]{sys_platform == 'linux'}==13.2.2
+INFO add_decision: Id::<PubGrubPackage>(25) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[cupti] (>=13.2.2, <13.2.2+)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit[cupti]==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit{sys_platform == 'linux'}==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit[cupti]{sys_platform == 'linux'}==13.2.2
+INFO add_decision: Id::<PubGrubPackage>(26) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[cusolver] (>=13.2.2, <13.2.2+)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit[cusolver]==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit{sys_platform == 'linux'}==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit[cusolver]{sys_platform == 'linux'}==13.2.2
+INFO add_decision: Id::<PubGrubPackage>(27) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[cusparse] (>=13.2.2, <13.2.2+)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit[cusparse]==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit{sys_platform == 'linux'}==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit[cusparse]{sys_platform == 'linux'}==13.2.2
+INFO add_decision: Id::<PubGrubPackage>(28) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[nvjitlink] (>=13.2.2, <13.2.2+)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit[nvjitlink]==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit{sys_platform == 'linux'}==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit[nvjitlink]{sys_platform == 'linux'}==13.2.2
+INFO add_decision: Id::<PubGrubPackage>(29) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[nvrtc] (>=13.2.2, <13.2.2+)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/a7/03/921a3d3c75785aca9ebfbfcabfbc3a1be12e2ab5265deb026d55a5a3f83e/tqdm-4.70.1-py3-none-any.whl.metadata
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit[nvrtc]==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit{sys_platform == 'linux'}==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit[nvrtc]{sys_platform == 'linux'}==13.2.2
+INFO add_decision: Id::<PubGrubPackage>(30) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[nvtx] (>=13.2.2, <13.2.2+)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit[nvtx]==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit{sys_platform == 'linux'}==13.2.2
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: cuda-toolkit[nvtx]{sys_platform == 'linux'}==13.2.2
+INFO add_decision: Id::<PubGrubPackage>(31) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[cublas] (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cublas{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.4.1.3.dev0, <13.4.1.4.dev0
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cuda-nvrtc{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.2.86.dev0, <13.2.87.dev0
+INFO add_decision: Id::<PubGrubPackage>(60) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit{sys_platform == 'linux'} (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(61) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[cublas]{sys_platform == 'linux'} (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cublas{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.4.1.3.dev0, <13.4.1.4.dev0
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cuda-nvrtc{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.2.86.dev0, <13.2.87.dev0
+INFO add_decision: Id::<PubGrubPackage>(62) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[cudart] (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cuda-runtime{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.2.86.dev0, <13.2.87.dev0
+INFO add_decision: Id::<PubGrubPackage>(63) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[cudart]{sys_platform == 'linux'} (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/b5/70/5d8df3b09e25bce090399cf48e452d25c935ab72dad19406c77f4e828045/psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cuda-runtime{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.2.86.dev0, <13.2.87.dev0
+INFO add_decision: Id::<PubGrubPackage>(64) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[cufft] (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cufft{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=12.2.0.57.dev0, <12.2.0.58.dev0
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-nvjitlink{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.2.86, <14
+INFO add_decision: Id::<PubGrubPackage>(65) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[cufft]{sys_platform == 'linux'} (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/0a/66/9a06c2227fedfd4919f0eaaa8b94377d9730882a7e4f95823c9a331ab5e1/tzdata-2026.6-py2.py3-none-any.whl.metadata
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cufft{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=12.2.0.57.dev0, <12.2.0.58.dev0
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-nvjitlink{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.2.86, <14
+INFO add_decision: Id::<PubGrubPackage>(66) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[cufile] (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl.metadata
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cufile{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux')}>=1.17.1.22.dev0, <1.17.1.23.dev0
+INFO add_decision: Id::<PubGrubPackage>(67) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[cufile]{sys_platform == 'linux'} (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/ef/55/6dc6d6bb953bdfc52519a0059592c52b6e3b8ad51cf8256dffceb55b0610/setuptools-84.2.1-py3-none-any.whl.metadata
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cufile{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux')}>=1.17.1.22.dev0, <1.17.1.23.dev0
+INFO add_decision: Id::<PubGrubPackage>(68) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[cupti] (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Found fresh response for: https://pypi.org/simple/nvidia-cuda-nvrtc/
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cuda-cupti{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.2.86.dev0, <13.2.87.dev0
+INFO add_decision: Id::<PubGrubPackage>(69) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[cupti]{sys_platform == 'linux'} (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cuda-cupti{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.2.86.dev0, <13.2.87.dev0
+INFO add_decision: Id::<PubGrubPackage>(70) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[cusolver] (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cublas{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.4.1.3.dev0, <13.4.1.4.dev0
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cusolver{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=12.2.0.11.dev0, <12.2.0.12.dev0
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cusparse{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=12.7.10.12.dev0, <12.7.10.13.dev0
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-nvjitlink{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.2.86, <14
+DEBUG Found fresh response for: https://pypi.org/simple/nvidia-cublas/
+INFO add_decision: Id::<PubGrubPackage>(71) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[cusolver]{sys_platform == 'linux'} (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cublas{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.4.1.3.dev0, <13.4.1.4.dev0
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cusolver{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=12.2.0.11.dev0, <12.2.0.12.dev0
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cusparse{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=12.7.10.12.dev0, <12.7.10.13.dev0
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-nvjitlink{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.2.86, <14
+INFO add_decision: Id::<PubGrubPackage>(72) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[cusparse] (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Found fresh response for: https://pypi.org/simple/nvidia-cuda-runtime/
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cusparse{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=12.7.10.12.dev0, <12.7.10.13.dev0
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-nvjitlink{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.2.86, <14
+INFO add_decision: Id::<PubGrubPackage>(73) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[cusparse]{sys_platform == 'linux'} (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Found fresh response for: https://pypi.org/simple/nvidia-cufft/
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cusparse{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=12.7.10.12.dev0, <12.7.10.13.dev0
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-nvjitlink{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.2.86, <14
+DEBUG Found fresh response for: https://pypi.org/simple/nvidia-nvjitlink/
+INFO add_decision: Id::<PubGrubPackage>(74) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[nvjitlink] (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-nvjitlink{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.2.86, <14
+INFO add_decision: Id::<PubGrubPackage>(75) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[nvjitlink]{sys_platform == 'linux'} (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Found fresh response for: https://pypi.org/simple/nvidia-cufile/
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-nvjitlink{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.2.86, <14
+INFO add_decision: Id::<PubGrubPackage>(76) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[nvrtc] (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cuda-nvrtc{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.2.86.dev0, <13.2.87.dev0
+INFO add_decision: Id::<PubGrubPackage>(77) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[nvrtc]{sys_platform == 'linux'} (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/1e/39/c58835ec8392a91b8d7bad83760eafc3085f64788b722ec2b44a27b3ca3e/nvidia_cuda_nvrtc-13.2.86-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl.metadata
+DEBUG Found fresh response for: https://pypi.org/simple/nvidia-cuda-cupti/
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-cuda-nvrtc{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.2.86.dev0, <13.2.87.dev0
+INFO add_decision: Id::<PubGrubPackage>(78) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[nvtx] (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Found fresh response for: https://pypi.org/simple/nvidia-cusolver/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/e1/97/d483a41da34df5c88727c57319576967f6d7befba5028d70928d2999635e/nvidia_cublas-13.4.1.3-py3-none-manylinux_2_27_x86_64.whl.metadata
+DEBUG Found fresh response for: https://pypi.org/simple/nvidia-cusparse/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/70/c6/8f8c5e893d183082ea78f973aebc7ebc845ee219d68bddac73b0f62490fe/nvidia_cuda_runtime-13.2.86-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/41/28/868ed0c6ade5e6a75b25166b3cf191f4a2ff58ad618c1e40befb776c97c5/nvidia_cufft-12.2.0.57-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/23/c5/661a73a9042fc5f81cdd5fe6e89f4170b3b33f7962e709987e2b5e5f1381/nvidia_cufile-1.17.1.22-py3-none-manylinux_2_27_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/1d/6b/eef7a9e32872b8f41e145bf10cddc9af26e153c338852811fe9a9baddf9e/nvidia_nvjitlink-13.4.92-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/b4/76/a10d9fb5d9a0e46d5f95e5520bd1b2d8ad22a9c0a09d2f8c20c5ee842a96/nvidia_cuda_cupti-13.2.86-py3-none-manylinux_2_25_x86_64.whl.metadata
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-nvtx{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.2.86.dev0, <13.2.87.dev0
+INFO add_decision: Id::<PubGrubPackage>(79) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-toolkit[nvtx]{sys_platform == 'linux'} (==13.2.2)
+DEBUG Selecting: cuda-toolkit==13.2.2 [preference] (cuda_toolkit-13.2.2-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for cuda-toolkit==13.2.2: nvidia-nvtx{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}>=13.2.86.dev0, <13.2.87.dev0
+INFO add_decision: Id::<PubGrubPackage>(80) @ 13.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cudnn-cu13{sys_platform == 'linux'} (>=9.26.0.51, <9.26.0.51+)
+DEBUG Selecting: nvidia-cudnn-cu13==9.26.0.51 [preference] (nvidia_cudnn_cu13-9.26.0.51-py3-none-manylinux_2_27_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-cudnn-cu13==9.26.0.51: nvidia-cudnn-cu13==9.26.0.51
+DEBUG Adding transitive dependency for nvidia-cudnn-cu13==9.26.0.51: nvidia-cudnn-cu13{sys_platform == 'linux'}==9.26.0.51
+INFO add_decision: Id::<PubGrubPackage>(34) @ 9.26.0.51 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cudnn-cu13 (==9.26.0.51)
+DEBUG Selecting: nvidia-cudnn-cu13==9.26.0.51 [preference] (nvidia_cudnn_cu13-9.26.0.51-py3-none-manylinux_2_27_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-cudnn-cu13==9.26.0.51: nvidia-cublas*
+INFO add_decision: Id::<PubGrubPackage>(35) @ 9.26.0.51 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cudnn-cu13{sys_platform == 'linux'} (==9.26.0.51)
+DEBUG Selecting: nvidia-cudnn-cu13==9.26.0.51 [preference] (nvidia_cudnn_cu13-9.26.0.51-py3-none-manylinux_2_27_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-cudnn-cu13==9.26.0.51: nvidia-cublas*
+INFO add_decision: Id::<PubGrubPackage>(101) @ 9.26.0.51 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cusparselt-cu13{sys_platform == 'linux'} (>=0.8.1, <0.8.1+)
+DEBUG Selecting: nvidia-cusparselt-cu13==0.8.1 [preference] (nvidia_cusparselt_cu13-0.8.1-py3-none-manylinux2014_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-cusparselt-cu13==0.8.1: nvidia-cusparselt-cu13==0.8.1
+DEBUG Adding transitive dependency for nvidia-cusparselt-cu13==0.8.1: nvidia-cusparselt-cu13{sys_platform == 'linux'}==0.8.1
+INFO add_decision: Id::<PubGrubPackage>(36) @ 0.8.1 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cusparselt-cu13 (==0.8.1)
+DEBUG Selecting: nvidia-cusparselt-cu13==0.8.1 [preference] (nvidia_cusparselt_cu13-0.8.1-py3-none-manylinux2014_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(37) @ 0.8.1 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cusparselt-cu13{sys_platform == 'linux'} (==0.8.1)
+DEBUG Selecting: nvidia-cusparselt-cu13==0.8.1 [preference] (nvidia_cusparselt_cu13-0.8.1-py3-none-manylinux2014_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(102) @ 0.8.1 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-nccl-cu13{sys_platform == 'linux'} (>=2.30.7, <2.30.7+)
+DEBUG Selecting: nvidia-nccl-cu13==2.30.7 [preference] (nvidia_nccl_cu13-2.30.7-py3-none-manylinux_2_18_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-nccl-cu13==2.30.7: nvidia-nccl-cu13==2.30.7
+DEBUG Adding transitive dependency for nvidia-nccl-cu13==2.30.7: nvidia-nccl-cu13{sys_platform == 'linux'}==2.30.7
+INFO add_decision: Id::<PubGrubPackage>(38) @ 2.30.7 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-nccl-cu13 (==2.30.7)
+DEBUG Selecting: nvidia-nccl-cu13==2.30.7 [preference] (nvidia_nccl_cu13-2.30.7-py3-none-manylinux_2_18_x86_64.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/e4/a4/90f7ade9992190788658c3c285f196fdb9bcc3a5bb93a325c245121d22fd/nvidia_cusolver-12.2.0.11-py3-none-manylinux_2_27_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/bc/46/3a9700cc13f30c9279af9a862363535c814fa27597199b21fd93cad66237/nvidia_cusparse-12.7.10.12-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata
+INFO add_decision: Id::<PubGrubPackage>(39) @ 2.30.7 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-nccl-cu13{sys_platform == 'linux'} (==2.30.7)
+DEBUG Selecting: nvidia-nccl-cu13==2.30.7 [preference] (nvidia_nccl_cu13-2.30.7-py3-none-manylinux_2_18_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(103) @ 2.30.7 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-nvshmem-cu13{sys_platform == 'linux'} (>=3.7.2, <3.7.2+)
+DEBUG Selecting: nvidia-nvshmem-cu13==3.7.2 [preference] (nvidia_nvshmem_cu13-3.7.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-nvshmem-cu13==3.7.2: nvidia-nvshmem-cu13==3.7.2
+DEBUG Adding transitive dependency for nvidia-nvshmem-cu13==3.7.2: nvidia-nvshmem-cu13{sys_platform == 'linux'}==3.7.2
+INFO add_decision: Id::<PubGrubPackage>(40) @ 3.7.2 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-nvshmem-cu13 (==3.7.2)
+DEBUG Selecting: nvidia-nvshmem-cu13==3.7.2 [preference] (nvidia_nvshmem_cu13-3.7.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-nvshmem-cu13==3.7.2: nvidia-cuda-cccl*
+INFO add_decision: Id::<PubGrubPackage>(41) @ 3.7.2 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-nvshmem-cu13{sys_platform == 'linux'} (==3.7.2)
+DEBUG Selecting: nvidia-nvshmem-cu13==3.7.2 [preference] (nvidia_nvshmem_cu13-3.7.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-nvshmem-cu13==3.7.2: nvidia-cuda-cccl*
+INFO add_decision: Id::<PubGrubPackage>(104) @ 3.7.2 without checking dependencies    
+DEBUG Searching for a compatible version of torchvision (*)
+DEBUG Selecting: torchvision==0.29.2 [preference] (torchvision-0.29.2-py3-none-manylinux_2_28_x86_64.whl)
+DEBUG Adding transitive dependency for torchvision==0.29.2: numpy*
+DEBUG Adding transitive dependency for torchvision==0.29.2: torch>=2.14.0
+DEBUG Adding transitive dependency for torchvision==0.29.2: pillow>=5.3.0, <8.3.dev0 | >=8.4.dev0
+INFO add_decision: Id::<PubGrubPackage>(2) @ 0.29.2 without checking dependencies    
+DEBUG Searching for a compatible version of triton (>=3.9.0, <3.10.dev0)
+DEBUG Selecting: triton==3.9.0 [preference] (triton-3.9.0-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(3) @ 3.9.0 without checking dependencies    
+DEBUG Searching for a compatible version of triton{python_full_version < '3.16' and sys_platform == 'linux'} (>=3.9.0, <3.10.dev0)
+DEBUG Selecting: triton==3.9.0 [preference] (triton-3.9.0-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl)
+DEBUG Adding transitive dependency for triton==3.9.0: triton==3.9.0
+DEBUG Adding transitive dependency for triton==3.9.0: triton{python_full_version < '3.16' and sys_platform == 'linux'}==3.9.0
+INFO add_decision: Id::<PubGrubPackage>(42) @ 3.9.0 without checking dependencies    
+DEBUG Searching for a compatible version of triton{python_full_version < '3.16' and sys_platform == 'linux'} (==3.9.0)
+DEBUG Selecting: triton==3.9.0 [preference] (triton-3.9.0-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(106) @ 3.9.0 without checking dependencies    
+DEBUG Searching for a compatible version of tokenizers (>=0.23.1, <0.24.0)
+DEBUG Selecting: tokenizers==0.23.3 [preference] (tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl)
+DEBUG Adding transitive dependency for tokenizers==0.23.3: huggingface-hub>=0.16.4, <3.0
+INFO add_decision: Id::<PubGrubPackage>(7) @ 0.23.3 without checking dependencies    
+DEBUG Searching for a compatible version of filelock (*)
+DEBUG Selecting: filelock==4.2.4 [preference] (filelock-4.2.4-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(43) @ 4.2.4 without checking dependencies    
+DEBUG Searching for a compatible version of typing-extensions (>=4.13.0)
+DEBUG Selecting: typing-extensions==4.16.0 [preference] (typing_extensions-4.16.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(44) @ 4.16.0 without checking dependencies    
+DEBUG Searching for a compatible version of setuptools (>=77.0.3)
+DEBUG Selecting: setuptools==84.2.1 [preference] (setuptools-84.2.1-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(45) @ 84.2.1 without checking dependencies    
+DEBUG Searching for a compatible version of sympy (>=1.13.3)
+DEBUG Selecting: sympy==1.14.0 [preference] (sympy-1.14.0-py3-none-any.whl)
+DEBUG Found fresh response for: https://pypi.org/simple/nvidia-nvtx/
+DEBUG Adding transitive dependency for sympy==1.14.0: mpmath>=1.1.0, <1.4
+INFO add_decision: Id::<PubGrubPackage>(46) @ 1.14.0 without checking dependencies    
+DEBUG Searching for a compatible version of networkx (>=2.5.1)
+DEBUG Selecting: networkx==3.7 [preference] (networkx-3.7-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(47) @ 3.7 without checking dependencies    
+DEBUG Searching for a compatible version of jinja2 (*)
+DEBUG Selecting: jinja2==3.1.6 [preference] (jinja2-3.1.6-py3-none-any.whl)
+DEBUG Adding transitive dependency for jinja2==3.1.6: markupsafe>=2.0
+INFO add_decision: Id::<PubGrubPackage>(48) @ 3.1.6 without checking dependencies    
+DEBUG Searching for a compatible version of fsspec (>=0.8.5)
+DEBUG Selecting: fsspec==2026.9.0 [preference] (fsspec-2026.9.0-py3-none-any.whl)
+DEBUG Found fresh response for: https://pypi.org/simple/regex/
+INFO add_decision: Id::<PubGrubPackage>(49) @ 2026.9.0 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-bindings{python_full_version < '3.15' and sys_platform == 'linux'} (>=13.0.3, <14)
+DEBUG Found fresh response for: https://pypi.org/simple/nvidia-cuda-cccl/
+DEBUG Selecting: cuda-bindings==13.4.4 [preference] (cuda_bindings-13.4.4-cp314-cp314-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl)
+DEBUG Adding transitive dependency for cuda-bindings==13.4.4: cuda-bindings==13.4.4
+DEBUG Adding transitive dependency for cuda-bindings==13.4.4: cuda-bindings{python_full_version < '3.15' and sys_platform == 'linux'}==13.4.4
+INFO add_decision: Id::<PubGrubPackage>(32) @ 13.4.4 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-bindings (==13.4.4)
+DEBUG Selecting: cuda-bindings==13.4.4 [preference] (cuda_bindings-13.4.4-cp314-cp314-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl)
+DEBUG Adding transitive dependency for cuda-bindings==13.4.4: cuda-pathfinder>=1.4.2
+INFO add_decision: Id::<PubGrubPackage>(33) @ 13.4.4 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-bindings{python_full_version < '3.15' and sys_platform == 'linux'} (==13.4.4)
+DEBUG Selecting: cuda-bindings==13.4.4 [preference] (cuda_bindings-13.4.4-cp314-cp314-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl)
+DEBUG Adding transitive dependency for cuda-bindings==13.4.4: cuda-pathfinder>=1.4.2
+INFO add_decision: Id::<PubGrubPackage>(109) @ 13.4.4 without checking dependencies    
+DEBUG Searching for a compatible version of huggingface-hub (>=1.31.0, <3.0)
+DEBUG Selecting: huggingface-hub==2.4.0 [preference] (huggingface_hub-2.4.0-py3-none-any.whl)
+DEBUG Adding transitive dependency for huggingface-hub==2.4.0: click>=8.4.2, <9.0.0
+DEBUG Adding transitive dependency for huggingface-hub==2.4.0: filelock>=3.10.0
+DEBUG Adding transitive dependency for huggingface-hub==2.4.0: fsspec>=2023.5.0
+DEBUG Adding transitive dependency for huggingface-hub==2.4.0: hf-xet{platform_machine == 'AMD64' or platform_machine == 'ARM64' or platform_machine == 'aarch64' or platform_machine == 'amd64' or platform_machine == 'arm64' or platform_machine == 'x86_64'}>=1.6.0, <2.0.0
+DEBUG Adding transitive dependency for huggingface-hub==2.4.0: httpx2>=2.0.0, <3
+DEBUG Adding transitive dependency for huggingface-hub==2.4.0: packaging>=20.9
+DEBUG Adding transitive dependency for huggingface-hub==2.4.0: pyyaml>=5.1
+DEBUG Adding transitive dependency for huggingface-hub==2.4.0: tqdm>=4.42.1
+DEBUG Adding transitive dependency for huggingface-hub==2.4.0: typing-extensions>=4.1.0
+INFO add_decision: Id::<PubGrubPackage>(50) @ 2.4.0 without checking dependencies    
+DEBUG Searching for a compatible version of pyyaml (>=5.1)
+DEBUG Selecting: pyyaml==6.0.3 [preference] (pyyaml-6.0.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/49/ee/16bde09927e7ffacd50b117cd7d1dc764d145f03249fc41fdf6dfba3301f/nvidia_nvtx-13.2.86-py3-none-manylinux1_x86_64.manylinux_2_5_x86_64.whl.metadata
+INFO add_decision: Id::<PubGrubPackage>(51) @ 6.0.3 without checking dependencies    
+DEBUG Searching for a compatible version of regex (>=2025.10.22)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/7b/b2/a048b57f2ee4c5ff27a329bd1c4c3fae34c84771ad0ebfea179034c8cf29/nvidia_cuda_cccl-13.3.4.3.1-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata
+DEBUG Selecting: regex==2026.9.29 [preference] (regex-2026.9.29-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl)
+DEBUG Found fresh response for: https://pypi.org/simple/mpmath/
+DEBUG Found fresh response for: https://pypi.org/simple/cuda-pathfinder/
+DEBUG Found fresh response for: https://pypi.org/simple/click/
+DEBUG Found fresh response for: https://pypi.org/simple/httpx2/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/a9/4d/041d9458a645fee4fce4d642a89d27271a3cfcd91095104f6dde44da70bf/regex-2026.9.29-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/43/e3/7d92a15f894aa0c9c4b49b8ee9ac9850d6e63b03c9c32c0367a13ae62209/mpmath-1.3.0-py3-none-any.whl.metadata
+INFO add_decision: Id::<PubGrubPackage>(52) @ 2026.9.29 without checking dependencies    
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/3d/b1/88f9aa5052f6d69afc4507763517b84872a76d3f7644edddca8bb4e3729a/cuda_pathfinder-1.8.5-py3-none-any.whl.metadata
+DEBUG Searching for a compatible version of typer (*)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/58/50/6c0d534c5f134586a8e1ba4e330569e32f057e33372ae556463212fb4cd3/click-8.5.0-py3-none-any.whl.metadata
+DEBUG Selecting: typer==0.27.3 [preference] (typer-0.27.3-py3-none-any.whl)
+DEBUG Found fresh response for: https://pypi.org/simple/hf-xet/
+DEBUG Adding transitive dependency for typer==0.27.3: shellingham>=1.3.0
+DEBUG Adding transitive dependency for typer==0.27.3: rich>=13.8.0
+DEBUG Adding transitive dependency for typer==0.27.3: annotated-doc>=0.0.2
+INFO add_decision: Id::<PubGrubPackage>(53) @ 0.27.3 without checking dependencies    
+DEBUG Searching for a compatible version of tqdm (>=4.60)
+DEBUG Selecting: tqdm==4.70.1 [preference] (tqdm-4.70.1-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(54) @ 4.70.1 without checking dependencies    
+DEBUG Searching for a compatible version of psutil (*)
+DEBUG Selecting: psutil==7.2.2 [preference] (psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(55) @ 7.2.2 without checking dependencies    
+DEBUG Searching for a compatible version of six (>=1.6)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/7b/3d/2e4bc4fd1ef9770871669adb348d612a6e4786b303a23f9935b81c48dd60/httpx2-2.16.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://pypi.org/simple/markupsafe/
+DEBUG Selecting: six==1.17.0 [preference] (six-1.17.0-py2.py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(58) @ 1.17.0 without checking dependencies    
+DEBUG Searching for a compatible version of tzdata (*)
+DEBUG Selecting: tzdata==2026.6 [preference] (tzdata-2026.6-py2.py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(59) @ 2026.6 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cublas{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')} (>=13.4.1.3.dev0, <13.4.1.4.dev0)
+DEBUG Selecting: nvidia-cublas==13.4.1.3 [preference] (nvidia_cublas-13.4.1.3-py3-none-manylinux_2_27_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-cublas==13.4.1.3: nvidia-cublas==13.4.1.3
+DEBUG Adding transitive dependency for nvidia-cublas==13.4.1.3: nvidia-cublas{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}==13.4.1.3
+INFO add_decision: Id::<PubGrubPackage>(81) @ 13.4.1.3 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cublas (==13.4.1.3)
+DEBUG Selecting: nvidia-cublas==13.4.1.3 [preference] (nvidia_cublas-13.4.1.3-py3-none-manylinux_2_27_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-cublas==13.4.1.3: nvidia-cuda-nvrtc*
+INFO add_decision: Id::<PubGrubPackage>(82) @ 13.4.1.3 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cublas{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')} (==13.4.1.3)
+DEBUG Selecting: nvidia-cublas==13.4.1.3 [preference] (nvidia_cublas-13.4.1.3-py3-none-manylinux_2_27_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-cublas==13.4.1.3: nvidia-cuda-nvrtc*
+DEBUG Found fresh response for: https://pypi.org/simple/annotated-doc/
+INFO add_decision: Id::<PubGrubPackage>(118) @ 13.4.1.3 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cuda-nvrtc{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')} (>=13.2.86.dev0, <13.2.87.dev0)
+DEBUG Selecting: nvidia-cuda-nvrtc==13.2.86 [preference] (nvidia_cuda_nvrtc-13.2.86-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-cuda-nvrtc==13.2.86: nvidia-cuda-nvrtc==13.2.86
+DEBUG Adding transitive dependency for nvidia-cuda-nvrtc==13.2.86: nvidia-cuda-nvrtc{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}==13.2.86
+INFO add_decision: Id::<PubGrubPackage>(83) @ 13.2.86 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cuda-nvrtc (==13.2.86)
+DEBUG Selecting: nvidia-cuda-nvrtc==13.2.86 [preference] (nvidia_cuda_nvrtc-13.2.86-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(84) @ 13.2.86 without checking dependencies    
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/f8/1e/1e8ecc05ef034e9a95c18ed32d2ec07905a7cd2ca611a9d88e25ee1f4850/hf_xet-1.8.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata
+DEBUG Found fresh response for: https://pypi.org/simple/shellingham/
+DEBUG Searching for a compatible version of nvidia-cuda-nvrtc{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')} (==13.2.86)
+DEBUG Selecting: nvidia-cuda-nvrtc==13.2.86 [preference] (nvidia_cuda_nvrtc-13.2.86-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(119) @ 13.2.86 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cuda-runtime{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')} (>=13.2.86.dev0, <13.2.87.dev0)
+DEBUG Selecting: nvidia-cuda-runtime==13.2.86 [preference] (nvidia_cuda_runtime-13.2.86-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-cuda-runtime==13.2.86: nvidia-cuda-runtime==13.2.86
+DEBUG Adding transitive dependency for nvidia-cuda-runtime==13.2.86: nvidia-cuda-runtime{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}==13.2.86
+INFO add_decision: Id::<PubGrubPackage>(85) @ 13.2.86 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cuda-runtime (==13.2.86)
+DEBUG Selecting: nvidia-cuda-runtime==13.2.86 [preference] (nvidia_cuda_runtime-13.2.86-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(86) @ 13.2.86 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cuda-runtime{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')} (==13.2.86)
+DEBUG Selecting: nvidia-cuda-runtime==13.2.86 [preference] (nvidia_cuda_runtime-13.2.86-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(120) @ 13.2.86 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cufft{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')} (>=12.2.0.57.dev0, <12.2.0.58.dev0)
+DEBUG Selecting: nvidia-cufft==12.2.0.57 [preference] (nvidia_cufft-12.2.0.57-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-cufft==12.2.0.57: nvidia-cufft==12.2.0.57
+DEBUG Adding transitive dependency for nvidia-cufft==12.2.0.57: nvidia-cufft{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}==12.2.0.57
+INFO add_decision: Id::<PubGrubPackage>(87) @ 12.2.0.57 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cufft (==12.2.0.57)
+DEBUG Selecting: nvidia-cufft==12.2.0.57 [preference] (nvidia_cufft-12.2.0.57-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-cufft==12.2.0.57: nvidia-nvjitlink*
+INFO add_decision: Id::<PubGrubPackage>(88) @ 12.2.0.57 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cufft{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')} (==12.2.0.57)
+DEBUG Selecting: nvidia-cufft==12.2.0.57 [preference] (nvidia_cufft-12.2.0.57-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-cufft==12.2.0.57: nvidia-nvjitlink*
+INFO add_decision: Id::<PubGrubPackage>(121) @ 12.2.0.57 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-nvjitlink{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')} (>=13.2.86, <14)
+DEBUG Selecting: nvidia-nvjitlink==13.4.92 [preference] (nvidia_nvjitlink-13.4.92-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-nvjitlink==13.4.92: nvidia-nvjitlink==13.4.92
+DEBUG Adding transitive dependency for nvidia-nvjitlink==13.4.92: nvidia-nvjitlink{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}==13.4.92
+INFO add_decision: Id::<PubGrubPackage>(89) @ 13.4.92 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-nvjitlink (==13.4.92)
+DEBUG Selecting: nvidia-nvjitlink==13.4.92 [preference] (nvidia_nvjitlink-13.4.92-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(90) @ 13.4.92 without checking dependencies    
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/8f/db/d7282caf7ab03af44d5d6fdbaa019b35c7d7f1c90588b839c07cba640d6a/markupsafe-3.0.4-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/3e/30/e900b21425a860e195f32e37657aa1f7c7f2b1bfb26f03ca209b90933c06/annotated_doc-0.0.5-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://pypi.org/simple/rich/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/e0/f9/0595336914c5619e5f28a1fb793285925a8cd4b432c9da0a987836c7f822/shellingham-1.5.4-py2.py3-none-any.whl.metadata
+DEBUG Searching for a compatible version of nvidia-nvjitlink{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')} (==13.4.92)
+DEBUG Selecting: nvidia-nvjitlink==13.4.92 [preference] (nvidia_nvjitlink-13.4.92-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(122) @ 13.4.92 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cufile{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux')} (>=1.17.1.22.dev0, <1.17.1.23.dev0)
+DEBUG Selecting: nvidia-cufile==1.17.1.22 [preference] (nvidia_cufile-1.17.1.22-py3-none-manylinux_2_27_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-cufile==1.17.1.22: nvidia-cufile==1.17.1.22
+DEBUG Adding transitive dependency for nvidia-cufile==1.17.1.22: nvidia-cufile{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux')}==1.17.1.22
+INFO add_decision: Id::<PubGrubPackage>(91) @ 1.17.1.22 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cufile (==1.17.1.22)
+DEBUG Selecting: nvidia-cufile==1.17.1.22 [preference] (nvidia_cufile-1.17.1.22-py3-none-manylinux_2_27_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(92) @ 1.17.1.22 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cufile{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux')} (==1.17.1.22)
+DEBUG Selecting: nvidia-cufile==1.17.1.22 [preference] (nvidia_cufile-1.17.1.22-py3-none-manylinux_2_27_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(123) @ 1.17.1.22 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cuda-cupti{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')} (>=13.2.86.dev0, <13.2.87.dev0)
+DEBUG Selecting: nvidia-cuda-cupti==13.2.86 [preference] (nvidia_cuda_cupti-13.2.86-py3-none-manylinux_2_25_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-cuda-cupti==13.2.86: nvidia-cuda-cupti==13.2.86
+DEBUG Adding transitive dependency for nvidia-cuda-cupti==13.2.86: nvidia-cuda-cupti{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}==13.2.86
+INFO add_decision: Id::<PubGrubPackage>(93) @ 13.2.86 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cuda-cupti (==13.2.86)
+DEBUG Selecting: nvidia-cuda-cupti==13.2.86 [preference] (nvidia_cuda_cupti-13.2.86-py3-none-manylinux_2_25_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(94) @ 13.2.86 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cuda-cupti{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')} (==13.2.86)
+DEBUG Selecting: nvidia-cuda-cupti==13.2.86 [preference] (nvidia_cuda_cupti-13.2.86-py3-none-manylinux_2_25_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(124) @ 13.2.86 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cusolver{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')} (>=12.2.0.11.dev0, <12.2.0.12.dev0)
+DEBUG Selecting: nvidia-cusolver==12.2.0.11 [preference] (nvidia_cusolver-12.2.0.11-py3-none-manylinux_2_27_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-cusolver==12.2.0.11: nvidia-cusolver==12.2.0.11
+DEBUG Adding transitive dependency for nvidia-cusolver==12.2.0.11: nvidia-cusolver{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}==12.2.0.11
+INFO add_decision: Id::<PubGrubPackage>(95) @ 12.2.0.11 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cusolver (==12.2.0.11)
+DEBUG Selecting: nvidia-cusolver==12.2.0.11 [preference] (nvidia_cusolver-12.2.0.11-py3-none-manylinux_2_27_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-cusolver==12.2.0.11: nvidia-cublas*
+DEBUG Adding transitive dependency for nvidia-cusolver==12.2.0.11: nvidia-nvjitlink*
+DEBUG Adding transitive dependency for nvidia-cusolver==12.2.0.11: nvidia-cusparse*
+INFO add_decision: Id::<PubGrubPackage>(96) @ 12.2.0.11 without checking dependencies    
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/82/3b/64d4899d73f91ba49a8c18a8ff3f0ea8f1c1d75481760df8c68ef5235bf5/rich-15.0.0-py3-none-any.whl.metadata
+DEBUG Searching for a compatible version of nvidia-cusolver{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')} (==12.2.0.11)
+DEBUG Selecting: nvidia-cusolver==12.2.0.11 [preference] (nvidia_cusolver-12.2.0.11-py3-none-manylinux_2_27_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-cusolver==12.2.0.11: nvidia-cublas*
+DEBUG Adding transitive dependency for nvidia-cusolver==12.2.0.11: nvidia-nvjitlink*
+DEBUG Adding transitive dependency for nvidia-cusolver==12.2.0.11: nvidia-cusparse*
+INFO add_decision: Id::<PubGrubPackage>(125) @ 12.2.0.11 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cusparse{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')} (>=12.7.10.12.dev0, <12.7.10.13.dev0)
+DEBUG Selecting: nvidia-cusparse==12.7.10.12 [preference] (nvidia_cusparse-12.7.10.12-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-cusparse==12.7.10.12: nvidia-cusparse==12.7.10.12
+DEBUG Adding transitive dependency for nvidia-cusparse==12.7.10.12: nvidia-cusparse{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}==12.7.10.12
+INFO add_decision: Id::<PubGrubPackage>(97) @ 12.7.10.12 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cusparse (==12.7.10.12)
+DEBUG Selecting: nvidia-cusparse==12.7.10.12 [preference] (nvidia_cusparse-12.7.10.12-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-cusparse==12.7.10.12: nvidia-nvjitlink*
+INFO add_decision: Id::<PubGrubPackage>(98) @ 12.7.10.12 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cusparse{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')} (==12.7.10.12)
+DEBUG Selecting: nvidia-cusparse==12.7.10.12 [preference] (nvidia_cusparse-12.7.10.12-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-cusparse==12.7.10.12: nvidia-nvjitlink*
+INFO add_decision: Id::<PubGrubPackage>(126) @ 12.7.10.12 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-nvtx{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')} (>=13.2.86.dev0, <13.2.87.dev0)
+DEBUG Selecting: nvidia-nvtx==13.2.86 [preference] (nvidia_nvtx-13.2.86-py3-none-manylinux1_x86_64.manylinux_2_5_x86_64.whl)
+DEBUG Adding transitive dependency for nvidia-nvtx==13.2.86: nvidia-nvtx==13.2.86
+DEBUG Adding transitive dependency for nvidia-nvtx==13.2.86: nvidia-nvtx{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')}==13.2.86
+INFO add_decision: Id::<PubGrubPackage>(99) @ 13.2.86 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-nvtx (==13.2.86)
+DEBUG Selecting: nvidia-nvtx==13.2.86 [preference] (nvidia_nvtx-13.2.86-py3-none-manylinux1_x86_64.manylinux_2_5_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(100) @ 13.2.86 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-nvtx{(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (platform_machine == 'AMD64' and sys_platform == 'win32')} (==13.2.86)
+DEBUG Selecting: nvidia-nvtx==13.2.86 [preference] (nvidia_nvtx-13.2.86-py3-none-manylinux1_x86_64.manylinux_2_5_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(127) @ 13.2.86 without checking dependencies    
+DEBUG Searching for a compatible version of nvidia-cuda-cccl (*)
+DEBUG Selecting: nvidia-cuda-cccl==13.3.4.3.1 [preference] (nvidia_cuda_cccl-13.3.4.3.1-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(105) @ 13.3.4.3.1 without checking dependencies    
+DEBUG Searching for a compatible version of mpmath (>=1.1.0, <1.4)
+DEBUG Selecting: mpmath==1.3.0 [preference] (mpmath-1.3.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(107) @ 1.3.0 without checking dependencies    
+DEBUG Searching for a compatible version of markupsafe (>=2.0)
+DEBUG Selecting: markupsafe==3.0.4 [preference] (markupsafe-3.0.4-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(108) @ 3.0.4 without checking dependencies    
+DEBUG Searching for a compatible version of cuda-pathfinder (>=1.4.2)
+DEBUG Selecting: cuda-pathfinder==1.8.5 [preference] (cuda_pathfinder-1.8.5-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(110) @ 1.8.5 without checking dependencies    
+DEBUG Searching for a compatible version of click (>=8.4.2, <9.0.0)
+DEBUG Selecting: click==8.5.0 [preference] (click-8.5.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(113) @ 8.5.0 without checking dependencies    
+DEBUG Searching for a compatible version of hf-xet{platform_machine == 'AMD64' or platform_machine == 'ARM64' or platform_machine == 'aarch64' or platform_machine == 'amd64' or platform_machine == 'arm64' or platform_machine == 'x86_64'} (>=1.6.0, <2.0.0)
+DEBUG Selecting: hf-xet==1.8.0 [preference] (hf_xet-1.8.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+DEBUG Adding transitive dependency for hf-xet==1.8.0: hf-xet==1.8.0
+DEBUG Adding transitive dependency for hf-xet==1.8.0: hf-xet{platform_machine == 'AMD64' or platform_machine == 'ARM64' or platform_machine == 'aarch64' or platform_machine == 'amd64' or platform_machine == 'arm64' or platform_machine == 'x86_64'}==1.8.0
+INFO add_decision: Id::<PubGrubPackage>(111) @ 1.8.0 without checking dependencies    
+DEBUG Searching for a compatible version of hf-xet (==1.8.0)
+DEBUG Selecting: hf-xet==1.8.0 [preference] (hf_xet-1.8.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(112) @ 1.8.0 without checking dependencies    
+DEBUG Searching for a compatible version of hf-xet{platform_machine == 'AMD64' or platform_machine == 'ARM64' or platform_machine == 'aarch64' or platform_machine == 'amd64' or platform_machine == 'arm64' or platform_machine == 'x86_64'} (==1.8.0)
+DEBUG Selecting: hf-xet==1.8.0 [preference] (hf_xet-1.8.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(128) @ 1.8.0 without checking dependencies    
+DEBUG Searching for a compatible version of httpx2 (>=2.0.0, <3)
+DEBUG Selecting: httpx2==2.16.0 [preference] (httpx2-2.16.0-py3-none-any.whl)
+DEBUG Adding transitive dependency for httpx2==2.16.0: anyio{sys_platform != 'emscripten'}>=4.10
+DEBUG Adding transitive dependency for httpx2==2.16.0: httpcore2{sys_platform != 'emscripten'}>=2.16.0, <2.16.0+
+DEBUG Adding transitive dependency for httpx2==2.16.0: idna>=3.18
+DEBUG Adding transitive dependency for httpx2==2.16.0: truststore{sys_platform != 'emscripten'}>=0.10
+INFO add_decision: Id::<PubGrubPackage>(114) @ 2.16.0 without checking dependencies    
+DEBUG Found fresh response for: https://pypi.org/simple/httpcore2/
+DEBUG Found fresh response for: https://pypi.org/simple/truststore/
+DEBUG Found fresh response for: https://pypi.org/simple/anyio/
+DEBUG Searching for a compatible version of httpcore2{sys_platform != 'emscripten'} (>=2.16.0, <2.16.0+)
+DEBUG Selecting: httpcore2==2.16.0 [preference] (httpcore2-2.16.0-py3-none-any.whl)
+DEBUG Adding transitive dependency for httpcore2==2.16.0: httpcore2==2.16.0
+DEBUG Adding transitive dependency for httpcore2==2.16.0: httpcore2{sys_platform != 'emscripten'}==2.16.0
+INFO add_decision: Id::<PubGrubPackage>(131) @ 2.16.0 without checking dependencies    
+DEBUG Searching for a compatible version of httpcore2 (==2.16.0)
+DEBUG Selecting: httpcore2==2.16.0 [preference] (httpcore2-2.16.0-py3-none-any.whl)
+DEBUG Found fresh response for: https://pypi.org/simple/idna/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/51/e9/3a7820be2bb0fe53b6bc9c3be26d3d1158004e4c3ab953aa6840b955b1e9/truststore-0.10.5-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/12/b8/4bd346e22b28902df4d651910f5242c28d84e4a5c2435ca5c3f797ed7e2e/anyio-4.15.1-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/af/c2/ce417c397afa5181f0e3c6ff01a4d01639414e1adef08730d97571297151/httpcore2-2.16.0-py3-none-any.whl.metadata
+DEBUG Adding transitive dependency for httpcore2==2.16.0: h11>=0.16
+DEBUG Adding transitive dependency for httpcore2==2.16.0: truststore>=0.10
+INFO add_decision: Id::<PubGrubPackage>(132) @ 2.16.0 without checking dependencies    
+DEBUG Searching for a compatible version of httpcore2{sys_platform != 'emscripten'} (==2.16.0)
+DEBUG Selecting: httpcore2==2.16.0 [preference] (httpcore2-2.16.0-py3-none-any.whl)
+DEBUG Adding transitive dependency for httpcore2==2.16.0: h11>=0.16
+DEBUG Adding transitive dependency for httpcore2==2.16.0: truststore>=0.10
+INFO add_decision: Id::<PubGrubPackage>(136) @ 2.16.0 without checking dependencies    
+DEBUG Searching for a compatible version of shellingham (>=1.3.0)
+DEBUG Selecting: shellingham==1.5.4 [preference] (shellingham-1.5.4-py2.py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(115) @ 1.5.4 without checking dependencies    
+DEBUG Searching for a compatible version of rich (>=13.8.0)
+DEBUG Selecting: rich==15.0.0 [preference] (rich-15.0.0-py3-none-any.whl)
+DEBUG Adding transitive dependency for rich==15.0.0: markdown-it-py>=2.2.0
+DEBUG Adding transitive dependency for rich==15.0.0: pygments>=2.13.0, <3.0.0
+INFO add_decision: Id::<PubGrubPackage>(116) @ 15.0.0 without checking dependencies    
+DEBUG Searching for a compatible version of annotated-doc (>=0.0.2)
+DEBUG Selecting: annotated-doc==0.0.5 [preference] (annotated_doc-0.0.5-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(117) @ 0.0.5 without checking dependencies    
+DEBUG Searching for a compatible version of anyio{sys_platform != 'emscripten'} (>=4.10)
+DEBUG Selecting: anyio==4.15.1 [preference] (anyio-4.15.1-py3-none-any.whl)
+DEBUG Adding transitive dependency for anyio==4.15.1: anyio==4.15.1
+DEBUG Adding transitive dependency for anyio==4.15.1: anyio{sys_platform != 'emscripten'}==4.15.1
+INFO add_decision: Id::<PubGrubPackage>(129) @ 4.15.1 without checking dependencies    
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/58/a2/bb081bab032533a855d44de1d56f8e8426114ff1ba5d1f07a438a0a654f8/idna-3.20-py3-none-any.whl.metadata
+DEBUG Searching for a compatible version of anyio (==4.15.1)
+DEBUG Selecting: anyio==4.15.1 [preference] (anyio-4.15.1-py3-none-any.whl)
+DEBUG Adding transitive dependency for anyio==4.15.1: idna>=2.8
+DEBUG Adding transitive dependency for anyio==4.15.1: typing-extensions{python_full_version < '3.15'}>=4.16.0
+INFO add_decision: Id::<PubGrubPackage>(130) @ 4.15.1 without checking dependencies    
+DEBUG Searching for a compatible version of anyio{sys_platform != 'emscripten'} (==4.15.1)
+DEBUG Selecting: anyio==4.15.1 [preference] (anyio-4.15.1-py3-none-any.whl)
+DEBUG Adding transitive dependency for anyio==4.15.1: idna>=2.8
+DEBUG Adding transitive dependency for anyio==4.15.1: typing-extensions{python_full_version < '3.15'}>=4.16.0
+INFO add_decision: Id::<PubGrubPackage>(140) @ 4.15.1 without checking dependencies    
+DEBUG Searching for a compatible version of typing-extensions{python_full_version < '3.15'} (>=4.16.0)
+DEBUG Selecting: typing-extensions==4.16.0 [preference] (typing_extensions-4.16.0-py3-none-any.whl)
+DEBUG Adding transitive dependency for typing-extensions==4.16.0: typing-extensions==4.16.0
+DEBUG Adding transitive dependency for typing-extensions==4.16.0: typing-extensions{python_full_version < '3.15'}==4.16.0
+INFO add_decision: Id::<PubGrubPackage>(141) @ 4.16.0 without checking dependencies    
+DEBUG Searching for a compatible version of typing-extensions{python_full_version < '3.15'} (==4.16.0)
+DEBUG Selecting: typing-extensions==4.16.0 [preference] (typing_extensions-4.16.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(142) @ 4.16.0 without checking dependencies    
+DEBUG Searching for a compatible version of idna (>=3.18)
+DEBUG Selecting: idna==3.20 [preference] (idna-3.20-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(135) @ 3.20 without checking dependencies    
+DEBUG Searching for a compatible version of truststore{sys_platform != 'emscripten'} (>=0.10)
+DEBUG Selecting: truststore==0.10.5 [preference] (truststore-0.10.5-py3-none-any.whl)
+DEBUG Adding transitive dependency for truststore==0.10.5: truststore==0.10.5
+DEBUG Adding transitive dependency for truststore==0.10.5: truststore{sys_platform != 'emscripten'}==0.10.5
+INFO add_decision: Id::<PubGrubPackage>(133) @ 0.10.5 without checking dependencies    
+DEBUG Searching for a compatible version of truststore (==0.10.5)
+DEBUG Selecting: truststore==0.10.5 [preference] (truststore-0.10.5-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(134) @ 0.10.5 without checking dependencies    
+DEBUG Searching for a compatible version of truststore{sys_platform != 'emscripten'} (==0.10.5)
+DEBUG Selecting: truststore==0.10.5 [preference] (truststore-0.10.5-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(143) @ 0.10.5 without checking dependencies    
+DEBUG Found fresh response for: https://pypi.org/simple/h11/
+DEBUG Searching for a compatible version of h11 (>=0.16)
+DEBUG Selecting: h11==0.16.0 [preference] (h11-0.16.0-py3-none-any.whl)
+DEBUG Found fresh response for: https://pypi.org/simple/pygments/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://pypi.org/simple/markdown-it-py/
+INFO add_decision: Id::<PubGrubPackage>(137) @ 0.16.0 without checking dependencies    
+DEBUG Searching for a compatible version of markdown-it-py (>=2.2.0)
+DEBUG Selecting: markdown-it-py==4.2.0 [preference] (markdown_it_py-4.2.0-py3-none-any.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/71/46/17f022dd3e953bf20a04a028a21ec746d942f8d2af30fa0f124fa0e6a684/pygments-2.21.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/b3/81/4da04ced5a082363ecfa159c010d200ecbd959ae410c10c0264a38cac0f5/markdown_it_py-4.2.0-py3-none-any.whl.metadata
+DEBUG Adding transitive dependency for markdown-it-py==4.2.0: mdurl>=0.1, <1.dev0
+INFO add_decision: Id::<PubGrubPackage>(138) @ 4.2.0 without checking dependencies    
+DEBUG Searching for a compatible version of pygments (>=2.13.0, <3.0.0)
+DEBUG Selecting: pygments==2.21.0 [preference] (pygments-2.21.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(139) @ 2.21.0 without checking dependencies    
+DEBUG Found fresh response for: https://pypi.org/simple/mdurl/
+DEBUG Searching for a compatible version of mdurl (>=0.1, <1.dev0)
+DEBUG Selecting: mdurl==0.1.2 [preference] (mdurl-0.1.2-py3-none-any.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/b3/38/89ba8ad64ae25be8de66a6d463314cf1eb366222074cfda9ee839c56a4b4/mdurl-0.1.2-py3-none-any.whl.metadata
+INFO add_decision: Id::<PubGrubPackage>(144) @ 0.1.2 without checking dependencies    
+DEBUG Tried 69 versions: accelerate 1, annotated-doc 1, anyio 1, click 1, contourpy 1, cuda-bindings 1, cuda-pathfinder 1, cuda-toolkit 1, cycler 1, einops 1, filelock 1, fonttools 1, fsspec 1, h11 1, hf-xet 1, httpcore2 1, httpx2 1, huggingface-hub 1, idna 1, jinja2 1, kiwisolver 1, markdown-it-py 1, markupsafe 1, matplotlib 1, mdurl 1, mpmath 1, networkx 1, numpy 1, nvidia-cublas 1, nvidia-cuda-cccl 1, nvidia-cuda-cupti 1, nvidia-cuda-nvrtc 1, nvidia-cuda-runtime 1, nvidia-cudnn-cu13 1, nvidia-cufft 1, nvidia-cufile 1, nvidia-cusolver 1, nvidia-cusparse 1, nvidia-cusparselt-cu13 1, nvidia-nccl-cu13 1, nvidia-nvjitlink 1, nvidia-nvshmem-cu13 1, nvidia-nvtx 1, opencv-python 1, packaging 1, pillow 1, psutil 1, pygments 1, pyparsing 1, python-dateutil 1, pyyaml 1, regex 1, rich 1, safetensors 1, sentencepiece 1, setuptools 1, shellingham 1, six 1, sympy 1, tokenizers 1, torch 1, torchvision 1, tqdm 1, transformers 1, triton 1, truststore 1, typer 1, typing-extensions 1, tzdata 1
+DEBUG marker environment resolution took 0.083s
+Resolved 69 packages in 90ms
+# This file was autogenerated by uv via the following command:
+#    uv pip compile unimedvl-requirements.in -o unimedvl-requirements.txt --python-version 3.14 --python-platform x86_64-manylinux_2_28
+accelerate==1.15.0
+    # via -r unimedvl-requirements.in
+annotated-doc==0.0.5
+    # via typer
+anyio==4.15.1
+    # via httpx2
+click==8.5.0
+    # via huggingface-hub
+contourpy==1.4.0
+    # via
+    #   -r unimedvl-requirements.in
+    #   matplotlib
+cuda-bindings==13.4.4
+    # via torch
+cuda-pathfinder==1.8.5
+    # via cuda-bindings
+cuda-toolkit==13.2.2
+    # via torch
+cycler==0.12.1
+    # via
+    #   -r unimedvl-requirements.in
+    #   matplotlib
+einops==0.8.2
+    # via -r unimedvl-requirements.in
+filelock==4.2.4
+    # via
+    #   huggingface-hub
+    #   torch
+fonttools==4.68.0
+    # via
+    #   -r unimedvl-requirements.in
+    #   matplotlib
+fsspec==2026.9.0
+    # via
+    #   huggingface-hub
+    #   torch
+h11==0.16.0
+    # via httpcore2
+hf-xet==1.8.0
+    # via huggingface-hub
+httpcore2==2.16.0
+    # via httpx2
+httpx2==2.16.0
+    # via huggingface-hub
+huggingface-hub==2.4.0
+    # via
+    #   accelerate
+    #   tokenizers
+    #   transformers
+idna==3.20
+    # via
+    #   anyio
+    #   httpx2
+jinja2==3.1.6
+    # via torch
+kiwisolver==1.5.1
+    # via
+    #   -r unimedvl-requirements.in
+    #   matplotlib
+markdown-it-py==4.2.0
+    # via rich
+markupsafe==3.0.4
+    # via jinja2
+matplotlib==3.11.2
+    # via -r unimedvl-requirements.in
+mdurl==0.1.2
+    # via markdown-it-py
+mpmath==1.3.0
+    # via sympy
+networkx==3.7
+    # via torch
+numpy==2.5.4
+    # via
+    #   -r unimedvl-requirements.in
+    #   accelerate
+    #   contourpy
+    #   matplotlib
+    #   opencv-python
+    #   torchvision
+    #   transformers
+nvidia-cublas==13.4.1.3
+    # via
+    #   cuda-toolkit
+    #   nvidia-cudnn-cu13
+    #   nvidia-cusolver
+nvidia-cuda-cccl==13.3.4.3.1
+    # via nvidia-nvshmem-cu13
+nvidia-cuda-cupti==13.2.86
+    # via cuda-toolkit
+nvidia-cuda-nvrtc==13.2.86
+    # via
+    #   cuda-toolkit
+    #   nvidia-cublas
+nvidia-cuda-runtime==13.2.86
+    # via cuda-toolkit
+nvidia-cudnn-cu13==9.26.0.51
+    # via torch
+nvidia-cufft==12.2.0.57
+    # via cuda-toolkit
+nvidia-cufile==1.17.1.22
+    # via cuda-toolkit
+nvidia-cusolver==12.2.0.11
+    # via cuda-toolkit
+nvidia-cusparse==12.7.10.12
+    # via
+    #   cuda-toolkit
+    #   nvidia-cusolver
+nvidia-cusparselt-cu13==0.8.1
+    # via torch
+nvidia-nccl-cu13==2.30.7
+    # via torch
+nvidia-nvjitlink==13.4.92
+    # via
+    #   cuda-toolkit
+    #   nvidia-cufft
+    #   nvidia-cusolver
+    #   nvidia-cusparse
+nvidia-nvshmem-cu13==3.7.2
+    # via torch
+nvidia-nvtx==13.2.86
+    # via cuda-toolkit
+opencv-python==5.0.0.93
+    # via -r unimedvl-requirements.in
+packaging==26.3
+    # via
+    #   -r unimedvl-requirements.in
+    #   accelerate
+    #   huggingface-hub
+    #   matplotlib
+    #   transformers
+pillow==13.0.0
+    # via
+    #   -r unimedvl-requirements.in
+    #   matplotlib
+    #   torchvision
+psutil==7.2.2
+    # via accelerate
+pygments==2.21.0
+    # via rich
+pyparsing==3.3.3
+    # via
+    #   -r unimedvl-requirements.in
+    #   matplotlib
+python-dateutil==3.0.0
+    # via
+    #   -r unimedvl-requirements.in
+    #   matplotlib
+pyyaml==6.0.3
+    # via
+    #   accelerate
+    #   huggingface-hub
+    #   transformers
+regex==2026.9.29
+    # via transformers
+rich==15.0.0
+    # via typer
+safetensors==0.8.0
+    # via
+    #   -r unimedvl-requirements.in
+    #   accelerate
+    #   transformers
+sentencepiece==0.2.2
+    # via -r unimedvl-requirements.in
+setuptools==84.2.1
+    # via torch
+shellingham==1.5.4
+    # via typer
+six==1.17.0
+    # via python-dateutil
+sympy==1.14.0
+    # via torch
+tokenizers==0.23.3
+    # via
+    #   -r unimedvl-requirements.in
+    #   transformers
+torch==2.15.0
+    # via
+    #   -r unimedvl-requirements.in
+    #   accelerate
+    #   torchvision
+torchvision==0.29.2
+    # via -r unimedvl-requirements.in
+tqdm==4.70.1
+    # via
+    #   huggingface-hub
+    #   transformers
+transformers==5.22.1
+    # via -r unimedvl-requirements.in
+triton==3.9.0
+    # via
+    #   -r unimedvl-requirements.in
+    #   torch
+truststore==0.10.5
+    # via
+    #   httpcore2
+    #   httpx2
+typer==0.27.3
+    # via transformers
+typing-extensions==4.16.0
+    # via
+    #   anyio
+    #   huggingface-hub
+    #   torch
+tzdata==2026.6
+    # via python-dateutil

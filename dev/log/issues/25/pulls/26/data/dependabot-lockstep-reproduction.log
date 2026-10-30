@@ -1,0 +1,432 @@
+INFO add_decision: Id::<PubGrubPackage>(0) @ 0a0.dev0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(1) @ 2.13.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(2) @ 0.28.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(3) @ 3.7.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(26) @ 3.7.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(36) @ 3.7.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(4) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(5) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(6) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(7) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(8) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(9) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(10) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(11) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(12) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(13) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(14) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(15) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(37) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(38) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(39) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(40) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(41) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(42) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(43) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(44) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(45) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(46) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(47) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(48) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(49) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(50) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(51) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(52) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(53) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(54) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(55) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(56) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(57) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(58) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(59) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(18) @ 9.20.0.48 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(19) @ 9.20.0.48 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(82) @ 9.20.0.48 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(20) @ 0.8.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(21) @ 0.8.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(83) @ 0.8.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(22) @ 2.29.7 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(23) @ 2.29.7 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(84) @ 2.29.7 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(24) @ 3.4.5 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(25) @ 3.4.5 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(85) @ 3.4.5 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(27) @ 4.2.4 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(28) @ 4.16.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(29) @ 84.2.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(30) @ 1.14.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(31) @ 3.7 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(32) @ 3.1.6 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(33) @ 2026.9.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(16) @ 13.4.4 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(17) @ 13.4.4 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(88) @ 13.4.4 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(34) @ 2.5.4 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(35) @ 13.0.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(60) @ 13.1.1.3 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(61) @ 13.1.1.3 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(90) @ 13.1.1.3 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(62) @ 13.0.88 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(63) @ 13.0.88 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(91) @ 13.0.88 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(64) @ 13.0.96 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(65) @ 13.0.96 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(92) @ 13.0.96 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(66) @ 12.0.0.61 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(67) @ 12.0.0.61 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(93) @ 12.0.0.61 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(68) @ 13.4.92 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(69) @ 13.4.92 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(94) @ 13.4.92 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(70) @ 1.15.1.6 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(71) @ 1.15.1.6 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(95) @ 1.15.1.6 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(72) @ 13.0.85 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(73) @ 13.0.85 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(96) @ 13.0.85 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(74) @ 10.4.0.35 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(75) @ 10.4.0.35 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(97) @ 10.4.0.35 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(76) @ 12.0.4.66 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(77) @ 12.0.4.66 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(98) @ 12.0.4.66 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(78) @ 12.6.3.3 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(79) @ 12.6.3.3 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(99) @ 12.6.3.3 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(80) @ 13.0.85 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(81) @ 13.0.85 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(100) @ 13.0.85 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(86) @ 1.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(87) @ 3.0.4 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(89) @ 1.8.5 without checking dependencies    
+pinned-a (order: torch torchvision triton), start: torch==2.13.0 torchvision==0.28.0 triton==3.7.1 
+  torch -> 2.14.1: skipped, cause: Because torch==2.14.1 depends on triton{python_full_version < '3.15' and sys_platform == 'linux'}>=3.8.0,<3.9.dev0 and you require torch==2.14.1, we can conclude that you require triton>=3.8.0,<3.9.dev0.
+  torchvision -> 0.29.1: skipped, cause: Because torchvision==0.29.1 depends on torch>=2.14.0 and you require torch==2.13.0, we can conclude that your requirements and torchvision==0.29.1 are incompatible.
+  triton -> 3.8.0: skipped, cause: Because torch==2.13.0 depends on triton{python_full_version < '3.15' and sys_platform == 'linux'}==3.7.1 and triton{python_full_version < '3.15' and sys_platform == 'linux'}==3.8.0, we can conclude that torch==2.13.0 cannot be used.
+  result: torch==2.13.0 torchvision==0.28.0 triton==3.7.1 
+INFO add_decision: Id::<PubGrubPackage>(0) @ 0a0.dev0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(1) @ 2.13.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(2) @ 0.28.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(3) @ 3.7.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(26) @ 3.7.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(36) @ 3.7.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(4) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(5) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(6) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(7) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(8) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(9) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(10) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(11) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(12) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(13) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(14) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(15) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(37) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(38) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(39) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(40) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(41) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(42) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(43) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(44) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(45) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(46) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(47) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(48) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(49) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(50) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(51) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(52) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(53) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(54) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(55) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(56) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(57) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(58) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(59) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(18) @ 9.20.0.48 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(19) @ 9.20.0.48 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(82) @ 9.20.0.48 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(20) @ 0.8.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(21) @ 0.8.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(83) @ 0.8.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(22) @ 2.29.7 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(23) @ 2.29.7 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(84) @ 2.29.7 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(24) @ 3.4.5 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(25) @ 3.4.5 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(85) @ 3.4.5 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(27) @ 4.2.4 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(28) @ 4.16.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(29) @ 84.2.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(30) @ 1.14.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(31) @ 3.7 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(32) @ 3.1.6 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(33) @ 2026.9.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(16) @ 13.4.4 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(17) @ 13.4.4 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(88) @ 13.4.4 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(34) @ 2.5.4 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(35) @ 13.0.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(60) @ 13.1.1.3 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(61) @ 13.1.1.3 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(90) @ 13.1.1.3 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(62) @ 13.0.88 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(63) @ 13.0.88 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(91) @ 13.0.88 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(64) @ 13.0.96 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(65) @ 13.0.96 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(92) @ 13.0.96 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(66) @ 12.0.0.61 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(67) @ 12.0.0.61 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(93) @ 12.0.0.61 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(68) @ 13.4.92 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(69) @ 13.4.92 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(94) @ 13.4.92 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(70) @ 1.15.1.6 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(71) @ 1.15.1.6 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(95) @ 1.15.1.6 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(72) @ 13.0.85 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(73) @ 13.0.85 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(96) @ 13.0.85 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(74) @ 10.4.0.35 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(75) @ 10.4.0.35 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(97) @ 10.4.0.35 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(76) @ 12.0.4.66 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(77) @ 12.0.4.66 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(98) @ 12.0.4.66 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(78) @ 12.6.3.3 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(79) @ 12.6.3.3 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(99) @ 12.6.3.3 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(80) @ 13.0.85 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(81) @ 13.0.85 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(100) @ 13.0.85 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(86) @ 1.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(87) @ 3.0.4 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(89) @ 1.8.5 without checking dependencies    
+pinned-b (order: triton torchvision torch), start: torch==2.13.0 torchvision==0.28.0 triton==3.7.1 
+  triton -> 3.8.0: skipped, cause: Because torch==2.13.0 depends on triton{python_full_version < '3.15' and sys_platform == 'linux'}==3.7.1 and triton{python_full_version < '3.15' and sys_platform == 'linux'}==3.8.0, we can conclude that torch==2.13.0 cannot be used.
+  torchvision -> 0.29.1: skipped, cause: Because torchvision==0.29.1 depends on torch>=2.14.0 and you require torch==2.13.0, we can conclude that your requirements and torchvision==0.29.1 are incompatible.
+  torch -> 2.14.1: skipped, cause: Because torch==2.14.1 depends on triton{python_full_version < '3.15' and sys_platform == 'linux'}>=3.8.0,<3.9.dev0 and you require torch==2.14.1, we can conclude that you require triton>=3.8.0,<3.9.dev0.
+  result: torch==2.13.0 torchvision==0.28.0 triton==3.7.1 
+INFO add_decision: Id::<PubGrubPackage>(0) @ 0a0.dev0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(1) @ 2.13.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(3) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(4) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(5) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(6) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(7) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(8) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(9) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(10) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(11) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(12) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(13) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(14) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(34) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(35) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(36) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(37) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(38) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(39) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(40) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(41) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(42) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(43) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(44) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(45) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(46) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(47) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(48) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(49) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(50) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(51) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(52) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(53) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(54) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(55) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(56) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(17) @ 9.20.0.48 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(18) @ 9.20.0.48 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(79) @ 9.20.0.48 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(19) @ 0.8.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(20) @ 0.8.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(80) @ 0.8.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(21) @ 2.29.7 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(22) @ 2.29.7 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(81) @ 2.29.7 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(23) @ 3.4.5 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(24) @ 3.4.5 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(82) @ 3.4.5 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(25) @ 3.7.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(26) @ 3.7.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(83) @ 3.7.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(2) @ 0.29.2 without checking dependencies    
+INFO Start conflict resolution because incompat satisfied:
+   torchvision >0.29.1 depends on torch >=2.14.0    
+INFO backtrack to DecisionLevel(1)    
+INFO rejecting decision Id::<PubGrubPackage>(2) @ 0.29.1 because its dependencies conflict    
+INFO rejecting decision Id::<PubGrubPackage>(2) @ 0.29.0 because its dependencies conflict    
+INFO adding decision: Id::<PubGrubPackage>(2) @ 0.28.0    
+INFO adding decision: Id::<PubGrubPackage>(27) @ 4.2.4    
+INFO adding decision: Id::<PubGrubPackage>(28) @ 4.16.0    
+INFO adding decision: Id::<PubGrubPackage>(29) @ 84.2.1    
+INFO adding decision: Id::<PubGrubPackage>(30) @ 1.14.0    
+INFO adding decision: Id::<PubGrubPackage>(31) @ 3.7    
+INFO adding decision: Id::<PubGrubPackage>(32) @ 3.1.6    
+INFO adding decision: Id::<PubGrubPackage>(33) @ 2026.9.0    
+INFO adding decision: Id::<PubGrubPackage>(15) @ 13.4.4    
+INFO adding decision: Id::<PubGrubPackage>(16) @ 13.4.4    
+INFO adding decision: Id::<PubGrubPackage>(88) @ 13.4.4    
+INFO adding decision: Id::<PubGrubPackage>(57) @ 13.1.1.3    
+INFO adding decision: Id::<PubGrubPackage>(58) @ 13.1.1.3    
+INFO adding decision: Id::<PubGrubPackage>(90) @ 13.1.1.3    
+INFO adding decision: Id::<PubGrubPackage>(59) @ 13.0.88    
+INFO adding decision: Id::<PubGrubPackage>(60) @ 13.0.88    
+INFO adding decision: Id::<PubGrubPackage>(91) @ 13.0.88    
+INFO adding decision: Id::<PubGrubPackage>(61) @ 13.0.96    
+INFO adding decision: Id::<PubGrubPackage>(62) @ 13.0.96    
+INFO adding decision: Id::<PubGrubPackage>(92) @ 13.0.96    
+INFO adding decision: Id::<PubGrubPackage>(63) @ 12.0.0.61    
+INFO adding decision: Id::<PubGrubPackage>(64) @ 12.0.0.61    
+INFO adding decision: Id::<PubGrubPackage>(93) @ 12.0.0.61    
+INFO adding decision: Id::<PubGrubPackage>(65) @ 13.4.92    
+INFO adding decision: Id::<PubGrubPackage>(66) @ 13.4.92    
+INFO adding decision: Id::<PubGrubPackage>(94) @ 13.4.92    
+INFO adding decision: Id::<PubGrubPackage>(67) @ 1.15.1.6    
+INFO adding decision: Id::<PubGrubPackage>(68) @ 1.15.1.6    
+INFO adding decision: Id::<PubGrubPackage>(95) @ 1.15.1.6    
+INFO adding decision: Id::<PubGrubPackage>(69) @ 13.0.85    
+INFO adding decision: Id::<PubGrubPackage>(70) @ 13.0.85    
+INFO adding decision: Id::<PubGrubPackage>(96) @ 13.0.85    
+INFO adding decision: Id::<PubGrubPackage>(71) @ 10.4.0.35    
+INFO adding decision: Id::<PubGrubPackage>(72) @ 10.4.0.35    
+INFO adding decision: Id::<PubGrubPackage>(97) @ 10.4.0.35    
+INFO adding decision: Id::<PubGrubPackage>(73) @ 12.0.4.66    
+INFO adding decision: Id::<PubGrubPackage>(74) @ 12.0.4.66    
+INFO adding decision: Id::<PubGrubPackage>(98) @ 12.0.4.66    
+INFO adding decision: Id::<PubGrubPackage>(75) @ 12.6.3.3    
+INFO adding decision: Id::<PubGrubPackage>(76) @ 12.6.3.3    
+INFO adding decision: Id::<PubGrubPackage>(99) @ 12.6.3.3    
+INFO adding decision: Id::<PubGrubPackage>(77) @ 13.0.85    
+INFO adding decision: Id::<PubGrubPackage>(78) @ 13.0.85    
+INFO adding decision: Id::<PubGrubPackage>(100) @ 13.0.85    
+INFO adding decision: Id::<PubGrubPackage>(84) @ 2.5.4    
+INFO adding decision: Id::<PubGrubPackage>(85) @ 13.0.0    
+INFO adding decision: Id::<PubGrubPackage>(86) @ 1.3.0    
+INFO adding decision: Id::<PubGrubPackage>(87) @ 3.0.4    
+INFO adding decision: Id::<PubGrubPackage>(89) @ 1.8.5    
+carried-a (order: torch torchvision triton), start: torch==2.13.0 torchvision==0.28.0 triton==3.7.1 
+  torch -> 2.14.1: lock now torch==2.14.1 torchvision==0.29.2 triton==3.8.0 
+  result: torch==2.14.1 torchvision==0.29.2 triton==3.8.0 
+INFO add_decision: Id::<PubGrubPackage>(0) @ 0a0.dev0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(1) @ 2.13.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(3) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(4) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(5) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(6) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(7) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(8) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(9) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(10) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(11) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(12) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(13) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(14) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(34) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(35) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(36) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(37) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(38) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(39) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(40) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(41) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(42) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(43) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(44) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(45) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(46) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(47) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(48) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(49) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(50) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(51) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(52) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(53) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(54) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(55) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(56) @ 13.0.3.0 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(17) @ 9.20.0.48 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(18) @ 9.20.0.48 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(79) @ 9.20.0.48 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(19) @ 0.8.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(20) @ 0.8.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(80) @ 0.8.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(21) @ 2.29.7 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(22) @ 2.29.7 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(81) @ 2.29.7 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(23) @ 3.4.5 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(24) @ 3.4.5 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(82) @ 3.4.5 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(25) @ 3.7.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(26) @ 3.7.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(83) @ 3.7.1 without checking dependencies    
+INFO add_decision: Id::<PubGrubPackage>(2) @ 0.29.2 without checking dependencies    
+INFO Start conflict resolution because incompat satisfied:
+   torchvision >0.29.1 depends on torch >=2.14.0    
+INFO backtrack to DecisionLevel(1)    
+INFO rejecting decision Id::<PubGrubPackage>(2) @ 0.29.1 because its dependencies conflict    
+INFO rejecting decision Id::<PubGrubPackage>(2) @ 0.29.0 because its dependencies conflict    
+INFO adding decision: Id::<PubGrubPackage>(2) @ 0.28.0    
+INFO adding decision: Id::<PubGrubPackage>(27) @ 4.2.4    
+INFO adding decision: Id::<PubGrubPackage>(28) @ 4.16.0    
+INFO adding decision: Id::<PubGrubPackage>(29) @ 84.2.1    
+INFO adding decision: Id::<PubGrubPackage>(30) @ 1.14.0    
+INFO adding decision: Id::<PubGrubPackage>(31) @ 3.7    
+INFO adding decision: Id::<PubGrubPackage>(32) @ 3.1.6    
+INFO adding decision: Id::<PubGrubPackage>(33) @ 2026.9.0    
+INFO adding decision: Id::<PubGrubPackage>(15) @ 13.4.4    
+INFO adding decision: Id::<PubGrubPackage>(16) @ 13.4.4    
+INFO adding decision: Id::<PubGrubPackage>(88) @ 13.4.4    
+INFO adding decision: Id::<PubGrubPackage>(57) @ 13.1.1.3    
+INFO adding decision: Id::<PubGrubPackage>(58) @ 13.1.1.3    
+INFO adding decision: Id::<PubGrubPackage>(90) @ 13.1.1.3    
+INFO adding decision: Id::<PubGrubPackage>(59) @ 13.0.88    
+INFO adding decision: Id::<PubGrubPackage>(60) @ 13.0.88    
+INFO adding decision: Id::<PubGrubPackage>(91) @ 13.0.88    
+INFO adding decision: Id::<PubGrubPackage>(61) @ 13.0.96    
+INFO adding decision: Id::<PubGrubPackage>(62) @ 13.0.96    
+INFO adding decision: Id::<PubGrubPackage>(92) @ 13.0.96    
+INFO adding decision: Id::<PubGrubPackage>(63) @ 12.0.0.61    
+INFO adding decision: Id::<PubGrubPackage>(64) @ 12.0.0.61    
+INFO adding decision: Id::<PubGrubPackage>(93) @ 12.0.0.61    
+INFO adding decision: Id::<PubGrubPackage>(65) @ 13.4.92    
+INFO adding decision: Id::<PubGrubPackage>(66) @ 13.4.92    
+INFO adding decision: Id::<PubGrubPackage>(94) @ 13.4.92    
+INFO adding decision: Id::<PubGrubPackage>(67) @ 1.15.1.6    
+INFO adding decision: Id::<PubGrubPackage>(68) @ 1.15.1.6    
+INFO adding decision: Id::<PubGrubPackage>(95) @ 1.15.1.6    
+INFO adding decision: Id::<PubGrubPackage>(69) @ 13.0.85    
+INFO adding decision: Id::<PubGrubPackage>(70) @ 13.0.85    
+INFO adding decision: Id::<PubGrubPackage>(96) @ 13.0.85    
+INFO adding decision: Id::<PubGrubPackage>(71) @ 10.4.0.35    
+INFO adding decision: Id::<PubGrubPackage>(72) @ 10.4.0.35    
+INFO adding decision: Id::<PubGrubPackage>(97) @ 10.4.0.35    
+INFO adding decision: Id::<PubGrubPackage>(73) @ 12.0.4.66    
+INFO adding decision: Id::<PubGrubPackage>(74) @ 12.0.4.66    
+INFO adding decision: Id::<PubGrubPackage>(98) @ 12.0.4.66    
+INFO adding decision: Id::<PubGrubPackage>(75) @ 12.6.3.3    
+INFO adding decision: Id::<PubGrubPackage>(76) @ 12.6.3.3    
+INFO adding decision: Id::<PubGrubPackage>(99) @ 12.6.3.3    
+INFO adding decision: Id::<PubGrubPackage>(77) @ 13.0.85    
+INFO adding decision: Id::<PubGrubPackage>(78) @ 13.0.85    
+INFO adding decision: Id::<PubGrubPackage>(100) @ 13.0.85    
+INFO adding decision: Id::<PubGrubPackage>(84) @ 2.5.4    
+INFO adding decision: Id::<PubGrubPackage>(85) @ 13.0.0    
+INFO adding decision: Id::<PubGrubPackage>(86) @ 1.3.0    
+INFO adding decision: Id::<PubGrubPackage>(87) @ 3.0.4    
+INFO adding decision: Id::<PubGrubPackage>(89) @ 1.8.5    
+carried-b (order: triton torchvision torch), start: torch==2.13.0 torchvision==0.28.0 triton==3.7.1 
+  torch -> 2.14.1: lock now torch==2.14.1 torchvision==0.29.2 triton==3.8.0 
+  result: torch==2.14.1 torchvision==0.29.2 triton==3.8.0 

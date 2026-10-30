@@ -1,0 +1,15 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_________________ test_dependabot_covers_every_terraform_root __________________
+
+    def test_dependabot_covers_every_terraform_root() -> None:
+        """New infrastructure roots must receive provider and lock updates (#25)."""
+        entries = dependabot_entries()
+>       assert "terraform" in entries, "Terraform providers have no automated updates"
+E       AssertionError: Terraform providers have no automated updates
+E       assert 'terraform' in {'github-actions': "package-ecosystem: github-actions\n    directory: /\n    schedule:\n      interval: weekly\n      ...  directory: /\n    patterns:\n      - '*'\n    multi-ecosystem-group: python\n    cooldown:\n      default-days: 7\n"}
+
+tests/test_repository_policy.py:60: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_repository_policy.py::test_dependabot_covers_every_terraform_root
+1 failed, 23 deselected in 0.30s

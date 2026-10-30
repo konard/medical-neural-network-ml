@@ -13,8 +13,8 @@ The server is our own code and stays under the Unlicense. It imports the
 upstream checkout at run time and does not copy it. The checkout and the
 weights keep their Apache-2.0 terms (see THIRD_PARTY_NOTICES.md).
 
-Run it with the Python of the upstream environment (Python 3.14, torch 2.14.1,
-transformers 5.20.1 and accelerate 1.15.0; see ``scripts/medbench-model-run.sh``),
+Run it with the Python of the upstream environment (Python 3.14, torch 2.15.0,
+transformers 5.22.1 and accelerate 1.15.0; see ``scripts/medbench-model-run.sh``),
 from the root of a checkout at :data:`CODE_COMMIT`. Upstream was written for
 transformers 4.x and flash-attn; :func:`prepare_upstream_imports` covers both
 (issue #21)::
@@ -286,6 +286,7 @@ def flash_attn_varlen_func(
         message = f"unsupported flash_attn_varlen_func arguments: {sorted(unsupported)}"
         raise TypeError(message)
     import torch
+    from torch.nn.attention.bias import causal_lower_right
     from torch.nn.functional import scaled_dot_product_attention
 
     gqa = q.shape[1] != k.shape[1]
@@ -311,16 +312,11 @@ def flash_attn_varlen_func(
     for (q0, q1), (k0, k1) in zip(
         itertools.pairwise(starts_q), itertools.pairwise(starts_k), strict=True
     ):
-        mask = None
-        if causal:
-            rows = torch.arange(q1 - q0, device=q.device).unsqueeze(1)
-            cols = torch.arange(k1 - k0, device=q.device).unsqueeze(0)
-            mask = cols <= rows + (k1 - k0) - (q1 - q0)
         attended = scaled_dot_product_attention(
             q[q0:q1].transpose(0, 1),
             k[k0:k1].transpose(0, 1),
             v[k0:k1].transpose(0, 1),
-            attn_mask=mask,
+            attn_mask=causal_lower_right(q1 - q0, k1 - k0) if causal else None,
             scale=softmax_scale,
             enable_gqa=gqa,
         )
@@ -345,55 +341,31 @@ def install_flash_attn_shim() -> None:
     sys.modules["flash_attn"] = module
 
 
-def restore_default_rope() -> bool:
-    """Put back the transformers 4.x ``"default"`` RoPE initialiser if missing.
+def load_qwen2_config(path: Path) -> Any:
+    """Load legacy checkpoint JSON through transformers' maintained Qwen2 config."""
+    from transformers import Qwen2Config
 
-    transformers 5 removed ``ROPE_INIT_FUNCTIONS["default"]`` (models now
-    compute it themselves from ``config.rope_parameters``), but upstream's
-    Qwen2 copy still looks it up when ``rope_scaling`` is unset and fails with
-    ``KeyError: 'default'``. This is the 4.57.6 function, unchanged in effect.
-    Returns whether anything was added.
-    """
-    import torch
-    from transformers import modeling_rope_utils
-
-    if "default" in modeling_rope_utils.ROPE_INIT_FUNCTIONS:
-        return False
-
-    def default_rope_parameters(
-        config: Any, device: Any = None, seq_len: int | None = None, **_kwargs: Any
-    ) -> tuple[Any, float]:
-        del seq_len  # unused by plain RoPE, as in transformers 4.x
-        head_dim = getattr(config, "head_dim", None) or (
-            config.hidden_size // config.num_attention_heads
-        )
-        dim = int(head_dim * getattr(config, "partial_rotary_factor", 1.0))
-        exponents = torch.arange(0, dim, 2, dtype=torch.int64).to(
-            device=device, dtype=torch.float
-        )
-        return 1.0 / (config.rope_theta ** (exponents / dim)), 1.0
-
-    modeling_rope_utils.ROPE_INIT_FUNCTIONS["default"] = default_rope_parameters
-    return True
+    config = Qwen2Config.from_json_file(str(path))
+    # UniMedVL's attention constructor still reads this legacy scalar.
+    config.rope_theta = config.rope_parameters["rope_theta"]
+    return config
 
 
 def prepare_upstream_imports() -> None:
-    """Make upstream's modules importable on torch 2.14 and transformers 5.
+    """Use torch attention and transformers' maintained Qwen2 rotary embedding.
 
-    Call before importing anything from upstream's ``codes/``.
+    Call with upstream's ``codes/`` on sys.path, before importing UniMedVL.
+    Its vendored rotary embedding requires transformers 4's removed default
+    RoPE registry entry. The maintained embedding accepts the same forward
+    arguments and state, so use it with transformers' Qwen2Config instead.
     """
-    import warnings
-
     install_flash_attn_shim()
-    restore_default_rope()
-    # Upstream's Qwen2Config still calls rope_config_validation(). transformers
-    # 5 keeps it as a deprecated wrapper that still validates (through
-    # validate_rope()), so only the warning about upstream's call is dropped.
-    warnings.filterwarnings(
-        "ignore",
-        message="`rope_config_validation` is deprecated",
-        category=FutureWarning,
-    )
+    from modeling.unimedvl import qwen2_navit
+    from transformers.models.qwen2.modeling_qwen2 import Qwen2RotaryEmbedding
+
+    # modeling/__init__.py eagerly imports qwen2_navit, which binds its own
+    # reference before the package import returns. Replace that used binding.
+    qwen2_navit.Qwen2RotaryEmbedding = Qwen2RotaryEmbedding
 
 
 class EchoEngine:
@@ -489,7 +461,6 @@ class UniMedVLEngine:  # pragma: no cover - needs a GPU and the 29 GB checkpoint
         from modeling.unimedvl import (
             Bagel,
             BagelConfig,
-            Qwen2Config,
             Qwen2ForCausalLM,
             SiglipVisionConfig,
             SiglipVisionModel,
@@ -502,7 +473,7 @@ class UniMedVLEngine:  # pragma: no cover - needs a GPU and the 29 GB checkpoint
             message = "UniMedVL needs a CUDA GPU (29 GB of bf16 weights)"
             raise RuntimeError(message)
 
-        llm_config = Qwen2Config.from_json_file(str(model_dir / "llm_config.json"))
+        llm_config = load_qwen2_config(model_dir / "llm_config.json")
         llm_config.qk_norm = True
         llm_config.tie_word_embeddings = False
         llm_config.layer_module = "Qwen2MoTDecoderLayer"

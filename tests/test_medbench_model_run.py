@@ -357,7 +357,7 @@ def test_unimedvl_pins() -> None:
     assert "flash-attn" not in pins
     # The shim passes scale, window_size and enable_gqa to
     # torch.nn.attention.varlen.varlen_attn (torch 2.12+), and
-    # restore_default_rope exists for transformers 5.
+    # native Qwen2 configuration/rotary embedding supports transformers 5.
     assert Version(pins["torch"]) >= Version("2.12")
     assert Version(pins["transformers"]).major >= 5
 

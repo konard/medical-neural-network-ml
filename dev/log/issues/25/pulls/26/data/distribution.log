@@ -1,0 +1,7 @@
+medical_neural_network_ml-0.1.0-py3-none-any.whl and medical_neural_network_ml-0.1.0.tar.gz: License-Expression Unlicense, license files LICENSE, THIRD_PARTY_NOTICES.md, console scripts medbench; manifests match src/.
++ /tmp/medbench-dist-j_urax48/venv/bin/python -I -m pip --disable-pip-version-check install --no-index --no-deps /tmp/gh-issue-solver-1793372776892/dist/medical_neural_network_ml-0.1.0-py3-none-any.whl
++ /tmp/medbench-dist-j_urax48/venv/bin/medbench --help
++ /tmp/medbench-dist-j_urax48/venv/bin/medbench sources
++ /tmp/medbench-dist-j_urax48/venv/bin/python -I -c import importlib.metadata as m; d = m.metadata('medical-neural-network-ml'); print(d['License-Expression'])
++ /tmp/medbench-dist-j_urax48/venv/bin/python -I -m pip --disable-pip-version-check wheel --no-deps -w /tmp/medbench-dist-j_urax48/rebuilt /tmp/gh-issue-solver-1793372776892/dist/medical_neural_network_ml-0.1.0.tar.gz
+Installed the wheel, ran its scripts and rebuilt it from the sdist.

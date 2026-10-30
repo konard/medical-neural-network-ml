@@ -1,0 +1,16 @@
+{
+  "source": "https://github.com/actions/runner/releases/tag/v2.338.2",
+  "assets": {
+    "actions-runner-linux-arm-2.338.2.tar.gz": "sha256:9677d6171f2c60040efc9111c4e7dd34fdd714cd7b24b171a7925eba7d09c5fa",
+    "actions-runner-linux-arm64-2.338.2.tar.gz": "sha256:670adb2f268fe21dcbb58b3db0e0aa9d5b3bddfe2c651481336e561ff86de945",
+    "actions-runner-linux-x64-2.338.2.tar.gz": "sha256:baebf204307bac6193480852732f0aba2ae97b6c5597c244f4d5558390147c40",
+    "actions-runner-osx-arm64-2.338.2.tar.gz": "sha256:25a065af409ffa317ab4d5a3b614dd15fc9c40f2172bc1b35a1b1258e919a388",
+    "actions-runner-osx-x64-2.338.2.tar.gz": "sha256:109fff505a34014a7e8d1acb850c33d404811102f572b8fb9788e2fff013cc49",
+    "actions-runner-win-arm64-2.338.2.zip": "sha256:0790e3f586c2c5388ed8e293e7cef01bd0e8a2c5c68dd0a628f848b61da4b3a7",
+    "actions-runner-win-x64-2.338.2.zip": "sha256:a1f17aa987fc8158bc7521d284912267a0d01b7c2c4684b33c86783b5e8221cc"
+  },
+  "container_image": {
+    "reference": "ghcr.io/actions/actions-runner:2.338.2",
+    "index_digest": "sha256:759a1d94a15b05941aba5196974ff43fe15b4cbba29b694b35cbc32a1166b232"
+  }
+}

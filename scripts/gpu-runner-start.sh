@@ -17,9 +17,9 @@ set -euo pipefail
 
 # The same runner as infra/ansible/github-runner.yml and
 # infra/kubernetes/arc-gpu-runner-values.yaml
-# (docs/case-studies/issue-23/data/actions-runner-v2.338.0.json).
-RUNNER_VERSION="2.338.0"
-RUNNER_SHA256="af4b794c1bc41d73d40535e3fe092a39f9679cd8d965954c2aca25a05ca41d32"
+# (dev/log/issues/25/pulls/26/data/runner-pins.json).
+RUNNER_VERSION="2.338.2"
+RUNNER_SHA256="baebf204307bac6193480852732f0aba2ae97b6c5597c244f4d5558390147c40"
 RUNNER_HOME="${RUNNER_HOME:-/opt/actions-runner}"
 RUNNER_USER="${RUNNER_USER:-runner}"
 CONFIG_DIR=/run/medbench-runner

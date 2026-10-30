@@ -1,0 +1,498 @@
+DEBUG Found workspace root: /tmp/gh-issue-solver-1793372776892
+DEBUG Adding root workspace member: /tmp/gh-issue-solver-1793372776892
+DEBUG Skipping `pyproject.toml` in `/tmp/gh-issue-solver-1793372776892` (no `[tool.uv]` section)
+DEBUG Searching for user configuration in: /home/box/.config/uv/uv.toml
+DEBUG uv 0.13.6 (x86_64-unknown-linux-gnu)
+DEBUG Starting Python discovery for Python 3.14
+DEBUG Looking for Python 3.14
+DEBUG Searching for Python 3.14 in virtual environments, managed installations, or search path
+DEBUG Found `cpython-3.15.0-linux-x86_64-gnu` at `/tmp/gh-issue-solver-1793372776892/.venv/bin/python` (virtual environment)
+DEBUG Skipping interpreter at `/tmp/gh-issue-solver-1793372776892/.venv/bin/python` from virtual environment: does not satisfy request `3.14`
+DEBUG Searching for managed installations at `/home/box/.local/share/uv/python`
+DEBUG Found managed installation `cpython-3.14.10-linux-x86_64-gnu`
+DEBUG Found `cpython-3.14.10-linux-x86_64-gnu` at `/home/box/.local/share/uv/python/cpython-3.14-linux-x86_64-gnu/bin/python3.14` (managed installations)
+DEBUG Using Python 3.14.10 interpreter at `/home/box/.local/share/uv/python/cpython-3.14-linux-x86_64-gnu/bin/python3.14` for builds
+DEBUG Using request connect timeout of 10s and read timeout of 30s
+DEBUG Solving with installed Python version: 3.14.10
+DEBUG Solving with target Python version: >=3.14
+DEBUG Adding direct dependency: ansible-core>=2.21.5, <2.21.5+
+DEBUG Adding direct dependency: ansible-lint>=26.10.1, <26.10.1+
+DEBUG Adding direct dependency: yamllint>=1.38.0, <1.38.0+
+DEBUG Adding direct dependency: shellcheck-py>=0.11.0.1, <0.11.0.1+
+INFO add_decision: Id::<PubGrubPackage>(0) @ 0a0.dev0 without checking dependencies    
+DEBUG Found stale response for: https://pypi.org/simple/shellcheck-py/
+DEBUG Found stale response for: https://pypi.org/simple/ansible-lint/
+DEBUG Sending revalidation request for: https://pypi.org/simple/shellcheck-py/
+DEBUG Found stale response for: https://pypi.org/simple/ansible-core/
+DEBUG Found stale response for: https://pypi.org/simple/yamllint/
+DEBUG starting new connection 'Some("pypi.org")'    
+DEBUG Sending revalidation request for: https://pypi.org/simple/ansible-lint/
+DEBUG starting new connection 'Some("pypi.org")'    
+DEBUG Sending revalidation request for: https://pypi.org/simple/ansible-core/
+DEBUG starting new connection 'Some("pypi.org")'    
+DEBUG Sending revalidation request for: https://pypi.org/simple/yamllint/
+DEBUG starting new connection 'Some("pypi.org")'    
+DEBUG connecting to 151.101.64.223:443
+DEBUG connecting to 151.101.192.223:443
+DEBUG connecting to 151.101.128.223:443
+DEBUG connecting to 151.101.192.223:443
+DEBUG connected to 151.101.192.223:443
+DEBUG No cached session for DnsName("pypi.org")    
+DEBUG Not resuming any session    
+DEBUG connected to 151.101.192.223:443
+DEBUG No cached session for DnsName("pypi.org")    
+DEBUG Not resuming any session    
+DEBUG connected to 151.101.64.223:443
+DEBUG No cached session for DnsName("pypi.org")    
+DEBUG Not resuming any session    
+DEBUG connected to 151.101.128.223:443
+DEBUG No cached session for DnsName("pypi.org")    
+DEBUG Not resuming any session    
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Not resuming    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG pooling idle connection for ("https", pypi.org)
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=Headers { stream_id: StreamId(1), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(3), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(5), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(7), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Not resuming    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Not resuming    
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG received frame=Settings { flags: (0x0), header_table_size: 8192, max_concurrent_streams: 100 }
+DEBUG send frame=Settings { flags: (0x1: ACK) }
+DEBUG received frame=WindowUpdate { stream_id: StreamId(0), size_increment: 16711681 }
+DEBUG received frame=Settings { flags: (0x1: ACK) }
+DEBUG received settings ACK; applying Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG received frame=Headers { stream_id: StreamId(7), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(1), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found not-modified response for: https://pypi.org/simple/ansible-core/
+DEBUG Found not-modified response for: https://pypi.org/simple/yamllint/
+DEBUG Searching for a compatible version of ansible-core (>=2.21.5, <2.21.5+)
+DEBUG Selecting: ansible-core==2.21.5 [compatible] (ansible_core-2.21.5-py3-none-any.whl)
+DEBUG received frame=Headers { stream_id: StreamId(3), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found not-modified response for: https://pypi.org/simple/shellcheck-py/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/05/92/aed08e68de6e6a3d7c2328ce7388072cd6affc26e2917197430b646aed02/yamllint-1.38.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/57/6f/7321059b2d1a5ea3c7e60807a5269942d93b2c11a2fc89ba8e4a3e827891/ansible_core-2.21.5-py3-none-any.whl.metadata
+DEBUG Adding transitive dependency for ansible-core==2.21.5: jinja2>=3.1.0
+DEBUG Adding transitive dependency for ansible-core==2.21.5: pyyaml>=5.1
+DEBUG Adding transitive dependency for ansible-core==2.21.5: cryptography*
+DEBUG Adding transitive dependency for ansible-core==2.21.5: packaging*
+DEBUG Adding transitive dependency for ansible-core==2.21.5: resolvelib>=0.8.0, <2.0.0
+INFO add_decision: Id::<PubGrubPackage>(1) @ 2.21.5 without checking dependencies    
+DEBUG received frame=Headers { stream_id: StreamId(5), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found not-modified response for: https://pypi.org/simple/ansible-lint/
+DEBUG Found fresh response for: https://pypi.org/simple/jinja2/
+DEBUG Found fresh response for: https://pypi.org/simple/packaging/
+DEBUG Using ciphersuite TLS13_AES_128_GCM_SHA256    
+DEBUG Not resuming    
+DEBUG Found fresh response for: https://pypi.org/simple/pyyaml/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/96/55/250e0e3367613a5c22bd82e33b16b889287d81ab0f7dda67e6514a4cccf4/shellcheck_py-0.11.0.1-py2.py3-none-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl.metadata
+DEBUG TLS1.3 encrypted extensions: ServerExtensions { server_name_ack: (), selected_protocol: SingleProtocolName(ProtocolName(6832)), unknown_extensions: {}, .. }    
+DEBUG ALPN protocol is Some(b"h2")    
+DEBUG Found stale response for: https://pypi.org/simple/resolvelib/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/63/34/ba1c580383c9eada3711951fef0795c80b829a078d72188184bcab9dd527/packaging-26.3-py3-none-any.whl.metadata
+DEBUG Searching for a compatible version of ansible-lint (>=26.10.1, <26.10.1+)
+DEBUG Selecting: ansible-lint==26.10.1 [compatible] (ansible_lint-26.10.1-py3-none-any.whl)
+DEBUG binding client connection
+DEBUG client connection bound
+DEBUG send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384, max_header_list_size: 16384 }
+DEBUG send frame=WindowUpdate { stream_id: StreamId(0), size_increment: 5177345 }
+DEBUG send frame=GoAway { error_code: NO_ERROR, last_stream_id: StreamId(0) }
+DEBUG Connection::poll; connection error error=GoAway(b"", NO_ERROR, Library)
+DEBUG Sending warning alert CloseNotify    
+DEBUG Sending revalidation request for: https://pypi.org/simple/resolvelib/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/f3/c7/80a6ac01d970257979f8f18e34e5a1a4c1ad356ea8507425fe74ea9178bc/ansible_lint-26.10.1-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://pypi.org/simple/cryptography/
+DEBUG Adding transitive dependency for ansible-lint==26.10.1: ansible-compat>=26.3.0
+DEBUG Adding transitive dependency for ansible-lint==26.10.1: ansible-core>=2.16.19, <2.17.dev0 | >=2.18.dev0
+DEBUG Adding transitive dependency for ansible-lint==26.10.1: black>=25.2.0
+DEBUG Adding transitive dependency for ansible-lint==26.10.1: cffi>=1.15.1
+DEBUG Adding transitive dependency for ansible-lint==26.10.1: cryptography>=46.0.7
+DEBUG Adding transitive dependency for ansible-lint==26.10.1: distro>=1.9.0
+DEBUG Adding transitive dependency for ansible-lint==26.10.1: filelock>=3.8.2
+DEBUG Adding transitive dependency for ansible-lint==26.10.1: jsonschema>=4.10.0
+DEBUG Adding transitive dependency for ansible-lint==26.10.1: packaging>=22.0
+DEBUG Adding transitive dependency for ansible-lint==26.10.1: pathspec>=1.0.3, <1.2.0
+DEBUG send frame=Headers { stream_id: StreamId(9), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Adding transitive dependency for ansible-lint==26.10.1: pyyaml{python_full_version >= '3.14'}>=6.0.1
+DEBUG Adding transitive dependency for ansible-lint==26.10.1: referencing>=0.36.2
+DEBUG Adding transitive dependency for ansible-lint==26.10.1: ruamel-yaml>=0.18.11
+DEBUG Adding transitive dependency for ansible-lint==26.10.1: subprocess-tee>=0.4.1
+DEBUG Adding transitive dependency for ansible-lint==26.10.1: wcmatch{python_full_version >= '3.12'}>=8.5.0
+DEBUG Adding transitive dependency for ansible-lint==26.10.1: yamllint>=1.38.0
+INFO add_decision: Id::<PubGrubPackage>(2) @ 26.10.1 without checking dependencies    
+DEBUG Searching for a compatible version of yamllint (>=1.38.0, <1.38.0+)
+DEBUG Selecting: yamllint==1.38.0 [compatible] (yamllint-1.38.0-py3-none-any.whl)
+DEBUG Adding transitive dependency for yamllint==1.38.0: pathspec>=1.0.0
+DEBUG Adding transitive dependency for yamllint==1.38.0: pyyaml*
+INFO add_decision: Id::<PubGrubPackage>(3) @ 1.38.0 without checking dependencies    
+DEBUG Searching for a compatible version of shellcheck-py (>=0.11.0.1, <0.11.0.1+)
+DEBUG Selecting: shellcheck-py==0.11.0.1 [compatible] (shellcheck_py-0.11.0.1-py2.py3-none-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(4) @ 0.11.0.1 without checking dependencies    
+DEBUG Searching for a compatible version of jinja2 (>=3.1.0)
+DEBUG Selecting: jinja2==3.1.6 [compatible] (jinja2-3.1.6-py3-none-any.whl)
+DEBUG Adding transitive dependency for jinja2==3.1.6: markupsafe>=2.0
+INFO add_decision: Id::<PubGrubPackage>(5) @ 3.1.6 without checking dependencies    
+DEBUG Searching for a compatible version of pyyaml (>=6.0.1)
+DEBUG Selecting: pyyaml==6.0.3 [compatible] (pyyaml-6.0.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/88/f9/16491d7ed2a919954993e48aa941b200f38040928474c9e85ea9e64222c3/pyyaml-6.0.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata
+INFO add_decision: Id::<PubGrubPackage>(6) @ 6.0.3 without checking dependencies    
+DEBUG Searching for a compatible version of pyyaml{python_full_version >= '3.14'} (>=6.0.1)
+DEBUG Selecting: pyyaml==6.0.3 [compatible] (pyyaml-6.0.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl)
+DEBUG Adding transitive dependency for pyyaml==6.0.3: pyyaml==6.0.3
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/d3/69/2c833a049475e0a3444e94c7d0aca0aa51d166374a449b09e92ac98138de/cryptography-50.0.2-cp311-abi3-manylinux_2_34_x86_64.whl.metadata
+DEBUG Adding transitive dependency for pyyaml==6.0.3: pyyaml{python_full_version >= '3.14'}==6.0.3
+INFO add_decision: Id::<PubGrubPackage>(10) @ 6.0.3 without checking dependencies    
+DEBUG Searching for a compatible version of pyyaml{python_full_version >= '3.14'} (==6.0.3)
+DEBUG Selecting: pyyaml==6.0.3 [compatible] (pyyaml-6.0.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(24) @ 6.0.3 without checking dependencies    
+DEBUG Searching for a compatible version of cryptography (>=46.0.7)
+DEBUG Selecting: cryptography==50.0.2 [compatible] (cryptography-50.0.2-cp311-abi3-manylinux_2_34_x86_64.whl)
+DEBUG Found fresh response for: https://pypi.org/simple/cffi/
+DEBUG Found stale response for: https://pypi.org/simple/ansible-compat/
+DEBUG Sending revalidation request for: https://pypi.org/simple/ansible-compat/
+DEBUG Adding transitive dependency for cryptography==50.0.2: cffi{platform_python_implementation != 'PyPy'}>=2.0.0
+INFO add_decision: Id::<PubGrubPackage>(7) @ 50.0.2 without checking dependencies    
+DEBUG Searching for a compatible version of packaging (>=22.0)
+DEBUG Selecting: packaging==26.3 [compatible] (packaging-26.3-py3-none-any.whl)
+DEBUG reuse idle connection for ("https", pypi.org)
+INFO add_decision: Id::<PubGrubPackage>(8) @ 26.3 without checking dependencies    
+DEBUG Found fresh response for: https://pypi.org/simple/filelock/
+DEBUG Found fresh response for: https://pypi.org/simple/pathspec/
+DEBUG Found stale response for: https://pypi.org/simple/black/
+DEBUG Sending revalidation request for: https://pypi.org/simple/black/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG send frame=Headers { stream_id: StreamId(11), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(13), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found stale response for: https://pypi.org/simple/jsonschema/
+DEBUG Found stale response for: https://pypi.org/simple/referencing/
+DEBUG Sending revalidation request for: https://pypi.org/simple/jsonschema/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG Sending revalidation request for: https://pypi.org/simple/referencing/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG send frame=Headers { stream_id: StreamId(15), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(17), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found stale response for: https://pypi.org/simple/distro/
+DEBUG Sending revalidation request for: https://pypi.org/simple/distro/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG send frame=Headers { stream_id: StreamId(19), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found stale response for: https://pypi.org/simple/subprocess-tee/
+DEBUG Sending revalidation request for: https://pypi.org/simple/subprocess-tee/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG send frame=Headers { stream_id: StreamId(21), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found fresh response for: https://pypi.org/simple/markupsafe/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/e9/02/4e7d553a7ac4b4238b38b3c1b80d486e9d4436f8d2acbf87a0997fe3f402/cffi-2.1.1-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata
+DEBUG Found stale response for: https://pypi.org/simple/wcmatch/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/e0/1b/5e74289a1878e666bb4b65fe5805a04cafcac2aa5f519ef1ead67ef91c56/filelock-4.2.4-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/f1/d9/7fb5aa316bc299258e68c73ba3bddbc499654a07f151cba08f6153988714/pathspec-1.1.1-py3-none-any.whl.metadata
+DEBUG Sending revalidation request for: https://pypi.org/simple/wcmatch/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG received frame=Headers { stream_id: StreamId(9), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(23), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found not-modified response for: https://pypi.org/simple/resolvelib/
+DEBUG Searching for a compatible version of resolvelib (>=0.8.0, <2.0.0)
+DEBUG Selecting: resolvelib==1.2.1 [compatible] (resolvelib-1.2.1-py3-none-any.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/8f/db/d7282caf7ab03af44d5d6fdbaa019b35c7d7f1c90588b839c07cba640d6a/markupsafe-3.0.4-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/e2/23/c941a0d0353681ca138489983c4309e0f5095dfd902e1357004f2357ddf2/resolvelib-1.2.1-py3-none-any.whl.metadata
+DEBUG Found stale response for: https://pypi.org/simple/ruamel-yaml/
+DEBUG received frame=Headers { stream_id: StreamId(17), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Sending revalidation request for: https://pypi.org/simple/ruamel-yaml/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG Found not-modified response for: https://pypi.org/simple/referencing/
+DEBUG send frame=Headers { stream_id: StreamId(25), flags: (0x5: END_HEADERS | END_STREAM) }
+INFO add_decision: Id::<PubGrubPackage>(9) @ 1.2.1 without checking dependencies    
+DEBUG received frame=Headers { stream_id: StreamId(15), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(21), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found not-modified response for: https://pypi.org/simple/jsonschema/
+DEBUG Found not-modified response for: https://pypi.org/simple/subprocess-tee/
+DEBUG received frame=Headers { stream_id: StreamId(19), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found not-modified response for: https://pypi.org/simple/distro/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/2c/58/ca301544e1fa93ed4f80d724bf5b194f6e4b945841c5bfd555878eea9fcb/referencing-0.37.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/12/b3/231ffd4ab1fc9d679809f356cebee130ac7daa00d6d6f3206dd4fd137e9e/distro-1.9.0-py3-none-any.whl.metadata
+DEBUG received frame=Headers { stream_id: StreamId(13), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(23), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG received frame=Headers { stream_id: StreamId(11), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found not-modified response for: https://pypi.org/simple/black/
+DEBUG Found not-modified response for: https://pypi.org/simple/wcmatch/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/4d/ab/e3a3be062cd544b2803760ff707dee38f0b1cb5685b2446de0ec19be28d9/subprocess_tee-0.4.2-py3-none-any.whl.metadata
+DEBUG Found not-modified response for: https://pypi.org/simple/ansible-compat/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/69/90/f63fb5873511e014207a475e2bb4e8b2e570d655b00ac19a9a0ca0a385ee/jsonschema-4.26.0-py3-none-any.whl.metadata
+DEBUG Searching for a compatible version of ansible-compat (>=26.3.0)
+DEBUG Selecting: ansible-compat==26.10.0 [compatible] (ansible_compat-26.10.0-py3-none-any.whl)
+DEBUG received frame=Headers { stream_id: StreamId(25), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found not-modified response for: https://pypi.org/simple/ruamel-yaml/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/b5/d2/09209cd7868af83c7d4f6ad26874f9c933c0a2566c06fe8524bd0a10d810/ansible_compat-26.10.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/89/2f/e12ca76edfcd037fe9e7e7635d9468d1d51255cf25a01b2f8f97a38f147d/black-26.10.1-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/34/96/b6cebd4bd75320743a291fed494c79f07c01b58fa9b187d12aeb5110f002/wcmatch-11.2-py3-none-any.whl.metadata
+DEBUG Adding transitive dependency for ansible-compat==26.10.0: ansible-core>=2.16.19, <2.17.dev0 | >=2.18.dev0
+DEBUG Adding transitive dependency for ansible-compat==26.10.0: jsonschema>=4.6.0
+DEBUG Adding transitive dependency for ansible-compat==26.10.0: packaging>=22.0
+DEBUG Adding transitive dependency for ansible-compat==26.10.0: pyyaml>=6.0.1
+DEBUG Adding transitive dependency for ansible-compat==26.10.0: subprocess-tee>=0.4.1
+INFO add_decision: Id::<PubGrubPackage>(13) @ 26.10.0 without checking dependencies    
+DEBUG Searching for a compatible version of black (>=25.2.0)
+DEBUG Selecting: black==26.10.1 [compatible] (black-26.10.1-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl)
+DEBUG Adding transitive dependency for black==26.10.1: click>=8.0.0
+DEBUG Adding transitive dependency for black==26.10.1: mypy-extensions>=0.4.3
+DEBUG Adding transitive dependency for black==26.10.1: packaging>=22.0
+DEBUG Adding transitive dependency for black==26.10.1: pathspec>=1.0.0
+DEBUG Adding transitive dependency for black==26.10.1: platformdirs>=2
+DEBUG Adding transitive dependency for black==26.10.1: pytokens>=0.4.0, <0.5.dev0
+INFO add_decision: Id::<PubGrubPackage>(14) @ 26.10.1 without checking dependencies    
+DEBUG Searching for a compatible version of cffi (>=2.0.0)
+DEBUG Selecting: cffi==2.1.1 [compatible] (cffi-2.1.1-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+DEBUG Adding transitive dependency for cffi==2.1.1: pycparser{implementation_name != 'PyPy'}*
+INFO add_decision: Id::<PubGrubPackage>(15) @ 2.1.1 without checking dependencies    
+DEBUG Searching for a compatible version of cffi{platform_python_implementation != 'PyPy'} (>=2.0.0)
+DEBUG Selecting: cffi==2.1.1 [compatible] (cffi-2.1.1-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/b8/0c/51f6841f1d84f404f92463fc2b1ba0da357ca1e3db6b7fbda26956c3b82a/ruamel_yaml-0.19.1-py3-none-any.whl.metadata
+DEBUG Adding transitive dependency for cffi==2.1.1: cffi==2.1.1
+DEBUG Adding transitive dependency for cffi==2.1.1: cffi{platform_python_implementation != 'PyPy'}==2.1.1
+INFO add_decision: Id::<PubGrubPackage>(25) @ 2.1.1 without checking dependencies    
+DEBUG Searching for a compatible version of cffi{platform_python_implementation != 'PyPy'} (==2.1.1)
+DEBUG Selecting: cffi==2.1.1 [compatible] (cffi-2.1.1-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl)
+DEBUG Adding transitive dependency for cffi==2.1.1: pycparser{implementation_name != 'PyPy'}*
+INFO add_decision: Id::<PubGrubPackage>(32) @ 2.1.1 without checking dependencies    
+DEBUG Searching for a compatible version of distro (>=1.9.0)
+DEBUG Selecting: distro==1.9.0 [compatible] (distro-1.9.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(16) @ 1.9.0 without checking dependencies    
+DEBUG Searching for a compatible version of filelock (>=3.8.2)
+DEBUG Selecting: filelock==4.2.4 [compatible] (filelock-4.2.4-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(17) @ 4.2.4 without checking dependencies    
+DEBUG Searching for a compatible version of jsonschema (>=4.10.0)
+DEBUG Found fresh response for: https://pypi.org/simple/mypy-extensions/
+DEBUG Selecting: jsonschema==4.26.0 [compatible] (jsonschema-4.26.0-py3-none-any.whl)
+DEBUG Adding transitive dependency for jsonschema==4.26.0: attrs>=22.2.0
+DEBUG Adding transitive dependency for jsonschema==4.26.0: jsonschema-specifications>=2023.3.6
+DEBUG Adding transitive dependency for jsonschema==4.26.0: referencing>=0.28.4
+DEBUG Adding transitive dependency for jsonschema==4.26.0: rpds-py>=0.25.0
+INFO add_decision: Id::<PubGrubPackage>(18) @ 4.26.0 without checking dependencies    
+DEBUG Searching for a compatible version of pathspec (>=1.0.3, <1.2.0)
+DEBUG Selecting: pathspec==1.1.1 [compatible] (pathspec-1.1.1-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(19) @ 1.1.1 without checking dependencies    
+DEBUG Searching for a compatible version of referencing (>=0.36.2)
+DEBUG Selecting: referencing==0.37.0 [compatible] (referencing-0.37.0-py3-none-any.whl)
+DEBUG Adding transitive dependency for referencing==0.37.0: attrs>=22.2.0
+DEBUG Found fresh response for: https://pypi.org/simple/click/
+DEBUG Adding transitive dependency for referencing==0.37.0: rpds-py>=0.7.0
+INFO add_decision: Id::<PubGrubPackage>(20) @ 0.37.0 without checking dependencies    
+DEBUG Searching for a compatible version of ruamel-yaml (>=0.18.11)
+DEBUG Selecting: ruamel-yaml==0.19.1 [compatible] (ruamel_yaml-0.19.1-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(21) @ 0.19.1 without checking dependencies    
+DEBUG Searching for a compatible version of subprocess-tee (>=0.4.1)
+DEBUG Selecting: subprocess-tee==0.4.2 [compatible] (subprocess_tee-0.4.2-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(22) @ 0.4.2 without checking dependencies    
+DEBUG Searching for a compatible version of wcmatch{python_full_version >= '3.12'} (>=8.5.0)
+DEBUG Selecting: wcmatch==11.2 [compatible] (wcmatch-11.2-py3-none-any.whl)
+DEBUG Adding transitive dependency for wcmatch==11.2: wcmatch==11.2
+DEBUG Adding transitive dependency for wcmatch==11.2: wcmatch{python_full_version >= '3.12'}==11.2
+INFO add_decision: Id::<PubGrubPackage>(11) @ 11.2 without checking dependencies    
+DEBUG Found fresh response for: https://pypi.org/simple/pycparser/
+DEBUG Searching for a compatible version of wcmatch (==11.2)
+DEBUG Selecting: wcmatch==11.2 [compatible] (wcmatch-11.2-py3-none-any.whl)
+DEBUG Adding transitive dependency for wcmatch==11.2: bracex>=3.2
+INFO add_decision: Id::<PubGrubPackage>(12) @ 11.2 without checking dependencies    
+DEBUG Searching for a compatible version of wcmatch{python_full_version >= '3.12'} (==11.2)
+DEBUG Selecting: wcmatch==11.2 [compatible] (wcmatch-11.2-py3-none-any.whl)
+DEBUG Adding transitive dependency for wcmatch==11.2: bracex>=3.2
+INFO add_decision: Id::<PubGrubPackage>(36) @ 11.2 without checking dependencies    
+DEBUG Searching for a compatible version of markupsafe (>=2.0)
+DEBUG Selecting: markupsafe==3.0.4 [compatible] (markupsafe-3.0.4-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl)
+DEBUG Found fresh response for: https://pypi.org/simple/attrs/
+INFO add_decision: Id::<PubGrubPackage>(23) @ 3.0.4 without checking dependencies    
+DEBUG Searching for a compatible version of click (>=8.0.0)
+DEBUG Selecting: click==8.5.0 [compatible] (click-8.5.0-py3-none-any.whl)
+DEBUG Found fresh response for: https://pypi.org/simple/platformdirs/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/79/7b/2c79738432f5c924bef5071f933bcc9efd0473bac3b4aa584a6f7c1c8df8/mypy_extensions-1.1.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/58/50/6c0d534c5f134586a8e1ba4e330569e32f057e33372ae556463212fb4cd3/click-8.5.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/b6/ae/315bbeee126a769cbde43cf4908acb4b40408d8bf8bbf334dd7368d8dadf/pycparser-3.12-py3-none-any.whl.metadata
+INFO add_decision: Id::<PubGrubPackage>(26) @ 8.5.0 without checking dependencies    
+DEBUG Searching for a compatible version of mypy-extensions (>=0.4.3)
+DEBUG Selecting: mypy-extensions==1.1.0 [compatible] (mypy_extensions-1.1.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(27) @ 1.1.0 without checking dependencies    
+DEBUG Searching for a compatible version of platformdirs (>=2)
+DEBUG Selecting: platformdirs==4.14.0 [compatible] (platformdirs-4.14.0-py3-none-any.whl)
+DEBUG Found stale response for: https://pypi.org/simple/pytokens/
+DEBUG Sending revalidation request for: https://pypi.org/simple/pytokens/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/64/b4/17d4b0b2a2dc85a6df63d1157e028ed19f90d4cd97c36717afef2bc2f395/attrs-26.1.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/69/2b/887969ef4bb53e0cb271dc7c3f4a73d50c5d58bb88aeaae311e3340cd57e/platformdirs-4.14.0-py3-none-any.whl.metadata
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG Found stale response for: https://pypi.org/simple/bracex/
+DEBUG send frame=Headers { stream_id: StreamId(27), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found stale response for: https://pypi.org/simple/jsonschema-specifications/
+DEBUG Sending revalidation request for: https://pypi.org/simple/bracex/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG Sending revalidation request for: https://pypi.org/simple/jsonschema-specifications/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG send frame=Headers { stream_id: StreamId(29), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG send frame=Headers { stream_id: StreamId(31), flags: (0x5: END_HEADERS | END_STREAM) }
+INFO add_decision: Id::<PubGrubPackage>(28) @ 4.14.0 without checking dependencies    
+DEBUG received frame=Headers { stream_id: StreamId(27), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found not-modified response for: https://pypi.org/simple/pytokens/
+DEBUG received frame=Headers { stream_id: StreamId(31), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found not-modified response for: https://pypi.org/simple/jsonschema-specifications/
+DEBUG Searching for a compatible version of pytokens (>=0.4.0, <0.5.dev0)
+DEBUG Selecting: pytokens==0.4.1 [compatible] (pytokens-0.4.1-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/0f/95/70d7041273890f9f97a24234c00b746e8da86df462620194cef1d411ddeb/pytokens-0.4.1-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG received frame=Headers { stream_id: StreamId(29), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found stale response for: https://pypi.org/simple/rpds-py/
+DEBUG Found not-modified response for: https://pypi.org/simple/bracex/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/41/45/1a4ed80516f02155c51f51e8cedb3c1902296743db0bbc66608a0db2814f/jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata
+DEBUG Sending revalidation request for: https://pypi.org/simple/rpds-py/
+DEBUG reuse idle connection for ("https", pypi.org)
+DEBUG send frame=Headers { stream_id: StreamId(33), flags: (0x5: END_HEADERS | END_STREAM) }
+INFO add_decision: Id::<PubGrubPackage>(29) @ 0.4.1 without checking dependencies    
+DEBUG Searching for a compatible version of pycparser{implementation_name != 'PyPy'} (*)
+DEBUG Selecting: pycparser==3.12 [compatible] (pycparser-3.12-py3-none-any.whl)
+DEBUG Adding transitive dependency for pycparser==3.12: pycparser==3.12
+DEBUG Adding transitive dependency for pycparser==3.12: pycparser{implementation_name != 'PyPy'}==3.12
+INFO add_decision: Id::<PubGrubPackage>(30) @ 3.12 without checking dependencies    
+DEBUG Searching for a compatible version of pycparser (==3.12)
+DEBUG Selecting: pycparser==3.12 [compatible] (pycparser-3.12-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(31) @ 3.12 without checking dependencies    
+DEBUG Searching for a compatible version of pycparser{implementation_name != 'PyPy'} (==3.12)
+DEBUG Selecting: pycparser==3.12 [compatible] (pycparser-3.12-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(38) @ 3.12 without checking dependencies    
+DEBUG Searching for a compatible version of attrs (>=22.2.0)
+DEBUG Selecting: attrs==26.1.0 [compatible] (attrs-26.1.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(33) @ 26.1.0 without checking dependencies    
+DEBUG Searching for a compatible version of jsonschema-specifications (>=2023.3.6)
+DEBUG Selecting: jsonschema-specifications==2025.9.1 [compatible] (jsonschema_specifications-2025.9.1-py3-none-any.whl)
+DEBUG Adding transitive dependency for jsonschema-specifications==2025.9.1: referencing>=0.31.0
+INFO add_decision: Id::<PubGrubPackage>(34) @ 2025.9.1 without checking dependencies    
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/42/65/8030b03de8137d1aab7dd6ecfecdba2fc22fc849fa35959b024f62293a99/bracex-3.2-py3-none-any.whl.metadata
+DEBUG received frame=Headers { stream_id: StreamId(33), flags: (0x5: END_HEADERS | END_STREAM) }
+DEBUG Found not-modified response for: https://pypi.org/simple/rpds-py/
+DEBUG Searching for a compatible version of rpds-py (>=0.25.0)
+DEBUG Selecting: rpds-py==2026.9.1 [compatible] (rpds_py-2026.9.1-cp314-cp314-manylinux_2_17_x86_64.manylinux2014_x86_64.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/22/9d/d08a1128ab199b2f0cf25bfeb0639bd05119fff4b7c47bec24ef9a8ec23f/rpds_py-2026.9.1-cp314-cp314-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+INFO add_decision: Id::<PubGrubPackage>(35) @ 2026.9.1 without checking dependencies    
+DEBUG Searching for a compatible version of bracex (>=3.2)
+DEBUG Selecting: bracex==3.2 [compatible] (bracex-3.2-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(37) @ 3.2 without checking dependencies    
+DEBUG Tried 30 versions: ansible-compat 1, ansible-core 1, ansible-lint 1, attrs 1, black 1, bracex 1, cffi 1, click 1, cryptography 1, distro 1, filelock 1, jinja2 1, jsonschema 1, jsonschema-specifications 1, markupsafe 1, mypy-extensions 1, packaging 1, pathspec 1, platformdirs 1, pycparser 1, pytokens 1, pyyaml 1, referencing 1, resolvelib 1, rpds-py 1, ruamel-yaml 1, shellcheck-py 1, subprocess-tee 1, wcmatch 1, yamllint 1
+DEBUG marker environment resolution took 0.129s
+Resolved 30 packages in 132ms
+# This file was autogenerated by uv via the following command:
+#    uv pip compile infra-requirements.in -o infra-requirements.txt --python-version 3.14
+ansible-compat==26.10.0
+    # via ansible-lint
+ansible-core==2.21.5
+    # via
+    #   -r infra-requirements.in
+    #   ansible-compat
+    #   ansible-lint
+ansible-lint==26.10.1
+    # via -r infra-requirements.in
+attrs==26.1.0
+    # via
+    #   jsonschema
+    #   referencing
+black==26.10.1
+    # via ansible-lint
+bracex==3.2
+    # via wcmatch
+cffi==2.1.1
+    # via
+    #   ansible-lint
+    #   cryptography
+click==8.5.0
+    # via black
+cryptography==50.0.2
+    # via
+    #   ansible-core
+    #   ansible-lint
+distro==1.9.0
+    # via ansible-lint
+filelock==4.2.4
+    # via ansible-lint
+jinja2==3.1.6
+    # via ansible-core
+jsonschema==4.26.0
+    # via
+    #   ansible-compat
+    #   ansible-lint
+jsonschema-specifications==2025.9.1
+    # via jsonschema
+markupsafe==3.0.4
+    # via jinja2
+mypy-extensions==1.1.0
+    # via black
+packaging==26.3
+    # via
+    #   ansible-compat
+    #   ansible-core
+    #   ansible-lint
+    #   black
+pathspec==1.1.1
+    # via
+    #   ansible-lint
+    #   black
+    #   yamllint
+platformdirs==4.14.0
+    # via black
+pycparser==3.12
+    # via cffi
+pytokens==0.4.1
+    # via black
+pyyaml==6.0.3
+    # via
+    #   ansible-compat
+    #   ansible-core
+    #   ansible-lint
+    #   yamllint
+referencing==0.37.0
+    # via
+    #   ansible-lint
+    #   jsonschema
+    #   jsonschema-specifications
+resolvelib==1.2.1
+    # via ansible-core
+rpds-py==2026.9.1
+    # via
+    #   jsonschema
+    #   referencing
+ruamel-yaml==0.19.1
+    # via ansible-lint
+shellcheck-py==0.11.0.1
+    # via -r infra-requirements.in
+subprocess-tee==0.4.2
+    # via
+    #   ansible-compat
+    #   ansible-lint
+wcmatch==11.2
+    # via ansible-lint
+yamllint==1.38.0
+    # via
+    #   -r infra-requirements.in
+    #   ansible-lint

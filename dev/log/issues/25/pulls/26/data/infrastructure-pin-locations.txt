@@ -1,0 +1,31 @@
+scripts/cloud_gpu/shell.py:119:    interval: float = 10.0,
+scripts/cloud_gpu/hetzner.py:29:DEFAULT_DIST = "Ubuntu 24.04 LTS base"
+scripts/cloud_gpu/hetzner.py:61:    if not url.startswith("https://") and not url.startswith("http://127.0.0.1"):
+scripts/cloud_gpu/hetzner.py:107:    """Return the Ubuntu 24.04 image name the product offers."""
+scripts/cloud_gpu/hetzner.py:109:        if "Ubuntu 24.04" in dist:
+scripts/cloud_gpu/hetzner.py:237:    """Return the latest expires-at a run could have given the order's server."""
+scripts/cloud_gpu/config.py:83:    "g6.xlarge": 0.8048,
+scripts/cloud_gpu/config.py:84:    "g6.2xlarge": 0.9776,
+scripts/cloud_gpu/config.py:85:    "g6e.2xlarge": 2.242,
+scripts/cloud_gpu/config.py:86:    "g2-standard-4": 0.7068,
+scripts/cloud_gpu/config.py:87:    "g2-standard-8": 0.8536,
+scripts/cloud_gpu/config.py:88:    "a2-ultragpu-1g": 5.069,
+scripts/cloud_gpu/config.py:89:    "Standard_NC4as_T4_v3": 0.526,
+scripts/cloud_gpu/config.py:90:    "Standard_NV36ads_A10_v5": 3.20,
+scripts/cloud_gpu/config.py:91:    "Standard_NC24ads_A100_v4": 3.673,
+scripts/cloud_gpu/config.py:92:    "GEX45": 0.3429,
+scripts/cloud_gpu/config.py:93:    "GEX63": 1.6009,
+scripts/cloud_gpu/config.py:94:    "GEX131": 2.4022,
+scripts/cloud_gpu/config.py:96:HETZNER_SETUP_FEE = {"GEX45": 209.0, "GEX63": 999.0, "GEX131": 1499.0}
+infra/kubernetes/nvidia-device-plugin.yaml:4:# Upstream: https://github.com/NVIDIA/k8s-device-plugin/blob/v0.20.1/deployments/static/nvidia-device-plugin.yml
+infra/kubernetes/nvidia-device-plugin.yaml:33:      - image: nvcr.io/nvidia/k8s-device-plugin:v0.20.1@sha256:27c1b2553a690ca3d29889dcd61df97525d46f58272c0be8dc63c2b18f120075
+scripts/cloud_gpu/github.py:48:    if not url.startswith("https://") and not url.startswith("http://127.0.0.1"):
+infra/kubernetes/medbench-gpu-job.yaml:49:          # CUDA 13.4 base image: the llama.cpp build brings its own CUDA
+infra/kubernetes/medbench-gpu-job.yaml:51:          image: nvidia/cuda:13.4.1-base-ubuntu24.04@sha256:3eb2d952d9cff2d7a4e42a1cedc19cfa610a7f72c3b8428811731dcea5a175fd
+infra/kubernetes/arc-gpu-runner-values.yaml:10:#     --version 0.15.1
+infra/kubernetes/arc-gpu-runner-values.yaml:16:#     --version 0.15.1 --values infra/kubernetes/arc-gpu-runner-values.yaml
+infra/kubernetes/arc-gpu-runner-values.yaml:44:        image: ghcr.io/actions/actions-runner:2.338.2@sha256:759a1d94a15b05941aba5196974ff43fe15b4cbba29b694b35cbc32a1166b232
+infra/ansible/k3s-gpu.yml:11:    k3s_version: v1.37.1+k3s1
+ci/gitlab/cloud-gpu.gitlab-ci.yml:45:  CLOUD_GPU_IMAGE: python:3.14-slim-trixie@sha256:cd89c30eda26ee911a4611b18680086e0ea42e6f5f8cbe653d07fa7958c9cec8
+infra/ansible/inventory.example.yml:12:          ansible_host: 203.0.113.10
+infra/ansible/gpu-host.yml:2:# Prepare an Ubuntu 24.04 GPU host we keep, for example a Hetzner GEX server

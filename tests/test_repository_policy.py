@@ -41,16 +41,38 @@ def dependabot_entries() -> dict[str, str]:
 def test_dependabot_updates_actions_and_python_with_a_cooldown() -> None:
     """Hash pins only stay current if something proposes the new hashes."""
     entries = dependabot_entries()
-    assert set(entries) == {"github-actions", "pip", "pre-commit", "uv"}
+    assert set(entries) == {
+        "github-actions",
+        "pip",
+        "pre-commit",
+        "uv",
+        "terraform",
+        "npm",
+    }
     for ecosystem, block in entries.items():
         assert re.search(r"^      default-days: 7$", block, re.M), ecosystem
     assert "interval: weekly" in entries["github-actions"]
     assert "directory: /\n" in entries["github-actions"]
     assert "directory: /\n" in entries["pre-commit"]
     assert "directory: /scripts\n" in entries["uv"]
+    assert "directory: /.github/tools\n" in entries["npm"]
     pip = entries["pip"]
     assert "      - /\n" in pip
     assert "      - /docs\n" in pip
+
+
+def test_dependabot_covers_every_terraform_root() -> None:
+    """New infrastructure roots must receive provider and lock updates (#25)."""
+    entries = dependabot_entries()
+    assert "terraform" in entries, "Terraform providers have no automated updates"
+    declared = set(re.findall(r"^      - (\S+)$", entries["terraform"], re.M))
+    roots = {
+        "/" + path.parent.relative_to(ROOT).as_posix()
+        for path in (ROOT / "infra" / "terraform").rglob(".terraform.lock.hcl")
+        if ".terraform" not in path.parts
+    }
+    assert roots
+    assert declared == roots
 
 
 def test_dependabot_moves_python_and_its_hooks_together() -> None:
@@ -106,7 +128,11 @@ def test_dependabot_updates_the_unimedvl_lock_with_uv() -> None:
     (pattern,) = re.findall(r"^    exclude-paths:\n      - (\S+)$", pip, re.M)
     scripts = ROOT / "scripts"
     excluded = {path.name for path in scripts.glob(pattern.removeprefix("scripts/"))}
-    assert excluded == {"unimedvl-requirements.in", "unimedvl-requirements.txt"}
+    assert excluded == {
+        f"{name}-requirements.{suffix}"
+        for name in ("unimedvl", "infra", "azure-cli")
+        for suffix in ("in", "txt")
+    }
     uv = entries["uv"]
     assert "multi-ecosystem-group" not in uv
     assert "      interval: weekly\n" in uv

@@ -91,7 +91,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: '3.15'
 
@@ -154,7 +154,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: '3.15'
 
@@ -230,7 +230,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: '3.15'
 
@@ -290,7 +290,7 @@ jobs:
       # The same Python as the GPU job's UniMedVL venv.
       - name: Setup Python 3.14 for UniMedVL
         id: unimedvl-python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: '3.14'
 
@@ -308,7 +308,7 @@ jobs:
       - name: Test the shims and upstream's code
         run: |
           python=.cache/medbench/unimedvl-venv/bin/python
-          "$python" -m pip install --quiet "pytest>=9.1.1" "pytest-asyncio>=1.4.0"
+          "$python" -m pip install --quiet "pytest>=9.2.0" "pytest-asyncio>=1.4.1"
           UNIMEDVL_CODE_DIR=$(echo .cache/medbench/unimedvl-code-*)
           UNIMEDVL_MODEL_DIR=$(echo .cache/medbench/models/unimedvl-*)
           export UNIMEDVL_CODE_DIR UNIMEDVL_MODEL_DIR
@@ -338,10 +338,10 @@ jobs:
     permissions:
       contents: read
     env:
-      LLAMA_ARCHIVE: llama-b11738-bin-ubuntu-cuda-13.4-x64.tar.gz
-      LLAMA_SHA256: c48881ae73dface588b8470e3acb308d06365af91303799ed8bf010e8de6b681
-      CUDART_ARCHIVE: cudart-llama-b11738-bin-ubuntu-cuda-13.4-x64.tar.gz
-      CUDART_SHA256: d60c7698166bfcbc9516c5d053321d8ac850a2c0316d3c009260dfd11c905330
+      LLAMA_ARCHIVE: llama-b12012-bin-ubuntu-cuda-13.4-x64.tar.gz
+      LLAMA_SHA256: 324ee513196aa1fa72627ed978276e3fa117cc6f7cf6cf5ff7c5218ef70a0345
+      CUDART_ARCHIVE: cudart-llama-b12012-bin-ubuntu-cuda-13.4-x64.tar.gz
+      CUDART_SHA256: 01e16c460a2b9bd142ca040ced8b34e0ae74d5c0220c306e8a7ac2c25565b492
       GPU_LAYERS: 999
       GPU_MODEL: ${{ inputs.gpu-model }}
     steps:
@@ -355,12 +355,12 @@ jobs:
       - name: Setup Python 3.14 for UniMedVL
         id: unimedvl-python
         if: inputs.gpu-model == 'unimedvl'
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: '3.14'
 
       - name: Setup Python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: '3.15'
 

@@ -1,0 +1,38 @@
+npm warn audit fix ip-address@10.7.2 node_modules/npm/node_modules/ip-address
+npm warn audit fix ip-address@10.7.2 is a bundled dependency of
+npm warn audit fix ip-address@10.7.2 npm@12.2.1 at node_modules/npm
+npm warn audit fix ip-address@10.7.2 It cannot be fixed automatically.
+npm warn audit fix ip-address@10.7.2 Check for updates to the npm package.
+npm warn audit fix undici@6.29.0 node_modules/npm/node_modules/undici
+npm warn audit fix undici@6.29.0 is a bundled dependency of
+npm warn audit fix undici@6.29.0 npm@12.2.1 at node_modules/npm
+npm warn audit fix undici@6.29.0 It cannot be fixed automatically.
+npm warn audit fix undici@6.29.0 Check for updates to the npm package.
+
+up to date, audited 233 packages in 2s
+
+39 packages are looking for funding
+  run `npm fund` for details
+
+# npm audit report
+
+ip-address  <=10.7.3
+Severity: moderate
+ip-address: Address6 matches a zone identifier in quadratic time ahead of its length limit, allowing a single long string to stall the process - https://github.com/advisories/GHSA-rxp7-6hxx-x8q5
+fix available via `npm audit fix`
+node_modules/npm/node_modules/ip-address
+
+undici  4.0.0 - 6.29.0
+Severity: high
+undici vulnerable to Denial of Service via unbounded memory in the EventSource parser - https://github.com/advisories/GHSA-4qv8-2p9j-2685
+undici vulnerable to Denial of Service via unhandled error on excessive content-encodings - https://github.com/advisories/GHSA-xjj6-f33q-929c
+undici vulnerable to TLS certificate validation bypass via dropped tls options in Agent - https://github.com/advisories/GHSA-2m5v-pch6-74hx
+undici vulnerable to Denial of Service via TLS 1.2 certificate-changing renegotiation - https://github.com/advisories/GHSA-qrxm-fqhp-jwvm
+undici WebSocket client vulnerable to Denial of Service via unbounded automatic PONG buffering - https://github.com/advisories/GHSA-9fm3-97px-rjf6
+fix available via `npm audit fix`
+node_modules/npm/node_modules/undici
+
+2 vulnerabilities (1 moderate, 1 high)
+
+To address all issues, run:
+  npm audit fix

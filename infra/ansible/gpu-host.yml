@@ -1,6 +1,6 @@
 ---
 # Prepare an Ubuntu 24.04 GPU host we keep, for example a Hetzner GEX server
-# rented by the month (issue #23): the NVIDIA R580 server driver with the open
+# rented by the month (issue #23): the NVIDIA R615 server driver with the open
 # kernel modules (Blackwell GPUs need them) and the NVIDIA Container Toolkit.
 # scripts/gpu-host-bootstrap.sh does the same for temporary hosts;
 # tests/test_cloud_gpu_infra.py keeps the versions of both in step.
@@ -8,7 +8,7 @@
   hosts: gpu_hosts
   become: true
   vars:
-    nvidia_driver_branch: "580"
+    nvidia_driver_branch: "615"
     nvidia_container_toolkit_version: "1.20.1-1"
     nvidia_container_toolkit_key_fingerprint: C95B321B61E88C1809C4F759DDCAE044F796ECB0
   tasks:
@@ -18,8 +18,9 @@
         update_cache: true
         install_recommends: false
 
-    - name: Enable the restricted component, which holds the driver
-      ansible.builtin.command: add-apt-repository --yes restricted
+    - name: Enable the archive components holding the driver
+      ansible.builtin.command: "add-apt-repository --yes {{ item }}"
+      loop: [restricted, multiverse]
       register: restricted
       changed_when: "'already enabled' not in restricted.stdout"
 

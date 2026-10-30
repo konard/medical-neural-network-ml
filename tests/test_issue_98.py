@@ -2,18 +2,19 @@
 
 from __future__ import annotations
 
+import json
 import os
 import re
 import subprocess
 import tomllib
 
 import pytest
+import yaml
 
 from tests.workflow_helpers import (
     ROOT,
     WORKFLOWS,
     read_workflow,
-    uses_action,
     workflow_job_block,
     workflow_run_blocks,
     workflow_step_block,
@@ -58,8 +59,10 @@ def test_zizmor_has_one_supported_version_and_checks_low_confidence() -> None:
     """The action, pedantic check and reproduction must use the same pin."""
     workflow = read_workflow("workflows.yml")
     job = workflow_job_block(workflow, "zizmor")
-    assert uses_action(job, "zizmorcore/zizmor-action", "v0.7.1")
-    # Verified against v0.7.1's support/locks/zizmor-1.31.1.txt.
+    assert re.search(
+        r"uses: zizmorcore/zizmor-action@[0-9a-f]{40} # v\d+\.\d+\.\d+", job
+    )
+    # Verified against v0.8.0's support/locks/zizmor-1.31.1.txt.
     assert re.search(r"^  ZIZMOR_VERSION: ['\"]?1\.31\.1['\"]?$", workflow, re.M)
     assert "version: ${{ env.ZIZMOR_VERSION }}" in job
     assert workflow.count('pipx run "zizmor==$ZIZMOR_VERSION"') == 2
@@ -78,6 +81,25 @@ def test_npx_scanners_are_exactly_pinned() -> None:
                 match = re.fullmatch(r"(.+)@(\d+\.\d+\.\d+)", package)
                 assert match, f"{path.name}: unpinned npx package {package}"
                 versions[match[1]] = match[2]
+    tools = ROOT / ".github" / "tools"
+    manifest = json.loads((tools / "package.json").read_text())
+    manager_lock, lock = yaml.safe_load_all((tools / "pnpm-lock.yaml").read_text())
+    pnpm_version = manifest["packageManager"].removeprefix("pnpm@")
+    assert (
+        manager_lock["importers"]["."]["packageManagerDependencies"]["pnpm"]["version"]
+        == pnpm_version
+    )
+    versions.update(manifest["devDependencies"])
+    for name, version in manifest["devDependencies"].items():
+        assert re.fullmatch(r"\d+\.\d+\.\d+", version)
+        assert lock["importers"]["."]["devDependencies"][name]["specifier"] == version
+        assert f"{name}@{version}" in lock["packages"]
+    workflow = read_workflow("release.yml")
+    assert (
+        "pnpm --dir .github/tools install --frozen-lockfile --ignore-scripts"
+        in workflow
+    )
+    assert "pnpm --dir .github/tools audit" in workflow
     assert (
         versions["secretlint"]
         == versions["@secretlint/secretlint-rule-preset-recommend"]

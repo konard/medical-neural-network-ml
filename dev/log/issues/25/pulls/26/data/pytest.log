@@ -1,0 +1,53 @@
+........................................................................ [  6%]
+........................................................................ [ 12%]
+..................................................ss.................... [ 18%]
+...........................s............................................ [ 24%]
+........................................................................ [ 30%]
+........................................s............................... [ 37%]
+........................................................................ [ 43%]
+........................................................................ [ 49%]
+.....s.................................................................. [ 55%]
+........................................................................ [ 61%]
+.......................ssssssssssssssssssssssssssssssssssssssss......... [ 67%]
+........................................................................ [ 74%]
+........................................................................ [ 80%]
+.......ss............................................................... [ 86%]
+........................................................................ [ 92%]
+............................................s........................... [ 98%]
+.............                                                            [100%]
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.15.2-final-0 ________________
+
+Name                              Stmts   Miss Branch BrPart  Cover   Missing
+-----------------------------------------------------------------------------
+src/medbench/__init__.py              3      0      0      0   100%
+src/medbench/augment.py              57      0     12      0   100%
+src/medbench/backends.py            132      3     18      0    98%   91-92, 109
+src/medbench/benchmark.py           249      6     42      4    97%   138, 179, 185, 348->366, 354->366, 542, 648-649
+src/medbench/cli.py                 188      5     24      1    96%   256-261
+src/medbench/clinical_text.py        82      0     16      0   100%
+src/medbench/ddxplus.py              74      0     12      0   100%
+src/medbench/hardware.py            147     10     34      2    93%   121-138, 165->163, 199->197, 209-210, 232-233
+src/medbench/metrics.py             131      0     44      0   100%
+src/medbench/mlx_backend.py          74     10     20      5    84%   42-43, 50-51, 55-56, 63-64, 74-75
+src/medbench/models.py               35      0      0      0   100%
+src/medbench/monitor.py             183      7     26      5    94%   112, 139, 154-155, 201->204, 215, 253->259, 257-258
+src/medbench/real_data.py           154     13     36      3    89%   150-153, 171-176, 188, 194->204, 214->216, 220-221
+src/medbench/resources.py           162      0     26      0   100%
+src/medbench/support.py              78      1     32      1    98%   221
+src/medbench/synthetic_cases.py      92      2     26      3    96%   333, 420->418, 433
+src/medbench/validity.py             86      1     24      2    97%   102->108, 144
+-----------------------------------------------------------------------------
+TOTAL                              1927     58    392     26    96%
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_unimedvl_attention.py:19: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests/test_unimedvl_upstream.py:35: could not import 'torch': No module named 'torch'
+SKIPPED [2] tests/test_cloud_gpu_infra.py:278: needs kubeconform
+SKIPPED [1] tests/test_cloud_gpu_scripts.py:306: needs shellcheck
+SKIPPED [1] tests/test_measure_training_memory.py:234: could not import 'torch': No module named 'torch'
+SKIPPED [1] tests/test_medbench_ddxplus_parser.py:88: set MEDBENCH_NETWORK_TESTS=1 to download the real files
+SKIPPED [40] tests/test_medbench_real_data.py:442: set MEDBENCH_NETWORK_TESTS=1 to download the real files
+SKIPPED [1] tests/test_real_models.py:41: set MEDBENCH_BASE_URL to run
+SKIPPED [1] tests/test_real_models.py:60: set MEDBENCH_VISION=1 for image models
+SKIPPED [1] tests/test_validate_changeset.py:372: Requires the multi-language layout
+1117 passed, 50 skipped in 115.08s (0:01:55)

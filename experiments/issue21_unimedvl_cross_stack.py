@@ -16,7 +16,9 @@ plus the logits of every generation step.
 
 ``run`` puts the transformers 4.x ``"default"`` RoPE initialiser back when the
 installed transformers lacks it (transformers 5 removed it), the same way
-scripts/unimedvl_server.py does.
+scripts/unimedvl_server.py did in issue #21. This historical comparison keeps
+that initializer to reproduce those stacks; production now uses the native
+Transformers Qwen2 config and rotary embedding (issue #25).
 """
 
 from __future__ import annotations

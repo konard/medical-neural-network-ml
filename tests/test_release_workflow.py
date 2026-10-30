@@ -443,10 +443,8 @@ def test_release_workflow_checks_fresh_merge_and_secrets() -> None:
     assert "BASE_REF: ${{ github.base_ref }}" in lint
     assert "run: bash scripts/simulate-fresh-merge.sh" in lint
     assert "- name: Check for secrets" in lint
-    assert (
-        "npx --yes -p secretlint@13.0.7 -p "
-        '@secretlint/secretlint-rule-preset-recommend@13.0.7 secretlint "**/*"' in lint
-    )
+    assert "pnpm --dir .github/tools install --frozen-lockfile --ignore-scripts" in lint
+    assert '.github/tools/node_modules/.bin/secretlint "**/*"' in lint
     secretlint_config = (ROOT / ".secretlintrc.json").read_text(encoding="utf-8")
     assert '"id": "@secretlint/secretlint-rule-preset-recommend"' in secretlint_config
 

@@ -36,6 +36,9 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
+# Locked JavaScript CI tools are installed locally, never vendored.
+node_modules/
+
 # Unit test / coverage reports
 htmlcov/
 .tox/

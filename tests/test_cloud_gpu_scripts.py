@@ -243,7 +243,9 @@ def test_driver_and_toolkit_pins_match_the_playbook() -> None:
     assert fingerprint == toolkit["signing_key_fingerprint"]
     assert shell_value(BOOTSTRAP, "TOOLKIT_VERSION") in toolkit["versions_seen"]
     for script in (BOOTSTRAP, HOST_RUN):
-        assert f'MIN_DRIVER="${{MIN_DRIVER:-{branch}}}"' in script.read_text()
+        # Installing the newest branch must preserve CUDA 13 compatibility on
+        # existing hosts whose supported driver is older.
+        assert 'MIN_DRIVER="${MIN_DRIVER:-580}"' in script.read_text()
 
 
 def test_k3s_pins_match_the_playbook_and_the_evidence() -> None:
@@ -262,7 +264,9 @@ def test_k3s_pins_match_the_playbook_and_the_evidence() -> None:
 
 def test_runner_pins_match_everywhere() -> None:
     """Every self-hosted runner flow runs the same pinned GitHub runner."""
-    evidence = json.loads((EVIDENCE / "actions-runner-v2.338.0.json").read_text())
+    evidence = json.loads(
+        (ROOT / "dev/log/issues/25/pulls/26/data/runner-pins.json").read_text()
+    )
     version = shell_value(RUNNER_START, "RUNNER_VERSION")
     sha256 = shell_value(RUNNER_START, "RUNNER_SHA256")
     asset = f"actions-runner-linux-x64-{version}.tar.gz"

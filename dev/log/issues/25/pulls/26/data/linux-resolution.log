@@ -1,0 +1,589 @@
+DEBUG Found workspace root: /tmp/gh-issue-solver-1793372776892
+DEBUG Adding root workspace member: /tmp/gh-issue-solver-1793372776892
+DEBUG Skipping `pyproject.toml` in `/tmp/gh-issue-solver-1793372776892` (no `[tool.uv]` section)
+DEBUG Searching for user configuration in: /home/box/.config/uv/uv.toml
+DEBUG uv 0.13.6 (x86_64-unknown-linux-gnu)
+DEBUG Starting Python discovery for Python 3.15
+DEBUG Looking for Python 3.15
+DEBUG Searching for Python 3.15 in virtual environments, managed installations, or search path
+DEBUG Found `cpython-3.15.0-linux-x86_64-gnu` at `/tmp/gh-issue-solver-1793372776892/.venv/bin/python` (virtual environment)
+DEBUG Using Python 3.15.0 interpreter at `.venv/bin/python` for builds
+DEBUG Using request connect timeout of 10s and read timeout of 30s
+DEBUG Found static `requires-dist` for: /tmp/gh-issue-solver-1793372776892
+DEBUG Solving with installed Python version: 3.15.0
+DEBUG Solving with target Python version: >=3.15
+DEBUG Adding direct dependency: ruff>=0.17.3, <0.18
+DEBUG Adding direct dependency: mypy>=2.4.1
+DEBUG Adding direct dependency: pytest>=9.2.0
+DEBUG Adding direct dependency: pytest-asyncio>=1.4.1
+DEBUG Adding direct dependency: pytest-cov>=7.1.0
+DEBUG Adding direct dependency: pre-commit>=4.7.0
+DEBUG Adding direct dependency: scriv[toml]>=1.8.0
+DEBUG Adding direct dependency: pillow>=13.0.0
+DEBUG Adding direct dependency: pillow>=13.0.0
+DEBUG Adding direct dependency: sphinx>=9.2.0
+DEBUG Adding direct dependency: furo>=2025.12.19
+DEBUG Adding direct dependency: myst-parser>=5.1.0
+INFO add_decision: Id::<PubGrubPackage>(0) @ 0a0.dev0 without checking dependencies    
+DEBUG Found fresh response for: https://pypi.org/simple/pytest/
+DEBUG Found fresh response for: https://pypi.org/simple/pytest-asyncio/
+DEBUG Found fresh response for: https://pypi.org/simple/pre-commit/
+DEBUG Found fresh response for: https://pypi.org/simple/pytest-cov/
+DEBUG Found fresh response for: https://pypi.org/simple/mypy/
+DEBUG Found fresh response for: https://pypi.org/simple/scriv/
+DEBUG Found fresh response for: https://pypi.org/simple/furo/
+DEBUG Found fresh response for: https://pypi.org/simple/myst-parser/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/51/39/1f5d8c8877a0fa327db959c19341d4be61660de1ab6b7391f9eb805bcd67/pytest-9.2.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://pypi.org/simple/sphinx/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/46/d7/cd9e2708afdbf059658adaf08bdb0792ca52489871051d6ce7d498b51277/pytest_asyncio-1.4.1-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://pypi.org/simple/pillow/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/9d/7a/d968e294073affff457b041c2be9868a40c1c71f4a35fcc1e45e5493067b/pytest_cov-7.1.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/02/e7/062480ede84ecb56ee0f8f2e5b5a3b2a5bceeb73bbdf909d3c13f5438749/scriv-1.8.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/f4/b2/50e9b292b5cac13e9e81272c7171301abc753a60460d21505b606e15cf21/furo-2025.12.19-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/09/dc/f3dfb7488b770f3f67e6545085bf2abea5172e88f57b8ad25ef860ca704c/myst_parser-5.1.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/c4/28/a0c50761cd215b7042f4bc617a6bc5c0cd7be62f75bc908e169e28a4d21e/sphinx-9.2.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/eb/83/ce0a196e4f7b20b11ce3aa1fc72fb973f64b7628d51c1b8aebad37fb7f81/pre_commit-4.7.0-py2.py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/c3/c9/3108b38f4c30eabd80194f5d9771a87e27196c5e0ddb5bf4b99c6ed1e97e/mypy-2.4.1-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://pypi.org/simple/ruff/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/85/11/e46fa0bcc0fc117f1eacc206b3d51f04d583fab328b4b740672d0438d83f/pillow-13.0.0-cp315-cp315-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Searching for a compatible version of ruff (>=0.17.3, <0.18)
+DEBUG Selecting: ruff==0.17.3 [compatible] (ruff-0.17.3-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/f0/20/fecedea2209f574ab92033b344e01a7f0c2dc76c6d6d19a14c9f8141173f/ruff-0.17.3-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+INFO add_decision: Id::<PubGrubPackage>(3) @ 0.17.3 without checking dependencies    
+DEBUG Searching for a compatible version of mypy (>=2.4.1)
+DEBUG Selecting: mypy==2.4.1 [compatible] (mypy-2.4.1-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl)
+DEBUG Adding transitive dependency for mypy==2.4.1: typing-extensions{python_full_version >= '3.15'}>=4.14.0
+DEBUG Adding transitive dependency for mypy==2.4.1: mypy-extensions>=1.0.0
+DEBUG Adding transitive dependency for mypy==2.4.1: pathspec>=1.0.0
+DEBUG Adding transitive dependency for mypy==2.4.1: librt{platform_python_implementation != 'PyPy'}>=0.16.0
+DEBUG Adding transitive dependency for mypy==2.4.1: ast-serialize>=0.12.1, <1.0.0
+INFO add_decision: Id::<PubGrubPackage>(4) @ 2.4.1 without checking dependencies    
+DEBUG Searching for a compatible version of pytest (>=9.2.0)
+DEBUG Selecting: pytest==9.2.0 [compatible] (pytest-9.2.0-py3-none-any.whl)
+DEBUG Adding transitive dependency for pytest==9.2.0: iniconfig>=2
+DEBUG Adding transitive dependency for pytest==9.2.0: packaging>=24
+DEBUG Adding transitive dependency for pytest==9.2.0: pluggy>=1.6, <2
+DEBUG Adding transitive dependency for pytest==9.2.0: pygments>=2.15
+INFO add_decision: Id::<PubGrubPackage>(5) @ 9.2.0 without checking dependencies    
+DEBUG Searching for a compatible version of pytest-asyncio (>=1.4.1)
+DEBUG Selecting: pytest-asyncio==1.4.1 [compatible] (pytest_asyncio-1.4.1-py3-none-any.whl)
+DEBUG Adding transitive dependency for pytest-asyncio==1.4.1: pytest>=8.4, <10
+INFO add_decision: Id::<PubGrubPackage>(6) @ 1.4.1 without checking dependencies    
+DEBUG Searching for a compatible version of pytest-cov (>=7.1.0)
+DEBUG Selecting: pytest-cov==7.1.0 [compatible] (pytest_cov-7.1.0-py3-none-any.whl)
+DEBUG Adding transitive dependency for pytest-cov==7.1.0: coverage[toml]>=7.10.6
+DEBUG Adding transitive dependency for pytest-cov==7.1.0: pluggy>=1.2
+DEBUG Adding transitive dependency for pytest-cov==7.1.0: pytest>=7
+INFO add_decision: Id::<PubGrubPackage>(7) @ 7.1.0 without checking dependencies    
+DEBUG Searching for a compatible version of pre-commit (>=4.7.0)
+DEBUG Selecting: pre-commit==4.7.0 [compatible] (pre_commit-4.7.0-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for pre-commit==4.7.0: cfgv>=2.0.0
+DEBUG Adding transitive dependency for pre-commit==4.7.0: identify>=1.0.0
+DEBUG Adding transitive dependency for pre-commit==4.7.0: nodeenv>=0.11.1
+DEBUG Adding transitive dependency for pre-commit==4.7.0: pyyaml>=5.1
+DEBUG Adding transitive dependency for pre-commit==4.7.0: virtualenv>=20.10.0
+INFO add_decision: Id::<PubGrubPackage>(8) @ 4.7.0 without checking dependencies    
+DEBUG Searching for a compatible version of scriv[toml] (>=1.8.0)
+DEBUG Selecting: scriv==1.8.0 [compatible] (scriv-1.8.0-py3-none-any.whl)
+DEBUG Adding transitive dependency for scriv==1.8.0: scriv==1.8.0
+DEBUG Adding transitive dependency for scriv==1.8.0: scriv[toml]==1.8.0
+INFO add_decision: Id::<PubGrubPackage>(1) @ 1.8.0 without checking dependencies    
+DEBUG Searching for a compatible version of scriv (==1.8.0)
+DEBUG Selecting: scriv==1.8.0 [compatible] (scriv-1.8.0-py3-none-any.whl)
+DEBUG Adding transitive dependency for scriv==1.8.0: attrs*
+DEBUG Adding transitive dependency for scriv==1.8.0: click*
+DEBUG Adding transitive dependency for scriv==1.8.0: click-log*
+DEBUG Adding transitive dependency for scriv==1.8.0: jinja2>=2.7
+DEBUG Adding transitive dependency for scriv==1.8.0: markdown-it-py*
+DEBUG Adding transitive dependency for scriv==1.8.0: requests*
+INFO add_decision: Id::<PubGrubPackage>(2) @ 1.8.0 without checking dependencies    
+DEBUG Searching for a compatible version of scriv[toml] (==1.8.0)
+DEBUG Selecting: scriv==1.8.0 [compatible] (scriv-1.8.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(31) @ 1.8.0 without checking dependencies    
+DEBUG Searching for a compatible version of pillow (>=13.0.0)
+DEBUG Selecting: pillow==13.0.0 [compatible] (pillow-13.0.0-cp315-cp315-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(9) @ 13.0.0 without checking dependencies    
+DEBUG Searching for a compatible version of sphinx (>=9.2.0)
+DEBUG Selecting: sphinx==9.2.0 [compatible] (sphinx-9.2.0-py3-none-any.whl)
+DEBUG Adding transitive dependency for sphinx==9.2.0: sphinxcontrib-applehelp>=1.0.7
+DEBUG Adding transitive dependency for sphinx==9.2.0: sphinxcontrib-devhelp>=1.0.6
+DEBUG Adding transitive dependency for sphinx==9.2.0: sphinxcontrib-htmlhelp>=2.0.6
+DEBUG Adding transitive dependency for sphinx==9.2.0: sphinxcontrib-jsmath>=1.0.1
+DEBUG Adding transitive dependency for sphinx==9.2.0: sphinxcontrib-qthelp>=1.0.6
+DEBUG Adding transitive dependency for sphinx==9.2.0: sphinxcontrib-serializinghtml>=1.1.9
+DEBUG Adding transitive dependency for sphinx==9.2.0: jinja2>=3.1
+DEBUG Adding transitive dependency for sphinx==9.2.0: pygments>=2.19
+DEBUG Adding transitive dependency for sphinx==9.2.0: docutils>=0.21, <0.24
+DEBUG Adding transitive dependency for sphinx==9.2.0: snowballstemmer>=3.0.1
+DEBUG Adding transitive dependency for sphinx==9.2.0: babel>=2.18
+DEBUG Adding transitive dependency for sphinx==9.2.0: alabaster>=1.0
+DEBUG Adding transitive dependency for sphinx==9.2.0: imagesize>=1.3
+DEBUG Adding transitive dependency for sphinx==9.2.0: requests>=2.32.5
+DEBUG Adding transitive dependency for sphinx==9.2.0: roman-numerals>=3.0
+DEBUG Adding transitive dependency for sphinx==9.2.0: packaging>=25.0
+INFO add_decision: Id::<PubGrubPackage>(10) @ 9.2.0 without checking dependencies    
+DEBUG Searching for a compatible version of furo (>=2025.12.19)
+DEBUG Selecting: furo==2025.12.19 [compatible] (furo-2025.12.19-py3-none-any.whl)
+DEBUG Adding transitive dependency for furo==2025.12.19: beautifulsoup4*
+DEBUG Adding transitive dependency for furo==2025.12.19: sphinx>=7.0, <10.0
+DEBUG Adding transitive dependency for furo==2025.12.19: sphinx-basic-ng>=1.0.0b2
+DEBUG Adding transitive dependency for furo==2025.12.19: pygments>=2.7
+DEBUG Adding transitive dependency for furo==2025.12.19: accessible-pygments>=0.0.5
+INFO add_decision: Id::<PubGrubPackage>(11) @ 2025.12.19 without checking dependencies    
+DEBUG Searching for a compatible version of myst-parser (>=5.1.0)
+DEBUG Selecting: myst-parser==5.1.0 [compatible] (myst_parser-5.1.0-py3-none-any.whl)
+DEBUG Adding transitive dependency for myst-parser==5.1.0: docutils>=0.20, <0.23
+DEBUG Adding transitive dependency for myst-parser==5.1.0: jinja2*
+DEBUG Adding transitive dependency for myst-parser==5.1.0: markdown-it-py>=4.2, <5.dev0
+DEBUG Adding transitive dependency for myst-parser==5.1.0: mdit-py-plugins>=0.6.1, <1.dev0
+DEBUG Adding transitive dependency for myst-parser==5.1.0: pyyaml*
+DEBUG Adding transitive dependency for myst-parser==5.1.0: sphinx>=8, <10
+INFO add_decision: Id::<PubGrubPackage>(12) @ 5.1.0 without checking dependencies    
+DEBUG Found fresh response for: https://pypi.org/simple/typing-extensions/
+DEBUG Found fresh response for: https://pypi.org/simple/mypy-extensions/
+DEBUG Found fresh response for: https://pypi.org/simple/pathspec/
+DEBUG Found fresh response for: https://pypi.org/simple/iniconfig/
+DEBUG Found fresh response for: https://pypi.org/simple/pluggy/
+DEBUG Found fresh response for: https://pypi.org/simple/pygments/
+DEBUG Found fresh response for: https://pypi.org/simple/packaging/
+DEBUG Searching for a compatible version of typing-extensions{python_full_version >= '3.15'} (>=4.14.0)
+DEBUG Found fresh response for: https://pypi.org/simple/cfgv/
+DEBUG Selecting: typing-extensions==4.16.0 [compatible] (typing_extensions-4.16.0-py3-none-any.whl)
+DEBUG Adding transitive dependency for typing-extensions==4.16.0: typing-extensions==4.16.0
+DEBUG Adding transitive dependency for typing-extensions==4.16.0: typing-extensions{python_full_version >= '3.15'}==4.16.0
+DEBUG Found fresh response for: https://pypi.org/simple/identify/
+INFO add_decision: Id::<PubGrubPackage>(13) @ 4.16.0 without checking dependencies    
+DEBUG Searching for a compatible version of typing-extensions (==4.16.0)
+DEBUG Selecting: typing-extensions==4.16.0 [compatible] (typing_extensions-4.16.0-py3-none-any.whl)
+DEBUG Found fresh response for: https://pypi.org/simple/ast-serialize/
+DEBUG Found fresh response for: https://pypi.org/simple/librt/
+DEBUG Found fresh response for: https://pypi.org/simple/virtualenv/
+DEBUG Found fresh response for: https://pypi.org/simple/pyyaml/
+DEBUG Found fresh response for: https://pypi.org/simple/attrs/
+DEBUG Found fresh response for: https://pypi.org/simple/click/
+DEBUG Found fresh response for: https://pypi.org/simple/jinja2/
+DEBUG Found fresh response for: https://pypi.org/simple/markdown-it-py/
+DEBUG Found fresh response for: https://pypi.org/simple/requests/
+DEBUG Found fresh response for: https://pypi.org/simple/sphinxcontrib-applehelp/
+DEBUG Found fresh response for: https://pypi.org/simple/sphinxcontrib-devhelp/
+DEBUG Found fresh response for: https://pypi.org/simple/sphinxcontrib-htmlhelp/
+DEBUG Found fresh response for: https://pypi.org/simple/sphinxcontrib-jsmath/
+DEBUG Found fresh response for: https://pypi.org/simple/sphinxcontrib-qthelp/
+DEBUG Found fresh response for: https://pypi.org/simple/sphinxcontrib-serializinghtml/
+DEBUG Found fresh response for: https://pypi.org/simple/docutils/
+DEBUG Found fresh response for: https://pypi.org/simple/nodeenv/
+DEBUG Found fresh response for: https://pypi.org/simple/babel/
+DEBUG Found fresh response for: https://pypi.org/simple/alabaster/
+DEBUG Found fresh response for: https://pypi.org/simple/imagesize/
+DEBUG Found fresh response for: https://pypi.org/simple/roman-numerals/
+DEBUG Found fresh response for: https://pypi.org/simple/coverage/
+DEBUG Found fresh response for: https://pypi.org/simple/click-log/
+DEBUG Found fresh response for: https://pypi.org/simple/sphinx-basic-ng/
+DEBUG Found fresh response for: https://pypi.org/simple/accessible-pygments/
+DEBUG Found fresh response for: https://pypi.org/simple/mdit-py-plugins/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/79/7b/2c79738432f5c924bef5071f933bcc9efd0473bac3b4aa584a6f7c1c8df8/mypy_extensions-1.1.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://pypi.org/simple/beautifulsoup4/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/f1/d9/7fb5aa316bc299258e68c73ba3bddbc499654a07f151cba08f6153988714/pathspec-1.1.1-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/40/9e/2b38731e0fc536806f16490e1a12d7f0dc2a1235aa8cc07bcc75416a7daa/pluggy-1.7.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/56/43/4ca9e49d27a1fcf6bece6f6aec0ea46bb9112489b93d4b688fb415457bdb/iniconfig-2.3.1-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/71/46/17f022dd3e953bf20a04a028a21ec746d942f8d2af30fa0f124fa0e6a684/pygments-2.21.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/63/34/ba1c580383c9eada3711951fef0795c80b829a078d72188184bcab9dd527/packaging-26.3-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/fa/70/fffc9613501877c0a10a1ef73a165e6ded3e53f6e7502227fef56d973933/identify-2.6.20-py2.py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/49/d3/b8441a820a491ddfc024b0b0cf0393375b75ea13866d9c66727e54c2fc80/typing_extensions-4.16.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/db/3c/33bac158f8ab7f89b2e59426d5fe2e4f63f7ed25df84c036890172b412b5/cfgv-3.5.0-py2.py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/ce/23/cdab19d3a9da42ca0938081e163e25f81e610141800ead743ba1ee881f0e/virtualenv-21.15.1-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/0d/a2/09f67a3589cb4320fb5ce90d3fd4c9752636b8b6ad8f34b54d76c5a54693/PyYAML-6.0.3-cp38-cp38-macosx_10_13_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/64/b4/17d4b0b2a2dc85a6df63d1157e028ed19f90d4cd97c36717afef2bc2f395/attrs-26.1.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://pypi.org/simple/snowballstemmer/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/58/50/6c0d534c5f134586a8e1ba4e330569e32f057e33372ae556463212fb4cd3/click-8.5.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/b3/81/4da04ced5a082363ecfa159c010d200ecbd959ae410c10c0264a38cac0f5/markdown_it_py-4.2.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/a0/f4/c67b0b3f1b9245e8d266f0f112c500d50e5b4e83cb6f3b71b6528104182a/requests-2.34.2-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/b4/e6/f2b67c327d9f9533e41791804403ccc2dc457821195a2e51f0b587a90b90/ast_serialize-0.13.1-cp315-abi3.abi3t-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/5d/85/9ebeae2f76e9e77b952f4b274c27238156eae7979c5421fba91a28f4970d/sphinxcontrib_applehelp-2.0.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/35/7a/987e583882f985fe4d7323774889ec58049171828b58c2217e7f79cdf44e/sphinxcontrib_devhelp-2.0.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/e1/6f/53762927a32e9dc9eb1d1c1f3528da281290c86d96929a8af652f671266e/librt-0.16.0-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/0a/7b/18a8c0bcec9182c05a0b3ec2a776bba4ead82750a55ff798e8d406dae604/sphinxcontrib_htmlhelp-2.1.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/27/83/859ecdd180cacc13b1f7e857abf8582a64552ea7a061057a6c716e790fce/sphinxcontrib_qthelp-2.0.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/52/a7/d2782e4e3f77c8450f727ba74a8f12756d5ba823d81b941f1b04da9d033a/sphinxcontrib_serializinghtml-2.0.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/32/91/30151a39f7570f448ed84529390628a651d7f27c87d73c9b887f8189695e/docutils-0.23-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/02/10/5da547df7a391dcde17f59520a231527b8571e6f46fc8efb02ccb370ab12/docutils-0.22.4-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/40/35/a09e0b1dac4027e35b872e4f123a9f9e7bbc39e6424bdc9776920d3a6491/nodeenv-1.11.1-py2.py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/77/f5/21d2de20e8b8b0408f0681956ca2c69f1320a3848ac50e6e7f39c6159675/babel-2.18.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/7e/b3/6b4067be973ae96ba0d615946e314c5ae35f9f993eca561b356540bb0c2b/alabaster-1.0.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/da/c2/2965c35b39587d4b7a397f65a9c7d4b942b031061e7ac1ce91782f394a0d/sphinxcontrib_jsmath-2.0.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/01/f9/575c8d760eae1fc99651b7cc5efd96ad5379ca4d6b53750b0fb4fe983f34/imagesize-2.0.1-py3-none-any.whl.metadata
+INFO add_decision: Id::<PubGrubPackage>(14) @ 4.16.0 without checking dependencies    
+DEBUG Searching for a compatible version of typing-extensions{python_full_version >= '3.15'} (==4.16.0)
+DEBUG Selecting: typing-extensions==4.16.0 [compatible] (typing_extensions-4.16.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(54) @ 4.16.0 without checking dependencies    
+DEBUG Searching for a compatible version of mypy-extensions (>=1.0.0)
+DEBUG Selecting: mypy-extensions==1.1.0 [compatible] (mypy_extensions-1.1.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(17) @ 1.1.0 without checking dependencies    
+DEBUG Searching for a compatible version of pathspec (>=1.0.0)
+DEBUG Selecting: pathspec==1.1.1 [compatible] (pathspec-1.1.1-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(18) @ 1.1.1 without checking dependencies    
+DEBUG Searching for a compatible version of librt{platform_python_implementation != 'PyPy'} (>=0.16.0)
+DEBUG Selecting: librt==0.16.0 [compatible] (librt-0.16.0-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl)
+DEBUG Adding transitive dependency for librt==0.16.0: librt==0.16.0
+DEBUG Adding transitive dependency for librt==0.16.0: librt{platform_python_implementation != 'PyPy'}==0.16.0
+INFO add_decision: Id::<PubGrubPackage>(15) @ 0.16.0 without checking dependencies    
+DEBUG Searching for a compatible version of librt (==0.16.0)
+DEBUG Selecting: librt==0.16.0 [compatible] (librt-0.16.0-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(16) @ 0.16.0 without checking dependencies    
+DEBUG Searching for a compatible version of librt{platform_python_implementation != 'PyPy'} (==0.16.0)
+DEBUG Selecting: librt==0.16.0 [compatible] (librt-0.16.0-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(55) @ 0.16.0 without checking dependencies    
+DEBUG Searching for a compatible version of ast-serialize (>=0.12.1, <1.0.0)
+DEBUG Selecting: ast-serialize==0.13.1 [compatible] (ast_serialize-0.13.1-cp315-abi3.abi3t-manylinux_2_17_x86_64.manylinux2014_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(19) @ 0.13.1 without checking dependencies    
+DEBUG Searching for a compatible version of iniconfig (>=2)
+DEBUG Selecting: iniconfig==2.3.1 [compatible] (iniconfig-2.3.1-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(20) @ 2.3.1 without checking dependencies    
+DEBUG Searching for a compatible version of packaging (>=25.0)
+DEBUG Selecting: packaging==26.3 [compatible] (packaging-26.3-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(21) @ 26.3 without checking dependencies    
+DEBUG Searching for a compatible version of pluggy (>=1.6, <2)
+DEBUG Selecting: pluggy==1.7.0 [compatible] (pluggy-1.7.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(22) @ 1.7.0 without checking dependencies    
+DEBUG Searching for a compatible version of pygments (>=2.19)
+DEBUG Selecting: pygments==2.21.0 [compatible] (pygments-2.21.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(23) @ 2.21.0 without checking dependencies    
+DEBUG Searching for a compatible version of coverage[toml] (>=7.10.6)
+DEBUG Selecting: coverage==7.17.0 [compatible] (coverage-7.17.0-cp315-cp315-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl)
+DEBUG Adding transitive dependency for coverage==7.17.0: coverage==7.17.0
+DEBUG Adding transitive dependency for coverage==7.17.0: coverage[toml]==7.17.0
+INFO add_decision: Id::<PubGrubPackage>(24) @ 7.17.0 without checking dependencies    
+DEBUG Searching for a compatible version of coverage (==7.17.0)
+DEBUG Selecting: coverage==7.17.0 [compatible] (coverage-7.17.0-cp315-cp315-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/04/54/6f679c435d28e0a568d8e8a7c0a93a09010818634c3c3907fc98d8983770/roman_numerals-4.1.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/ae/5a/4f025bc751087833686892e17e7564828e409c43b632878afeae554870cd/click_log-0.4.0-py2.py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/8d/3f/95338030883d8c8b91223b4e21744b04d11b161a3ef117295d8241f50ab4/accessible_pygments-0.0.5-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/3c/dd/018ce05c532a22007ac58d4f45232514cd9d6dd0ee1dc374e309db830983/sphinx_basic_ng-1.0.0b2-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/a5/69/6da5581c6a7fede7dc261bf4e67d6adca4196f176b43288b55b3db395b6e/mdit_py_plugins-0.6.1-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/88/c6/92fcd42f1ba33e1184263f25bfabf3d27c383410470f169e4b8163bf9c17/beautifulsoup4-4.15.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/4c/07/2ebca9b11fb9be7340a818d8d6f63feaebb146be2c4afbd6061701d6df6e/snowballstemmer-3.1.1-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/95/ee/84ed138990ed752abd73db4adffc1842d6152017d8e21809cc109a413fda/coverage-7.17.0-cp315-cp315-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata
+INFO add_decision: Id::<PubGrubPackage>(25) @ 7.17.0 without checking dependencies    
+DEBUG Searching for a compatible version of coverage[toml] (==7.17.0)
+DEBUG Selecting: coverage==7.17.0 [compatible] (coverage-7.17.0-cp315-cp315-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(56) @ 7.17.0 without checking dependencies    
+DEBUG Searching for a compatible version of cfgv (>=2.0.0)
+DEBUG Selecting: cfgv==3.5.0 [compatible] (cfgv-3.5.0-py2.py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(26) @ 3.5.0 without checking dependencies    
+DEBUG Searching for a compatible version of identify (>=1.0.0)
+DEBUG Selecting: identify==2.6.20 [compatible] (identify-2.6.20-py2.py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(27) @ 2.6.20 without checking dependencies    
+DEBUG Searching for a compatible version of nodeenv (>=0.11.1)
+DEBUG Selecting: nodeenv==1.11.1 [compatible] (nodeenv-1.11.1-py2.py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(28) @ 1.11.1 without checking dependencies    
+DEBUG Searching for a compatible version of pyyaml (>=5.1)
+DEBUG Selecting: pyyaml==6.0.3 [compatible] (pyyaml-6.0.3.tar.gz)
+INFO add_decision: Id::<PubGrubPackage>(29) @ 6.0.3 without checking dependencies    
+DEBUG Searching for a compatible version of virtualenv (>=20.10.0)
+DEBUG Selecting: virtualenv==21.15.1 [compatible] (virtualenv-21.15.1-py3-none-any.whl)
+DEBUG Adding transitive dependency for virtualenv==21.15.1: distlib>=0.4.3, <1
+DEBUG Adding transitive dependency for virtualenv==21.15.1: filelock{python_full_version >= '3.10'}>=3.24.2, <5
+DEBUG Adding transitive dependency for virtualenv==21.15.1: packaging>=26.3
+DEBUG Adding transitive dependency for virtualenv==21.15.1: platformdirs>=4.4, <5
+DEBUG Adding transitive dependency for virtualenv==21.15.1: python-discovery>=1.6.1
+INFO add_decision: Id::<PubGrubPackage>(30) @ 21.15.1 without checking dependencies    
+DEBUG Searching for a compatible version of attrs (*)
+DEBUG Selecting: attrs==26.1.0 [compatible] (attrs-26.1.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(32) @ 26.1.0 without checking dependencies    
+DEBUG Searching for a compatible version of click (*)
+DEBUG Selecting: click==8.5.0 [compatible] (click-8.5.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(33) @ 8.5.0 without checking dependencies    
+DEBUG Searching for a compatible version of click-log (*)
+DEBUG Selecting: click-log==0.4.0 [compatible] (click_log-0.4.0-py2.py3-none-any.whl)
+DEBUG Adding transitive dependency for click-log==0.4.0: click*
+INFO add_decision: Id::<PubGrubPackage>(34) @ 0.4.0 without checking dependencies    
+DEBUG Searching for a compatible version of jinja2 (>=3.1)
+DEBUG Selecting: jinja2==3.1.6 [compatible] (jinja2-3.1.6-py3-none-any.whl)
+DEBUG Adding transitive dependency for jinja2==3.1.6: markupsafe>=2.0
+INFO add_decision: Id::<PubGrubPackage>(35) @ 3.1.6 without checking dependencies    
+DEBUG Searching for a compatible version of markdown-it-py (>=4.2, <5.dev0)
+DEBUG Selecting: markdown-it-py==4.2.0 [compatible] (markdown_it_py-4.2.0-py3-none-any.whl)
+DEBUG Adding transitive dependency for markdown-it-py==4.2.0: mdurl>=0.1, <1.dev0
+INFO add_decision: Id::<PubGrubPackage>(36) @ 4.2.0 without checking dependencies    
+DEBUG Searching for a compatible version of requests (>=2.32.5)
+DEBUG Selecting: requests==2.34.2 [compatible] (requests-2.34.2-py3-none-any.whl)
+DEBUG Adding transitive dependency for requests==2.34.2: charset-normalizer>=2, <4
+DEBUG Adding transitive dependency for requests==2.34.2: idna>=2.5, <4
+DEBUG Adding transitive dependency for requests==2.34.2: urllib3>=1.26, <3
+DEBUG Adding transitive dependency for requests==2.34.2: certifi>=2023.5.7
+INFO add_decision: Id::<PubGrubPackage>(37) @ 2.34.2 without checking dependencies    
+DEBUG Searching for a compatible version of sphinxcontrib-applehelp (>=1.0.7)
+DEBUG Selecting: sphinxcontrib-applehelp==2.0.0 [compatible] (sphinxcontrib_applehelp-2.0.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(38) @ 2.0.0 without checking dependencies    
+DEBUG Searching for a compatible version of sphinxcontrib-devhelp (>=1.0.6)
+DEBUG Selecting: sphinxcontrib-devhelp==2.0.0 [compatible] (sphinxcontrib_devhelp-2.0.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(39) @ 2.0.0 without checking dependencies    
+DEBUG Searching for a compatible version of sphinxcontrib-htmlhelp (>=2.0.6)
+DEBUG Selecting: sphinxcontrib-htmlhelp==2.1.0 [compatible] (sphinxcontrib_htmlhelp-2.1.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(40) @ 2.1.0 without checking dependencies    
+DEBUG Searching for a compatible version of sphinxcontrib-jsmath (>=1.0.1)
+DEBUG Selecting: sphinxcontrib-jsmath==2.0.0 [compatible] (sphinxcontrib_jsmath-2.0.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(41) @ 2.0.0 without checking dependencies    
+DEBUG Searching for a compatible version of sphinxcontrib-qthelp (>=1.0.6)
+DEBUG Selecting: sphinxcontrib-qthelp==2.0.0 [compatible] (sphinxcontrib_qthelp-2.0.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(42) @ 2.0.0 without checking dependencies    
+DEBUG Searching for a compatible version of sphinxcontrib-serializinghtml (>=1.1.9)
+DEBUG Selecting: sphinxcontrib-serializinghtml==2.0.0 [compatible] (sphinxcontrib_serializinghtml-2.0.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(43) @ 2.0.0 without checking dependencies    
+DEBUG Searching for a compatible version of docutils (>=0.21, <0.23)
+DEBUG Selecting: docutils==0.22.4 [compatible] (docutils-0.22.4-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(44) @ 0.22.4 without checking dependencies    
+DEBUG Searching for a compatible version of snowballstemmer (>=3.0.1)
+DEBUG Selecting: snowballstemmer==3.1.1 [compatible] (snowballstemmer-3.1.1-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(45) @ 3.1.1 without checking dependencies    
+DEBUG Searching for a compatible version of babel (>=2.18)
+DEBUG Selecting: babel==2.18.0 [compatible] (babel-2.18.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(46) @ 2.18.0 without checking dependencies    
+DEBUG Searching for a compatible version of alabaster (>=1.0)
+DEBUG Selecting: alabaster==1.0.0 [compatible] (alabaster-1.0.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(47) @ 1.0.0 without checking dependencies    
+DEBUG Searching for a compatible version of imagesize (>=1.3)
+DEBUG Selecting: imagesize==2.0.1 [compatible] (imagesize-2.0.1-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(48) @ 2.0.1 without checking dependencies    
+DEBUG Searching for a compatible version of roman-numerals (>=3.0)
+DEBUG Selecting: roman-numerals==4.1.0 [compatible] (roman_numerals-4.1.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(49) @ 4.1.0 without checking dependencies    
+DEBUG Searching for a compatible version of beautifulsoup4 (*)
+DEBUG Selecting: beautifulsoup4==4.15.0 [compatible] (beautifulsoup4-4.15.0-py3-none-any.whl)
+DEBUG Adding transitive dependency for beautifulsoup4==4.15.0: soupsieve>=1.6.1
+DEBUG Adding transitive dependency for beautifulsoup4==4.15.0: typing-extensions>=4.0.0
+INFO add_decision: Id::<PubGrubPackage>(50) @ 4.15.0 without checking dependencies    
+DEBUG Searching for a compatible version of sphinx-basic-ng (>=1.0.0b2)
+DEBUG Selecting: sphinx-basic-ng==1.0.0b2 [compatible] (sphinx_basic_ng-1.0.0b2-py3-none-any.whl)
+DEBUG Adding transitive dependency for sphinx-basic-ng==1.0.0b2: sphinx>=4.0
+INFO add_decision: Id::<PubGrubPackage>(51) @ 1.0.0b2 without checking dependencies    
+DEBUG Searching for a compatible version of accessible-pygments (>=0.0.5)
+DEBUG Selecting: accessible-pygments==0.0.5 [compatible] (accessible_pygments-0.0.5-py3-none-any.whl)
+DEBUG Adding transitive dependency for accessible-pygments==0.0.5: pygments>=1.5
+INFO add_decision: Id::<PubGrubPackage>(52) @ 0.0.5 without checking dependencies    
+DEBUG Searching for a compatible version of mdit-py-plugins (>=0.6.1, <1.dev0)
+DEBUG Selecting: mdit-py-plugins==0.6.1 [compatible] (mdit_py_plugins-0.6.1-py3-none-any.whl)
+DEBUG Adding transitive dependency for mdit-py-plugins==0.6.1: markdown-it-py>=2.0.0, <5.0.0
+INFO add_decision: Id::<PubGrubPackage>(53) @ 0.6.1 without checking dependencies    
+DEBUG Found fresh response for: https://pypi.org/simple/distlib/
+DEBUG Found fresh response for: https://pypi.org/simple/filelock/
+DEBUG Found fresh response for: https://pypi.org/simple/python-discovery/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/e0/1b/5e74289a1878e666bb4b65fe5805a04cafcac2aa5f519ef1ead67ef91c56/filelock-4.2.4-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://pypi.org/simple/platformdirs/
+DEBUG Found fresh response for: https://pypi.org/simple/markupsafe/
+DEBUG Found fresh response for: https://pypi.org/simple/mdurl/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/b3/38/89ba8ad64ae25be8de66a6d463314cf1eb366222074cfda9ee839c56a4b4/mdurl-0.1.2-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://pypi.org/simple/idna/
+DEBUG Found fresh response for: https://pypi.org/simple/urllib3/
+DEBUG Found fresh response for: https://pypi.org/simple/certifi/
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/82/96/ef49135ce260db4ca4a12b119ed468449cd248db6b1468e2112b546d7a2e/markupsafe-3.0.4-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/c1/2b/238f02a4927fa2e27aa995371d240a468b52e42eae44a678434aff736b38/distlib-0.4.4-py2.py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/57/e4/1c7c388e874222c28afb92fe3ebfeebe55555276523ba7aab0a82a10b2b5/python_discovery-1.6.7-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/69/2b/887969ef4bb53e0cb271dc7c3f4a73d50c5d58bb88aeaae311e3340cd57e/platformdirs-4.14.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/58/a2/bb081bab032533a855d44de1d56f8e8426114ff1ba5d1f07a438a0a654f8/idna-3.20-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/92/9d/c4e665119135114480843e7ab388fa94d8480650450e6f8e26b70d323a4c/urllib3-2.8.0-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/32/d1/a3652fe2c19134d0d15922177821d863cbd7e842d53a21bbe7e8e3a1b5ac/certifi-2026.10.23-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://pypi.org/simple/charset-normalizer/
+DEBUG Searching for a compatible version of distlib (>=0.4.3, <1)
+DEBUG Selecting: distlib==0.4.4 [compatible] (distlib-0.4.4-py2.py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(59) @ 0.4.4 without checking dependencies    
+DEBUG Searching for a compatible version of filelock{python_full_version >= '3.10'} (>=3.24.2, <5)
+DEBUG Selecting: filelock==4.2.4 [compatible] (filelock-4.2.4-py3-none-any.whl)
+DEBUG Adding transitive dependency for filelock==4.2.4: filelock==4.2.4
+DEBUG Adding transitive dependency for filelock==4.2.4: filelock{python_full_version >= '3.10'}==4.2.4
+INFO add_decision: Id::<PubGrubPackage>(57) @ 4.2.4 without checking dependencies    
+DEBUG Searching for a compatible version of filelock (==4.2.4)
+DEBUG Selecting: filelock==4.2.4 [compatible] (filelock-4.2.4-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(58) @ 4.2.4 without checking dependencies    
+DEBUG Searching for a compatible version of filelock{python_full_version >= '3.10'} (==4.2.4)
+DEBUG Selecting: filelock==4.2.4 [compatible] (filelock-4.2.4-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(69) @ 4.2.4 without checking dependencies    
+DEBUG Searching for a compatible version of platformdirs (>=4.4, <5)
+DEBUG Selecting: platformdirs==4.14.0 [compatible] (platformdirs-4.14.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(60) @ 4.14.0 without checking dependencies    
+DEBUG Searching for a compatible version of python-discovery (>=1.6.1)
+DEBUG Selecting: python-discovery==1.6.7 [compatible] (python_discovery-1.6.7-py3-none-any.whl)
+DEBUG Adding transitive dependency for python-discovery==1.6.7: filelock>=3.16.1
+INFO add_decision: Id::<PubGrubPackage>(61) @ 1.6.7 without checking dependencies    
+DEBUG Searching for a compatible version of markupsafe (>=2.0)
+DEBUG Selecting: markupsafe==3.0.4 [compatible] (markupsafe-3.0.4-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl)
+INFO add_decision: Id::<PubGrubPackage>(62) @ 3.0.4 without checking dependencies    
+DEBUG Searching for a compatible version of mdurl (>=0.1, <1.dev0)
+DEBUG Selecting: mdurl==0.1.2 [compatible] (mdurl-0.1.2-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(63) @ 0.1.2 without checking dependencies    
+DEBUG Searching for a compatible version of charset-normalizer (>=2, <4)
+DEBUG Found fresh response for: https://pypi.org/simple/soupsieve/
+DEBUG Selecting: charset-normalizer==3.5.2 [compatible] (charset_normalizer-3.5.2-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl)
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/07/66/473f7ca0be0b06e38ee8c85ee2db184e3981bd769fac2e7c19c8a8865211/soupsieve-3.0.4-py3-none-any.whl.metadata
+DEBUG Found fresh response for: https://files.pythonhosted.org/packages/a0/a1/4fbf5d0f0f1b2a080474c1cf9a2f12c4c6531bb0e8ba591055e846d2b4e9/charset_normalizer-3.5.2-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata
+INFO add_decision: Id::<PubGrubPackage>(64) @ 3.5.2 without checking dependencies    
+DEBUG Searching for a compatible version of idna (>=2.5, <4)
+DEBUG Selecting: idna==3.20 [compatible] (idna-3.20-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(65) @ 3.20 without checking dependencies    
+DEBUG Searching for a compatible version of urllib3 (>=1.26, <3)
+DEBUG Selecting: urllib3==2.8.0 [compatible] (urllib3-2.8.0-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(66) @ 2.8.0 without checking dependencies    
+DEBUG Searching for a compatible version of certifi (>=2023.5.7)
+DEBUG Selecting: certifi==2026.10.23 [compatible] (certifi-2026.10.23-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(67) @ 2026.10.23 without checking dependencies    
+DEBUG Searching for a compatible version of soupsieve (>=1.6.1)
+DEBUG Selecting: soupsieve==3.0.4 [compatible] (soupsieve-3.0.4-py3-none-any.whl)
+INFO add_decision: Id::<PubGrubPackage>(68) @ 3.0.4 without checking dependencies    
+DEBUG Tried 59 versions: accessible-pygments 1, alabaster 1, ast-serialize 1, attrs 1, babel 1, beautifulsoup4 1, certifi 1, cfgv 1, charset-normalizer 1, click 1, click-log 1, coverage 1, distlib 1, docutils 1, filelock 1, furo 1, identify 1, idna 1, imagesize 1, iniconfig 1, jinja2 1, librt 1, markdown-it-py 1, markupsafe 1, mdit-py-plugins 1, mdurl 1, mypy 1, mypy-extensions 1, myst-parser 1, nodeenv 1, packaging 1, pathspec 1, pillow 1, platformdirs 1, pluggy 1, pre-commit 1, pygments 1, pytest 1, pytest-asyncio 1, pytest-cov 1, python-discovery 1, pyyaml 1, requests 1, roman-numerals 1, ruff 1, scriv 1, snowballstemmer 1, soupsieve 1, sphinx 1, sphinx-basic-ng 1, sphinxcontrib-applehelp 1, sphinxcontrib-devhelp 1, sphinxcontrib-htmlhelp 1, sphinxcontrib-jsmath 1, sphinxcontrib-qthelp 1, sphinxcontrib-serializinghtml 1, typing-extensions 1, urllib3 1, virtualenv 1
+DEBUG marker environment resolution took 0.052s
+Resolved 59 packages in 56ms
+# This file was autogenerated by uv via the following command:
+#    uv pip compile pyproject.toml --all-extras --python-version 3.15 --python-platform x86_64-manylinux_2_28 -o dev/log/issues/25/pulls/26/data/linux-python-resolution.txt
+accessible-pygments==0.0.5
+    # via furo
+alabaster==1.0.0
+    # via sphinx
+ast-serialize==0.13.1
+    # via mypy
+attrs==26.1.0
+    # via scriv
+babel==2.18.0
+    # via sphinx
+beautifulsoup4==4.15.0
+    # via furo
+certifi==2026.10.23
+    # via requests
+cfgv==3.5.0
+    # via pre-commit
+charset-normalizer==3.5.2
+    # via requests
+click==8.5.0
+    # via
+    #   click-log
+    #   scriv
+click-log==0.4.0
+    # via scriv
+coverage==7.17.0
+    # via pytest-cov
+distlib==0.4.4
+    # via virtualenv
+docutils==0.22.4
+    # via
+    #   myst-parser
+    #   sphinx
+filelock==4.2.4
+    # via
+    #   python-discovery
+    #   virtualenv
+furo==2025.12.19
+    # via medical-neural-network-ml (pyproject.toml)
+identify==2.6.20
+    # via pre-commit
+idna==3.20
+    # via requests
+imagesize==2.0.1
+    # via sphinx
+iniconfig==2.3.1
+    # via pytest
+jinja2==3.1.6
+    # via
+    #   myst-parser
+    #   scriv
+    #   sphinx
+librt==0.16.0
+    # via mypy
+markdown-it-py==4.2.0
+    # via
+    #   mdit-py-plugins
+    #   myst-parser
+    #   scriv
+markupsafe==3.0.4
+    # via jinja2
+mdit-py-plugins==0.6.1
+    # via myst-parser
+mdurl==0.1.2
+    # via markdown-it-py
+mypy==2.4.1
+    # via medical-neural-network-ml (pyproject.toml)
+mypy-extensions==1.1.0
+    # via mypy
+myst-parser==5.1.0
+    # via medical-neural-network-ml (pyproject.toml)
+nodeenv==1.11.1
+    # via pre-commit
+packaging==26.3
+    # via
+    #   pytest
+    #   sphinx
+    #   virtualenv
+pathspec==1.1.1
+    # via mypy
+pillow==13.0.0
+    # via medical-neural-network-ml (pyproject.toml)
+platformdirs==4.14.0
+    # via virtualenv
+pluggy==1.7.0
+    # via
+    #   pytest
+    #   pytest-cov
+pre-commit==4.7.0
+    # via medical-neural-network-ml (pyproject.toml)
+pygments==2.21.0
+    # via
+    #   accessible-pygments
+    #   furo
+    #   pytest
+    #   sphinx
+pytest==9.2.0
+    # via
+    #   medical-neural-network-ml (pyproject.toml)
+    #   pytest-asyncio
+    #   pytest-cov
+pytest-asyncio==1.4.1
+    # via medical-neural-network-ml (pyproject.toml)
+pytest-cov==7.1.0
+    # via medical-neural-network-ml (pyproject.toml)
+python-discovery==1.6.7
+    # via virtualenv
+pyyaml==6.0.3
+    # via
+    #   myst-parser
+    #   pre-commit
+requests==2.34.2
+    # via
+    #   scriv
+    #   sphinx
+roman-numerals==4.1.0
+    # via sphinx
+ruff==0.17.3
+    # via medical-neural-network-ml (pyproject.toml)
+scriv==1.8.0
+    # via medical-neural-network-ml (pyproject.toml)
+snowballstemmer==3.1.1
+    # via sphinx
+soupsieve==3.0.4
+    # via beautifulsoup4
+sphinx==9.2.0
+    # via
+    #   medical-neural-network-ml (pyproject.toml)
+    #   furo
+    #   myst-parser
+    #   sphinx-basic-ng
+sphinx-basic-ng==1.0.0b2
+    # via furo
+sphinxcontrib-applehelp==2.0.0
+    # via sphinx
+sphinxcontrib-devhelp==2.0.0
+    # via sphinx
+sphinxcontrib-htmlhelp==2.1.0
+    # via sphinx
+sphinxcontrib-jsmath==2.0.0
+    # via sphinx
+sphinxcontrib-qthelp==2.0.0
+    # via sphinx
+sphinxcontrib-serializinghtml==2.0.0
+    # via sphinx
+typing-extensions==4.16.0
+    # via
+    #   beautifulsoup4
+    #   mypy
+urllib3==2.8.0
+    # via requests
+virtualenv==21.15.1
+    # via pre-commit
