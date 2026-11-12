@@ -63,4 +63,4 @@ fonttools==4.68.0
 kiwisolver==1.5.1
 packaging==26.3
 pyparsing==3.3.3
-python-dateutil==3.0.0
+python-dateutil==4.0.0

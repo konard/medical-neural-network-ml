@@ -143,7 +143,7 @@ pyparsing==3.3.3
     # via
     #   -r unimedvl-requirements.in
     #   matplotlib
-python-dateutil==3.0.0
+python-dateutil==4.0.0
     # via
     #   -r unimedvl-requirements.in
     #   matplotlib
@@ -167,8 +167,6 @@ setuptools==84.2.1
     # via torch
 shellingham==1.5.4
     # via typer
-six==1.17.0
-    # via python-dateutil
 sympy==1.14.0
     # via torch
 tokenizers==0.23.3

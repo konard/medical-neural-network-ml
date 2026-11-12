@@ -540,7 +540,7 @@ pyopenssl==26.4.0
     # via azure-cli-core
 pysocks==1.7.1
     # via requests
-python-dateutil==3.0.0
+python-dateutil==4.0.0
     # via azure-storage-common
 pyyaml==6.0.3
     # via
@@ -568,7 +568,6 @@ six==1.17.0
     #   azure-cli
     #   azure-cosmos
     #   javaproperties
-    #   python-dateutil
 sshtunnel==0.1.5
     # via azure-cli
 tabulate==0.10.0
