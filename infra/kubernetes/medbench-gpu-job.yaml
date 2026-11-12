@@ -48,7 +48,7 @@ spec:
         - name: medbench
           # CUDA 13.4 base image: the llama.cpp build brings its own CUDA
           # runtime; the driver comes from the node.
-          image: nvidia/cuda:13.4.1-base-ubuntu24.04@sha256:3eb2d952d9cff2d7a4e42a1cedc19cfa610a7f72c3b8428811731dcea5a175fd
+          image: nvidia/cuda:13.5.0-base-ubuntu24.04@sha256:8c30b31b13a97ee353c21e666b227dea44f4331d38a221f257de70fc04b437d0
           workingDir: /work
           command: [bash, -c]
           args:

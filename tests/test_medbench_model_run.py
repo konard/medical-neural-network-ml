@@ -396,7 +396,10 @@ def test_unimedvl_cpu_job_runs_the_upstream_tests() -> None:
     # Its pytest is installed at pyproject.toml's dev floors.
     project = tomllib.loads((ROOT / "pyproject.toml").read_text())
     dev = project["project"]["optional-dependencies"]["dev"]
-    for requirement in re.findall(r'"(pytest(?:-asyncio)?>=[\d.]+)"', job):
+    # [\w.] so a post-release floor (1.4.1.post1, issue #30) is compared whole.
+    requirements = re.findall(r'"(pytest(?:-asyncio)?>=[\w.]+)"', job)
+    assert len(requirements) == 2, requirements
+    for requirement in requirements:
         assert requirement in dev
 
 

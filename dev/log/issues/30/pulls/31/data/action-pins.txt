@@ -1,0 +1,4 @@
+github/codeql-action v4.39.3 33d7b85da1a04171e211befe2c739303b9a4c066
+docker/login-action v4.8.0 8aa5831fb8d48d8f76594c7ddde61ae58019f550
+helm/kind-action v1.15.2 ea822c7bf1874f08e5a491df991c228edffc3376
+pnpm/action-setup v6.1.1 73e46992e05b19abd31f2f3c20e0e7370d762115

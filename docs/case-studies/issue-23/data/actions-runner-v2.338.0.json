@@ -19,10 +19,10 @@
     "published_at": "2026-10-01T11:30:26Z"
   },
   "k3s": {
-    "version": "v1.37.1+k3s1",
-    "k3s_amd64_sha256": "92b94582eb7b34a8cf532e6006842b9ed215a6783cf56a3dd6271fd35243b2c0",
+    "version": "v1.37.2+k3s1",
+    "k3s_amd64_sha256": "265b3ee6a3198ef14033c63ef46cbb32370d83795199fb6d1b01f21575eddbda",
     "install_sh_sha256_at_tag": "ed01f89fd977bf20ac1516bbebf8370bf3ddbaa55dac8aba610956a4c78cc00b",
-    "source": "https://github.com/k3s-io/k3s/releases/download/v1.37.1%2Bk3s1/sha256sum-amd64.txt"
+    "source": "https://github.com/k3s-io/k3s/releases/download/v1.37.2%2Bk3s1/sha256sum-amd64.txt"
   },
   "nvidia_container_toolkit": {
     "apt_repository": "https://nvidia.github.io/libnvidia-container/stable/deb/amd64/Packages",
