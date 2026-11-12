@@ -1,3 +1,4 @@
 # Isolated Python 3.14 Azure CLI environment. Compile from scripts/:
 # uv pip compile azure-cli-requirements.in -o azure-cli-requirements.txt --python-version 3.14
-azure-cli==2.91.0
+# Python 3.14 because PyYAML has no cp315 wheel yet (yaml/pyyaml#981, issue #30).
+azure-cli==2.92.0

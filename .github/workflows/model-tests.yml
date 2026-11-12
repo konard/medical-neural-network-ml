@@ -308,7 +308,7 @@ jobs:
       - name: Test the shims and upstream's code
         run: |
           python=.cache/medbench/unimedvl-venv/bin/python
-          "$python" -m pip install --quiet "pytest>=9.2.0" "pytest-asyncio>=1.4.1"
+          "$python" -m pip install --quiet "pytest>=9.2.0" "pytest-asyncio>=1.4.1.post1"
           UNIMEDVL_CODE_DIR=$(echo .cache/medbench/unimedvl-code-*)
           UNIMEDVL_MODEL_DIR=$(echo .cache/medbench/models/unimedvl-*)
           export UNIMEDVL_CODE_DIR UNIMEDVL_MODEL_DIR

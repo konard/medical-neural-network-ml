@@ -4,8 +4,9 @@
 # https://github.com/uni-medical/UniMedVL at commit
 # f51aa0accbd02e846e5ea20b595fb39b516dbe1f. Only the Jupyter packages are
 # left out; the server does not use a notebook. Upstream uses Python 3.10.18;
-# this runs on 3.14. sentencepiece 0.2.2 has no usable cp315 wheel, so the
-# complete binary-only installation still requires Python 3.14.
+# this runs on 3.14. sentencepiece 0.2.3 and torch 2.15 publish cp315 wheels,
+# but PyYAML (needed by transformers) has none yet (yaml/pyyaml#981), so the
+# complete binary-only installation still requires Python 3.14 (issue #30).
 #
 # scripts/unimedvl-requirements.txt is the full lock compiled from this file
 # (every transitive package pinned). Dependabot's uv ecosystem keeps both
@@ -17,7 +18,7 @@
 #     -o unimedvl-requirements.txt --python-version 3.14 \
 #     --python-platform x86_64-manylinux_2_28
 #
-# Every package is at its newest compatible release (issue #25). torch 2.15
+# Every package is at its newest compatible release (issues #25, #30). torch 2.15
 # pins cuda-toolkit 13.2.2 and the matching CUDA libraries, cuDNN, cuSPARSELt,
 # NCCL and NVSHMEM exactly; sympy 1.14.0 requires mpmath<1.4.
 # See dev/log/issues/25/pulls/26 for registry versions and held-pin reasons.
@@ -47,11 +48,11 @@
 torch==2.15.0
 torchvision
 triton
-transformers==5.22.1
+transformers==5.22.2
 accelerate==1.15.0
 safetensors==0.8.0
 tokenizers
-sentencepiece==0.2.2
+sentencepiece==0.2.3
 pillow==13.0.0
 numpy==2.5.4
 opencv-python==5.0.0.93

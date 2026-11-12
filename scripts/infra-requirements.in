@@ -1,6 +1,7 @@
 # Python 3.14 infrastructure validation tools. Compile from scripts/:
 # uv pip compile infra-requirements.in -o infra-requirements.txt --python-version 3.14
-ansible-core==2.21.5
-ansible-lint==26.10.1
+# Python 3.14 because PyYAML has no cp315 wheel yet (yaml/pyyaml#981, issue #30).
+ansible-core==2.22.0
+ansible-lint==26.11.0
 yamllint==1.38.0
 shellcheck-py==0.11.0.1

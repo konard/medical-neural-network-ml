@@ -27,27 +27,27 @@ classifiers = [
 
 [project.optional-dependencies]
 dev = [
-    "ruff>=0.17.3,<0.18",
+    "ruff>=0.17.4,<0.18",
     "mypy>=2.4.1",
     "pytest>=9.2.0",
     "pytest-asyncio>=1.4.1.post1",
     "pytest-cov>=7.1.0",
     "pre-commit>=4.7.0",
-    "scriv[toml]>=1.8.0",
+    "scriv[toml]>=1.8.1",
     "pillow>=13.0.0",
 ]
 imaging = [
     "pillow>=13.0.0",
 ]
 mlx = [
-    "mlx-vlm==0.7.11; sys_platform == 'darwin' and platform_machine == 'arm64'",
+    "mlx-vlm==0.7.12; sys_platform == 'darwin' and platform_machine == 'arm64'",
 ]
 # Sphinx 9.2 needs Python 3.12 or newer, so this extra does too (issue #19);
 # docs.yml builds on 3.15.
 docs = [
     "sphinx>=9.2.0",
     "furo>=2025.12.19",
-    "myst-parser>=5.1.0",
+    "myst-parser>=5.2.0",
 ]
 
 [project.scripts]

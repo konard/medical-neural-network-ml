@@ -16,9 +16,9 @@ azure-appconfiguration==1.10.0b1
     # via azure-cli
 azure-batch==15.0.0b1
     # via azure-cli
-azure-cli==2.91.0
+azure-cli==2.92.0
     # via -r azure-cli-requirements.in
-azure-cli-core==2.91.0
+azure-cli-core==2.92.0
     # via azure-cli
 azure-cli-telemetry==1.1.0
     # via azure-cli-core
@@ -137,7 +137,7 @@ azure-mgmt-botservice==2.0.0
     # via azure-cli
 azure-mgmt-cdn==12.0.0
     # via azure-cli
-azure-mgmt-cognitiveservices==15.0.0b4
+azure-mgmt-cognitiveservices==15.0.0b6
     # via azure-cli
 azure-mgmt-compute==34.1.0
     # via azure-cli
@@ -147,7 +147,7 @@ azure-mgmt-containerregistry==15.1.0b3
     # via azure-cli
 azure-mgmt-containerregistrytasks==1.0.0b1
     # via azure-cli
-azure-mgmt-containerservice==41.6.0
+azure-mgmt-containerservice==41.8.0
     # via azure-cli
 azure-mgmt-core==1.6.0
     # via
@@ -265,7 +265,7 @@ azure-mgmt-netapp==10.1.0
     # via azure-cli
 azure-mgmt-policyinsights==1.1.0b4
     # via azure-cli
-azure-mgmt-postgresqlflexibleservers==3.0.0b2
+azure-mgmt-postgresqlflexibleservers==3.0.0b3
     # via azure-cli
 azure-mgmt-privatedns==1.0.0
     # via azure-cli
@@ -497,7 +497,7 @@ msrest==0.7.1
     #   azure-synapse-accesscontrol
     #   azure-synapse-managedprivateendpoints
     #   azure-synapse-spark
-oauthlib==4.0.0
+oauthlib==4.0.1
     # via requests-oauthlib
 packaging==26.3
     # via
@@ -561,7 +561,7 @@ requests-oauthlib==2.0.0
     # via msrest
 scp==0.13.6
     # via azure-cli
-semver==3.1.0
+semver==3.1.1
     # via azure-cli
 six==1.17.0
     # via
