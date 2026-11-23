@@ -16,9 +16,9 @@ azure-appconfiguration==1.10.0b1
     # via azure-cli
 azure-batch==15.0.0b1
     # via azure-cli
-azure-cli==2.92.0
+azure-cli==2.93.0
     # via -r azure-cli-requirements.in
-azure-cli-core==2.92.0
+azure-cli-core==2.93.0
     # via azure-cli
 azure-cli-telemetry==1.1.0
     # via azure-cli-core
@@ -67,7 +67,6 @@ azure-common==1.1.28
     #   azure-mgmt-servicefabricmanagedclusters
     #   azure-mgmt-servicelinker
     #   azure-mgmt-signalr
-    #   azure-mgmt-sql
     #   azure-mgmt-sqlvirtualmachine
     #   azure-mgmt-synapse
     #   azure-mgmt-trafficmanager
@@ -243,7 +242,7 @@ azure-mgmt-iothub==5.0.0b1
     # via azure-cli
 azure-mgmt-iothubprovisioningservices==1.1.0
     # via azure-cli
-azure-mgmt-keyvault==14.0.1
+azure-mgmt-keyvault==14.1.0
     # via azure-cli
 azure-mgmt-loganalytics==13.0.0b4
     # via azure-cli
@@ -273,7 +272,7 @@ azure-mgmt-rdbms==10.2.0b17
     # via azure-cli
 azure-mgmt-recoveryservices==4.2.0
     # via azure-cli
-azure-mgmt-recoveryservicesbackup==11.1.0
+azure-mgmt-recoveryservicesbackup==11.2.0
     # via azure-cli
 azure-mgmt-recoveryservicesbackup-passivestamp==1.0.0b1
     # via azure-cli
@@ -305,11 +304,11 @@ azure-mgmt-servicelinker==1.2.0b3
     # via azure-cli
 azure-mgmt-signalr==2.0.0b2
     # via azure-cli
-azure-mgmt-sql==4.0.0b22
+azure-mgmt-sql==5.0.0b2
     # via azure-cli
 azure-mgmt-sqlvirtualmachine==1.0.0b5
     # via azure-cli
-azure-mgmt-storage==25.0.0
+azure-mgmt-storage==25.3.0
     # via azure-cli
 azure-mgmt-synapse==2.1.0b5
     # via azure-cli

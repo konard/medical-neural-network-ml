@@ -73,7 +73,7 @@ mpmath==1.3.0
     # via sympy
 networkx==3.7
     # via torch
-numpy==2.5.4
+numpy==2.5.5
     # via
     #   -r unimedvl-requirements.in
     #   accelerate
@@ -190,7 +190,7 @@ tqdm==4.70.1
     # via
     #   huggingface-hub
     #   transformers
-transformers==5.22.2
+transformers==5.23.0
     # via -r unimedvl-requirements.in
 triton==3.9.0
     # via
